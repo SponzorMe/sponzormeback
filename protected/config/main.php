@@ -38,11 +38,11 @@ return array(
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
-      'bootstrap' => array(
+		),
+     'bootstrap' => array(
 	    'class' => 'ext.bootstrap.components.Bootstrap',
 	    'responsiveCss' => true,
 	    ),
-		),
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(

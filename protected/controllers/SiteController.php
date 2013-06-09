@@ -111,7 +111,7 @@ class SiteController extends Controller
     				$this->redirect('/dashboard');
         }
     }
-    $this->render('signup',array('model'=>$model));
+    $this->renderPartial('signup',array('model'=>$model));
   }
 
   public function actionEvernoteSignup()

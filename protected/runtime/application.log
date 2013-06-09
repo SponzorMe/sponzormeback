@@ -1483,3 +1483,555 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/sponsorme/images/favicon.ico
 ---
+2013/06/09 01:54:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 01:54:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 01:55:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 01:55:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 01:55:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 01:56:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 01:57:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 01:57:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 01:57:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 01:57:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 01:57:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 01:58:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 01:58:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 01:58:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 01:59:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 01:59:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:00:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:01:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:01:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:02:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:03:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:04:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:05:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:05:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:06:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:06:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:06:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:07:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:07:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:07:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:08:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:08:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:08:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:08:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:22:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:22:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:23:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:24:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:24:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:25:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:26:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:26:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:26:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:27:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:28:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:28:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:28:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:29:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 02:29:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:27:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:27:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:27:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:28:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:28:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:28:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:28:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:29:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:29:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:30:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:31:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:31:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:31:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:31:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:31:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:32:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:32:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:32:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:32:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/09 03:32:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---

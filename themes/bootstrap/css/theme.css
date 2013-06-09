@@ -13,7 +13,7 @@ body {
     .navbar .navbar-inner .nav a {
       background: white;
       vertical-align: middle;
-      text-transform: capitalize;
+      text-transform: uppercase;
       padding: 5pt 15pt;
       border-radius: 4pt;
       color: #012135;
@@ -58,10 +58,61 @@ footer.footer {
 
 /*Specific pages*/
 #usr {
-  background: #0d2635; }
+  background: #0d2635 url("../img/bg.jpg"); }
   #usr div.form {
-    width: 680pt;
-    margin: 30pt auto; }
+    width: 420pt;
+    margin: 30pt auto;
+    padding-top: 40pt; }
+    #usr div.form h1 {
+      text-align: center;
+      height: 40pt;
+      margin-bottom: 5pt; }
+      #usr div.form h1 img {
+        height: 37pt; }
     #usr div.form .left {
-      width: 50%;
+      width: 40%;
+      float: left;
+      border-right: 2px solid #0b4569;
+      padding: 10pt 5%; }
+      #usr div.form .left input[type='text'], #usr div.form .left input[type='password'], #usr div.form .left select {
+        width: 99%;
+        line-height: 30pt;
+        background: #eaeaea;
+        border-radius: 4pt;
+        color: #b1b1b1;
+        margin-bottom: 12pt;
+        padding: 0pt 2pt; }
+        #usr div.form .left input[type='text'][value=''], #usr div.form .left input[type='password'][value=''], #usr div.form .left select[value=''] {
+          text-align: center;
+          text-transform: uppercase; }
+      #usr div.form .left label {
+        display: none; }
+      #usr div.form .left .help-block, #usr div.form .left .help-inline {
+        text-align: center;
+        color: white; }
+    #usr div.form .right {
       float: left; }
+      #usr div.form .right img {
+        margin-top: 17pt;
+        margin-left: 13pt; }
+    #usr div.form .form-actions {
+      width: 100%;
+      display: block;
+      clear: both; }
+      #usr div.form .form-actions a {
+        color: #00adb9;
+        text-transform: Uppercase;
+        letter-spacing: -1pt; }
+    #usr div.form .btn {
+      background: #00adb9;
+      border: 0;
+      color: white;
+      text-transform: uppercase;
+      font-size: 13pt;
+      font-weight: 700;
+      padding: 5pt 12pt;
+      border-radius: 4pt;
+      cursor: pointer; }
+      #usr div.form .btn:hover, #usr div.form .btn:active {
+        color: #eaeaea;
+        background: #004e53; }

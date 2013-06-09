@@ -1,23 +1,28 @@
-<?php
-$this->pageCaption='Registrate';
-$this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
-$this->pageDescription='Crea tu cuenta en sponzor.me';
-$this->breadcrumbs=array(
-	'Registro',
-);
-?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-<?php if(Yii::app()->user->hasFlash('signup')): ?>
-  <?php $this->beginWidget('BAlert',array('type'=>'success')); ?>
-  <?php echo Yii::app()->user->getFlash('contact'); ?>
-  <?php $this->endWidget(); ?>
-<?php else: ?>
-<p>
-If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
-</p>
+	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/theme.css" rel="stylesheet">
+
+
+
+	<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico">
+	<link rel="apple-touch-icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="<?php echo Yii::app()->request->baseUrl; ?>/images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo Yii::app()->request->baseUrl; ?>/images/apple-touch-icon-114x114.png">
+</head>
+<body id='usr'>
 
 <div class="form">
-
+<h1 class='logo'>
+            <img src='<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png' title="<?php echo CHtml::encode(Yii::app()->name); ?>" />
+</h1>
+<div class="left">
 <?php $form=$this->beginWidget('BActiveForm', array(
 	'id'=>'contact-form',
 	'enableClientValidation'=>true,
@@ -25,10 +30,7 @@ If you have business inquiries or other questions, please fill out the following
 		'validateOnSubmit'=>true,
 	),
 )); ?>
-	<?php $this->beginWidget('BAlert',array()); ?>
-	<p>Fields with <span class="required">*</span> are required.</p>
-	<?php $this->endWidget(); ?>
-
+	
 	<?php if(isset($_POST) ) echo $form->errorSummary($model); ?>
 
 	<div class="<?php echo $form->fieldClass($model, 'username'); ?>">
@@ -92,12 +94,17 @@ If you have business inquiries or other questions, please fill out the following
 		</div>
   </div>
 
-	<div class="form-actions">
-		<?php echo BHtml::submitButton('Registrarme'); ?>
+</div><!-- left -->
+  <div class='right'>
+            <img src='<?php echo Yii::app()->request->baseUrl; ?>/images/evernote_logo.png' title="<?php echo CHtml::encode(Yii::app()->name); ?>" />
+  </div><!-- right -->
+
+  <div class="form-actions">
+    <?php echo BHtml::submitButton('Signup'); ?>
+    <a href='<?php echo Yii::app()->request->baseUrl; ?>/site/login' >Already a user? login</a>
 	</div>
 
 <?php $this->endWidget(); ?>
-
 </div><!-- form -->
 
-<?php endif; ?>
+

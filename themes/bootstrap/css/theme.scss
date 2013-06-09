@@ -12,7 +12,7 @@ $h: 30pt;
         .nav a {
           background:white;
           vertical-align:middle;
-          text-transform:capitalize;
+          text-transform:uppercase;
           padding:5pt 15pt;
           border-radius:4pt;
           color:#012135;
@@ -82,14 +82,76 @@ footer.footer {
 
 /*Specific pages*/
 #usr {
-  background:#0d2635;
-  div.form {
-    width:680pt;
-    margin:30pt auto;
-    .left {
-      width:50%;
-      float:left;
-
+    background:#0d2635 url('../img/bg.jpg');
+    div.form {
+        width:420pt;
+        margin:30pt auto;
+        padding-top:40pt;
+        h1 {
+            text-align:center;
+            height:40pt;
+            margin-bottom:5pt;
+            img {
+                height:37pt;
+            }
+        }
+        .left {
+            width:40%;
+            float:left;
+            border-right:2px solid #0b4569;
+            padding:10pt 5%;
+            input[type='text'], input[type='password'], select{
+                width:99%;
+                line-height:30pt;
+                background:#eaeaea;
+                border-radius:4pt;
+                color:#b1b1b1;
+                margin-bottom:12pt;
+                padding:0pt 2pt;
+                &[value='']{
+                    text-align:center;
+                    text-transform:uppercase;
+                }
+            }
+            label {
+                display:none;
+            }
+            .help-block, .help-inline {
+                text-align:center;
+                color:white;
+            }
+        } 
+        .right {
+          float:left;
+          img {
+            margin-top: 17pt;
+            margin-left: 13pt;
+          }
+        }
+        .form-actions {
+          width:100%;
+          display:block;
+          clear:both;
+          a {
+            color:#00adb9;
+            text-transform:Uppercase;
+            letter-spacing:-1pt;
+          }
+        }
+        .btn {
+            background:#00adb9;
+            border:0;
+            color:white;
+            text-transform:uppercase;
+            font-size:13pt;
+            font-weight:700;
+            padding:5pt 12pt;
+            border-radius:4pt;
+            cursor:pointer;
+            &:hover, &:active {
+                color:#eaeaea;
+                background:darken(#00adb9,20%);
+            }
+        }
     }
-  }
 }

@@ -19,6 +19,9 @@
 <body id='usr'>
 
 <div class="form">
+<h1 class='logo'>
+            <img src='<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png' title="<?php echo CHtml::encode(Yii::app()->name); ?>" />
+</h1>
 <div class="left">
 <?php $form=$this->beginWidget('BActiveForm', array(
 	'id'=>'login-form',
@@ -31,7 +34,7 @@
 	<div class="<?php echo $form->fieldClass($model, 'username'); ?>">
 		<?php echo $form->labelEx($model,'username'); ?>
 		<div class="controls">
-			<?php echo $form->textField($model,'username'); ?>
+			<?php echo $form->textField($model,'username',array('placeholder'=>'Username')); ?>
 			<?php echo $form->error($model,'username'); ?>
 		</div>
 	</div>
@@ -39,11 +42,8 @@
 	<div class="<?php echo $form->fieldClass($model, 'password'); ?>">
 		<?php echo $form->labelEx($model,'password'); ?>
 		<div class="controls">
-			<?php echo $form->passwordField($model,'password'); ?>
+			<?php echo $form->passwordField($model,'password',array('placeholder'=>'Password')); ?>
 			<?php echo $form->error($model,'password'); ?>
-			<span class="help-block">
-				Hint: You may login with <tt>demo/demo</tt> or <tt>admin/admin</tt>.
-			</span>
 		</div>
 	</div>
 
@@ -54,13 +54,17 @@
 		</div>
 	</div>
 
-	<div class="form-actions">
-		<?php echo BHtml::submitButton('Login'); ?>
-	</div>
+
+</div><!-- left -->
+  <div class='right'>
+            <img src='<?php echo Yii::app()->request->baseUrl; ?>/images/evernote_logo.png' title="<?php echo CHtml::encode(Yii::app()->name); ?>" />
+  </div><!-- right -->
+
+  <div class="form-actions">
+    <?php echo BHtml::submitButton('Login'); ?>
+    <a >forgot your password?</a><br/>
+    <a href='<?php echo Yii::app()->request->baseUrl; ?>/site/signup' >Not an user? Signup</a>
+  </div>
 
 <?php $this->endWidget(); ?>
-</div><!-- left -->
-<div class='right'>
-
-</div><!-- right -->
 </div><!-- form -->

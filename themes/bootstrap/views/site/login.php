@@ -57,7 +57,9 @@
 
 </div><!-- left -->
   <div class='right'>
+      <a href='<?php echo Yii::app()->request->baseUrl; ?>/' >
             <img src='<?php echo Yii::app()->request->baseUrl; ?>/images/evernote_logo.png' title="<?php echo CHtml::encode(Yii::app()->name); ?>" />
+      </a>
   </div><!-- right -->
 
   <div class="form-actions">

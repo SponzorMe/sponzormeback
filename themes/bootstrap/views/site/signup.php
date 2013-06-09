@@ -20,7 +20,9 @@
 
 <div class="form">
 <h1 class='logo'>
+    <a href='<?php echo Yii::app()->request->baseUrl; ?>/' >
             <img src='<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png' title="<?php echo CHtml::encode(Yii::app()->name); ?>" />
+    </a>
 </h1>
 <div class="left">
 <?php $form=$this->beginWidget('BActiveForm', array(

@@ -1,0 +1,95 @@
+@import url("http://fonts.googleapis.com/css?family=Archivo+Narrow:400,400italic,700,700italic");
+body {
+  font-family:'Archivo Narrow'
+}
+$h: 30pt;
+.navbar {
+    overflow:hidden;
+    .navbar-inner {
+        .nav {
+          line-height:$h;
+        }
+        .nav a {
+          background:white;
+          vertical-align:middle;
+          text-transform:capitalize;
+          padding:5pt 15pt;
+          border-radius:4pt;
+          color:#012135;
+          text-shadow:0px 0px 0px rgb(0,0,0);
+        }
+        .nav .active a, .nav a:hover {
+          background:#14b3bf;
+          color:white;
+        }
+        width:92%;
+        padding:10pt 4%;
+        background:white;
+        .brand {
+            img {
+                height:$h;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+footer.footer {
+    display:block;
+    width:92%;
+    background:#012135;
+    padding:20px 4%;
+    text-align:left;
+    text-shadow:0px 0px 0px rgb(0,0,0);
+    height:90px;
+    nav {
+        a {
+            line-height:13pt;
+            font-size:0.9em;
+            margin-left:4%;
+            color:#4c6371;
+            &:first-child {
+                color:#b3bcc2;
+                font-weight:700;
+                font-size:1em;
+                i {
+                    font-style:normal;
+                    display:inline-block;
+                    padding-top: 5px;
+                    margin-top:-6px;
+                    font-size:7px;
+                    transform:rotate(-90deg);
+                    -ms-transform:rotate(-90deg); /* IE 9 */
+                    -webkit-transform:rotate(-90deg); /* Safari and Chrome */
+                }
+                
+            }
+            b {
+              float:right;
+              margin-right:-20px;
+            }
+        }
+    }
+}
+
+
+/*Specific pages*/
+#usr {
+  background:#0d2635;
+  div.form {
+    width:680pt;
+    margin:30pt auto;
+    .left {
+      width:50%;
+      float:left;
+
+    }
+  }
+}

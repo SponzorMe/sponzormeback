@@ -11,6 +11,7 @@
 	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/application.min.css" rel="stylesheet">
 	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/theme.css" rel="stylesheet">
 
 	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
@@ -28,22 +29,13 @@
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container">
-				<a class="brand" href="<?php echo $this->createAbsoluteUrl('//'); ?>"><?php echo CHtml::encode(Yii::app()->name); ?></a>
+        <a class="brand" href="<?php echo $this->createAbsoluteUrl('//'); ?>">
+            <img src='<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png' title="<?php echo CHtml::encode(Yii::app()->name); ?>" />
+        </a>
 				<?php $this->widget('zii.widgets.CMenu',array(
 					'items'=>array(
-						array('label'=>'Home', 'url'=>array('/site/index')),
-						array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-						array('label'=>'Contact', 'url'=>array('/site/contact')),
 						array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-						array('label'=>'Signup', 'url'=>array('/site/signup'), 'visible'=>Yii::app()->user->isGuest),
-					),
-					'htmlOptions'=>array(
-						'class'=>'nav',
-					),
-				)); ?>
-				<?php $this->widget('zii.widgets.CMenu',array(
-					'items'=>array(
-						array('label'=>Yii::app()->user->name, 'url'=>array('site/profile'), 'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>'Signup', 'url'=>array('/site/signup'), 'visible'=>Yii::app()->user->isGuest),					
 						array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest, 'htmlOptions'=>array('class'=>'btn'))
 					),
 					'htmlOptions'=>array(
@@ -66,12 +58,15 @@
 	<?php echo $content; ?>
 	
 	<footer class="footer">
-		<div class="container">
-			<p>Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-			All Rights Reserved.<br/>
-			<?php echo Yii::powered(); ?></p>
+		<nav>
+			<a href='/'>SPONZOR<i>.me</i></a>
+			<a href='/site/support'>Support</a>
+			<a href='/site/about'>About</a>
+			<a href='/site/terms'>Terms of Service</a>
+			<a href='/site/privacy'>Privacy</a>
+			<a><b>©Sponzorme2013 | Made with love</b></a>
 		</div>
-	</footer>
+	</nav>
 	
 </body>
 </html>

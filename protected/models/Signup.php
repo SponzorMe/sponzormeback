@@ -21,6 +21,7 @@
  */
 class Signup extends CActiveRecord
 {
+  private $_identity;
   public $passwordr;
 	/**
 	 * Returns the static model of the specified AR class.
@@ -94,10 +95,12 @@ class Signup extends CActiveRecord
       $usr = new Usr;
       $_POST['Signup']['password'] = md5($_POST['Signup']['password']);
       $usr->attributes = $_POST['Signup'];
-      $usr->save(false);
-      var_dump($_POST);
-      exit;
-      return true;
+      if ($usr->save(false) ){
+            $this->_identity=new UserIdentity($this->username,$this->password);
+       			$duration = $this->rememberMe ? 3600*24*30 : 0; // 30 days
+			      Yii::app()->user->login( $this->_identity, 3600*24*30 );
+            return true;
+      }
   }
   /**
 	 * Retrieves a list of models based on the current search/filter conditions.

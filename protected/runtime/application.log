@@ -1,0 +1,761 @@
+2013/06/08 13:42:10 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.bootstrap" is not defined.' in /var/www/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/yii/framework/web/auth/CWebUser.php(154): CComponent->__set('bootstrap', Array)
+#1 /var/www/yii/framework/YiiBase.php(220): CWebUser->__set('bootstrap', Array)
+#2 /var/www/yii/framework/base/CModule.php(386): YiiBase::createComponent(Array)
+#3 /var/www/yii/framework/base/CModule.php(103): CModule->getComponent('user')
+#4 /var/www/sponsorme/protected/views/layouts/main.php(35): CModule->__get('user')
+#5 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#6 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', Array, true)
+#7 /var/www/yii/framework/web/widgets/CContentDecorator.php(76): CBaseController->renderFile('/var/www/sponso...', Array, true)
+#8 /var/www/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#9 /var/www/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#10 /var/www/yii/framework/web/CBaseController.php(206): COutputProcessor->run()
+#11 /var/www/yii/framework/web/CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#12 /var/www/sponsorme/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#13 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#14 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', Array, true)
+#15 /var/www/yii/framework/web/CController.php(784): CBaseController->renderFile('/var/www/sponso...', Array, true)
+#16 /var/www/sponsorme/protected/controllers/SiteController.php(32): CController->render('index')
+#17 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#18 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#19 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#20 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#22 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#23 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#24 /var/www/sponsorme/index.php(13): CApplication->run()
+#25 {main}
+REQUEST_URI=/sponsorme/
+---
+2013/06/08 13:47:20 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.bootstrap" is not defined.' in /var/www/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/yii/framework/web/auth/CWebUser.php(154): CComponent->__set('bootstrap', Array)
+#1 /var/www/yii/framework/YiiBase.php(220): CWebUser->__set('bootstrap', Array)
+#2 /var/www/yii/framework/base/CModule.php(386): YiiBase::createComponent(Array)
+#3 /var/www/yii/framework/base/CModule.php(103): CModule->getComponent('user')
+#4 /var/www/sponsorme/protected/views/layouts/main.php(35): CModule->__get('user')
+#5 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#6 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', Array, true)
+#7 /var/www/yii/framework/web/widgets/CContentDecorator.php(76): CBaseController->renderFile('/var/www/sponso...', Array, true)
+#8 /var/www/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#9 /var/www/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#10 /var/www/yii/framework/web/CBaseController.php(206): COutputProcessor->run()
+#11 /var/www/yii/framework/web/CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#12 /var/www/sponsorme/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#13 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#14 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', Array, true)
+#15 /var/www/yii/framework/web/CController.php(784): CBaseController->renderFile('/var/www/sponso...', Array, true)
+#16 /var/www/sponsorme/protected/controllers/SiteController.php(32): CController->render('index')
+#17 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#18 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#19 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#20 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#22 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#23 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#24 /var/www/sponsorme/index.php(13): CApplication->run()
+#25 {main}
+REQUEST_URI=/sponsorme/
+---
+2013/06/08 14:33:22 [error] [exception.CException] exception 'CException' with message 'Property "SiteController.pageCaption" is not defined.' in /var/www/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/sponsorme/themes/bootstrap/views/site/index.php(2): CComponent->__set('pageCaption', '')
+#1 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#2 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', NULL, true)
+#3 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/sponso...', NULL, true)
+#4 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#5 /var/www/sponsorme/protected/controllers/SiteController.php(32): CController->render('index')
+#6 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#7 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#11 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#12 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/sponsorme/index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/sponsorme/
+---
+2013/06/08 14:33:26 [error] [exception.CException] exception 'CException' with message 'Property "SiteController.pageCaption" is not defined.' in /var/www/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/sponsorme/themes/bootstrap/views/site/index.php(2): CComponent->__set('pageCaption', '')
+#1 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#2 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', NULL, true)
+#3 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/sponso...', NULL, true)
+#4 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#5 /var/www/sponsorme/protected/controllers/SiteController.php(32): CController->render('index')
+#6 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#7 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#11 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#12 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/sponsorme/index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/sponsorme/
+---
+2013/06/08 14:34:20 [error] [exception.CException] exception 'CException' with message 'Property "SiteController.pageCaption" is not defined.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/sponsorme/themes/bootstrap/views/layouts/column1.php(4): CComponent->__get('pageCaption')
+#1 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#2 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', Array, true)
+#3 /var/www/yii/framework/web/CController.php(784): CBaseController->renderFile('/var/www/sponso...', Array, true)
+#4 /var/www/sponsorme/protected/controllers/SiteController.php(32): CController->render('index')
+#5 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#6 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#7 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#8 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#10 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#11 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#12 /var/www/sponsorme/index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/sponsorme/
+---
+2013/06/08 14:34:53 [error] [php] include(BBreadcrumbs.php): failed to open stream: No such file or directory (/var/www/yii/framework/YiiBase.php:421)
+Stack trace:
+#0 /var/www/yii/framework/web/CWidgetFactory.php(146): import()
+#1 /var/www/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget()
+#2 /var/www/yii/framework/web/CBaseController.php(172): SiteController->createWidget()
+#3 /var/www/sponsorme/themes/bootstrap/views/layouts/main.php(61): SiteController->widget()
+#4 /var/www/yii/framework/web/CBaseController.php(126): require()
+#5 /var/www/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#6 /var/www/yii/framework/web/widgets/CContentDecorator.php(76): SiteController->renderFile()
+#7 /var/www/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
+#8 /var/www/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
+#9 /var/www/yii/framework/web/CBaseController.php(206): CContentDecorator->run()
+#10 /var/www/yii/framework/web/CBaseController.php(300): SiteController->endWidget()
+#11 /var/www/sponsorme/themes/bootstrap/views/layouts/column1.php(8): SiteController->endContent()
+#12 /var/www/yii/framework/web/CBaseController.php(126): require()
+#13 /var/www/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#14 /var/www/yii/framework/web/CController.php(784): SiteController->renderFile()
+#15 /var/www/sponsorme/protected/controllers/SiteController.php(32): SiteController->render()
+#16 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#17 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#18 /var/www/yii/framework/web/CController.php(286): SiteController->runAction()
+#19 /var/www/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#20 /var/www/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#21 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#22 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#23 /var/www/sponsorme/index.php(13): CWebApplication->run()
+REQUEST_URI=/sponsorme/
+in /var/www/sponsorme/themes/bootstrap/views/layouts/main.php (61)
+in /var/www/sponsorme/themes/bootstrap/views/layouts/column1.php (8)
+in /var/www/sponsorme/protected/controllers/SiteController.php (32)
+2013/06/08 14:35:31 [error] [exception.CException] exception 'CException' with message 'Property "SiteController.pageCaption" is not defined.' in /var/www/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/sponsorme/themes/bootstrap/views/site/pages/about.php(2): CComponent->__set('pageCaption', 'About')
+#1 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#2 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', NULL, true)
+#3 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/sponso...', NULL, true)
+#4 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('pages/about', NULL, true)
+#5 /var/www/yii/framework/web/actions/CViewAction.php(140): CController->render('pages/about')
+#6 /var/www/yii/framework/web/actions/CAction.php(76): CViewAction->run()
+#7 /var/www/yii/framework/web/CController.php(308): CAction->runWithParams(Array)
+#8 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CViewAction))
+#9 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CViewAction), Array)
+#10 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('page')
+#11 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/page')
+#12 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/sponsorme/index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/sponsorme/index.php/site/page?view=about
+HTTP_REFERER=http://localhost/sponsorme/
+---
+2013/06/08 14:36:00 [error] [exception.CException] exception 'CException' with message 'Property "SiteController.pageCaption" is not defined.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/sponsorme/themes/bootstrap/views/site/pages/about.php(3): CComponent->__get('pageCaption')
+#1 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#2 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', NULL, true)
+#3 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/sponso...', NULL, true)
+#4 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('pages/about', NULL, true)
+#5 /var/www/yii/framework/web/actions/CViewAction.php(140): CController->render('pages/about')
+#6 /var/www/yii/framework/web/actions/CAction.php(76): CViewAction->run()
+#7 /var/www/yii/framework/web/CController.php(308): CAction->runWithParams(Array)
+#8 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CViewAction))
+#9 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CViewAction), Array)
+#10 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('page')
+#11 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/page')
+#12 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/sponsorme/index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/sponsorme/index.php/site/page?view=about
+HTTP_REFERER=http://localhost/sponsorme/
+---
+2013/06/08 14:36:09 [error] [exception.CException] exception 'CException' with message 'Property "SiteController.pageDescription" is not defined.' in /var/www/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/sponsorme/themes/bootstrap/views/site/pages/about.php(4): CComponent->__set('pageDescription', 'Here's what thi...')
+#1 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#2 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', NULL, true)
+#3 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/sponso...', NULL, true)
+#4 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('pages/about', NULL, true)
+#5 /var/www/yii/framework/web/actions/CViewAction.php(140): CController->render('pages/about')
+#6 /var/www/yii/framework/web/actions/CAction.php(76): CViewAction->run()
+#7 /var/www/yii/framework/web/CController.php(308): CAction->runWithParams(Array)
+#8 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CViewAction))
+#9 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CViewAction), Array)
+#10 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('page')
+#11 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/page')
+#12 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/sponsorme/index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/sponsorme/index.php/site/page?view=about
+HTTP_REFERER=http://localhost/sponsorme/
+---
+2013/06/08 14:36:15 [error] [exception.CException] exception 'CException' with message 'Property "SiteController.pageCaption" is not defined.' in /var/www/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/sponsorme/themes/bootstrap/views/site/contact.php(2): CComponent->__set('pageCaption', 'Contact Us')
+#1 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#2 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', Array, true)
+#3 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/sponso...', Array, true)
+#4 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('contact', Array, true)
+#5 /var/www/sponsorme/protected/controllers/SiteController.php(72): CController->render('contact', Array)
+#6 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionContact()
+#7 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('contact')
+#11 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/contact')
+#12 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/sponsorme/index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/sponsorme/index.php/site/contact
+HTTP_REFERER=http://localhost/sponsorme/index.php/site/page?view=about
+---
+2013/06/08 16:45:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "signup".' in /var/www/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(270): CController->missingAction('signup')
+#1 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('signup')
+#2 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/signup')
+#3 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/sponsorme/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/sponsorme/index.php/site/signup
+HTTP_REFERER=http://localhost/sponsorme/index.php/site/login
+---
+2013/06/08 16:45:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "signup".' in /var/www/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(270): CController->missingAction('signup')
+#1 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('signup')
+#2 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/signup')
+#3 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/sponsorme/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/sponsorme/index.php/site/signup
+HTTP_REFERER=http://localhost/sponsorme/index.php/site/login
+---
+2013/06/08 16:45:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "signup".' in /var/www/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(270): CController->missingAction('signup')
+#1 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('signup')
+#2 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/signup')
+#3 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/sponsorme/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/sponsorme/index.php/site/signup
+HTTP_REFERER=http://localhost/sponsorme/index.php/site/signup
+---
+2013/06/08 16:45:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "signup".' in /var/www/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(270): CController->missingAction('signup')
+#1 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('signup')
+#2 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/signup')
+#3 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/sponsorme/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/sponsorme/index.php/site/signup
+HTTP_REFERER=http://localhost/sponsorme/index.php/site/signup
+---
+2013/06/08 16:47:49 [error] [exception.CException] exception 'CException' with message 'Property "LoginForm.name" is not defined.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/yii/framework/web/helpers/CHtml.php(2255): CComponent->__get('name')
+#1 /var/www/yii/framework/web/helpers/CHtml.php(1980): CHtml::resolveValue(Object(LoginForm), 'name')
+#2 /var/www/yii/framework/web/helpers/CHtml.php(1257): CHtml::activeInputField('text', Object(LoginForm), 'name', Array)
+#3 /var/www/yii/framework/web/widgets/CActiveForm.php(657): CHtml::activeTextField(Object(LoginForm), 'name', Array)
+#4 /var/www/sponsorme/themes/bootstrap/views/site/signup.php(41): CActiveForm->textField(Object(LoginForm), 'name')
+#5 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#6 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/sponso...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('signup', Array, true)
+#9 /var/www/sponsorme/protected/controllers/SiteController.php(104): CController->render('signup', Array)
+#10 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionSignup()
+#11 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#12 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#13 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('signup')
+#15 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/signup')
+#16 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#17 /var/www/sponsorme/index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/sponsorme/index.php/site/signup
+HTTP_REFERER=http://localhost/sponsorme/index.php/site/signup
+---
+2013/06/08 16:48:05 [error] [exception.CException] exception 'CException' with message 'Property "Usr.name" is not defined.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(143): CComponent->__get('name')
+#1 /var/www/yii/framework/web/helpers/CHtml.php(2255): CActiveRecord->__get('name')
+#2 /var/www/yii/framework/web/helpers/CHtml.php(1980): CHtml::resolveValue(Object(Usr), 'name')
+#3 /var/www/yii/framework/web/helpers/CHtml.php(1257): CHtml::activeInputField('text', Object(Usr), 'name', Array)
+#4 /var/www/yii/framework/web/widgets/CActiveForm.php(657): CHtml::activeTextField(Object(Usr), 'name', Array)
+#5 /var/www/sponsorme/themes/bootstrap/views/site/signup.php(41): CActiveForm->textField(Object(Usr), 'name')
+#6 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#7 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/sponso...', Array, true)
+#9 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('signup', Array, true)
+#10 /var/www/sponsorme/protected/controllers/SiteController.php(104): CController->render('signup', Array)
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionSignup()
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('signup')
+#16 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/signup')
+#17 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#18 /var/www/sponsorme/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/sponsorme/index.php/site/signup
+HTTP_REFERER=http://localhost/sponsorme/index.php/site/signup
+---
+2013/06/08 17:01:26 [error] [exception.CException] exception 'CException' with message 'Property "Usr.name" is not defined.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(143): CComponent->__get('name')
+#1 /var/www/yii/framework/web/helpers/CHtml.php(2255): CActiveRecord->__get('name')
+#2 /var/www/yii/framework/web/helpers/CHtml.php(1980): CHtml::resolveValue(Object(Usr), 'name')
+#3 /var/www/yii/framework/web/helpers/CHtml.php(1257): CHtml::activeInputField('text', Object(Usr), 'name', Array)
+#4 /var/www/yii/framework/web/widgets/CActiveForm.php(657): CHtml::activeTextField(Object(Usr), 'name', Array)
+#5 /var/www/sponsorme/themes/bootstrap/views/site/signup.php(43): CActiveForm->textField(Object(Usr), 'name')
+#6 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#7 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/sponso...', Array, true)
+#9 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('signup', Array, true)
+#10 /var/www/sponsorme/protected/controllers/SiteController.php(104): CController->render('signup', Array)
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionSignup()
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('signup')
+#16 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/signup')
+#17 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#18 /var/www/sponsorme/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/sponsorme/index.php/site/signup
+HTTP_REFERER=http://localhost/sponsorme/index.php/site/signup
+---
+2013/06/08 17:01:28 [error] [exception.CException] exception 'CException' with message 'Property "Usr.name" is not defined.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(143): CComponent->__get('name')
+#1 /var/www/yii/framework/web/helpers/CHtml.php(2255): CActiveRecord->__get('name')
+#2 /var/www/yii/framework/web/helpers/CHtml.php(1980): CHtml::resolveValue(Object(Usr), 'name')
+#3 /var/www/yii/framework/web/helpers/CHtml.php(1257): CHtml::activeInputField('text', Object(Usr), 'name', Array)
+#4 /var/www/yii/framework/web/widgets/CActiveForm.php(657): CHtml::activeTextField(Object(Usr), 'name', Array)
+#5 /var/www/sponsorme/themes/bootstrap/views/site/signup.php(43): CActiveForm->textField(Object(Usr), 'name')
+#6 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#7 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/sponso...', Array, true)
+#9 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('signup', Array, true)
+#10 /var/www/sponsorme/protected/controllers/SiteController.php(104): CController->render('signup', Array)
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionSignup()
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('signup')
+#16 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/signup')
+#17 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#18 /var/www/sponsorme/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/sponsorme/index.php/site/signup
+HTTP_REFERER=http://localhost/sponsorme/index.php/site/signup
+---
+2013/06/08 17:02:47 [error] [exception.CException] exception 'CException' with message 'Property "Usr.name" is not defined.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(143): CComponent->__get('name')
+#1 /var/www/yii/framework/web/helpers/CHtml.php(2255): CActiveRecord->__get('name')
+#2 /var/www/yii/framework/web/helpers/CHtml.php(1980): CHtml::resolveValue(Object(Usr), 'name')
+#3 /var/www/yii/framework/web/helpers/CHtml.php(1257): CHtml::activeInputField('text', Object(Usr), 'name', Array)
+#4 /var/www/yii/framework/web/widgets/CActiveForm.php(657): CHtml::activeTextField(Object(Usr), 'name', Array)
+#5 /var/www/sponsorme/themes/bootstrap/views/site/signup.php(41): CActiveForm->textField(Object(Usr), 'name')
+#6 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#7 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/sponso...', Array, true)
+#9 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('signup', Array, true)
+#10 /var/www/sponsorme/protected/controllers/SiteController.php(104): CController->render('signup', Array)
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionSignup()
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('signup')
+#16 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/signup')
+#17 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#18 /var/www/sponsorme/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/sponsorme/index.php/site/signup
+HTTP_REFERER=http://localhost/sponsorme/index.php/site/signup
+---
+2013/06/08 17:03:19 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.TbActiveForm" is invalid. Make sure it points to an existing directory or file.' in /var/www/yii/framework/YiiBase.php:341
+Stack trace:
+#0 /var/www/yii/framework/web/CWidgetFactory.php(146): YiiBase::import('bootstrap.widge...', true)
+#1 /var/www/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'bootstrap.widge...', Array)
+#2 /var/www/yii/framework/web/CBaseController.php(189): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/sponsorme/themes/bootstrap/views/site/signup.php(31): CBaseController->beginWidget('bootstrap.widge...', Array)
+#4 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#5 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', Array, true)
+#6 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/sponso...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('signup', Array, true)
+#8 /var/www/sponsorme/protected/controllers/SiteController.php(104): CController->render('signup', Array)
+#9 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionSignup()
+#10 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('signup')
+#14 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/signup')
+#15 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#16 /var/www/sponsorme/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/sponsorme/index.php/site/signup
+HTTP_REFERER=http://localhost/sponsorme/index.php/site/signup
+---
+2013/06/08 17:03:34 [error] [exception.CException] exception 'CException' with message 'Property "Usr.subject" is not defined.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(143): CComponent->__get('subject')
+#1 /var/www/yii/framework/web/helpers/CHtml.php(2255): CActiveRecord->__get('subject')
+#2 /var/www/yii/framework/web/helpers/CHtml.php(1980): CHtml::resolveValue(Object(Usr), 'subject')
+#3 /var/www/yii/framework/web/helpers/CHtml.php(1257): CHtml::activeInputField('text', Object(Usr), 'subject', Array)
+#4 /var/www/yii/framework/web/widgets/CActiveForm.php(657): CHtml::activeTextField(Object(Usr), 'subject', Array)
+#5 /var/www/sponsorme/themes/bootstrap/views/site/signup.php(57): CActiveForm->textField(Object(Usr), 'subject', Array)
+#6 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#7 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/sponso...', Array, true)
+#9 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('signup', Array, true)
+#10 /var/www/sponsorme/protected/controllers/SiteController.php(104): CController->render('signup', Array)
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionSignup()
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('signup')
+#16 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/signup')
+#17 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#18 /var/www/sponsorme/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/sponsorme/index.php/site/signup
+HTTP_REFERER=http://localhost/sponsorme/index.php/site/signup
+---
+2013/06/08 17:49:27 [error] [exception.CException] exception 'CException' with message 'Property "Usr.passwordr" is not defined.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(143): CComponent->__get('passwordr')
+#1 /var/www/yii/framework/web/helpers/CHtml.php(2255): CActiveRecord->__get('passwordr')
+#2 /var/www/yii/framework/web/helpers/CHtml.php(1980): CHtml::resolveValue(Object(Usr), 'passwordr')
+#3 /var/www/yii/framework/web/helpers/CHtml.php(1257): CHtml::activeInputField('text', Object(Usr), 'passwordr', Array)
+#4 /var/www/yii/framework/web/widgets/CActiveForm.php(657): CHtml::activeTextField(Object(Usr), 'passwordr', Array)
+#5 /var/www/sponsorme/themes/bootstrap/views/site/signup.php(66): CActiveForm->textField(Object(Usr), 'passwordr')
+#6 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#7 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/sponso...', Array, true)
+#9 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('signup', Array, true)
+#10 /var/www/sponsorme/protected/controllers/SiteController.php(104): CController->render('signup', Array)
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionSignup()
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('signup')
+#16 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/signup')
+#17 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#18 /var/www/sponsorme/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/sponsorme/index.php/site/signup
+HTTP_REFERER=http://localhost/sponsorme/index.php/site/signup
+---
+2013/06/08 17:59:53 [error] [exception.CException] exception 'CException' with message 'Property "Signup.passwordr" is not defined.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(143): CComponent->__get('passwordr')
+#1 /var/www/yii/framework/web/helpers/CHtml.php(2255): CActiveRecord->__get('passwordr')
+#2 /var/www/yii/framework/web/helpers/CHtml.php(1980): CHtml::resolveValue(Object(Signup), 'passwordr')
+#3 /var/www/yii/framework/web/helpers/CHtml.php(1257): CHtml::activeInputField('text', Object(Signup), 'passwordr', Array)
+#4 /var/www/yii/framework/web/widgets/CActiveForm.php(657): CHtml::activeTextField(Object(Signup), 'passwordr', Array)
+#5 /var/www/sponsorme/themes/bootstrap/views/site/signup.php(66): CActiveForm->textField(Object(Signup), 'passwordr')
+#6 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#7 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/sponso...', Array, true)
+#9 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('signup', Array, true)
+#10 /var/www/sponsorme/protected/controllers/SiteController.php(104): CController->render('signup', Array)
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionSignup()
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('signup')
+#16 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/signup')
+#17 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#18 /var/www/sponsorme/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/sponsorme/index.php/site/signup
+HTTP_REFERER=http://localhost/sponsorme/index.php/site/signup
+---
+2013/06/08 18:00:15 [error] [exception.CException] exception 'CException' with message 'Property "Signup.passwordr" is not defined.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(143): CComponent->__get('passwordr')
+#1 /var/www/yii/framework/web/helpers/CHtml.php(2255): CActiveRecord->__get('passwordr')
+#2 /var/www/yii/framework/web/helpers/CHtml.php(1980): CHtml::resolveValue(Object(Signup), 'passwordr')
+#3 /var/www/yii/framework/web/helpers/CHtml.php(1257): CHtml::activeInputField('text', Object(Signup), 'passwordr', Array)
+#4 /var/www/yii/framework/web/widgets/CActiveForm.php(657): CHtml::activeTextField(Object(Signup), 'passwordr', Array)
+#5 /var/www/sponsorme/themes/bootstrap/views/site/signup.php(66): CActiveForm->textField(Object(Signup), 'passwordr')
+#6 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#7 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/sponso...', Array, true)
+#9 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('signup', Array, true)
+#10 /var/www/sponsorme/protected/controllers/SiteController.php(104): CController->render('signup', Array)
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionSignup()
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('signup')
+#16 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/signup')
+#17 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#18 /var/www/sponsorme/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/sponsorme/index.php/site/signup
+HTTP_REFERER=http://localhost/sponsorme/index.php/site/signup
+---
+2013/06/08 18:03:32 [error] [exception.CException] exception 'CException' with message 'Property "Signup.type_of_id" is not defined.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(143): CComponent->__get('type_of_id')
+#1 /var/www/yii/framework/web/helpers/CHtml.php(2255): CActiveRecord->__get('type_of_id')
+#2 /var/www/yii/framework/web/helpers/CHtml.php(1980): CHtml::resolveValue(Object(Signup), 'type_of_id')
+#3 /var/www/yii/framework/web/helpers/CHtml.php(1257): CHtml::activeInputField('text', Object(Signup), 'type_of_id', Array)
+#4 /var/www/yii/framework/web/widgets/CActiveForm.php(657): CHtml::activeTextField(Object(Signup), 'type_of_id', Array)
+#5 /var/www/sponsorme/themes/bootstrap/views/site/signup.php(91): CActiveForm->textField(Object(Signup), 'type_of_id')
+#6 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#7 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/sponso...', Array, true)
+#9 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('signup', Array, true)
+#10 /var/www/sponsorme/protected/controllers/SiteController.php(104): CController->render('signup', Array)
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionSignup()
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('signup')
+#16 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/signup')
+#17 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#18 /var/www/sponsorme/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/sponsorme/index.php/site/signup
+HTTP_REFERER=http://localhost/sponsorme/index.php/site/signup
+---
+2013/06/08 18:14:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "signup]".' in /var/www/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(270): CController->missingAction('signup]')
+#1 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('signup]')
+#2 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/signup]')
+#3 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/sponsorme/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/sponsorme/index.php/site/signup]
+---
+2013/06/08 18:23:29 [error] [exception.CException] exception 'CException' with message 'BActiveForm and its behaviors do not have a method or closure named "dropDownListRow".' in /var/www/yii/framework/base/CComponent.php:265
+Stack trace:
+#0 /var/www/sponsorme/themes/bootstrap/views/site/signup.php(90): CComponent->__call('dropDownListRow', Array)
+#1 /var/www/sponsorme/themes/bootstrap/views/site/signup.php(90): BActiveForm->dropDownListRow(Object(Signup), 'typeof_id', Array)
+#2 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/sponso...')
+#3 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/sponso...', Array, true)
+#4 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/sponso...', Array, true)
+#5 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('signup', Array, true)
+#6 /var/www/sponsorme/protected/controllers/SiteController.php(107): CController->render('signup', Array)
+#7 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionSignup()
+#8 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#10 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('signup')
+#12 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/signup')
+#13 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#14 /var/www/sponsorme/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/sponsorme/index.php/site/signup
+---
+2013/06/08 19:05:15 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'sponsorme.Signup' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `Signup`.
+in /var/www/sponsorme/protected/controllers/SiteController.php (103)
+in /var/www/sponsorme/index.php (13)
+2013/06/08 19:05:15 [error] [exception.CDbException] exception 'CDbException' with message 'The table "Signup" for active record class "Signup" cannot be found in the database.' in /var/www/yii/framework/db/ar/CActiveRecord.php:2310
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Signup))
+#1 /var/www/yii/framework/db/ar/CActiveRecord.php(402): CActiveRecord::model('Signup')
+#2 /var/www/yii/framework/db/ar/CActiveRecord.php(77): CActiveRecord->getMetaData()
+#3 /var/www/sponsorme/protected/controllers/SiteController.php(103): CActiveRecord->__construct()
+#4 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionSignup()
+#5 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#7 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('signup')
+#9 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/signup')
+#10 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /var/www/sponsorme/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/sponsorme/index.php/site/signup
+HTTP_REFERER=http://localhost/sponsorme/index.php/site/signup
+---
+2013/06/08 20:14:36 [error] [php] require_once(Evernote/Client.php): failed to open stream: No such file or directory (/var/www/sponsorme/protected/controllers/SiteController.php:6)
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(276): CWebApplication->createController()
+#1 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#2 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#3 /var/www/sponsorme/index.php(13): CWebApplication->run()
+REQUEST_URI=/sponsorme/index.php/site/evernotesignup
+in /var/www/sponsorme/protected/controllers/SiteController.php (6)
+in /var/www/sponsorme/protected/controllers/SiteController.php (6)
+in /var/www/sponsorme/index.php (13)
+2013/06/08 20:15:13 [error] [php] require_once(Evernote/Client.php): failed to open stream: No such file or directory (/var/www/sponsorme/protected/controllers/SiteController.php:6)
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(276): CWebApplication->createController()
+#1 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#2 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#3 /var/www/sponsorme/index.php(13): CWebApplication->run()
+REQUEST_URI=/sponsorme/index.php/site/evernotesignup
+in /var/www/sponsorme/protected/controllers/SiteController.php (6)
+in /var/www/sponsorme/protected/controllers/SiteController.php (6)
+in /var/www/sponsorme/index.php (13)
+2013/06/08 20:15:16 [error] [php] require_once(Evernote/Client.php): failed to open stream: No such file or directory (/var/www/sponsorme/protected/controllers/SiteController.php:6)
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(276): CWebApplication->createController()
+#1 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#2 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#3 /var/www/sponsorme/index.php(13): CWebApplication->run()
+REQUEST_URI=/sponsorme/site/evernotesignup
+in /var/www/sponsorme/protected/controllers/SiteController.php (6)
+in /var/www/sponsorme/protected/controllers/SiteController.php (6)
+in /var/www/sponsorme/index.php (13)
+2013/06/08 20:30:48 [error] [php] require_once(/var/www/sponsorme/protected/controllers../helpers/evernote/libEvernote/Client.php): failed to open stream: No such file or directory (/var/www/sponsorme/protected/controllers/SiteController.php:6)
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(276): CWebApplication->createController()
+#1 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#2 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#3 /var/www/sponsorme/index.php(13): CWebApplication->run()
+REQUEST_URI=/sponsorme/site/evernotesignup
+in /var/www/sponsorme/protected/controllers/SiteController.php (6)
+in /var/www/sponsorme/protected/controllers/SiteController.php (6)
+in /var/www/sponsorme/index.php (13)
+2013/06/08 20:31:00 [error] [php] require_once(/var/www/sponsorme/protected/controllers../helpers/evernote/lib/Evernote/Client.php): failed to open stream: No such file or directory (/var/www/sponsorme/protected/controllers/SiteController.php:6)
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(276): CWebApplication->createController()
+#1 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#2 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#3 /var/www/sponsorme/index.php(13): CWebApplication->run()
+REQUEST_URI=/sponsorme/site/evernotesignup
+in /var/www/sponsorme/protected/controllers/SiteController.php (6)
+in /var/www/sponsorme/protected/controllers/SiteController.php (6)
+in /var/www/sponsorme/index.php (13)
+2013/06/08 20:31:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "evernotesignup".' in /var/www/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(270): CController->missingAction('evernotesignup')
+#1 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('evernotesignup')
+#2 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/evernotesi...')
+#3 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/sponsorme/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/sponsorme/site/evernotesignup
+---
+2013/06/08 20:31:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/08 20:31:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "evernotesignup".' in /var/www/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(270): CController->missingAction('evernotesignup')
+#1 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('evernotesignup')
+#2 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/evernotesi...')
+#3 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/sponsorme/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/sponsorme/site/evernotesignup
+---
+2013/06/08 20:31:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/08 20:50:58 [error] [php] Use of undefined constant OAUTH_CONSUMER_KEY - assumed 'OAUTH_CONSUMER_KEY' (/var/www/sponsorme/protected/helpers/evernote/sample/oauth/functions.php:30)
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(276): CWebApplication->createController()
+#1 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#2 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#3 /var/www/sponsorme/index.php(13): CWebApplication->run()
+REQUEST_URI=/sponsorme/site/evernotesignup
+in /var/www/sponsorme/protected/helpers/evernote/sample/oauth/functions.php (30)
+in /var/www/sponsorme/protected/controllers/SiteController.php (2)
+in /var/www/sponsorme/index.php (13)
+2013/06/08 20:59:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/08 20:59:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/08 20:59:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/08 20:59:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/08 20:59:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/08 20:59:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/08 20:59:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/08 21:00:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /var/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/sponsorme/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/sponsorme/images/favicon.ico
+---
+2013/06/08 21:22:52 [warning] [application] Failed to set unsafe attribute "passwordr" of "Usr".
+in /var/www/sponsorme/protected/models/Signup.php (96)
+in /var/www/sponsorme/protected/controllers/SiteController.php (110)
+in /var/www/sponsorme/index.php (13)
+2013/06/08 21:22:59 [warning] [application] Failed to set unsafe attribute "passwordr" of "Usr".
+in /var/www/sponsorme/protected/models/Signup.php (96)
+in /var/www/sponsorme/protected/controllers/SiteController.php (110)
+in /var/www/sponsorme/index.php (13)

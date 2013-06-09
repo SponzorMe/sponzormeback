@@ -1,4 +1,6 @@
 <?php
+require_once(dirname(__FILE__).'/../helpers/evernote/sample/oauth/functions.php');
+
 
 class SiteController extends Controller
 {
@@ -96,8 +98,26 @@ class SiteController extends Controller
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));
-	}
+  }
 
+  public function actionSignup()
+  {
+  
+    $model=new Signup;
+    if(isset($_POST['Signup'])){
+        $model->attributes=$_POST['Signup'];
+        if ($model->validate()){
+            $model->create_user();    
+        }
+    }
+    $this->render('signup',array('model'=>$model));
+  }
+
+  public function actionEvernoteSignup()
+  {
+
+
+  }
 	/**
 	 * Logs out the current user and redirect to homepage.
 	 */

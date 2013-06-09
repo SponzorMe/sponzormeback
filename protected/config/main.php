@@ -16,6 +16,7 @@ return array(
   'import'=>array(
       'application.models.*',
       'application.components.*',
+      'application.helpers.*',
       'ext.bootstrap-theme.widgets.*',
       'ext.bootstrap-theme.helpers.*',
       'ext.bootstrap-theme.behaviors.*',
@@ -28,7 +29,7 @@ return array(
 			'password'=>'eskape',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
-      'generatorPaths' => array( 'bootstrap.gii',   'ext.bootstrap-theme.gii',),
+      'generatorPaths' => array( 'bootstrap.gii','ext.bootstrap-theme.gii',),
 		),
     
 	),

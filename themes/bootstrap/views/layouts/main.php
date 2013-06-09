@@ -6,8 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-
-	<!-- Le styles -->
+    <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.js" rel="stylesheet"></script>
+    <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/isotope.js" rel="stylesheet"></script>
+    <!-- Le styles -->
 	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/application.min.css" rel="stylesheet">
 	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap-responsive.css" rel="stylesheet">
@@ -25,7 +26,8 @@
 	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo Yii::app()->request->baseUrl; ?>/images/apple-touch-icon-114x114.png">
 </head>
 
-<body>
+<body class='<?echo Yii::app()->controller->action->id; ?> '>
+	<div id="container">  
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container">
@@ -35,7 +37,8 @@
 				<?php $this->widget('zii.widgets.CMenu',array(
 					'items'=>array(
 						array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-						array('label'=>'Signup', 'url'=>array('/site/signup'), 'visible'=>Yii::app()->user->isGuest),					
+            array('label'=>'Signup', 'url'=>array('/site/signup'), 'visible'=>Yii::app()->user->isGuest),					
+            array('label'=>'Profile', 'url'=>array('/'.Yii::app()->user->getId() ), 'visible'=>!Yii::app()->user->isGuest, 'htmlOptions'=>array('class'=>'btn')), 
 						array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest, 'htmlOptions'=>array('class'=>'btn'))
 					),
 					'htmlOptions'=>array(
@@ -46,15 +49,8 @@
 		</div>
 	</div>
 	
-	<div class="container">
-	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('BBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-			'separator'=>' / ',
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
-	</div>
-	
+
+
 	<?php echo $content; ?>
 	
 	<footer class="footer">
@@ -67,6 +63,7 @@
 			<a><b>©Sponzorme2013 | Made with love</b></a>
 		</div>
 	</nav>
-	
+</div>	
 </body>
 </html>
+	

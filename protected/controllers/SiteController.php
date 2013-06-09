@@ -1,7 +1,5 @@
 <?php
-require_once(dirname(__FILE__).'/../helpers/evernote/sample/oauth/functions.php');
-
-
+#require_once(dirname(__FILE__).'/../helpers/evernote/sample/oauth/functions.php');
 class SiteController extends Controller
 {
 	/**
@@ -72,7 +70,7 @@ class SiteController extends Controller
 			}
 		}
 		$this->render('contact',array('model'=>$model));
-	}
+  }
 
 	/**
 	 * Displays the login page
@@ -92,9 +90,13 @@ class SiteController extends Controller
 		if(isset($_POST['LoginForm']))
 		{
 			$model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
+      if($model->validate() && $model->login()){
+          if($_POST['ajax']=='ajax'){
+              echo json_encode(array('success'=>'success'));
+              exit;
+          }
+          $this->redirect(Yii::app()->user->returnUrl);
+      }
 		}
 		// display the login form
 		$this->renderPartial('login',array('model'=>$model));
@@ -117,7 +119,14 @@ class SiteController extends Controller
   public function actionEvernoteSignup()
   {
 
+    return true;
+  }
 
+  public function actionProfile()
+  {
+      #echo Yii::app()->getRequest()->getQuery('username');
+      $model = '';
+  		$this->render('profile',array('model'=>$model));            
   }
 	/**
 	 * Logs out the current user and redirect to homepage.

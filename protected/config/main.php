@@ -6,7 +6,7 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
-	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
+	'basePath' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Sponzor.me',
 
 	// preloading 'log' component
@@ -47,6 +47,7 @@ return array(
       'urlManager'=>array(
           'urlFormat'=>'path',
           'rules'=>array(
+              '<username>'=>'site/profile/',
               '<controller:\w+>/<id:\d+>'=>'<controller>/view',
               '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
               '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',

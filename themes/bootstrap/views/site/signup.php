@@ -38,7 +38,7 @@
 	<div class="<?php echo $form->fieldClass($model, 'username'); ?>">
 		<?php echo $form->labelEx($model,'username'); ?>
 		<div class="controls">
-			<?php echo $form->textField($model,'username'); ?>
+			<?php echo $form->textField($model,'username', array('placeholder'=>'username')); ?>
 			<?php echo $form->error($model,'username'); ?>
 		</div>
 	</div>
@@ -46,7 +46,7 @@
 	<div class="<?php echo $form->fieldClass($model, 'email'); ?>">
 		<?php echo $form->labelEx($model,'email'); ?>
 		<div class="controls">
-			<?php echo $form->textField($model,'email'); ?>
+			<?php echo $form->textField($model,'email', array('placeholder'=>'email')); ?>
 			<?php echo $form->error($model,'email'); ?>
 		</div>
 	</div>
@@ -54,7 +54,7 @@
 	<div class="<?php echo $form->fieldClass($model, 'password'); ?>">
 		<?php echo $form->labelEx($model,'password'); ?>
 		<div class="controls">
-			<?php echo $form->passwordField($model,'password'); ?>
+			<?php echo $form->passwordField($model,'password', array('placeholder'=>'Password')); ?>
 			<?php echo $form->error($model,'password'); ?>
 		</div>
   </div>
@@ -63,7 +63,7 @@
 	<div class="<?php echo $form->fieldClass($model, 'passwordr'); ?>">
 		<?php echo $form->labelEx($model,'passwordr'); ?>
 		<div class="controls">
-			<?php echo $form->passwordField($model,'passwordr'); ?>
+			<?php echo $form->passwordField($model,'passwordr', array('placeholder'=>'Repeat your password')); ?>
 			<?php echo $form->error($model,'passwordr'); ?>
 		</div>
   </div>
@@ -71,7 +71,7 @@
 	<div class="<?php echo $form->fieldClass($model, 'headline'); ?>">
 		<?php echo $form->labelEx($model,'headline'); ?>
 		<div class="controls">
-			<?php echo $form->textField($model,'headline'); ?>
+			<?php echo $form->textField($model,'headline', array('placeholder'=>'Slogan')); ?>
 			<?php echo $form->error($model,'headline'); ?>
 		</div>
   </div>
@@ -80,7 +80,7 @@
 	<div class="<?php echo $form->fieldClass($model, 'location'); ?>">
 		<?php echo $form->labelEx($model,'location'); ?>
 		<div class="controls">
-			<?php echo $form->textField($model,'location'); ?>
+			<?php echo $form->textField($model,'location', array('placeholder'=>'location')); ?>
 			<?php echo $form->error($model,'location'); ?>
 		</div>
   </div>

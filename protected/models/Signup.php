@@ -97,7 +97,6 @@ class Signup extends CActiveRecord
       $usr->attributes = $_POST['Signup'];
       if ($usr->save(false) ){
             $this->_identity=new UserIdentity($this->username,$this->password);
-       			$duration = $this->rememberMe ? 3600*24*30 : 0; // 30 days
 			      Yii::app()->user->login( $this->_identity, 3600*24*30 );
             return true;
       }

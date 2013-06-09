@@ -2035,3 +2035,17 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/sponsorme/images/favicon.ico
 ---
+2013/06/09 11:23:01 [error] [php] include(OAuth.php): failed to open stream: No such file or directory (C:\xampp\htdocs\yii\framework\YiiBase.php:421)
+Stack trace:
+#0 unknown(0): spl_autoload_call()
+#1 C:\xampp\htdocs\sponzor.me\protected\helpers\evernote\sample\oauth\functions.php(28): class_exists()
+#2 C:\xampp\htdocs\sponzor.me\protected\controllers\SiteController.php(2): require_once()
+#3 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(354): require()
+#4 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(276): CWebApplication->createController()
+#5 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\xampp\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#7 C:\xampp\htdocs\sponzor.me\index.php(13): CWebApplication->run()
+REQUEST_URI=/sponzor.me/index.php
+in C:\xampp\htdocs\sponzor.me\protected\helpers\evernote\sample\oauth\functions.php (28)
+in C:\xampp\htdocs\sponzor.me\protected\controllers\SiteController.php (2)
+in C:\xampp\htdocs\sponzor.me\index.php (13)

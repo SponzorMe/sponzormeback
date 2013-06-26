@@ -9,7 +9,7 @@ class UserIdentity extends CUserIdentity
 {
 	/**
 	 * Authenticates a user.
-	 * The example implementation makes sure if the username and password
+	 * The example implementation makes sure if the fullname and password
 	 * are both 'demo'.
 	 * In practical applications, this should be changed to authenticate
 	 * against some persistent user identity storage (e.g. database).
@@ -19,23 +19,23 @@ class UserIdentity extends CUserIdentity
   {
 
 		$users=array(
-			// username => password
+			// fullname => password
 			'demo'=>'demo',
 			'admin'=>'admin',
     );  
     $usrc=Usr::model()->count(array(
       'select'=>'*',
-      'condition'=>'username=:username',
-      'params'=>array(':username'=> $_POST['LoginForm']['username']),
+      'condition'=>'fullname=:fullname',
+      'params'=>array(':fullname'=> $_POST['LoginForm']['fullname']),
     ));
     $usr=Usr::model()->find(array(
       'select'=>'*',
-      'condition'=>'username=:username',
-      'params'=>array(':username'=> $_POST['LoginForm']['username']),
+      'condition'=>'fullname=:fullname',
+      'params'=>array(':fullname'=> $_POST['LoginForm']['fullname']),
     ));
 
     if($usrc < 1 ){
-    	$this->errorCode=self::ERROR_USERNAME_INVALID;
+    	$this->errorCode=self::ERROR_fullname_INVALID;
     }
     elseif( $usr->password !==  md5($_POST['LoginForm']['password'])){
     	$this->errorCode=self::ERROR_PASSWORD_INVALID;

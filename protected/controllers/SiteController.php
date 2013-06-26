@@ -2,6 +2,8 @@
 #require_once(dirname(__FILE__).'/../helpers/evernote/sample/oauth/functions.php');
 class SiteController extends Controller
 {
+	public $pageCaption = 'fuck';
+	public $pageDescription = 'fuck';
 	/**
 	 * Declares class-based actions.
 	 */
@@ -29,6 +31,7 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
+		$this->layout = 'main';
 		$this->render('index');
 	}
 
@@ -77,6 +80,7 @@ class SiteController extends Controller
 	 */
 	public function actionLogin()
 	{
+		
 		$model=new LoginForm;
 
 		// if it is ajax validation request
@@ -90,21 +94,23 @@ class SiteController extends Controller
 		if(isset($_POST['LoginForm']))
 		{
 			$model->attributes=$_POST['LoginForm'];
-      if($model->validate() && $model->login()){
-          if($_POST['ajax']=='ajax'){
-              echo json_encode(array('success'=>'success'));
-              exit;
-          }
-          $this->redirect(Yii::app()->user->returnUrl);
-      }
+			if($model->validate() && $model->login()){
+				if($_POST['ajax']=='ajax'){
+					echo json_encode(array('success'=>'success'));
+					exit;
+				}
+				$this->redirect(Yii::app()->user->returnUrl);
+			}
 		}
+
 		// display the login form
-		$this->renderPartial('login',array('model'=>$model));
+		$this->layout = 'main';
+		$this->render('login',array('model'=>$model));
   }
 
   public function actionSignup()
   {
-  
+  	$this->layout = 'main';
     $model=new Signup;
     if(isset($_POST['Signup'])){
         $model->attributes=$_POST['Signup'];
@@ -124,7 +130,7 @@ class SiteController extends Controller
 
   public function actionProfile()
   {
-      #echo Yii::app()->getRequest()->getQuery('username');
+      #echo Yii::app()->getRequest()->getQuery('fullname');
       $model = '';
   		$this->render('profile',array('model'=>$model));            
   }

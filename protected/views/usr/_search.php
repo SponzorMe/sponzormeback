@@ -13,9 +13,9 @@
 	</div>
 
 	<div class="clearfix">
-		<?php echo $form->label($model,'username'); ?>
+		<?php echo $form->label($model,'fullname'); ?>
 		<div class="input">
-			<?php echo $form->textField($model,'username',array('size'=>60,'maxlength'=>255)); ?>
+			<?php echo $form->textField($model,'fullname',array('size'=>60,'maxlength'=>255)); ?>
 		</div>
 	</div>
 

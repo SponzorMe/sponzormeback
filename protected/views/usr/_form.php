@@ -12,11 +12,11 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="<?php echo $form->fieldClass($model, 'username'); ?>">
-		<?php echo $form->labelEx($model,'username'); ?>
+	<div class="<?php echo $form->fieldClass($model, 'fullname'); ?>">
+		<?php echo $form->labelEx($model,'fullname'); ?>
 		<div class="input">
-			<?php echo $form->textField($model,'username',array('size'=>60,'maxlength'=>255)); ?>
-			<?php echo $form->error($model,'username'); ?>
+			<?php echo $form->textField($model,'fullname',array('size'=>60,'maxlength'=>255)); ?>
+			<?php echo $form->error($model,'fullname'); ?>
 		</div>
 	</div>
 

@@ -6,7 +6,6 @@
 )); ?>
 
 	<?php $this->widget('BAlert',array(
-
 		'content'=>'<p>Fields with <span class="required">*</span> are required.</p>'
 	)); ?>
 

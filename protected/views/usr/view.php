@@ -22,7 +22,7 @@ $this->menu=array(
 	'cssFile'=>false,
 	'attributes'=>array(
 		'id',
-		'username',
+		'fullname',
 		'password',
 		'email',
 		'admin',

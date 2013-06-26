@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'usr':
  * @property integer $id
- * @property string $username
+ * @property string $fullname
  * @property string $password
  * @property string $passwordr
  * @property string $email
@@ -49,11 +49,11 @@ class Signup extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, email, passwordr', 'required'),
+			array('fullname, password, email, passwordr', 'required'),
 			array('admin, typeof_id', 'numerical', 'integerOnly'=>true),
-      array('username, password, email, headline, location', 'length', 'max'=>255),
-      array('passwordr', 'compare', 'compareAttribute'=>'password'),
-			array('id, username, password, email, admin, headline, location, typeof_id', 'safe', 'on'=>'search'),
+    		array('fullname, password, email, headline, location', 'length', 'max'=>255),
+      		array('passwordr', 'compare', 'compareAttribute'=>'password'),
+			array('id, fullname, password, email, admin, headline, location, typeof_id', 'safe', 'on'=>'search'),
 		);
   }
 
@@ -78,7 +78,7 @@ class Signup extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'username' => 'Nombre de Usuario',
+			'fullname' => 'Nombre Completo',
 			'password' => 'Contraseña',
 			'passwordr' => 'Repite tu Contraseña',
 			'email' => 'Email',
@@ -96,7 +96,7 @@ class Signup extends CActiveRecord
       $_POST['Signup']['password'] = md5($_POST['Signup']['password']);
       $usr->attributes = $_POST['Signup'];
       if ($usr->save(false) ){
-            $this->_identity=new UserIdentity($this->username,$this->password);
+            $this->_identity=new UserIdentity($this->fullname,$this->password);
 			      Yii::app()->user->login( $this->_identity, 3600*24*30 );
             return true;
       }
@@ -113,10 +113,8 @@ class Signup extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('username',$this->username,true);
-		$criteria->compare('password',$this->password,true);
+		$criteria->compare('fullname',$this->fullname,true);
 		$criteria->compare('email',$this->email,true);
-		$criteria->compare('admin',$this->admin);
 		$criteria->compare('headline',$this->headline,true);
 		$criteria->compare('location',$this->location,true);
 		$criteria->compare('typeof_id',$this->typeof_id);

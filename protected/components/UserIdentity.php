@@ -25,13 +25,13 @@ class UserIdentity extends CUserIdentity
     );  
     $usrc=Usr::model()->count(array(
       'select'=>'*',
-      'condition'=>'fullname=:fullname',
-      'params'=>array(':fullname'=> $_POST['LoginForm']['fullname']),
+      'condition'=>'email=:fullname',
+      'params'=>array(':fullname'=> $_POST['LoginForm']['email']),
     ));
     $usr=Usr::model()->find(array(
       'select'=>'*',
-      'condition'=>'fullname=:fullname',
-      'params'=>array(':fullname'=> $_POST['LoginForm']['fullname']),
+      'condition'=>'email=:fullname',
+      'params'=>array(':fullname'=> $_POST['LoginForm']['email']),
     ));
 
     if($usrc < 1 ){

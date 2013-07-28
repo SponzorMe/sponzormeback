@@ -122,9 +122,64 @@ class SiteController extends Controller
         $this->renderPartial('signup',array('model'=>$model));
     }
 
+    public function actionFacebook()
+    {
+         if(!isset($_GET['error_code'])){
+            $this->redirect(Yii::app()->request->baseUrl);
+        }
+        if(!isset($_GET['code'])){
+            $loginUrl = Yii::app()->facebook->getLoginUrl(array('scope'=>'email'));
+            $this->redirect($loginUrl);
+        }
+        $details = Yii::app()->facebook->api('/me?scope=email');
+        if(!is_array($details)){
+            $this->redirect(Yii::app()->request->baseUrl);
+        }
+        $usr = Usr::model()->find("fb_id='".$details['id']."'");
+        $duration = 3600*24*30 ; // 30 days
+        $identity = new CUserIdentity( $details['email'] , md5($details['id']) );
+        if($usr){
+            // existe
+            Yii::app()->user->login($identity,$duration);
+            $this->redirect(Yii::app()->request->baseUrl);
+        }else {
+            //creamor un nuevo usuario en la base de datos
+            $usr = new Usr;
+            $usr->fullname = $details['first_name'].' '.$details['last_name'];
+            $usr->password = md5($details['id']);
+            $usr->fb_id = $details['id'];
+            $usr->email = $details['email'];
+            $usr->typeof_id = 1;
+            $usr->validate();
+            $usr->save();
+            $this->redirect(Yii::app()->request->baseUrl);
+        }
+
+    }
     public function actionEvernote()
     {
-
+        define('OAUTH_CONSUMER_KEY', 'dvidsilva');
+        define('OAUTH_CONSUMER_SECRET', '93750927542e1265');
+        // Replace this value with FALSE to use Evernote's production server
+        define('SANDBOX', TRUE);
+        include('protected/extensions/evernote/functions.php');
+        if (isset($_GET['action'])) {
+            $action = $_GET['action'];
+            if ($action == 'callback') {
+                if (handleCallback()) {
+                    if (getTokenCredentials()) {
+                        listNotebooks();
+                    }
+                }
+            } elseif ($action == 'authorize') {
+                if (getTemporaryCredentials()) {
+                    // We obtained temporary credentials, now redirect the user to evernote.com to authorize access
+                    header('Location: ' . getAuthorizationUrl());
+                }
+            } elseif ($action == 'reset') {
+                resetSession();
+            }
+        }
         return true;
     }
 

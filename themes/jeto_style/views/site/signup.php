@@ -96,7 +96,9 @@ $items=CHtml::listData(TypeOf::model()->findAll(),'id','name');
 
 </div><!-- left -->
   <div class='right'>
-            <img src='<?php echo Yii::app()->request->baseUrl; ?>/images/evernote_logo.png' title="<?php echo CHtml::encode(Yii::app()->name); ?>" />
+    <a href='<?php echo Yii::app()->request->baseUrl; ?>/site/evernoteudaction=authorize'>
+          <img src='<?php echo Yii::app()->request->baseUrl; ?>/images/evernote_logo.png' title="<?php echo CHtml::encode(Yii::app()->name); ?>" />
+    </a>
   </div><!-- right -->
 
   <div class="form-actions">

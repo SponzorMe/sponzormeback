@@ -12424,3 +12424,268 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/php/sponzor.me/images/favicon.ico
 ---
+2013/07/28 01:08:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/php/sponzor.me/images/favicon.ico
+---
+2013/07/28 01:21:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.ico".' in /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/php/sponzor.me/images/favicon.ico
+---
+2013/07/28 01:21:32 [error] [php] Undefined index: requestToken (/Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/evernote/functions.php:137)
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): SiteController->runAction()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#6 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CWebApplication->run()
+REQUEST_URI=/php/sponzor.me/index.php/site/evernote?action=callback&oauth_token=dvidsilva.140226F9D6E.687474703A2F2F747972696F6E2F7068702F73706F6E7A6F722E6D652F696E6465782E7068702F736974652F657665726E6F74653F616374696F6E3D63616C6C6261636B.CB04FDE6A2DA6559928145638AAD66C9&oauth_verifier=C70B58DA757B1E6B242DB13BF509E435
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/evernote/functions.php (137)
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php (137)
+in /Users/usuario/Documents/Code/php/sponzor.me/index.php (12)
+2013/07/28 01:23:17 [error] [php] Undefined variable: _SESSION (/Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php:127)
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): SiteController->runAction()
+#1 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CWebApplication->run()
+REQUEST_URI=/php/sponzor.me/index.php/site/evernote?action=authorize
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php (127)
+in /Users/usuario/Documents/Code/php/sponzor.me/index.php (12)
+2013/07/28 01:24:06 [error] [php] Undefined index: requestToken (/Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/evernote/functions.php:137)
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): SiteController->runAction()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#6 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CWebApplication->run()
+REQUEST_URI=/php/sponzor.me/index.php/site/evernote?action=callback&oauth_token=dvidsilva.14022722D35.687474703A2F2F747972696F6E2F7068702F73706F6E7A6F722E6D652F696E6465782E7068702F736974652F657665726E6F74653F616374696F6E3D63616C6C6261636B.37B768185BE2D58D3D228C6EA7F64A2A&oauth_verifier=AF4CE2270E2C135F991B6B1F664DD8CD
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/evernote/functions.php (137)
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php (136)
+in /Users/usuario/Documents/Code/php/sponzor.me/index.php (12)
+2013/07/28 01:28:05 [error] [php] Undefined variable: _SESSION (/Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php:127)
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): SiteController->runAction()
+#1 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CWebApplication->run()
+REQUEST_URI=/php/sponzor.me/index.php/site/evernote?action=callback&oauth_token=dvidsilva.14022722D35.687474703A2F2F747972696F6E2F7068702F73706F6E7A6F722E6D652F696E6465782E7068702F736974652F657665726E6F74653F616374696F6E3D63616C6C6261636B.37B768185BE2D58D3D228C6EA7F64A2A&oauth_verifier=AF4CE2270E2C135F991B6B1F664DD8CD
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php (127)
+in /Users/usuario/Documents/Code/php/sponzor.me/index.php (12)
+2013/07/28 01:28:15 [error] [php] Undefined variable: _SESSION (/Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php:132)
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): SiteController->runAction()
+#1 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CWebApplication->run()
+REQUEST_URI=/php/sponzor.me/index.php/site/evernote?action=callback&oauth_token=dvidsilva.14022722D35.687474703A2F2F747972696F6E2F7068702F73706F6E7A6F722E6D652F696E6465782E7068702F736974652F657665726E6F74653F616374696F6E3D63616C6C6261636B.37B768185BE2D58D3D228C6EA7F64A2A&oauth_verifier=AF4CE2270E2C135F991B6B1F664DD8CD
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php (132)
+in /Users/usuario/Documents/Code/php/sponzor.me/index.php (12)
+2013/07/28 01:29:14 [error] [php] Undefined index: requestToken (/Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/evernote/functions.php:137)
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): SiteController->runAction()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#6 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CWebApplication->run()
+REQUEST_URI=/php/sponzor.me/index.php/site/evernote?action=callback&oauth_token=dvidsilva.14022722D35.687474703A2F2F747972696F6E2F7068702F73706F6E7A6F722E6D652F696E6465782E7068702F736974652F657665726E6F74653F616374696F6E3D63616C6C6261636B.37B768185BE2D58D3D228C6EA7F64A2A&oauth_verifier=AF4CE2270E2C135F991B6B1F664DD8CD
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/evernote/functions.php (137)
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php (137)
+in /Users/usuario/Documents/Code/php/sponzor.me/index.php (12)
+2013/07/28 01:31:50 [error] [php] Undefined index: requestToken (/Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/evernote/functions.php:134)
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): SiteController->runAction()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#6 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CWebApplication->run()
+REQUEST_URI=/php/sponzor.me/index.php/site/evernote?action=callback&oauth_token=dvidsilva.14022722D35.687474703A2F2F747972696F6E2F7068702F73706F6E7A6F722E6D652F696E6465782E7068702F736974652F657665726E6F74653F616374696F6E3D63616C6C6261636B.37B768185BE2D58D3D228C6EA7F64A2A&oauth_verifier=AF4CE2270E2C135F991B6B1F664DD8CD
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/evernote/functions.php (134)
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php (138)
+in /Users/usuario/Documents/Code/php/sponzor.me/index.php (12)
+2013/07/28 01:34:36 [error] [php] Undefined index: requestToken (/Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/evernote/functions.php:135)
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): SiteController->runAction()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#6 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CWebApplication->run()
+REQUEST_URI=/php/sponzor.me/index.php/site/evernote?action=callback&oauth_token=dvidsilva.14022722D35.687474703A2F2F747972696F6E2F7068702F73706F6E7A6F722E6D652F696E6465782E7068702F736974652F657665726E6F74653F616374696F6E3D63616C6C6261636B.37B768185BE2D58D3D228C6EA7F64A2A&oauth_verifier=AF4CE2270E2C135F991B6B1F664DD8CD
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/evernote/functions.php (135)
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php (138)
+in /Users/usuario/Documents/Code/php/sponzor.me/index.php (12)
+2013/07/28 01:36:49 [error] [php] Undefined index: requestToken (/Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/evernote/functions.php:134)
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): SiteController->runAction()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#6 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CWebApplication->run()
+REQUEST_URI=/php/sponzor.me/index.php/site/evernote?action=callback&oauth_token=dvidsilva.140227DCE77.687474703A2F2F747972696F6E2F7068702F73706F6E7A6F722E6D652F696E6465782E7068702F736974652F657665726E6F74653F616374696F6E3D63616C6C6261636B.CC1D410EE921254D814D4E2C2EE89817&oauth_verifier=0649DED1DE717D102FEFBE7EF3F67DAD
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/evernote/functions.php (134)
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php (138)
+in /Users/usuario/Documents/Code/php/sponzor.me/index.php (12)
+2013/07/28 01:42:09 [error] [php] Undefined index: requestToken (/Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/evernote/functions.php:134)
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): SiteController->runAction()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#6 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CWebApplication->run()
+REQUEST_URI=/php/sponzor.me/index.php/site/evernote?action=callback&oauth_token=dvidsilva.140228298AF.687474703A2F2F747972696F6E2F7068702F73706F6E7A6F722E6D652F696E6465782E7068702F736974652F657665726E6F74653F616374696F6E3D63616C6C6261636B.A4348E7218496DA79F96B6FEC9EABF14&oauth_verifier=90A96F1CF766AA4E3EC64B23A380EBD2
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/evernote/functions.php (134)
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php (138)
+in /Users/usuario/Documents/Code/php/sponzor.me/index.php (12)
+2013/07/28 01:45:11 [error] [php] Undefined index: requestToken (/Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/evernote/functions.php:134)
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): SiteController->runAction()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#6 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CWebApplication->run()
+REQUEST_URI=/php/sponzor.me/index.php/site/evernote?action=callback&oauth_token=dvidsilva.140228298AF.687474703A2F2F747972696F6E2F7068702F73706F6E7A6F722E6D652F696E6465782E7068702F736974652F657665726E6F74653F616374696F6E3D63616C6C6261636B.A4348E7218496DA79F96B6FEC9EABF14&oauth_verifier=90A96F1CF766AA4E3EC64B23A380EBD2
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/evernote/functions.php (134)
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php (137)
+in /Users/usuario/Documents/Code/php/sponzor.me/index.php (12)
+2013/07/28 02:24:58 [error] [php] Undefined index: oauthVerifier (/Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/evernote/functions.php:130)
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): SiteController->runAction()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#6 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CWebApplication->run()
+REQUEST_URI=/php/sponzor.me/index.php/site/evernote?action=callback&oauth_token=dvidsilva.14022A9EA16.687474703A2F2F747972696F6E2F7068702F73706F6E7A6F722E6D652F696E6465782E7068702F736974652F657665726E6F74653F616374696F6E3D63616C6C6261636B.658604EBB9C977098EA57BF94C0F58CE&oauth_verifier=25F34F2B943B5CE53839A49213E0E5A6
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/evernote/functions.php (130)
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php (137)
+in /Users/usuario/Documents/Code/php/sponzor.me/index.php (12)
+2013/07/28 03:14:19 [error] [php] include(/Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/yii-facebook-opengraph/SBaseFacebook.php): failed to open stream: No such file or directory (/Users/usuario/Documents/Code/php/sponzor.me/yii/framework/YiiBase.php:395)
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/facebook/SFacebook.php(444): spl_autoload_call()
+#1 /Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/facebook/SFacebook.php(574): SFacebook->_getFacebook()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php(127): SFacebook->api()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionFacebook()
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): SiteController->runAction()
+#6 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#7 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#8 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CWebApplication->run()
+REQUEST_URI=/php/sponzor.me/index.php/site/facebook
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/facebook/SFacebook.php (444)
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/facebook/SFacebook.php (574)
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php (127)
+2013/07/28 03:14:42 [error] [php] include(/Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/yii-facebook-opengraph/SBaseFacebook.php): failed to open stream: No such file or directory (/Users/usuario/Documents/Code/php/sponzor.me/yii/framework/YiiBase.php:395)
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/facebook/SFacebook.php(444): spl_autoload_call()
+#1 /Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/facebook/SFacebook.php(574): SFacebook->_getFacebook()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php(127): SFacebook->api()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionFacebook()
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): SiteController->runAction()
+#6 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#7 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#8 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CWebApplication->run()
+REQUEST_URI=/php/sponzor.me/index.php/site/facebook
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/facebook/SFacebook.php (444)
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/extensions/facebook/SFacebook.php (574)
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php (127)
+2013/07/28 03:16:06 [error] [exception.FacebookApiException] OAuthException: Invalid OAuth access token signature.
+REQUEST_URI=/php/sponzor.me/index.php/site/facebook
+---
+2013/07/28 03:16:44 [error] [exception.FacebookApiException] OAuthException: An active access token must be used to query information about the current user.
+REQUEST_URI=/php/sponzor.me/index.php/site/facebook
+---
+2013/07/28 03:37:36 [error] [php] Trying to get property of non-object (/Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php:135)
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): SiteController->runAction()
+#1 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CWebApplication->run()
+REQUEST_URI=/php/sponzor.me/index.php/site/facebook?code=AQCFx6_NNHZJn7O0mGuveiM3R9zuJZtNm7_2uD-OC4AJOIq6H7Cq6GTPSsbpbYt0E4snc7BsIms3pqcY5kDFShWz2OKYIZfC7E8cwi7EmSEdA-OTXxS8S8F1o0RR_uDnbRAg0Xviw9tazllg2Jt1p13B4OVfcSMeUPQZ7zearW42nXHv222K8NasLi1ApHcoQSOgJCgjMwNAjm5Ria2Q21mVIFmetcxX8q79YaJwzk8CBkXWQsLWUHN43DN0NxGyXIZLb2HwAU9lr1nW-P4Cx7lPt_LbB9jJiqErzl4BtW5-33GEQWd0ryipbybd7QFaAOY&state=1735098c2d885c3c0f92ae018391119d
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php (135)
+in /Users/usuario/Documents/Code/php/sponzor.me/index.php (12)
+2013/07/28 03:37:50 [error] [php] Trying to get property of non-object (/Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php:136)
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): SiteController->runAction()
+#1 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CWebApplication->run()
+REQUEST_URI=/php/sponzor.me/index.php/site/facebook?code=AQCFx6_NNHZJn7O0mGuveiM3R9zuJZtNm7_2uD-OC4AJOIq6H7Cq6GTPSsbpbYt0E4snc7BsIms3pqcY5kDFShWz2OKYIZfC7E8cwi7EmSEdA-OTXxS8S8F1o0RR_uDnbRAg0Xviw9tazllg2Jt1p13B4OVfcSMeUPQZ7zearW42nXHv222K8NasLi1ApHcoQSOgJCgjMwNAjm5Ria2Q21mVIFmetcxX8q79YaJwzk8CBkXWQsLWUHN43DN0NxGyXIZLb2HwAU9lr1nW-P4Cx7lPt_LbB9jJiqErzl4BtW5-33GEQWd0ryipbybd7QFaAOY&state=1735098c2d885c3c0f92ae018391119d
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php (136)
+in /Users/usuario/Documents/Code/php/sponzor.me/index.php (12)
+2013/07/28 03:39:15 [error] [php] Creating default object from empty value (/Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php:139)
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): SiteController->runAction()
+#1 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CWebApplication->run()
+REQUEST_URI=/php/sponzor.me/index.php/site/facebook?code=AQCFx6_NNHZJn7O0mGuveiM3R9zuJZtNm7_2uD-OC4AJOIq6H7Cq6GTPSsbpbYt0E4snc7BsIms3pqcY5kDFShWz2OKYIZfC7E8cwi7EmSEdA-OTXxS8S8F1o0RR_uDnbRAg0Xviw9tazllg2Jt1p13B4OVfcSMeUPQZ7zearW42nXHv222K8NasLi1ApHcoQSOgJCgjMwNAjm5Ria2Q21mVIFmetcxX8q79YaJwzk8CBkXWQsLWUHN43DN0NxGyXIZLb2HwAU9lr1nW-P4Cx7lPt_LbB9jJiqErzl4BtW5-33GEQWd0ryipbybd7QFaAOY&state=1735098c2d885c3c0f92ae018391119d
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php (139)
+in /Users/usuario/Documents/Code/php/sponzor.me/index.php (12)
+2013/07/28 04:02:15 [error] [php] Undefined index: password (/Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php:143)
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): SiteController->runAction()
+#1 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CWebApplication->run()
+REQUEST_URI=/php/sponzor.me/site/facebook?code=AQAoqyXzpBaF94zvkqCgjN5oFNwXopohAtZ9itpNafBnsgUAOO_sHpzo5YmInxn5mhKBhpX-t8iWUbwnGoNsTBv7PYRhBQ3fkdEn9YXCC0xc1Z4UCsbtMX6HKr5XujRs42MEhudd6gCCDUf-FlvV3dRr7A6ffaxRXPIKlrRAhDKOso6ISlhyG6QrJ27tv-B9ZkiDRjCJBcLFnYuBXnHhC7lxfObIe4rUlSLVAMlQWkkq7nXdD8tfwjvWCEvEDozp3khHlCg4NbEKA3yZ4tASoZfDS_FwCTFCAUntYGrmIt_lVEklr8lvr1hZPBzVaKbPwMg&state=474d5a4287ed1d88fa36e34bc8f38738
+in /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php (143)
+in /Users/usuario/Documents/Code/php/sponzor.me/index.php (12)
+2013/07/28 04:14:26 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.username" is not defined.' in /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/auth/CWebUser.php(140): CComponent->__get('username')
+#1 /Users/usuario/Documents/Code/php/sponzor.me/protected/controllers/SiteController.php(148): CWebUser->__get('username')
+#2 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionFacebook()
+#3 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(282): CController->run('facebook')
+#7 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/facebook')
+#8 /Users/usuario/Documents/Code/php/sponzor.me/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#9 /Users/usuario/Documents/Code/php/sponzor.me/index.php(12): CApplication->run()
+#10 {main}
+REQUEST_URI=/php/sponzor.me/site/facebook?code=AQAoqyXzpBaF94zvkqCgjN5oFNwXopohAtZ9itpNafBnsgUAOO_sHpzo5YmInxn5mhKBhpX-t8iWUbwnGoNsTBv7PYRhBQ3fkdEn9YXCC0xc1Z4UCsbtMX6HKr5XujRs42MEhudd6gCCDUf-FlvV3dRr7A6ffaxRXPIKlrRAhDKOso6ISlhyG6QrJ27tv-B9ZkiDRjCJBcLFnYuBXnHhC7lxfObIe4rUlSLVAMlQWkkq7nXdD8tfwjvWCEvEDozp3khHlCg4NbEKA3yZ4tASoZfDS_FwCTFCAUntYGrmIt_lVEklr8lvr1hZPBzVaKbPwMg&state=474d5a4287ed1d88fa36e34bc8f38738
+---

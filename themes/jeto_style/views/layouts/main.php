@@ -49,16 +49,20 @@ $this->widget('zii.widgets.CMenu',array(
 ?>
                 </div>
 
-                <?= $content ?>
+<?php echo  $content ?>
 
 <?php 
 $loginForm = new LoginForm;
 $this->renderPartial('login',array(
     'model'=>$loginForm,
 ));
-?>
+$signupForm = new Signup;
+$this->renderPartial('signup',array(
+    'model'=>$signupForm,
+));
 
-                <div id="footer">
+?>
+              <div id="footer">
                         <div id="sub_footer">
                                 <img src="<?= site_url() ?>/images/logo_mini.png" alt="logo mini sponzor-me" id="logo_mini">
                                 <?= CHtml::link('SUPPORT', array('site/support')) ?>
@@ -78,10 +82,11 @@ $this->renderPartial('login',array(
 var body = document.body;
 var fx = body.style.hasOwnProperty('transition');
 
-$('#log_in').on('click', function (e) {
+$('#register, #log_in').on('click', function (e) {
     var sel = this.id === 'register' ? '#center2' : '#center1';
+    var md = this.id === 'register' ? '.rg' : '.lg';
     $(sel).show();
-    $('#modal').show();
+    $(md ).show();
     setTimeout(function () {
         $(body).addClass('fade');
     });

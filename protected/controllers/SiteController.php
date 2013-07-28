@@ -124,7 +124,7 @@ class SiteController extends Controller
 
     public function actionFacebook()
     {
-         if(!isset($_GET['error_code'])){
+         if(isset($_GET['error_code'])){
             $this->redirect(Yii::app()->request->baseUrl);
         }
         if(!isset($_GET['code'])){
@@ -132,14 +132,17 @@ class SiteController extends Controller
             $this->redirect($loginUrl);
         }
         $details = Yii::app()->facebook->api('/me?scope=email');
+
         if(!is_array($details)){
             $this->redirect(Yii::app()->request->baseUrl);
         }
+
         $usr = Usr::model()->find("fb_id='".$details['id']."'");
         $duration = 3600*24*30 ; // 30 days
-        $identity = new CUserIdentity( $details['email'] , md5($details['id']) );
+        $identity = new UserIdentity( $details['email'] , $details['id'] );
         if($usr){
             // existe
+            $identity->authenticate();
             Yii::app()->user->login($identity,$duration);
             $this->redirect(Yii::app()->request->baseUrl);
         }else {

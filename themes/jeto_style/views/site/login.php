@@ -1,5 +1,8 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
     'id' => 'modal',
+    'htmlOptions' => array(
+        'class'=>'lg', 
+    ), 
     'enableAjaxValidation' => false,
     'clientOptions' => array(
         'validateOnSubmit' => true,
@@ -15,7 +18,7 @@
                                         <?php echo $form->error($model, 'email'); ?>
                                         <?php echo $form->passwordField($model, 'password',array('placeholder'=>'PASSWORD')); ?>
                                         <?php echo $form->error($model, 'password'); ?>
-                                        <a href="#" id="evernote_login" onClick="alert('Sorry, Evernote login is not ready yet!')"></a>
+                                        <a href="<?php echo Yii::app()->request->baseUrl?>/site/facebook" id="evernote_login" ></a>
                                 </div><!-- #input_boxes -->
                                 <?php echo $form->radioButton($model, 'rememberMe', array('id'=>'rememberMe')); ?>
                                 <?php echo $form->labelEx($model, 'rememberMe', array('id'=>'rememberMeLabel')); ?>

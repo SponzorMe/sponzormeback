@@ -1,35 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-        <meta charset="utf-8">
-        <title><?php echo CHtml::encode($this->pageTitle); ?></title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
-        <link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/theme.css" rel="stylesheet">
-
-        <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico">
-        <link rel="apple-touch-icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/apple-touch-icon.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="<?php echo Yii::app()->request->baseUrl; ?>/images/apple-touch-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="<?php echo Yii::app()->request->baseUrl; ?>/images/apple-touch-icon-114x114.png">
-</head>
-<body id='usr'>
-
-<div class="form">
-<h1 class='logo'>
-    <a href='<?php echo Yii::app()->request->baseUrl; ?>/' >
-            <img src='<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png' title="<?php echo CHtml::encode(Yii::app()->name); ?>" />
-    </a>
-</h1>
-<div class="left">
 <?php $form=$this->beginWidget('CActiveForm', array(
-    'id'=>'contact-form',
-    'enableClientValidation'=>true,
-    'clientOptions'=>array(
-        'validateOnSubmit'=>true,
+    'id' => 'modal',
+    'htmlOptions' => array(
+        'class'=>'rg', 
+    ), 
+    'enableAjaxValidation' => false,
+    'clientOptions' => array(
+        'validateOnSubmit' => true,
+        'validateOnChange' => true,
+        'validateOnType' => false,
     ),
+    'action' => Yii::app()->request->baseUrl.'/site/signup'
 )); ?>
+<div id="center2">
+            <div class="logo_login"></div>
 
         <?php if(isset($_POST) ) echo $form->errorSummary($model); ?>
 
@@ -94,12 +77,9 @@ $items=CHtml::listData(TypeOf::model()->findAll(),'id','name');
                 </div>
   </div>
 
-</div><!-- left -->
-  <div class='right'>
-    <a href='<?php echo Yii::app()->request->baseUrl; ?>/site/evernoteudaction=authorize'>
+    <a href='<?php echo Yii::app()->request->baseUrl; ?>/site/facebook'>
           <img src='<?php echo Yii::app()->request->baseUrl; ?>/images/evernote_logo.png' title="<?php echo CHtml::encode(Yii::app()->name); ?>" />
     </a>
-  </div><!-- right -->
 
   <div class="form-actions">
     <?php echo CHtml::submitButton('Signup'); ?>

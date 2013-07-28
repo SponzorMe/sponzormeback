@@ -5,6 +5,7 @@
 
 define('LOCAL', ($_SERVER['REMOTE_ADDR'] === '127.0.0.1' || $_SERVER['REMOTE_ADDR'] === '::1'));
 
+require_once( dirname(__FILE__) . '/../extensions/s3/S3.php');
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
@@ -13,7 +14,7 @@ return array(
     'name'=> 'Sponzor.me',
 
     // preloading 'log' component
-    'preload'=> array('log'),
+    'preload'=> array('log,s3'),
 
     // autoloading model and component classes
     'import'=> array(
@@ -23,7 +24,6 @@ return array(
     ),
     'modules'=> array(
         // uncomment the following to enable the Gii tool
-
         'gii'=> array(
             'class'=> 'system.gii.GiiModule',
             'password'=> 'eskape',
@@ -35,6 +35,20 @@ return array(
 
     // application components
     'components'=>array(
+
+        'Upload'=>array(
+            'class' => 'ext.Upload',
+        ),
+
+        'file'=>array(
+            'class'=>'application.extensions.file.CFile',
+        ),
+
+        's3'=>array(
+            'class'=>'ext.s3.ES3',
+            'aKey'=>'AKIAIJ2BZGO2H4FI2BYA', 
+            'sKey'=>'HOlJ0upiZY8EXtBtM04RfVCs44Tj7UzZ67g7f0/c',
+        ),
 
         'facebook'=>array(
             'class' => 'ext.yii-facebook-opengraph.SFacebook',
@@ -65,10 +79,15 @@ return array(
         'urlManager'=>array(
             'urlFormat'=>'path',
             'rules'=>array(
-                '<fullname>'=>'site/profile/',
+                'gii'=>'gii',
+                'gii/<controller:\w+>'=>'gii/<controller>',
+                'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>',
                 '<controller:\w+>/<id:\d+>'=>'<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
                 '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                //'<fullname:\w+>'=>'site/profile/',
+
+
             ),
         ),
         'bootstrap'=>array(

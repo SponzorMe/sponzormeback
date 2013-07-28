@@ -7,6 +7,8 @@
  */
 class UserIdentity extends CUserIdentity
 {
+    private $_id;
+
     /**
      * Authenticates a user.
      * The example implementation makes sure if the fullname and password
@@ -17,7 +19,6 @@ class UserIdentity extends CUserIdentity
      */
     public function authenticate()
     {
-
         $users=array(
             // fullname => password
             'demo'=>'demo',
@@ -26,23 +27,28 @@ class UserIdentity extends CUserIdentity
         $usrc=Usr::model()->count(array(
             'select'=>'*',
             'condition'=>'email=:fullname',
-            'params'=>array(':fullname'=> $_POST['LoginForm']['email']),
+            'params'=>array(':fullname'=> $this->username ),
         ));
         $usr=Usr::model()->find(array(
             'select'=>'*',
             'condition'=>'email=:fullname',
-            'params'=>array(':fullname'=> $_POST['LoginForm']['email']),
+            'params'=>array(':fullname'=> $this->username ),
         ));
+
 
         if($usrc < 1 ){
             $this->errorCode=self::ERROR_fullname_INVALID;
-        }
-        elseif( $usr->password !==  md5($_POST['LoginForm']['password'])){
+        }elseif( $usr->password !==  md5($this->password )){
             $this->errorCode=self::ERROR_PASSWORD_INVALID;
-        }
-        else{
+        }else{
             $this->errorCode=self::ERROR_NONE;
+            $this->_id=$usr->id;            
         }
         return !$this->errorCode;
+    }
+
+    public function getId()
+    {
+        return $this->_id;
     }
 }

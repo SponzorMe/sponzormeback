@@ -1,6 +1,6 @@
 <?php
 
-class WallController extends Controller
+class FollowController extends Controller
 {
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -9,9 +9,11 @@ class WallController extends Controller
     public $layout='//layouts/main';
     public function init()
     {
-        //Yii::app()->theme = 'classic';
+        Yii::app()->theme = 'classic';
         parent::init();
     }
+
+
     /**
      * @return array action filters
      */
@@ -33,7 +35,7 @@ class WallController extends Controller
         return array(
             array(
                 'allow',  // allow all users to perform 'index' and 'view' actions
-                'actions'=>array('index','view','user'),
+                'actions'=>array('index','view'),
                 'users'=>array('*'),
             ),
             array(
@@ -70,48 +72,24 @@ class WallController extends Controller
      */
     public function actionCreate()
     {
-        $model=new Wall;
-
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
-        if(isset($_POST['Wall']))
+        $model=new Follow;
+        if(isset($_POST['Follow']))
         {
-            $model->attributes=$_POST['Wall'];
-            $model->usr_id = Yii::app()->user->getId();
-            $model->date_created = date("Y-m-d H:i:s");
+            $this->performAjaxValidation($model);
+            $model->attributes=$_POST['Follow'];
+            $model->follower = Yii::app()->user->id;
             if($model->validate() && $model->save()){
-                $this->redirect(array('view','id'=>$model->id));
+                echo json_encode(array_merge( ['result'=>'success'] , $model->attributes ) ) ;
+                return true;
             }
+            echo json_encode(array_merge( ['result'=>'failure'] , $model->getErrors() ) ) ;
+            return true;
         }
-        $this->render('create',array(
-            'model'=>$model,
-        ));
+        //$this->render('create',array ('model'=>$model, ));
+        return true;
     }
 
-    /**
-     * Updates a particular model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id the ID of the model to be updated
-     */
-    public function actionUpdate($id)
-    {
-        $model=$this->loadModel($id);
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
-        if(isset($_POST['Wall']))
-        {
-            $model->attributes=$_POST['Wall'];
-            if($model->save())
-                $this->redirect(array('view','id'=>$model->id));
-        }
-
-        $this->render('update',array(
-            'model'=>$model,
-        ));
-    }
 
     /**
      * Deletes a particular model.
@@ -132,22 +110,7 @@ class WallController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider=new CActiveDataProvider('Wall');
-        
-        $this->render('index',array(
-            'dataProvider'=>$dataProvider,
-        ));
-    }
-
-
-    public function actionUser($id)
-    {
-        $dataProvider=new CActiveDataProvider('Wall' , array( 
-            'criteria'=> array( 
-                'condition' => 'usr_id = '.$id,
-            ), 
-        ) ) ;
-
+        $dataProvider=new CActiveDataProvider('Follow');
         $this->render('index',array(
             'dataProvider'=>$dataProvider,
         ));
@@ -158,10 +121,10 @@ class WallController extends Controller
      */
     public function actionAdmin()
     {
-        $model=new Wall('search');
+        $model=new Follow('search');
         $model->unsetAttributes();  // clear any default values
-        if(isset($_GET['Wall']))
-            $model->attributes=$_GET['Wall'];
+        if(isset($_GET['Follow']))
+            $model->attributes=$_GET['Follow'];
 
         $this->render('admin',array(
             'model'=>$model,
@@ -172,12 +135,12 @@ class WallController extends Controller
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return Wall the loaded model
+     * @return Follow the loaded model
      * @throws CHttpException
      */
     public function loadModel($id)
     {
-        $model=Wall::model()->findByPk($id);
+        $model=Follow::model()->findByPk($id);
         if($model===null)
             throw new CHttpException(404,'The requested page does not exist.');
         return $model;
@@ -185,11 +148,11 @@ class WallController extends Controller
 
     /**
      * Performs the AJAX validation.
-     * @param Wall $model the model to be validated
+     * @param Follow $model the model to be validated
      */
     protected function performAjaxValidation($model)
     {
-        if(isset($_POST['ajax']) && $_POST['ajax']==='wall-form')
+        if(isset($_POST['ajax']) && $_POST['ajax']==='follow-form')
         {
             echo CActiveForm::validate($model);
             Yii::app()->end();

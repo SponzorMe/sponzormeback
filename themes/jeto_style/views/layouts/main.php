@@ -36,8 +36,8 @@ $this->widget('zii.widgets.CMenu',array(
         ),
 
         array(
-            'label' => 'PROFILE',
-            'url' => array(Yii::app()->user->getId()),
+            'label' => 'MY WALL',
+            'url' => array('/wall/user/'.Yii::app()->user->getId()),
             'visible' => !Yii::app()->user->isGuest,
             'itemOptions' => array('class' => 'btn', 'id'=>'profile')
         ),
@@ -53,11 +53,11 @@ $this->widget('zii.widgets.CMenu',array(
 
 <?php 
 $loginForm = new LoginForm;
-$this->renderPartial('login',array(
+$this->renderPartial('/site/login',array(
     'model'=>$loginForm,
 ));
 $signupForm = new Signup;
-$this->renderPartial('signup',array(
+$this->renderPartial('/site/signup',array(
     'model'=>$signupForm,
 ));
 

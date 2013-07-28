@@ -22,8 +22,6 @@ class Controller extends CController
      */
     public $breadcrumbs=array();
     public function init() {
-
-        // $this->attachBehavior('bootstrap', new BController($this));
         if (class_exists('Wp')) {
             Wp::inject();
         }

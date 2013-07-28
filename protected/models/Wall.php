@@ -116,10 +116,8 @@ class Wall extends CActiveRecord
 
     public function save($runValidation = true, $attributes = NULL)
     {
-        // bucket sponzorme
-        //    $success = Yii::app()->s3->upload( 'originalfile' , 'uploadedfile', 's3_BucketName' );
-        if($this->type != 1 ){
-            parent::save();
+        if(  !isset( $_FILES['Wall']['tmp_name']['url']  ) ) { // $this->type != 1 ){
+            parent::save($runValidation, $attributes);
             return true;
         }
         // vamos a guardar las imagencitas y eso 
@@ -134,6 +132,7 @@ class Wall extends CActiveRecord
                 $rs[] =  abs( $ratio   - $ratios[$i]   ) ; 
             }
             $ratio =  $ratios[ array_search( min($rs) , $rs )  ] ;
+            $big = false;
             if( $ratio  == 1.5 && $f->image_src_y >= 900 ){
                 $size['1.5'] = ['x'=>900, 'y'=>600];
                 $big = true; 
@@ -157,12 +156,50 @@ class Wall extends CActiveRecord
                 unlink($f->file_dst_pathname );
                 $f->clean();
                 //detalles de la maricada
-                $this->json = json_encode( ['w' => $f->image_x, 'h'=> $f->image_y, 'url'=> $url, 'ratio'=>$ratio, 'big' => (  isset($big) ?  true : false  ) ] ) ;
+                $this->json = json_encode( array("w" => (string)$size[$ratio]["x"], "h"=> (string)$size[$ratio]["y"], "url"=> $url, "ratio"=>$ratio, "big" => (string)($big ? 1 :0 ) )  ) ;
             }else{
                 return false;
             }
         }
         
         return parent::save($runValidation,$attributes) ;
-     }
+    }
+    public function getDetails(){
+        $c = json_decode($this->json, true) ;
+        if(!is_array($c)){
+            $c = json_decode($c);
+            if( isset($c->url) ){
+                return $c;
+            }
+        }
+        $c = new StdClass();
+        $c->w = '';
+        $c->h = '';
+        $c->url = '';
+        $c->ratio = '';
+        $c->big = '';
+        return $c;
+    }
+    public function getThumbImg(){
+        if( preg_match('/[\\?\\&]v=([^\\?\\&]+)/',$this->url ,$matches) === 1 ) { 
+            return "<iframe width='480' height='360' src='http://www.youtube.com/embed/".$matches[1]."?rel=0' frameborder='0' allowfullscreen></iframe>";
+        }
+        return "<img src='".$this->details->url."' />";
+    }
+    public function getThumb(){
+        return $this->details->url;
+    }
+    public function getW(){
+        return $this->details->w;
+    }
+    public function getH(){
+        return $this->details->h;
+    }
+    public function getRatio(){
+        return $this->details->ratio;
+    }
+    public function getBig(){
+        return $this->details->big;
+    }
+
 }

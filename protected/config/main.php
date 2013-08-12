@@ -67,8 +67,8 @@ return array(
 
         's3'=>array(
             'class'=>'ext.s3.ES3',
-            'aKey'=>'AKIAIJ2BZGO2H4FI2BYA', 
-            'sKey'=>'HOlJ0upiZY8EXtBtM04RfVCs44Tj7UzZ67g7f0/c',
+            'aKey'=>'AKIAISPDGMKX55DD3C4A', 
+            'sKey'=>'7nYDUVNoMw7JoGB71SUBXANWiIHt84CXOZwRlDlb/c',
             ),
 
         'facebook'=>array(

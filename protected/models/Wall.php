@@ -46,8 +46,8 @@ class Wall extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('likecount, deleted, usr_id', 'numerical', 'integerOnly'=>true),
-            array('url', 'length', 'max'=>255),
+            // array('likecount, deleted, usr_id', 'numerical', 'integerOnly'=>true),
+            array('url', 'length', 'max'=> 1024),
             array('text, json, date_created', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.

@@ -16,7 +16,7 @@
 
         <?php if(isset($_POST) ) echo $form->errorSummary($model); ?>
 
-        <div class="<?php//  echo $form->fieldClass($model, 'fullname'); ?>">
+        <div class="<?php /*  echo $form->fieldClass($model, 'fullname'); */ ?>">
                 <?php echo $form->labelEx($model,'fullname'); ?>
                 <div class="controls">
                         <?php echo $form->textField($model,'fullname', array('placeholder'=>'fullname')); ?>

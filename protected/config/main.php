@@ -117,11 +117,11 @@ return array(
 'db'=>array(
     'connectionString' => 
     LOCAL ?
-    'mysql:host=localhost;dbname=sponsorme' :
-    'mysql:host=sinergizar.cnppncuxkvpw.us-east-1.rds.amazonaws.com;dbname=sponsorme',
+    'mysql:host=localhost;dbname=sponzorme' :
+    'mysql:host=localhost;dbname=sponzorme',
     'emulatePrepare' => true,
-    'username' => LOCAL ? 'root' : 'root',
-    'password' => LOCAL ? '' :'sinergizar2013$',
+    'username' => LOCAL ? 'sponzorme' : 'sponzorme',
+    'password' => LOCAL ? 'sinergizar2013$' :'sinergizar2013$',
     'charset' => 'utf8',
     ),
 

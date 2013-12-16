@@ -12,6 +12,8 @@
 		<!-- Bootstrap 3.0: Latest compiled and minified CSS -->
 		<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> -->
 		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+       <link rel="stylesheet" href="{{ asset('css/default.css') }}">
+       <link rel="stylesheet" href="{{ asset('css/style3.css') }}">
 
 		<!-- Optional theme -->
 		<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"> -->
@@ -33,9 +35,7 @@
 	
 	</head>
 
-	<body>
-		
-
+	<body id="page">
 		<!-- Navbar -->
 		<div class="navbar navbar-inverse navbar-fixed-top">
 	      <div class="container">
@@ -45,7 +45,7 @@
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
 	          </button>
-	          <a class="navbar-brand" href="{{ URL::route('home') }}">L4 with Sentry</a>
+	          <a class="" href="{{ URL::route('home') }}"><img height="45px" src="{{asset('images/logo.gif')}}"></a>
 	        </div>
 	        <div class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
@@ -64,12 +64,17 @@
 				@endif
 	          </ul>
 	        </div><!--/.nav-collapse -->
+            
 	      </div>
 	    </div>
 		<!-- ./ navbar -->
 
 		<!-- Container -->
 		<div class="container">
+        <header>
+                <h1><span>Conectamos Eventos con Patrocinadores</span></h1>
+                <h2>Solo sube tu evento y deja que la magia comience...</h2>
+            </header>
 			<!-- Notifications -->
 			@include('layouts/notifications')
 			<!-- ./ notifications -->
@@ -77,6 +82,14 @@
 			<!-- Content -->
 			@yield('content')
 			<!-- ./ content -->
+            
+            <ul class="cb-slideshow">
+            <li><span>Image 01</span><div><h3>Eventos</h3></div></li>
+            <li><span>Image 02</span><div><h3>Marcas</h3></div></li>
+            <li><span>Image 03</span><div><h3>Tecnología</h3></div></li>
+            <li><span>Image 04</span><div><h3>Comunidades</h3></div></li>
+            <li><span>Image 05</span><div><h3>Conexiones</h3></div></li>
+            </ul>
 		</div>
 
 		<!-- ./ container -->
@@ -86,6 +99,8 @@
 		<script src="{{ asset('js/jquery-2.0.2.min.js') }}"></script>
 		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 		<script src="{{ asset('js/restfulizer.js') }}"></script> 
+       <script src="{{ asset('js/modernizr.custom.86080.js') }}"></script> 
+        
 		<!-- Thanks to Zizaco for the Restfulizer script.  http://zizaco.net  -->
 	</body>
 </html>

@@ -27,7 +27,7 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.mailgun.org',
+	'host' => 'smtp.gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -53,7 +53,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => null, 'name' => null),
+	'from' => array('address' => 'carlkant@gmail.com', 'name' => 'Carlos Rojas'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -79,7 +79,7 @@ return array(
 	|
 	*/
 
-	'username' => null,
+	'username' => 'carlkant@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -92,6 +92,6 @@ return array(
 	|
 	*/
 
-	'password' => null,
+	'password' => 'adminnova2010$',
 
 );

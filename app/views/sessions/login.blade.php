@@ -2,7 +2,7 @@
 
 {{-- Web site Title --}}
 @section('title')
-{{trans('loginform.login')}}
+{{trans('loginform.title')}}
 @stop
 
 {{-- Content --}}
@@ -27,7 +27,7 @@
                 {{ Form::checkbox('rememberMe', 'rememberMe') }}{{trans('loginform.rememberme')}}
             </label>
             {{ Form::submit(Lang::get('loginform.signin'), array('class' => 'btn btn-primary'))}}
-            <a class="btn btn-link" href="{{ route('forgotPasswordForm') }}">Forgot Password</a>
+            <a class="btn btn-link" href="{{ route('forgotPasswordForm') }}">{{trans('loginform.forgot')}}</a>
         {{ Form::close() }}
     </div>
 </div>

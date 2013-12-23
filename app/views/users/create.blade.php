@@ -3,7 +3,7 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-Register
+{{trans('signinform.title')}}
 @stop
 
 {{-- Content --}}
@@ -12,7 +12,7 @@ Register
     <div class="col-md-4 col-md-offset-4">
         {{ Form::open(array('action' => 'UserController@store')) }}
 
-            <h2>Register New Account</h2>
+            <h2 class="form-signin-heading">{{trans('signinform.title')}}</h2>
 
             <div class="form-group {{ ($errors->has('email')) ? 'has-error' : '' }}">
                 {{ Form::text('email', null, array('class' => 'form-control', 'placeholder' => 'E-mail')) }}
@@ -29,7 +29,7 @@ Register
                 {{ ($errors->has('password_confirmation') ?  $errors->first('password_confirmation') : '') }}
             </div>
             
-            {{ Form::submit('Register', array('class' => 'btn btn-primary')) }}
+            {{ Form::submit(Lang::get('signinform.signin'), array('class' => 'btn btn-primary')) }}
             
         {{ Form::close() }}
     </div>

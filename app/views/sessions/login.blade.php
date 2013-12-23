@@ -2,7 +2,7 @@
 
 {{-- Web site Title --}}
 @section('title')
-Log In
+{{trans('loginform.login')}}
 @stop
 
 {{-- Content --}}
@@ -11,7 +11,7 @@ Log In
     <div class="col-md-4 col-md-offset-4">
         {{ Form::open(array('action' => 'SessionController@store')) }}
 
-            <h2 class="form-signin-heading">Sign In</h2>
+            <h2 class="form-signin-heading">{{trans('pages.login')}}</h2>
 
             <div class="form-group {{ ($errors->has('email')) ? 'has-error' : '' }}">
                 {{ Form::text('email', null, array('class' => 'form-control', 'placeholder' => 'Email', 'autofocus')) }}
@@ -24,9 +24,9 @@ Log In
             </div>
             
             <label class="checkbox">
-                {{ Form::checkbox('rememberMe', 'rememberMe') }} Remember me
+                {{ Form::checkbox('rememberMe', 'rememberMe') }}{{trans('loginform.rememberme')}}
             </label>
-            {{ Form::submit('Sign In', array('class' => 'btn btn-primary'))}}
+            {{ Form::submit(Lang::get('loginform.signin'), array('class' => 'btn btn-primary'))}}
             <a class="btn btn-link" href="{{ route('forgotPasswordForm') }}">Forgot Password</a>
         {{ Form::close() }}
     </div>

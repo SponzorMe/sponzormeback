@@ -8,7 +8,7 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
-	'flashsuccess'	=> 'Success',
+	'flashsuccess'	=> 'Exitoso',
 
 	'flasherror'	=> 'Error',
 
@@ -16,19 +16,19 @@ return array(
 
 	'flashinfo'		=> 'FYI',
 
-	'register'		=> 'Register',
+	'register'		=> 'Registrarse',
 
-	'login'			=> "Login",
+	'login'			=> "Ingresar",
 
-	'logout'		=> "Logout",
+	'logout'		=> "Salir",
 
 	'home'			=> "Home",
 
-	'users'			=> "Users",
+	'users'			=> "Usuarios",
 
-	'user'			=> "User",
+	'user'			=> "Usuario",
 
-	'groups'		=> "Groups",
+	'groups'		=> "Grupos",
 
 	'helloworld'	=> "",
 
@@ -64,23 +64,23 @@ return array(
 
 	'actiondelete'	=> "Delete",
 
-	''	=> "",
+	'sponsorreg'	=> "Eres Patrocinador?",
 
-	''	=> "",
+	'organizerreg'	=> "Eres Organizador?",
 
-	''	=> "",
+	'copy'	=> "Conectamos Eventos con Patrocinadores",
 
-	''	=> "",
+	'nextaction'	=> "Solo sube tu evento y deja que la magia comience...",
 
-	''	=> "",
+	'slide1'	=> "Eventos",
 
-	''	=> "",
+	'slide2'	=> "Marcas",
 
-	''	=> "",
+	'slide3'	=> "Tecnología",
 
-	''	=> "",
+	'slide4'	=> "Comunidades",
 
-	''	=> "",
+	'slide5'	=> "Conexiones",
 
 	''	=> "",
 

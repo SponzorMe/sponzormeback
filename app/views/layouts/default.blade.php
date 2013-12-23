@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
 		<title> 
@@ -50,17 +50,18 @@
 	        <div class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
 				@if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
-					<li {{ (Request::is('users*') ? 'class="active"' : '') }}><a href="{{ URL::to('/users') }}">Users</a></li>
-					<li {{ (Request::is('groups*') ? 'class="active"' : '') }}><a href="{{ URL::to('/groups') }}">Groups</a></li>
+					<li {{ (Request::is('users*') ? 'class="active"' : '') }}><a href="{{ URL::to('/users') }}">{{trans('pages.users')}}</a></li>
+					<li {{ (Request::is('groups*') ? 'class="active"' : '') }}><a href="{{ URL::to('/groups') }}">{{trans('pages.groups')}}</a></li>
 				@endif
 	          </ul>
 	          <ul class="nav navbar-nav navbar-right">
 	            @if (Sentry::check())
 				<li {{ (Request::is('users/show/' . Session::get('userId')) ? 'class="active"' : '') }}><a href="/users/{{ Session::get('userId') }}">{{ Session::get('email') }}</a></li>
-				<li><a href="{{ URL::to('logout') }}">Logout</a></li>
+				<li><a href="{{ URL::to('logout') }}">{{trans('pages.logout')}}</a></li>
 				@else
-				<li {{ (Request::is('login') ? 'class="active"' : '') }}><a href="{{ URL::to('login') }}">Login</a></li>
-				<li {{ (Request::is('users/create') ? 'class="active"' : '') }}><a href="{{ URL::to('users/create') }}">Register</a></li>
+				<li {{ (Request::is('login') ? 'class="active"' : '') }}><a href="{{ URL::to('login') }}">{{trans('pages.login')}}</a></li>
+				<li {{ (Request::is('users/create') ? 'class="active"' : '') }}><a href="{{ URL::to('users/create') }}">{{trans('pages.sponsorreg')}}</a></li>
+				<li {{ (Request::is('users/create') ? 'class="active2"' : '') }}><a href="{{ URL::to('users/create') }}">{{trans('pages.organizerreg')}}</a></li>
 				@endif
 	          </ul>
 	        </div><!--/.nav-collapse -->
@@ -71,10 +72,7 @@
 
 		<!-- Container -->
 		<div class="container">
-        <header>
-                <h1><span>Conectamos Eventos con Patrocinadores</span></h1>
-                <h2>Solo sube tu evento y deja que la magia comience...</h2>
-            </header>
+        
 			<!-- Notifications -->
 			@include('layouts/notifications')
 			<!-- ./ notifications -->
@@ -83,13 +81,6 @@
 			@yield('content')
 			<!-- ./ content -->
             
-            <ul class="cb-slideshow">
-            <li><span>Image 01</span><div><h3>Eventos</h3></div></li>
-            <li><span>Image 02</span><div><h3>Marcas</h3></div></li>
-            <li><span>Image 03</span><div><h3>Tecnología</h3></div></li>
-            <li><span>Image 04</span><div><h3>Comunidades</h3></div></li>
-            <li><span>Image 05</span><div><h3>Conexiones</h3></div></li>
-            </ul>
 		</div>
 
 		<!-- ./ container -->

@@ -41,6 +41,7 @@ Route::get('users/{id}/unsuspend', 'UserController@unsuspend')->where('id', '[0-
 Route::get('users/{id}/ban', 'UserController@ban')->where('id', '[0-9]+');
 Route::get('users/{id}/unban', 'UserController@unban')->where('id', '[0-9]+');
 Route::resource('users', 'UserController');
+Route::resource('sponsors', 'SponsorController');
 
 // Group Routes
 Route::resource('groups', 'GroupController');

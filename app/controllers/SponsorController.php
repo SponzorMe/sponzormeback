@@ -47,7 +47,7 @@ class SponsorController extends BaseController {
 
 		// Set up Auth Filters
 		$this->beforeFilter('auth', array('only' => array('change')));
-		$this->beforeFilter('inGroup:Admins', array('only' => array('show', 'index', 'destroy', 'suspend', 'unsuspend', 'ban', 'unban', 'edit', 'update')));
+		$this->beforeFilter('inGroup:Sponsors', array('only' => array('show', 'index', 'destroy', 'suspend', 'unsuspend', 'ban', 'unban', 'edit', 'update')));
 		//array('except' => array('create', 'store', 'activate', 'resend', 'forgot', 'reset')));
 	}
 
@@ -59,9 +59,9 @@ class SponsorController extends BaseController {
 	 */
 	public function index()
 	{
-        $users = $this->user->all();
+        $sponsors = $this->user->all();
       
-        return View::make('users.index')->with('users', $users);
+        return View::make('sponsors.index')->with('sponsors', $sponsors);
 	}
 
 	/**
@@ -71,7 +71,7 @@ class SponsorController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('users.create');
+        return View::make('sponsors.create');
 	}
 
 	/**
@@ -112,16 +112,16 @@ class SponsorController extends BaseController {
 	 */
 	public function show($id)
 	{
-        $user = $this->user->byId($id);
+        $sponsor = $this->user->byId($id);
 
-        if($user == null || !is_numeric($id))
+        if($sponsor == null || !is_numeric($id))
         {
             // @codeCoverageIgnoreStart
             return \App::abort(404);
             // @codeCoverageIgnoreEnd
         }
 
-        return View::make('users.show')->with('user', $user);
+        return View::make('sponsors.show')->with('sponsor', $sponsor);
 	}
 
 	/**
@@ -132,23 +132,23 @@ class SponsorController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        $user = $this->user->byId($id);
+        $sponsor = $this->user->byId($id);
 
-        if($user == null || !is_numeric($id))
+        if($sponsor == null || !is_numeric($id))
         {
             // @codeCoverageIgnoreStart
             return \App::abort(404);
             // @codeCoverageIgnoreEnd
         }
 
-        $currentGroups = $user->getGroups()->toArray();
+        $currentGroups = $sponsor->getGroups()->toArray();
         $userGroups = array();
         foreach ($currentGroups as $group) {
         	array_push($userGroups, $group['name']);
         }
         $allGroups = $this->group->all();
 
-        return View::make('users.edit')->with('user', $user)->with('userGroups', $userGroups)->with('allGroups', $allGroups);
+        return View::make('sponsors.edit')->with('sponsor', $sponsor)->with('userGroups', $userGroups)->with('allGroups', $allGroups);
 	}
 
 	/**
@@ -202,12 +202,12 @@ class SponsorController extends BaseController {
 		if ($this->user->destroy($id))
 		{
 			Session::flash('success', 'User Deleted');
-            return Redirect::to('/users');
+            return Redirect::to('/sponsors');
         }
         else 
         {
         	Session::flash('error', 'Unable to Delete User');
-            return Redirect::to('/users');
+            return Redirect::to('/sponsors');
         }
 	}
 

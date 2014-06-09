@@ -62,3 +62,6 @@ Route::get('/', array('as' => 'home', function()
 
 
 
+
+
+Route::resource('categories', 'CategoriesController');

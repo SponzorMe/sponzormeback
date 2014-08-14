@@ -1,5 +1,0 @@
-Nombre:		Rafith Rodríguez
-Deporte:	Atletismo
-Ciudad:		Medellín
-Facebook:	https://www.facebook.com/rafith.lleneres
-Edad:		25 Años

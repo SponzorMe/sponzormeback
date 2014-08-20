@@ -29,7 +29,7 @@
                 {{ ($errors->has('password_confirmation') ?  $errors->first('password_confirmation') : '') }}
             </div>
             
-            {{ Form::submit(Lang::get('signinform.signup'), array('class' => 'btn btn-primary')) }}
+            {{ Form::submit(Lang::get('signinform.signin'), array('class' => 'btn btn-primary')) }}
             
         {{ Form::close() }}
     </div>

@@ -5,5 +5,5 @@ class Category extends Eloquent {
 
 	public static $rules = array();
 
-	protected $table = 'interests_categories';
+	protected $table = 'categories';
 }

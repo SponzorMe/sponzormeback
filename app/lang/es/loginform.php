@@ -14,9 +14,8 @@ return array(
 	*/
 
 	"title"         => "Ingresar",
-	"rememberme"    => "Recuerdame",
-	"signin"        => "Iniciar Sesión",
-	"singup"        => "Registrarse",
-	'forgot' 		=> "¿Olvidó su contraseña?"	
+	"rememberme"       => "Recuerdame",
+	"signin"       => "Registrarse",
+	'forgot' => "¿Olvidó su contraseña?",	
 
 );

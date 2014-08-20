@@ -1,6 +1,8 @@
 ## Laravel 4 with Sentry 2 - Version 2.0
 
-This is a demo of [Sentry 2](https://github.com/cartalyst/sentry) integrated with [Laravel 4](https://github.com/laravel/laravel/tree/develop) and [Bootstrap 3.0](http://getbootstrap.com).  This repo is intended to be for reference only - if you want to use this code in your own app I suggest using [Sentinel](https://github.com/rydurham/Sentinel) - a Laravel package based on this repo.  
+This is a demo of [Sentry 2](https://github.com/cartalyst/sentry) integrated with [Laravel 4](https://github.com/laravel/laravel/tree/develop) and [Bootstrap 3.0](http://getbootstrap.com).
+
+Version 2.0 has been completely revamped using strategies suggested in *Laravel: From Apprentice to Artisan* by Taylor Otwell, *Implementing Laravel* by Chris Fidao and the Laracast videos.   Version 1.0 still exists in its original version. 
 
 ### Instructions
 
@@ -32,17 +34,14 @@ __Users__
 * [Laracasts](http://laracasts.com)
 
 ### Tests
-[![Build Status](https://travis-ci.org/rydurham/L4withSentry.svg?branch=master)](https://travis-ci.org/rydurham/L4withSentry)
-
 1. Make sure you've run `composer update`.
 2. cd to the L4withSentry project root directory.
 3. Execute `phpunit` to run tests or `phpunit --coverage-text` to see text based code coverage summary.
+4. If you're interested in more dynamic code coverage, check out the [instructions](COVERAGE.md).
 
 ### Notes
-* Tests are currently very limited.  
 
-### History
-Version 2.0 has been completely revamped using strategies suggested in *Laravel: From Apprentice to Artisan* by Taylor Otwell, *Implementing Laravel* by Chris Fidao and the Laracast videos.   Version 1.0 still exists in its original version. 
+* Tests are currently very limited.  
 
 =======
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)

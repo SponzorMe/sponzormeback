@@ -61,6 +61,8 @@ class MigrationCartalystSentryInstallUsers extends Migration {
 	 */
 	public function down()
 	{
+		Schema::drop('rel_users_category');
+		Schema::drop('rel_users_interests');
 		Schema::drop('users');
 	}
 

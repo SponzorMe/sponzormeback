@@ -79,7 +79,7 @@ return array(
 	|
 	*/
 
-	'username' => 'carlkant@gmail.com',
+	'username' => 'seagomezar@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -92,6 +92,6 @@ return array(
 	|
 	*/
 
-	'password' => 'adminnova2010$',
+	'password' => '5965155_sebas',
 
 );

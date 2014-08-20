@@ -52,11 +52,11 @@ Route::get('/', array('as' => 'home', function()
 }));
 
 
- App::missing(function($exception)
- {
-     App::abort(404, 'Page not found');
-     	return Response::view('errors.missing', array(), 404);
- });
+// App::missing(function($exception)
+// {
+//     App::abort(404, 'Page not found');
+//     //return Response::view('errors.missing', array(), 404);
+// });
 
 
 

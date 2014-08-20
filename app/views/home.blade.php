@@ -2,6 +2,9 @@
 
 {{-- Web site Title --}}
 @section('title')
+@parent
+{{trans('pages.helloworld')}}
+@stop
 
 {{-- Content --}}
 @section('content')

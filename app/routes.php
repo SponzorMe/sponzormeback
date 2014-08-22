@@ -51,17 +51,41 @@ Route::get('/', array('as' => 'home', function()
 	return View::make('home');
 }));
 
-
-// App::missing(function($exception)
-// {
-//     App::abort(404, 'Page not found');
-//     //return Response::view('errors.missing', array(), 404);
-// });
-
-
-
-
-
-
-
 Route::resource('categories', 'CategoriesController');
+
+Route::get('customization', array('as' => 'customization',function()
+{
+	return View::make('customization/customization'); // will return app/views/index.php
+}));
+
+Route::get('user/customization', function()
+{
+	return View::make('customization/customization'); // will return app/views/index.php
+});
+
+// =============================================
+// API ROUTES ==================================
+// =============================================
+Route::group(array('prefix' => 'api'), function() {
+
+	// since we will be using this just for CRUD, we won't need create and edit
+	// Angular will handle both of those forms
+	// this ensures that a user can't access api/create or api/edit when there's nothing there
+	//Route::resource('categories', 'CustomizationController', 
+		//array('only' => array('index', 'store', 'destroy','getCategories')));
+	Route::get('categories', 'CustomizationController@getCategories');
+	Route::get('interests', 'CustomizationController@getInterests');
+	Route::get('interests/categories/{id}', 'CustomizationController@getInterestsByCategories');
+	Route::post('update/{id}', 'CustomizationController@update');
+	Route::post('save/interests/{id}', 'CustomizationController@saveInterests');
+});
+
+// =============================================
+// CATCH ALL ROUTE =============================
+// =============================================
+// all routes that are not home or api will be redirected to the frontend
+// this allows angular to route them
+App::missing(function($exception)
+{
+	return View::make('index');
+});

@@ -81,9 +81,8 @@ class UserController extends BaseController {
 	 */
 	public function store()
 	{
-		// Form Processing
         $result = $this->registerForm->save( Input::all() );
-
+            
         if( $result['success'] )
         {
             Event::fire('user.signup', array(
@@ -91,10 +90,12 @@ class UserController extends BaseController {
             	'userId' => $result['mailData']['userId'], 
                 'activationCode' => $result['mailData']['activationCode']
             ));
-
+            Session::put('userId', $result['mailData']['userId'] );
+            Session::put('email', $result['mailData']['email'] );
             // Success!
             Session::flash('success', $result['message']);
-            return Redirect::route('home');
+            // Next Start customization
+            return Redirect::route('customization');
 
         } else {
             Session::flash('error', $result['message']);

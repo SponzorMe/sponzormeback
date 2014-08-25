@@ -1,7 +1,7 @@
 angular.module('mainController', [])
 
 	// inject the Comment service into our controller
-	.controller('mainController2', function($scope, $http, Customization) {
+	.controller('mainController', function($scope, $http, Customization) {
 
 		var interestscheked = new Array(); //Array to store the interests
 		var userId=$("#userId").val();
@@ -9,10 +9,6 @@ angular.module('mainController', [])
 		$("#step2").hide();
 		$("#step3").hide();
 		$("#step4").hide();
-		/*Customization.getCategories()
-						.success(function(data) {
-								$scope.categories = data;
-							});	*/
 		$scope.toggle = function(id)
 		{
 			if($.inArray(id,interestscheked)!=-1)
@@ -20,23 +16,18 @@ angular.module('mainController', [])
 			else				
 				interestscheked.push(id);
 		}
-
 		$scope.showInterests = function(id) {
-
-
 			//Luego Abrimos la otra categoria
 			Customization.getInterestsByCategories(id).success(function(adata) {
-					$scope.interests = adata;
-					row=(id%4) + (4-(id%4));					
-						$("#c"+row).after($("#step3"));
-						$("#step3").show();
-					});
-			//falta arreglar que vuelva y muestre checkeado los botones.
-			interestscheked.forEach( function(element){
-							$("#interest"+element).prop("checked",true);
-						});
-
-			}
+				$scope.interests = adata;
+			});
+			$("#step3").show();
+			$.each(interestscheked,function( index, value ) {
+  				console.log( index +" "+value);
+  				$("#interest"+value).attr("checked",true);
+			});
+			
+		}
 		$scope.submitCategoryInfo = function()
 		{
 			Customization.saveInterests(interestscheked,userId)
@@ -65,8 +56,7 @@ angular.module('mainController', [])
 						{
 							$("#step1").hide();	
 							$("#step2").show();	
-						}
-						
+						}					
 
 				})
 				.error(function(data) {

@@ -61,7 +61,7 @@
 				@else
 				<li {{ (Request::is('login') ? 'class="active"' : '') }}><a href="{{ URL::to('login') }}">{{trans('pages.login')}}</a></li>
 				<li {{ (Request::is('sponsors/create') ? 'class="active"' : '') }}><a href="{{ URL::to('sponsors/create') }}">{{trans('pages.sponsorreg')}}</a></li>
-				<li {{ (Request::is('users/create') ? 'class="active2"' : '') }}><a href="{{ URL::to('users/create') }}">{{trans('pages.organizerreg')}}</a></li>
+				<li {{ (Request::is('users/create') ? 'class="active"' : '') }}><a href="{{ URL::to('users/create') }}">{{trans('pages.organizerreg')}}</a></li>
 				@endif
 	          </ul>
 	        </div><!--/.nav-collapse -->

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.6
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-08-2014 a las 02:20:13
+-- Tiempo de generación: 25-08-2014 a las 18:59:34
 -- Versión del servidor: 5.6.16
--- Versión de PHP: 5.5.9
+-- Versión de PHP: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `web_categories` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `web_categories`
@@ -43,7 +43,8 @@ INSERT INTO `web_categories` (`id`, `title`, `body`, `created_at`, `updated_at`)
 (1, 'Photo & Films', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at magna dolor. Sed commodo feugiat lobortis. Aliquam lacinia sollicitudin porta. Nulla mollis eu enim non feugiat. Mauris convallis purus ut porta elementum. Nunc elementum ligula vel tincidunt luctus. Quisque orci enim, tempus eu fringilla a, semper ac libero. Sed condimentum leo at ipsum fringilla, ut elementum tellus ultrices. Mauris quis tempor urna, sit amet blandit lorem. In ante ante, feugiat non leo ut, molestie commodo purus. Vivamus lacinia sollicitudin urna. Aliquam et sem sed est tincidunt molestie condimentum non ligula. Quisque sed ipsum eu libero dictum pellentesque at et lorem. Morbi cursus faucibus gravida.', '2014-08-20 05:11:45', '2014-08-20 05:11:45'),
 (2, 'Sports', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at magna dolor. Sed commodo feugiat lobortis. Aliquam lacinia sollicitudin porta. Nulla mollis eu enim non feugiat. Mauris convallis purus ut porta elementum. Nunc elementum ligula vel tincidunt luctus. Quisque orci enim, tempus eu fringilla a, semper ac libero. Sed condimentum leo at ipsum fringilla, ut elementum tellus ultrices. Mauris quis tempor urna, sit amet blandit lorem. In ante ante, feugiat non leo ut, molestie commodo purus. Vivamus lacinia sollicitudin urna. Aliquam et sem sed est tincidunt molestie condimentum non ligula. Quisque sed ipsum eu libero dictum pellentesque at et lorem. Morbi cursus faucibus gravida.', '2014-08-20 05:11:45', '2014-08-20 05:11:45'),
 (3, 'Sport & Fitness', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at magna dolor. Sed commodo feugiat lobortis. Aliquam lacinia sollicitudin porta. Nulla mollis eu enim non feugiat. Mauris convallis purus ut porta elementum. Nunc elementum ligula vel tincidunt luctus. Quisque orci enim, tempus eu fringilla a, semper ac libero. Sed condimentum leo at ipsum fringilla, ut elementum tellus ultrices. Mauris quis tempor urna, sit amet blandit lorem. In ante ante, feugiat non leo ut, molestie commodo purus. Vivamus lacinia sollicitudin urna. Aliquam et sem sed est tincidunt molestie condimentum non ligula. Quisque sed ipsum eu libero dictum pellentesque at et lorem. Morbi cursus faucibus gravida.', '2014-08-20 05:11:45', '2014-08-20 05:11:45'),
-(4, 'Technology', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at magna dolor. Sed commodo feugiat lobortis. Aliquam lacinia sollicitudin porta. Nulla mollis eu enim non feugiat. Mauris convallis purus ut porta elementum. Nunc elementum ligula vel tincidunt luctus. Quisque orci enim, tempus eu fringilla a, semper ac libero. Sed condimentum leo at ipsum fringilla, ut elementum tellus ultrices. Mauris quis tempor urna, sit amet blandit lorem. In ante ante, feugiat non leo ut, molestie commodo purus. Vivamus lacinia sollicitudin urna. Aliquam et sem sed est tincidunt molestie condimentum non ligula. Quisque sed ipsum eu libero dictum pellentesque at et lorem. Morbi cursus faucibus gravida.', '2014-08-20 05:11:45', '2014-08-20 05:11:45');
+(4, 'Technology', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at magna dolor. Sed commodo feugiat lobortis. Aliquam lacinia sollicitudin porta. Nulla mollis eu enim non feugiat. Mauris convallis purus ut porta elementum. Nunc elementum ligula vel tincidunt luctus. Quisque orci enim, tempus eu fringilla a, semper ac libero. Sed condimentum leo at ipsum fringilla, ut elementum tellus ultrices. Mauris quis tempor urna, sit amet blandit lorem. In ante ante, feugiat non leo ut, molestie commodo purus. Vivamus lacinia sollicitudin urna. Aliquam et sem sed est tincidunt molestie condimentum non ligula. Quisque sed ipsum eu libero dictum pellentesque at et lorem. Morbi cursus faucibus gravida.', '2014-08-20 05:11:45', '2014-08-20 05:11:45'),
+(5, 'Bussiness', 'All About the Bussines!', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -93,7 +94,8 @@ INSERT INTO `web_interests_categories` (`idinterests`, `name`, `description`, `p
 (1, 'PHP', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at magna dolor. Sed commodo feugiat lobortis. Aliquam lacinia sollicitudin porta. Nulla mollis eu enim non feugiat. Mauris convallis purus ut porta elementum. Nunc elementum ligula vel tincidunt luctus. Quisque orci enim, tempus eu fringilla a, semper ac libero. Sed condimentum leo at ipsum fringilla, ut elementum tellus ultrices. Mauris quis tempor urna, sit amet blandit lorem. In ante ante, feugiat non leo ut, molestie commodo purus. Vivamus lacinia sollicitudin urna. Aliquam et sem sed est tincidunt molestie condimentum non ligula. Quisque sed ipsum eu libero dictum pellentesque at et lorem. Morbi cursus faucibus gravida.', 4, '2014-08-20 05:11:45', '2014-08-20 05:11:45'),
 (2, 'Java', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at magna dolor. Sed commodo feugiat lobortis. Aliquam lacinia sollicitudin porta. Nulla mollis eu enim non feugiat. Mauris convallis purus ut porta elementum. Nunc elementum ligula vel tincidunt luctus. Quisque orci enim, tempus eu fringilla a, semper ac libero. Sed condimentum leo at ipsum fringilla, ut elementum tellus ultrices. Mauris quis tempor urna, sit amet blandit lorem. In ante ante, feugiat non leo ut, molestie commodo purus. Vivamus lacinia sollicitudin urna. Aliquam et sem sed est tincidunt molestie condimentum non ligula. Quisque sed ipsum eu libero dictum pellentesque at et lorem. Morbi cursus faucibus gravida.', 4, '2014-08-20 05:11:45', '2014-08-20 05:11:45'),
 (3, 'Javascript', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at magna dolor. Sed commodo feugiat lobortis. Aliquam lacinia sollicitudin porta. Nulla mollis eu enim non feugiat. Mauris convallis purus ut porta elementum. Nunc elementum ligula vel tincidunt luctus. Quisque orci enim, tempus eu fringilla a, semper ac libero. Sed condimentum leo at ipsum fringilla, ut elementum tellus ultrices. Mauris quis tempor urna, sit amet blandit lorem. In ante ante, feugiat non leo ut, molestie commodo purus. Vivamus lacinia sollicitudin urna. Aliquam et sem sed est tincidunt molestie condimentum non ligula. Quisque sed ipsum eu libero dictum pellentesque at et lorem. Morbi cursus faucibus gravida.', 4, '2014-08-20 05:11:45', '2014-08-20 05:11:45'),
-(4, 'Angular', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at magna dolor. Sed commodo feugiat lobortis. Aliquam lacinia sollicitudin porta. Nulla mollis eu enim non feugiat. Mauris convallis purus ut porta elementum. Nunc elementum ligula vel tincidunt luctus. Quisque orci enim, tempus eu fringilla a, semper ac libero. Sed condimentum leo at ipsum fringilla, ut elementum tellus ultrices. Mauris quis tempor urna, sit amet blandit lorem. In ante ante, feugiat non leo ut, molestie commodo purus. Vivamus lacinia sollicitudin urna. Aliquam et sem sed est tincidunt molestie condimentum non ligula. Quisque sed ipsum eu libero dictum pellentesque at et lorem. Morbi cursus faucibus gravida.', 4, '2014-08-20 05:11:45', '2014-08-20 05:11:45');
+(4, 'Angular', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at magna dolor. Sed commodo feugiat lobortis. Aliquam lacinia sollicitudin porta. Nulla mollis eu enim non feugiat. Mauris convallis purus ut porta elementum. Nunc elementum ligula vel tincidunt luctus. Quisque orci enim, tempus eu fringilla a, semper ac libero. Sed condimentum leo at ipsum fringilla, ut elementum tellus ultrices. Mauris quis tempor urna, sit amet blandit lorem. In ante ante, feugiat non leo ut, molestie commodo purus. Vivamus lacinia sollicitudin urna. Aliquam et sem sed est tincidunt molestie condimentum non ligula. Quisque sed ipsum eu libero dictum pellentesque at et lorem. Morbi cursus faucibus gravida.', 4, '2014-08-20 05:11:45', '2014-08-20 05:11:45'),
+(5, 'Photoshop', 'Tutorials About Photoshop', 1, '2014-08-20 23:00:09', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -136,14 +138,15 @@ CREATE TABLE IF NOT EXISTS `web_rel_users_category` (
   PRIMARY KEY (`id`),
   KEY `rel_users_category_user_id_foreign` (`user_id`),
   KEY `rel_users_category_category_id_foreign` (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
 -- Volcado de datos para la tabla `web_rel_users_category`
 --
 
 INSERT INTO `web_rel_users_category` (`id`, `user_id`, `category_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 4, '2014-08-20 05:11:45', '2014-08-20 05:11:45');
+(8, 28, 4, '2014-08-25 21:51:05', '2014-08-25 21:51:05'),
+(9, 28, 1, '2014-08-25 21:51:06', '2014-08-25 21:51:06');
 
 -- --------------------------------------------------------
 
@@ -160,15 +163,16 @@ CREATE TABLE IF NOT EXISTS `web_rel_users_interests` (
   PRIMARY KEY (`id`),
   KEY `fk_rel_users_interests_web_users_idx` (`user_id`),
   KEY `fk_rel_users_interests_interests_categories1_idx` (`interests_categories_idinterests`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
 
 --
 -- Volcado de datos para la tabla `web_rel_users_interests`
 --
 
 INSERT INTO `web_rel_users_interests` (`id`, `user_id`, `interests_categories_idinterests`, `created_at`, `updated_at`) VALUES
-(5, 1, 4, '2014-08-20 05:11:45', '2014-08-20 05:11:45'),
-(6, 1, 2, '2014-08-20 05:11:45', '2014-08-20 05:11:45');
+(48, 28, 3, '2014-08-25 21:51:05', '2014-08-25 21:51:05'),
+(49, 28, 2, '2014-08-25 21:51:06', '2014-08-25 21:51:06'),
+(50, 28, 5, '2014-08-25 21:51:06', '2014-08-25 21:51:06');
 
 -- --------------------------------------------------------
 
@@ -188,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `web_throttle` (
   `banned_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `throttle_user_id_index` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `web_throttle`
@@ -197,7 +201,9 @@ CREATE TABLE IF NOT EXISTS `web_throttle` (
 INSERT INTO `web_throttle` (`id`, `user_id`, `ip_address`, `attempts`, `suspended`, `banned`, `last_attempt_at`, `suspended_at`, `banned_at`) VALUES
 (1, 3, NULL, 0, 0, 0, NULL, NULL, NULL),
 (2, 7, NULL, 0, 0, 0, NULL, NULL, NULL),
-(3, 8, NULL, 0, 0, 0, NULL, NULL, NULL);
+(3, 8, NULL, 0, 0, 0, NULL, NULL, NULL),
+(4, 2, NULL, 0, 0, 0, NULL, NULL, NULL),
+(5, 1, NULL, 0, 0, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -221,23 +227,28 @@ CREATE TABLE IF NOT EXISTS `web_users` (
   `company` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `country` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `state` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `city` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `state` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sex` tinyint(1) DEFAULT NULL,
+  `age` int(3) DEFAULT NULL,
+  `custom_status` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`),
   KEY `users_activation_code_index` (`activation_code`),
   KEY `users_reset_password_code_index` (`reset_password_code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=30 ;
 
 --
 -- Volcado de datos para la tabla `web_users`
 --
 
-INSERT INTO `web_users` (`id`, `email`, `password`, `permissions`, `activated`, `activation_code`, `activated_at`, `last_login`, `persist_code`, `reset_password_code`, `first_name`, `last_name`, `company`, `created_at`, `updated_at`, `name`, `country`, `state`, `city`) VALUES
-(1, 'admin@admin.com', '$2y$10$dqL2bDjyxCx2MDE3lfMUbu7TzB9vTAAJH9pgAvK66WeF.O8IHG.8m', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2014-08-20 05:11:44', '2014-08-20 05:11:44', '', '', '', ''),
-(2, 'user@user.com', '$2y$10$DbFpCXLQfS6Va1OXqfZ9Hux2V2fgYhbl8mjiiHV5hfE3IGhfSJ2/a', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2014-08-20 05:11:45', '2014-08-20 05:11:45', '', '', '', '');
+INSERT INTO `web_users` (`id`, `email`, `password`, `permissions`, `activated`, `activation_code`, `activated_at`, `last_login`, `persist_code`, `reset_password_code`, `first_name`, `last_name`, `company`, `created_at`, `updated_at`, `name`, `country`, `state`, `city`, `sex`, `age`, `custom_status`) VALUES
+(1, 'admin@admin.com', '$2y$10$dqL2bDjyxCx2MDE3lfMUbu7TzB9vTAAJH9pgAvK66WeF.O8IHG.8m', NULL, 1, NULL, NULL, '2014-08-22 05:17:22', '$2y$10$Luc.VdNv1Wj3LzfpwDFgAentrQoC67X2lERKSEaOAAYm3pZazjjte', NULL, NULL, NULL, '', '2014-08-20 05:11:44', '2014-08-22 05:17:22', '', '', '', '', 0, NULL, 0),
+(2, 'user@user.com', '$2y$10$DbFpCXLQfS6Va1OXqfZ9Hux2V2fgYhbl8mjiiHV5hfE3IGhfSJ2/a', NULL, 1, NULL, NULL, '2014-08-22 05:56:16', '$2y$10$4eRbZDUk/QfizOkFBx3w4.wBR3PDXF0mxray0GMRWsoiBN3su0XVu', NULL, NULL, NULL, '', '2014-08-20 05:11:45', '2014-08-22 05:56:16', '', 'Afghanistan', 'Badakhshan', 'Baharak', 0, 18, 0),
+(28, 'seagomezar@gmail.com', '$2y$10$lsM1eKs/N0qc.tr2eMrabeZxJ/zhGi6/TgOriSwIZmn.4.bgFRqIS', NULL, 0, 'G4idbhylnP0h0j4lRbVzNS609QVp0jAzt4artf2MxB', NULL, NULL, NULL, NULL, NULL, NULL, '', '2014-08-25 21:50:26', '2014-08-25 21:51:06', NULL, 'Afghanistan', 'Badakhshan', 'Baharak', 0, 18, 2),
+(29, 'sebasg@colombia.com', '$2y$10$Qu.INn/4gBvoe4rQ23oGbe5cnchZ60kxS06P0Z101RGV5fkdEIj62', NULL, 0, 'zKWiQGtf3ksO5InGbwEAYNJ52UlwxKolAMEvQfy6DT', NULL, NULL, NULL, NULL, NULL, NULL, '', '2014-08-25 21:51:45', '2014-08-25 21:51:57', NULL, 'Afghanistan', 'Badakhshan', 'Baharak', 0, 18, 1);
 
 -- --------------------------------------------------------
 

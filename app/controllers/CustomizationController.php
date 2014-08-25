@@ -3,54 +3,39 @@
 class CustomizationController extends \BaseController {
 
 	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		echo "nada";
-	}
-	/**
 	 * Show all categories
 	 *
-	 * @return Response
+	 * @return JSON Response
 	 */
 	public function getCategories()
 	{
 		return Response::json(Category::get());
 	}
 	/**
-	 * Show all categories
+	 * Show all interestsCategories with a parent ($id)
 	 *
-	 * @return Response
+	 * @return JSON Response
 	 */
 	public function getInterestsByCategories($id)
 	{
 		return Response::json(InterestsCategories::where('parent_id', '=', $id)->get());
 	}
+	/**
+	 * Show all InterestsCategories
+	 *
+	 * @return JSON Response
+	 */
 	public function getInterests()
 	{
 		return Response::json(InterestsCategories::get());
 	}
-	public function store()
-	{
-		User::create(array(
-			'age' => Input::get('age'),
-			'sex' => Input::get('sex'),
-			'country' => Input::get('country'),
-			'state' => Input::get('state'),
-			'city' => Input::get('city')
-
-		));
-
-		return Response::json(array('success' => true));
-	}
 	/**
-	 * Update the specified resource in storage.
+	 * Update the user info with the Country, State, City.
+	 * sex and age, then 
 	 *
 	 * @param  int  $id
-	 * @return Response
+	 * @param  POST $age, $sex, $country, $city, $state
+	 * @return JSON Response
 	 */
 	public function update($id)
 	{
@@ -63,8 +48,6 @@ class CustomizationController extends \BaseController {
 			'city' => 'required'
 		);
 		$validator = Validator::make(Input::all(), $rules);
-
-		// process the login
 		if ($validator->fails()) {
 			return Response::json(
 				array(
@@ -78,27 +61,51 @@ class CustomizationController extends \BaseController {
 		} else {
 			// store
 			$user = UserCustomization::find($id);
-			$user->age       	= Input::get('age');
-			$user->sex      	= Input::get('sex');
-			$user->country 		= Input::get('country');
-			$user->state      	= Input::get('state');
-			$user->city      	= Input::get('city');
+			$user->age       		= Input::get('age');
+			$user->sex      		= Input::get('sex');
+			$user->country 			= Input::get('country');
+			$user->state      		= Input::get('state');
+			$user->city      		= Input::get('city');
+			$user->custom_status    = 1;
 			$user->save();
 
 			return Response::json(array('success' => true));
 		}
 	}
+	/**
+	 * Update the reluserscategory with the categories
+	 *
+	 * @param  int  $id
+	 * @param  POST $age, $sex, $country, $city, $state
+	 * @return JSON Response
+	 */
 	public function saveInterests($id)
 	{
 		
 		$interests=Input::get('interests');
+
 		foreach ($interests as $interest) {
+			$interestsInfo=InterestsCategories::where('idinterests', '=', $interest)->get();
+			$flag=RelUsersCategory::where('user_id','=',$id)->where('category_id', '=', $interestsInfo[0]->parent_id)->get();
+			
+			if(!isset($flag[0]))
+			{
+				RelUsersCategory::create(
+					array(
+							"user_id" => $id,
+							"category_id" =>$interestsInfo[0]->parent_id
+						));
+			}
 			RelUsersInterests::create(
 				array(
 					"interests_categories_idinterests"  => $interest,
 					"user_id"     						=> $id
 				));
 		}
+		// Update the custom Status User
+		$user = UserCustomization::find($id);
+		$user->custom_status    = 2;
+		$user->save();
 		
 		return Response::json(array('success' => true));
 	}

@@ -1,4 +1,5 @@
-<div class="container" ng-app="customizationApp" ng-controller="mainController2">
+<div class="container" ng-app="customizationApp" ng-controller="mainController">
+<!--Step 1, the user choose the age, sex, and location --> 
 <div class="col-md-7 col-md-offset-2 step1" id="step1">
 	<form ng-submit="submitUserInfo()">		
 	<h1>Algo Sobre ti</h1>
@@ -28,12 +29,12 @@
 				<select class="form-control" ng-model="userData.city" name="city" id="city" required></select>
 			</div>
 		</div>
-		<!-- SUBMIT BUTTON -->
 		<div class="form-group text-right">	
 			<button type="submit" class="btn btn-danger btn-lg">Siguiente</button>
 		</div>		
 	</form>
 	</div>
+	<!--Step 2, the user choose the categories and the interests --> 
 	<div class="col-md-8 col-md-offset-2 step1" id="step2">
 		<form ng-submit="submitCategoryInfo()">
 			<h1>En que estas interesado?</h1>
@@ -50,21 +51,20 @@
 					
 					<div class="interest col-md-4" ng-repeat="interest in interests">
 						<label>
-							<input type="checkbox" class="interest" id="interest<% interest.idinterests %>" name="interest[]" value="<% interest.idinterests %>" data-ng-click="toggle(interest.idinterests)"/> 
+							<input type="checkbox" id="interest<% interest.idinterests %>" name="interest[]" value="<% interest.idinterests %>" data-ng-click="toggle(interest.idinterests)"/> 
 	    					<% interest.name %>
   						</label>
 					</div>
-				
 				</div>
 			</div>			
 			<div class="form-group">
 				<button type="submit" class="btn btn-danger btn-lg">Siguiente</button>
 			</div>
 		</form>
-		</div>
-		<div class="col-md-8 col-md-offset-2 step1" id="step4">
-			<h1>¡Ya casi esta!</h1>
-			<p>Hemos enviado un email de confirmacion a {{ Session::get('email') }} para activar tu cuenta.</p>
-		</div>
+	</div>
+	<div class="col-md-8 col-md-offset-2 step1" id="step4">
+		<h1>¡Ya casi esta!</h1>
+		<p>Hemos enviado un email de confirmacion a {{ Session::get('email') }} para activar tu cuenta.</p>
+	</div>
 </div>
 </div>

@@ -45,7 +45,7 @@
 	border: 1px solid #222;
 	overflow: hidden;
 	font-size: 12px;
-	padding: 0 0;
+	height: 5em;
 }
 .interest:hover
 {

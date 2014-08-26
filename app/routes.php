@@ -64,6 +64,11 @@ Route::group(array('prefix' => 'api'), function() {
 	Route::post('update/{id}', 'CustomizationController@update');
 	Route::post('save/interests/{id}', 'CustomizationController@saveInterests');
 });
+Route::group(array('prefix' => 'api/v1'), function() {
+	Route::get('authentication', 'ApiController@authentication');
+	Route::get('check/{key}', 'ApiController@check_authentication');
+	Route::resource('/', 'ApiController');
+});
 App::missing(function($exception)
 {
 	return View::make('index');

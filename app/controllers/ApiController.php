@@ -70,6 +70,68 @@ class ApiController extends BaseController {
 		    return Response::json(array("success" => true,"status"=>"Not Authenticated","message"=>$e->getMessage()));
 		}		
 	}
+	private function key_valid($key)
+	{
+		$user=UserCustomization::where('login_code', '=', md5($key))->get();
+		if(isset($user[0]))
+		{
+			$today=date("Y-m-d H:i:s");
+			if(($user[0]->login_valid_until>$today) && !empty($user[0]->login_valid_until))
+	        {
+	        	return true;
+	        }
+	    }
+	    return false;
+	}
+	public function getAllUsers($key)
+	{
+		if($this->key_valid($key))
+		{
+			$user = UserCustomization::get();
+			return Response::json(array("success" => true,"status"=>"Authenticated","User"=>$user->toArray()));
+		}
+		else
+		{
+			return Response::json(array("success" => true,"status"=>"Not Authenticated"));
+		}
+	}
+	public function getUserData($key,$userId)
+	{
+		if($this->key_valid($key))
+		{
+			$user = UserCustomization::where('id', '=', $userId)->get();
+			return Response::json(array("success" => true,"status"=>"Authenticated","User"=>$user->toArray()));
+		}
+		else
+		{
+			return Response::json(array("success" => true,"status"=>"Not Authenticated"));
+		}
+	}
+	public function removeUser($key,$userId)
+	{
+		if($this->key_valid($key))
+		{
+			$user = UserCustomization::find($userId);
+			if(isset($user->email))
+			{
+				$user->delete();
+				return Response::json(array("success" => true,
+				"status"=>"Authenticated",
+				"error" =>False,
+				"message"=> "User Removed"));
+			}
+			else
+			{	
+				return Response::json(array("success" => true,
+				"status"=>"Authenticated",
+				"error"=>true,
+				"message"=> "User Not Found"));
+			}
+			
+		}
+		else
+		{
+			return Response::json(array("success" => true,"status"=>"Not Authenticated"));
+		}
+	}
 }
-
-	

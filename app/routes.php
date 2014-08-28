@@ -66,13 +66,19 @@ Route::group(array('prefix' => 'api'), function() {
 });
 Route::group(array('prefix' => 'api/v1'), function() {
 
-	Route::get('authentication', 'ApiController@authentication'); //Login Explicit
+	Route::post('authentication', 'ApiController@authentication'); //Login Explicit
+
+	Route::get('check/{key}', 'ApiController@check_authentication'); //Check login Status
 	
-	Route::get('user/{key}/{userId}', 'ApiController@getUserData'); //Get a User
+	Route::post('user/{key}', 'ApiController@getUserData'); //Get a User
 
 	Route::get('users/{key}', 'ApiController@getAllUsers'); //Get all Users
 
-	Route::get('remove/user/{key}/{userId}', 'ApiController@removeUser'); //Remove one User
+	Route::post('remove/user/{key}', 'ApiController@removeUser'); //Remove one User
+
+	Route::post('edit/user/{key}', 'ApiController@editUser'); //Remove one User
+
+	Route::post('create/user', 'ApiController@createUser'); //Remove one User
 
 	Route::resource('/', 'ApiController');
 });

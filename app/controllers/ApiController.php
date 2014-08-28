@@ -11,25 +11,32 @@ use Authority\Service\Form\SuspendUser\SuspendUserForm;
 
 class ApiController extends BaseController {
 
+	protected $registerForm;
 
+	/**
+	 * Instantiate a new UserController
+	 */
+	public function __construct( 
+		RegisterForm $registerForm)
+	{
+		$this->registerForm = $registerForm;
+	}
 
 
 	/**
-	 * Display a listing of the resource.
-	 *
+	 * Display the API Help
+	 * Url: public/api/v1
 	 * @return Response
 	 */
 	public function index()
 	{
-        if(Sentry::check())
-        {
-        	return Response::json(array("success" => true,"status"=>"Authenticated"));
-        }
-        else
-        {
-        	return Response::json(array("success" => true,"status"=>"Not Authenticated"));
-        }
+      
 	}
+	/**
+	 * Check if the key is valid.
+	 * Url: public/api/v1/check/{key}
+	 * @return Response
+	 */
 	public function check_authentication($key)
 	{
 		$user=UserCustomization::where('login_code', '=', md5($key))->get();
@@ -43,15 +50,22 @@ class ApiController extends BaseController {
 	    }
 	    return Response::json(array("success" => true,"status"=>"Not Authenticated"));
 	}
+	/**
+	 * Do the explicit login
+	 * Url: api/v1/authentication
+	 * @param post[email], post[password]
+	 * @return Response
+	 */
 	public function Authentication()
 	{
+		$credentials = array(
+		        'email'    => Input::get('email'),
+		        'password' => Input::get('password')
+		    );
 		try
 		{
 		    // Login credentials
-		    $credentials = array(
-		        'email'    => 'user@user.com',
-		        'password' => 'sentryuser'
-		    );
+		    
 
 		    // Authenticate the user
 		    $token 		= Sentry::authenticate($credentials, false);
@@ -70,6 +84,10 @@ class ApiController extends BaseController {
 		    return Response::json(array("success" => true,"status"=>"Not Authenticated","message"=>$e->getMessage()));
 		}		
 	}
+	/**
+	 * Check if a given key is valid
+	 * @return Response
+	 */
 	private function key_valid($key)
 	{
 		$user=UserCustomization::where('login_code', '=', md5($key))->get();
@@ -83,6 +101,11 @@ class ApiController extends BaseController {
 	    }
 	    return false;
 	}
+	/**
+	 * Get all users
+	 * Url: api/v1/users/{key}
+	 * @return Response
+	 */
 	public function getAllUsers($key)
 	{
 		if($this->key_valid($key))
@@ -95,8 +118,14 @@ class ApiController extends BaseController {
 			return Response::json(array("success" => true,"status"=>"Not Authenticated"));
 		}
 	}
-	public function getUserData($key,$userId)
+	/**
+	 * Get a user
+	 * Url: api/v1/user/{key}/{userid}
+	 * @return Response
+	 */
+	public function getUserData($key)
 	{
+		$userId=Input::get('userId');
 		if($this->key_valid($key))
 		{
 			$user = UserCustomization::where('id', '=', $userId)->get();
@@ -107,8 +136,14 @@ class ApiController extends BaseController {
 			return Response::json(array("success" => true,"status"=>"Not Authenticated"));
 		}
 	}
-	public function removeUser($key,$userId)
+	/**
+	 * Remove a user with the userId
+	 * Url: api/v1/remove/user/{key}/{userId}
+	 * @return Response
+	 */
+	public function removeUser($key)
 	{
+		$userId=Input::get('userId');
 		if($this->key_valid($key))
 		{
 			$user = UserCustomization::find($userId);
@@ -126,8 +161,82 @@ class ApiController extends BaseController {
 				"status"=>"Authenticated",
 				"error"=>true,
 				"message"=> "User Not Found"));
+			}			
+		}
+		else
+		{
+			return Response::json(array("success" => true,"status"=>"Not Authenticated"));
+		}
+	}
+	/**
+	 * create New User
+	 * Url: api/v1/create/user
+	 * @param post[email], post[password], post[confirm_password]
+	 * @return Response
+	 */
+	public function createUser()
+	{
+		 $result = $this->registerForm->save( Input::all() );
+           
+        if( $result['success'] )
+        {
+        	
+        	Event::fire('user.signup', array(
+            	'email' => $result['mailData']['email'], 
+            	'userId' => $result['mailData']['userId'], 
+                'activationCode' => $result['mailData']['activationCode']
+            ));
+            return Response::json(array("success" => true, "error"=> false, "message"=>$result));
+        }
+        else
+        {
+        	return Response::json(array("success" => true, "error"=> true, "message"=>$result));
+        }
+	}
+	/**
+	 * Edit User
+	 * Url: api/v1/edit/user
+	 * @param post[age], post[sex], post[country], post[state], post[city], post[email], post[name]
+	 * @return Response
+	 */
+	public function editUser($key)
+	{
+		$userId=Input::get('userId');
+		if($this->key_valid($key))
+		{			
+			try{
+				// store
+				$user = UserCustomization::find($userId);
+				if (!empty(Input::get('age')))
+					$user->age = Input::get('age');
+
+				if (!empty(Input::get('sex')))
+					$user->sex = Input::get('sex');
+
+				if (!empty(Input::get('country')))
+					$user->country = Input::get('country');
+
+				if (!empty(Input::get('state')))
+					$user->state = Input::get('state');
+
+				if (!empty(Input::get('city')))
+					$user->city = Input::get('city');
+
+				if (!empty(Input::get('email')))
+					$user->email = Input::get('email');
+
+				if (!empty(Input::get('name')))
+					$user->name = Input::get('name');
+
+				$user->save();
+
+				return Response::json(array('success' => true,'error'=>false,'message'=>"User Updated Succesfuly","data"=>$user));
 			}
-			
+			catch (Exception $e)
+			{
+				return Response::json(array('success' => true,'error'=>false,'message'=>$e->getMessage()));
+			}
+				
 		}
 		else
 		{

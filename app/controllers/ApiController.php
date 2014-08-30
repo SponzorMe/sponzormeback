@@ -30,7 +30,7 @@ class ApiController extends BaseController {
 	 */
 	public function index()
 	{
-      
+      return View::make('api/description');
 	}
 	/**
 	 * Check if the key is valid.
@@ -149,11 +149,22 @@ class ApiController extends BaseController {
 			$user = UserCustomization::find($userId);
 			if(isset($user->email))
 			{
-				$user->delete();
-				return Response::json(array("success" => true,
-				"status"=>"Authenticated",
-				"error" =>False,
-				"message"=> "User Removed"));
+				try
+				{
+					@$user->delete();
+					return Response::json(array("success" => true,
+					"status"=>"Authenticated",
+					"error" =>False,
+					"message"=> "User Removed"));
+				}
+				catch(Exception $e)
+				{
+					return Response::json(array("success" => true,
+					"status"=>"Authenticated",
+					"error" =>true,
+					"message"=> $e->getMessage()));
+				}
+				
 			}
 			else
 			{	

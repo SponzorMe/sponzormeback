@@ -80,10 +80,8 @@ class CustomizationController extends \BaseController {
 	 * @return JSON Response
 	 */
 	public function saveInterests($id)
-	{
-		
+	{		
 		$interests=Input::get('interests');
-
 		foreach ($interests as $interest) {
 			$interestsInfo=InterestsCategories::where('idinterests', '=', $interest)->get();
 			$flag=RelUsersCategory::where('user_id','=',$id)->where('category_id', '=', $interestsInfo[0]->parent_id)->get();
@@ -108,6 +106,5 @@ class CustomizationController extends \BaseController {
 		$user->save();
 		
 		return Response::json(array('success' => true));
-	}
-	
+	}	
 }

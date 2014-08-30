@@ -1,3 +1,8 @@
+.API h1
+{
+	font-size: 2em;
+	text-align: center;
+}
 .cb-slideshow,
 .cb-slideshow:after {
     position: fixed;

@@ -68,3 +68,24 @@
 	padding: 1em 1em 1em 1em;
 	height: 100%;
 }
+.testimonials .content {
+border-radius: 4px;
+background: #f8faff;
+padding: 1em 1em 1em 1em;
+height: 400px;
+}
+.testimonials .image
+{
+	background: url(../images/testimonials.png) repeat top left;
+	width: 400px;
+	height: 300px;
+	margin: 0 auto;
+}
+.testimonials .twitter
+{
+	color: #66CCCC;
+}
+.testimonials .title
+{
+	color: #000;
+}

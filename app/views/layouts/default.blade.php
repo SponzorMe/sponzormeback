@@ -18,7 +18,8 @@
 		<!-- Optional theme -->
 		<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"> -->
 		<link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
-
+		<!-- Styles for the customization -->
+			<link rel="stylesheet" href="{{ asset('css/customstyles.css') }}"> 
 		<style>
 		@section('styles')
 			body {
@@ -49,7 +50,14 @@
 	        </div>
 	        <div class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
+	          <li {{ (Request::is('testimonials') ? 'class="active"' : '') }}><a href="{{ URL::to('testimonials') }}">{{trans('pages.testimonials')}}</a></li>
 				@if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
+					<li {{ (Request::is('users*') ? 'class="active"' : '') }}><a href="{{ URL::to('/users') }}">{{trans('pages.users')}}</a></li>
+					<li {{ (Request::is('groups*') ? 'class="active"' : '') }}><a href="{{ URL::to('/groups') }}">{{trans('pages.groups')}}</a></li>
+				@endif
+	          </ul>
+	          <ul class="nav navbar-nav navbar-right">
+	            @if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
 					<li {{ (Request::is('users*') ? 'class="active"' : '') }}><a href="{{ URL::to('/users') }}">{{trans('pages.users')}}</a></li>
 					<li {{ (Request::is('groups*') ? 'class="active"' : '') }}><a href="{{ URL::to('/groups') }}">{{trans('pages.groups')}}</a></li>
 				@endif
@@ -90,8 +98,16 @@
 		<script src="{{ asset('js/jquery-2.0.2.min.js') }}"></script>
 		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 		<script src="{{ asset('js/restfulizer.js') }}"></script> 
-       <script src="{{ asset('js/modernizr.custom.86080.js') }}"></script> 
+        <script src="{{ asset('js/modernizr.custom.86080.js') }}"></script>
+        <!-- Thanks to Zizaco for the Restfulizer script.  http://zizaco.net  -->
+        <!-- ANGULAR -->
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
+		<!-- all angular resources will be loaded from the /public folder -->
+		<script src="{{ asset('js/controllers/mainController.js') }}"></script> <!-- load our controller -->
+		<script src="{{ asset('js/services/customizationService.js') }}"></script> <!-- load our service -->
+		<script src="{{ asset('js/app.js') }}"></script> <!-- load our application -->
+		<script src="{{ asset('js/scripts.js') }}"></script> <!-- load our custom scripts -->
         
-		<!-- Thanks to Zizaco for the Restfulizer script.  http://zizaco.net  -->
+		
 	</body>
 </html>

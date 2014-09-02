@@ -82,7 +82,7 @@ return array(
 
 	'slide5'	=> "Conexiones",
 
-	''	=> "",
+	'testimonials'	=> "Testimonios",
 
 	''	=> "",
 

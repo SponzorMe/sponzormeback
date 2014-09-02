@@ -50,7 +50,14 @@
 	        </div>
 	        <div class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
+	          <li {{ (Request::is('testimonials') ? 'class="active"' : '') }}><a href="{{ URL::to('testimonials') }}">{{trans('pages.testimonials')}}</a></li>
 				@if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
+					<li {{ (Request::is('users*') ? 'class="active"' : '') }}><a href="{{ URL::to('/users') }}">{{trans('pages.users')}}</a></li>
+					<li {{ (Request::is('groups*') ? 'class="active"' : '') }}><a href="{{ URL::to('/groups') }}">{{trans('pages.groups')}}</a></li>
+				@endif
+	          </ul>
+	          <ul class="nav navbar-nav navbar-right">
+	            @if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
 					<li {{ (Request::is('users*') ? 'class="active"' : '') }}><a href="{{ URL::to('/users') }}">{{trans('pages.users')}}</a></li>
 					<li {{ (Request::is('groups*') ? 'class="active"' : '') }}><a href="{{ URL::to('/groups') }}">{{trans('pages.groups')}}</a></li>
 				@endif
@@ -62,7 +69,7 @@
 				@else
 				<li {{ (Request::is('login') ? 'class="active"' : '') }}><a href="{{ URL::to('login') }}">{{trans('pages.login')}}</a></li>
 				<li {{ (Request::is('sponsors/create') ? 'class="active"' : '') }}><a href="{{ URL::to('sponsors/create') }}">{{trans('pages.sponsorreg')}}</a></li>
-				<li {{ (Request::is('users/create') ? 'class="active2"' : '') }}><a href="{{ URL::to('users/create') }}">{{trans('pages.organizerreg')}}</a></li>
+				<li {{ (Request::is('users/create') ? 'class="active"' : '') }}><a href="{{ URL::to('users/create') }}">{{trans('pages.organizerreg')}}</a></li>
 				@endif
 	          </ul>
 	        </div><!--/.nav-collapse -->

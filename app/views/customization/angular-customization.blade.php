@@ -1,3 +1,4 @@
+@if(Session::get('email')!="" || Session::get('email')!=NULL)
 <div class="container" ng-app="customizationApp" ng-controller="mainController">
 <!--Step 1, the user choose the age, sex, and location --> 
 <div class="col-md-7 col-md-offset-2 step1" id="step1">
@@ -68,3 +69,6 @@
 	</div>
 </div>
 </div>
+@else
+	<p>Restricted Area</p>
+@endif

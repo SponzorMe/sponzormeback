@@ -1,5 +1,6 @@
 assets/*
 uploads/*
+vendor/*
 protected/config/main.php
 .requirements.txt
 .htaccess

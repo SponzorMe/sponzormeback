@@ -52,7 +52,7 @@
 					
 					<div class="interest col-md-4" ng-repeat="interest in interests">
 						<label>
-							<input type="checkbox" id="interest<% interest.idinterests %>" name="interest[]" value="<% interest.idinterests %>" data-ng-click="toggle(interest.idinterests)"/> 
+							<input type="checkbox" id="interest<% interest.idinterests %>" data-ng-model='_interests[interest.idinterests]' name="interest[]" value="<% interest.idinterests %>" data-ng-click="toggle(interest.idinterests)" data-ng-true-value="1" data-ng-false-value="0" /> 
 	    					<% interest.name %>
   						</label>
 					</div>

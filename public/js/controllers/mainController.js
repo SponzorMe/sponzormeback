@@ -2,7 +2,7 @@ angular.module('mainController', [])
 
 	// inject the Comment service into our controller
 	.controller('mainController', function($scope, $http, Customization) {
-
+        $scope._interests = {};
 		var interestscheked = new Array(); //Array to store the interests
 		var userId=$("#userId").val();
 
@@ -11,10 +11,13 @@ angular.module('mainController', [])
 		$("#step4").hide();
 		$scope.toggle = function(id)
 		{
-			if($.inArray(id,interestscheked)!=-1)
+			if($.inArray(id,interestscheked)!=-1){
+                $scope._interests[id] = 0;
 				interestscheked.splice($.inArray(id,interestscheked),1);
-			else				
+            }else{
+                $scope._interests[id] = 1;
 				interestscheked.push(id);
+            }
 		}
 		$scope.showInterests = function(id) {
 			//Luego Abrimos la otra categoria

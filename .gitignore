@@ -3,3 +3,4 @@ uploads/*
 protected/config/main.php
 .requirements.txt
 .htaccess
+vendor/*

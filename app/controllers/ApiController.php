@@ -21,8 +21,6 @@ class ApiController extends BaseController {
 	{
 		$this->registerForm = $registerForm;
 	}
-
-
 	/**
 	 * Display the API Help
 	 * Url: public/api/v1
@@ -218,27 +216,33 @@ class ApiController extends BaseController {
 			try{
 				// store
 				$user = UserCustomization::find($userId);
-				if (!empty(Input::get('age')))
-					$user->age = Input::get('age');
+				$age=Input::get('age');
+				$sex=Input::get('sex');
+				$country=Input::get('country');
+				$state=Input::get('state');
+				$city=Input::get('city');
+				$email=Input::get('email');
+				$name=Input::get('name');
+				if (!empty($age))
+					$user->age = $age;
 
-				if (!empty(Input::get('sex')))
-					$user->sex = Input::get('sex');
+				if (!empty($sex))
+					$user->sex = $sex;
 
-				if (!empty(Input::get('country')))
-					$user->country = Input::get('country');
+				if (!empty($country))
+					$user->country = $country;
 
-				if (!empty(Input::get('state')))
-					$user->state = Input::get('state');
+				if (!empty($state))
+					$user->state = $state;
 
-				if (!empty(Input::get('city')))
-					$user->city = Input::get('city');
+				if (!empty($city))
+					$user->city = $city;
 
-				if (!empty(Input::get('email')))
-					$user->email = Input::get('email');
+				if (!empty($email))
+					$user->email = $email;
 
-				if (!empty(Input::get('name')))
-					$user->name = Input::get('name');
-
+				if (!empty($name))
+					$user->name = $name;
 				$user->save();
 
 				return Response::json(array('success' => true,'error'=>false,'message'=>"User Updated Succesfuly","data"=>$user));
@@ -246,8 +250,7 @@ class ApiController extends BaseController {
 			catch (Exception $e)
 			{
 				return Response::json(array('success' => true,'error'=>false,'message'=>$e->getMessage()));
-			}
-				
+			}				
 		}
 		else
 		{

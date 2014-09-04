@@ -9,7 +9,8 @@ class CustomizationController extends \BaseController {
 	 */
 	public function getCategories()
 	{
-		return Response::json(Category::get());
+		$lang=Session::get("lang");
+		return Response::json(Category::where("lang",'=',$lang)->get());
 	}
 	/**
 	 * Show all interestsCategories with a parent ($id)
@@ -18,7 +19,8 @@ class CustomizationController extends \BaseController {
 	 */
 	public function getInterestsByCategories($id)
 	{
-		return Response::json(InterestsCategories::where('parent_id', '=', $id)->get());
+		$lang=Session::get("lang");
+		return Response::json(InterestsCategories::where('parent_id', '=', $id)->where("lang",'=',$lang)->get());
 	}
 	/**
 	 * Show all InterestsCategories
@@ -27,7 +29,8 @@ class CustomizationController extends \BaseController {
 	 */
 	public function getInterests()
 	{
-		return Response::json(InterestsCategories::get());
+		$lang=Session::get("lang");
+		return Response::json(InterestsCategories::where("lang",'=',$lang)->get());
 	}
 	/**
 	 * Update the user info with the Country, State, City.

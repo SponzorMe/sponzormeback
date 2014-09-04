@@ -16,7 +16,7 @@ return array(
 
 	'flashinfo'		=> 'FYI',
 
-	'register'		=> 'Register',
+	'register'		=> 'Sign Up',
 
 	'login'			=> "Login",
 
@@ -64,49 +64,61 @@ return array(
 
 	'actiondelete'	=> "Delete",
 
-	''	=> "",
+	'sponsorreg'	=> "Sponzor?",
 
-	''	=> "",
+	'organizerreg'	=> "Organizer?",
 
-	''	=> "",
+	'copy'	=> "We connect events with Sponzors",
 
-	''	=> "",
+	'nextaction'	=> "Just upload your event and let the magic begin...",
 
-	''	=> "",
+	'slide1'	=> "Events",
 
-	''	=> "",
+	'slide2'	=> "Trademarks",
 
-	''	=> "",
+	'slide3'	=> "Technology",
 
-	''	=> "",
+	'slide4'	=> "Communities",
 
-	''	=> "",
+	'slide5'	=> "Links",
 
-	''	=> "",
+	'testimonials'	=> "Testimonials",
 
-	''	=> "",
+	'blog'	=> "Blog",
 
-	''	=> "",
+	'blogUrl'	=> "http://blogen.sponzor.me/",
 
-	''	=> "",
+	'woman'	=> "Female",
 
-	''	=> "",
+	'man'	=> "Male",
 
-	''	=> "",
+	'ageiam'	=> "I am",
 
-	''	=> "",
+	'old'	=> "Old",
 
-	''	=> "",
+	'chooseSex'	=> "Chooser your sex",
 
-	''	=> "",
+	'livein'	=> "I live in",
 
-	''	=> "",
+	'country'	=> "Country",
 
-	''	=> "",
+	'state'	=> "State",
 
-	''	=> "",
+	'city'	=> "City",
 
-	''	=> "",
+	'next'	=> "Next",
 
+	'areyouinterested'	=> "Are you interested in?",
 
+	'next'	=> "Next",
+
+	'weresendingandemail'	=> "We sent an email to",
+
+	'toactivateyouraccount'	=> "to activate your account",
+
+	'forbidden'	=> "Forbidden",
+
+	'aboutyou'	=> "Something about you!",
+
+	'almostdone'	=> "Almost Done!",
 );

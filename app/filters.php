@@ -13,7 +13,15 @@
 
 App::before(function($request)
 {
-	//
+	//Lang filter
+	$lang=Session::get("lang");
+	if(empty($lang))
+	{
+		$lang="en";
+		Session::put('lang', $lang);
+	}
+ 	 App::setLocale($lang);
+	 //End lang filter
 });
 
 

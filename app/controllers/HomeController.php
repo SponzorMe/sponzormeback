@@ -23,5 +23,10 @@ class HomeController extends BaseController {
 	{
 		return View::make('testimonials');
 	}
+	public function setLanguage($lang)
+	{
+		Session::put('lang', $lang);
+		return Redirect::route('home');
+	}
 
 }

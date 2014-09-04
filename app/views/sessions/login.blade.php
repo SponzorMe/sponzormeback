@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.default-angular')
 
 {{-- Web site Title --}}
 @section('title')

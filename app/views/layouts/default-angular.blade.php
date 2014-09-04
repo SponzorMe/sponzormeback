@@ -50,7 +50,10 @@
 	        </div>
 	        <div class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
+	          <a class="" href="{{ URL::to('language/es') }}"><img height="16px" src="{{asset('images/spanish.png')}}"></a>
+	          <a class="" href="{{ URL::to('language/en') }}"><img height="16px" src="{{asset('images/english.png')}}"></a>
 	          <li {{ (Request::is('testimonials') ? 'class="active"' : '') }}><a href="{{ URL::to('testimonials') }}">{{trans('pages.testimonials')}}</a></li>
+	          <li {{ (Request::is('blog') ? 'class="active"' : '') }}><a href="{{ URL::to(trans('pages.blogUrl')) }}">{{trans('pages.blog')}}</a></li>
 				@if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
 					<li {{ (Request::is('users*') ? 'class="active"' : '') }}><a href="{{ URL::to('/users') }}">{{trans('pages.users')}}</a></li>
 					<li {{ (Request::is('groups*') ? 'class="active"' : '') }}><a href="{{ URL::to('/groups') }}">{{trans('pages.groups')}}</a></li>

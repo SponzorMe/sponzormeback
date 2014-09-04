@@ -83,6 +83,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
 	Route::resource('/', 'ApiController');
 });
 Route::get('testimonials', 'HomeController@testimonials'); //testimonials
+Route::get('language/{lang}', 'HomeController@setLanguage'); //testimonials
 App::missing(function($exception)
 {
 	return View::make('index');

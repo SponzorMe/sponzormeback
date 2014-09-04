@@ -84,29 +84,43 @@ return array(
 
 	'testimonials'	=> "Testimonios",
 
-	''	=> "",
+	'blog'	=> "Blog",
 
-	''	=> "",
+	'blogUrl'	=> "http://bloges.sponzor.me/",
 
-	''	=> "",
+	'woman'	=> "Mujer",
 
-	''	=> "",
+	'man'	=> "Hombre",
 
-	''	=> "",
+	'ageiam'	=> "Tengo",
 
-	''	=> "",
+	'old'	=> "Años",
 
-	''	=> "",
+	'chooseSex'	=> "Escoje tu sexo",
 
-	''	=> "",
+	'livein'	=> "Vivo en",
 
-	''	=> "",
+	'country'	=> "País",
 
-	''	=> "",
+	'state'	=> "Departamento",
 
-	''	=> "",
+	'city'	=> "Ciudad",
 
-	''	=> "",
+	'next'	=> "Siguiente",
+
+	'areyouinterested'	=> "¿Estoy interesado en?",
+
+	'next'	=> "Seguiente",
+
+	'weresendingandemail'	=> "Hemos enviado un email a",
+
+	'toactivateyouraccount'	=> "para activar tu cuenta.",
+
+	'forbidden'	=> "Prohibido",
+
+	'aboutyou'	=> "Algo sobre tí!",
+
+	'almostdone'	=> "Ya casi está!",
 
 
 );

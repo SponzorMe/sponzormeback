@@ -479,6 +479,12 @@ class UserController extends BaseController {
             return Redirect::to('users');
         }
 	}
+    public function dashboard()
+    {
+        Blade::setContentTags('<% ', ' %>');
+        Blade::setEscapedContentTags('<%%', '%%>');
+        return View::make('users.dashboard');
+    }
 
 
 }

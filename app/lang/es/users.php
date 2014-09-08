@@ -8,46 +8,46 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
-	'created' 		=>  "Your account has been created. Check your email for the confirmation link.",	
+	'created' 		=>  "Tu cuenta ha sido creada, revisa tu email por el link de confirmación.",	
 
-	'loginreq' 		=>	"Login field required.",
+	'loginreq' 		=>	"El campo de login es requerido.",
 
-	'exists'		=>	"User already exists.",
+	'exists'		=>	"El usuario ya existe.",
 
-	'notfound'		=>	"User not found",
+	'notfound'		=>	"Usuario no encontrado.",
 
-	'noaccess'		=>	"You are not allowed to do that.",
+	'noaccess'		=>	"No tienes permisos para ejecutar esta acción.",
 
-	'updated'		=>	"Profile updated",
+	'updated'		=>	"Perfil actualizado.",
 
-	'notupdated'	=>	"Unable to update profile",
+	'notupdated'	=>	"Imposible actualizar el perfil.",
 
-	'activated'		=>	"Activation complete. <a href=':url' class='alert-link'>You may now login</a>",
+	'activated'		=>	"Activación completada. <a href=':url' class='alert-link'>Ya puedes logear!</a>",
 
-	'notactivated'	=>	"Activation could not be completed.",
+	'notactivated'	=>	"La activación no se puede completar.",
 
-	'alreadyactive'	=>	"That account has already been activated.",
+	'alreadyactive'	=>	"La cuenta ya se encuentra activada.",
 
-	'emailconfirm'	=>	"Check your email for the confirmation link.",
+	'emailconfirm'	=>	"Revisa tu e-mail por el link de confirmación.",
 
-	'emailinfo'		=>	"Check your email for instructions.",
+	'emailinfo'		=>	"Revisa tu e-mail por instrucciones.",
 
-	'emailpassword'	=>	"Your password has been changed. Check your email for the new password.",
+	'emailpassword'	=>	"Tu contraseña ha cambiado, revisa tu email por mas instrucciones.",
 
-	'problem'		=>	"There was a problem. Please contact the system administrator.",
+	'problem'		=>	"Hay un problema, por favor contacta con el administrador.",
 
-	'passwordchg'	=> 	"Your password has been changed.",
+	'passwordchg'	=> 	"Tu contraseña ha cambiado.",
 
-	'passwordprob'	=>	"Your password could not be changed.",
+	'passwordprob'	=>	"Tu contraseña no se puede cambiar.",
 
-	'oldpassword'	=>	"You did not provide the correct original password.",
+	'oldpassword'	=>	"Contraseña original incorrecta.",
 
-	'suspended'		=>	"User has been suspended for :minutes minutes.",
+	'suspended'		=>	"La cuenta ha sido suspendida por :minutes minutos.",
 
-	'unsuspended'	=>	"Suspension removed.",
+	'unsuspended'	=>	"La cuenta ha sido reestablecida.",
 
-	'banned'		=>	"User has been banned.",
+	'banned'		=>	"El usuario ha sido baneado.",
 
-	'unbanned'		=>	"User has been unbanned.",
+	'unbanned'		=>	"El usuario ha sido des-baneado.",
 
 );

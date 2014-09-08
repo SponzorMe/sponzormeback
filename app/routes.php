@@ -40,6 +40,7 @@ Route::post('users/{id}/suspend', 'UserController@suspend')->where('id', '[0-9]+
 Route::get('users/{id}/unsuspend', 'UserController@unsuspend')->where('id', '[0-9]+');
 Route::get('users/{id}/ban', 'UserController@ban')->where('id', '[0-9]+');
 Route::get('users/{id}/unban', 'UserController@unban')->where('id', '[0-9]+');
+Route::get('users/dashboard', 'UserController@dashboard');
 Route::resource('users', 'UserController');
 Route::resource('sponsors', 'SponsorController');
 

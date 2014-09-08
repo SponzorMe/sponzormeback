@@ -12,7 +12,7 @@ return array(
 
 	'flasherror'	=> 'Error',
 
-	'flashwarning'	=> 'Warning',
+	'flashwarning'	=> 'Cuidado',
 
 	'flashinfo'		=> 'FYI',
 
@@ -34,35 +34,35 @@ return array(
 
 	'description'	=> "",
 
-	'loginstatus'	=> "You are currently logged in.",
+	'loginstatus'	=> "Tu estas logeado actualmente.",
 
-	'sessiondata'	=> "Session Data",
+	'sessiondata'	=> "Datos de la sesión",
 
-	'currentusers'	=> "Current Users",
+	'currentusers'	=> "Usuarios Actuales",
 
-	'options'		=> 'Options',
+	'options'		=> 'Opciones',
 
-	'status'		=> "Status",
+	'status'		=> "Estado",
 
-	'active'		=> "Active",
+	'active'		=> "Activo",
 
-	'notactive'		=> "Not Active",
+	'notactive'		=> "No activo",
 
-	'suspended'		=> "Suspended",
+	'suspended'		=> "Suspendido",
 
-	'banned'		=> "Banned",
+	'banned'		=> "Baneado",
 
-	'actionedit'	=> "Edit",
+	'actionedit'	=> "Editar",
 
-	'actionsuspend'	=> "Suspend",
+	'actionsuspend'	=> "Suspender",
 
-	'actionunsuspend' => "Un-Suspend",
+	'actionunsuspend' => "No suspender",
 
 	'actionban'		=> "Ban",
 
 	'actionunban'	=> "Un-Ban",
 
-	'actiondelete'	=> "Delete",
+	'actiondelete'	=> "Borrar",
 
 	'sponsorreg'	=> "Eres Patrocinador?",
 

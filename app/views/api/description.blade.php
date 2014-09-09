@@ -120,7 +120,7 @@ key: "495067fd67fc5a7bededd4da78c43a03"
 	<h1>Create User</h1>
 	<pre>
 		<table class="table">
-			<tr><th>Url: </th><td>api/v1/remove/create/user</td></tr>
+			<tr><th>Url: </th><td>api/v1/create/user</td></tr>
 			<tr><th>Comments: </th><td>create a user</td></tr>
 			<tr><th colspan="2"><h1>Post Parameters </h1></th></tr>
 			<tr><th>email: </th><td>example@email.com</td></tr>
@@ -147,7 +147,7 @@ email: "test@test.com"
 	<h1>Edit User</h1>
 	<pre>
 		<table class="table">
-			<tr><th>Url: </th><td>api/v1/remove/edit/user/{key}</td></tr>
+			<tr><th>Url: </th><td>api/v1/edit/user/{key}</td></tr>
 			<tr><th>Comments: </th><td>create a user</td></tr>
 			<tr><th colspan="2"><h1>Get Parameters </h1></th></tr>
 			<tr><th>key: </th><td>MD5 Key</td></tr>

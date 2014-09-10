@@ -121,4 +121,6 @@ return array(
 	'aboutyou'	=> "Something about you!",
 
 	'almostdone'	=> "Almost Done!",
+
+	'dashboard'	=> "Dashboard",
 );

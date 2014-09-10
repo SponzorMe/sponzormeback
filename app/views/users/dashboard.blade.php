@@ -5,24 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Dashboard</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ asset('dashboard/lib/bootstrap/css/bootstrap.css')}}"/>
 
-  <link rel="stylesheet" href="<%% asset('dashboard/lib/bootstrap/css/bootstrap.css')%%>"/>
+  <link rel="stylesheet" href="{{ asset('dashboard/lib/font-awesome/css/font-awesome.css')}}"/>
 
-  <link rel="stylesheet" href="<%% asset('dashboard/lib/font-awesome/css/font-awesome.css')%%>"/>
-
-  <link rel="stylesheet" href="<%% asset('dashboard/css/dashboard/dashboard.css')%%>"/>
+  <link rel="stylesheet" href="{{ asset('dashboard/css/dashboard/dashboard.css')}}"/>
 
   <!-- SCRIPTS -->
-  <script src="<%% asset('dashboard/lib/angular/angular.js')%%>"></script>
-  <script src="<%% asset('dashboard/lib/angular-cookies/angular-cookies.js')%%>"></script>
-  <script src="<%% asset('dashboard/lib/angular-bootstrap/ui-bootstrap.js')%%>"></script>
-  <script src="<%% asset('dashboard/lib/angular-bootstrap/ui-bootstrap-tpls.js')%%>"></script>
-  <script src="<%% asset('dashboard/lib/angular-ui-router/angular-ui-router.js')%%>"></script>
-
-  <script src="<%% asset('dashboard/js/dashboard.js')%%>"></script>
-  <!-- SCRIPTS -->
+  <script src="{{ asset('dashboard/lib/angular/angular.js')}}"></script>
+  <script src="{{ asset('dashboard/lib/angular-cookies/angular-cookies.js')}}"></script>
+  <script src="{{ asset('dashboard/lib/angular-bootstrap/ui-bootstrap.js')}}"></script>
+  <script src="{{ asset('dashboard/lib/angular-bootstrap/ui-bootstrap-tpls.js')}}"></script>
+  <script src="{{ asset('dashboard/lib/angular-ui-router/angular-ui-router.js')}}"></script>
+  <script src="{{ asset('dashboard/js/dashboard.js')}}"></script>
+  <script src="{{ asset('js/services/customizationService.js') }}"></script> <!-- load our service -->
 
 </head>
+@if (Sentry::check())
 <body ng-controller="MasterCtrl">
   <div id="page-wrapper" ng-class="{'active': toggle}" ng-cloak>
 
@@ -38,20 +38,16 @@
         </li>
         <li class="sidebar-title"><span>NAVIGATION</span></li>
         <li class="sidebar-list">
-          <a href="#">Dashboard <span class="menu-icon fa fa-tachometer"></span></a>
+          <a href="#">{{trans('dashboard.account')}}<span class="menu-icon fa fa-tachometer"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#/tables">Tables <span class="menu-icon fa fa-table"></span></a>
+          <a href="#/tables">{{trans('dashboard.addevent')}} <span class="menu-icon fa fa-table"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#">Servers <span class="menu-icon fa fa-tasks"></span></a>
+          <a href="#">{{trans('dashboard.seesponzors')}}<span class="menu-icon fa fa-tasks"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#">Settings <span class="menu-icon fa fa-cogs"></span></a>
-        </li>
-        <li class="sidebar-title separator"><span>QUICK LINKS</span></li>
-        <li class="sidebar-list">
-          <a href="#" target="_blank">Forums <span class="menu-icon fa fa-external-link"></span></a>
+          <a href="#">{{trans('dashboard.logout')}} <span class="menu-icon fa fa-cogs"></span></a>
         </li>
       </ul>
       <div class="sidebar-footer">
@@ -85,26 +81,16 @@
             <div class="user pull-right">
               <div class="item dropdown">
                 <a href="#" class="dropdown-toggle">
-                  <img src="img/avatar.jpg">
+                  <img src="{{ asset('images/users/user.png')}}">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li class="dropdown-header">
-                    Joe Bloggs
+                    {{ Session::get('email') }}
                   </li>
                   <li class="divider"></li>
                   <li class="link">
                     <a href="#">
-                      Profile
-                    </a>
-                  </li>
-                  <li class="link">
-                    <a href="#">
-                      Menu Item
-                    </a>
-                  </li>
-                  <li class="link">
-                    <a href="#">
-                      Menu Item
+                      Account
                     </a>
                   </li>
                   <li class="divider"></li>
@@ -140,7 +126,6 @@
             </div>
           </div>
         </div>
-
         <!-- End Header Bar -->
 
         <!-- Main Content -->
@@ -152,10 +137,10 @@
   <script type="text/ng-template" id="dashboard.html">
     <div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
       <div class="col-xs-12">
-        <alert data-ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+        <alert data-ng-repeat="alert in alerts" type="<% alert.type %>" close="closeAlert($index)">
+        <%alert.msg %></alert>
       </div>
     </div>
-
     <div class="row">
       <div class="col-lg-3 col-md-6 col-xs-12">
         <div class="widget">
@@ -219,24 +204,22 @@
       <div class="col-lg-6">
         <div class="widget">
           <div class="widget-header">
-            <i class="fa fa-tasks"></i> Servers
+            <i class="fa fa-tasks"></i> Events
             <a href="#" class="pull-right">Manage</a>
           </div>
+
           <div class="widget-body medium no-padding">
             <div class="table-responsive">
               <table class="table">
+              caca = <% caca %>
+              <thead>
+              <th>Title</th><th>Location</th><th>Starts</th></th></th>
+              </thead>
                 <tbody>
-                  <tr><td>RDVMPC001</td><td>238.103.133.37</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDVMPC002</td><td>68.66.63.170</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDVMPC003</td><td>76.117.212.33</td><td><span tooltip="Server Down!" class="text-danger"><i class="fa fa-warning"></i></span></td></tr>
-                  <tr><td>RDPHPC001</td><td>91.88.224.5</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDESX001</td><td>197.188.15.93</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDESX002</td><td>168.85.154.251</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDESX003</td><td>209.25.191.61</td><td><span tooltip="Server Down!" class="text-danger"><i class="fa fa-warning"></i></span></td></tr>
-                  <tr><td>RDESX004</td><td>252.37.192.235</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDTerminal01</td><td>139.71.18.207</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDTerminal02</td><td>136.80.122.212</td><td><span tooltip="Could not connect!" class="text-warning"><i class="fa fa-flash"></i></span></td></tr>
-                  <tr><td>RDDomainCont01</td><td>196.80.245.33</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
+                  <tr ng-repeat="test in e">
+                    <td><% e.title %></td><td><% e.location %></td><% e.starts %></td>
+                    <td><span class="text-success"><i class="fa fa-check"></i></span></td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -297,7 +280,7 @@
                     <span class="fa fa-key form-control-feedback"></span>
                 </div>
                 <div class="col-sm-5">
-                  <div class="input-mask">I'm an input mask!</div>
+                  <div class="input-mask">I am an input mask!</div>
                 </div>
               </div>
             </form>
@@ -320,64 +303,8 @@
     </div>
     <!-- End Main Content -->
   </script>
-
-  <script type="text/ng-template" id="tables.html">
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="widget">
-          <div class="widget-header">
-            <i class="fa fa-tasks"></i> Servers
-            <a href="#" class="pull-right">Manage</a>
-          </div>
-          <div class="widget-body medium no-padding">
-            <div class="table-responsive">
-              <table class="table">
-                <tbody>
-                  <tr><td>RDVMPC001</td><td>238.103.133.37</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDVMPC002</td><td>68.66.63.170</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDVMPC003</td><td>76.117.212.33</td><td><span tooltip="Server Down!" class="text-danger"><i class="fa fa-warning"></i></span></td></tr>
-                  <tr><td>RDPHPC001</td><td>91.88.224.5</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDESX001</td><td>197.188.15.93</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDESX002</td><td>168.85.154.251</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDESX003</td><td>209.25.191.61</td><td><span tooltip="Server Down!" class="text-danger"><i class="fa fa-warning"></i></span></td></tr>
-                  <tr><td>RDESX004</td><td>252.37.192.235</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDTerminal01</td><td>139.71.18.207</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDTerminal02</td><td>136.80.122.212</td><td><span tooltip="Could not connect!" class="text-warning"><i class="fa fa-flash"></i></span></td></tr>
-                  <tr><td>RDDomainCont01</td><td>196.80.245.33</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="widget">
-          <div class="widget-header">
-            <i class="fa fa-tasks"></i> Striped Servers
-            <a href="#" class="pull-right">Manage</a>
-          </div>
-          <div class="widget-body medium no-padding">
-            <div class="table-responsive table-striped">
-              <table class="table">
-                <tbody>
-                  <tr><td>RDVMPC001</td><td>238.103.133.37</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDVMPC002</td><td>68.66.63.170</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDVMPC003</td><td>76.117.212.33</td><td><span tooltip="Server Down!" class="text-danger"><i class="fa fa-warning"></i></span></td></tr>
-                  <tr><td>RDPHPC001</td><td>91.88.224.5</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDESX001</td><td>197.188.15.93</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDESX002</td><td>168.85.154.251</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDESX003</td><td>209.25.191.61</td><td><span tooltip="Server Down!" class="text-danger"><i class="fa fa-warning"></i></span></td></tr>
-                  <tr><td>RDESX004</td><td>252.37.192.235</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDTerminal01</td><td>139.71.18.207</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                  <tr><td>RDTerminal02</td><td>136.80.122.212</td><td><span tooltip="Could not connect!" class="text-warning"><i class="fa fa-flash"></i></span></td></tr>
-                  <tr><td>RDDomainCont01</td><td>196.80.245.33</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </script>
 </body>
 </html>
+@else
+    <p>{{trans('pages.forbidden')}}</p>
+@endif

@@ -257,4 +257,16 @@ class ApiController extends BaseController {
 			return Response::json(array("success" => true,"status"=>"Not Authenticated"));
 		}
 	}
+
+	public function getSponzors()
+	{
+			$user = UserCustomization::get();
+			return Response::json(array("success" => true,"status"=>"Authenticated","User"=>$user->toArray()));
+	}
+
+	public function getEvents()
+	{
+		$events = Events::get();
+		return Response::json(array("success" => true,"status"=>"Authenticated","Events"=>$events->toArray()));
+	}
 }

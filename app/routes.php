@@ -81,6 +81,10 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::post('create/user', 'ApiController@createUser'); //Remove one User
 
+	Route::get('events', 'ApiController@getEvents'); //Get all Events
+
+	Route::get('sponzors', 'ApiController@getSponzors'); //Get all Sponzors
+
 	Route::resource('/', 'ApiController');
 });
 Route::get('testimonials', 'HomeController@testimonials'); //testimonials

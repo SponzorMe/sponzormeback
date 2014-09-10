@@ -1,6 +1,10 @@
+var Eventos123;
 (function(){ 
-angular.module('Dashboard', ['ui.bootstrap', 'ui.router', 'ngCookies']);
-'use strict';
+angular.module('Dashboard', ['ui.bootstrap', 'ui.router', 'ngCookies', 'customizationService'], 
+    function($interpolateProvider){
+        $interpolateProvider.startSymbol('<%');
+        $interpolateProvider.endSymbol('%>');
+    });
 
 /**
  * Route configuration for the Dashboard module.
@@ -17,19 +21,15 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
             url: '/',
             templateUrl: 'dashboard.html'
         })
-        .state('tables', {
-            url: '/tables', 
-            templateUrl: 'tables.html'
-        });
 }]);
 
 /**
  * Master Controller
  */
 angular.module('Dashboard')
-    .controller('MasterCtrl', ['$scope', '$cookieStore', MasterCtrl]);
+    .controller('MasterCtrl', ['$scope', '$cookieStore', 'Customization',MasterCtrl]);
 
-function MasterCtrl($scope, $cookieStore) {
+function MasterCtrl($scope, $cookieStore, Customization) {
     /**
      * Sidebar Toggle & Cookie Control
      *
@@ -73,7 +73,25 @@ function MasterCtrl($scope, $cookieStore) {
     };
 
     window.onresize = function() { $scope.$apply(); };
+
+    
+    /*var test=new Array();
+        test[0]={"title":"Hola"};
+        test[1]={"title":"Hola1"};
+        $scope.eventos = test;
+    console.log($scope.eventos);*/
 }
+angular.module('Dashboard')
+    .controller('test', ['$scope', '$cookieStore', 'Customization',test]);
+    function test($scope,$Cookie,Customization)
+    {
+        Customization.getEvents().success(function(adata) 
+        {
+                //$scope.eventos=adata.Events;
+                $scope.caca="hola";
+                //console.log($scope.eventos);                
+        });
+    }
 
 /**
  * Alerts Controller
@@ -93,6 +111,7 @@ function AlertsCtrl($scope) {
     $scope.closeAlert = function(index) {
         $scope.alerts.splice(index, 1);
     };
+
 }
 /**
  * Loading Directive

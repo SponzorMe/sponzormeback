@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	"title"         => "Login",
+	"title"         => "Register",
 	"rememberme"       => "Rememberme",
 	"signin"       => "Sign Up",
 	'forgot' => "Forgot Password?",	

@@ -6,7 +6,7 @@ angular.module('customizationService', [])
 			getCategories : function() {				
 				global = $http.get('api/categories');
 				return global;
-			},
+			},			
 			getInterests : function() {
 				global = $http.get('api/interests');
 				return global;
@@ -31,7 +31,15 @@ angular.module('customizationService', [])
 					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 					data: $.param(commentData)
 				});
-			}
+			},
+			getEvents : function() {
+				global = $http.get('http://localhost/sponzorme/public/api/v1/events');
+				return global;
+			},
+			getSponzors : function() {
+				global = $http.get('http://localhost/sponzorme/public/api/v1/sponzors');
+				return global;
+			},			
 		}
 
 	});

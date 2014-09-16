@@ -7,12 +7,85 @@ return array(
 	| Language strings for views
 	|--------------------------------------------------------------------------
 	*/
+	'dashboard'						=> 'Dashboard',
 
-	'account'	=> 'Account',
+	'events'						=> 'Events',
 
-	'addevent'	=> 'Add Event',
+	'settings'						=> 'Settings',
 
-	'seesponzors'	=> 'See Sponzors',
+	'sponzors'						=> 'Sponzors',
 
-	'logout'		=> 'Logout',
+	'account'						=> 'Account',
+
+	'addevent'						=> 'Add Event',
+
+	'seesponzors'					=> 'See Sponzors',
+
+	'logout'						=> 'Logout',
+
+	'about'							=> 'About',
+
+	'support'						=> 'Support',
+
+	'blog'							=> 'Blog',
+
+	'balance'						=> 'Balance',
+
+	'comunity'						=> 'Comunity',
+
+	'peak'							=> 'Peaks',
+
+	'yourevents'					=> 'Your Events',
+
+	'latestsponzors'				=> 'Latest Sponzors',
+
+	'neweventtitle'					=>	'Title',
+
+	'neweventtitledescription'		=>	'Give it a Short Distinc Name',
+
+	'neweventdescription'			=>	'Description',
+
+	'neweventdescriptiondescription'=>	'Tell people what\'s special about this event',
+
+	'neweventlocation'				=>	'Location',
+
+	'neweventlocationdescription'	=>	'Specify where it\'s the held',
+
+	'neweventorganizer'				=>	'Organizer Name',
+
+	'neweventorganizerdescription'	=>	'Who is the organizer',
+
+	'neweventstarts'				=>	'Starts',
+
+	'neweventstartsdescription'		=>	'The Action Starts',
+
+	'neweventends'					=>	'Ends',
+
+	'neweventendsdescription'		=>	'The Action Ends!',
+
+	'neweventtype'					=>	'Event Type',
+
+	'neweventtypedescription'		=>	'Event Type',
+
+	'neweventtopic'					=>	'Event Topic',
+
+	'neweventtopicdescription'		=>	'Event Topic',
+
+	'neweventprivacy'				=>	'Listing Privacy',
+
+	'neweventprivacydescription'	=>	'Listing Privacy',
+
+	'privacyoption0'				=>	'Public Page',
+
+	'privacyoption1'				=>	'Private Page',
+
+	'privacydescription0'			=>	'List this item in Evenbrite and search engines',
+
+	'privacydescription1'			=>	'Do not list this event publicy',
+
+	'goldSponzor'					=>	'Gold Sponzor',
+
+	'silverSponzor'					=>	'Silver Sponzor',
+
+	'bronzeSponzor'					=>	'Bronze Sponzor',
 );

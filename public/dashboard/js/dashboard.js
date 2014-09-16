@@ -21,19 +21,22 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
             url: '/',
             templateUrl: 'dashboard.html'
         })
+        .state('events', {
+            url: '/events',
+            templateUrl: 'addevent.html'
+        })
+        .state('sponzors', {
+            url: '/sponzors',
+            templateUrl: 'sponzors.html'
+        })
 }]);
 
 /**
  * Master Controller
  */
-angular.module('Dashboard')
-    .controller('MasterCtrl', ['$scope', '$cookieStore', 'Customization',MasterCtrl]);
+angular.module('Dashboard').controller('MasterCtrl', ['$scope', '$cookieStore', MasterCtrl]);
 
 function MasterCtrl($scope, $cookieStore, Customization) {
-    /**
-     * Sidebar Toggle & Cookie Control
-     *
-     */
     var mobileView = 992;
 
     $scope.getWidth = function() { return window.innerWidth; };
@@ -62,7 +65,6 @@ function MasterCtrl($scope, $cookieStore, Customization) {
         {
             $scope.toggle = false;
         }
-
     });
 
     $scope.toggleSidebar = function() 
@@ -73,25 +75,7 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     };
 
     window.onresize = function() { $scope.$apply(); };
-
-    
-    /*var test=new Array();
-        test[0]={"title":"Hola"};
-        test[1]={"title":"Hola1"};
-        $scope.eventos = test;
-    console.log($scope.eventos);*/
 }
-angular.module('Dashboard')
-    .controller('test', ['$scope', '$cookieStore', 'Customization',test]);
-    function test($scope,$Cookie,Customization)
-    {
-        Customization.getEvents().success(function(adata) 
-        {
-                //$scope.eventos=adata.Events;
-                $scope.caca="hola";
-                //console.log($scope.eventos);                
-        });
-    }
 
 /**
  * Alerts Controller
@@ -127,3 +111,27 @@ function rdLoading () {
     return directive;
 };
 })();
+
+/**
+ * Events Controller 
+ */
+ angular.module('Dashboard').controller('eventsController', ['$scope', '$cookieStore', 'Customization',eventsController]);
+function eventsController($scope,$Cookie,Customization)
+{
+    console.log($scope);
+    Customization.getEvents().success(function(adata) 
+    {
+            $scope.eventos=adata.Events;
+            console.log($scope.eventos);                
+    });
+}
+
+angular.module('Dashboard').controller('peaksController', ['$scope', '$cookieStore', 'Customization',sponzorsController]);
+function sponzorsController($scope,$Cookie,Customization)
+{
+    Customization.getSponzors().success(function(adata) 
+    {
+            $scope.sponzors=adata.Sponzors;
+            console.log($scope.sponzors);                
+    });
+}

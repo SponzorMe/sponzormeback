@@ -260,13 +260,34 @@ class ApiController extends BaseController {
 
 	public function getSponzors()
 	{
-			$user = UserCustomization::get();
-			return Response::json(array("success" => true,"status"=>"Authenticated","User"=>$user->toArray()));
+			$sponzors = UserCustomization::where("type",'=',"2")->get();
+			return Response::json(array("success" => true,"status"=>"Authenticated","Sponzors"=>$sponzors->toArray()));
 	}
-
 	public function getEvents()
 	{
 		$events = Events::get();
 		return Response::json(array("success" => true,"status"=>"Authenticated","Events"=>$events->toArray()));
+	}
+	public function getCategories($lang)
+	{
+		return Response::json(Category::where("lang",'=',$lang)->get());
+	}
+	/**
+	 * Show all interestsCategories with a parent ($id)
+	 *
+	 * @return JSON Response
+	 */
+	public function getInterestsByCategories($id,$lang)
+	{
+		return Response::json(InterestsCategories::where('parent_id', '=', $id)->where("lang",'=',$lang)->get());
+	}
+	/**
+	 * Show all InterestsCategories
+	 *
+	 * @return JSON Response
+	 */
+	public function getInterests($lang)
+	{
+		return Response::json(InterestsCategories::where("lang",'=',$lang)->get());
 	}
 }

@@ -85,10 +85,21 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::get('sponzors', 'ApiController@getSponzors'); //Get all Sponzors
 
+	Route::get('categories/{lang}', 'ApiController@getCategories'); //Get categories by lang
+
+	Route::get('interests/categories/{id}/{lang}', 'ApiController@getInterestsByCategories'); //Get categories by lang
+
+	Route::get('interests/categories/{id}/{lang}', 'ApiController@getInterestsByCategories'); //Get categories by lang
+
+	Route::get('interests/{lang}', 'ApiController@getInterests'); //Get interests by lang
+
 	Route::resource('/', 'ApiController');
 });
+
 Route::get('testimonials', 'HomeController@testimonials'); //testimonials
-Route::get('language/{lang}', 'HomeController@setLanguage'); //testimonials
+
+Route::get('language/{lang}', 'HomeController@setLanguage'); //Language Settings
+
 App::missing(function($exception)
 {
 	return View::make('index');

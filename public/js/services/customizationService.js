@@ -39,7 +39,11 @@ angular.module('customizationService', [])
 			getSponzors : function() {
 				global = $http.get('http://localhost/sponzorme/public/api/v1/sponzors');
 				return global;
-			},			
+			},
+			getPeaks : function(idEvent) {
+				global = $http.get('http://localhost/sponzorme/public/api/v1/peaks/'+idEvent);
+				return global;
+			},				
 		}
 
 	});

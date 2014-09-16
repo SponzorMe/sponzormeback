@@ -268,6 +268,11 @@ class ApiController extends BaseController {
 		$events = Events::get();
 		return Response::json(array("success" => true,"status"=>"Authenticated","Events"=>$events->toArray()));
 	}
+	public function getPeaks($idEvent)
+	{
+		$peaks = Peaks::where("id_event",'=',$idEvent)->get();
+		return Response::json(array("success" => true,"status"=>"Authenticated","Peaks"=>$peaks->toArray()));
+	}
 	public function getCategories($lang)
 	{
 		return Response::json(Category::where("lang",'=',$lang)->get());

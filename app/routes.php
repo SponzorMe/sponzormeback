@@ -93,6 +93,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::get('interests/{lang}', 'ApiController@getInterests'); //Get interests by lang
 
+	Route::get('peaks/{idEvent}', 'ApiController@getPeaks'); //Get interests by lang
+
 	Route::resource('/', 'ApiController');
 });
 

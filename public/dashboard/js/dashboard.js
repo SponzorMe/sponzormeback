@@ -1,5 +1,4 @@
-var Eventos123;
-(function(){ 
+(function(){
 angular.module('Dashboard', ['ui.bootstrap', 'ui.router', 'ngCookies', 'customizationService'], 
     function($interpolateProvider){
         $interpolateProvider.startSymbol('<%');
@@ -25,10 +24,6 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
             url: '/events',
             templateUrl: 'addevent.html'
         })
-        .state('sponzors', {
-            url: '/sponzors',
-            templateUrl: 'sponzors.html'
-        })
 }]);
 
 /**
@@ -38,6 +33,7 @@ angular.module('Dashboard').controller('MasterCtrl', ['$scope', '$cookieStore', 
 
 function MasterCtrl($scope, $cookieStore, Customization) {
     var mobileView = 992;
+      $scope.event  = {"current": false };
 
     $scope.getWidth = function() { return window.innerWidth; };
 
@@ -110,28 +106,42 @@ function rdLoading () {
     };
     return directive;
 };
-})();
 
 /**
  * Events Controller 
  */
+ 
  angular.module('Dashboard').controller('eventsController', ['$scope', '$cookieStore', 'Customization',eventsController]);
 function eventsController($scope,$Cookie,Customization)
 {
-    console.log($scope);
     Customization.getEvents().success(function(adata) 
     {
-            $scope.eventos=adata.Events;
-            console.log($scope.eventos);                
+            $scope.eventos = adata.Events;
+            $scope.event.current = adata.Events[0].id;
     });
 }
 
-angular.module('Dashboard').controller('peaksController', ['$scope', '$cookieStore', 'Customization',sponzorsController]);
+angular.module('Dashboard').controller('peaksController', ['$scope', '$cookieStore', 'Customization',peaksController]);
+function peaksController($scope,$Cookie,Customization)
+{
+    $scope.$watch('event.current', function(newvalue, oldvalue){ 
+        if($scope.event.current)
+        {
+            Customization.getPeaks(newvalue).success(function(adata) 
+            {
+                $scope.peaks=adata.Peaks;           
+            });
+        }
+    });
+}
+
+angular.module('Dashboard').controller('sponzorsController', ['$scope', '$cookieStore', 'Customization',sponzorsController]);
 function sponzorsController($scope,$Cookie,Customization)
 {
     Customization.getSponzors().success(function(adata) 
     {
             $scope.sponzors=adata.Sponzors;
-            console.log($scope.sponzors);                
     });
 }
+
+})();

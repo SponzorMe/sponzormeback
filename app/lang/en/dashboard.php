@@ -85,6 +85,8 @@ return array(
 
 	'privacydescription1'			=>	'Do not list this event publicy',
 
+	'eventsponzors'					=>	'Sponzors',
+
 	'goldSponzor'					=>	'Gold Sponzor',
 
 	'silverSponzor'					=>	'Silver Sponzor',
@@ -95,5 +97,23 @@ return array(
 
 	'eventdetails'					=>	'Event Details',
 
-	'submitbutton'					=>	'Submit'
+	'submitbutton'					=>	'Submit',
+
+	'createEventSuccess'			=>	'The Event has been created successfuly',
+
+	'eventaditionalseetings'		=>	'Additional Settings',
+
+	'choosetype'					=>	'-- Choose Type --',
+
+	'eventprivacy'					=>	'Type',
+
+	'eventtype'						=>	'Privacy',
+
+	'typesponzor'					=>	'Type of Sponzor',
+
+	'quantitysponzor'				=>	'Quantity Available',
+
+	'pricesponzor'					=>	'Price',
+
+	'actionssponzor'				=>	'Actions',
 );

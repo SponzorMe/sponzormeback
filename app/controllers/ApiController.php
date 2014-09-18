@@ -268,6 +268,11 @@ class ApiController extends BaseController {
 		$events = Events::get();
 		return Response::json(array("success" => true,"status"=>"Authenticated","Events"=>$events->toArray()));
 	}
+	public function getEventsByOrganizer($organizer)
+	{
+		$events = Events::where("organizer",'=',$organizer)->get();
+		return Response::json(array("success" => true,"status"=>"Authenticated","Events"=>$events->toArray()));
+	}
 	public function getPeaks($idEvent)
 	{
 		$peaks = Peaks::where("id_event",'=',$idEvent)->get();
@@ -303,32 +308,39 @@ class ApiController extends BaseController {
 			'description'      => 'required',
 			'location' => 'required',
 			'starts' => 'required',
-			'ends' => 'required'
+			'ends' => 'required',
+			'organizer' => 'required',
+			'privacy' => 'required'
 		);
 		$validator = Validator::make(Input::all(), $rules);
 		if ($validator->fails()) {
+			$messages=$validator->messages();
 			return Response::json(
 				array(
 					'success' => false,
-					'description' => Input::get('description'),
-					'location' => Input::get('location'),
-					'starts' => Input::get('starts'),
-					'ends' => Input::get('ends'),
-					'title' => Input::get('title')
+					'message' => $messages->all()
 					));
 		} else {
 			// store
-			Events::create(
-				array(
+			$evento=array(
 					'title'       => Input::get('title'),
 					'description'      => Input::get('description'),
 					'location' => Input::get('location'),
 					'starts' => Input::get('starts'),
-					'ends' => Input::get('ends')
-					)
-				);
+					'ends' => Input::get('ends'),
+					'organizer' => Input::get('organizer'),
+					'privacy' => Input::get('privacy')
+					);			
+			$type=Input::get('type');
+			if(!empty($type))
+				$evento["type"]=$type;
+			Events::create($evento);
 
-			return Response::json(array('success' => true));
+			return Response::json(
+				array(
+				'success' => true,
+				'message' => Lang::get('dashboard.createEventSuccess')
+				));
 		}
 	}
 }

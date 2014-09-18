@@ -83,6 +83,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::get('events', 'ApiController@getEvents'); //Get all Events
 
+	Route::get('events/by/{organizer}', 'ApiController@getEventsByOrganizer'); //Get Events by Organizer
+
 	Route::get('sponzors', 'ApiController@getSponzors'); //Get all Sponzors
 
 	Route::get('categories/{lang}', 'ApiController@getCategories'); //Get categories by lang

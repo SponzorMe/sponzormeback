@@ -34,8 +34,14 @@ angular.module('Dashboard').controller('MasterCtrl', ['$scope', '$cookieStore', 
 
 function MasterCtrl($scope, $cookieStore, Customization) {
     var mobileView = 992;
-      $scope.event  = {"current": false };
+      $scope.event  = {"current": false, "organizer": "1234" };
       $scope.eventos  = {"list": false };
+      $scope.categorias  = {"list": false };
+      $scope.alerts = [
+        { type: 'success', msg: '1' },
+        { type: 'danger', msg: '2' }
+    ];
+    $scope.sponzors = [];
 
     $scope.getWidth = function() { return window.innerWidth; };
 
@@ -81,10 +87,6 @@ function MasterCtrl($scope, $cookieStore, Customization) {
 angular.module('Dashboard').controller('AlertsCtrl', ['$scope', AlertsCtrl]);
 
 function AlertsCtrl($scope) {
-    $scope.alerts = [
-        { type: 'success', msg: 'Thanks for visiting! Feel free to create pull requests to improve the dashboard!' },
-        { type: 'danger', msg: 'Found a bug? Create an issue with as many details as you can.' }
-    ];
 
     $scope.addAlert = function() {
         $scope.alerts.push({msg: 'Another alert!'});
@@ -116,19 +118,32 @@ function rdLoading () {
  angular.module('Dashboard').controller('eventsController', ['$scope', '$cookieStore', 'Customization',eventsController]);
 function eventsController($scope,$Cookie,Customization)
 {
-    Customization.getEvents().success(function(adata) 
+    Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
     {
         $scope.eventos.list = adata.Events;
         $scope.event.current = adata.Events[0].id;
     });
-    $scope.newEvent = function(){
+    Customization.getCategories1().success(function(adata) 
+    {
+        $scope.categorias.list = adata;
+    });    
+    $scope.addsponzor = function () {
+        $scope.sponzors.push({ 
+            kind: "Gold Sponzor",
+            usd: 100,
+            quantity: 1
+        });
+    }
+    $scope.removeSponzor = function(){
+        $scope.sponzors.splice(index, 1);
+    }
+    $scope.newEvent = function(){        
         Customization.saveEvent($scope.newevent)
             .success(function(data) {
-                
                 if(data.success)
                 {
-                    alert("Se registro correctamente");
-                    Customization.getEvents().success(function(adata) 
+                    $scope.alerts = [{type: 'success', msg: data.message}];
+                    Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
                     {
                         $scope.eventos.list = adata.Events;
                         $scope.event.current = adata.Events[0].id;
@@ -139,6 +154,9 @@ function eventsController($scope,$Cookie,Customization)
                 }
                 else
                 {
+                    message = String(data.message);
+                    message = message.replace("[","").replace("]","").replace(/,/g," ");
+                    $scope.alerts = [{type: 'danger', msg: message}];
                     if(angular.isUndefined($scope.newevent.title))
                         $("#title").addClass("has-error");
                     else
@@ -193,15 +211,6 @@ function peaksController($scope,$Cookie,Customization)
                 $scope.peaks=adata.Peaks;           
             });
         }
-    });
-}
-
-angular.module('Dashboard').controller('sponzorsController', ['$scope', '$cookieStore', 'Customization',sponzorsController]);
-function sponzorsController($scope,$Cookie,Customization)
-{
-    Customization.getSponzors().success(function(adata) 
-    {
-            $scope.sponzors=adata.Sponzors;
     });
 }
 

@@ -84,7 +84,8 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li class="dropdown-header">
-                    {{ Session::get('email') }}
+                    {{ Session::get('email') }}                     
+                    <input type="hidden" ng-model="event.organizer" ng-init="event.organizer = {{ Session::get('userId') }}" />                   
                   </li>
                   <li class="divider"></li>
                   <li class="link">
@@ -206,7 +207,6 @@
             <i class="fa fa-tasks"></i> {{trans('dashboard.events')}}
             <a href="#" class="pull-right">Manage</a>
           </div>
-
           <div class="widget-body medium no-padding">
             <div class="table-responsive">
               <table class="table table-striped" data-ng-controller="eventsController">
@@ -217,7 +217,7 @@
                 <th>Peaks</th>
               </thead>
                 <tbody>
-                  <tr data-ng-repeat="e in eventos.list" data-ng-class="{success : event.current === e.id , djlaksdkasd : event.current != e.id}">
+                  <tr data-ng-repeat="e in eventos.list" data-ng-class="{success : event.current === e.id}">
                     <td><% e.title %></td>
                     <td><% e.location %></td>
                     <td><% e.starts %></td>
@@ -281,6 +281,12 @@
     <!-- End Main Content -->
   </script>
   <script type="text/ng-template" id="events.html">
+  <div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
+      <div class="col-xs-12">
+        <alert data-ng-repeat="alert in alerts" type="<% alert.type %>" close="closeAlert($index)">
+        <%alert.msg %></alert>
+      </div>
+    </div>
     <div class="row">
       <div class="col-lg-6">
         <div class="widget">
@@ -341,9 +347,87 @@
               </label>
               <div class="col-sm-8">
                 <input  type="date" data-ng-model="newevent.ends" name="ends" class="form-control" />
-                <input type="hidden" name="organizer" value="1"/>
+                <input type="hidden" data-ng-model="newevent.organizer" name="organizer" ng-init="newevent.organizer = {{ Session::get('userId') }}"/>
               </div>
             </div>
+            <div class="clearfix"></div>
+            <h4>{{trans('dashboard.eventaditionalseetings')}}</h4>  
+            <hr/>
+            <!--form field-->
+            <div class="form-group" id="public">
+              <label for="label" class="col-sm-2 control-label">
+                {{trans('dashboard.neweventprivacy')}}
+              </label>
+              <div class="col-sm-10">
+                  <input id="privacy0"  type="radio" data-ng-model="newevent.privacy" name="privacy" value="0" />   
+                  <label for="privacy0" class="control-label">
+                    <strong>{{trans('dashboard.privacyoption0')}} :  </strong>                   
+                 
+                  {{trans('dashboard.privacydescription0')}} </label> <br/>
+                  <input id="privacy1" type="radio" data-ng-model="newevent.privacy" name="privacy" value="1" />   
+                  <label for="privacy1" class="control-label">
+                    <strong>{{trans('dashboard.privacyoption1')}} :  </strong>                   
+                  
+                  {{trans('dashboard.privacydescription1')}}</label>
+              </div>
+            </div>
+            <!--form field-->
+            <div class="form-group" id="type">
+              <label for="label" class="col-sm-2 control-label">
+                {{trans('dashboard.neweventtype')}}
+              </label>
+              <div class="col-sm-5">
+                <select ng-model="newevent.type" name="type" class="form-control">
+                  <option value="">{{trans('dashboard.choosetype')}}</option>
+                  <option data-ng-repeat="c in categorias.list" data-ng-value="c.id">
+                    <%c.title%>
+                  </option>                
+                </select>
+              </div>
+            </div>
+            <hr/>
+            <div class="clearfix"></div>
+            <h4>{{trans('dashboard.eventsponzors')}}</h4>  
+            <hr/>
+            <!--form field-->            
+            <div class="table-responsive">              
+              <table class="table table-striped">
+                <thead>
+                  <th class="text-center">
+                    {{trans('dashboard.typesponzor')}}
+                  </th>
+                  <th class="text-center">
+                    {{trans('dashboard.quantitysponzor')}}
+                  </th>
+                  <th class="text-center">
+                    {{trans('dashboard.pricesponzor')}}
+                  </th>
+                  <th class="text-center">
+                    {{trans('dashboard.actionssponzor')}}
+                  </th>              
+                </thead>
+                <tr ng-repeat="s in sponzors" data-ng-show="sponzors.length">
+                  <td class="text-center">
+                    <input type="text" class="form-control" placeholder="" ng-model="s.kind" />
+                  </td>   
+                  <td class="text-center">
+                    <input type="text" class="form-control" placeholder="" ng-model="s.quantity" />
+                  </td>
+                  <td class="text-center">
+                    <input type="text" class="form-control" placeholder="" ng-model="s.usd" />
+                  </td>
+                  <td class="text-center">
+                    <a href="#" ng-click="removeSponzor(s.$index)"><i class="fa fa-trash-o"></i></a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <button class="btn btn-success" ng-click="addsponzor()"> + Add</button> 
+
+
+
+
+
             <div class="clearfix"></div>
             <hr/>
             <!--form field-->
@@ -366,17 +450,23 @@
             <div class="table-responsive">
               <table class="table table-striped" data-ng-controller="eventsController">
               <thead>
-                <th>Title</th>
-                <th>Location</th>
-                <th>Starts</th>
-                <th>Peaks</th>
+                <th class="text-center">{{trans('dashboard.neweventtitle')}}</th>
+                <th class="text-center">{{trans('dashboard.neweventlocation')}}</th>
+                <th class="text-center">{{trans('dashboard.neweventstarts')}}</th>
+                <th class="text-center">{{trans('dashboard.neweventends')}}</th>
+                <th class="text-center">{{trans('dashboard.neweventdescription')}}</th>
+                <th class="text-center">{{trans('dashboard.eventtype')}}</th>
+                <th class="text-center">{{trans('dashboard.eventprivacy')}}</th>
               </thead>
                 <tbody>
-                  <tr data-ng-repeat="e in eventos.list" data-ng-class="{success : event.current === e.id , djlaksdkasd : event.current != e.id}">
-                    <td><% e.title %></td>
-                    <td><% e.location %></td>
-                    <td><% e.starts %></td>
-                    <td><span class="text-success"><a href="#" data-ng-click="event.current = e.id"><i class="fa fa-check"></i></a></span></td>
+                  <tr data-ng-repeat="e in eventos.list" data-ng-class="{success : event.current === e.id}">
+                    <td class="text-center"><% e.title %></td>
+                    <td class="text-center"><% e.location %></td>
+                    <td class="text-center"><% e.starts %></td>
+                    <td class="text-center"><% e.ends %></td>
+                    <td class="text-center"><% e.description %></td>
+                    <td class="text-center"><% e.type %></td>
+                    <td class="text-center"><% e.privacy %></td>
                   </tr>
                 </tbody>
               </table>

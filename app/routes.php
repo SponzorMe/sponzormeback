@@ -95,6 +95,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::get('peaks/{idEvent}', 'ApiController@getPeaks'); //Get interests by lang
 
+	Route::post('create/event', 'ApiController@createEvent'); //Create an Event
+
 	Route::resource('/', 'ApiController');
 });
 

@@ -43,7 +43,15 @@ angular.module('customizationService', [])
 			getPeaks : function(idEvent) {
 				global = $http.get('http://localhost/sponzorme/public/api/v1/peaks/'+idEvent);
 				return global;
-			},				
+			},
+			saveEvent : function(eventData) {
+				return $http({
+					method: 'POST',
+					url: 'http://localhost/sponzorme/public/api/v1/create/event',
+					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+					data: $.param(eventData)
+				});
+			},			
 		}
 
 	});

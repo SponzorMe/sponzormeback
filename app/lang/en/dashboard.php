@@ -37,6 +37,8 @@ return array(
 
 	'yourevents'					=> 'Your Events',
 
+	'suggestions'					=> 'Suggestions',
+
 	'latestsponzors'				=> 'Latest Sponzors',
 
 	'neweventtitle'					=>	'Title',
@@ -88,4 +90,10 @@ return array(
 	'silverSponzor'					=>	'Silver Sponzor',
 
 	'bronzeSponzor'					=>	'Bronze Sponzor',
+
+	'buttonsugestions'				=>	'Button',
+
+	'eventdetails'					=>	'Event Details',
+
+	'submitbutton'					=>	'Submit'
 );

@@ -295,4 +295,40 @@ class ApiController extends BaseController {
 	{
 		return Response::json(InterestsCategories::where("lang",'=',$lang)->get());
 	}
+	public function createEvent()
+	{
+		// validate
+		$rules = array(
+			'title'       => 'required',
+			'description'      => 'required',
+			'location' => 'required',
+			'starts' => 'required',
+			'ends' => 'required'
+		);
+		$validator = Validator::make(Input::all(), $rules);
+		if ($validator->fails()) {
+			return Response::json(
+				array(
+					'success' => false,
+					'description' => Input::get('description'),
+					'location' => Input::get('location'),
+					'starts' => Input::get('starts'),
+					'ends' => Input::get('ends'),
+					'title' => Input::get('title')
+					));
+		} else {
+			// store
+			Events::create(
+				array(
+					'title'       => Input::get('title'),
+					'description'      => Input::get('description'),
+					'location' => Input::get('location'),
+					'starts' => Input::get('starts'),
+					'ends' => Input::get('ends')
+					)
+				);
+
+			return Response::json(array('success' => true));
+		}
+	}
 }

@@ -42,7 +42,7 @@
           <a href="#">{{trans('dashboard.dashboard')}}<span class="menu-icon fa fa-tachometer"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#/tables">{{trans('dashboard.events')}} <span class="menu-icon fa fa-table"></span></a>
+          <a href="#/events">{{trans('dashboard.events')}} <span class="menu-icon fa fa-table"></span></a>
         </li>
         <li class="sidebar-list">
           <a href="#">{{trans('dashboard.settings')}}<span class="menu-icon fa fa-tasks"></span></a>
@@ -217,7 +217,7 @@
                 <th>Peaks</th>
               </thead>
                 <tbody>
-                  <tr data-ng-repeat="e in eventos" data-ng-class="{success : event.current === e.id , djlaksdkasd : event.current != e.id}">
+                  <tr data-ng-repeat="e in eventos.list" data-ng-class="{success : event.current === e.id , djlaksdkasd : event.current != e.id}">
                     <td><% e.title %></td>
                     <td><% e.location %></td>
                     <td><% e.starts %></td>
@@ -258,16 +258,11 @@
           </div>
         </div>
       </div>
-    </div>
-    <!-- End Main Content -->
-  </script>
-  <script type="text/ng-template" id="addevent.html">
-    <div class="row">
       <div class="col-lg-6">
         <div class="widget">
           <div class="widget-header">
-            <i class="fa fa-plus"></i> Extras
-            <button class="btn btn-sm btn-info pull-right">Button</button>
+            <i class="fa fa-plus"></i> {{trans('dashboard.suggestions')}}
+            <button class="btn btn-sm btn-info pull-right">{{trans('dashboard.buttonsugestions')}}</button>
             <div class="clearfix"></div>
           </div>
           <div class="widget-body">
@@ -278,22 +273,119 @@
             <div class="message">
               <a href="http://angular-ui.github.io/bootstrap/" target="_blank">UI Bootstrap</a> is included, so you can use <a href="#" tooltip="I'm a tooltip!">tooltips</a> and all of the other native Bootstrap JS components!
             </div>
-            <hr />
-            <form class="form-horizontal" role="form">
-              <div class="form-group has-feedback has-success">
-                <label for="label" class="col-sm-2 control-label">Inline Form</label>
-                <div class="col-sm-5">
-                  <input  type="text" class="form-control" />
-                    <span class="fa fa-key form-control-feedback"></span>
-                </div>
-                <div class="col-sm-5">
-                  <div class="input-mask">I am an input mask!</div>
-                </div>
-              </div>
-            </form>
+            <hr/>
           </div>
         </div>
       </div>
+    </div>
+    <!-- End Main Content -->
+  </script>
+  <script type="text/ng-template" id="events.html">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="widget">
+          <div class="widget-header">
+            <i class="fa fa-plus"></i>{{trans('dashboard.addevent')}}
+            <div class="clearfix"></div>
+          </div><h4>{{trans('dashboard.eventdetails')}}</h4>      
+          <hr />
+          <form class="form-horizontal" role="form" data-ng-submit="newEvent()">
+          <!--form field-->
+            <div class="form-group" id="title">
+              <label for="label" class="col-sm-2 control-label">
+                {{trans('dashboard.neweventtitle')}}
+              </label>
+              <div class="col-sm-5">
+                <input  type="text" data-ng-model="newevent.title" name="title" class="form-control" />
+              </div>
+              <div class="col-sm-5">
+                <div class="input-mask">{{trans('dashboard.neweventtitledescription')}}</div>
+              </div>
+            </div>
+           <!--form field-->
+            <div class="form-group" id="location">
+              <label for="label" class="col-sm-2 control-label">
+                {{trans('dashboard.neweventlocation')}}
+              </label>
+              <div class="col-sm-5">
+                <input  type="text" data-ng-model="newevent.location" name="location" class="form-control" />
+              </div>
+              <div class="col-sm-5">
+                <div class="input-mask">{{trans('dashboard.neweventlocationdescription')}}</div>
+              </div>
+            </div>
+            <!--form field-->
+            <div class="form-group" id="description">
+              <label for="label" class="col-sm-2 control-label">
+                {{trans('dashboard.neweventdescription')}}
+              </label>
+              <div class="col-sm-7">
+                <textarea rows="5" data-ng-model="newevent.description" name="description" class="form-control"></textarea>
+              </div>
+              <div class="col-sm-3">
+                <div class="input-mask">{{trans('dashboard.neweventdescriptiondescription')}}</div>
+              </div>
+            </div>
+            <!--form field-->
+            <div class="form-group col-sm-6" id="starts">
+              <label for="label" class="col-sm-4 control-label">
+                {{trans('dashboard.neweventstarts')}}
+              </label>
+              <div class="col-sm-8">
+                <input  type="date" data-ng-model="newevent.starts" name="starts" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group col-sm-6 " id="ends">
+              <label for="label" class="col-sm-4 control-label">
+                {{trans('dashboard.neweventends')}}
+              </label>
+              <div class="col-sm-8">
+                <input  type="date" data-ng-model="newevent.ends" name="ends" class="form-control" />
+                <input type="hidden" name="organizer" value="1"/>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr/>
+            <!--form field-->
+            <div class="form-group">
+              <div class="col-sm-offset-5 col-sm-4 ">
+                <button class="btn btn-info">{{trans('dashboard.submitbutton')}}</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="widget">
+          <div class="widget-header">
+            <i class="fa fa-tasks"></i> {{trans('dashboard.events')}}
+            <a href="#" class="pull-right">Manage</a>
+          </div>
+
+          <div class="widget-body medium no-padding">
+            <div class="table-responsive">
+              <table class="table table-striped" data-ng-controller="eventsController">
+              <thead>
+                <th>Title</th>
+                <th>Location</th>
+                <th>Starts</th>
+                <th>Peaks</th>
+              </thead>
+                <tbody>
+                  <tr data-ng-repeat="e in eventos.list" data-ng-class="{success : event.current === e.id , djlaksdkasd : event.current != e.id}">
+                    <td><% e.title %></td>
+                    <td><% e.location %></td>
+                    <td><% e.starts %></td>
+                    <td><span class="text-success"><a href="#" data-ng-click="event.current = e.id"><i class="fa fa-check"></i></a></span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="row">
       <div class="col-lg-6">
         <div class="widget">
           <div class="widget-header">

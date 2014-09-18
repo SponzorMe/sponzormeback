@@ -22,7 +22,8 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
         })
         .state('events', {
             url: '/events',
-            templateUrl: 'addevent.html'
+            templateUrl: 'events.html',
+            controller: 'eventsController'
         })
 }]);
 
@@ -34,6 +35,7 @@ angular.module('Dashboard').controller('MasterCtrl', ['$scope', '$cookieStore', 
 function MasterCtrl($scope, $cookieStore, Customization) {
     var mobileView = 992;
       $scope.event  = {"current": false };
+      $scope.eventos  = {"list": false };
 
     $scope.getWidth = function() { return window.innerWidth; };
 
@@ -116,9 +118,68 @@ function eventsController($scope,$Cookie,Customization)
 {
     Customization.getEvents().success(function(adata) 
     {
-            $scope.eventos = adata.Events;
-            $scope.event.current = adata.Events[0].id;
+        $scope.eventos.list = adata.Events;
+        $scope.event.current = adata.Events[0].id;
     });
+    $scope.newEvent = function(){
+        Customization.saveEvent($scope.newevent)
+            .success(function(data) {
+                
+                if(data.success)
+                {
+                    alert("Se registro correctamente");
+                    Customization.getEvents().success(function(adata) 
+                    {
+                        $scope.eventos.list = adata.Events;
+                        $scope.event.current = adata.Events[0].id;
+                        $scope.newevent="";
+                    });
+                    $(".form-group").removeClass("has-error");
+                    $(".form-group").removeClass("has-success");
+                }
+                else
+                {
+                    if(angular.isUndefined($scope.newevent.title))
+                        $("#title").addClass("has-error");
+                    else
+                    {
+                        $("#title").removeClass("has-error");
+                        $("#title").addClass("has-success");
+                    }
+                    if(angular.isUndefined($scope.newevent.location))
+                        $("#location").addClass("has-error");
+                    else
+                    {
+                        $("#location").removeClass("has-error");
+                        $("#location").addClass("has-success");
+                    }
+                    if(angular.isUndefined($scope.newevent.description))
+                        $("#description").addClass("has-error");
+                    else
+                    {
+                        $("#description").removeClass("has-error");
+                        $("#description").addClass("has-success");
+                    }
+                    if(angular.isUndefined($scope.newevent.starts))
+                        $("#starts").addClass("has-error");
+                    else
+                    {
+                        $("#starts").removeClass("has-error");
+                        $("#starts").addClass("has-success");
+                    }
+                    if(angular.isUndefined($scope.newevent.ends))
+                        $("#ends").addClass("has-error");
+                    else
+                    {
+                        $("#ends").removeClass("has-error");
+                        $("#ends").addClass("has-success");
+                    }
+                }
+            })
+            .error(function(data) {
+                console.log(data);
+            });
+        };
 }
 
 angular.module('Dashboard').controller('peaksController', ['$scope', '$cookieStore', 'Customization',peaksController]);

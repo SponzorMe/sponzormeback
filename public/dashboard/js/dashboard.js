@@ -129,15 +129,16 @@ function eventsController($scope,$Cookie,Customization)
     });    
     $scope.addsponzor = function () {
         $scope.sponzors.push({ 
-            kind: "Gold Sponzor",
-            usd: 100,
+            kind: "",
+            usd: 0,
             quantity: 1
         });
     }
-    $scope.removeSponzor = function(){
+    $scope.removeSponzor = function(index){
         $scope.sponzors.splice(index, 1);
     }
-    $scope.newEvent = function(){        
+    $scope.newEvent = function(){
+        $scope.newevent.peaks =  $scope.sponzors;
         Customization.saveEvent($scope.newevent)
             .success(function(data) {
                 if(data.success)
@@ -148,6 +149,7 @@ function eventsController($scope,$Cookie,Customization)
                         $scope.eventos.list = adata.Events;
                         $scope.event.current = adata.Events[0].id;
                         $scope.newevent="";
+                        $scope.sponzors = [];
                     });
                     $(".form-group").removeClass("has-error");
                     $(".form-group").removeClass("has-success");

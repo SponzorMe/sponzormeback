@@ -318,28 +318,42 @@ class ApiController extends BaseController {
 			return Response::json(
 				array(
 					'success' => false,
-					'message' => $messages->all()
+					'message' => $messages->all(),
+					'peaks'	  => Input::get('peaks')
 					));
 		} else {
 			// store
 			$evento=array(
-					'title'       => Input::get('title'),
-					'description'      => Input::get('description'),
-					'location' => Input::get('location'),
-					'starts' => Input::get('starts'),
-					'ends' => Input::get('ends'),
-					'organizer' => Input::get('organizer'),
-					'privacy' => Input::get('privacy')
+					'title'       	=> Input::get('title'),
+					'description'   => Input::get('description'),
+					'location' 		=> Input::get('location'),
+					'starts'		=> Input::get('starts'),
+					'ends' 			=> Input::get('ends'),
+					'organizer' 	=> Input::get('organizer'),
+					'privacy' 		=> Input::get('privacy')
 					);			
 			$type=Input::get('type');
 			if(!empty($type))
 				$evento["type"]=$type;
-			Events::create($evento);
+			$event_id=Events::create($evento);
+
+			//Guardamos los peaks aca
+			$peaks=Input::get('peaks');
+			foreach ($peaks as $p) {
+				$peak=array(
+					'kind'       	=> $p["kind"],
+					'usd'   		=> $p["usd"],
+					'quantity' 		=> $p["quantity"],
+					'id_event'		=> $event_id->id
+					);
+					Peaks::create($peak);	
+			}
 
 			return Response::json(
 				array(
-				'success' => true,
-				'message' => Lang::get('dashboard.createEventSuccess')
+				'success' 	=> true,
+				'message' 	=> Lang::get('dashboard.createEventSuccess'),
+				'evento_id'	=> $event_id->id
 				));
 		}
 	}

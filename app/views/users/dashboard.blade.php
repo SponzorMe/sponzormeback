@@ -295,7 +295,7 @@
             <div class="clearfix"></div>
           </div><h4>{{trans('dashboard.eventdetails')}}</h4>      
           <hr />
-          <form class="form-horizontal" role="form" data-ng-submit="newEvent()">
+          <form class="form-horizontal" role="form">
           <!--form field-->
             <div class="form-group" id="title">
               <label for="label" class="col-sm-2 control-label">
@@ -417,23 +417,18 @@
                     <input type="text" class="form-control" placeholder="" ng-model="s.usd" />
                   </td>
                   <td class="text-center">
-                    <a href="#" ng-click="removeSponzor(s.$index)"><i class="fa fa-trash-o"></i></a>
+                    <a href="" ng-click="removeSponzor($index)"><i class="fa fa-trash-o"></i></a>
                   </td>
                 </tr>
               </table>
             </div>
-            <button class="btn btn-success" ng-click="addsponzor()"> + Add</button> 
-
-
-
-
-
+            <button class="btn btn-success" ng-click="addsponzor()"> + Add</button>
             <div class="clearfix"></div>
             <hr/>
             <!--form field-->
             <div class="form-group">
               <div class="col-sm-offset-5 col-sm-4 ">
-                <button class="btn btn-info">{{trans('dashboard.submitbutton')}}</button>
+                <button data-ng-click="newEvent()" class="btn btn-info">{{trans('dashboard.submitbutton')}}</button>
               </div>
             </div>
           </form>

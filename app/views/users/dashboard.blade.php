@@ -48,7 +48,7 @@
           <a href="#">{{trans('dashboard.settings')}}<span class="menu-icon fa fa-tasks"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#">{{trans('dashboard.sponzors')}} <span class="menu-icon fa fa-cogs"></span></a>
+          <a href="#/sponzors">{{trans('dashboard.sponzors')}} <span class="menu-icon fa fa-cogs"></span></a>
         </li>
       </ul>
       <div class="sidebar-footer">
@@ -95,7 +95,7 @@
                   </li>
                   <li class="divider"></li>
                   <li class="link">
-                    <a href="#">
+                    <a href="{{ URL::to('logout') }}">
                       Logout
                     </a>
                   </li>
@@ -133,7 +133,7 @@
       </div><!-- End Page Content -->
     </div><!-- End Content Wrapper -->
   </div><!-- End Page Wrapper -->
-
+  <!--Template asociado al dashboard principal-->
   <script type="text/ng-template" id="dashboard.html">
     <div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
       <div class="col-xs-12">
@@ -280,8 +280,9 @@
     </div>
     <!-- End Main Content -->
   </script>
+  <!--Template asociado a los eventos-->
   <script type="text/ng-template" id="events.html">
-  <div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
+    <div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
       <div class="col-xs-12">
         <alert data-ng-repeat="alert in alerts" type="<% alert.type %>" close="closeAlert($index)">
         <%alert.msg %></alert>
@@ -484,6 +485,45 @@
         </div>
       </div>
     </div>
+  </script>
+
+  <!--Template asociado a los sponzors-->
+  <script type="text/ng-template" id="sponzors.html">
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1">      
+        <div class="widget">
+          <div class="widget-header">
+            <i class="fa fa-tasks"></i> {{trans('dashboard.sponzors')}}
+          </div>
+          <div class="widget-body medium no-padding">
+            <div class="table-responsive">
+              <table class="table table-striped" data-ng-controller="sponzorsController">
+                <thead>
+                  <tr>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">E-mail</th>
+                    <th class="text-center">Location</th>
+                    <th class="text-center">Event title</th>
+                    <th class="text-center">Sponzoring type</th>
+                    <th class="text-center">Follow</th>
+                    <th class="text-center">Sponzor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-ng-repeat="s in sponzors.list" >
+                    <td class="text-center"><% s.name %></td>
+                    <td class="text-center"><% s.email %></td>
+                    <td class="text-center"><% s.city %>, <% s.state %>, <% s.country %></td>
+                    <td class="text-center"><% s.sponzoringtype %></td>
+                    <td class="text-center"><% s.follow %></td>
+                    <td class="text-center"><% s.sponzor %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
   </script>
 </body>
 </html>

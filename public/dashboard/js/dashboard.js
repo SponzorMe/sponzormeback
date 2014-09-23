@@ -25,6 +25,11 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
             templateUrl: 'events.html',
             controller: 'eventsController'
         })
+        .state('sponzors', {
+            url: '/sponzors',
+            templateUrl: 'sponzors.html',
+            controller: 'sponzorsController'
+        })
 }]);
 
 /**
@@ -36,6 +41,7 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     var mobileView = 992;
       $scope.event  = {"current": false, "organizer": "1234" };
       $scope.eventos  = {"list": false };
+      $scope.sponzors  = {"list": false };
       $scope.categorias  = {"list": false };
       $scope.alerts = [
         { type: 'success', msg: '1' },
@@ -213,6 +219,16 @@ function peaksController($scope,$Cookie,Customization)
                 $scope.peaks=adata.Peaks;           
             });
         }
+    });
+}
+angular.module('Dashboard').controller('sponzorsController', ['$scope', '$cookieStore', 'Customization',sponzorsController]);
+function sponzorsController($scope,$Cookie,Customization)
+{
+    console.log("entro");
+    Customization.getSponzors().success(function(adata) 
+    {
+        $scope.sponzors.list=adata.Sponzors;   
+        console.log(adata);   
     });
 }
 

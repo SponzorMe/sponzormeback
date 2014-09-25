@@ -30,6 +30,11 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
             templateUrl: 'sponzors.html',
             controller: 'sponzorsController'
         })
+        .state('settings', {
+            url: '/settings',
+            templateUrl: 'settings.html',
+            controller: 'settingsController'
+        })
 }]);
 
 /**
@@ -45,6 +50,7 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     $scope.categorias  = {"list": false };
     $scope.alerts = [];
     $scope.sponzors = [];
+    $scope.account = {};
 
     $scope.getWidth = function() { return window.innerWidth; };
 
@@ -259,6 +265,42 @@ function sponzorsController($scope,$Cookie,Customization)
             });
         });       
     }
+}
+angular.module('Dashboard').controller('settingsController', ['$scope', '$cookieStore', 'Customization',settingsController]);
+function settingsController($scope,$Cookie,Customization)
+{
+    $scope.viewUserInfo = function(){
+        Customization.getUserInfo($scope.event.organizer).success(function(adata){
+            $scope.account.description=adata.User[0].description;
+            $scope.account.name=adata.User[0].name;
+            $scope.account.age=adata.User[0].age;
+            $scope.account.sex=adata.User[0].sex;
+            $scope.account.company=adata.User[0].company;
+            $scope.account.email=adata.User[0].email;
+        });
+    }
+    $scope.editAccount = function(){
+        $scope.account.userId=$scope.event.organizer;
+        var a= {
+            "description":$scope.account.description,
+            "name":$scope.account.name,
+            "sex":$scope.account.sex,
+            "age":$scope.account.age,
+            "country":$scope.account.country,
+            "city":$scope.account.city,
+            "state":$scope.account.state,
+            "email":$scope.account.email,
+            "company":$scope.account.company,
+            "userId":$scope.event.organizer
+        };
+        console.log(a);
+        Customization.editAccount(a).success(function(adata){
+            console.log(adata);
+            $scope.alerts.push({msg: adata.message});
+            $scope.viewUserInfo();
+        });
+    }
+    $scope.viewUserInfo();
 }
 
 })();

@@ -118,4 +118,18 @@ return array(
 	'pricesponzor'					=>	'Price',
 
 	'actionssponzor'				=>	'Actions',
+
+	'editaccountname'				=>	'Full Name',
+
+	'editaccountemail'				=>	'E-mail',
+
+	'editaccountcompany'			=>	'Company',
+
+	'editaccountage'				=>	'Age',
+
+	'editaccountsex'				=>	'Sex',
+
+	'editaccountlocation'			=>	'Location',
+
+	'editaccountdescription'		=>	'Description',
 );

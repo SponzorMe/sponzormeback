@@ -258,10 +258,40 @@ class ApiController extends BaseController {
 		}
 	}
 
-	public function getSponzors()
-	{
-			$sponzors = UserCustomization::where("type",'=',"2")->get();
-			return Response::json(array("success" => true,"status"=>"Authenticated","Sponzors"=>$sponzors->toArray()));
+	public function getSponzors(){
+		$sponzors = UserCustomization::where("type",'=',"2")->get();
+		return Response::json(array("success" => true,"status"=>"Authenticated","Sponzors"=>$sponzors->toArray()));
+	}
+	public function getSponzorsByOrganizer($idOrganizer){
+		$sponzors=DB::table('events')
+			->join('rel_peaks', 'events.id', '=', 'rel_peaks.id_event')
+            ->join('rel_sponzors_events', 'rel_peaks.id', '=', 'rel_sponzors_events.rel_peak')            
+            ->join('users', 'users.id', '=', 'rel_sponzors_events.idsponzor')
+            ->select(
+            	'events.title as event', 
+            	'users.name as name', 
+            	'users.email as email',
+            	'users.city as city',
+            	'users.state as state',
+            	'users.country as country',
+            	'users.state as state',
+            	'rel_peaks.kind as kind',
+            	'rel_sponzors_events.state as eventstate',
+            	'rel_sponzors_events.id as idRelSponzoring'
+            	)
+            ->where("events.organizer","=",$idOrganizer)
+            ->get();
+        return Response::json(array("success" => true,"status"=>"Authenticated","Sponzors"=>$sponzors));
+	}
+	public function updateRelSponzorPeak($idRelSponzor,$newState){
+		$relSponzor=RelSponzorsEvents::find($idRelSponzor);
+		$relSponzor->state=$newState;
+		$relSponzor->save();
+		return Response::json(array("success" => true,"status"=>"Authenticated","message"=>"State Updated Succesfuly"));
+	}
+	public function removeRelSponzorPeak($idRelSponzor){
+		RelSponzorsEvents::where('id', '=', $idRelSponzor)->delete(); //Borramos la relacion de los peaks.
+		return Response::json(array("success" => true,"status"=>"Authenticated","message"=>"Removed Succesfuly"));
 	}
 	public function getEvents()
 	{
@@ -355,6 +385,27 @@ class ApiController extends BaseController {
 				'message' 	=> Lang::get('dashboard.createEventSuccess'),
 				'evento_id'	=> $event_id->id
 				));
+		}		
+	}
+	public function removeEvent($idEvent){
+		try{
+			RelSponzorsEvents::where('idevent', '=', $idEvent)->delete(); //Borramos la relacion de los peaks.
+			Peaks::where('id_event', '=', $idEvent)->delete(); //Borramos los peaks.
+			Events::where('id', '=', $idEvent)->delete(); //Borramos el evento.
+			return Response::json(
+				array(
+				'success' 	=> true,
+				'message' 	=> Lang::get('dashboard.removeEventSuccess'),
+				'evento_id'	=> $idEvent
+				));
 		}
+		catch(Exception $e){
+			return Response::json(
+				array(
+				'success' 	=> false,
+				'message' 	=> $e->getMessage(),
+				'evento_id'	=> $idEvent
+				));
+		}			
 	}
 }

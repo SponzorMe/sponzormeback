@@ -99,6 +99,14 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::post('create/event', 'ApiController@createEvent'); //Create an Event
 
+	Route::get('remove/event/{idEvent}', 'ApiController@removeEvent'); //Create an Event
+
+	Route::get('sponzors/by/{idOrganizer}', 'ApiController@getSponzorsByOrganizer'); //Get all sponzors By Event
+
+	Route::get('update/relsponzorpeak/{idRelSponzor}/{newState}', 'ApiController@updateRelSponzorPeak');
+
+	Route::get('remove/relsponzorpeak/{idRelSponzor}', 'ApiController@removeRelSponzorPeak');
+
 	Route::resource('/', 'ApiController');
 });
 

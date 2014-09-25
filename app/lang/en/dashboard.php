@@ -101,6 +101,8 @@ return array(
 
 	'createEventSuccess'			=>	'The Event has been created successfuly',
 
+	'removeEventSuccess'			=>	'The Event has been Remove successfuly',
+
 	'eventaditionalseetings'		=>	'Additional Settings',
 
 	'choosetype'					=>	'-- Choose Type --',

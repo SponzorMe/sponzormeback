@@ -453,6 +453,7 @@
                 <th class="text-center">{{trans('dashboard.neweventdescription')}}</th>
                 <th class="text-center">{{trans('dashboard.eventtype')}}</th>
                 <th class="text-center">{{trans('dashboard.eventprivacy')}}</th>
+                <th class="text-center"> {{trans('dashboard.actionssponzor')}}</th>
               </thead>
                 <tbody>
                   <tr data-ng-repeat="e in eventos.list" data-ng-class="{success : event.current === e.id}">
@@ -463,6 +464,9 @@
                     <td class="text-center"><% e.description %></td>
                     <td class="text-center"><% e.type %></td>
                     <td class="text-center"><% e.privacy %></td>
+                    <td class="text-center">
+                      <a href="" ng-click="removeEvent(e.id)"><i class="fa fa-trash-o"></i></a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -489,6 +493,7 @@
 
   <!--Template asociado a los sponzors-->
   <script type="text/ng-template" id="sponzors.html">
+  <input type="hidden" ng-model="event.organizer" ng-init="event.organizer = {{ Session::get('userId') }}" /> 
     <div class="row">
       <div class="col-lg-10 col-lg-offset-1">      
         <div class="widget">
@@ -505,18 +510,29 @@
                     <th class="text-center">Location</th>
                     <th class="text-center">Event title</th>
                     <th class="text-center">Sponzoring type</th>
-                    <th class="text-center">Follow</th>
-                    <th class="text-center">Sponzor</th>
+                    <th class="text-center">State</th>
+                    <th class="text-center">Options</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr data-ng-repeat="s in sponzors.list" >
-                    <td class="text-center"><% s.name %></td>
-                    <td class="text-center"><% s.email %></td>
-                    <td class="text-center"><% s.city %>, <% s.state %>, <% s.country %></td>
-                    <td class="text-center"><% s.sponzoringtype %></td>
-                    <td class="text-center"><% s.follow %></td>
-                    <td class="text-center"><% s.sponzor %></td>
+                    <td class="text-center"><%s.name%></td>
+                    <td class="text-center"><%s.email%></td>
+                    <td class="text-center"><%s.city%>, <% s.state %>, <% s.country %></td>
+                    <td class="text-center"><%s.event%></td>
+                    <td class="text-center"><%s.kind%></td>
+                    <td class="text-center"><%s.eventstate%></td>
+                    <td class="text-center">
+                      <div style="display: inline-block">
+                        <div ng-if="s.eventstate == 0"> 
+                          <a  href="" ng-click="updateRelSponzorPeak(s.idRelSponzoring,1)"><i class="fa fa-star"></i></a>
+                        </div>
+                        <div ng-if="s.eventstate == 1"> 
+                          <a  href="" ng-click="updateRelSponzorPeak(s.idRelSponzoring,0)"><i class="fa fa-star-o"></i></a>
+                        </div>
+                      </div>
+                      <a href="" ng-click="removeRelSponzorPeak(s.idRelSponzoring)"><i class="fa fa-trash-o"></i></a>
+                    </td>
                   </tr>
                 </tbody>
               </table>

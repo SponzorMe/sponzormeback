@@ -59,7 +59,23 @@ angular.module('customizationService', [])
 					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 					data: $.param(eventData)
 				});
-			},			
+			},
+			removeEvent : function(idEvent){
+				global = $http.get('http://localhost/sponzorme/public/api/v1/remove/event/'+idEvent);
+				return global;
+			},
+			getSponzorsByOrganizer : function(idOrganizer){
+				global = $http.get('http://localhost/sponzorme/public/api/v1/sponzors/by/'+idOrganizer);
+				return global;
+			},
+			updateRelSponzorPeak : function(idRelSponzorPeak,newState){
+				global = $http.get('http://localhost/sponzorme/public/api/v1/update/relsponzorpeak/'+idRelSponzorPeak+'/'+newState);
+				return global;
+			},
+			removeRelSponzorPeak : function(idRelSponzorPeak){
+				global = $http.get('http://localhost/sponzorme/public/api/v1/remove/relsponzorpeak/'+idRelSponzorPeak);
+				return global;
+			}		
 		}
 
 	});

@@ -39,14 +39,11 @@ angular.module('Dashboard').controller('MasterCtrl', ['$scope', '$cookieStore', 
 
 function MasterCtrl($scope, $cookieStore, Customization) {
     var mobileView = 992;
-      $scope.event  = {"current": false, "organizer": "1234" };
-      $scope.eventos  = {"list": false };
-      $scope.sponzors  = {"list": false };
-      $scope.categorias  = {"list": false };
-      $scope.alerts = [
-        { type: 'success', msg: '1' },
-        { type: 'danger', msg: '2' }
-    ];
+    $scope.event  = {"current": false, "organizer": "1234" };
+    $scope.eventos  = {"list": false };
+    $scope.sponzors  = {"list": false };
+    $scope.categorias  = {"list": false };
+    $scope.alerts = [];
     $scope.sponzors = [];
 
     $scope.getWidth = function() { return window.innerWidth; };
@@ -143,6 +140,20 @@ function eventsController($scope,$Cookie,Customization)
     $scope.removeSponzor = function(index){
         $scope.sponzors.splice(index, 1);
     }
+    $scope.removeEvent = function(index){
+        Customization.removeEvent(index)
+        .success(function(data){
+            $scope.alerts.push({msg: data.message});
+            Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
+            {
+                $scope.eventos.list = adata.Events;
+                $scope.event.current = adata.Events[0].id;                
+            });
+        })
+        .error(function(data) {
+            console.log(data);
+        });
+    }
     $scope.newEvent = function(){
         $scope.newevent.peaks =  $scope.sponzors;
         Customization.saveEvent($scope.newevent)
@@ -224,12 +235,30 @@ function peaksController($scope,$Cookie,Customization)
 angular.module('Dashboard').controller('sponzorsController', ['$scope', '$cookieStore', 'Customization',sponzorsController]);
 function sponzorsController($scope,$Cookie,Customization)
 {
-    console.log("entro");
-    Customization.getSponzors().success(function(adata) 
+
+    Customization.getSponzorsByOrganizer($scope.event.organizer).success(function(adata) 
     {
         $scope.sponzors.list=adata.Sponzors;   
         console.log(adata);   
     });
+    $scope.updateRelSponzorPeak = function(id,state){
+        Customization.updateRelSponzorPeak(id,state).success(function(adata) 
+        {
+            $scope.alerts.push({msg: adata.message});
+            Customization.getSponzorsByOrganizer($scope.event.organizer).success(function(adata){
+                $scope.sponzors.list=adata.Sponzors;
+            });
+        });        
+    }
+    $scope.removeRelSponzorPeak = function(id){
+        Customization.removeRelSponzorPeak(id).success(function(adata){
+            console.log(adata);   
+            $scope.alerts.push({msg: adata.message});
+            Customization.getSponzorsByOrganizer($scope.event.organizer).success(function(adata){
+                $scope.sponzors.list=adata.Sponzors;
+            });
+        });       
+    }
 }
 
 })();

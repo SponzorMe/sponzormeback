@@ -35,6 +35,16 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
             templateUrl: 'settings.html',
             controller: 'settingsController'
         })
+        .state('sponzoring', {
+            url: '/sponzoring',
+            templateUrl: 'sponzoring.html',
+            controller: 'settingsController'
+        })
+        .state('following', {
+            url: '/following',
+            templateUrl: 'following.html',
+            controller: 'settingsController'
+        })
 }]);
 
 /**

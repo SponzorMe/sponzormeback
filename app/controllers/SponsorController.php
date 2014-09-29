@@ -48,7 +48,6 @@ class SponsorController extends BaseController {
 		// Set up Auth Filters
 		$this->beforeFilter('auth', array('only' => array('change')));
 		$this->beforeFilter('inGroup:Sponsors', array('only' => array('show', 'index', 'destroy', 'suspend', 'unsuspend', 'ban', 'unban', 'edit', 'update')));
-		//array('except' => array('create', 'store', 'activate', 'resend', 'forgot', 'reset')));
 	}
 
 
@@ -71,7 +70,7 @@ class SponsorController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('sponsors.create');
+       return View::make('sponsors.create');
 	}
 
 	/**
@@ -91,6 +90,10 @@ class SponsorController extends BaseController {
             	'userId' => $result['mailData']['userId'], 
                 'activationCode' => $result['mailData']['activationCode']
             ));
+            /*$user_group=array(
+                "user_id" => $result['mailData']['userId'],
+                "group_id" => 46);
+            UserGroup::create($user_group);*/
             Session::put('userId', $result['mailData']['userId'] );
             Session::put('email', $result['mailData']['email'] );
             // Success!
@@ -480,6 +483,10 @@ class SponsorController extends BaseController {
             return Redirect::to('users');
         }
 	}
+    public function dashboard()
+    {
+        return View::make('sponsors.dashboard');
+    }
 
 
 }

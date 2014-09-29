@@ -42,6 +42,7 @@ Route::get('users/{id}/ban', 'UserController@ban')->where('id', '[0-9]+');
 Route::get('users/{id}/unban', 'UserController@unban')->where('id', '[0-9]+');
 Route::get('users/dashboard', 'UserController@dashboard');
 Route::resource('users', 'UserController');
+Route::get('sponsors/dashboard', 'SponsorController@dashboard');
 Route::resource('sponsors', 'SponsorController');
 
 // Group Routes

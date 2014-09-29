@@ -21,6 +21,10 @@ return array(
 
 	'seesponzors'					=> 'See Sponzors',
 
+	'sponzoring'					=> 'Sponzoring',
+
+	'following'						=> 'Following',
+
 	'logout'						=> 'Logout',
 
 	'about'							=> 'About',
@@ -132,4 +136,6 @@ return array(
 	'editaccountlocation'			=>	'Location',
 
 	'editaccountdescription'		=>	'Description',
+
+	'editaccount'					=>	'Edit Account'
 );

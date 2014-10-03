@@ -453,3 +453,25 @@ ul.sidebar .sidebar-list .menu-icon {
     transition: margin-left 0.4s ease 0s;
   }
 }
+.evento
+{
+  border: 1px solid black;
+  text-align: justify;
+  padding: 1em 1em 1em 1em;
+  background: #008BB9;
+  margin-top: 1em;
+  color: white;
+}
+.evento a
+{
+  color: white;
+}
+.organizer-image
+{
+  background: white;
+  width:100px;
+}
+.info-event
+{
+  text-align: center;
+}

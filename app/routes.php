@@ -100,9 +100,15 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::post('create/event', 'ApiController@createEvent'); //Create an Event
 
+	Route::post('sponzor/event', 'ApiController@sponzorAnEvent'); //Functionality to set a peak
+
 	Route::get('remove/event/{idEvent}', 'ApiController@removeEvent'); //Create an Event
 
 	Route::get('sponzors/by/{idOrganizer}', 'ApiController@getSponzorsByOrganizer'); //Get all sponzors By Event
+
+	Route::get('events/by/sponzor/{idSponzor}/{status}', 'ApiController@getEventsBySponzor'); //Get all events By Sponzors
+
+	Route::get('events/parameter/{text}', 'ApiController@getEventsByparameter'); //Get all Events By Text
 
 	Route::get('update/relsponzorpeak/{idRelSponzor}/{newState}', 'ApiController@updateRelSponzorPeak');
 

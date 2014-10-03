@@ -137,5 +137,14 @@ return array(
 
 	'editaccountdescription'		=>	'Description',
 
-	'editaccount'					=>	'Edit Account'
+	'editaccount'					=>	'Edit Account',
+
+	'by'							=>	'By',
+
+	'close'							=>	'Close',
+
+	'youfollowing'					=>	'Your Followed Events',
+
+	'yousponzoring'					=>	'Your Sponsored Events',
+
 );

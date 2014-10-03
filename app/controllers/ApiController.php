@@ -311,6 +311,19 @@ class ApiController extends BaseController {
 		$events = Events::where("organizer",'=',$organizer)->get();
 		return Response::json(array("success" => true,"status"=>"Authenticated","Events"=>$events->toArray()));
 	}
+	public function getEventsByparameter($text)
+	{
+		$events=DB::table('events')        
+            ->join('users', 'users.id', '=', 'events.organizer')
+            ->select(
+            	'events.*', 
+            	'users.*',
+            	'events.id as event'
+            	)
+            ->where("title",'like',"%$text%")
+            ->orWhere("location",'like',"%$text%")->get();
+		return Response::json(array("success" => true,"status"=>$text,"Events"=>$events));
+	}
 	public function getPeaks($idEvent)
 	{
 		$peaks = Peaks::where("id_event",'=',$idEvent)->get();
@@ -415,5 +428,42 @@ class ApiController extends BaseController {
 				'evento_id'	=> $idEvent
 				));
 		}			
+	}
+	public function sponzorAnEvent()
+	{
+		$peakid=Input::get('peak');
+		$userid=Input::get('user');
+		$peak=Peaks::find($peakid);
+		$peak->id_event; //aca tengo el evento
+		$rel=RelSponzorsEvents::create(array(
+				"idsponzor"	=>$userid,
+				"idevent"	=>$peak->id,
+				"rel_peak"	=>$peakid,
+				"state"		=>0
+			));
+		return Response::json(array('success' => true,'error'=>false,'message'=>"User Updated Succesfuly","data"=>$rel));
+	}
+	public function getEventsBySponzor($sponzor,$status)
+	{
+		$sponzors=DB::table('events')
+			->join('rel_peaks', 'events.id', '=', 'rel_peaks.id_event')
+            ->join('rel_sponzors_events', 'rel_peaks.id', '=', 'rel_sponzors_events.rel_peak')            
+            ->join('users', 'users.id', '=', 'events.organizer')
+            ->select(
+            	'events.title as event', 
+            	'users.name as name', 
+            	'users.email as email',
+            	'users.city as city',
+            	'users.state as state',
+            	'users.country as country',
+            	'users.state as state',
+            	'rel_peaks.kind as kind',
+            	'rel_sponzors_events.state as eventstate',
+            	'rel_sponzors_events.id as idRelSponzoring'
+            	)
+            ->where("rel_sponzors_events.idsponzor","=",$sponzor)
+            ->where("rel_sponzors_events.state","=",$status)
+            ->get();
+        return Response::json(array("success" => true,"status"=>"Authenticated","Sponzors"=>$sponzors));
 	}
 }

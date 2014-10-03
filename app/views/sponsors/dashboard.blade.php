@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="{{ asset('dashboard/lib/bootstrap/css/bootstrap.css')}}"/>
   <link rel="stylesheet" href="{{ asset('dashboard/lib/font-awesome/css/font-awesome.css')}}"/>
   <link rel="stylesheet" href="{{ asset('dashboard/css/dashboard/dashboard.css')}}"/>
+  <link rel="stylesheet" href="{{ asset('css/ngDialog.min.css')}}"/>
+  <link rel="stylesheet" href="{{ asset('css/ngDialog-theme-default.min.css')}}"/>
   <!-- SCRIPTS -->
   <script src="{{ asset('js/jquery-2.0.2.min.js')}}"></script>
   <script src="{{ asset('dashboard/lib/angular/angular.js')}}"></script>
@@ -15,6 +17,7 @@
   <script src="{{ asset('dashboard/lib/angular-bootstrap/ui-bootstrap.js')}}"></script>
   <script src="{{ asset('dashboard/lib/angular-bootstrap/ui-bootstrap-tpls.js')}}"></script>
   <script src="{{ asset('dashboard/lib/angular-ui-router/angular-ui-router.js')}}"></script>  
+  <script src="{{ asset('js/ngDialog.min.js')}}"></script>
   <script src="{{ asset('dashboard/js/dashboard.js')}}"></script>
   <script src="{{ asset('js/scripts.js') }}"></script> <!-- load our custom scripts -->
   <script src="{{ asset('js/services/customizationService.js') }}"></script><!-- load our service -->
@@ -143,20 +146,24 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-10 col-lg-offset-1 ">
+      <div class="col-lg-10 col-lg-offset-1 " data-ng-controller="searchController">
         <div class="widget">
           <div class="widget-header">
             <i class="fa fa-search"></i>
-            <input type="text" data-ng-model="search" />
+            <input type="text" value="" id="search" data-ng-model="search1" />
+            <button data-ng-click="searchEvents()" class="btn btn-info">Search</button>
           </div>
-          <div class="widget-body medium no-padding" data-ng-controller="searchController">
-            <div data-ng-repeat="search in s" class="col-lg-5 col-lg-offset-1">
-              <div class=""><% e.title %></div>
-              <div class=""><% e.location %></div>
-              <div class=""><% e.organizer %></div>   
-              <div class="">
-                <span class="text-success"><a href="#" data-ng-click="event.current = e.id"><i class="fa fa-check">
-                  </i>Sponzor</a></span>
+          <div class="widget-body large no-padding" >
+            <div data-ng-repeat="s in search.list" class="col-lg-5 col-lg-offset-1 evento">
+              <div class="pull-left"><img class="organizer-image img-circle" src="{{asset('images/users/user.png')}}" alt="User"></div>
+              <div class="info-event">
+                <div class=""><h1><% s.title %></h1></div>
+                <div class=""><% s.location %></div>
+                <div class=""><% s.email %></div>   
+                <div class="">
+                <span class="text-success"><a href="#" data-ng-click="openDialog($index)"><i class="fa fa-check">
+                  </i>Sponzor</a></span>                  
+                </div>
               </div>        
             </div>
           </div>
@@ -166,11 +173,87 @@
   </script>
   <!--Template asociado a los eventos-->
   <script type="text/ng-template" id="following.html">    
-      following -- sisas1
+      <input type="hidden" ng-model="sponzors.current" ng-init="sponzors.current = {{ Session::get('userId') }}" /> 
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1">      
+        <div class="widget">
+          <div class="widget-header">
+            <i class="fa fa-tasks"></i> {{trans('dashboard.youfollowing')}}
+          </div>
+          <div class="widget-body medium no-padding">
+            <div class="table-responsive">
+              <table class="table table-striped" data-ng-controller="followingController">
+                <thead>
+                  <tr>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">E-mail</th>
+                    <th class="text-center">Location</th>
+                    <th class="text-center">Event title</th>
+                    <th class="text-center">Sponzoring type</th>
+                    <th class="text-center">State</th>
+                    <th class="text-center">Options</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-ng-repeat="s in sponzors.list" >
+                    <td class="text-center"><%s.name%></td>
+                    <td class="text-center"><%s.email%></td>
+                    <td class="text-center"><%s.city%>, <% s.state %>, <% s.country %></td>
+                    <td class="text-center"><%s.event%></td>
+                    <td class="text-center"><%s.kind%></td>
+                    <td class="text-center"><%s.eventstate%></td>
+                    <td class="text-center">
+                      <a href="" ng-click="removeRelSponzorPeak(s.idRelSponzoring)"><i class="fa fa-trash-o"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
   </script>
   <!--Template asociado a los sponzors-->
   <script type="text/ng-template" id="sponzoring.html">
-      sponzoring -- sisas
+      <input type="hidden" ng-model="sponzors.current" ng-init="sponzors.current = {{ Session::get('userId') }}" /> 
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1">      
+        <div class="widget">
+          <div class="widget-header">
+            <i class="fa fa-tasks"></i> {{trans('dashboard.yousponzring')}}
+          </div>
+          <div class="widget-body medium no-padding">
+            <div class="table-responsive">
+              <table class="table table-striped" data-ng-controller="sponzoringController">
+                <thead>
+                  <tr>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">E-mail</th>
+                    <th class="text-center">Location</th>
+                    <th class="text-center">Event title</th>
+                    <th class="text-center">Sponzoring type</th>
+                    <th class="text-center">State</th>
+                    <th class="text-center">Options</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-ng-repeat="s in sponzors.list" >
+                    <td class="text-center"><%s.name%></td>
+                    <td class="text-center"><%s.email%></td>
+                    <td class="text-center"><%s.city%>, <% s.state %>, <% s.country %></td>
+                    <td class="text-center"><%s.event%></td>
+                    <td class="text-center"><%s.kind%></td>
+                    <td class="text-center"><%s.eventstate%></td>
+                    <td class="text-center">
+                      <a href="" ng-click="removeRelSponzorPeak(s.idRelSponzoring)"><i class="fa fa-trash-o"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
   </script>
   <!--Template asociado a los settings-->
   <script type="text/ng-template" id="settings.html">
@@ -277,6 +360,36 @@
         </div>
       </div>      
   </script>
+  <script type="text/ng-template" id="peaksDialog.html">
+    <div class="text-center">
+    <h3><% search.current.title %></h3>
+    <h4>{{trans('dashboard.by')}}: <span ng-if="search.current.name == null || search.current.name == ''" %><%search.current.email%></span>
+      <span ng-if="search.current.name != null"><%search.current.name%></span>
+    </h4>
+      <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th class="text-center">Kind</th>
+                    <th class="text-center">Quantity</th>
+                    <th class="text-center">$USD</th>
+                    <th class="text-center">Sponzor?</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-ng-repeat="p in peaks">
+                    <td class="text-center"><% p.kind %></td>
+                    <td class="text-center"><% p.quantity %></td>
+                    <td class="text-center"><% p.usd %></td>
+                    <td class="text-center"><button class="btn btn-primary" type="button" ng-click="sponzor(p.id,{{ Session::get('userId') }} )">Yes!</button>
+                  </td>
+                  </tr>
+                </tbody>
+              </table>
+      </div>
+    <div class="ngdialog-buttons text-center">
+      <button class="btn btn-danger" ng-click="closeThisDialog()"><i class="fa fa-times"></i> {{trans('dashboard.close')}}</button>
+    </div>
+</script>
 </body>
 </html>
 @else

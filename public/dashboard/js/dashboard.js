@@ -1,5 +1,5 @@
 (function(){
-angular.module('Dashboard', ['ui.bootstrap', 'ui.router', 'ngCookies', 'customizationService'], 
+angular.module('Dashboard', ['ui.bootstrap', 'ui.router', 'ngCookies','ngDialog', 'customizationService'], 
     function($interpolateProvider){
         $interpolateProvider.startSymbol('<%');
         $interpolateProvider.endSymbol('%>');
@@ -37,13 +37,11 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
         })
         .state('sponzoring', {
             url: '/sponzoring',
-            templateUrl: 'sponzoring.html',
-            controller: 'settingsController'
+            templateUrl: 'sponzoring.html'
         })
         .state('following', {
             url: '/following',
-            templateUrl: 'following.html',
-            controller: 'settingsController'
+            templateUrl: 'following.html'
         })
 }]);
 
@@ -54,13 +52,15 @@ angular.module('Dashboard').controller('MasterCtrl', ['$scope', '$cookieStore', 
 
 function MasterCtrl($scope, $cookieStore, Customization) {
     var mobileView = 992;
-    $scope.event  = {"current": false, "organizer": "1234" };
-    $scope.eventos  = {"list": false };
-    $scope.sponzors  = {"list": false };
-    $scope.categorias  = {"list": false };
-    $scope.alerts = [];
-    $scope.sponzors = [];
-    $scope.account = {};
+    $scope.event        = {"current": false, "organizer": "1234", "sponzor":"12334" };
+    $scope.eventos      = {"list": false };
+    $scope.search       = {"list": false,"current":false };
+    $scope.sponzors     = {"list": false, "current":false };
+    $scope.categorias   = {"list": false };
+    $scope.a            = false;
+    $scope.alerts       = [];
+    $scope.sponzors     = [];
+    $scope.account      = {};
 
     $scope.getWidth = function() { return window.innerWidth; };
 
@@ -134,7 +134,7 @@ function rdLoading () {
  * Events Controller 
  */
  
- angular.module('Dashboard').controller('eventsController', ['$scope', '$cookieStore', 'Customization',eventsController]);
+ angular.module('Dashboard').controller('eventsController', ['$scope', '$cookieStore', 'Customization','ngDialog',eventsController]);
 function eventsController($scope,$Cookie,Customization)
 {
     Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
@@ -303,14 +303,105 @@ function settingsController($scope,$Cookie,Customization)
             "company":$scope.account.company,
             "userId":$scope.event.organizer
         };
-        console.log(a);
         Customization.editAccount(a).success(function(adata){
-            console.log(adata);
             $scope.alerts.push({msg: adata.message});
             $scope.viewUserInfo();
         });
     }
     $scope.viewUserInfo();
+}
+
+angular.module('Dashboard').controller('searchController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',searchController]);
+function searchController($scope,$Cookie,$location,Customization,ngDialog)
+{
+    
+     $scope.openDialog = function(id)
+    {
+        $scope.search.current=$scope.search.list[id];
+        ngDialog.open({ template: 'peaksDialog.html', controller: 'searchController', scope: $scope });       
+        Customization.getPeaks($scope.search.list[id].event).success(function(adata) 
+        {
+            $scope.peaks=adata.Peaks;   
+            console.log($scope.search.current);  
+        });
+    }
+     $scope.sponzor = function(idpeak,user)
+    {
+        ngDialog.close();
+        Customization.setSponzorPeak({"peak":idpeak,"user":user})
+        .success(function(adata) 
+        {
+            console.log(adata); 
+            $location.path("/following");
+
+        });
+    }
+    $scope.searchEvents = function()
+    {
+        if($scope.search1!="")
+        {
+            Customization.searchEvents($scope.search1)
+            .success(function(adata)
+            {
+                console.log(adata);
+                $scope.search.list = adata.Events;
+            })
+            .error(function(data) 
+            {
+                console.log(data);
+            });
+        }
+        else
+        {
+            $("#search").addClass("has-error");
+        }
+    }
+}
+
+angular.module('Dashboard').controller('followingController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',followingController]);
+function followingController($scope,$Cookie,$location,Customization,ngDialog)
+{
+    $scope.sponzors.list=[];
+    Customization.getEventsBySponzors($scope.sponzors.current,0).success(function(data) 
+    {
+       $scope.sponzors.list=data.Sponzors;
+    }).
+    error(function(data) 
+    {
+        console.log(data);
+    });
+    $scope.removeRelSponzorPeak = function(id){
+        Customization.removeRelSponzorPeak(id).success(function(adata){
+            console.log(adata);   
+            $scope.alerts.push({msg: adata.message});
+            Customization.getEventsBySponzors($scope.sponzors.current).success(function(adata){
+                $scope.sponzors.list=adata.Sponzors;
+            });
+        });       
+    }
+}
+
+angular.module('Dashboard').controller('sponzoringController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',sponzoringController]);
+function sponzoringController($scope,$Cookie,$location,Customization,ngDialog)
+{
+    $scope.sponzors.list=[];
+    Customization.getEventsBySponzors($scope.sponzors.current,1).success(function(data) 
+    {
+       $scope.sponzors.list=data.Sponzors;
+    }).
+    error(function(data) 
+    {
+        console.log(data);
+    });
+    $scope.removeRelSponzorPeak = function(id){
+        Customization.removeRelSponzorPeak(id).success(function(adata){
+            console.log(adata);   
+            $scope.alerts.push({msg: adata.message});
+            Customization.getEventsBySponzors($scope.sponzors.current).success(function(adata){
+                $scope.sponzors.list=adata.Sponzors;
+            });
+        });       
+    }
 }
 
 })();

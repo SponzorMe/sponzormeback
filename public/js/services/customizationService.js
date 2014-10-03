@@ -44,6 +44,14 @@ angular.module('customizationService', [])
 				global = $http.get('http://localhost/sponzorme/public/api/v1/events/by/'+organizer);
 				return global;
 			},
+			getEventsBySponzors : function(sponzor,status) {
+				global = $http.get('http://localhost/sponzorme/public/api/v1/events/by/sponzor/'+sponzor+"/"+status);
+				return global;
+			},
+			searchEvents : function(text) {
+				global = $http.get('http://localhost/sponzorme/public/api/v1/events/parameter/'+text);
+				return global;
+			},
 			getSponzors : function() {
 				global = $http.get('http://localhost/sponzorme/public/api/v1/sponzors');
 				return global;
@@ -58,6 +66,14 @@ angular.module('customizationService', [])
 					url: 'http://localhost/sponzorme/public/api/v1/create/event',
 					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 					data: $.param(eventData)
+				});
+			},
+			setSponzorPeak : function(data) {
+				return $http({
+					method: 'POST',
+					url: 'http://localhost/sponzorme/public/api/v1/sponzor/event',
+					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+					data: $.param(data)
 				});
 			},
 			removeEvent : function(idEvent){

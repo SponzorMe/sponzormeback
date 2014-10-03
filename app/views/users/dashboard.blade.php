@@ -5,13 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Dashboard</title>
-  <!-- CSS -->
+ <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('dashboard/lib/bootstrap/css/bootstrap.css')}}"/>
-
   <link rel="stylesheet" href="{{ asset('dashboard/lib/font-awesome/css/font-awesome.css')}}"/>
-
   <link rel="stylesheet" href="{{ asset('dashboard/css/dashboard/dashboard.css')}}"/>
-
+  <link rel="stylesheet" href="{{ asset('css/ngDialog.min.css')}}"/>
+  <link rel="stylesheet" href="{{ asset('css/ngDialog-theme-default.min.css')}}"/>
   <!-- SCRIPTS -->
   <script src="{{ asset('js/jquery-2.0.2.min.js')}}"></script>
   <script src="{{ asset('dashboard/lib/angular/angular.js')}}"></script>
@@ -19,11 +18,10 @@
   <script src="{{ asset('dashboard/lib/angular-bootstrap/ui-bootstrap.js')}}"></script>
   <script src="{{ asset('dashboard/lib/angular-bootstrap/ui-bootstrap-tpls.js')}}"></script>
   <script src="{{ asset('dashboard/lib/angular-ui-router/angular-ui-router.js')}}"></script>  
+  <script src="{{ asset('js/ngDialog.min.js')}}"></script>
   <script src="{{ asset('dashboard/js/dashboard.js')}}"></script>
   <script src="{{ asset('js/scripts.js') }}"></script> <!-- load our custom scripts -->
   <script src="{{ asset('js/services/customizationService.js') }}"></script><!-- load our service -->
-  
-
 </head>
 @if (Sentry::check())
 <body ng-controller="MasterCtrl">

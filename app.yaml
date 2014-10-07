@@ -6,16 +6,21 @@ api_version: 1
 handlers:
 
 - url: /favicon\.ico
-  static_files: public/favicon.ico
-  upload: public/favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
 
-- url: /assets/(.*\.(htm$|html$|css$|js$|png$))
-  static_files: public/assets/\1
-  upload: public/assets/(.*\.(htm$|html$|css$|js$|png$))
+- url: /
+  script: /index.html
+
+- url: /assets/(.*\.(ico|jpg|png|gif))$
+  static_files: assets/\1
+  upload: assets/.*\.(ico|jpg|png|gif)$
   application_readable: true
 
-- url: /.*
-  script: public/index.php
+- url: /assets/(.*\.(htm|html|css|js))$
+  static_files: assets/\1
+  upload: assets/.*\.(htm|html|css|js)$
+  application_readable: true
 
 skip_files:
 - ^(.*/)?#.*#$

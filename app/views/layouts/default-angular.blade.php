@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
        <link rel="stylesheet" href="{{ asset('css/default.css') }}">
        <link rel="stylesheet" href="{{ asset('css/style3.css') }}">
+       <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> <!-- fuente roboto -->
 
 		<!-- Optional theme -->
 		<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"> -->
@@ -56,10 +57,6 @@
 	        </div>
 	        <div class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
-	          <a class="" href="{{ URL::to('language/es') }}"><img height="16px" src="{{asset('images/spanish.png')}}"></a>
-	          <a class="" href="{{ URL::to('language/en') }}"><img height="16px" src="{{asset('images/english.png')}}"></a>
-	          <li {{ (Request::is('testimonials') ? 'class="active"' : '') }}><a href="{{ URL::to('testimonials') }}">{{trans('pages.testimonials')}}</a></li>
-	          <li {{ (Request::is('blog') ? 'class="active"' : '') }}><a href="{{ URL::to(trans('pages.blogUrl')) }}">{{trans('pages.blog')}}</a></li>
 				@if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
 					<li {{ (Request::is('users*') ? 'class="active"' : '') }}><a href="{{ URL::to('/users') }}">{{trans('pages.users')}}</a></li>
 					<li {{ (Request::is('groups*') ? 'class="active"' : '') }}><a href="{{ URL::to('/groups') }}">{{trans('pages.groups')}}</a></li>
@@ -100,6 +97,24 @@
 			<!-- ./ content -->
             
 		</div>
+
+		<div class="footer">
+	      <div class="row">
+	      <div class="col-md-4">&nbsp;&nbsp;&nbsp;
+	          <img height="12px" src="{{asset('images/footer_logo.png')}}">&nbsp;&nbsp;
+	          <a class="" href="{{ URL::to('language/es') }}"><img height="16px" src="{{asset('images/spanish.png')}}"></a>&nbsp;
+	          <a class="" href="{{ URL::to('language/en') }}"><img height="16px" src="{{asset('images/english.png')}}"></a>
+	      </div>
+	      <div class="col-md-4">
+	          <a href="{{ URL::to('testimonials') }}">{{trans('pages.testimonials')}}</a>&nbsp;|&nbsp
+	          <a href="{{ URL::to(trans('pages.supportUrl')) }}" target="_blank">{{trans('pages.support')}}</a>&nbsp;|&nbsp
+	          <a href="{{ URL::to(trans('pages.blogUrl')) }}" target="_blank">{{trans('pages.blog')}}</a> &nbsp|&nbsp{{trans('pages.team')}}&nbsp;|&nbsp{{trans('pages.privacy')}}
+	      </div>
+	      <div class="col-md-4" align="right">
+	          Made with Love ❤&nbsp;&nbsp;&nbsp;
+	      </div>   
+	      </div>
+	    </div>
 
 		<!-- ./ container -->
 

@@ -122,5 +122,15 @@ return array(
 
 	'almostdone'	=> "Ya casi está!",
 
+	'team'	=> "Equipo",
+
+	'support'	=> "Soporte",
+
+	'supportUrl'	=> "http://support.sponzor.me/",
+
+	'terms'	=> "Terminos del Servicio",
+
+	'privacy'	=> "Privacidad"
+
 
 );

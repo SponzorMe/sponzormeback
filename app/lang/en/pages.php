@@ -123,4 +123,15 @@ return array(
 	'almostdone'	=> "Almost Done!",
 
 	'dashboard'	=> "Dashboard",
+
+	'team'	=> "Team",
+
+	'support'	=> "Support",
+
+	'supportUrl'	=> "http://support.sponzor.me/",
+
+	'terms'	=> "Terms of Service",
+
+	'privacy'	=> "Privacy"
+
 );

@@ -27,7 +27,7 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.gmail.com',
+	'host' => 'smtp.mandrillapp.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -53,7 +53,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'newUser@sponzorme.com', 'name' => 'Carlos Rojas'),
+	'from' => array('address' => 'noreply@sponzor.me', 'name' => 'Carlos Rojas'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -79,7 +79,7 @@ return array(
 	|
 	*/
 
-	'username' => 'seagomezar@gmail.com',
+	'username' => 'carlos@sponzor.me',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -92,6 +92,6 @@ return array(
 	|
 	*/
 
-	'password' => '5965155_sebas',
+	'password' => 'Xdo6dsGWJJcI6Rqzo8B37g',
 
 );

@@ -80,7 +80,7 @@
             <div class="user pull-right">
               <div class="item dropdown">
                 <a href="#" class="dropdown-toggle">
-                  <img src="{{ asset('images/users/user.png')}}">
+                  <img src="{{ asset('images/photo.png')}}">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li class="dropdown-header">

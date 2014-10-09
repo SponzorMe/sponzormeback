@@ -1,0 +1,91 @@
+.step1
+{
+	background: #fff;
+	color: black;
+	border-radius: 10px;
+	border: 1px solid black;
+	padding: 16px 16px 16px 16px;
+	text-align: center;
+}
+.step1 .form-inline
+{
+	margin: 0.5em 0.5em 0.5em 0.5em;
+}
+.step1 button
+{
+	margin: 2em 0.5em 0.5em 0.5em;
+}
+.category
+{
+	background: #222;
+	color: #DDD;
+	border: 1px solid #DDD;
+	overflow: hidden;
+	font-size: 16px;
+	padding: 1em 1em 1em 1em;
+}
+.category:hover
+{
+	background: #444;
+}
+.category a
+{
+	color: #DDD;
+	text-decoration: none;
+}
+.category a:hover
+{
+	color: #FFF;
+	text-decoration: none;
+}
+.interest
+{
+	background: #DDD;
+	color: #222;
+	border: 1px solid #222;
+	overflow: hidden;
+	font-size: 12px;
+	height: 5em;
+}
+.interest:hover
+{
+	background: #FFF;
+}
+.interest a
+{
+	color: #222;
+	text-decoration: none;
+}
+.interest a:hover
+{
+	color: #FFF;
+	text-decoration: none;
+}
+.interest label
+{
+	margin: 0;
+	width: 100%;
+	padding: 1em 1em 1em 1em;
+	height: 100%;
+}
+.testimonials .content {
+border-radius: 4px;
+background: #f8faff;
+padding: 1em 1em 1em 1em;
+height: 400px;
+}
+.testimonials .image
+{
+	background: url(../images/testimonials.png) repeat top left;
+	width: 400px;
+	height: 300px;
+	margin: 0 auto;
+}
+.testimonials .twitter
+{
+	color: #66CCCC;
+}
+.testimonials .title
+{
+	color: #000;
+}

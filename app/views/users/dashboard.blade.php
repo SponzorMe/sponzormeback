@@ -294,90 +294,87 @@
           <div class="widget-header">
             <i class="fa fa-plus"></i>{{trans('dashboard.addevent')}}
             <div class="clearfix"></div>
-          </div><h4>{{trans('dashboard.eventdetails')}}</h4>      
+          </div>
+          <h4 class="h4formdash">{{trans('dashboard.eventdetails')}}</h4>      
           <hr />
           <form class="form-horizontal" role="form">
           <!--form field-->
             <div class="form-group" id="title">
-              <label for="label" class="col-sm-2 control-label">
+              <label for="label" class="col-sm-4 control-label">
                 {{trans('dashboard.neweventtitle')}}
               </label>
-              <div class="col-sm-5">
-                <input  type="text" data-ng-model="newevent.title" name="title" class="form-control" />
-              </div>
-              <div class="col-sm-5">
-                <div class="input-mask">{{trans('dashboard.neweventtitledescription')}}</div>
-              </div>
+              <div class="col-sm-7">
+                <input  type="text" data-ng-model="newevent.title" placeholder="{{trans('dashboard.neweventtitledescription')}}" name="title" class="form-control" />
+              </div><br/><br/>
             </div>
            <!--form field-->
             <div class="form-group" id="location">
-              <label for="label" class="col-sm-2 control-label">
+              <label for="label" class="col-sm-4 control-label">
                 {{trans('dashboard.neweventlocation')}}
               </label>
-              <div class="col-sm-5">
-                <input  type="text" data-ng-model="newevent.location" name="location" class="form-control" />
-              </div>
-              <div class="col-sm-5">
-                <div class="input-mask">{{trans('dashboard.neweventlocationdescription')}}</div>
+              <div class="col-sm-7">
+                <input  type="text" data-ng-model="newevent.location" placeholder="{{trans('dashboard.neweventlocationdescription')}}" name="location" class="form-control" />
               </div>
             </div>
             <!--form field-->
             <div class="form-group" id="description">
-              <label for="label" class="col-sm-2 control-label">
+              <label for="label" class="col-sm-4 control-label">
                 {{trans('dashboard.neweventdescription')}}
               </label>
               <div class="col-sm-7">
-                <textarea rows="5" data-ng-model="newevent.description" name="description" class="form-control"></textarea>
-              </div>
-              <div class="col-sm-3">
-                <div class="input-mask">{{trans('dashboard.neweventdescriptiondescription')}}</div>
+                <textarea rows="5" data-ng-model="newevent.description" placeholder="{{trans('dashboard.neweventdescriptiondescription')}}" name="description" class="form-control"></textarea>
               </div>
             </div>
             <!--form field-->
-            <div class="form-group col-sm-6" id="starts">
+            <div class="form-group" id="starts">
               <label for="label" class="col-sm-4 control-label">
                 {{trans('dashboard.neweventstarts')}}
               </label>
-              <div class="col-sm-8">
+              <div class="col-sm-7">
                 <input  type="date" data-ng-model="newevent.starts" name="starts" class="form-control" />
               </div>
             </div>
-            <div class="form-group col-sm-6 " id="ends">
+            <div class="form-group" id="ends">
               <label for="label" class="col-sm-4 control-label">
                 {{trans('dashboard.neweventends')}}
               </label>
-              <div class="col-sm-8">
+              <div class="col-sm-7">
                 <input  type="date" data-ng-model="newevent.ends" name="ends" class="form-control" />
                 <input type="hidden" data-ng-model="newevent.organizer" name="organizer" ng-init="newevent.organizer = {{ Session::get('userId') }}"/>
               </div>
             </div>
             <div class="clearfix"></div>
-            <h4>{{trans('dashboard.eventaditionalseetings')}}</h4>  
+            <hr/>
+            <h4 class="h4formdash">{{trans('dashboard.eventaditionalseetings')}}</h4>  
             <hr/>
             <!--form field-->
             <div class="form-group" id="public">
-              <label for="label" class="col-sm-2 control-label">
-                {{trans('dashboard.neweventprivacy')}}
-              </label>
-              <div class="col-sm-10">
-                  <input id="privacy0"  type="radio" data-ng-model="newevent.privacy" name="privacy" value="0" />   
-                  <label for="privacy0" class="control-label">
+              <div class="col-sm-11">
+                <h5 class="h4formdash">{{trans('dashboard.neweventprivacy')}}</h5>
+              </div>
+              <div class="col-sm-4 control-label">
+                  <input id="privacy0"  type="radio" data-ng-model="newevent.privacy" name="privacy" value="0" /> 
+              </div>  
+                  <label for="privacy0" class="col-sm-7">
                     <strong>{{trans('dashboard.privacyoption0')}} :  </strong>                   
                  
-                  {{trans('dashboard.privacydescription0')}} </label> <br/>
+                  {{trans('dashboard.privacydescription0')}} </label>
+
+              <div class="col-sm-4 control-label">
                   <input id="privacy1" type="radio" data-ng-model="newevent.privacy" name="privacy" value="1" />   
-                  <label for="privacy1" class="control-label">
+              </div>
+
+                <label for="privacy1" class="col-sm-7">
                     <strong>{{trans('dashboard.privacyoption1')}} :  </strong>                   
                   
                   {{trans('dashboard.privacydescription1')}}</label>
-              </div>
             </div>
             <!--form field-->
             <div class="form-group" id="type">
-              <label for="label" class="col-sm-2 control-label">
+              <label for="label" class="col-sm-4 control-label">
                 {{trans('dashboard.neweventtype')}}
               </label>
-              <div class="col-sm-5">
+              <div class="col-sm-7">
                 <select ng-model="newevent.type" name="type" class="form-control">
                   <option value="">{{trans('dashboard.choosetype')}}</option>
                   <option data-ng-repeat="c in categorias.list" data-ng-value="c.id">
@@ -388,7 +385,7 @@
             </div>
             <hr/>
             <div class="clearfix"></div>
-            <h4>{{trans('dashboard.eventsponzors')}}</h4>  
+            <h4 class="h4formdash">{{trans('dashboard.eventsponzors')}}</h4>  
             <hr/>
             <!--form field-->            
             <div class="table-responsive">              
@@ -423,13 +420,15 @@
                 </tr>
               </table>
             </div>
-            <button class="btn btn-success" ng-click="addsponzor()"> + Add</button>
+            <div class="col-sm-4">
+            <button class="btn btn-block" ng-click="addsponzor()"> + Add</button>
+            </div>
             <div class="clearfix"></div>
             <hr/>
             <!--form field-->
             <div class="form-group">
-              <div class="col-sm-offset-5 col-sm-4 ">
-                <button data-ng-click="newEvent()" class="btn btn-info">{{trans('dashboard.submitbutton')}}</button>
+              <div class="col-sm-12">
+                <button data-ng-click="newEvent()" class="btn btn-block">{{trans('dashboard.submitbutton')}}</button>
               </div>
             </div>
           </form>

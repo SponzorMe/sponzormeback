@@ -111,6 +111,9 @@ color:#00adb9;
 	padding: 1em 1em 1em 1em;
 	height: 100%;
 }
+
+/* Testminonial Styles */
+
 .testimonials .content {
 border-radius: 4px;
 background: #f8faff;
@@ -132,3 +135,7 @@ height: 400px;
 {
 	color: #000;
 }
+
+
+/* Events Dashboard Styles */
+

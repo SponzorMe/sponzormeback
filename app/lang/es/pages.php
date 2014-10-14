@@ -130,7 +130,9 @@ return array(
 
 	'terms'	=> "Terminos del Servicio",
 
-	'privacy'	=> "Privacidad"
+	'privacy'	=> "Privacidad",
+
+	'dashboard'	=> "Dashboard",
 
 
 );

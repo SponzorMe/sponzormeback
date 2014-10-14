@@ -55,12 +55,12 @@
           <a href="{{ URL::to(trans('pages.blogUrl')) }}">{{trans('pages.blog')}}</a>
         </div>
         <div class="col-xs-4">
-          <a href="#" target="_blank">
+          <a href="{{ URL::to('testimonials') }}" target="_blank">
             {{trans('dashboard.about')}}
           </a>
         </div>
         <div class="col-xs-4">
-          <a target="_blank" href="{{trans('pages.support')}}">
+          <a target="_blank" href="{{ URL::to(trans('pages.supportUrl')) }}">
             {{trans('dashboard.support')}}
           </a>
         </div>
@@ -328,15 +328,15 @@
               </label>
               <div class="col-sm-3">
                 <label>{{trans('pages.country')}}</label> <br/> 
-                <select class="form-control" ng-model="account.country" name="country" id="country" required></select>
+                <select class="form-control" ng-model="account.country" name="country" id="country" ></select>
               </div>
               <div class="col-sm-3">
                 <label>{{trans('pages.state')}}</label><br/> 
-                <select class="form-control" ng-model="account.state" name="state" id="state" required></select>
+                <select class="form-control" ng-model="account.state" name="state" id="state" ></select>
               </div>
               <div class="col-sm-3">
                 <label>{{trans('pages.city')}}</label> <br/> 
-                <select class="form-control" ng-model="account.city" name="city" id="city" required></select>
+                <select class="form-control" ng-model="account.city" name="city" id="city" ></select>
               </div>
             </div>
             <!--form field-->

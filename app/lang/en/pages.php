@@ -118,7 +118,7 @@ return array(
 
 	'forbidden'	=> "Forbidden",
 
-	'aboutyou'	=> "Something about you!",
+	'aboutyou'	=> "Tell us about yourself...",
 
 	'almostdone'	=> "Almost Done!",
 

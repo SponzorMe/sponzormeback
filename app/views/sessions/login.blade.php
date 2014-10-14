@@ -7,29 +7,36 @@
 
 {{-- Content --}}
 @section('content')
-<div class="row">
-    <div class="col-md-4 col-md-offset-4">
-        {{ Form::open(array('action' => 'SessionController@store')) }}
-
-            <h2 class="form-signin-heading">{{trans('pages.login')}}</h2>
-
-            <div class="form-group {{ ($errors->has('email')) ? 'has-error' : '' }}">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            {{ Form::open(array('action' => 'SessionController@store')) }}
+            <div class="account-wall">
+                <img class="profile-img" src="{{asset('images/photo.png')}}?sz=120"
+                    alt="">
+                <form class="form-signin">
+                <div class="{{ ($errors->has('email')) ? 'has-error' : '' }}">
                 {{ Form::text('email', null, array('class' => 'form-control', 'placeholder' => 'Email', 'autofocus')) }}
                 {{ ($errors->has('email') ? $errors->first('email') : '') }}
-            </div>
-
-            <div class="form-group {{ ($errors->has('password')) ? 'has-error' : '' }}">
+                </div>
+                <div class="{{ ($errors->has('password')) ? 'has-error' : '' }}">
                 {{ Form::password('password', array('class' => 'form-control', 'placeholder' => 'Password'))}}
                 {{ ($errors->has('password') ?  $errors->first('password') : '') }}
+                </div>
+                {{ Form::submit(Lang::get('pages.login'), array('class' => 'btn btn-lg  btn-block'))}}
+                <div class="row">
+                <div class="col-xs-6">
+                <label class="checkbox">
+                <input type="checkbox" value="remember-me"/>Remember me   
+                </label>
+                </div>
+
+                
+            <div class="col-xs-6"><a class="btn btn-link" href="{{ route('forgotPasswordForm') }}">{{trans('loginform.forgot')}}</a></div>
             </div>
-            
-            <label class="checkbox">
-                {{ Form::checkbox('rememberMe', 'rememberMe') }}{{trans('loginform.rememberme')}}
-            </label>
-            {{ Form::submit(Lang::get('loginform.signin'), array('class' => 'btn btn-primary'))}}
-            <a class="btn btn-link" href="{{ route('forgotPasswordForm') }}">{{trans('loginform.forgot')}}</a>
         {{ Form::close() }}
+            </div>
+        </div>
     </div>
 </div>
-
 @stop

@@ -90,17 +90,15 @@ class SponsorController extends BaseController {
             	'userId' => $result['mailData']['userId'], 
                 'activationCode' => $result['mailData']['activationCode']
             ));
-            /*$user_group=array(
-                "user_id" => $result['mailData']['userId'],
-                "group_id" => 46);
-            UserGroup::create($user_group);*/
             Session::put('userId', $result['mailData']['userId'] );
             Session::put('email', $result['mailData']['email'] );
             // Success!
             Session::flash('success', $result['message']);
-            // Next Start customization
-            return Redirect::route('customization');
-
+            UsersGroups::create(array(
+                "user_id" =>$result['mailData']['userId'],
+                "group_id"=>6
+            ));//Asignamos el grupo del usuario.            
+            return Redirect::route('customization');// Next Start customization
         } else {
             Session::flash('error', $result['message']);
             return Redirect::action('UserController@create')

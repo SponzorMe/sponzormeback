@@ -80,8 +80,7 @@ class UserController extends BaseController {
 	 */
 	public function store()
 	{
-        $result = $this->registerForm->save( Input::all() );
-            
+        $result = $this->registerForm->save( Input::all() );            
         if( $result['success'] )
         {
             Event::fire('user.signup', array(
@@ -90,12 +89,13 @@ class UserController extends BaseController {
                 'activationCode' => $result['mailData']['activationCode']
             ));
             Session::put('userId', $result['mailData']['userId'] );
-            Session::put('email', $result['mailData']['email'] );
-            // Success!
-            Session::flash('success', $result['message']);
-            // Next Start customization
-            return Redirect::route('customization');
-
+            Session::put('email', $result['mailData']['email'] );            
+            Session::flash('success', $result['message']); // Success!
+            UsersGroups::create(array(
+                "user_id" =>$result['mailData']['userId'],
+                "group_id"=>5
+            ));//Asignamos el grupo del usuario.            
+            return Redirect::route('customization'); // Next Start customization            
         } else {
             Session::flash('error', $result['message']);
             return Redirect::action('UserController@create')

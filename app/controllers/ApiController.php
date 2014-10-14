@@ -466,4 +466,33 @@ class ApiController extends BaseController {
             ->get();
         return Response::json(array("success" => true,"status"=>"Authenticated","Sponzors"=>$sponzors));
 	}
+	public function groupSetUp()
+	{
+				$group = Sentry::findGroupById(1);   $group->delete();
+				$group = Sentry::findGroupById(2);   $group->delete();
+				$group = Sentry::findGroupById(3);   $group->delete();
+			$group = Sentry::createGroup(array(
+	        'name'        => 'Admins',
+	        'permissions' => array(
+	            'admin' => 1,
+	            'users' => 1,
+	            'sponzors' => 1,
+	        ),
+    		));
+			$group = Sentry::createGroup(array(
+	        'name'        => 'Users',
+	        'permissions' => array(
+	            'admin' => 0,
+	            'users' => 1,
+	        ),
+    		));
+    		$group = Sentry::createGroup(array(
+	        'name'        => 'Sponzors',
+	        'permissions' => array(
+	            'admin' => 0,
+	            'users' => 0,
+	            'sponzors' => 1,
+	        ),
+    		));
+	}
 }

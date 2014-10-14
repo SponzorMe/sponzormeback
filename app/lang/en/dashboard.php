@@ -147,4 +147,39 @@ return array(
 
 	'yousponzoring'					=>	'Your Sponsored Events',
 
+	'name'							=>	'Name',
+
+	'email'							=>	'E-mail',
+
+	'location'						=>	'Location',
+
+	'eventtitle'					=>	'Event Title',
+
+	'state'							=>	'State',
+
+	'options'						=>	'Options',
+
+	'yousponzring'					=>	'Events You are Sponzoring',
+
+	'title'							=>	'Title',
+
+	'title'							=>	'Starts',
+
+	'perks'							=>	'Perks',
+
+	'kind'							=>	'Kind',
+
+	'quantity'						=>	'Quantity',
+
+	'usd'							=>	'USD',
+
+	'navigation'					=>	'Navigation',
+
+	'home'							=>	'Home',
+
+	'notification'					=>	'Notification',
+
+	'notifications'					=>	'Notifications',
+
+	'starts'						=>	'Starts'
 );

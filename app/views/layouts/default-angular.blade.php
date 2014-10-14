@@ -71,7 +71,11 @@
 	          <ul class="nav navbar-nav navbar-right">
 	            @if (Sentry::check())
 				<li {{ (Request::is('users/show/' . Session::get('userId')) ? 'class="active"' : '') }}><a href="/users/{{ Session::get('userId') }}">{{ Session::get('email') }}</a></li>
-				<li><a href="{{ URL::to('users/dashboard') }}">{{trans('pages.dashboard')}}</a></li>
+					@if (Sentry::check() && Sentry::getUser()->hasAccess('users'))
+						<li><a href="{{ URL::to('users/dashboard') }}">{{trans('pages.dashboard')}}</a></li>
+					@elseif (Sentry::check() && Sentry::getUser()->hasAccess('sponsors'))
+						<li><a href="{{ URL::to('sponsors/dashboard') }}">{{trans('pages.dashboard')}}</a></li>
+					@endif
 				<li><a href="{{ URL::to('logout') }}">{{trans('pages.logout')}}</a></li>
 				@else
 				<li {{ (Request::is('login') ? 'class="active"' : '') }}><a href="{{ URL::to('login') }}">{{trans('pages.login')}}</a></li>

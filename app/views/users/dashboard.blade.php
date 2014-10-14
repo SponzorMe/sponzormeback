@@ -33,11 +33,11 @@
       <ul class="sidebar">
         <li class="sidebar-main">
           <a href="#" ng-click="toggleSidebar()">
-            Dashboard
+            {{trans('dashboard.dashboard')}}
             <span class="menu-icon glyphicon glyphicon-transfer"></span>
           </a>
         </li>
-        <li class="sidebar-title"><span>NAVIGATION</span></li>
+        <li class="sidebar-title"><span>{{trans('dashboard.navigation')}}</span></li>
         <li class="sidebar-list">
           <a href="#">{{trans('dashboard.dashboard')}}<span class="menu-icon fa fa-tachometer"></span></a>
         </li>
@@ -57,12 +57,12 @@
         </div>
         <div class="col-xs-4">
           <a href="#" target="_blank">
-            About
+            {{trans('dashboard.about')}}
           </a>
         </div>
         <div class="col-xs-4">
-          <a href="#">
-            Support
+          <a target="_blank" href="{{trans('pages.support')}}">
+            {{trans('dashboard.support')}}
           </a>
         </div>
       </div>
@@ -90,13 +90,13 @@
                   <li class="divider"></li>
                   <li class="link">
                     <a href="#">
-                      Account
+                      {{trans('dashboard.account')}}
                     </a>
                   </li>
                   <li class="divider"></li>
                   <li class="link">
                     <a href="{{ URL::to('logout') }}">
-                      Logout
+                      {{trans('dashboard.logout')}}
                     </a>
                   </li>
                 </ul>
@@ -107,21 +107,21 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li class="dropdown-header">
-                    Notifications
+                    {{trans('dashboard.notifications')}}
                   </li>
                   <li class="divider"></li>
                   <li>
-                    <a href="#">Server Down!</a>
+                    <a href="#">{{trans('dashboard.notification')}}</a>
                   </li>
                 </ul>
               </div>
             </div>
             <div class="meta">
               <div class="page">
-                Dashboard
+                {{trans('dashboard.dashboard')}}
               </div>
               <div class="breadcrumb-links">
-                Home / Dashboard
+                {{trans('dashboard.home')}} / {{trans('dashboard.dashboard')}}
               </div>
             </div>
           </div>
@@ -211,10 +211,10 @@
             <div class="table-responsive">
               <table class="table table-striped" data-ng-controller="eventsController">
               <thead>
-                <th>Title</th>
-                <th>Location</th>
-                <th>Starts</th>
-                <th>Peaks</th>
+                <th>{{trans('dashboard.title')}}</th>
+                <th>{{trans('dashboard.location')}}</th>
+                <th>{{trans('dashboard.starts')}}</th>
+                <th>{{trans('dashboard.perks')}}</th>
               </thead>
                 <tbody>
                   <tr data-ng-repeat="e in eventos.list" data-ng-class="{success : event.current === e.id}">
@@ -241,9 +241,9 @@
               <table class="table table-striped"  ng-controller="peaksController">
                 <thead>
                   <tr>
-                    <th class="text-center">Kind</th>
-                    <th class="text-center">Quantity</th>
-                    <th class="text-center">$USD</th>
+                    <th class="text-center">{{trans('dashboard.kind')}}</th>
+                    <th class="text-center">{{trans('dashboard.quantity')}}</th>
+                    <th class="text-center">${{trans('dashboard.usd')}}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -504,13 +504,13 @@
               <table class="table table-striped" data-ng-controller="sponzorsController">
                 <thead>
                   <tr>
-                    <th class="text-center">Name</th>
-                    <th class="text-center">E-mail</th>
-                    <th class="text-center">Location</th>
-                    <th class="text-center">Event title</th>
-                    <th class="text-center">Sponzoring type</th>
-                    <th class="text-center">State</th>
-                    <th class="text-center">Options</th>
+                    <th class="text-center">{{trans('dashboard.name')}}</th>
+                    <th class="text-center">{{trans('dashboard.email')}}</th>
+                    <th class="text-center">{{trans('dashboard.location')}}</th>
+                    <th class="text-center">{{trans('dashboard.eventtitle')}}</th>
+                    <th class="text-center">{{trans('dashboard.sponzoring')}} type</th>
+                    <th class="text-center">{{trans('dashboard.state')}}</th>
+                    <th class="text-center">{{trans('dashboard.options')}}</th>
                   </tr>
                 </thead>
                 <tbody>

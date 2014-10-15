@@ -7,7 +7,9 @@ return array(
 	| Language strings for views
 	|--------------------------------------------------------------------------
 	*/
-	'subject'						=> 'Welecome to SponzorMe',
+	'subject'						=> 'Welcome to SponzorMe',
+
+    'click'                        => 'Click Here',
 
 	'header'						=> '
    <p dir="ltr">

@@ -9,6 +9,9 @@ return array(
     */
     'subject'                       => 'Bienvenido a SponzorMe',
 
+    
+    'click'                        => 'Click Aquí',
+
     'header'                        => '
     <p dir="ltr">
         Hola,

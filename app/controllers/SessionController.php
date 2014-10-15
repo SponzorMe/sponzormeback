@@ -45,8 +45,12 @@ class SessionController extends BaseController {
             							'email' => $result['sessionData']['email']
             							));
 
-            // Success!
-            return Redirect::to('/');
+            
+            if (Sentry::check() && Sentry::getUser()->hasAccess('users'))
+            	return Redirect::to(('users/dashboard'));
+            elseif (Sentry::check() && Sentry::getUser()->hasAccess('sponsors'))
+            	return Redirect::to('sponsors/dashboard');
+            
 
         } else {
             Session::flash('error', $result['message']);

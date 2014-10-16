@@ -181,5 +181,21 @@ return array(
 
 	'notifications'					=>	'Notifications',
 
-	'starts'						=>	'Starts'
+	'starts'						=>	'Starts',
+
+	'friendemail' 					=> 'Friend\'s Email',
+
+	'friendmessage'					=> 'Message to your friend',
+
+	'invitefriend'					=> 'Invite your friend',
+
+	'friendemailrequired'			=> 'Email field is required',
+
+	'invitefriendcomplete'			=>'Your Friend has been invited',
+
+	'invitefriendcomplete'			=>'Your Friend has been invited',
+
+	'friendinvitiation'				=>'Has been invited to know Sponzor.me',
+
+
 );

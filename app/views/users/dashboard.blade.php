@@ -50,6 +50,9 @@
         <li class="sidebar-list">
           <a href="#/sponzors">{{trans('dashboard.sponzors')}} <span class="menu-icon fa fa-cogs"></span></a>
         </li>
+        <li class="sidebar-list">
+          <a href="#/friend">{{trans('dashboard.invitefriend')}} <span class="menu-icon fa fa-cogs"></span></a>
+        </li>
       </ul>
       <div class="sidebar-footer">
         <div class="col-xs-4">
@@ -554,8 +557,7 @@
           <div class="widget-header">
             <i class="fa fa-plus"></i>{{trans('dashboard.editaccount')}}
             <div class="clearfix"></div>
-          </div><h4>{{trans('dashboard.eventdetails')}}</h4>      
-          <hr />
+          </div>
           <form class="form-horizontal" role="form" data-ng-controller="settingsController">
           <!--form field-->
             <div class="form-group" id="name">
@@ -613,15 +615,15 @@
               </label>
               <div class="col-sm-3">
                 <label>{{trans('pages.country')}}</label> <br/> 
-                <select class="form-control" ng-model="account.country" name="country" id="country" ></select>
+                <input type="text" class="form-control" ng-model="account.country" name="country"/>
               </div>
               <div class="col-sm-3">
                 <label>{{trans('pages.state')}}</label><br/> 
-                <select class="form-control" ng-model="account.state" name="state" id="state" ></select>
+                <input type="text" class="form-control" ng-model="account.state" name="state"/>
               </div>
               <div class="col-sm-3">
                 <label>{{trans('pages.city')}}</label> <br/> 
-                <select class="form-control" ng-model="account.city" name="city" id="city" ></select>
+                 <input type="text" class="form-control" ng-model="account.city" name="city"/>
               </div>
             </div>
             <!--form field-->
@@ -639,6 +641,52 @@
             <div class="form-group">
               <div class="col-sm-offset-5 col-sm-4 "> 
                 <button data-ng-click="editAccount()" class="btn btn-info">{{trans('dashboard.submitbutton')}}</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>      
+  </script>
+   <!--Template asociado a invitar a un amigo-->
+  <script type="text/ng-template" id="friend.html">
+    <div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
+      <div class="col-xs-12">
+        <alert data-ng-repeat="alert in alerts" type="<% alert.type %>" close="closeAlert($index)">
+        <%alert.msg %></alert>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="widget">
+          <div class="widget-header">
+            <i class="fa fa-plus"></i>{{trans('dashboard.invitefriend')}}
+            <div class="clearfix"></div>
+          </div>
+          <form class="form-horizontal" role="form" data-ng-controller="friendController">
+          <!--form field-->
+            <div class="form-group" id="name">
+              <label for="label" class="col-sm-2 control-label">
+                {{trans('dashboard.friendemail')}}
+              </label>
+              <div class="col-sm-5">
+                <input  type="email" data-ng-model="friend.email" ng-init= name="email" class="form-control" />
+              </div>
+            </div>            
+            <!--form field-->
+            <div class="form-group" id="description">
+              <label for="label" class="col-sm-2 control-label">
+                {{trans('dashboard.friendmessage')}}
+              </label>
+              <div class="col-sm-5">
+                <textarea rows="5" data-ng-model="friend.message" name="message" class="form-control"></textarea>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr/>
+            <!--form field-->
+            <div class="form-group">
+              <div class="col-sm-offset-5 col-sm-4 "> 
+                <button data-ng-click="invitefriend()" class="btn btn-info">{{trans('dashboard.submitbutton')}}</button>
               </div>
             </div>
           </form>

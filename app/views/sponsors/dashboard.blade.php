@@ -269,8 +269,7 @@
           <div class="widget-header">
             <i class="fa fa-plus"></i>{{trans('dashboard.editaccount')}}
             <div class="clearfix"></div>
-          </div><h4>{{trans('dashboard.eventdetails')}}</h4>      
-          <hr />
+          </div>
           <form class="form-horizontal" role="form" data-ng-controller="settingsController">
           <!--form field-->
             <div class="form-group" id="name">
@@ -328,15 +327,15 @@
               </label>
               <div class="col-sm-3">
                 <label>{{trans('pages.country')}}</label> <br/> 
-                <select class="form-control" ng-model="account.country" name="country" id="country" ></select>
+                <input type="text" class="form-control" ng-model="account.country" name="country"/>
               </div>
               <div class="col-sm-3">
                 <label>{{trans('pages.state')}}</label><br/> 
-                <select class="form-control" ng-model="account.state" name="state" id="state" ></select>
+                <input type="text" class="form-control" ng-model="account.state" name="state"/>
               </div>
               <div class="col-sm-3">
                 <label>{{trans('pages.city')}}</label> <br/> 
-                <select class="form-control" ng-model="account.city" name="city" id="city" ></select>
+                 <input type="text" class="form-control" ng-model="account.city" name="city"/>
               </div>
             </div>
             <!--form field-->

@@ -7,9 +7,11 @@ return array(
 	| Language strings for views
 	|--------------------------------------------------------------------------
 	*/
-	'subject'						=> 'Welcome to SponzorMe',
+	'subject'					=> 'Welcome to SponzorMe',
 
     'click'                        => 'Click Here',
+
+    'invitefriend'                 => 'Hello, <br/> <br/> You are invited to use <a href="http://sponzor.me">SponzorMe</a>.',
 
 	'header'						=> '
    <p dir="ltr">

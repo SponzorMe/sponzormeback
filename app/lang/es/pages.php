@@ -96,7 +96,7 @@ return array(
 
 	'old'	=> "Años",
 
-	'chooseSex'	=> "Escoje tu sexo",
+	'chooseSex'	=> "Genero",
 
 	'livein'	=> "Vivo en",
 

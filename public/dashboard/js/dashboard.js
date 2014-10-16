@@ -43,6 +43,10 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
             url: '/following',
             templateUrl: 'following.html'
         })
+        .state('friend', {
+            url: '/friend',
+            templateUrl: 'friend.html'
+        })
 }]);
 
 /**
@@ -61,6 +65,7 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     $scope.alerts       = [];
     $scope.sponzors     = [];
     $scope.account      = {};
+    $scope.friend      = {};
 
     $scope.getWidth = function() { return window.innerWidth; };
 
@@ -401,6 +406,23 @@ function sponzoringController($scope,$Cookie,$location,Customization,ngDialog)
                 $scope.sponzors.list=adata.Sponzors;
             });
         });       
+    }
+}
+
+angular.module('Dashboard').controller('friendController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',friendController]);
+function friendController($scope,$Cookie,$location,Customization,ngDialog)
+{
+    $scope.invitefriend = function(){
+        Customization.inviteFriend($scope.friend.email,$scope.friend.message).success(function(adata){
+            console.log(adata);   
+            $scope.alerts.push({msg: adata.message});
+            console.log(adata);
+            if(adata.success==true)
+            {
+                $scope.friend.email="";
+                $scope.friend.message="";
+            }
+        });        
     }
 }
 

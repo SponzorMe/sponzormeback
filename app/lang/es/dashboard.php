@@ -181,5 +181,11 @@ return array(
 
 	'notifications'					=>	'Notificaciones',
 
-	'starts'						=>	'Comienza'
+	'starts'						=>	'Comienza',
+
+	'friendemail' 					=> 'Email de tu amigo',
+
+	'friendmessage'					=> 'Mensaje a tu amigo',
+
+	'invitefriend'					=> 'Invita a tu amigo'
 );

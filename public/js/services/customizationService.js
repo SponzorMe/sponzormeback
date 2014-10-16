@@ -110,7 +110,16 @@ angular.module('customizationService', [])
 					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 					data: $.param(data)
 				});
-			}
+			},
+			inviteFriend : function(email, message){
+				Data={"email":email,"message":message};
+				return $http({
+					method: 'POST',
+					url: 'http://localhost/sponzorme/public/api/v1/invitefriend',
+					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+					data: $.param(Data)
+				});
+			},
 		}
 
 	});

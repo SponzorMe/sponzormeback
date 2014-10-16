@@ -12,6 +12,8 @@ return array(
     
     'click'                        => 'Click Aquí',
 
+    'invitefriend'                 => 'Hola, <br/><br/> Estas invitado para usar <a href="http://sponzor.me">SponzorMe</a>.',
+
     'header'                        => '
     <p dir="ltr">
         Hola,

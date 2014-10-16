@@ -96,7 +96,7 @@ return array(
 
 	'old'	=> "Old",
 
-	'chooseSex'	=> "Chooser your sex",
+	'chooseSex'	=> "Gender",
 
 	'livein'	=> "I live in",
 

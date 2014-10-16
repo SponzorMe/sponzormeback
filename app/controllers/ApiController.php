@@ -466,6 +466,28 @@ class ApiController extends BaseController {
             ->get();
         return Response::json(array("success" => true,"status"=>"Authenticated","Sponzors"=>$sponzors));
 	}
+	public function inviteFriend()
+	{
+		$email=Input::get('email');
+		$message=Input::get('message');
+		if (empty($email))
+			return Response::json(array("success" => false, "message"=>Lang::get('dashboard.friendemailrequired')));
+		else
+		{
+			try{
+				Mail::send('emails.auth.invitefriend', array('key' => 'value'), function($message)
+				{
+				    $message->to(Input::get('email'))->subject(Lang::get('dashboard.friendinvitiation'));
+				});
+				return Response::json(array("success" => true, "message"=>Lang::get('dashboard.invitefriendcomplete')));
+			}
+			catch(Exception $e)
+			{
+				return Response::json(array("success" => false, "message"=>$e->getMessage()));
+			}
+			
+		}
+	}
 	public function groupSetUp()
 	{
 				$group = Sentry::findGroupById(1);   $group->delete();

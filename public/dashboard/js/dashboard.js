@@ -1,5 +1,5 @@
 (function(){
-angular.module('Dashboard', ['ui.bootstrap', 'ui.router', 'ngCookies','ngDialog', 'customizationService'], 
+angular.module('Dashboard', ['ui.bootstrap', 'ui.router', 'ngCookies','ngDialog','ngSanitize', 'customizationService'], 
     function($interpolateProvider){
         $interpolateProvider.startSymbol('<%');
         $interpolateProvider.endSymbol('%>');
@@ -66,7 +66,7 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     $scope.sponzors     = [];
     $scope.account      = {};
     $scope.friend       = {};
-    $scope.rss          = {"message":"Hola"};
+    $scope.rss          = [];
 
     $scope.getWidth = function() { return window.innerWidth; };
 
@@ -140,7 +140,7 @@ function rdLoading () {
  * Events Controller 
  */
  
- angular.module('Dashboard').controller('eventsController', ['$scope', '$cookieStore', 'Customization','ngDialog',eventsController]);
+ angular.module('Dashboard').controller('eventsController', ['$scope', '$cookieStore', 'Customization',eventsController]);
 function eventsController($scope,$Cookie,Customization)
 {
     Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
@@ -318,7 +318,7 @@ function settingsController($scope,$Cookie,Customization)
 }
 
 angular.module('Dashboard').controller('searchController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',searchController]);
-function searchController($scope,$Cookie,$location,Customization,ngDialog)
+function searchController($scope,$Cookie,$location,Customization,ngDialog,ngSanitize)
 {
     
      $scope.openDialog = function(id)
@@ -365,7 +365,7 @@ function searchController($scope,$Cookie,$location,Customization,ngDialog)
 }
 
 angular.module('Dashboard').controller('followingController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',followingController]);
-function followingController($scope,$Cookie,$location,Customization,ngDialog)
+function followingController($scope,$Cookie,$location,Customization,ngDialog,ngSanitize)
 {
     $scope.sponzors.list=[];
     Customization.getEventsBySponzors($scope.sponzors.current,0).success(function(data) 
@@ -388,7 +388,7 @@ function followingController($scope,$Cookie,$location,Customization,ngDialog)
 }
 
 angular.module('Dashboard').controller('sponzoringController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',sponzoringController]);
-function sponzoringController($scope,$Cookie,$location,Customization,ngDialog)
+function sponzoringController($scope,$Cookie,$location,Customization,ngDialog,ngSanitize)
 {
     $scope.sponzors.list=[];
     Customization.getEventsBySponzors($scope.sponzors.current,1).success(function(data) 
@@ -411,7 +411,7 @@ function sponzoringController($scope,$Cookie,$location,Customization,ngDialog)
 }
 
 angular.module('Dashboard').controller('friendController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',friendController]);
-function friendController($scope,$Cookie,$location,Customization,ngDialog)
+function friendController($scope,$Cookie,$location,Customization,ngDialog,ngSanitize)
 {
     $scope.invitefriend = function(){
         Customization.inviteFriend($scope.friend.email,$scope.friend.message).success(function(adata){
@@ -430,17 +430,22 @@ function friendController($scope,$Cookie,$location,Customization,ngDialog)
 angular.module('Dashboard').controller('rssController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',rssController]);
 function rssController($scope,$Cookie,$location,Customization,ngDialog)
 {
-    var url="http://blogen.sponzor.me/feeds/posts/default";
+    var blogUrl=($("#blogUrl").attr('href'));
+    var url=blogUrl+"feeds/posts/default";
     $.ajax({
         url: document.location.protocol + '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&callback=?&q=' + encodeURIComponent(url),
         dataType: 'json',
         success: function(data) {
-            console.log($.parseHTML( data.responseData.feed.entries[0].content ));
-          $scope.rss.message=$.parseHTML( data.responseData.feed.entries[0].content);
+            for(i=0;i<data.responseData.feed.entries.length;i++)
+            {
+                console.log(data.responseData.feed.entries[i].title);
+                 $scope.rss[i]={
+                    "title":data.responseData.feed.entries[i].title,
+                    "link":data.responseData.feed.entries[i].link
+                };
+            }
         }
     });
-
-    //$scope.rss.message=JSON.stringify(json);
 }    
 
 

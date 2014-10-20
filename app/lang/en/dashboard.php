@@ -197,5 +197,7 @@ return array(
 
 	'friendinvitiation'				=>'Has been invited to know Sponzor.me',
 
+	'seemore'						=> 'See More ...'
+
 
 );

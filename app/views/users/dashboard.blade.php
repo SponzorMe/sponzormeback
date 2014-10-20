@@ -19,7 +19,8 @@
   <script src="{{ asset('dashboard/lib/angular-bootstrap/ui-bootstrap-tpls.js')}}"></script>
   <script src="{{ asset('dashboard/lib/angular-ui-router/angular-ui-router.js')}}"></script>  
   <script src="{{ asset('js/ngDialog.min.js')}}"></script>
-  <script src="{{ asset('dashboard/js/dashboard.js')}}"></script>
+  <script src="{{ asset('js/angular-sanitize.min.js')}}"></script>
+  <script src="{{ asset('dashboard/js/dashboard.js')}}"></script><!--script principal-->
   <script src="{{ asset('js/scripts.js') }}"></script> <!-- load our custom scripts -->
   <script src="{{ asset('js/services/customizationService.js') }}"></script><!-- load our service -->
 </head>
@@ -56,7 +57,7 @@
       </ul>
       <div class="sidebar-footer">
         <div class="col-xs-4">
-          <a href="{{ URL::to(trans('pages.blogUrl')) }}">{{trans('pages.blog')}}</a>
+          <a id="blogUrl" href="{{ URL::to(trans('pages.blogUrl')) }}">{{trans('pages.blog')}}</a>
         </div>
         <div class="col-xs-4">
           <a href="{{ URL::to('testimonials') }}" target="_blank">
@@ -269,10 +270,10 @@
             <div class="clearfix"></div>
           </div>
           <div class="widget-body" data-ng-controller="rssController">
-            <div class="message">
-              <% rss.message %>
+            <div class="message" data-ng-repeat="r in rss">
+              <h1><% r.title %></h1>
+              <a href="<% r.link %>" target="_blank">{{trans('dashboard.seemore')}}</a>
             </div>
-            <hr/>
           </div>
         </div>
       </div>

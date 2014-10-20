@@ -187,5 +187,7 @@ return array(
 
 	'friendmessage'					=> 'Mensaje a tu amigo',
 
-	'invitefriend'					=> 'Invita a tu amigo'
+	'invitefriend'					=> 'Invita a tu amigo',
+
+	'seemore'						=> 'Ver Mas ...'
 );

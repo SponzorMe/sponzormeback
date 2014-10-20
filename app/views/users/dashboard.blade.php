@@ -268,13 +268,9 @@
             <button class="btn btn-sm btn-info pull-right">{{trans('dashboard.buttonsugestions')}}</button>
             <div class="clearfix"></div>
           </div>
-          <div class="widget-body">
+          <div class="widget-body" data-ng-controller="rssController">
             <div class="message">
-              This is a standard message which will also work the ".no-padding" class, I can also <span class="error">be an error message!</span>
-            </div>
-            <hr />
-            <div class="message">
-              <a href="http://angular-ui.github.io/bootstrap/" target="_blank">UI Bootstrap</a> is included, so you can use <a href="#" tooltip="I'm a tooltip!">tooltips</a> and all of the other native Bootstrap JS components!
+              <% rss.message %>
             </div>
             <hr/>
           </div>

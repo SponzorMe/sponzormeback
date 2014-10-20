@@ -65,7 +65,8 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     $scope.alerts       = [];
     $scope.sponzors     = [];
     $scope.account      = {};
-    $scope.friend      = {};
+    $scope.friend       = {};
+    $scope.rss          = {"message":"Hola"};
 
     $scope.getWidth = function() { return window.innerWidth; };
 
@@ -425,5 +426,22 @@ function friendController($scope,$Cookie,$location,Customization,ngDialog)
         });        
     }
 }
+
+angular.module('Dashboard').controller('rssController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',rssController]);
+function rssController($scope,$Cookie,$location,Customization,ngDialog)
+{
+    var url="http://blogen.sponzor.me/feeds/posts/default";
+    $.ajax({
+        url: document.location.protocol + '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&callback=?&q=' + encodeURIComponent(url),
+        dataType: 'json',
+        success: function(data) {
+            console.log($.parseHTML( data.responseData.feed.entries[0].content ));
+          $scope.rss.message=$.parseHTML( data.responseData.feed.entries[0].content);
+        }
+    });
+
+    //$scope.rss.message=JSON.stringify(json);
+}    
+
 
 })();

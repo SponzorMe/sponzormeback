@@ -22,7 +22,7 @@ return array(
     <p dir="ltr">
         Mi nombre es Carlos y soy el fundador de SponzorMe. Yo solo queria contactarte y decirte gracias por unirte! Te queria decir que este proyecto nació de una
         necesidad que yo mismo tenía cada vez que organizaba un evento y que es un problema que muchas veces acaba con las comunidades y con el entusiasmo de sus
-        organizadores. Si tienes un tiempo te invito a leer nuestra entrada donde puedes ver lo que motiva al equipo de SponzorMe (    <a href="http://j.mp/YhT4BB">http://j.mp/YhT4BB</a> )
+        organizadores. Si tienes un tiempo te invito a leer nuestra entrada donde puedes ver lo que motiva al equipo de SponzorMe (    <a href="http://bloges.sponzor.me/">http://bloges.sponzor.me/</a> )
     </p>
     <br/>
     <p dir="ltr">

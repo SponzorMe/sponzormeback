@@ -22,7 +22,7 @@ return array(
 <p dir="ltr">
     My name is Carlos and I’m the founder of SponzorMe. I’m reaching out to say thank you for joining us! This project was born out of a necessity that I had
     myself every time I would organize an event, and it is a problem that can end with a community and the enthusiasm of its organizers. Please take a moment
-    to read more about what motivates me and the team behind SponzorMe <a href="http://j.mp/YhT4BB">http://j.mp/YhT4BB</a>.
+    to read more about what motivates me and the team behind SponzorMe <a href="http://blogen.sponzor.me/">http://blogen.sponzor.me/</a>.
 </p>
 <br/>
 <p dir="ltr">

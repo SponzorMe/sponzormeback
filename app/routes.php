@@ -76,6 +76,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::get('users/{key}', 'ApiController@getAllUsers'); //Get all Users
 
+	Route::get('count/users/{key}', 'ApiController@countAllUsers'); //Count all Users
+
 	Route::post('remove/user/{key}', 'ApiController@removeUser'); //Remove one User
 
 	Route::post('edit/user/{key}', 'ApiController@editUser'); //Edit an User

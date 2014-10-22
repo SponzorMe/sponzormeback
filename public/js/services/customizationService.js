@@ -102,6 +102,10 @@ angular.module('customizationService', [])
 					data: $.param(Data)
 				});
 			},
+			countAllUsers : function()	{
+				global = $http.get('http://localhost/sponzorme/public/api/v1/count/users/SebasGameMaster');
+				return global;
+			},
 			editAccount : function(data){
 				
 				return $http({

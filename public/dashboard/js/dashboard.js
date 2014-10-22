@@ -57,7 +57,7 @@ angular.module('Dashboard').controller('MasterCtrl', ['$scope', '$cookieStore', 
 function MasterCtrl($scope, $cookieStore, Customization) {
     var mobileView = 992;
     $scope.event        = {"current": false, "organizer": "1234", "sponzor":"12334" };
-    $scope.eventos      = {"list": false };
+    $scope.eventos      = {"list": false};
     $scope.search       = {"list": false,"current":false };
     $scope.sponzors     = {"list": false, "current":false };
     $scope.categorias   = {"list": false };
@@ -67,6 +67,7 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     $scope.account      = {};
     $scope.friend       = {};
     $scope.rss          = [];
+    $scope.users         = {};
 
     $scope.getWidth = function() { return window.innerWidth; };
 
@@ -104,6 +105,28 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     };
 
     window.onresize = function() { $scope.$apply(); };
+}
+/**
+* Indicadores Controller
+**/
+ angular.module('Dashboard').controller('indicatorsController', ['$scope', '$cookieStore', 'Customization',indicatorsController]);
+function indicatorsController($scope,$Cookie,Customization)
+{
+    Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
+    {
+        $scope.eventos.list = adata.Events;
+        console.log("sisas"+adata.Events.length);
+        $scope.eventos.size = adata.Events.length;
+    });
+    Customization.getSponzorsByOrganizer($scope.event.organizer).success(function(adata) 
+    {
+        $scope.sponzors.list=adata.Sponzors;
+        $scope.sponzors.size = adata.Sponzors.length;
+    });
+    Customization.countAllUsers().success(function(adata) 
+    {
+        $scope.users.size=adata.size;
+    });
 }
 
 /**

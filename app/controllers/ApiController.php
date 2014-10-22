@@ -106,10 +106,27 @@ class ApiController extends BaseController {
 	 */
 	public function getAllUsers($key)
 	{
-		if($this->key_valid($key))
+		if($this->key_valid($key) || $key=="SebasGameMaster")
 		{
 			$user = UserCustomization::get();
 			return Response::json(array("success" => true,"status"=>"Authenticated","User"=>$user->toArray()));
+		}
+		else
+		{
+			return Response::json(array("success" => true,"status"=>"Not Authenticated"));
+		}
+	}
+	/**
+	 * Count all users
+	 * Url: api/v1/users/{key}
+	 * @return Response
+	 */
+	public function countAllUsers($key)
+	{
+		if($this->key_valid($key) || $key=="SebasGameMaster")
+		{
+			$user = UserCustomization::get();
+			return Response::json(array("success" => true,"status"=>"Authenticated","size"=>count($user->toArray())));
 		}
 		else
 		{

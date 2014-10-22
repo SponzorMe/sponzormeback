@@ -145,7 +145,7 @@
         <%alert.msg %></alert>
       </div>
     </div>
-    <div class="row">
+    <div class="row" data-ng-controller="indicatorsController" ng-model="event.organizer" ng-init="event.organizer = {{ Session::get('userId') }}">
       <div class="col-lg-3 col-md-6 col-xs-12">
         <div class="widget">
           <div class="widget-body">
@@ -153,7 +153,7 @@
               <i class="fa fa-users"></i>
             </div>
             <div class="widget-content pull-left">
-              <div class="title">80</div>
+              <div class="title"><%sponzors.size%></div>
               <div class="comment">{{trans('dashboard.sponzors')}}</div>
             </div>
             <div class="clearfix"></div>
@@ -167,7 +167,7 @@
               <i class="fa fa-tasks"></i>
             </div>
             <div class="widget-content pull-left">
-              <div class="title">16</div>
+              <div class="title" ><%eventos.size%></div>
               <div class="comment">{{trans('dashboard.events')}}</div>
             </div>
             <div class="clearfix"></div>
@@ -196,7 +196,7 @@
               <i class="fa fa-support"></i>
             </div>
             <div class="widget-content pull-left">
-              <div class="title">62</div>
+              <div class="title"><%users.size%></div>
               <div class="comment">{{trans('dashboard.comunity')}}</div>
             </div>
             <div class="clearfix"></div>

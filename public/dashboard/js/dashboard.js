@@ -114,18 +114,27 @@ function indicatorsController($scope,$Cookie,Customization)
 {
     Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
     {
-        $scope.eventos.list = adata.Events;
-        console.log("sisas"+adata.Events.length);
         $scope.eventos.size = adata.Events.length;
     });
     Customization.getSponzorsByOrganizer($scope.event.organizer).success(function(adata) 
     {
-        $scope.sponzors.list=adata.Sponzors;
         $scope.sponzors.size = adata.Sponzors.length;
     });
     Customization.countAllUsers().success(function(adata) 
     {
-        $scope.users.size=adata.size;
+        $scope.users.size=adata.size+1000;
+    });
+    Customization.getSponzorsByOrganizer($scope.event.organizer).success(function(adata) 
+    {
+        var balance=0;
+        for(i=0;i<adata.Sponzors.length;i++)
+        {            
+            if(adata.Sponzors[i].eventstate==1)
+            {
+                balance=balance+adata.Sponzors[i].usd;                
+            }
+        }
+        $scope.sponzors.balance = balance;
     });
 }
 
@@ -283,8 +292,7 @@ function sponzorsController($scope,$Cookie,Customization)
 
     Customization.getSponzorsByOrganizer($scope.event.organizer).success(function(adata) 
     {
-        $scope.sponzors.list=adata.Sponzors;   
-        console.log(adata);   
+        $scope.sponzors.list=adata.Sponzors;
     });
     $scope.updateRelSponzorPeak = function(id,state){
         Customization.updateRelSponzorPeak(id,state).success(function(adata) 

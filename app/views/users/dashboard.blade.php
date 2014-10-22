@@ -181,7 +181,7 @@
               <i class="fa fa-sitemap"></i>
             </div>
             <div class="widget-content pull-left">
-              <div class="title">$225</div>
+              <div class="title">$<%sponzors.balance%></div>
               <div class="comment">{{trans('dashboard.balance')}}</div>
             </div>
             <div class="clearfix"></div>

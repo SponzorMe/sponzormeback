@@ -301,6 +301,7 @@ class ApiController extends BaseController {
             	'users.country as country',
             	'users.state as state',
             	'rel_peaks.kind as kind',
+            	'rel_peaks.usd as usd',
             	'rel_sponzors_events.state as eventstate',
             	'rel_sponzors_events.id as idRelSponzoring'
             	)

@@ -1,5 +1,5 @@
 (function(){
-angular.module('Dashboard', ['ui.bootstrap', 'ui.router', 'ngCookies','ngDialog','ngSanitize', 'customizationService'], 
+angular.module('Dashboard', ['ui.bootstrap', 'ui.router', 'ngCookies','ngDialog', 'customizationService'], 
     function($interpolateProvider){
         $interpolateProvider.startSymbol('<%');
         $interpolateProvider.endSymbol('%>');
@@ -349,7 +349,7 @@ function settingsController($scope,$Cookie,Customization)
 }
 
 angular.module('Dashboard').controller('searchController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',searchController]);
-function searchController($scope,$Cookie,$location,Customization,ngDialog,ngSanitize)
+function searchController($scope,$Cookie,$location,Customization,ngDialog)
 {
     
      $scope.openDialog = function(id)
@@ -396,7 +396,7 @@ function searchController($scope,$Cookie,$location,Customization,ngDialog,ngSani
 }
 
 angular.module('Dashboard').controller('followingController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',followingController]);
-function followingController($scope,$Cookie,$location,Customization,ngDialog,ngSanitize)
+function followingController($scope,$Cookie,$location,Customization,ngDialog)
 {
     $scope.sponzors.list=[];
     Customization.getEventsBySponzors($scope.sponzors.current,0).success(function(data) 
@@ -419,7 +419,7 @@ function followingController($scope,$Cookie,$location,Customization,ngDialog,ngS
 }
 
 angular.module('Dashboard').controller('sponzoringController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',sponzoringController]);
-function sponzoringController($scope,$Cookie,$location,Customization,ngDialog,ngSanitize)
+function sponzoringController($scope,$Cookie,$location,Customization,ngDialog)
 {
     $scope.sponzors.list=[];
     Customization.getEventsBySponzors($scope.sponzors.current,1).success(function(data) 
@@ -442,7 +442,7 @@ function sponzoringController($scope,$Cookie,$location,Customization,ngDialog,ng
 }
 
 angular.module('Dashboard').controller('friendController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',friendController]);
-function friendController($scope,$Cookie,$location,Customization,ngDialog,ngSanitize)
+function friendController($scope,$Cookie,$location,Customization,ngDialog)
 {
     $scope.invitefriend = function(){
         Customization.inviteFriend($scope.friend.email,$scope.friend.message).success(function(adata){

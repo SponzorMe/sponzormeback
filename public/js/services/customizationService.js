@@ -1,6 +1,7 @@
 angular.module('customizationService', [])
 	.factory('Customization', function($http) {
-
+		var path = 'http://localhost/sponzorme/public/';
+		//var path = 'http://beta.sponzor.me/';
 		return {
 			// get all the categories
 			getCategories : function() {				
@@ -8,7 +9,7 @@ angular.module('customizationService', [])
 				return global;
 			},
 			getCategories1 : function() {				
-				global = $http.get('http://localhost/sponzorme/public/api/categories');
+				global = $http.get(path + 'api/categories');
 				return global;
 			},				
 			getInterests : function() {
@@ -37,33 +38,33 @@ angular.module('customizationService', [])
 				});
 			},
 			getEvents : function() {
-				global = $http.get('http://localhost/sponzorme/public/api/v1/events');
+				global = $http.get(path + 'api/v1/events');
 				return global;
 			},
 			getEventsByOrganizer : function(organizer) {
-				global = $http.get('http://localhost/sponzorme/public/api/v1/events/by/'+organizer);
+				global = $http.get(path + 'api/v1/events/by/'+organizer);
 				return global;
 			},
 			getEventsBySponzors : function(sponzor,status) {
-				global = $http.get('http://localhost/sponzorme/public/api/v1/events/by/sponzor/'+sponzor+"/"+status);
+				global = $http.get(path + 'api/v1/events/by/sponzor/'+sponzor+"/"+status);
 				return global;
 			},
 			searchEvents : function(text) {
-				global = $http.get('http://localhost/sponzorme/public/api/v1/events/parameter/'+text);
+				global = $http.get(path + 'api/v1/events/parameter/'+text);
 				return global;
 			},
 			getSponzors : function() {
-				global = $http.get('http://localhost/sponzorme/public/api/v1/sponzors');
+				global = $http.get(path + 'api/v1/sponzors');
 				return global;
 			},
 			getPeaks : function(idEvent) {
-				global = $http.get('http://localhost/sponzorme/public/api/v1/peaks/'+idEvent);
+				global = $http.get(path + 'api/v1/peaks/'+idEvent);
 				return global;
 			},
 			saveEvent : function(eventData) {
 				return $http({
 					method: 'POST',
-					url: 'http://localhost/sponzorme/public/api/v1/create/event',
+					url: path + 'api/v1/create/event',
 					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 					data: $.param(eventData)
 				});
@@ -71,25 +72,25 @@ angular.module('customizationService', [])
 			setSponzorPeak : function(data) {
 				return $http({
 					method: 'POST',
-					url: 'http://localhost/sponzorme/public/api/v1/sponzor/event',
+					url: path + 'api/v1/sponzor/event',
 					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 					data: $.param(data)
 				});
 			},
 			removeEvent : function(idEvent){
-				global = $http.get('http://localhost/sponzorme/public/api/v1/remove/event/'+idEvent);
+				global = $http.get(path + 'api/v1/remove/event/'+idEvent);
 				return global;
 			},
 			getSponzorsByOrganizer : function(idOrganizer){
-				global = $http.get('http://localhost/sponzorme/public/api/v1/sponzors/by/'+idOrganizer);
+				global = $http.get(path + 'api/v1/sponzors/by/'+idOrganizer);
 				return global;
 			},
 			updateRelSponzorPeak : function(idRelSponzorPeak,newState){
-				global = $http.get('http://localhost/sponzorme/public/api/v1/update/relsponzorpeak/'+idRelSponzorPeak+'/'+newState);
+				global = $http.get(path + 'api/v1/update/relsponzorpeak/'+idRelSponzorPeak+'/'+newState);
 				return global;
 			},
 			removeRelSponzorPeak : function(idRelSponzorPeak){
-				global = $http.get('http://localhost/sponzorme/public/api/v1/remove/relsponzorpeak/'+idRelSponzorPeak);
+				global = $http.get(path + 'api/v1/remove/relsponzorpeak/'+idRelSponzorPeak);
 				return global;
 			},
 			getUserInfo : function(idOrganizer)	{
@@ -97,20 +98,20 @@ angular.module('customizationService', [])
 				console.log(Data);
 				return $http({
 					method: 'POST',
-					url: 'http://localhost/sponzorme/public/api/v1/user/SebasGameMaster',
+					url: path + 'api/v1/user/SebasGameMaster',
 					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 					data: $.param(Data)
 				});
 			},
 			countAllUsers : function()	{
-				global = $http.get('http://localhost/sponzorme/public/api/v1/count/users/SebasGameMaster');
+				global = $http.get(path + 'api/v1/count/users/SebasGameMaster');
 				return global;
 			},
 			editAccount : function(data){
 				
 				return $http({
 					method: 'POST',
-					url: 'http://localhost/sponzorme/public/api/v1/edit/user/SebasGameMaster',
+					url: path + 'api/v1/edit/user/SebasGameMaster',
 					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 					data: $.param(data)
 				});
@@ -119,7 +120,7 @@ angular.module('customizationService', [])
 				Data={"email":email,"message":message};
 				return $http({
 					method: 'POST',
-					url: 'http://localhost/sponzorme/public/api/v1/invitefriend',
+					url: path + 'api/v1/invitefriend',
 					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 					data: $.param(Data)
 				});

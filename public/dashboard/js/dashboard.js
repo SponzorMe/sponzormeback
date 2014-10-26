@@ -54,7 +54,7 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
  */
 angular.module('Dashboard').controller('MasterCtrl', ['$scope', '$cookieStore', MasterCtrl]);
 
-function MasterCtrl($scope, $cookieStore, Customization) {
+function MasterCtrl($scope, $cookieStore, Customization) {    
     var mobileView = 992;
     $scope.event        = {"current": false, "organizer": "1234", "sponzor":"12334" };
     $scope.eventos      = {"list": false};

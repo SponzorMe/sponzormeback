@@ -1,7 +1,15 @@
 angular.module('customizationService', [])
 	.factory('Customization', function($http) {
-		var path = 'http://localhost/sponzorme/public/';
-		//var path = 'http://beta.sponzor.me/';
+		var newURL = window.location.host + "/" + window.location.pathname;
+		var pathArray = newURL.split( '/' );
+		var newPathname = "";
+		for (i = 0; i < pathArray.length-2; i++) {
+			if(pathArray[i]!="")
+		  		newPathname += pathArray[i]+"/";
+		}		
+		newPathname=window.location.protocol + "//"+ newPathname;
+		console.log(newPathname);
+		var path = newPathname;
 		return {
 			// get all the categories
 			getCategories : function() {				

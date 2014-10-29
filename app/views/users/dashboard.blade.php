@@ -209,7 +209,7 @@
         <div class="widget">
           <div class="widget-header">
             <i class="fa fa-tasks"></i> {{trans('dashboard.events')}}
-            <a href="#" class="pull-right">Manage</a>
+            <a href="#/events" class="pull-right">Manage</a>
           </div>
           <div class="widget-body medium no-padding">
             <div class="table-responsive">
@@ -438,7 +438,7 @@
         <div class="widget">
           <div class="widget-header">
             <i class="fa fa-tasks"></i> {{trans('dashboard.events')}}
-            <a href="#" class="pull-right">Manage</a>
+            <a href="#/events" class="pull-right">{{trans('dashboard.manage')}}</a>
           </div>
 
           <div class="widget-body medium no-padding">
@@ -690,6 +690,14 @@
         </div>
       </div>      
   </script>
+  <script type="text/ng-template" id="successevent.html">
+    <div class="text-center">
+      <h3><% event.message %></h3>
+    </div>
+    <div class="ngdialog-buttons text-center">
+      <button class="btn btn-danger" ng-click="closeThisDialog()"><i class="fa fa-times"></i> {{trans('dashboard.close')}}</button>
+    </div>
+</script>
 </body>
 </html>
 @else

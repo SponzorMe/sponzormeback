@@ -56,7 +56,7 @@ angular.module('Dashboard').controller('MasterCtrl', ['$scope', '$cookieStore', 
 
 function MasterCtrl($scope, $cookieStore, Customization) {    
     var mobileView = 992;
-    $scope.event        = {"current": false, "organizer": "1234", "sponzor":"12334" };
+    $scope.event        = {"current": false, "organizer": "1234", "sponzor":"12334", "message":"" };
     $scope.eventos      = {"list": false};
     $scope.search       = {"list": false,"current":false };
     $scope.sponzors     = {"list": false, "current":false };
@@ -172,8 +172,8 @@ function rdLoading () {
  * Events Controller 
  */
  
- angular.module('Dashboard').controller('eventsController', ['$scope', '$cookieStore', 'Customization',eventsController]);
-function eventsController($scope,$Cookie,Customization)
+ angular.module('Dashboard').controller('eventsController', ['$scope', '$cookieStore', 'Customization', 'ngDialog',eventsController]);
+function eventsController($scope,$Cookie,Customization,ngDialog)
 {
     Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
     {
@@ -221,7 +221,9 @@ function eventsController($scope,$Cookie,Customization)
                         $scope.event.current = adata.Events[0].id;
                         $scope.newevent="";
                         $scope.sponzors = [];
+                        $scope.event.message=data.message;
                     });
+                    ngDialog.open({ template: 'successevent.html', controller: 'eventsController', scope: $scope }); 
                     $(".form-group").removeClass("has-error");
                     $(".form-group").removeClass("has-success");
                 }

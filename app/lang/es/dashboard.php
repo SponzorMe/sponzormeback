@@ -189,5 +189,6 @@ return array(
 
 	'invitefriend'					=> 'Invita a tu amigo',
 
-	'seemore'						=> 'Ver Mas ...'
+	'seemore'						=> 'Ver Mas ...',
+	'manage'						=> 'Gestionar'
 );

@@ -116,7 +116,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::get('remove/relsponzorpeak/{idRelSponzor}', 'ApiController@removeRelSponzorPeak');
 
-	Route::get('g', 'ApiController@groupSetUp');
+	Route::get('test', 'ApiController@test');
 
 	Route::post('invitefriend', 'ApiController@inviteFriend');	
 

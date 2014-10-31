@@ -47,6 +47,10 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
             url: '/friend',
             templateUrl: 'friend.html'
         })
+        .state('eventbrite', {
+            url: '/eventbrite',
+            templateUrl: 'eventbrite.html'
+        })
 }]);
 
 /**
@@ -479,7 +483,18 @@ function rssController($scope,$Cookie,$location,Customization,ngDialog)
             }
         }
     });
-}    
+} 
+
+angular.module('Dashboard').controller('eventbriteController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',eventbriteController]);
+function eventbriteController($scope,$Cookie,$location,Customization,ngDialog)
+{
+     Customization.connectEverbrite().success(function(adata){
+            console.log(adata);
+            }).error(function(data) {
+                console.log(data);
+            });
+        
+}   
 
 
 })();

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 use Authority\Repo\User\UserInterface;
 use Authority\Repo\Group\GroupInterface;
 use Authority\Service\Form\Register\RegisterForm;
@@ -8,7 +8,7 @@ use Authority\Service\Form\ResendActivation\ResendActivationForm;
 use Authority\Service\Form\ForgotPassword\ForgotPasswordForm;
 use Authority\Service\Form\ChangePassword\ChangePasswordForm;
 use Authority\Service\Form\SuspendUser\SuspendUserForm;
-
+include(app_path().'/includes/Eventbrite.php');
 class ApiController extends BaseController {
 
 	protected $registerForm;
@@ -26,6 +26,99 @@ class ApiController extends BaseController {
 	 * Url: public/api/v1
 	 * @return Response
 	 */
+
+	public function test()
+	{
+		//Obtenemos el login del usuario
+		$access_token=Session::get("access_token");
+		if(empty($access_token))
+		{
+			echo "hola";
+			$api_key="UIIEUBJUVOI5JDEZND";		
+			Session::put('code', "");
+			$get_code=Input::get("code");
+			$code = Session::get('code');
+			if(empty($code) and !empty($get_code))
+			{
+				Session::put('code', $get_code);
+				$code=Input::get("code");
+			}
+			else if(empty($code) and empty($get_code))
+			{
+				echo "<a href='https://www.eventbrite.com/oauth/authorize?response_type=code&client_id=".$api_key."'>click</a>";
+			}
+			echo "Codigo: ".$get_code;
+			echo "<br/>------<br/>";
+
+			$params["client_id"]="UIIEUBJUVOI5JDEZND";
+			$params["client_secret"]="IEPASK4CMUONNNBXA6DQ34O3VGIPFDGAGROF7HPR3LWRS6HREK";
+			$params["code"]=$code;
+			$params["grant_type"]="authorization_code";
+			$ch = curl_init();
+	        curl_setopt($ch, CURLOPT_POST, TRUE);
+	        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+	        curl_setopt($ch, CURLOPT_URL, "https://www.eventbrite.com/oauth/token");
+	        curl_setopt($ch, CURLOPT_HEADER, 1);
+	        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
+	        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+	        $json_data = curl_exec($ch);
+	        curl_close($ch);
+	        echo $json_data;
+	        echo "<br/>------<br/>";
+	        $response = explode("path=/",$json_data);
+	        $token_array=json_decode($response[1],true);
+			echo "<br/>------<br/>";
+			if(!empty($token_array["access_token"]))
+			{
+				echo "access token: ".$token_array["access_token"];
+				Session::put('access_token', $token_array["access_token"]);
+			}
+			else
+				echo "hubo un fucking error: ".$token_array["error_description"];
+		}
+		else
+		{
+			//Obtenemos los datos del usuario
+			$ch = curl_init();
+	        curl_setopt($ch, CURLOPT_URL, "https://www.eventbriteapi.com/v3/users/me/?token=".$access_token);
+	        curl_setopt($ch, CURLOPT_HEADER, TRUE);
+	        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
+	        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+	        $json_user_data = curl_exec($ch);
+	        curl_close($ch);
+	        $response2= explode("Path=/",$json_user_data);
+	        $user_array=json_decode($response2[7],true);
+	        echo "<br/>------<br/>";
+			if(!empty($user_array["id"]))
+			{
+				echo "User Id: ".$user_array["id"];
+				Session::put('userId', $user_array["id"]);
+			}
+			else
+				echo "hubo un fucking error: ".$user_array["error_description"];  
+
+			if(!empty($user_array["id"]))
+			{
+				//Obtenemos los datos del usuario
+				$ch = curl_init();
+		        curl_setopt($ch, CURLOPT_URL, "https://www.eventbriteapi.com/v3/users/".$user_array["id"]."/owned_events/");
+		        curl_setopt($ch, CURLOPT_HEADER, TRUE);
+		        curl_setopt($ch,CURLOPT_HTTPHEADER,array (
+			        "Authorization: Bearer ".$access_token));
+		        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
+		        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+		        $json_events_data = curl_exec($ch);
+		        curl_close($ch);
+		        echo "<br/>------<br/>";
+		        var_dump($json_events_data);
+		        echo "<br/>------<br/>";
+			}	        
+	    }
+
+	}
 	public function index()
 	{
       return View::make('api/description');

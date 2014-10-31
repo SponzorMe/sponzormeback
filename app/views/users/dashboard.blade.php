@@ -54,6 +54,9 @@
         <li class="sidebar-list">
           <a href="#/friend">{{trans('dashboard.invitefriend')}} <span class="menu-icon fa fa-cogs"></span></a>
         </li>
+        <li class="sidebar-list">
+          <a href="#/eventbrite">{{trans('dashboard.eventbrite')}} <span class="menu-icon fa fa-cogs"></span></a>
+        </li>
       </ul>
       <div class="sidebar-footer">
         <div class="col-xs-4">
@@ -697,6 +700,9 @@
     <div class="ngdialog-buttons text-center">
       <button class="btn btn-danger" ng-click="closeThisDialog()"><i class="fa fa-times"></i> {{trans('dashboard.close')}}</button>
     </div>
+</script>
+<script type="text/ng-template" id="eventbrite.html">
+    <h1 data-ng-controller="eventbriteController">Hola</h1>
 </script>
 </body>
 </html>

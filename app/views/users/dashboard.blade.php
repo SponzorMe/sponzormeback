@@ -269,12 +269,11 @@
         <div class="widget">
           <div class="widget-header">
             <i class="fa fa-plus"></i> {{trans('dashboard.suggestions')}}
-            <button class="btn btn-sm btn-info pull-right">{{trans('dashboard.buttonsugestions')}}</button>
             <div class="clearfix"></div>
           </div>
           <div class="widget-body" data-ng-controller="rssController">
             <div class="message" data-ng-repeat="r in rss">
-              <h1><% r.title %></h1>
+              <h1 class="suggh1"><% r.title %></h1>
               <a href="<% r.link %>" target="_blank">{{trans('dashboard.seemore')}}</a>
             </div>
           </div>
@@ -477,20 +476,6 @@
         </div>
       </div>
       </div>
-      <div class="row">
-      <div class="col-lg-6">
-        <div class="widget">
-          <div class="widget-header">
-            <i class="fa fa-cog fa-spin"></i> Loading Directive
-            <a href="http://tobiasahlin.com/spinkit/" target="_blank" class="pull-right">SpinKit</a>
-          </div>
-          <div class="widget-body">
-            <!-- Check out the Angular Directive inside bootstrap.js! -->
-            <rd-loading></rd-loading>
-          </div>
-        </div>
-      </div>
-    </div>
   </script>
 
   <!--Template asociado a los sponzors-->

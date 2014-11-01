@@ -190,5 +190,8 @@ return array(
 	'invitefriend'					=> 'Invita a tu amigo',
 
 	'seemore'						=> 'Ver Mas ...',
-	'manage'						=> 'Gestionar'
+
+	'manage'						=> 'Gestionar',
+
+	'searchtitle'					=> 'Busca tu proximo evento ...'
 );

@@ -85,9 +85,9 @@ return array(
 
 	'privacyoption1'				=>	'Private Page',
 
-	'privacydescription0'			=>	'List this item in Evenbrite and search engines',
+	'privacydescription0'			=>	'List this item in SponzorMe publicy.',
 
-	'privacydescription1'			=>	'Do not list this event publicy',
+	'privacydescription1'			=>	'Do not list this event publicy.',
 
 	'eventsponzors'					=>	'Sponzors',
 
@@ -199,7 +199,9 @@ return array(
 
 	'seemore'						=> 'See More ...',
 	
-	'manage'						=> 'Manage'
+	'manage'						=> 'Manage',
+
+	'searchtitle'					=> 'Search for you next event...'
 
 
 );

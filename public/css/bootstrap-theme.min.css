@@ -92,6 +92,7 @@ color:#00adb9;
 }
 .interest:hover
 {
+	color: #00acb9;
 	background: #FFF;
 }
 .interest a
@@ -101,7 +102,7 @@ color:#00adb9;
 }
 .interest a:hover
 {
-	color: #FFF;
+	color: #00adb9;
 	text-decoration: none;
 }
 .interest label

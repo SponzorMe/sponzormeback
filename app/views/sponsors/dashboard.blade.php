@@ -141,8 +141,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-12 ">
-        <img width="100%" src="{{ asset('images/banner-sponzors.png')}}" alt="Banner"/>
+      <div class="col-lg-10 col-lg-offset-1  ">
+        <h1>{{trans('dashboard.searchtitle')}}</h1>
       </div>
     </div>
     <div class="row">

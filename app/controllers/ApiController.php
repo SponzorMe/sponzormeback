@@ -27,7 +27,7 @@ class ApiController extends BaseController {
 	 * @return Response
 	 */
 
-	public function connect_account()
+	public function test()
 	{
 		$get_code=Input::get("code");
 		if(empty($get_code))

@@ -333,7 +333,8 @@ function settingsController($scope,$Cookie,Customization)
             $scope.account.company=adata.User[0].company;
             $scope.account.email=adata.User[0].email;
             $scope.account.eventbriteKey=adata.User[0].eventbriteKey;
-            if(adata.User[0].eventbriteKey!=undefined)
+            console.log(adata.User[0].eventbriteKey);
+            if(adata.User[0].eventbriteKey!=undefined && adata.User[0].eventbriteKey.trim()!="")
             {
                 Customization.getEventbriteEvents(adata.User[0].eventbriteKey).success(function(data){
                      $scope.eventbriteevents.list=data.Events.events;

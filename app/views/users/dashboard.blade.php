@@ -635,12 +635,12 @@
               <i class="fa fa-plus"></i>{{trans('dashboard.eventbriteMessage')}}
               <div class="clearfix"></div>
             </div>
-            <div class="widget-body medium" ng-if="account.eventbriteKey == undefined">
+            <div class="widget-body medium" ng-if="account.eventbriteKey == ''">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
               <div  class="text-center"><a class="btn btn-success" href='https://www.eventbrite.com/oauth/authorize?response_type=code&client_id=UIIEUBJUVOI5JDEZND'>{{trans('dashboard.eventbriteButton')}}</a>
               </div>
             </div>
-            <div class="widget-body large" ng-if="account.eventbriteKey != undefined">
+            <div class="widget-body large" ng-if="account.eventbriteKey != '' ">
               <h2>{{trans('dashboard.eventbriteEvents')}}</h2>
               <div class="table-responsive">
                 <table class="table table-striped" data-ng-controller="eventsController">

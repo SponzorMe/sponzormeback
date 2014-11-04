@@ -27,32 +27,18 @@ class ApiController extends BaseController {
 	 * @return Response
 	 */
 
-	public function test()
+	public function connect_account()
 	{
-		//Obtenemos el login del usuario
-		$access_token=Session::get("access_token");
-		if(empty($access_token))
+		$get_code=Input::get("code");
+		if(empty($get_code))
 		{
-			echo "hola";
-			$api_key="UIIEUBJUVOI5JDEZND";		
-			Session::put('code', "");
-			$get_code=Input::get("code");
-			$code = Session::get('code');
-			if(empty($code) and !empty($get_code))
-			{
-				Session::put('code', $get_code);
-				$code=Input::get("code");
-			}
-			else if(empty($code) and empty($get_code))
-			{
-				echo "<a href='https://www.eventbrite.com/oauth/authorize?response_type=code&client_id=".$api_key."'>click</a>";
-			}
-			echo "Codigo: ".$get_code;
-			echo "<br/>------<br/>";
-
+			echo '<script type="text/javascript">alert("'.Lang::get('dashboard.evenbriteNotConnected').'");</script>';
+		}
+		else
+		{
 			$params["client_id"]="UIIEUBJUVOI5JDEZND";
 			$params["client_secret"]="IEPASK4CMUONNNBXA6DQ34O3VGIPFDGAGROF7HPR3LWRS6HREK";
-			$params["code"]=$code;
+			$params["code"]=$get_code;
 			$params["grant_type"]="authorization_code";
 			$ch = curl_init();
 	        curl_setopt($ch, CURLOPT_POST, TRUE);
@@ -64,59 +50,57 @@ class ApiController extends BaseController {
 	        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 	        $json_data = curl_exec($ch);
 	        curl_close($ch);
-	        echo $json_data;
-	        echo "<br/>------<br/>";
 	        $response = explode("path=/",$json_data);
+	        $response;
 	        $token_array=json_decode($response[1],true);
-			echo "<br/>------<br/>";
 			if(!empty($token_array["access_token"]))
 			{
-				echo "access token: ".$token_array["access_token"];
-				Session::put('access_token', $token_array["access_token"]);
+				echo $token_array["access_token"];
+				$user = UserCustomization::find(Session::get('userId'));
+				$user->eventbriteKey=$token_array["access_token"];
+				$user->save();
+				echo '<script type="text/javascript">alert("'.Lang::get('dashboard.evenbriteConnected').'");</script>';
 			}
 			else
-				echo "hubo un fucking error: ".$token_array["error_description"];
+			{
+				echo '<script type="text/javascript">alert("'.Lang::get('dashboard.evenbriteNotConnected').'");</script>';
+			}
 		}
-		else
+			return Redirect::to('users/dashboard#/settings');
+	}
+	public function getEventbriteEvents($access_token)
+	{
+		//Obtenemos los datos del usuario
+		$ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://www.eventbriteapi.com/v3/users/me/?token=".$access_token);
+        curl_setopt($ch, CURLOPT_HEADER, TRUE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        $json_user_data = curl_exec($ch);
+        curl_close($ch);
+        $response2= explode("Path=/",$json_user_data);
+        $user_array=json_decode($response2[7],true);
+		if(empty($user_array["id"]))
+			return Response::json(array("success" => false,"message"=>$user_array["error_description"]));
+
+		if(!empty($user_array["id"]))
 		{
 			//Obtenemos los datos del usuario
 			$ch = curl_init();
-	        curl_setopt($ch, CURLOPT_URL, "https://www.eventbriteapi.com/v3/users/me/?token=".$access_token);
+	        curl_setopt($ch, CURLOPT_URL, "https://www.eventbriteapi.com/v3/users/".$user_array["id"]."/owned_events/");
 	        curl_setopt($ch, CURLOPT_HEADER, TRUE);
+	        curl_setopt($ch,CURLOPT_HTTPHEADER,array (
+		        "Authorization: Bearer ".$access_token));
 	        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 	        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
 	        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-	        $json_user_data = curl_exec($ch);
+	        $json_events_data = curl_exec($ch);
 	        curl_close($ch);
-	        $response2= explode("Path=/",$json_user_data);
-	        $user_array=json_decode($response2[7],true);
-	        echo "<br/>------<br/>";
-			if(!empty($user_array["id"]))
-			{
-				echo "User Id: ".$user_array["id"];
-				Session::put('userId', $user_array["id"]);
-			}
-			else
-				echo "hubo un fucking error: ".$user_array["error_description"];  
-
-			if(!empty($user_array["id"]))
-			{
-				//Obtenemos los datos del usuario
-				$ch = curl_init();
-		        curl_setopt($ch, CURLOPT_URL, "https://www.eventbriteapi.com/v3/users/".$user_array["id"]."/owned_events/");
-		        curl_setopt($ch, CURLOPT_HEADER, TRUE);
-		        curl_setopt($ch,CURLOPT_HTTPHEADER,array (
-			        "Authorization: Bearer ".$access_token));
-		        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
-		        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-		        $json_events_data = curl_exec($ch);
-		        curl_close($ch);
-		        echo "<br/>------<br/>";
-		        var_dump($json_events_data);
-		        echo "<br/>------<br/>";
-			}	        
-	    }
+	        $response2= explode("Path=/",$json_events_data);
+        	$events=json_decode($response2[7],true);
+	        return Response::json(array("success" => true,"Events"=>$events));
+		}
 
 	}
 	public function index()

@@ -133,6 +133,10 @@ angular.module('customizationService', [])
 					data: $.param(Data)
 				});
 			},
+			getEventbriteEvents : function(userToken){
+				global = $http.get(path + 'api/v1/eventbrite/events/'+userToken);
+				return global;
+			},
 		}
 
 	});

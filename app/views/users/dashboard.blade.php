@@ -53,10 +53,7 @@
         </li>
         <li class="sidebar-list">
           <a href="#/friend">{{trans('dashboard.invitefriend')}} <span class="menu-icon fa fa-cogs"></span></a>
-        </li>
-        <li class="sidebar-list">
-          <a href="#/eventbrite">{{trans('dashboard.eventbrite')}} <span class="menu-icon fa fa-cogs"></span></a>
-        </li>
+        </li>        
       </ul>
       <div class="sidebar-footer">
         <div class="col-xs-4">
@@ -630,7 +627,57 @@
             </div>
           </form>
         </div>
-      </div>      
+      </div>  
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="widget">
+            <div class="widget-header">
+              <i class="fa fa-plus"></i>{{trans('dashboard.eventbriteMessage')}}
+              <div class="clearfix"></div>
+            </div>
+            <div class="widget-body medium" ng-if="account.eventbriteKey == undefined">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <div  class="text-center"><a class="btn btn-success" href='https://www.eventbrite.com/oauth/authorize?response_type=code&client_id=UIIEUBJUVOI5JDEZND'>{{trans('dashboard.eventbriteButton')}}</a>
+              </div>
+            </div>
+            <div class="widget-body large" ng-if="account.eventbriteKey != undefined">
+              <h2>{{trans('dashboard.eventbriteEvents')}}</h2>
+              <div class="table-responsive">
+                <table class="table table-striped" data-ng-controller="eventsController">
+                  <thead>
+                    <th>{{trans('dashboard.title')}}</th>
+                    <th>{{trans('dashboard.location')}}</th>
+                    <th>{{trans('dashboard.starts')}}</th>
+                    <th>{{trans('dashboard.import')}}</th>
+                  </thead>
+                  <tbody>
+                    <tr data-ng-repeat="e in eventbriteevents.list">
+                      <td><% e.name.text %></td>
+                      <td><% e.venue.address.address_1 %>, <% e.venue.address.city %>, <% e.venue.address.region %></td>
+                      <td><% e.start.local %></td>
+                      <td><span class="text-success"><a class="btn btn-warning" data-ng-click="importFromEventBrite(e)"><i class="fa fa-check"></i>Import</a></span></td>
+                    </tr>
+                  </tbody>
+                </table>               
+                </div>
+              <div  class="text-center">
+                <button class="btn btn-primary">{{trans('dashboard.eventbriteButtonUnconnect')}}</button>
+              </div>
+            </div>
+          </div>          
+        </div>
+        <div class="col-lg-6" ng-show="a">
+            <div class="widget">
+              <div class="widget-header">
+                <i class="fa fa-plus"></i>{{trans('dashboard.configureImport')}}
+                <div class="clearfix"></div>
+              </div>
+              <div class="widget-body large">
+                <div  ng-include src="'eventbriteImport.html'" ng-controller="eventsController">
+              </div>
+            </div>
+          </div>      
+      </div>         
   </script>
    <!--Template asociado a invitar a un amigo-->
   <script type="text/ng-template" id="friend.html">
@@ -686,8 +733,152 @@
       <button class="btn btn-danger" ng-click="closeThisDialog()"><i class="fa fa-times"></i> {{trans('dashboard.close')}}</button>
     </div>
 </script>
-<script type="text/ng-template" id="eventbrite.html">
-    <h1 data-ng-controller="eventbriteController">Hola</h1>
+<script type="text/ng-template" id="eventbriteImport.html"> 
+<div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
+      <div class="col-xs-12">
+        <alert data-ng-repeat="alert in alerts" type="<% alert.type %>" close="closeAlert($index)">
+        <%alert.msg %></alert>
+      </div>
+    </div>
+
+          <hr />
+          <form class="form-horizontal" role="form">
+          <!--form field-->
+            <div class="form-group" id="title">
+              <label for="label" class="col-sm-4 control-label">
+                {{trans('dashboard.neweventtitle')}}
+              </label>
+              <div class="col-sm-7">
+                <input  type="text" data-ng-model="newevent.title" placeholder="{{trans('dashboard.neweventtitledescription')}}" name="title" class="form-control" />
+              </div><br/><br/>
+            </div>
+           <!--form field-->
+            <div class="form-group" id="location">
+              <label for="label" class="col-sm-4 control-label">
+                {{trans('dashboard.neweventlocation')}}
+              </label>
+              <div class="col-sm-7">
+                <input  type="text" data-ng-model="newevent.location" placeholder="{{trans('dashboard.neweventlocationdescription')}}" name="location" class="form-control" />
+              </div>
+            </div>
+            <!--form field-->
+            <div class="form-group" id="description">
+              <label for="label" class="col-sm-4 control-label">
+                {{trans('dashboard.neweventdescription')}}
+              </label>
+              <div class="col-sm-7">
+                <textarea rows="5" data-ng-model="newevent.description" placeholder="{{trans('dashboard.neweventdescriptiondescription')}}" name="description" class="form-control"></textarea>
+              </div>
+            </div>
+            <!--form field-->
+            <div class="form-group" id="starts">
+              <label for="label" class="col-sm-4 control-label">
+                {{trans('dashboard.neweventstarts')}}
+              </label>
+              <div class="col-sm-7">
+                <input  type="date" data-ng-model="newevent.starts" name="starts" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group" id="ends">
+              <label for="label" class="col-sm-4 control-label">
+                {{trans('dashboard.neweventends')}}
+              </label>
+              <div class="col-sm-7">
+                <input  type="date" data-ng-model="newevent.ends" name="ends" class="form-control" />
+                <input type="hidden" data-ng-model="newevent.organizer" name="organizer" ng-init="newevent.organizer = {{ Session::get('userId') }}"/>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr/>
+            <h4 class="h4formdash">{{trans('dashboard.eventaditionalseetings')}}</h4>  
+            <hr/>
+            <!--form field-->
+            <div class="form-group" id="public">
+              <div class="col-sm-11">
+                <h5 class="h4formdash">{{trans('dashboard.neweventprivacy')}}</h5>
+              </div>
+              <div class="col-sm-4 control-label">
+                  <input id="privacy0"  type="radio" data-ng-model="newevent.privacy" name="privacy" value="0" /> 
+              </div>  
+                  <label for="privacy0" class="col-sm-7">
+                    <strong>{{trans('dashboard.privacyoption0')}} :  </strong>                   
+                 
+                  {{trans('dashboard.privacydescription0')}} </label>
+
+              <div class="col-sm-4 control-label">
+                  <input id="privacy1" type="radio" data-ng-model="newevent.privacy" name="privacy" value="1" />   
+              </div>
+
+                <label for="privacy1" class="col-sm-7">
+                    <strong>{{trans('dashboard.privacyoption1')}} :  </strong>                   
+                  
+                  {{trans('dashboard.privacydescription1')}}</label>
+            </div>
+            <!--form field-->
+            <div class="form-group" id="type">
+              <label for="label" class="col-sm-4 control-label">
+                {{trans('dashboard.neweventtype')}}
+              </label>
+              <div class="col-sm-7">
+                <select ng-model="newevent.type" name="type" class="form-control">
+                  <option value="">{{trans('dashboard.choosetype')}}</option>
+                  <option data-ng-repeat="c in categorias.list" data-ng-value="c.id">
+                    <%c.title%>
+                  </option>                
+                </select>
+              </div>
+            </div>
+            <hr/>
+            <div class="clearfix"></div>
+            <h4 class="h4formdash">{{trans('dashboard.eventsponzors')}}</h4>  
+            <hr/>
+            <!--form field-->            
+            <div class="table-responsive">              
+              <table class="table table-striped">
+                <thead>
+                  <th class="text-center">
+                    {{trans('dashboard.typesponzor')}}
+                  </th>
+                  <th class="text-center">
+                    {{trans('dashboard.quantitysponzor')}}
+                  </th>
+                  <th class="text-center">
+                    {{trans('dashboard.pricesponzor')}}
+                  </th>
+                  <th class="text-center">
+                    {{trans('dashboard.actionssponzor')}}
+                  </th>              
+                </thead>
+                <tr ng-repeat="s in sponzors" data-ng-show="sponzors.length">
+                  <td class="text-center">
+                    <input type="text" class="form-control" placeholder="" ng-model="s.kind" />
+                  </td>   
+                  <td class="text-center">
+                    <input type="text" class="form-control" placeholder="" ng-model="s.quantity" />
+                  </td>
+                  <td class="text-center">
+                    <input type="text" class="form-control" placeholder="" ng-model="s.usd" />
+                  </td>
+                  <td class="text-center">
+                    <a href="" ng-click="removeSponzor($index)"><i class="fa fa-trash-o"></i></a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-sm-4">
+            <button class="btn btn-block" ng-click="addsponzor()"> + Add</button>
+            </div>
+            <div class="clearfix"></div>
+            <hr/>
+            <!--form field-->
+            <div class="form-group">
+              <div class="col-sm-12">
+                <button data-ng-click="newEvent()" class="btn btn-block">{{trans('dashboard.submitbutton')}}</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
 </script>
 </body>
 </html>

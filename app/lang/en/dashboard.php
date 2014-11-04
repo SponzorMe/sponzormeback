@@ -201,7 +201,25 @@ return array(
 	
 	'manage'						=> 'Manage',
 
-	'searchtitle'					=> 'Search for you next event...'
+	'searchtitle'					=> 'Search for you next event...',
+
+	'eventbriteMessage'				=> 'Connect account with EventBrite',
+
+	'eventbriteButton'				=> 'Connect !',
+
+	'eventbriteButtonUnconnect'		=> 'Unconnect',
+
+	'evenbriteNotConnected'=> "Opss Something was not good, you will be redirected to the Dashboard Page",
+
+	'evenbriteConnected'=> "You are connected successfuly, you will be redirected to the Dashboard Page",
+
+	'import'=> "Import",
+
+	'eventbriteEvents'=> "List of your Eventbrite Events",
+
+	'configureImport'=> "Configure your import from eventbrite",
+
+
 
 
 );

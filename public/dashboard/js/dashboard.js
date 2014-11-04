@@ -60,18 +60,20 @@ angular.module('Dashboard').controller('MasterCtrl', ['$scope', '$cookieStore', 
 
 function MasterCtrl($scope, $cookieStore, Customization) {    
     var mobileView = 992;
-    $scope.event        = {"current": false, "organizer": "1234", "sponzor":"12334", "message":"" };
-    $scope.eventos      = {"list": false};
-    $scope.search       = {"list": false,"current":false };
-    $scope.sponzors     = {"list": false, "current":false };
-    $scope.categorias   = {"list": false };
-    $scope.a            = false;
-    $scope.alerts       = [];
-    $scope.sponzors     = [];
-    $scope.account      = {};
-    $scope.friend       = {};
-    $scope.rss          = [];
-    $scope.users         = {};
+    $scope.event            = {"current": false, "organizer": "1234", "sponzor":"12334", "message":"" };
+    $scope.eventos          = {"list": false};
+    $scope.eventbriteevents = {"list": false};
+    $scope.search           = {"list": false,"current":false };
+    $scope.sponzors         = {"list": false, "current":false };
+    $scope.categorias       = {"list": false };
+    $scope.newevent         = {};
+    $scope.a                = false;
+    $scope.alerts           = [];
+    $scope.sponzors         = [];
+    $scope.account          = {};
+    $scope.friend           = {};
+    $scope.rss              = [];
+    $scope.users            = {};
 
     $scope.getWidth = function() { return window.innerWidth; };
 
@@ -330,7 +332,25 @@ function settingsController($scope,$Cookie,Customization)
             $scope.account.sex=adata.User[0].sex;
             $scope.account.company=adata.User[0].company;
             $scope.account.email=adata.User[0].email;
+            $scope.account.eventbriteKey=adata.User[0].eventbriteKey;
+            if(adata.User[0].eventbriteKey!=undefined)
+            {
+                Customization.getEventbriteEvents(adata.User[0].eventbriteKey).success(function(data){
+                     $scope.eventbriteevents.list=data.Events.events;
+                     console.log(data.Events.events);
+                });
+            }
         });
+    }
+    $scope.importFromEventBrite=function(e)
+    {
+        console.log(e);
+        $scope.newevent.description=e.description.text;
+        $scope.newevent.title=e.name.text;
+        $scope.newevent.ends=e.end.local.split("T")[0];
+        $scope.newevent.starts=e.start.local.split("T")[0];
+        $scope.newevent.location= e.venue.address.address_1 +", " +e.venue.address.city+", " +e.venue.address.region;
+        $scope.a=true;
     }
     $scope.editAccount = function(){
         $scope.account.userId=$scope.event.organizer;

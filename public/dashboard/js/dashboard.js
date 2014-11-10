@@ -365,6 +365,7 @@ function settingsController($scope,$Cookie,Customization)
             "state":$scope.account.state,
             "email":$scope.account.email,
             "company":$scope.account.company,
+            "comunity_size":$scope.account.comunitSize,
             "userId":$scope.event.organizer
         };
         Customization.editAccount(a).success(function(adata){

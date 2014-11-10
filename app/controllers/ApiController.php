@@ -55,7 +55,6 @@ class ApiController extends BaseController {
 	        $token_array=json_decode($response[1],true);
 			if(!empty($token_array["access_token"]))
 			{
-				echo $token_array["access_token"];
 				$user = UserCustomization::find(Session::get('userId'));
 				$user->eventbriteKey=$token_array["access_token"];
 				$user->save();
@@ -67,6 +66,84 @@ class ApiController extends BaseController {
 			}
 		}
 			return Redirect::to('users/dashboard#/settings');
+	}
+	public function test2()
+	{
+		//https://secure.meetup.com/oauth2/authorize?client_id=sc88mha7rapt4pmhfuo52i68uv&response_type=code&redirect_uri=http://localhost/sponzorme/public/api/v1/test2
+		$redirect_url="http://localhost/sponzorme/public/api/v1/test2";
+		$get_code=Input::get("code");
+		if(empty($get_code))
+		{
+			echo '<script type="text/javascript">alert("'.Lang::get('dashboard.meetupNotConnected').'");</script>';
+		}
+		else
+		{
+			$params["client_id"]="sc88mha7rapt4pmhfuo52i68uv";
+			$params["client_secret"]="5ofl3jc9njcale7d7l9uaeunrn";
+			$params["code"]=$get_code;
+			$params["redirect_uri"]=$redirect_url;
+			$params["grant_type"]="authorization_code";
+			$ch = curl_init();
+	        curl_setopt($ch, CURLOPT_POST, TRUE);
+	        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+	        curl_setopt($ch, CURLOPT_URL, "https://secure.meetup.com/oauth2/access");
+	        curl_setopt($ch, CURLOPT_HEADER, 1);	        
+	        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
+	        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+	        $json_data = curl_exec($ch);
+	        var_dump($json_data);
+	        curl_close($ch);
+	        $response = explode("{",$json_data);
+	        $response;
+	        $token_array=json_decode("{".$response[1],true);
+			if(!empty($token_array["access_token"]))
+			{
+				//$user = UserCustomization::find(Session::get('userId'));
+				//$user->meetupRefreshKey=$token_array["refresh_token"];
+				//$user->save();
+				echo '<script type="text/javascript">alert("'.Lang::get('dashboard.evenbriteConnected').'");</script>';
+			}
+			else
+			{
+				echo '<script type="text/javascript">alert("'.Lang::get('dashboard.evenbriteNotConnected').'");</script>';
+			}
+		}
+		//return Redirect::to('api/v1/meetup/events/'.$token_array["refresh_token"]);
+		$ch = curl_init();
+	    curl_setopt($ch, CURLOPT_URL, "https://api.meetup.com/2/member");
+	    curl_setopt($ch, CURLOPT_HEADER, TRUE);
+	    curl_setopt($ch,CURLOPT_HTTPHEADER,array (
+		        "Authorization: Bearer ".$token_array["access_token"]));
+	    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+	    $json_events_data = curl_exec($ch);
+	    var_dump($json_events_data);
+
+	}
+	public function getMeetupEvents($refresh_token)
+	{
+		$params["client_id"]="sc88mha7rapt4pmhfuo52i68uv";
+		$params["client_secret"]="5ofl3jc9njcale7d7l9uaeunrn";
+		$params["grant_type"]="refresh_token";
+		$params["refresh_token"]=$refresh_token;		
+		$ch = curl_init();
+        curl_setopt($ch, CURLOPT_POST, TRUE);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+        curl_setopt($ch, CURLOPT_URL, "https://secure.meetup.com/oauth2/access");
+        curl_setopt($ch, CURLOPT_HEADER, 1);	        
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        $json_data = curl_exec($ch);
+        curl_close($ch);
+        var_dump($json_data);
+        $response = explode("{",$json_data);
+        $response;
+        $token_array=json_decode("{".$response[1],true);
+        
+
 	}
 	public function getEventbriteEvents($access_token)
 	{
@@ -319,6 +396,7 @@ class ApiController extends BaseController {
 				$name=Input::get('name');
 				$description=Input::get('description');
 				$company=Input::get('company');
+				$comunity_size=Input::get('comunity_size');
 				if (!empty($age))
 					$user->age = $age;
 

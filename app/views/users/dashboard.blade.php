@@ -93,7 +93,7 @@
                   </li>
                   <li class="divider"></li>
                   <li class="link">
-                    <a href="#">
+                    <a href="#/settings">
                       {{trans('dashboard.account')}}
                     </a>
                   </li>
@@ -606,6 +606,15 @@
               <div class="col-sm-3">
                 <label>{{trans('pages.city')}}</label> <br/> 
                  <input type="text" class="form-control" ng-model="account.city" name="city"/>
+              </div>
+            </div>
+            <!--form field-->
+            <div class="form-group" id="comunitySize">
+              <label for="label" class="col-sm-2 control-label">
+                {{trans('dashboard.comunitySize')}}
+              </label>
+              <div class="col-sm-5">
+                <input  type="number" data-ng-model="account.comunitySize" name="comunity_size" class="form-control" />
               </div>
             </div>
             <!--form field-->

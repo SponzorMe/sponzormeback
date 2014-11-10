@@ -219,6 +219,8 @@ return array(
 
 	'configureImport'=> "Configure your import from eventbrite",
 
+	'comunitySize' =>"Comunity Size",
+
 
 
 

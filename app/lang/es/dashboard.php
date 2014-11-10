@@ -193,5 +193,23 @@ return array(
 
 	'manage'						=> 'Gestionar',
 
-	'searchtitle'					=> 'Busca tu proximo evento ...'
+	'searchtitle'					=> 'Busca tu proximo evento ...',
+
+	'eventbriteMessage'				=> 'Conectar tu cuenta con eventbrite',
+
+	'eventbriteButton'				=> 'Conectar !',
+
+	'eventbriteButtonUnconnect'		=> 'Desconectar =(',
+
+	'evenbriteNotConnected'			=> "Opss, ",
+
+	'evenbriteConnected'			=> "Hemos conectado las cuentas satisfactoriamente, Algo salió mal. Seras redirigido a la pagina principal.",
+
+	'import'						=> "Importar",
+
+	'eventbriteEvents'				=> "Lista de tus eventos de eventbrite",
+
+	'configureImport'				=> "Configurar tu importación desde eventbrite",
+
+	'comunitySize' =>"Tamaño de tu comunidad",
 );

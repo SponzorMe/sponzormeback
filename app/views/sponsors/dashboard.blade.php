@@ -88,7 +88,7 @@
                   </li>
                   <li class="divider"></li>
                   <li class="link">
-                    <a href="#">
+                    <a href="#/settings">
                       {{trans('dashboard.account')}}
                     </a>
                   </li>
@@ -337,7 +337,7 @@
                 <label>{{trans('pages.city')}}</label> <br/> 
                  <input type="text" class="form-control" ng-model="account.city" name="city"/>
               </div>
-            </div>
+            </div>            
             <!--form field-->
             <div class="form-group" id="description">
               <label for="label" class="col-sm-2 control-label">

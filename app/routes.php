@@ -118,7 +118,11 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::get('test', 'ApiController@test');
 
+	Route::get('test2', 'ApiController@test2');
+
 	Route::get('eventbrite/events/{userToken}', 'ApiController@getEventbriteEvents');
+
+	Route::get('meetup/events/{refreshToken}', 'ApiController@getMeetupEvents');
 
 	Route::post('invitefriend', 'ApiController@inviteFriend');	
 

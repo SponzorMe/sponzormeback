@@ -122,7 +122,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::get('eventbrite/events/{userToken}', 'ApiController@getEventbriteEvents');
 
-	Route::get('meetup/events/{refreshToken}', 'ApiController@getMeetupEvents');
+	Route::get('meetup/events/{groupId}/{refreshToken}', 'ApiController@getMeetupEvents');
+
+	Route::get('meetup/groups/{refreshToken}', 'ApiController@getMeetupGroups');
 
 	Route::post('invitefriend', 'ApiController@inviteFriend');	
 

@@ -212,4 +212,8 @@ return array(
 	'configureImport'				=> "Configurar tu importación desde eventbrite",
 
 	'comunitySize' =>"Tamaño de tu comunidad",
+
+	'meetupMessage' =>"Conectar tu cuenta con Meetup",
+
+	'meetupButton'				=> 'Conectar con Meetup!',
 );

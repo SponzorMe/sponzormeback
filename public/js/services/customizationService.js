@@ -137,6 +137,14 @@ angular.module('customizationService', [])
 				global = $http.get(path + 'api/v1/eventbrite/events/'+userToken);
 				return global;
 			},
+			getMeetupGroups : function(userToken){
+				global = $http.get(path + 'api/v1/meetup/groups/'+userToken);
+				return global;
+			},
+			getMeetupEventsByGroup : function(groupId,userToken){
+				global = $http.get(path + 'api/v1/meetup/events/'+groupId+'/'+userToken);
+				return global;
+			},
 		}
 
 	});

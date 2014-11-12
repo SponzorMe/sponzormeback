@@ -69,7 +69,6 @@ class ApiController extends BaseController {
 	}
 	public function test2()
 	{
-		//https://secure.meetup.com/oauth2/authorize?client_id=sc88mha7rapt4pmhfuo52i68uv&response_type=code&redirect_uri=http://localhost/sponzorme/public/api/v1/test2
 		$redirect_url="http://localhost/sponzorme/public/api/v1/test2";
 		$get_code=Input::get("code");
 		if(empty($get_code))
@@ -87,21 +86,18 @@ class ApiController extends BaseController {
 	        curl_setopt($ch, CURLOPT_POST, TRUE);
 	        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
 	        curl_setopt($ch, CURLOPT_URL, "https://secure.meetup.com/oauth2/access");
-	        curl_setopt($ch, CURLOPT_HEADER, 1);	        
+	        curl_setopt($ch, CURLOPT_HEADER, false);	        
 	        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
+	        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);       
 	        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 	        $json_data = curl_exec($ch);
-	        var_dump($json_data);
 	        curl_close($ch);
-	        $response = explode("{",$json_data);
-	        $response;
-	        $token_array=json_decode("{".$response[1],true);
+	        $token_array=json_decode($json_data,true);
 			if(!empty($token_array["access_token"]))
 			{
-				//$user = UserCustomization::find(Session::get('userId'));
-				//$user->meetupRefreshKey=$token_array["refresh_token"];
-				//$user->save();
+				$user = UserCustomization::find(Session::get('userId'));
+				$user->meetupRefreshKey=$token_array["refresh_token"];
+				$user->save();
 				echo '<script type="text/javascript">alert("'.Lang::get('dashboard.evenbriteConnected').'");</script>';
 			}
 			else
@@ -109,20 +105,9 @@ class ApiController extends BaseController {
 				echo '<script type="text/javascript">alert("'.Lang::get('dashboard.evenbriteNotConnected').'");</script>';
 			}
 		}
-		//return Redirect::to('api/v1/meetup/events/'.$token_array["refresh_token"]);
-		$ch = curl_init();
-	    curl_setopt($ch, CURLOPT_URL, "https://api.meetup.com/2/member");
-	    curl_setopt($ch, CURLOPT_HEADER, TRUE);
-	    curl_setopt($ch,CURLOPT_HTTPHEADER,array (
-		        "Authorization: Bearer ".$token_array["access_token"]));
-	    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
-	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-	    $json_events_data = curl_exec($ch);
-	    var_dump($json_events_data);
-
+		return Redirect::to('users/dashboard#/settings');		
 	}
-	public function getMeetupEvents($refresh_token)
+	public function getMeetupGroups($refresh_token)
 	{
 		$params["client_id"]="sc88mha7rapt4pmhfuo52i68uv";
 		$params["client_secret"]="5ofl3jc9njcale7d7l9uaeunrn";
@@ -132,18 +117,78 @@ class ApiController extends BaseController {
         curl_setopt($ch, CURLOPT_POST, TRUE);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
         curl_setopt($ch, CURLOPT_URL, "https://secure.meetup.com/oauth2/access");
-        curl_setopt($ch, CURLOPT_HEADER, 1);	        
+        curl_setopt($ch, CURLOPT_HEADER, false);	        
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         $json_data = curl_exec($ch);
         curl_close($ch);
-        var_dump($json_data);
-        $response = explode("{",$json_data);
-        $response;
-        $token_array=json_decode("{".$response[1],true);
-        
-
+        $token_array=json_decode($json_data,true);
+        $user = UserCustomization::find(Session::get('userId'));
+		$user->meetupRefreshKey=$token_array["refresh_token"];
+		$user->save();
+        $ch = curl_init();
+	    curl_setopt($ch, CURLOPT_URL, "https://api.meetup.com/2/member/self");
+	    curl_setopt($ch, CURLOPT_HEADER, false);
+	    curl_setopt($ch,CURLOPT_HTTPHEADER,array (
+		        "Authorization: Bearer ".$token_array["access_token"],
+		        "Content-Type: application/json",
+    			"Accept: application/json"));	    
+	    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+	    $json_user_data = curl_exec($ch);
+	    $user_info=json_decode($json_user_data,true);
+	    $params2["member_id"]=$user_info["id"];
+	    $ch = curl_init();
+	    curl_setopt($ch, CURLOPT_URL, "https://api.meetup.com/2/profiles?member_id=".$user_info["id"]);
+	    curl_setopt($ch, CURLOPT_HEADER, false);
+	    curl_setopt($ch,CURLOPT_HTTPHEADER,array (
+		        "Authorization: Bearer ".$token_array["access_token"],
+		        "Content-Type: application/json",
+    			"Accept: application/json"));
+	    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+	    $json_groups_data = curl_exec($ch);
+	    return Response::json(array("refresh_token"=>$token_array["refresh_token"],"success" => true,"Groups"=>json_decode($json_groups_data)));
+	    /*traigo los grupos, el usuario escoje grupos, el usuario ve los 
+	    eventos que escoje, el usuario importa el evento.*/
+	}
+	public function getMeetupEvents($groupId,$refresh_token)
+	{
+		$params["client_id"]="sc88mha7rapt4pmhfuo52i68uv";
+		$params["client_secret"]="5ofl3jc9njcale7d7l9uaeunrn";
+		$params["grant_type"]="refresh_token";
+		$params["refresh_token"]=$refresh_token;		
+		$ch = curl_init();
+        curl_setopt($ch, CURLOPT_POST, TRUE);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+        curl_setopt($ch, CURLOPT_URL, "https://secure.meetup.com/oauth2/access");
+        curl_setopt($ch, CURLOPT_HEADER, false);	        
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        $json_data = curl_exec($ch);
+        curl_close($ch);
+        $token_array=json_decode($json_data,true);
+        $user = UserCustomization::find(Session::get('userId'));
+		$user->meetupRefreshKey=$token_array["refresh_token"];
+		$user->save();
+	    $ch = curl_init();
+	    curl_setopt($ch, CURLOPT_URL, "https://api.meetup.com/2/events?group_id=".$groupId);
+	    curl_setopt($ch, CURLOPT_HEADER, false);
+	    curl_setopt($ch,CURLOPT_HTTPHEADER,array (
+		        "Authorization: Bearer ".$token_array["access_token"],
+		        "Content-Type: application/json",
+    			"Accept: application/json"));
+	    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+	    $json_events_data = curl_exec($ch);
+	    return Response::json(array("refresh_token"=>$token_array["refresh_token"],"success" => true,"Events"=>json_decode($json_events_data)));
+	    /*traigo los grupos, el usuario escoje grupos, el usuario ve los 
+	    eventos que escoje, el usuario importa el evento.*/
 	}
 	public function getEventbriteEvents($access_token)
 	{

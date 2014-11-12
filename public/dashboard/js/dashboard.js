@@ -22,8 +22,7 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
         })
         .state('events', {
             url: '/events',
-            templateUrl: 'events.html',
-            controller: 'eventsController'
+            templateUrl: 'events.html'
         })
         .state('sponzors', {
             url: '/sponzors',
@@ -32,8 +31,7 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
         })
         .state('settings', {
             url: '/settings',
-            templateUrl: 'settings.html',
-            controller: 'settingsController'
+            templateUrl: 'settings.html'
         })
         .state('sponzoring', {
             url: '/sponzoring',
@@ -63,6 +61,8 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     $scope.event            = {"current": false, "organizer": "1234", "sponzor":"12334", "message":"" };
     $scope.eventos          = {"list": false};
     $scope.eventbriteevents = {"list": false};
+    $scope.meetupevents     = {"list": false};
+    $scope.meetupgroups     = {"list": false, "current":false};
     $scope.search           = {"list": false,"current":false };
     $scope.sponzors         = {"list": false, "current":false };
     $scope.categorias       = {"list": false };
@@ -313,7 +313,6 @@ function sponzorsController($scope,$Cookie,Customization)
     }
     $scope.removeRelSponzorPeak = function(id){
         Customization.removeRelSponzorPeak(id).success(function(adata){
-            console.log(adata);   
             $scope.alerts.push({msg: adata.message});
             Customization.getSponzorsByOrganizer($scope.event.organizer).success(function(adata){
                 $scope.sponzors.list=adata.Sponzors;
@@ -325,6 +324,7 @@ angular.module('Dashboard').controller('settingsController', ['$scope', '$cookie
 function settingsController($scope,$Cookie,Customization)
 {
     $scope.viewUserInfo = function(){
+        $scope.account.loadingEventbrite=false;
         Customization.getUserInfo($scope.event.organizer).success(function(adata){
             $scope.account.description=adata.User[0].description;
             $scope.account.name=adata.User[0].name;
@@ -333,25 +333,62 @@ function settingsController($scope,$Cookie,Customization)
             $scope.account.company=adata.User[0].company;
             $scope.account.email=adata.User[0].email;
             $scope.account.eventbriteKey=adata.User[0].eventbriteKey;
-            console.log(adata.User[0].eventbriteKey);
+            $scope.account.meetupRefreshKey=adata.User[0].meetupRefreshKey;
             if(adata.User[0].eventbriteKey!=undefined && adata.User[0].eventbriteKey.trim()!="")
             {
                 Customization.getEventbriteEvents(adata.User[0].eventbriteKey).success(function(data){
                      $scope.eventbriteevents.list=data.Events.events;
-                     console.log(data.Events.events);
+                     $scope.account.loadingEventbrite=true;
                 });
-            }
+            }        
+        $scope.account.loadingGroupsMeetup=false;
+       if($scope.account.meetupRefreshKey!=undefined && $scope.account.meetupRefreshKey.trim()!="")
+        {
+            Customization.getMeetupGroups($scope.account.meetupRefreshKey).success(function(data){
+                 $scope.meetupgroups.list=data.Groups.results;
+                 $scope.account.meetupRefreshKey=data.refresh_token;
+                 $scope.account.loadingGroupsMeetup=true;
+            });
+        }
+        
         });
     }
-    $scope.importFromEventBrite=function(e)
+    $scope.$watch('meetupgroups.current', function(newValue, oldValue)
     {
-        console.log(e);
+        if($scope.meetupgroups.current)
+        {
+            $scope.account.loadingMeetupEvents=false;
+            Customization.getMeetupEventsByGroup(newValue,$scope.account.meetupRefreshKey)
+            .success(function(data)
+            {
+                $scope.meetupevents.list=data.Events.results;
+                $scope.account.meetupRefreshKey=data.refresh_token;
+                $scope.account.loadingMeetupEvents=true;
+            });
+        }            
+    });
+    $scope.gato = function(e)
+    {
+        alert("sisas");
+    }
+    $scope.importFromEventBrite = function(e)
+    {
         $scope.newevent.description=e.description.text;
         $scope.newevent.title=e.name.text;
         $scope.newevent.ends=e.end.local.split("T")[0];
         $scope.newevent.starts=e.start.local.split("T")[0];
         $scope.newevent.location= e.venue.address.address_1 +", " +e.venue.address.city+", " +e.venue.address.region;
         $scope.a=true;
+    }
+    $scope.importFromMeetup=function(e)
+    {        
+        console.log(e);
+        /*$scope.newevent.description=e.description;
+        $scope.newevent.title=e.name;
+        $scope.newevent.ends=new Date(e.time+e.duration);
+        $scope.newevent.starts=new Date(e.time);
+        $scope.newevent.location=e.venue.address_1+", " +e.venue.name+", " +e.venue.city;
+        $scope.a=true;*/
     }
     $scope.editAccount = function(){
         $scope.account.userId=$scope.event.organizer;
@@ -386,8 +423,7 @@ function searchController($scope,$Cookie,$location,Customization,ngDialog)
         ngDialog.open({ template: 'peaksDialog.html', controller: 'searchController', scope: $scope });       
         Customization.getPeaks($scope.search.list[id].event).success(function(adata) 
         {
-            $scope.peaks=adata.Peaks;   
-            console.log($scope.search.current);  
+            $scope.peaks=adata.Peaks;
         });
     }
      $scope.sponzor = function(idpeak,user)
@@ -396,7 +432,6 @@ function searchController($scope,$Cookie,$location,Customization,ngDialog)
         Customization.setSponzorPeak({"peak":idpeak,"user":user})
         .success(function(adata) 
         {
-            console.log(adata); 
             $location.path("/following");
 
         });
@@ -408,7 +443,6 @@ function searchController($scope,$Cookie,$location,Customization,ngDialog)
             Customization.searchEvents($scope.search1)
             .success(function(adata)
             {
-                console.log(adata);
                 $scope.search.list = adata.Events;
             })
             .error(function(data) 
@@ -436,8 +470,7 @@ function followingController($scope,$Cookie,$location,Customization,ngDialog)
         console.log(data);
     });
     $scope.removeRelSponzorPeak = function(id){
-        Customization.removeRelSponzorPeak(id).success(function(adata){
-            console.log(adata);   
+        Customization.removeRelSponzorPeak(id).success(function(adata){  
             $scope.alerts.push({msg: adata.message});
             Customization.getEventsBySponzors($scope.sponzors.current).success(function(adata){
                 $scope.sponzors.list=adata.Sponzors;
@@ -460,7 +493,6 @@ function sponzoringController($scope,$Cookie,$location,Customization,ngDialog)
     });
     $scope.removeRelSponzorPeak = function(id){
         Customization.removeRelSponzorPeak(id).success(function(adata){
-            console.log(adata);   
             $scope.alerts.push({msg: adata.message});
             Customization.getEventsBySponzors($scope.sponzors.current).success(function(adata){
                 $scope.sponzors.list=adata.Sponzors;
@@ -474,9 +506,7 @@ function friendController($scope,$Cookie,$location,Customization,ngDialog)
 {
     $scope.invitefriend = function(){
         Customization.inviteFriend($scope.friend.email,$scope.friend.message).success(function(adata){
-            console.log(adata);   
             $scope.alerts.push({msg: adata.message});
-            console.log(adata);
             if(adata.success==true)
             {
                 $scope.friend.email="";
@@ -497,7 +527,6 @@ function rssController($scope,$Cookie,$location,Customization,ngDialog)
         success: function(data) {
             for(i=0;i<data.responseData.feed.entries.length;i++)
             {
-                console.log(data.responseData.feed.entries[i].title);
                  $scope.rss[i]={
                     "title":data.responseData.feed.entries[i].title,
                     "link":data.responseData.feed.entries[i].link
@@ -511,7 +540,6 @@ angular.module('Dashboard').controller('eventbriteController', ['$scope', '$cook
 function eventbriteController($scope,$Cookie,$location,Customization,ngDialog)
 {
      Customization.connectEverbrite().success(function(adata){
-            console.log(adata);
             }).error(function(data) {
                 console.log(data);
             });

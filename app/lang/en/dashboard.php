@@ -163,7 +163,7 @@ return array(
 
 	'title'							=>	'Title',
 
-	'title'							=>	'Starts',
+	'starts'							=>	'Starts',
 
 	'perks'							=>	'Perks',
 
@@ -205,7 +205,7 @@ return array(
 
 	'eventbriteMessage'				=> 'Connect account with EventBrite',
 
-	'eventbriteButton'				=> 'Connect !',
+	'eventbriteButton'				=> 'Connect to Eventbrite!',
 
 	'eventbriteButtonUnconnect'		=> 'Unconnect',
 
@@ -220,6 +220,13 @@ return array(
 	'configureImport'=> "Configure your import from eventbrite",
 
 	'comunitySize' =>"Comunity Size",
+
+	'meetupMessage' =>"Connect account with Meetup",
+
+	'meetupButton'				=> 'Connect to Meetup!',
+
+	'chooseGroup'				=> 'Choose group',
+
 
 
 

@@ -572,14 +572,14 @@
       </div>      
   </script>
   <!--Template asociado a los settings-->
-  <script type="text/ng-template" id="settings.html" data-ng-controller="settingsController">
+  <script type="text/ng-template" id="settings.html" >
     <div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
       <div class="col-xs-12">
         <alert data-ng-repeat="alert in alerts" type="<% alert.type %>" close="closeAlert($index)">
         <%alert.msg %></alert>
       </div>
     </div>
-    <div class="row">
+    <div class="row" >
       <div class="col-lg-12">
         <div class="widget">
           <div class="widget-header">

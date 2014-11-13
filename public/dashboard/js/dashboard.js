@@ -31,7 +31,8 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
         })
         .state('settings', {
             url: '/settings',
-            templateUrl: 'settings.html'
+            templateUrl: 'settings.html',
+            controller: "settingsController"
         })
         .state('sponzoring', {
             url: '/sponzoring',

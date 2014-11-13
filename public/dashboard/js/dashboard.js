@@ -367,6 +367,7 @@ function settingsController($scope,$Cookie,Customization)
             });
         }            
     });
+	//ACA EMPIEZA EL PROBLEMA
     $scope.gato = function(e)
     {
         alert("sisas");

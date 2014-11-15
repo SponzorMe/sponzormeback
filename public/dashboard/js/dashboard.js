@@ -31,7 +31,8 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
         })
         .state('settings', {
             url: '/settings',
-            templateUrl: 'settings.html'
+            templateUrl: 'settings.html',
+            controller: 'settingsController'            
         })
         .state('sponzoring', {
             url: '/sponzoring',
@@ -367,29 +368,25 @@ function settingsController($scope,$Cookie,Customization)
             });
         }            
     });
-	//ACA EMPIEZA EL PROBLEMA
-    $scope.gato = function(e)
-    {
-        alert("sisas");
-    }
-    $scope.importFromEventBrite = function(e)
+    $scope.importFromEventbrite = function(e)
     {
         $scope.newevent.description=e.description.text;
         $scope.newevent.title=e.name.text;
         $scope.newevent.ends=e.end.local.split("T")[0];
         $scope.newevent.starts=e.start.local.split("T")[0];
         $scope.newevent.location= e.venue.address.address_1 +", " +e.venue.address.city+", " +e.venue.address.region;
+        console.log($scope.newevent.ends);
         $scope.a=true;
     }
     $scope.importFromMeetup=function(e)
-    {        
-        console.log(e);
-        /*$scope.newevent.description=e.description;
+    {
+        $scope.newevent.description=e.description;
         $scope.newevent.title=e.name;
-        $scope.newevent.ends=new Date(e.time+e.duration);
-        $scope.newevent.starts=new Date(e.time);
+        $scope.newevent.ends=e.dateEnds;
+        $scope.newevent.starts=e.dateStarts;
         $scope.newevent.location=e.venue.address_1+", " +e.venue.name+", " +e.venue.city;
-        $scope.a=true;*/
+        console.log($scope.newevent.ends);
+        $scope.b=true;
     }
     $scope.editAccount = function(){
         $scope.account.userId=$scope.event.organizer;

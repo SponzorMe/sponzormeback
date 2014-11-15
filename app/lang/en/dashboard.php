@@ -217,8 +217,6 @@ return array(
 
 	'eventbriteEvents'=> "List of your Eventbrite Events",
 
-	'configureImport'=> "Configure your import from eventbrite",
-
 	'comunitySize' =>"Comunity Size",
 
 	'meetupMessage' =>"Connect account with Meetup",
@@ -226,6 +224,10 @@ return array(
 	'meetupButton'				=> 'Connect to Meetup!',
 
 	'chooseGroup'				=> 'Choose group',
+
+	'configureMeetupImport'		=> "Configure your import from Meetup",
+
+	'configureEventbriteImport'	=> "Configure your import from eventbrite",
 
 
 

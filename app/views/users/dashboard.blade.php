@@ -572,7 +572,7 @@
       </div>      
   </script>
   <!--Template asociado a los settings-->
-  <script type="text/ng-template" id="settings.html" data-ng-controller="settingsController">
+  <script type="text/ng-template" id="settings.html">
     <div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
       <div class="col-xs-12">
         <alert data-ng-repeat="alert in alerts" type="<% alert.type %>" close="closeAlert($index)">
@@ -712,7 +712,7 @@
                     <td><% e.name.text %></td>
                     <td><% e.venue.address.address_1 %>, <% e.venue.address.city %>, <% e.venue.address.region %></td>
                     <td><% e.start.local %></td>
-                    <td><span class="text-success"><a class="btn btn-warning" data-ng-click="gato(e)"><i class="fa fa-check"></i>Import</a></span></td>
+                    <td><span class="text-success"><a class="btn btn-warning" data-ng-click="importFromEventbrite(e)"><i class="fa fa-check"></i>Import</a></span></td>
                   </tr>
                 </tbody>
               </table>               
@@ -726,7 +726,7 @@
       <div class="col-lg-6" ng-show="a">
           <div class="widget">
             <div class="widget-header">
-              <i class="fa fa-plus"></i>{{trans('dashboard.configureImport')}}
+              <i class="fa fa-plus"></i>{{trans('dashboard.configureEventbriteImport')}}
               <div class="clearfix"></div>
             </div>
             <div class="widget-body large">
@@ -770,7 +770,10 @@
                     <tr data-ng-repeat="j in meetupevents.list">
                       <td><% j.name%></td>
                       <td><% j.venue.address_1 %>, <% j.venue.name %>. <% j.venue.city %></td>
-                      <td><% j.time| date : format : timezone %></td>
+                      <td>
+                        <% j.dateStarts=(j.time | date:'yyyy-MM-dd') %>
+                        <input type="hidden" value="<% j.dateEnds=(j.time+j.duration | date:'yyyy-MM-dd') %>" />
+                      </td>
                       <td><span class="text-success">
                       <button class="btn btn-warning" ng-click="importFromMeetup(j)"><i class="fa fa-check"></i>Import</button></td>
                     </tr>
@@ -785,10 +788,10 @@
           </div>          
         </div>
       </div>
-      <div class="col-lg-6" ng-show="a">
+      <div class="col-lg-6" ng-show="b">
           <div class="widget">
             <div class="widget-header">
-              <i class="fa fa-plus"></i>{{trans('dashboard.configureImport')}}
+              <i class="fa fa-plus"></i>{{trans('dashboard.configureMeetupImport')}}
               <div class="clearfix"></div>
             </div>
             <div class="widget-body large">

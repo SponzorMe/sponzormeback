@@ -36,8 +36,8 @@ class ApiController extends BaseController {
 		}
 		else
 		{
-			$params["client_id"]="UIIEUBJUVOI5JDEZND";
-			$params["client_secret"]="IEPASK4CMUONNNBXA6DQ34O3VGIPFDGAGROF7HPR3LWRS6HREK";
+			$params["client_id"]="MI3YNPLR3R73AD36YS";
+			$params["client_secret"]="V72EKSC2YWR5Y4XKVKCUL4W45ZAAVXJSEG3KOBAFIVKR6ESIX5";
 			$params["code"]=$get_code;
 			$params["grant_type"]="authorization_code";
 			$ch = curl_init();
@@ -69,7 +69,7 @@ class ApiController extends BaseController {
 	}
 	public function test2()
 	{
-		$redirect_url="http://localhost/sponzorme/public/api/v1/test2";
+		$redirect_url="http://beta.sponzor.me/api/v1/test2";
 		$get_code=Input::get("code");
 		if(empty($get_code))
 		{
@@ -77,8 +77,8 @@ class ApiController extends BaseController {
 		}
 		else
 		{
-			$params["client_id"]="sc88mha7rapt4pmhfuo52i68uv";
-			$params["client_secret"]="5ofl3jc9njcale7d7l9uaeunrn";
+			$params["client_id"]="lc876qakj5itnsnebm3dijus12";
+			$params["client_secret"]="t9lpatu023l44gjbtkno2a9ku9";
 			$params["code"]=$get_code;
 			$params["redirect_uri"]=$redirect_url;
 			$params["grant_type"]="authorization_code";
@@ -109,9 +109,10 @@ class ApiController extends BaseController {
 	}
 	public function getMeetupGroups($refresh_token)
 	{
-		$params["client_id"]="sc88mha7rapt4pmhfuo52i68uv";
-		$params["client_secret"]="5ofl3jc9njcale7d7l9uaeunrn";
-		$params["grant_type"]="refresh_token";
+		
+                $params["client_id"]="lc876qakj5itnsnebm3dijus12";
+                $params["client_secret"]="t9lpatu023l44gjbtkno2a9ku9";
+                $params["grant_type"]="refresh_token";
 		$params["refresh_token"]=$refresh_token;		
 		$ch = curl_init();
         curl_setopt($ch, CURLOPT_POST, TRUE);
@@ -157,9 +158,9 @@ class ApiController extends BaseController {
 	}
 	public function getMeetupEvents($groupId,$refresh_token)
 	{
-		$params["client_id"]="sc88mha7rapt4pmhfuo52i68uv";
-		$params["client_secret"]="5ofl3jc9njcale7d7l9uaeunrn";
-		$params["grant_type"]="refresh_token";
+$params["client_id"]="lc876qakj5itnsnebm3dijus12";
+                        $params["client_secret"]="t9lpatu023l44gjbtkno2a9ku9";		
+$params["grant_type"]="refresh_token";
 		$params["refresh_token"]=$refresh_token;		
 		$ch = curl_init();
         curl_setopt($ch, CURLOPT_POST, TRUE);

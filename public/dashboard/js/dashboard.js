@@ -32,7 +32,11 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
         .state('settings', {
             url: '/settings',
             templateUrl: 'settings.html',
+<<<<<<< HEAD
             controller: 'settingsController'            
+=======
+            controller: "settingsController"
+>>>>>>> 1fb5b43568a9cb1baa8ced4cc74b3d3639ce812d
         })
         .state('sponzoring', {
             url: '/sponzoring',

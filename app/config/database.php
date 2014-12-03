@@ -57,8 +57,6 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'beta',
 			'username'  => 'beta',
-			//'database'  => 'localbeta',
-			//'username'  => 'localbeta',
 			'password'  => '7VMrjqCfUB749w',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',

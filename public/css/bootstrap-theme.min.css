@@ -13,7 +13,7 @@ ul.navbar-nav li a{
 }
 
 .footer {
-position: fixed;
+position: absolute;
 bottom: 0;
 width: 100%;
 background-color: #012135;
@@ -135,10 +135,6 @@ height: 400px;
 .testimonials .title
 {
 	color: #000;
-}
-
-body > .container{
-	margin-bottom: 50px;
 }
 
 

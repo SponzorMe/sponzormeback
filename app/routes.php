@@ -135,6 +135,8 @@ Route::get('testimonials', 'HomeController@testimonials'); //testimonials
 
 Route::get('language/{lang}', 'HomeController@setLanguage'); //Language Settings
 
+
+
 App::missing(function($exception)
 {
 	return View::make('index');

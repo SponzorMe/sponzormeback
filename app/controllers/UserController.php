@@ -480,7 +480,7 @@ class UserController extends BaseController {
 	}
     public function dashboard()
     {
-        return View::make('users.dashboard');
+        return View::make('users.dashboard.template');
     }
 
 

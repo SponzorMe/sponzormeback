@@ -11,14 +11,14 @@
 
 		<!-- Bootstrap 3.0: Latest compiled and minified CSS -->
 		<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> -->
-		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/lib/bootstrap/bootstrap.min.css') }}">
        <link rel="stylesheet" href="{{ asset('css/default.css') }}">
        <link rel="stylesheet" href="{{ asset('css/style3.css') }}">
        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> <!-- fuente roboto -->
 
 		<!-- Optional theme -->
 		<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"> -->
-		<link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/lib/bootstrap/bootstrap-theme.min.css') }}">
 		<!-- Styles for the customization -->
 			<link rel="stylesheet" href="{{ asset('css/customstyles.css') }}"> 
 		<style>
@@ -124,18 +124,18 @@
 
 		<!-- Javascripts
 		================================================== -->
-		<script src="{{ asset('js/jquery-2.0.2.min.js') }}"></script>
-		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-		<script src="{{ asset('js/restfulizer.js') }}"></script> 
-        <script src="{{ asset('js/modernizr.custom.86080.js') }}"></script>
+		<script src="{{ asset('js/lib/jquery.js') }}"></script>
+		<script src="{{ asset('js/lib/bootstrap/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('js/lib/restfulizer.js') }}"></script> 
+        <script src="{{ asset('js/lib/modernizr.custom.86080.js') }}"></script>
         <!-- Thanks to Zizaco for the Restfulizer script.  http://zizaco.net  -->
         <!-- ANGULAR -->
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
+        <script src="{{ asset('js/lib/angular/angular.js')}}"></script>
 		<!-- all angular resources will be loaded from the /public folder -->
 		<script src="{{ asset('js/controllers/mainController.js') }}"></script> <!-- load our controller -->
 		<script src="{{ asset('js/services/customizationService.js') }}"></script> <!-- load our service -->
 		<script src="{{ asset('js/app.js') }}"></script> <!-- load our application -->
-		<script src="{{ asset('js/scripts.js') }}"></script> <!-- load our custom scripts -->
+		<script src="{{ asset('js/own_scripts/scripts.js') }}"></script> <!-- load our custom scripts -->
         
 	<!-- Start Google Analytics -->
 		<script>

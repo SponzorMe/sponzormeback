@@ -23,7 +23,6 @@
   <script src="{{ asset('js/dashboard.js')}}"></script><!--script principal-->
   <script src="{{ asset('js/services/customizationService.js') }}"></script><!-- load our service -->
 </head>
-<!--Navegación y encabezado-->
 @if (Sentry::check())
 <body ng-controller="MasterCtrl">
   <div id="page-wrapper" ng-class="{'active': toggle}" ng-cloak>
@@ -34,7 +33,7 @@
       <ul class="sidebar">
         <li class="sidebar-main">
           <a href="#" ng-click="toggleSidebar()">
-            {{trans('dashboard.dashboard')}}
+            Dashboard
             <span class="menu-icon glyphicon glyphicon-transfer"></span>
           </a>
         </li>
@@ -43,21 +42,18 @@
           <a href="#">{{trans('dashboard.dashboard')}}<span class="menu-icon fa fa-tachometer"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#/events">{{trans('dashboard.events')}} <span class="menu-icon fa fa-table"></span></a>
+          <a href="#/following">{{trans('dashboard.following')}} <span class="menu-icon fa fa-table"></span></a>
         </li>
         <li class="sidebar-list">
           <a href="#/settings">{{trans('dashboard.settings')}}<span class="menu-icon fa fa-tasks"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#/sponzors">{{trans('dashboard.sponzors')}} <span class="menu-icon fa fa-cogs"></span></a>
+          <a href="#/sponzoring">{{trans('dashboard.sponzoring')}} <span class="menu-icon fa fa-cogs"></span></a>
         </li>
-        <li class="sidebar-list">
-          <a href="#/friend">{{trans('dashboard.invitefriend')}} <span class="menu-icon fa fa-cogs"></span></a>
-        </li>        
       </ul>
       <div class="sidebar-footer">
         <div class="col-xs-4">
-          <a id="blogUrl" href="{{ URL::to(trans('pages.blogUrl')) }}">{{trans('pages.blog')}}</a>
+          <a href="{{ URL::to(trans('pages.blogUrl')) }}">{{trans('pages.blog')}}</a>
         </div>
         <div class="col-xs-4">
           <a href="{{ URL::to('testimonials') }}" target="_blank">
@@ -130,14 +126,14 @@
             </div>
           </div>
         </div>
-        <!-- End Header Bar -->
+         <!-- End Header Bar -->
 
         <!-- Main Content -->
         <section data-ui-view></section>
       </div><!-- End Page Content -->
     </div><!-- End Content Wrapper -->
   </div><!-- End Page Wrapper -->
-	@yield("content")
+  @yield("content")
 @else
     <p>{{trans('pages.forbidden')}}</p>
 @endif

@@ -55,8 +55,8 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'beta',
-			'username'  => 'beta',
+			'database'  => 'staging',
+			'username'  => 'staging',
 			'password'  => '7VMrjqCfUB749w',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',

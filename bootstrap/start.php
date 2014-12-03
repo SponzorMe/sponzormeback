@@ -30,8 +30,8 @@ $app = new Illuminate\Foundation\Application;
         : 'prod'; // or whatever fallback you prefer
 });*/
 $env = $app->detectEnvironment(array(
-    'local' => [gethostname()],
-    'production' => ['*.me', '*.net', '*.org']
+    'local' => array('localhost', '127.0.0.1', '*.localhost','CASA'),
+    'production' => ['staging']
 ));
 
 /*

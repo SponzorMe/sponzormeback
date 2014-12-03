@@ -109,10 +109,16 @@ class ApiController extends BaseController {
 	}
 	public function getMeetupGroups($refresh_token)
 	{
+<<<<<<< HEAD
 		
                 $params["client_id"]="lc876qakj5itnsnebm3dijus12";
                 $params["client_secret"]="t9lpatu023l44gjbtkno2a9ku9";
                 $params["grant_type"]="refresh_token";
+=======
+		$params["client_id"]="lc876qakj5itnsnebm3dijus12";
+		$params["client_secret"]="t9lpatu023l44gjbtkno2a9ku9";
+		$params["grant_type"]="refresh_token";
+>>>>>>> a7658346ff1392e6731ef5b7234d05be44b6d0b4
 		$params["refresh_token"]=$refresh_token;		
 		$ch = curl_init();
         curl_setopt($ch, CURLOPT_POST, TRUE);
@@ -158,9 +164,15 @@ class ApiController extends BaseController {
 	}
 	public function getMeetupEvents($groupId,$refresh_token)
 	{
+<<<<<<< HEAD
 $params["client_id"]="lc876qakj5itnsnebm3dijus12";
                         $params["client_secret"]="t9lpatu023l44gjbtkno2a9ku9";		
 $params["grant_type"]="refresh_token";
+=======
+		$params["client_id"]="lc876qakj5itnsnebm3dijus12";
+		$params["client_secret"]="t9lpatu023l44gjbtkno2a9ku9";
+		$params["grant_type"]="refresh_token";
+>>>>>>> a7658346ff1392e6731ef5b7234d05be44b6d0b4
 		$params["refresh_token"]=$refresh_token;		
 		$ch = curl_init();
         curl_setopt($ch, CURLOPT_POST, TRUE);

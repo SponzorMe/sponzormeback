@@ -116,9 +116,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::get('remove/relsponzorpeak/{idRelSponzor}', 'ApiController@removeRelSponzorPeak');
 
-	Route::get('test', 'ApiController@test');
+	Route::get('connectEvenbrite', 'ApiController@connectEvenbrite');
 
-	Route::get('test2', 'ApiController@test2');
+	Route::get('connectMeetup', 'ApiController@connectMeetup');
 
 	Route::get('eventbrite/events/{userToken}', 'ApiController@getEventbriteEvents');
 
@@ -126,7 +126,11 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::get('meetup/groups/{refreshToken}', 'ApiController@getMeetupGroups');
 
-	Route::post('invitefriend', 'ApiController@inviteFriend');	
+	Route::post('invitefriend', 'ApiController@inviteFriend');
+
+	Route::get('eventbrite/unconnect/{userId}', 'ApiController@unconnectEventbrite');
+
+	Route::get('meetup/unconnect/{userId}', 'ApiController@unconnectMeetup');	
 
 	Route::resource('/', 'ApiController');
 });

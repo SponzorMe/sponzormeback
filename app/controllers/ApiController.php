@@ -8,7 +8,6 @@ use Authority\Service\Form\ResendActivation\ResendActivationForm;
 use Authority\Service\Form\ForgotPassword\ForgotPasswordForm;
 use Authority\Service\Form\ChangePassword\ChangePasswordForm;
 use Authority\Service\Form\SuspendUser\SuspendUserForm;
-include(app_path().'/includes/Eventbrite.php');
 class ApiController extends BaseController {
 
 	protected $registerForm;
@@ -35,8 +34,8 @@ class ApiController extends BaseController {
 		}
 		else
 		{
-			$params["client_id"]="UIIEUBJUVOI5JDEZND";
-			$params["client_secret"]="IEPASK4CMUONNNBXA6DQ34O3VGIPFDGAGROF7HPR3LWRS6HREK";
+			$params["client_id"]=Config::get('constants.evenbriteClientId');
+			$params["client_secret"]=Config::get('constants.eventbriteClientSecret');
 			$params["code"]=$get_code;
 			$params["grant_type"]="authorization_code";
 			$ch = curl_init();
@@ -68,7 +67,7 @@ class ApiController extends BaseController {
 	}
 	public function connectMeetup()
 	{
-		$redirect_url="http://localhost/sponzorme/public/api/v1/test2";
+		$redirect_url=Config::get('constants.meetupRedirectUrl');
 		$get_code=Input::get("code");
 		if(empty($get_code))
 		{
@@ -76,8 +75,8 @@ class ApiController extends BaseController {
 		}
 		else
 		{
-			$params["client_id"]="sc88mha7rapt4pmhfuo52i68uv";
-			$params["client_secret"]="5ofl3jc9njcale7d7l9uaeunrn";
+			$params["client_id"]=Config::get('constants.meetupClientId');
+			$params["client_secret"]=Config::get('constants.meetupClientSecret');
 			$params["code"]=$get_code;
 			$params["redirect_uri"]=$redirect_url;
 			$params["grant_type"]="authorization_code";
@@ -108,8 +107,8 @@ class ApiController extends BaseController {
 	}
 	public function getMeetupGroups($refresh_token)
 	{
-		$params["client_id"]="sc88mha7rapt4pmhfuo52i68uv";
-		$params["client_secret"]="5ofl3jc9njcale7d7l9uaeunrn";
+		$params["client_id"]=Config::get('constants.meetupClientId');
+		$params["client_secret"]=Config::get('constants.meetupClientSecret');
 		$params["grant_type"]="refresh_token";
 		$params["refresh_token"]=$refresh_token;		
 		$ch = curl_init();
@@ -156,8 +155,8 @@ class ApiController extends BaseController {
 	}
 	public function getMeetupEvents($groupId,$refresh_token)
 	{
-		$params["client_id"]="sc88mha7rapt4pmhfuo52i68uv";
-		$params["client_secret"]="5ofl3jc9njcale7d7l9uaeunrn";
+		$params["client_id"]=Config::get('constants.meetupClientId');
+		$params["client_secret"]=Config::get('constants.meetupClientSecret');
 		$params["grant_type"]="refresh_token";
 		$params["refresh_token"]=$refresh_token;		
 		$ch = curl_init();
@@ -223,6 +222,18 @@ class ApiController extends BaseController {
 	        return Response::json(array("success" => true,"Events"=>$events));
 		}
 
+	}
+	public function unconnectMeetup($userId)
+	{
+		$user = UserCustomization::find($userId);
+		$user->meetupRefreshKey="";
+		$user->save();
+	}
+	public function unconnectEventbrite($userId)
+	{
+		$user = UserCustomization::find($userId);
+		$user->eventbriteKey="";
+		$user->save();
 	}
 	public function index()
 	{

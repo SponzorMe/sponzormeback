@@ -120,7 +120,7 @@
         </div>
         <div class="widget-body medium" ng-if="account.eventbriteKey == ''">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <div  class="text-center"><a class="btn btn-success" href='https://www.eventbrite.com/oauth/authorize?response_type=code&client_id=UIIEUBJUVOI5JDEZND'>{{trans('dashboard.eventbriteButton')}}</a>
+          <div  class="text-center"><a class="btn btn-success" href='https://www.eventbrite.com/oauth/authorize?response_type=code&client_id={{Config::get("constants.evenbriteClientId")}}'>{{trans('dashboard.eventbriteButton')}}</a>
           </div>
         </div>
         <div class="widget-body large" ng-if="account.eventbriteKey != '' ">
@@ -144,7 +144,7 @@
               </tbody>
             </table>               
             </div>
-          <div  class="text-center">
+          <div ng-click="unconnectEventbrite()"  class="text-center">
             <button class="btn btn-primary">{{trans('dashboard.eventbriteButtonUnconnect')}}</button>
           </div>
         </div>
@@ -172,7 +172,7 @@
         <div class="widget-body medium" ng-if="account.meetupRefreshKey == ''">
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           <div  class="text-center">
-          <a class="btn btn-danger" href='https://secure.meetup.com/oauth2/authorize?client_id=sc88mha7rapt4pmhfuo52i68uv&response_type=code&redirect_uri=http://localhost/sponzorme/public/api/v1/test2'>
+          <a class="btn btn-danger" href='https://secure.meetup.com/oauth2/authorize?client_id={{Config::get("constants.meetupClientId")}}&response_type=code&redirect_uri={{Config::get("constants.meetupRedirectUrl")}}'>
           {{trans('dashboard.meetupButton')}}</a>
           </div>
         </div>
@@ -208,7 +208,7 @@
               </table>
             </div>
             <div class="clearfix"></div>
-            <button class="btn btn-primary">
+            <button ng-click="unconnectMeetup()" class="btn btn-primary">
             {{trans('dashboard.eventbriteButtonUnconnect')}}</button>
           </div>
           </div>

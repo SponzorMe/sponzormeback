@@ -375,8 +375,23 @@ function settingsController($scope,$Cookie,Customization)
         $scope.newevent.ends=e.end.local.split("T")[0];
         $scope.newevent.starts=e.start.local.split("T")[0];
         $scope.newevent.location= e.venue.address.address_1 +", " +e.venue.address.city+", " +e.venue.address.region;
-        console.log($scope.newevent.ends);
         $scope.a=true;
+    }
+    $scope.unconnectMeetup = function()
+    {
+        Customization.unconnectMeetup($scope.event.organizer)
+            .success(function(data)
+            {
+                $scope.viewUserInfo();
+            });        
+    }
+    $scope.unconnectEventbrite = function()
+    {
+        Customization.unconnectEventbrite($scope.event.organizer)
+            .success(function(data)
+            {
+                $scope.viewUserInfo();
+            });        
     }
     $scope.importFromMeetup=function(e)
     {
@@ -385,7 +400,6 @@ function settingsController($scope,$Cookie,Customization)
         $scope.newevent.ends=e.dateEnds;
         $scope.newevent.starts=e.dateStarts;
         $scope.newevent.location=e.venue.address_1+", " +e.venue.name+", " +e.venue.city;
-        console.log($scope.newevent.ends);
         $scope.b=true;
     }
     $scope.editAccount = function(){

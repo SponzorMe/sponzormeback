@@ -8,7 +8,6 @@ angular.module('customizationService', [])
 		  		newPathname += pathArray[i]+"/";
 		}		
 		newPathname=window.location.protocol + "//"+ newPathname;
-		console.log(newPathname);
 		var path = newPathname;
 		return {
 			// get all the categories
@@ -143,6 +142,14 @@ angular.module('customizationService', [])
 			},
 			getMeetupEventsByGroup : function(groupId,userToken){
 				global = $http.get(path + 'api/v1/meetup/events/'+groupId+'/'+userToken);
+				return global;
+			},
+			unconnectMeetup : function(userId){
+				global = $http.get(path + 'api/v1/meetup/unconnect/'+userId);
+				return global;
+			},
+			unconnectEventbrite : function(userId){
+				global = $http.get(path + 'api/v1/eventbrite/unconnect/'+userId);
 				return global;
 			},
 		}

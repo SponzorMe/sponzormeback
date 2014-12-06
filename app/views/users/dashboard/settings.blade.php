@@ -68,17 +68,8 @@
             <label for="label" class="col-sm-2 control-label">
               {{trans('dashboard.editaccountlocation')}}
             </label>
-            <div class="col-sm-3">
-              <label>{{trans('pages.country')}}</label> <br/> 
-              <input type="text" class="form-control" ng-model="account.country" name="country"/>
-            </div>
-            <div class="col-sm-3">
-              <label>{{trans('pages.state')}}</label><br/> 
-              <input type="text" class="form-control" ng-model="account.state" name="state"/>
-            </div>
-            <div class="col-sm-3">
-              <label>{{trans('pages.city')}}</label> <br/> 
-               <input type="text" class="form-control" ng-model="account.city" name="city"/>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="#location" ng-model="account.location" ng-autocomplete="results2" details="details2" options="options2" name="location" ng-click="details2.reference=undefined; account.location=undefined;"/>
             </div>
           </div>
           <!--form field-->

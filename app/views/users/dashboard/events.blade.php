@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-4">
         <div class="widget">
           <div class="widget-header">
             <i class="fa fa-plus"></i>{{trans('dashboard.addevent')}}
@@ -31,7 +31,7 @@
                 {{trans('dashboard.neweventlocation')}}
               </label>
               <div class="col-sm-7">
-                <input  type="text" data-ng-model="newevent.location" placeholder="{{trans('dashboard.neweventlocationdescription')}}" name="location" class="form-control" />
+                <input  type="text" data-ng-model="newevent.location" ng-autocomplete="results3" details="details3" options="options3" placeholder="{{trans('dashboard.neweventlocationdescription')}}" name="location" class="form-control" />
               </div>
             </div>
             <!--form field-->
@@ -152,7 +152,7 @@
           </form>
         </div>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-8">
         <div class="widget">
           <div class="widget-header">
             <i class="fa fa-tasks"></i> {{trans('dashboard.events')}}
@@ -161,7 +161,7 @@
 
           <div class="widget-body medium no-padding">
             <div class="table-responsive">
-              <table class="table table-striped" data-ng-controller="eventsController">
+              <table class="table table-striped">
               <thead>
                 <th class="text-center">{{trans('dashboard.neweventtitle')}}</th>
                 <th class="text-center">{{trans('dashboard.neweventlocation')}}</th>

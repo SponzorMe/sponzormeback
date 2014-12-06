@@ -444,9 +444,8 @@ class ApiController extends BaseController {
 				$user = UserCustomization::find($userId);
 				$age=Input::get('age');
 				$sex=Input::get('sex');
-				$country=Input::get('country');
-				$state=Input::get('state');
-				$city=Input::get('city');
+				$location=Input::get('location');
+				$location_reference=Input::get('location_reference');
 				$email=Input::get('email');
 				$name=Input::get('name');
 				$description=Input::get('description');
@@ -458,14 +457,11 @@ class ApiController extends BaseController {
 				if (!empty($sex))
 					$user->sex = $sex;
 
-				if (!empty($country))
-					$user->country = $country;
+				if (!empty($location_reference))
+					$user->location_reference = $location_reference;
 
-				if (!empty($state))
-					$user->state = $state;
-
-				if (!empty($city))
-					$user->city = $city;
+				if (!empty($location))
+					$user->location = $location;
 
 				if (!empty($email))
 					$user->email = $email;
@@ -603,13 +599,14 @@ class ApiController extends BaseController {
 		} else {
 			// store
 			$evento=array(
-					'title'       	=> Input::get('title'),
-					'description'   => Input::get('description'),
-					'location' 		=> Input::get('location'),
-					'starts'		=> Input::get('starts'),
-					'ends' 			=> Input::get('ends'),
-					'organizer' 	=> Input::get('organizer'),
-					'privacy' 		=> Input::get('privacy')
+					'title'       			=> Input::get('title'),
+					'description'   		=> Input::get('description'),
+					'location' 				=> Input::get('location'),
+					'starts'				=> Input::get('starts'),
+					'location_reference'	=> Input::get('location_reference'),
+					'ends' 					=> Input::get('ends'),
+					'organizer' 			=> Input::get('organizer'),
+					'privacy' 				=> Input::get('privacy')
 					);			
 			$type=Input::get('type');
 			if(!empty($type))

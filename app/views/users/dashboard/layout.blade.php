@@ -19,6 +19,8 @@
   <script src="{{ asset('js/lib/angular-bootstrap/ui-bootstrap-tpls.js')}}"></script>
   <script src="{{ asset('js/lib/angular-ui-router/angular-ui-router.js')}}"></script>  
   <script src="{{ asset('js/lib/ngDialog.min.js')}}"></script>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+  <script src="{{ asset('js/lib/ngAutocomplete.js')}}"></script>
   <script src="{{ asset('js/lib/angular-sanitize.min.js')}}"></script>
   <script src="{{ asset('js/dashboard.js')}}"></script><!--script principal-->
   <script src="{{ asset('js/services/customizationService.js') }}"></script><!-- load our service -->

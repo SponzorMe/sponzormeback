@@ -132,6 +132,9 @@ return array(
 
 	'terms'	=> "Terms of Service",
 
-	'privacy'	=> "Privacy"
+	'privacy'	=> "Privacy",
+
+	'location'	=> "Location",
+
 
 );

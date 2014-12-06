@@ -1,5 +1,5 @@
 (function(){
-angular.module('Dashboard', ['ui.bootstrap', 'ui.router', 'ngCookies','ngDialog', 'customizationService'], 
+angular.module('Dashboard', ['ui.bootstrap', 'ui.router', 'ngCookies','ngDialog', 'ngAutocomplete', 'customizationService'], 
     function($interpolateProvider){
         $interpolateProvider.startSymbol('<%');
         $interpolateProvider.endSymbol('%>');
@@ -22,7 +22,8 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
         })
         .state('events', {
             url: '/events',
-            templateUrl: 'events.html'
+            templateUrl: 'events.html',
+            controller: 'eventsController'
         })
         .state('sponzors', {
             url: '/sponzors',
@@ -67,6 +68,10 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     $scope.search           = {"list": false,"current":false };
     $scope.sponzors         = {"list": false, "current":false };
     $scope.categorias       = {"list": false };
+    $scope.result2          = '';
+    $scope.details2         = '';
+    $scope.result3          = '';
+    $scope.details3         = '';
     $scope.newevent         = {};
     $scope.a                = false;
     $scope.alerts           = [];
@@ -182,6 +187,7 @@ function rdLoading () {
  angular.module('Dashboard').controller('eventsController', ['$scope', '$cookieStore', 'Customization', 'ngDialog',eventsController]);
 function eventsController($scope,$Cookie,Customization,ngDialog)
 {
+    $scope.options3 = null;
     Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
     {
         $scope.eventos.list = adata.Events;
@@ -192,6 +198,7 @@ function eventsController($scope,$Cookie,Customization,ngDialog)
         $scope.categorias.list = adata;
     });    
     $scope.addsponzor = function () {
+        console.log("entro");
         $scope.sponzors.push({ 
             kind: "",
             usd: 0,
@@ -217,6 +224,7 @@ function eventsController($scope,$Cookie,Customization,ngDialog)
     }
     $scope.newEvent = function(){
         $scope.newevent.peaks =  $scope.sponzors;
+        $scope.newevent.location_reference=$scope.details3.reference;
         Customization.saveEvent($scope.newevent)
             .success(function(data) {
                 if(data.success)
@@ -333,6 +341,8 @@ function settingsController($scope,$Cookie,Customization)
             $scope.account.sex=adata.User[0].sex;
             $scope.account.company=adata.User[0].company;
             $scope.account.email=adata.User[0].email;
+            $scope.account.location=adata.User[0].location;
+            $scope.account.location_reference=adata.User[0].location_reference;
             $scope.account.eventbriteKey=adata.User[0].eventbriteKey;
             $scope.account.meetupRefreshKey=adata.User[0].meetupRefreshKey;
             if(adata.User[0].eventbriteKey!=undefined && adata.User[0].eventbriteKey.trim()!="")
@@ -353,6 +363,10 @@ function settingsController($scope,$Cookie,Customization)
         }
         
         });
+        $scope.options2 = {
+          country: '',
+          types: '(cities)'
+        };
     }
     $scope.$watch('meetupgroups.current', function(newValue, oldValue)
     {
@@ -402,27 +416,41 @@ function settingsController($scope,$Cookie,Customization)
         $scope.newevent.location=e.venue.address_1+", " +e.venue.name+", " +e.venue.city;
         $scope.b=true;
     }
-    $scope.editAccount = function(){
-        $scope.account.userId=$scope.event.organizer;
-        var a= {
-            "description":$scope.account.description,
-            "name":$scope.account.name,
-            "sex":$scope.account.sex,
-            "age":$scope.account.age,
-            "country":$scope.account.country,
-            "city":$scope.account.city,
-            "state":$scope.account.state,
-            "email":$scope.account.email,
-            "company":$scope.account.company,
-            "comunity_size":$scope.account.comunitSize,
-            "userId":$scope.event.organizer
-        };
-        Customization.editAccount(a).success(function(adata){
-            $scope.alerts.push({msg: adata.message});
-            $scope.viewUserInfo();
-        });
+    $scope.editAccount = function(){        
+        //**Acá se hacen las validaciones de las reglas del formulario
+        if(angular.isUndefined($scope.details2.reference) && 
+            ($scope.account.location_reference="" || angular.isUndefined($scope.account.location_reference)))
+        {
+            $("#location").addClass("has-error");
+            $scope.account.location="";
+        }
+        else
+        {
+            $scope.account.userId=$scope.event.organizer;
+            var a= {
+                "description":$scope.account.description,
+                "name":$scope.account.name,
+                "sex":$scope.account.sex,
+                "age":$scope.account.age,
+                "location":$scope.account.location,
+                "location_reference":$scope.details2.reference,
+                "email":$scope.account.email,
+                "company":$scope.account.company,
+                "comunity_size":$scope.account.comunitSize,
+                "userId":$scope.event.organizer
+            };
+            Customization.editAccount(a).success(function(adata){
+                    $scope.alerts.push({msg: adata.message});
+                    $scope.viewUserInfo();
+            });
+        }
     }
     $scope.viewUserInfo();
+}
+
+angular.module('Dashboard').controller('auto', ['$scope','$cookieStore','$location', 'Customization', auto]);
+function auto($scope,$Cookie,$location,Customization)
+{   
 }
 
 angular.module('Dashboard').controller('searchController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',searchController]);

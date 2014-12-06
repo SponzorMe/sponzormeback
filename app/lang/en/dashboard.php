@@ -111,9 +111,9 @@ return array(
 
 	'choosetype'					=>	'-- Choose Type --',
 
-	'eventprivacy'					=>	'Type',
+	'eventprivacy'					=>	'Privacy',
 
-	'eventtype'						=>	'Privacy',
+	'eventtype'						=>	'Type',
 
 	'typesponzor'					=>	'Type of Sponzor',
 

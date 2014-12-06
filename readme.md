@@ -35,5 +35,13 @@ Before you begin, make sure you have both ```git``` and ```composer``` installed
 5. Run the migrations: ```php artisan migrate```
 6. Seed the Database: ```php artisan db:seed```
 
+
+### Instructions Front-End
+
+1. Install Bower 
+2. bower install
+3. npm install
+
+
 Be responsable with this code and make the force be with you :)
 

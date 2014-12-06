@@ -362,25 +362,7 @@ ul.navbar-nav li a{
 	color:#ffffff !important;
 }
 
-.footer {
-position: absolute;
-bottom: 0;
-width: 100%;
-background-color: #012135;
-color:#01446d;
-padding: 5px;
-font-size: 12px;
-}
 
-.footer a{
-color:#01446d;
-text-decoration: none;
-}
-
-.footer a:hover{
-
-	color:#00acb9;
-}
 
 .btn-block{
 background-color: #00adb9 !important;
@@ -576,5 +558,22 @@ margin:10px;
 {
     display: block;
     margin-top: 10px;
+}
+
+/** Testimonials **/
+
+div.img-div{
+    height:200px;
+    width:200px;
+    overflow:hidden;
+    border-radius:50%;
+}
+
+.img-div img{
+    -webkit-transform:translate(-50%);
+    margin-left:100px;
+}
+
+.img-responsive img{
 }
 

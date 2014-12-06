@@ -6,6 +6,10 @@
 @import "base/extends";
 @import "base/reset";
 @import "base/fonts";
+@import "base/bootstrap";
+@import "base/switch";
+@import "base/angular";
+@import "base/fontawesome";
 
 //-----------------------------------------
 	// Layout
@@ -21,4 +25,5 @@
 // -----------------------------------------
 	// Themes
 //-------------------------------------------
-@import "themes/blue-banner";
+@import "themes/cyan";
+@import "themes/slideshow";

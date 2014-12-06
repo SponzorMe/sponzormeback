@@ -8,19 +8,9 @@
 		</title>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-		<!-- Bootstrap 3.0: Latest compiled and minified CSS -->
-		<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> -->
-		<link rel="stylesheet" href="{{ asset('css/lib/bootstrap/bootstrap.min.css') }}">
-       <link rel="stylesheet" href="{{ asset('css/default.css') }}">
-       <link rel="stylesheet" href="{{ asset('css/style3.css') }}">
-       <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> <!-- fuente roboto -->
-		 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
-		<!-- Optional theme -->
-		<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"> -->
-		<link rel="stylesheet" href="{{ asset('css/lib/bootstrap/bootstrap-theme.min.css') }}">
-		<!-- Styles for the customization -->
-			<link rel="stylesheet" href="{{ asset('css/customstyles.css') }}"> 
+		
+		<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> <!-- fuente roboto -->
 		<style>
 		@section('styles')
 			body {
@@ -28,19 +18,16 @@
 			}
 		@show
 		</style>
-
 		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-
-	<!-- start Mixpanel -->
-
-	<script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
-	for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2.2.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
-	mixpanel.init("02b693fb4dcbd5acc87697d494112164");</script>
+		<!-- start Mixpanel -->
+		<script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+		for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2.2.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+		mixpanel.init("02b693fb4dcbd5acc87697d494112164");</script>
+		<!-- end Mixpanel -->
 	
-	<!-- end Mixpanel -->
 	</head>
 
 	<body id="page">
@@ -131,7 +118,6 @@
         <!-- Thanks to Zizaco for the Restfulizer script.  http://zizaco.net  -->
         <!-- ANGULAR -->
         <script src="{{ asset('js/lib/angular/angular.js')}}"></script>
-        <script src="{{ asset('js/lib/ngAutocomplete.js')}}"></script>
 		<!-- all angular resources will be loaded from the /public folder -->
 		<script src="{{ asset('js/controllers/mainController.js') }}"></script> <!-- load our controller -->
 		<script src="{{ asset('js/services/customizationService.js') }}"></script> <!-- load our service -->

@@ -94,7 +94,8 @@
 	      <div class="col-md-4">&nbsp;&nbsp;&nbsp;
 	          <img height="12px" src="{{asset('images/footer_logo.png')}}">&nbsp;&nbsp;
 	          <a class="" href="{{ URL::to('language/es') }}"><img height="16px" src="{{asset('images/spanish.png')}}"></a>&nbsp;
-	          <a class="" href="{{ URL::to('language/en') }}"><img height="16px" src="{{asset('images/english.png')}}"></a>
+	          <a class="" href="{{ URL::to('language/en') }}"><img height="16px" src="{{asset('images/english.png')}}"></a>&nbsp;
+	          <a class="" href="{{ URL::to('language/pt') }}"><img height="16px" src="{{asset('images/pt.png')}}"></a>
 	      </div>
 	      <div class="col-md-4">
 	          <a href="{{ URL::to('testimonials') }}">{{trans('pages.testimonials')}}</a>&nbsp;|&nbsp

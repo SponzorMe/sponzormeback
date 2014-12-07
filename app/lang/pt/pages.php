@@ -18,7 +18,7 @@ return array(
 
 	'register'		=> 'Registrarse',
 
-	'login'			=> "Ingresar",
+	'login'			=> "Conecte-se",
 
 	'logout'		=> "Salir",
 
@@ -64,13 +64,13 @@ return array(
 
 	'actiondelete'	=> "Borrar",
 
-	'sponsorreg'	=> "Eres Patrocinador?",
+	'sponsorreg'	=> "Você está patrocinando?",
 
-	'organizerreg'	=> "Eres Organizador?",
+	'organizerreg'	=> "Você é organizador?",
 
-	'copy'	=> "Conectamos Eventos con Patrocinadores",
+	'copy'	=> "Conectar eventos com patrocinadores",
 
-	'nextaction'	=> "Solo sube tu evento y deja que la magia comience...",
+	'nextaction'	=> "Fazer upload de seu evento e deixe a mágica começar...",
 
 	'slide1'	=> "Eventos",
 
@@ -82,7 +82,7 @@ return array(
 
 	'slide5'	=> "Conexiones",
 
-	'testimonials'	=> "Testimonios",
+	'testimonials'	=> "Depoimentos",
 
 	'blog'	=> "Blog",
 
@@ -122,7 +122,7 @@ return array(
 
 	'almostdone'	=> "Ya casi está!",
 
-	'team'	=> "Equipo",
+	'team'	=> "Equipamento",
 
 	'support'	=> "Soporte",
 
@@ -130,11 +130,11 @@ return array(
 
 	'terms'	=> "Terminos del Servicio",
 
-	'privacy'	=> "Privacidad",
+	'privacy'	=> "Privacidade",
 
 	'dashboard'	=> "Dashboard",
 
-	'getting'	=> "Vamos a hacerlo",
+	'getting'	=> "Vamos fazê-lo",
 
 
 );

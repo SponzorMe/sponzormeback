@@ -8207,6 +8207,17 @@ ul.navbar-nav li a {
   -webkit-transform: translate(-50%);
   margin-left: 100px;
 }
+body {
+  background-color: #042333;
+}
+h1 {
+  color: #fff;
+  padding: 20px;
+}
+.btn-primary {
+  background: #00acb9 !important;
+  border-color: #00acb9;
+}
 .API h1 {
   font-size: 2em;
   text-align: center;

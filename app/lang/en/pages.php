@@ -136,5 +136,7 @@ return array(
 
 	'location'	=> "Location",
 
+	'getting'	=> "Let's do it",
+
 
 );

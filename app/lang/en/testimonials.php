@@ -8,11 +8,11 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
-	'testimonial1' 		=>  "Your account has been created. Check your email for the confirmation link.",	
+	'testimonial1' 		=>  "SponzorMe is a tool that should have been built long ago...",	
 
-	'testimonial2' 		=>	"Login field required.",
+	'testimonial2' 		=>	"We needed this tool for every event becoming easier and rewarding...",
 
-	'testimonial3'		=>	"User already exists.",
+	'testimonial3'		=>	"Thanks to SponzorMe I can focus on creating better content for my community...",
 
 
 

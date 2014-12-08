@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.default-angular')
 
 {{-- Web site Title --}}
 @section('title')
@@ -11,14 +11,14 @@
 <div class="API">
 	<h1>Sponzorme API</h1>
 	<pre>
-		<table class="table">
+		<table class="table" style="background: gray">
 			<tr><th>Url: </th><td>api/v1</td></tr>
 			<tr><th>Comments: </th><td>You are here!</td></tr>
 		</table>
 	</pre>
 	<h1>Explicit Login</h1>
 	<pre>
-		<table class="table">
+		<table class="table" style="background: gray">
 			<tr><th>Url: </th><td>api/v1/authentication</td></tr>
 			<tr><th colspan="2"><h1>Post Parameters </h1></th></tr>
 			<tr><th>email: </th><td>example@example.com</td></tr>
@@ -45,7 +45,7 @@ key: "495067fd67fc5a7bededd4da78c43a03"
 	</pre>
 		<h1>Check key</h1>
 	<pre>
-		<table class="table">
+		<table class="table" style="background: gray">
 			<tr><th>Url: </th><td>api/v1/check/{key}</td></tr>
 			<tr><th>Comments: </th><td>Works in order to verify if the MD5 login key is valid.</td></tr>
 			<tr><th colspan="2"><h1>Get Parameters </h1></th></tr>
@@ -59,7 +59,7 @@ key: "495067fd67fc5a7bededd4da78c43a03"
 	</pre>
 	<h1>Get User</h1>
 	<pre>
-		<table class="table">
+		<table class="table" style="background: gray">
 			<tr><th>Url: </th><td>api/v1/user/{key}</td></tr>
 			<tr><th>Comments: </th><td>Get a user</td></tr>
 			<tr><th colspan="2"><h1>Get Parameters </h1></th></tr>
@@ -105,7 +105,7 @@ key: "495067fd67fc5a7bededd4da78c43a03"
 	</pre>
 	<h1>Get all Users</h1>
 	<pre>
-		<table class="table">
+		<table class="table" style="background: gray">
 			<tr><th>Url: </th><td>api/v1/users/{key}</td></tr>
 			<tr><th>Comments: </th><td>Get all users.</td></tr>
 			<tr><th colspan="2"><h1>Get Parameters </h1></th></tr>
@@ -119,7 +119,7 @@ key: "495067fd67fc5a7bededd4da78c43a03"
 	</pre>
 	<h1>Create User</h1>
 	<pre>
-		<table class="table">
+		<table class="table" style="background: gray">
 			<tr><th>Url: </th><td>api/v1/create/user</td></tr>
 			<tr><th>Comments: </th><td>create a user</td></tr>
 			<tr><th colspan="2"><h1>Post Parameters </h1></th></tr>
@@ -146,7 +146,7 @@ email: "test@test.com"
 	</pre>
 	<h1>Edit User</h1>
 	<pre>
-		<table class="table">
+		<table class="table" style="background: gray">
 			<tr><th>Url: </th><td>api/v1/edit/user/{key}</td></tr>
 			<tr><th>Comments: </th><td>create a user</td></tr>
 			<tr><th colspan="2"><h1>Get Parameters </h1></th></tr>
@@ -178,7 +178,7 @@ exists: true
 	</pre>
 	<h1>Remove User</h1>
 	<pre>
-		<table class="table">
+		<table class="table" style="background: gray">
 			<tr><th>Url: </th><td>api/v1/remove/user/{key}</td></tr>
 			<tr><th>Comments: </th><td>Get a user</td></tr>
 			<tr><th colspan="2"><h1>Get Parameters </h1></th></tr>
@@ -200,6 +200,132 @@ success: true
 status: "Authenticated"
 error: false
 message: "User Removed"
+}
+			</pre></td></tr>
+			<tr><th>Comments: </th><td>To remove a user you should ensure the foreing keys are empty.</td></tr>
+		</table>
+	</pre>
+	<h1>Get Categories</h1>
+	<pre>
+		<table class="table" style="background: gray">
+			<tr><th>Url: </th><td>api/v1/categories/{lang}</td></tr>
+			<tr><th>Comments: </th><td>Get the categories</td></tr>
+			<tr><th colspan="2"><h1>Get Parameters </h1></th></tr>
+			<tr><th>lang: </th><td>en, es or pt</td></tr>
+			<tr><th colspan="2"><h1>Example </h1></th></tr>
+			<tr><th>Response Success: </th><td><pre>
+				[14]
+0:  {
+id: 1
+title: "Outdoor"
+body: "All About the Bussines!"
+created_at: "2014-08-20 05:11:45"
+updated_at: "2014-08-20 05:11:45"
+lang: "en"
+}-
+1:  {
+id: 2
+title: "Art & Culture"
+body: "All About the Bussines!"
+created_at: "2014-08-20 05:11:45"
+updated_at: "2014-08-20 05:11:45"
+lang: "en"
+}-
+2:  {
+id: 3
+title: "Dancing"
+body: "All About the Bussines!"
+created_at: "2014-08-20 05:11:45"
+updated_at: "2014-08-20 05:11:45"
+lang: "en"
+}-
+3:  {
+id: 4
+title: "Wellness"
+body: "All About the Bussines!"
+created_at: "2014-08-20 05:11:45"
+updated_at: "2014-08-20 05:11:45"
+lang: "en"
+}-
+4:  {
+id: 5
+title: "Career & Business"
+body: "All About the Bussines!"
+created_at: "-0001-11-30 00:00:00"
+updated_at: "-0001-11-30 00:00:00"
+lang: "en"
+}-
+5:  {
+id: 6
+title: "Eat & Foods"
+body: "All About the Bussines!"
+created_at: "-0001-11-30 00:00:00"
+updated_at: "-0001-11-30 00:00:00"
+lang: "en"
+}-
+6:  {
+id: 7
+title: "Belief"
+body: "All About the Bussines!"
+created_at: "-0001-11-30 00:00:00"
+updated_at: "-0001-11-30 00:00:00"
+lang: "en"
+}-
+7:  {
+id: 8
+title: "Sports & Fitness"
+body: "All About the Bussines!"
+created_at: "-0001-11-30 00:00:00"
+updated_at: "-0001-11-30 00:00:00"
+lang: "en"
+}-
+8:  {
+id: 9
+title: "Education"
+body: "All About the Bussines!"
+created_at: "-0001-11-30 00:00:00"
+updated_at: "-0001-11-30 00:00:00"
+lang: "en"
+}-
+9:  {
+id: 10
+title: "Photography"
+body: "All About the Bussines!"
+created_at: "-0001-11-30 00:00:00"
+updated_at: "-0001-11-30 00:00:00"
+lang: "en"
+}-
+10:  {
+id: 11
+title: "Languages"
+body: "All About the Bussines!"
+created_at: "-0001-11-30 00:00:00"
+updated_at: "-0001-11-30 00:00:00"
+lang: "en"
+}-
+11:  {
+id: 12
+title: "Books"
+body: "All About the Bussines!"
+created_at: "-0001-11-30 00:00:00"
+updated_at: "-0001-11-30 00:00:00"
+lang: "en"
+}-
+12:  {
+id: 13
+title: "Music"
+body: "All About the Bussines!"
+created_at: "-0001-11-30 00:00:00"
+updated_at: "-0001-11-30 00:00:00"
+lang: "en"
+}-
+13:  {
+id: 14
+title: "Technology"
+body: "All About the Bussines!"
+created_at: "-0001-11-30 00:00:00"
+updated_at: "-0001-11-30 00:00:00"
+lang: "en"
 }
 			</pre></td></tr>
 			<tr><th>Comments: </th><td>To remove a user you should ensure the foreing keys are empty.</td></tr>

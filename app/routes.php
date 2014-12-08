@@ -130,9 +130,11 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::get('eventbrite/unconnect/{userId}', 'ApiController@unconnectEventbrite');
 
-	Route::get('meetup/unconnect/{userId}', 'ApiController@unconnectMeetup');	
+	Route::get('meetup/unconnect/{userId}', 'ApiController@unconnectMeetup');
 
-	Route::resource('/', 'ApiController');
+	Route::get('description', 'ApiController@index');
+
+	Route::resource('/', 'ApiController@index');
 });
 
 Route::get('testimonials', 'HomeController@testimonials'); //testimonials

@@ -237,7 +237,7 @@ class ApiController extends BaseController {
 	}
 	public function index()
 	{
-      return View::make('api/description');
+      return View::make('api.description');
 	}
 	/**
 	 * Check if the key is valid.
@@ -502,10 +502,7 @@ class ApiController extends BaseController {
             	'events.title as event', 
             	'users.name as name', 
             	'users.email as email',
-            	'users.city as city',
-            	'users.state as state',
-            	'users.country as country',
-            	'users.state as state',
+            	'users.location as location',
             	'rel_peaks.kind as kind',
             	'rel_peaks.usd as usd',
             	'rel_sponzors_events.state as eventstate',
@@ -678,10 +675,7 @@ class ApiController extends BaseController {
             	'events.title as event', 
             	'users.name as name', 
             	'users.email as email',
-            	'users.city as city',
-            	'users.state as state',
-            	'users.country as country',
-            	'users.state as state',
+            	'users.location as location',
             	'rel_peaks.kind as kind',
             	'rel_sponzors_events.state as eventstate',
             	'rel_sponzors_events.id as idRelSponzoring'

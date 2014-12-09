@@ -6,20 +6,29 @@
 
   <title>Dashboard</title>
  <!-- CSS -->
-  <link rel="stylesheet" href="{{ asset('css/lib/bootstrap/bootstrap.min.css')}}"/>
-  <link rel="stylesheet" href="{{ asset('css/lib/font-awesome/css/font-awesome.css')}}"/>
-  <link rel="stylesheet" href="{{ asset('css/dashboard.css')}}"/>
-  <link rel="stylesheet" href="{{ asset('css/lib/angular/ngDialog.min.css')}}"/>
-  <link rel="stylesheet" href="{{ asset('css/lib/angular/ngDialog-theme-default.min.css')}}"/>
-  <!-- SCRIPTS -->
-  <script src="{{ asset('js/lib/jquery.js')}}"></script>
-  <script src="{{ asset('js/lib/angular/angular.js')}}"></script>
-  <script src="{{ asset('js/lib/angular-cookies/angular-cookies.js')}}"></script>
-  <script src="{{ asset('js/lib/angular-bootstrap/ui-bootstrap.js')}}"></script>
-  <script src="{{ asset('js/lib/angular-bootstrap/ui-bootstrap-tpls.js')}}"></script>
-  <script src="{{ asset('js/lib/angular-ui-router/angular-ui-router.js')}}"></script>  
-  <script src="{{ asset('js/lib/ngDialog.min.js')}}"></script>
-  <script src="{{ asset('js/lib/angular-sanitize.min.js')}}"></script>
+  <link rel="stylesheet" href="{{ asset('components/bootstrap/dist/css/bootstrap.min.css')}}"/>
+  <link rel="stylesheet" href="{{ asset('components/font-awesome/css/font-awesome.min.css')}}"/>
+  <link rel="stylesheet" href="{{ asset('components/ngDialog/css/ngDialog.min.css')}}"/>
+  <link rel="stylesheet" href="{{ asset('components/ngDialog/css/ngDialog-theme-default.min.css')}}"/>  
+  <link rel="stylesheet" href="{{ asset('css/dashboard.css')}}"/>  
+  <!-- Javascripts ================================================== -->
+  <script src="{{ asset('components/jquery/dist/jquery.min.js') }}"></script>
+  <script src="{{ asset('components/angular/angular.min.js')}}"></script>
+
+  <script src="{{ asset('components/angular-cookies/angular-cookies.min.js')}}"></script>
+
+  <script src="{{ asset('components/angular-bootstrap/ui-bootstrap.min.js')}}"></script>
+  <script src="{{ asset('components/angular-bootstrap/ui-bootstrap-tpls.min.js')}}"></script>
+
+  <script src="{{ asset('components/angular-ui-router/release/angular-ui-router.min.js')}}"></script>
+
+  <script src="{{ asset('components/ngDialog/js/ngDialog.min.js')}}"></script>
+
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+        <script src="{{ asset('components/ngAutocomplete/src/ngautocomplete.js')}}"></script>
+
+  <script src="{{ asset('components/angular-sanitize/angular-sanitize.min.js')}}"></script><!-- no esta-->
+
   <script src="{{ asset('js/dashboard.js')}}"></script><!--script principal-->
   <script src="{{ asset('js/services/customizationService.js') }}"></script><!-- load our service -->
 </head>

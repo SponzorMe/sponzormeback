@@ -110,20 +110,19 @@
 
 		<!-- ./ container -->
 
-		<!-- Javascripts
-		================================================== -->
+	<!-- Javascripts ================================================== -->
 		<script src="{{ asset('js/lib/jquery.js') }}"></script>
 		<script src="{{ asset('js/lib/bootstrap/bootstrap.min.js') }}"></script>
 		<script src="{{ asset('js/lib/restfulizer.js') }}"></script> 
         <script src="{{ asset('js/lib/modernizr.custom.86080.js') }}"></script>
-        <!-- Thanks to Zizaco for the Restfulizer script.  http://zizaco.net  -->
-        <!-- ANGULAR -->
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false">
+        </script>
         <script src="{{ asset('js/lib/angular/angular.js')}}"></script>
-		<!-- all angular resources will be loaded from the /public folder -->
-		<script src="{{ asset('js/controllers/mainController.js') }}"></script> <!-- load our controller -->
-		<script src="{{ asset('js/services/customizationService.js') }}"></script> <!-- load our service -->
+        <script src="{{ asset('js/lib/ngautocomplete.js')}}"></script>
+		<script src="{{ asset('js/controllers/mainController.js') }}"></script>
+		<script src="{{ asset('js/services/customizationService.js') }}"></script>
 		<script src="{{ asset('js/app.js') }}"></script> <!-- load our application -->
-		<script src="{{ asset('js/own_scripts/scripts.js') }}"></script> <!-- load our custom scripts -->
+		<script src="{{ asset('js/own_scripts/scripts.js') }}"></script>
         
 	<!-- Start Google Analytics -->
 		<script>
@@ -138,10 +137,9 @@
 	<!-- End Google Analytics -->	
 
 	<!-- Track Event Mix Panel -->
-
-	<script>
-	mixpanel.track("beta");
-	</script>
+		<script>
+		mixpanel.track("beta");
+		</script>
 	<!-- End Mix Panel -->
 	</body>
 </html>

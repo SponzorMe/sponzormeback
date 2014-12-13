@@ -229,6 +229,8 @@ return array(
 
 	'configureEventbriteImport'	=> "Configure your import from eventbrite",
 
+	'eventImage'=>"Event Image"
+
 
 
 

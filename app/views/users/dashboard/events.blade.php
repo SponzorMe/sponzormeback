@@ -58,10 +58,9 @@
               </label>
               <div class="col-sm-7">
                 <input  type="date" data-ng-model="newevent.ends" name="ends" class="form-control" />
-                <input type="hidden" data-ng-model="newevent.organizer" name="organizer" ng-init="newevent.organizer = {{ Session::get('userId') }}"/>
+                <input type="hidden" data-ng-model="newevent.organizer" name="organizer" ng-init="newevent.organizer = event.organizer"/>
               </div>
             </div>
-            <div class="clearfix"></div>
             <hr/>
             <h4 class="h4formdash">{{trans('dashboard.eventaditionalseetings')}}</h4>  
             <hr/>
@@ -101,8 +100,18 @@
                 </select>
               </div>
             </div>
+            <!-- Imagen -->
             <hr/>
+            <h4 class="h4formdash">{{trans('dashboard.eventImage')}}</h4>  
+            <hr/>
+            <div class="form-group" id="image">
+                <div class="col-sm-12">
+                  <input id="imageInput" type="file" ng-model="temp.image" nv-file-select uploader="uploader"/><br/>
+                <div>                
+            </div>
             <div class="clearfix"></div>
+            <!-- End Imagen -->
+            <hr/>
             <h4 class="h4formdash">{{trans('dashboard.eventsponzors')}}</h4>  
             <hr/>
             <!--form field-->            
@@ -152,6 +161,8 @@
           </form>
         </div>
       </div>
+      </div>
+      </div>
       <div class="col-lg-8">
         <div class="widget">
           <div class="widget-header">
@@ -182,6 +193,7 @@
                     <td class="text-center"><% e.type %></td>
                     <td class="text-center"><% e.privacy %></td>
                     <td class="text-center">
+                      <a href="" ng-click="removeEvent(e.id)"><i class="fa fa-edit-o"></i></a>
                       <a href="" ng-click="removeEvent(e.id)"><i class="fa fa-trash-o"></i></a>
                     </td>
                   </tr>
@@ -193,3 +205,11 @@
       </div>
       </div>
   </script>
+  <script type="text/ng-template" id="generalMessage.html">
+  <div class="text-center">
+    <h3>{{trans('dashboard.errorAddingImage')}}</h3>
+  </div>
+  <div class="ngdialog-buttons text-center">
+    <button class="btn btn-danger" ng-click="closeThisDialog()"><i class="fa fa-times"></i> {{trans('dashboard.close')}}</button>
+  </div>
+</script>

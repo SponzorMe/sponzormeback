@@ -572,6 +572,22 @@ class ApiController extends BaseController {
 	{
 		return Response::json(InterestsCategories::where("lang",'=',$lang)->get());
 	}
+	public function eventUploadImage($eventId)
+	{
+		try
+		{
+			$file = Input::file('file');
+			$extension=Input::file('file')->getClientOriginalExtension();
+			Input::file('file')->move("images/events/", "event_".$eventId.".".$extension);
+
+			return Response::json(array("success" => true,"path"=>"event_".$eventId.".".$extension));
+		}
+		catch(Exception $e)
+		{
+			return Response::json(array("success" => false));
+		}
+		
+	}
 	public function createEvent()
 	{
 		// validate

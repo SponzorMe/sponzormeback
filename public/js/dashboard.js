@@ -1,5 +1,5 @@
 (function(){
-angular.module('Dashboard', ['ui.bootstrap', 'ui.router', 'ngCookies','ngDialog', 'ngAutocomplete', 'customizationService'], 
+angular.module('Dashboard', ['ui.bootstrap', 'ui.router','ngCookies','ngDialog', 'ngAutocomplete', 'customizationService','angularFileUpload'], 
     function($interpolateProvider){
         $interpolateProvider.startSymbol('<%');
         $interpolateProvider.endSymbol('%>');
@@ -60,26 +60,29 @@ angular.module('Dashboard').controller('MasterCtrl', ['$scope', '$cookieStore', 
 
 function MasterCtrl($scope, $cookieStore, Customization) {    
     var mobileView = 992;
-    $scope.event            = {"current": false, "organizer": "1234", "sponzor":"12334", "message":"" };
-    $scope.eventos          = {"list": false};
-    $scope.eventbriteevents = {"list": false};
-    $scope.meetupevents     = {"list": false};
-    $scope.meetupgroups     = {"list": false, "current":false};
-    $scope.search           = {"list": false,"current":false };
-    $scope.sponzors         = {"list": false, "current":false };
-    $scope.categorias       = {"list": false };
-    $scope.result2          = '';
-    $scope.details2         = '';
-    $scope.result3          = '';
-    $scope.details3         = '';
-    $scope.newevent         = {};
-    $scope.a                = false;
-    $scope.alerts           = [];
-    $scope.sponzors         = [];
-    $scope.account          = {};
-    $scope.friend           = {};
-    $scope.rss              = [];
-    $scope.users            = {};
+    $scope.event                = {"current": false, "organizer": "1234", "sponzor":"12334", "message":"" };
+    $scope.localizationOptions  = null;
+    $scope.eventos              = {"list": false};
+    $scope.eventbriteevents     = {"list": false};
+    $scope.meetupevents         = {"list": false};
+    $scope.meetupgroups         = {"list": false, "current":false};
+    $scope.search               = {"list": false,"current":false };
+    $scope.sponzors             = {"list": false, "current":false };
+    $scope.categorias           = {"list": false };
+    $scope.result2              = '';
+    $scope.details2             = '';
+    $scope.result3              = '';
+    $scope.details3             = '';
+    $scope.newevent             = {};
+    $scope.a                    = false;
+    $scope.alerts               = [];
+    $scope.sponzors             = [];
+    $scope.account              = {};
+    $scope.friend               = {};
+    $scope.rss                  = [];
+    $scope.files                = [];
+    $scope.users                = {};
+    $scope.temp                 = {'image':""};
 
     $scope.getWidth = function() { return window.innerWidth; };
 
@@ -184,10 +187,9 @@ function rdLoading () {
  * Events Controller 
  */
  
- angular.module('Dashboard').controller('eventsController', ['$scope', '$cookieStore', 'Customization', 'ngDialog',eventsController]);
-function eventsController($scope,$Cookie,Customization,ngDialog)
+ angular.module('Dashboard').controller('eventsController', ['$scope', '$cookieStore', 'Customization','ngDialog', 'FileUploader', eventsController]);
+function eventsController($scope,$Cookie,Customization,ngDialog,FileUploader)
 {
-    $scope.options3 = null;
     Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
     {
         $scope.eventos.list = adata.Events;
@@ -198,7 +200,6 @@ function eventsController($scope,$Cookie,Customization,ngDialog)
         $scope.categorias.list = adata;
     });    
     $scope.addsponzor = function () {
-        console.log("entro");
         $scope.sponzors.push({ 
             kind: "",
             usd: 0,
@@ -222,72 +223,117 @@ function eventsController($scope,$Cookie,Customization,ngDialog)
             console.log(data);
         });
     }
-    $scope.newEvent = function(){
+    $scope.newEvent = function(){                    
         $scope.newevent.peaks =  $scope.sponzors;
         $scope.newevent.location_reference=$scope.details3.reference;
-        Customization.saveEvent($scope.newevent)
-            .success(function(data) {
-                if(data.success)
-                {
-                    $scope.alerts = [{type: 'success', msg: data.message}];
-                    Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
-                    {
-                        $scope.eventos.list = adata.Events;
-                        $scope.event.current = adata.Events[0].id;
-                        $scope.newevent="";
-                        $scope.sponzors = [];
-                        $scope.event.message=data.message;
-                    });
-                    ngDialog.open({ template: 'successevent.html', controller: 'eventsController', scope: $scope }); 
-                    $(".form-group").removeClass("has-error");
-                    $(".form-group").removeClass("has-success");
-                }
-                else
-                {
-                    message = String(data.message);
-                    message = message.replace("[","").replace("]","").replace(/,/g," ");
-                    $scope.alerts = [{type: 'danger', msg: message}];
-                    if(angular.isUndefined($scope.newevent.title))
-                        $("#title").addClass("has-error");
+        if($scope.imageReady)
+        {
+            Customization.saveEvent($scope.newevent)
+                .success(function(data) {
+                    if(data.success)
+                    {                        
+            
+                        uploader.queue[0].url='http://localhost/sponzorme/public/api/v1/event/upload/image/'+data.evento_id;
+                        uploader.uploadAll(); //Subo la imagen
+                       
+                        $scope.alerts = [{type: 'success', msg: data.message}];
+                        Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
+                        {
+                            $scope.eventos.list = adata.Events;
+                            $scope.event.current = adata.Events[0].id;                            
+                            $scope.event.message=data.message;                        
+                        });                        
+                        $(".form-group").removeClass("has-error");
+                        $(".form-group").removeClass("has-success");
+                        console.log($scope.newevent);
+                        $scope.newevent={"organizer":$scope.event.organizer}; //Limpiamos el evento                           
+                        $scope.sponzors = []; //Limpiamos los sponzors
+                        $scope.imageReady=false;
+
+                    }
                     else
                     {
-                        $("#title").removeClass("has-error");
-                        $("#title").addClass("has-success");
+                        console.log($scope.newevent);
+                        message = String(data.message);
+                        message = message.replace("[","").replace("]","").replace(/,/g," ");
+                        $scope.alerts = [{type: 'danger', msg: message}];
+                        if(angular.isUndefined($scope.newevent.title))
+                            $("#title").addClass("has-error");
+                        else
+                        {
+                            $("#title").removeClass("has-error");
+                            $("#title").addClass("has-success");
+                        }
+                        if(angular.isUndefined($scope.newevent.location))
+                            $("#location").addClass("has-error");
+                        else
+                        {
+                            $("#location").removeClass("has-error");
+                            $("#location").addClass("has-success");
+                        }
+                        if(angular.isUndefined($scope.newevent.description))
+                            $("#description").addClass("has-error");
+                        else
+                        {
+                            $("#description").removeClass("has-error");
+                            $("#description").addClass("has-success");
+                        }
+                        if(angular.isUndefined($scope.newevent.starts))
+                            $("#starts").addClass("has-error");
+                        else
+                        {
+                            $("#starts").removeClass("has-error");
+                            $("#starts").addClass("has-success");
+                        }
+                        if(angular.isUndefined($scope.newevent.ends))
+                            $("#ends").addClass("has-error");
+                        else
+                        {
+                            $("#ends").removeClass("has-error");
+                            $("#ends").addClass("has-success");
+                        }
                     }
-                    if(angular.isUndefined($scope.newevent.location))
-                        $("#location").addClass("has-error");
-                    else
-                    {
-                        $("#location").removeClass("has-error");
-                        $("#location").addClass("has-success");
-                    }
-                    if(angular.isUndefined($scope.newevent.description))
-                        $("#description").addClass("has-error");
-                    else
-                    {
-                        $("#description").removeClass("has-error");
-                        $("#description").addClass("has-success");
-                    }
-                    if(angular.isUndefined($scope.newevent.starts))
-                        $("#starts").addClass("has-error");
-                    else
-                    {
-                        $("#starts").removeClass("has-error");
-                        $("#starts").addClass("has-success");
-                    }
-                    if(angular.isUndefined($scope.newevent.ends))
-                        $("#ends").addClass("has-error");
-                    else
-                    {
-                        $("#ends").removeClass("has-error");
-                        $("#ends").addClass("has-success");
-                    }
-                }
-            })
-            .error(function(data) {
-                console.log(data);
+                })
+                .error(function(data) {
+                    console.log(data);
+                });
+            
+        }
+        else
+        {
+            ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope });
+        }
+    };
+       $scope.imageReady=false;
+       $scope.uploader = new FileUploader();
+       var uploader = $scope.uploader = new FileUploader();
+        uploader.filters.push({
+            name: 'imageFilter',
+            fn: function(item /*{File|FileLikeObject}*/, options) {
+            var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+            return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+            }
             });
+        uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter,  options) {
+        console.info('onWhenAddingFileFailed', item, filter, options);
+        ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope });
         };
+        uploader.onAfterAddingFile = function(fileItem) {
+        console.info('onAfterAddingFile', fileItem);
+        $scope.imageReady=true;
+        };
+        uploader.onCompleteItem = function(fileItem, response, status, headers) {
+            if(response.success)
+            {
+                $scope.imageReady=true;
+                $scope.imagePath=response.path;
+                ngDialog.open({ template: 'successevent.html', controller: 'eventsController', scope: $scope });
+                uploader.clearQueue();
+                document.getElementById("imageInput").value = "";
+                $scope.temp.image=""; 
+            }                
+        };
+
 }
 
 angular.module('Dashboard').controller('peaksController', ['$scope', '$cookieStore', 'Customization',peaksController]);

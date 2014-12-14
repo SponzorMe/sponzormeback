@@ -105,8 +105,8 @@
             <h4 class="h4formdash">{{trans('dashboard.eventImage')}}</h4>  
             <hr/>
             <div class="form-group" id="image">
-                <div class="col-sm-12">
-                  <input id="imageInput" type="file" ng-model="temp.image" nv-file-select uploader="uploader"/><br/>
+                <div class="col-sm-12 ">
+                  <input class="col-sm-6 " id="imageInput" type="file" ng-model="temp.image" nv-file-select uploader="uploader"/><br/>
                 <div>                
             </div>
             <div class="clearfix"></div>
@@ -147,15 +147,15 @@
                 </tr>
               </table>
             </div>
-            <div class="col-sm-4">
-            <button class="btn btn-block" ng-click="addsponzor()"> + Add</button>
+            <div class="col-sm-3">
+            <button class="btn btn-block btn-warning" ng-click="addsponzor()"> + Add</button>
             </div>
             <div class="clearfix"></div>
             <hr/>
             <!--form field-->
             <div class="form-group">
-              <div class="col-sm-12">
-                <button data-ng-click="newEvent()" class="btn btn-block">{{trans('dashboard.submitbutton')}}</button>
+              <div class="col-sm-6 col-sm-offset-3">
+                <button data-ng-click="newEvent()" class="btn btn-block btn-primary">{{trans('dashboard.submitbutton')}} <i class="fa fa-play-circle-o"></i></button>
               </div>
             </div>
           </form>
@@ -170,7 +170,7 @@
             <a href="#/events" class="pull-right">{{trans('dashboard.manage')}}</a>
           </div>
 
-          <div class="widget-body medium no-padding">
+          <div class="widget-body large no-padding">
             <div class="table-responsive">
               <table class="table table-striped">
               <thead>
@@ -181,6 +181,7 @@
                 <th class="text-center">{{trans('dashboard.neweventdescription')}}</th>
                 <th class="text-center">{{trans('dashboard.eventtype')}}</th>
                 <th class="text-center">{{trans('dashboard.eventprivacy')}}</th>
+                <th class="text-center">{{trans('dashboard.eventImage')}}</th>
                 <th class="text-center"> {{trans('dashboard.actionssponzor')}}</th>
               </thead>
                 <tbody>
@@ -192,8 +193,10 @@
                     <td class="text-center"><% e.description %></td>
                     <td class="text-center"><% e.type %></td>
                     <td class="text-center"><% e.privacy %></td>
+                    <td class="text-center"><a href="" ng-click="imageEvent(e.image)"><i class="fa fa-file-image-o"></i></a></td>
                     <td class="text-center">
-                      <a href="" ng-click="removeEvent(e.id)"><i class="fa fa-edit-o"></i></a>
+                      <a href="" ng-click="seeEvent(e)"><i class="fa fa-arrows-alt"></i></a>
+                      <a href="" ng-click="editEvent(e.id)"><i class="fa fa-edit"></i></a>
                       <a href="" ng-click="removeEvent(e.id)"><i class="fa fa-trash-o"></i></a>
                     </td>
                   </tr>
@@ -203,11 +206,70 @@
           </div>
         </div>
       </div>
+      <div class="col-lg-8">
+        <div class="widget">
+          <div class="widget-header">
+            <i class="fa fa-tasks"></i> {{trans('dashboard.events')}}
+            <a href="#/events" class="pull-right">{{trans('dashboard.manage')}}</a>
+          </div>
+
+          <div class="widget-body large no-padding">
+            <div class="table-responsive">
+              <table class="table table-striped">
+              <thead>
+                
+              </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
   </script>
   <script type="text/ng-template" id="generalMessage.html">
+  <div class="text-center">  
+    <h3 data-ng-show="message == 'errorImage' ">{{trans('dashboard.errorAddingImage')}}</h3>
+    <h3 data-ng-show="message == 'removeEvent' ">{{trans('dashboard.deleteEvent')}}</h3>
+  </div>
+  <div class="ngdialog-buttons text-center">
+    <button class="btn btn-danger" ng-click="closeThisDialog()"><i class="fa fa-times"></i> {{trans('dashboard.close')}}</button>
+  </div>
+</script>
+<script type="text/ng-template" id="generalImage.html">
   <div class="text-center">
-    <h3>{{trans('dashboard.errorAddingImage')}}</h3>
+    <img src="{{asset('images/events/<% currentImage %>')}}" width="100%" />
+  </div>
+  <div class="ngdialog-buttons text-center">
+    <button class="btn btn-danger" ng-click="closeThisDialog()"><i class="fa fa-times"></i> {{trans('dashboard.close')}}</button>
+  </div>
+</script>
+<script type="text/ng-template" id="seeEvent.html">
+  <div class="text-center">
+    <h2><% seeEventData.title %></h2>
+    <img src="{{asset('images/events/<% seeEventData.image %>')}}" width="100%" />
+  <table class="table table-striped">
+    <tr>
+      <td class="text-center"><% seeEventData.location %></td>
+    </tr>
+    <tr>
+      <td class="text-center"><% seeEventData.starts %></td>
+    </tr>
+    <tr>
+      <td class="text-center"><% seeEventData.ends %></td>
+    </tr>
+    <tr>
+      <td class="text-center"><% seeEventData.description %></td>
+    </tr>
+    <tr>
+      <td class="text-center"><% seeEventData.type %></td>
+    </tr>
+    <tr>
+      <td class="text-center"><% seeEventData.privacy %></td>
+    </tr>
+  </table>
   </div>
   <div class="ngdialog-buttons text-center">
     <button class="btn btn-danger" ng-click="closeThisDialog()"><i class="fa fa-times"></i> {{trans('dashboard.close')}}</button>

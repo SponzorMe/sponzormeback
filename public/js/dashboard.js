@@ -60,6 +60,7 @@ angular.module('Dashboard').controller('MasterCtrl', ['$scope', '$cookieStore', 
 
 function MasterCtrl($scope, $cookieStore, Customization) {    
     var mobileView = 992;
+    //--Start Global Variables--//
     $scope.event                = {"current": false, "organizer": "1234", "sponzor":"12334", "message":"" };
     $scope.localizationOptions  = null;
     $scope.eventos              = {"list": false};
@@ -83,6 +84,7 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     $scope.files                = [];
     $scope.users                = {};
     $scope.temp                 = {'image':""};
+    //--End GLobal Variables--//
 
     $scope.getWidth = function() { return window.innerWidth; };
 
@@ -216,12 +218,25 @@ function eventsController($scope,$Cookie,Customization,ngDialog,FileUploader)
             Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
             {
                 $scope.eventos.list = adata.Events;
-                $scope.event.current = adata.Events[0].id;                
+                $scope.event.current = adata.Events[0].id;
             });
+            $scope.message="removeEvent";
+            ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope });    
         })
         .error(function(data) {
             console.log(data);
         });
+    }
+
+    $scope.imageEvent = function(eventId)
+    {
+        $scope.currentImage=eventId;
+        ngDialog.open({ template: 'generalImage.html', controller: 'eventsController', scope: $scope });
+    }
+    $scope.seeEvent = function(e)
+    {
+        $scope.seeEventData=e;
+        ngDialog.open({ template: 'seeEvent.html', controller: 'eventsController', scope: $scope });
     }
     $scope.newEvent = function(){                    
         $scope.newevent.peaks =  $scope.sponzors;
@@ -253,7 +268,6 @@ function eventsController($scope,$Cookie,Customization,ngDialog,FileUploader)
                     }
                     else
                     {
-                        console.log($scope.newevent);
                         message = String(data.message);
                         message = message.replace("[","").replace("]","").replace(/,/g," ");
                         $scope.alerts = [{type: 'danger', msg: message}];
@@ -316,6 +330,7 @@ function eventsController($scope,$Cookie,Customization,ngDialog,FileUploader)
             });
         uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter,  options) {
         console.info('onWhenAddingFileFailed', item, filter, options);
+        $scope.message="errorImage";
         ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope });
         };
         uploader.onAfterAddingFile = function(fileItem) {
@@ -330,7 +345,7 @@ function eventsController($scope,$Cookie,Customization,ngDialog,FileUploader)
                 ngDialog.open({ template: 'successevent.html', controller: 'eventsController', scope: $scope });
                 uploader.clearQueue();
                 document.getElementById("imageInput").value = "";
-                $scope.temp.image=""; 
+                $scope.temp.image="";
             }                
         };
 

@@ -86,7 +86,7 @@
                     <td><% e.title %></td>
                     <td><% e.location %></td>
                     <td><% e.starts %></td>
-                    <td><span class="text-success"><a href="#" data-ng-click="event.current = e.id"><i class="fa fa-check"></i></a></span></td>
+                    <td><span class="text-success"><a href="" data-ng-click="event.current = e.id"><i class="fa fa-check"></i></a></span></td>
                   </tr>
                 </tbody>
               </table>

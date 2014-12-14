@@ -579,7 +579,9 @@ class ApiController extends BaseController {
 			$file = Input::file('file');
 			$extension=Input::file('file')->getClientOriginalExtension();
 			Input::file('file')->move("images/events/", "event_".$eventId.".".$extension);
-
+			$event=Events::find($eventId);
+			$event->image="event_".$eventId.".".$extension;
+			$event->save();
 			return Response::json(array("success" => true,"path"=>"event_".$eventId.".".$extension));
 		}
 		catch(Exception $e)

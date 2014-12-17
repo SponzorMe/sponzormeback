@@ -136,6 +136,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::get('description', 'ApiController@index');
 
+	Route::get('image', 'ApiController@imageTest');
+
 	Route::resource('/', 'ApiController@index');
 });
 

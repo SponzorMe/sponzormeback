@@ -572,6 +572,11 @@ class ApiController extends BaseController {
 	{
 		return Response::json(InterestsCategories::where("lang",'=',$lang)->get());
 	}
+	public function createThumb($imagePath,$eventId,$extension)
+	{
+		$img = Image::make($imagePath)->resize(200, 200);
+    	$img->save("images/events/thumbs/thumb_event_".$eventId.".png");
+	}
 	public function eventUploadImage($eventId)
 	{
 		try
@@ -582,6 +587,7 @@ class ApiController extends BaseController {
 			$event=Events::find($eventId);
 			$event->image="event_".$eventId.".".$extension;
 			$event->save();
+			$this->createThumb("images/events/event_".$eventId.".".$extension,$eventId,$extension);
 			return Response::json(array("success" => true,"path"=>"event_".$eventId.".".$extension));
 		}
 		catch(Exception $e)

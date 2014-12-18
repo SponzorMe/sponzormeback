@@ -579,7 +579,6 @@ class ApiController extends BaseController {
 	}
 	public function eventUploadImage($eventId)
 	{
-		echo "esta llegando";
 		try
 		{
 			$file = Input::file('file');

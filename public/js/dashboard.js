@@ -238,6 +238,19 @@ function eventsController($scope,$Cookie,Customization,ngDialog,FileUploader)
         $scope.seeEventData=e;
         ngDialog.open({ template: 'seeEvent.html', controller: 'eventsController', scope: $scope });
     }
+    $scope.path = function()
+    {
+        var newURL = window.location.host + "/" + window.location.pathname;
+        var pathArray = newURL.split( '/' );
+        var newPathname = "";
+        for (i = 0; i < pathArray.length-2; i++) {
+            if(pathArray[i]!="")
+                newPathname += pathArray[i]+"/";
+        }       
+        newPathname=window.location.protocol + "//"+ newPathname;
+        var path = newPathname;
+        return path;
+    }
     $scope.newEvent = function(){                    
         $scope.newevent.peaks =  $scope.sponzors;
         $scope.newevent.location_reference=$scope.details3.reference;
@@ -247,8 +260,8 @@ function eventsController($scope,$Cookie,Customization,ngDialog,FileUploader)
                 .success(function(data) {
                     if(data.success)
                     {                        
-            
-                        uploader.queue[0].url='http://localhost/sponzorme/public/api/v1/event/upload/image/'+data.evento_id;
+                        path=$scope.path();
+                        uploader.queue[0].url=path+'api/v1/event/upload/image/'+data.evento_id;
                         uploader.uploadAll(); //Subo la imagen
                        
                         $scope.alerts = [{type: 'success', msg: data.message}];

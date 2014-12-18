@@ -577,6 +577,11 @@ class ApiController extends BaseController {
 		$img = Image::make($imagePath)->resize(450, 450);
     	$img->save("images/events/thumbs/thumb_event_".$eventId.".png");
 	}
+	public function imageTest()
+	{
+		$img = Image::make("images/events/event_95.JPG")->resize(450, 450);
+    	$img->save("images/events/thumbs/thumb_event_".$eventId.".png");
+	}
 	public function eventUploadImage($eventId)
 	{
 		try

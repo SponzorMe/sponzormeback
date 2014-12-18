@@ -574,7 +574,7 @@ class ApiController extends BaseController {
 	}
 	public function createThumb($imagePath,$eventId,$extension)
 	{
-		$img = Image::make($imagePath)->resize(200, 200);
+		$img = Image::make($imagePath)->resize(450, 450);
     	$img->save("images/events/thumbs/thumb_event_".$eventId.".png");
 	}
 	public function eventUploadImage($eventId)

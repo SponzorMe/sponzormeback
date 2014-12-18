@@ -1,4 +1,4 @@
-<?php echo "Estoy en local";
+<?php
 return array(
 
 	/*
@@ -25,7 +25,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost/sponzorme',
+	'url' => 'http://staging.sponzor.me',
 
 	/*
 	|--------------------------------------------------------------------------

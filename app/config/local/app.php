@@ -1,4 +1,4 @@
-<?php echo "<script type='text/javascript'>console.log('estoy en local');</script>";
+<?php
 return array(
 
 	/*

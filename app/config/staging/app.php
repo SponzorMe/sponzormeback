@@ -1,4 +1,4 @@
-<?php echo "<script type='text/javascript'>console.log('estoy en staging')</script>";
+<?php
 return array(
 
 	/*

@@ -1,4 +1,4 @@
-<?php
+<?php echo "<script type='text/javascript'>console.log('estoy en produccion')</script>";
 return array(
 
 	/*

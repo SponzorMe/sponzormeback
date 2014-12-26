@@ -109,12 +109,8 @@ return array(
 		'Authority\Repo\RepoServiceProvider',
 		'Authority\Service\Form\FormServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
-<<<<<<< HEAD
 		'Intervention\Image\ImageServiceProvider'
-=======
 		'Barryvdh\Cors\CorsServiceProvider',
->>>>>>> origin/localDeployment
-
 	),
 
 	/*

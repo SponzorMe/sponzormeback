@@ -138,5 +138,9 @@ return array(
 
 	'getting'	=> "Let's do it",
 
+	'error404' =>"Ohh.....You Requested the page that is no longer There.",
+
+	'backhome' =>"Back to home"
+
 
 );

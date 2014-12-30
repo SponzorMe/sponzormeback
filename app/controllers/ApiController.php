@@ -284,7 +284,7 @@ class ApiController extends BaseController {
 			$user->login_code    		= md5($key);
 			$user->login_valid_until	= $tomorrow;
 			$user->save();
-			return Response::json(array("success" => true,"status"=>"Authenticated","key"=>$key));
+			return Response::json(array("success" => true,"status"=>"Authenticated","key"=>$key,"userId"=>$user->id));
 		}
 		catch (Exception $e)
 		{

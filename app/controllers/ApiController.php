@@ -284,7 +284,7 @@ class ApiController extends BaseController {
 			$user->login_code    		= md5($key);
 			$user->login_valid_until	= $tomorrow;
 			$user->save();
-			return Response::json(array("success" => true,"status"=>"Authenticated","key"=>$key));
+			return Response::json(array("success" => true,"status"=>"Authenticated","key"=>$key,"userId"=>$user->id));
 		}
 		catch (Exception $e)
 		{
@@ -572,6 +572,16 @@ class ApiController extends BaseController {
 	{
 		return Response::json(InterestsCategories::where("lang",'=',$lang)->get());
 	}
+	public function createThumb($imagePath,$eventId,$extension)
+	{
+		$img = Image::make($imagePath)->resize(450, 450);
+    	$img->save("images/events/thumbs/thumb_event_".$eventId.".png");
+	}
+	public function imageTest()
+	{
+		$img = Image::make("images/events/event_95.JPG")->resize(450, 450);
+    	$img->save("images/events/thumbs/thumb_event_S.png");
+	}
 	public function eventUploadImage($eventId)
 	{
 		try
@@ -582,6 +592,7 @@ class ApiController extends BaseController {
 			$event=Events::find($eventId);
 			$event->image="event_".$eventId.".".$extension;
 			$event->save();
+			$this->createThumb("images/events/event_".$eventId.".".$extension,$eventId,$extension);
 			return Response::json(array("success" => true,"path"=>"event_".$eventId.".".$extension));
 		}
 		catch(Exception $e)

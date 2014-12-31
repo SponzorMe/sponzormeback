@@ -2,10 +2,7 @@
 <html lang="es">
 	<head>
 		<meta charset="utf-8" />
-		<title> 
-			@section('title') 
-			@show 
-		</title>
+		<title>@yield('title')</title>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
@@ -117,7 +114,7 @@
         <script src="{{ asset('js/modernizr.custom.86080.js') }}"></script>        
         <script src="{{ asset('components/angular/angular.min.js')}}"></script>
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
-        <script src="{{ asset('components/ngAutocomplete/src/ngautocomplete.js')}}"></script>
+        <script src="{{ asset('components/ngAutocomplete/src/ngAutocomplete.js')}}"></script>
 		<script src="{{ asset('js/controllers/mainController.js') }}"></script>
 		<script src="{{ asset('js/services/customizationService.js') }}"></script>
 		<script src="{{ asset('js/app.js') }}"></script> <!-- load our application -->

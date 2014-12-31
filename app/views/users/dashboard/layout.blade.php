@@ -25,7 +25,7 @@
   <script src="{{ asset('components/ngDialog/js/ngDialog.min.js')}}"></script>
 
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
-        <script src="{{ asset('components/ngAutocomplete/src/ngautocomplete.js')}}"></script>
+        <script src="{{ asset('components/ngAutocomplete/src/ngAutocomplete.js')}}"></script>
 
   <script src="{{ asset('components/angular-sanitize/angular-sanitize.min.js')}}"></script>
   <script src="{{ asset('components/angular-file-upload/angular-file-upload.min.js')}}"></script>

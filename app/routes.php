@@ -137,6 +137,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
 	Route::get('description', 'ApiController@index');
 
 	Route::resource('/', 'ApiController@index');
+
+	Route::get('image', 'ApiController@imageTest');
+	
 });
 
 Route::get('testimonials', 'HomeController@testimonials'); //testimonials
@@ -147,5 +150,5 @@ Route::get('language/{lang}', 'HomeController@setLanguage'); //Language Settings
 
 App::missing(function($exception)
 {
-	return View::make('index');
+	return View::make('error404');
 });

@@ -1,4 +1,4 @@
-<?php echo "Estoy en local";
+<?php
 return array(
 
 	/*
@@ -25,7 +25,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost/sponzorme',
+	'url' => 'http://beta.sponzor.me',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -109,6 +109,7 @@ return array(
 		'Authority\Repo\RepoServiceProvider',
 		'Authority\Service\Form\FormServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
+		'Intervention\Image\ImageServiceProvider'
 
 	),
 
@@ -175,7 +176,8 @@ return array(
         'URL' 			=> 'Illuminate\Support\Facades\URL',
         'Validator' 	=> 'Illuminate\Support\Facades\Validator',
         'View' 			=> 'Illuminate\Support\Facades\View',
-		'Sentry'		=> 'Cartalyst\Sentry\Facades\Laravel\Sentry'
+		'Sentry'		=> 'Cartalyst\Sentry\Facades\Laravel\Sentry',
+		'Image' 		=> 'Intervention\Image\Facades\Image'
 
 	),
 

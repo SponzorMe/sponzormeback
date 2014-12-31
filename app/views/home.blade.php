@@ -1,7 +1,7 @@
 @extends('layouts.default-angular')
 
 {{-- Web site Title --}}
-@section('title')
+@section('title', 'SponzorMe -- Home')
 @parent
 {{trans('pages.helloworld')}}
 @stop

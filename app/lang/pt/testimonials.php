@@ -8,11 +8,11 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
-	'testimonial1' 		=>  "SponzorMe es una herramienta que se debio haber construido hace mucho tiempo...",	
+	'testimonial1' 		=>  "SponzorMe é uma ferramenta que deve ter construído há muito tempo...",	
 
-	'testimonial2' 		=>	"Necesitábamos esta herramienta para que cada evento sea cada vez más fácil y gratificante...",
+	'testimonial2' 		=>	"Precisávamos essa ferramenta para todos os eventos cada vez mais fácil e gratificante...",
 
-	'testimonial3'		=>	"Gracias a SponzorMe yo me puedo concentrar en crear mas contenido para mi comunidad...",
+	'testimonial3'		=>	"Graças a SponzorMe eu posso me concentrar na criação de mais conteúdo para minha comunidade...",
 
 
 

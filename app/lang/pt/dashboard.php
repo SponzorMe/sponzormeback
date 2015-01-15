@@ -11,209 +11,245 @@ return array(
 
 	'events'						=> 'Eventos',
 
-	'settings'						=> 'Configuración',
+	'settings'						=> 'Configuração',
 
-	'sponzors'						=> 'Patrocinadores',
+	'sponzors'						=> 'Sponzors',
 
-	'account'						=> 'Cuenta',
+	'account'						=> 'Conta',
 
-	'addevent'						=> 'Añadir Evento',
+	'addevent'						=> 'Adicionar Evento',
 
 	'seesponzors'					=> 'Ver Sponzors',
 
 	'sponzoring'					=> 'Sponzoring',
 
-	'following'						=> 'Siguiendo',
+	'following'						=> 'Seguinte',
 
-	'logout'						=> 'Salir',
+	'logout'						=> 'Sair',
 
-	'about'							=> 'Acerca de',
+	'about'							=> 'Sobre o que',
 
-	'support'						=> 'Apoyo',
+	'support'						=> 'Apoio',
 
 	'blog'							=> 'Blog',
 
-	'balance'						=> 'Equilibrio',
+	'balance'						=> 'Saldo',
 
-	'comunity'						=> 'Comunidad',
+	'comunity'						=> 'Comunidade',
 
-	'peak'							=> 'Modos de patrocinio',
+	'peak'							=> 'Beneficios',
 
-	'yourevents'					=> 'Sus Eventos',
+	'yourevents'					=> 'Seus Eventos',
 
-	'suggestions'					=> 'Sugerencias',
+	'suggestions'					=> 'Sugestões',
 
-	'latestsponzors'				=> 'Últimos Sponzors',
+	'latestsponzors'				=> 'Últimas Sponsors',
 
 	'neweventtitle'					=>	'Tìtulo',
 
-	'neweventtitledescription'		=>	'Dar un nombre distintivo',
+	'neweventtitledescription'		=>	'Dê um nome distinto',
 
-	'neweventdescription'			=>	'Descripción',
+	'neweventdescription'			=>	'Descrição',
 
-	'neweventdescriptiondescription'=>	'Dile a las personas lo especial de tu evento',
+	'neweventdescriptiondescription'=>	'Diga às pessoas o quão especial o seu evento',
 
-	'neweventlocation'				=>	'Ubicación',
+	'neweventlocation'				=>	'Localização',
 
-	'neweventlocationdescription'	=>	'Especifica donde es la cuestion',
+	'neweventlocationdescription'	=>	'Especifica onde está a questão',
 
-	'neweventorganizer'				=>	'Nombre Organizador',
+	'neweventorganizer'				=>	'Nome Organizer',
 
-	'neweventorganizerdescription'	=>	'Quién es el organizador',
+	'neweventorganizerdescription'	=>	'Quem é o organizador',
 
-	'neweventstarts'				=>	'Comienza',
+	'neweventstarts'				=>	'Inicia',
 
-	'neweventstartsdescription'		=>	'La acción comienza',
+	'neweventstartsdescription'		=>	'A ação começa',
 
-	'neweventends'					=>	'Finaliza',
+	'neweventends'					=>	'Termina',
 
-	'neweventendsdescription'		=>	'La acción Finaliza!',
+	'neweventendsdescription'		=>	'As extremidades de ação!',
 
 	'neweventtype'					=>	'Tipo de evento',
 
 	'neweventtypedescription'		=>	'Tipo de evento',
 
-	'neweventtopic'					=>	'Tema Evento',
+	'neweventtopic'					=>	'Tema do evento',
 
-	'neweventtopicdescription'		=>	'Tema Evento',
+	'neweventtopicdescription'		=>	'Tema do evento',
 
-	'neweventprivacy'				=>	'Listado de Privacidad',
+	'neweventprivacy'				=>	'Lista de Privacidade',
 
-	'neweventprivacydescription'	=>	'Listado de Privacidad',
+	'neweventprivacydescription'	=>	'Lista de Privacidade',
 
 	'privacyoption0'				=>	'Página Pública',
 
-	'privacyoption1'				=>	'Página privada',
+	'privacyoption1'				=>	'Site privado',
 
-	'privacydescription0'			=>	'Listar en evenbrite y Motores de busqueda',
+	'privacydescription0'			=>	'Lista em SponzorMe e Search Engines',
 
-	'privacydescription1'			=>	'No listar este evento publicamente',
+	'privacydescription1'			=>	'Nenhuma lista evento público',
 
-	'eventsponzors'					=>	'Patrocinadores',
+	'eventsponzors'					=>	'Sponsors',
 
-	'goldSponzor'					=>	'Patrocinador Oro',
+	'goldSponzor'					=>	'Patrocinador Ouro',
 
-	'silverSponzor'					=>	'Patrocinador Plata Sponzor',
+	'silverSponzor'					=>	'Patrocinador Prata',
 
-	'bronzeSponzor'					=>	'Patrocinador Bronce',
+	'bronzeSponzor'					=>	'Bronze Sponsor',
 
-	'buttonsugestions'				=>	'Botòn',
+	'buttonsugestions'				=>	'Botão',
 
-	'eventdetails'					=>	'Detalles del evento',
+	'eventdetails'					=>	'Detalhes do Evento',
 
 	'submitbutton'					=>	'Enviar',
 
-	'createEventSuccess'			=>	'El evento ha sido creado exitosamente',
+	'deleteEvent' 					=>	'Evento excluído',
 
-	'removeEventSuccess'			=>	'El evento ha sido exitosamente removido',
+	'createEventSuccess'			=>	'O evento foi criado com sucesso',
 
-	'eventaditionalseetings'		=>	'Configuración adicional',
+	'removeEventSuccess'			=>	'O evento foi removido com sucesso',
 
-	'choosetype'					=>	'-- Elegir tipo --',
+	'eventaditionalseetings'		=>	'Configurações adicionais',
+
+	'choosetype'					=>	'-- Escolha o tipo de --',
 
 	'eventprivacy'					=>	'Tipo',
 
-	'eventtype'						=>	'Privacidad',
+	'eventtype'						=>	'Privacidade',
 
 	'typesponzor'					=>	'Tipo de patrocinador',
 
-	'quantitysponzor'				=>	'Catidad Disponible',
+	'quantitysponzor'				=>	'Quantidade disponível',
 
-	'pricesponzor'					=>	'Precio',
+	'pricesponzor'					=>	'Preço',
 
-	'actionssponzor'				=>	'Acciones',
+	'actionssponzor'				=>	'Ações',
 
-	'editaccountname'				=>	'Nombre completo',
+	'editaccountname'				=>	'Nome completo',
 
-	'editaccountemail'				=>	'Correo Electronico',
+	'editaccountemail'				=>	'E-mail',
 
-	'editaccountcompany'			=>	'Empresa',
+	'editaccountcompany'			=>	'Negócio',
 
-	'editaccountage'				=>	'Edad',
+	'editaccountage'				=>	'Idade',
 
 	'editaccountsex'				=>	'Sexo',
 
-	'editaccountlocation'			=>	'Ubicación',
+	'editaccountlocation'			=>	'Localização',
 
-	'editaccountdescription'		=>	'Descripción',
+	'editaccountdescription'		=>	'Descrição',
 
-	'editaccount'					=>	'Editar Cuenta',
+	'editaccount'					=>	'Editar Conta',
 
 	'by'							=>	'Por',
 
-	'close'							=>	'Cerrar',
+	'close'							=>	'Desligar',
 
-	'youfollowing'					=>	'Tus Eventos Seguidos',
+	'youfollowing'					=>	'Seus Eventos Seguido',
 
-	'yousponzoring'					=>	'Sus Eventos Patrocinados',
+	'yousponzoring'					=>	'Seus Eventos Patrocinados',
 
-	'name'							=>	'Nombre',
+	'name'							=>	'Nome',
 
-	'email'							=>	'Correo Electronico',
+	'email'							=>	'E-mail',
 
-	'location'						=>	'Ubicación',
+	'location'						=>	'Localização',
 
-	'eventtitle'					=>	'Título del evento',
+	'eventtitle'					=>	'Título do Evento',
 
 	'state'							=>	'Estado',
 
-	'options'						=>	'Opciones',
+	'options'						=>	'Opções',
 
-	'yousponzring'					=>	'Eventons que tu estas patrocinando',
+	'yousponzring'					=>	'Eventos que você está patrocinando',
 
-	'title'							=>	'Tìtulo',
+	'title'							=>	'Título',
 
-	'title'							=>	'Comienza',
+	'title'							=>	'Inicia',
 
-	'perks'							=>	'Perks',
+	'perks'							=>	'Benefícios',
 
 	'kind'							=>	'Tipo',
 
-	'quantity'						=>	'Cantidad',
+	'quantity'						=>	'Quantidade',
 
 	'usd'							=>	'USD',
 
-	'navigation'					=>	'Navegación',
+	'navigation'					=>	'Navegação',
 
-	'home'							=>	'Inicio',
+	'home'							=>	'Iniciação',
 
-	'notification'					=>	'Notificación',
+	'notification'					=>	'Notificação',
 
-	'notifications'					=>	'Notificaciones',
+	'notifications'					=>	'Notificações',
 
-	'starts'						=>	'Comienza',
+	'starts'						=>	'Inicia',
 
-	'friendemail' 					=> 'Email de tu amigo',
+	'friendemail' 					=> 'E-mail do seu amigo',
 
-	'friendmessage'					=> 'Mensaje a tu amigo',
+	'friendmessage'					=> 'Mensagem para seu amigo',
 
-	'invitefriend'					=> 'Invita a tu amigo',
+	'invitefriend'					=> 'Convide seu amigo',
 
-	'seemore'						=> 'Ver Mas ...',
+	'seemore'						=> 'Veja mais ...',
 
-	'manage'						=> 'Gestionar',
+	'manage'						=> 'Gerir',
 
-	'searchtitle'					=> 'Busca tu proximo evento ...',
+	'searchtitle'					=> 'Procure o seu próximo evento ...',
 
-	'eventbriteMessage'				=> 'Conectar tu cuenta con eventbrite',
+	'eventbriteMessage'				=> 'Conecte-se com a sua conta Eventbrite',
 
 	'eventbriteButton'				=> 'Conectar !',
 
-	'eventbriteButtonUnconnect'		=> 'Desconectar =(',
+	'eventbriteButtonUnconnect'		=> 'Sair =(',
 
 	'evenbriteNotConnected'			=> "Opss, ",
 
-	'evenbriteConnected'			=> "Hemos conectado las cuentas satisfactoriamente, Algo salió mal. Seras redirigido a la pagina principal.",
+	'evenbriteConnected'			=> "Temos conectado com sucesso contas, algo deu errado. Você será redirecionado para a página inicial.",
 
-	'import'						=> "Importar",
+	'import'						=> "Importação",
 
-	'eventbriteEvents'				=> "Lista de tus eventos de eventbrite",
+	'eventbriteEvents'				=> "Liste seus eventos Eventbrite",
 
-	'configureImport'				=> "Configurar tu importación desde eventbrite",
+	'configureImport'				=> "Configure sua importação a partir de Eventbrite",
 
-	'comunitySize' =>"Tamaño de tu comunidad",
+	'comunitySize' =>"Tamanho da sua comunidade",
 
-	'meetupMessage' =>"Conectar tu cuenta con Meetup",
+	'meetupMessage' =>"Conecte sua conta com Meetup",
 
-	'meetupButton'				=> 'Conectar con Meetup!',
+	'meetupButton'				=> 'Conecte-se com Meetup!',
+
+	/*
+	|--------------------------------------------------------------------------
+	| Task Lists
+	|--------------------------------------------------------------------------
+	*/
+
+	"todo"=>"Listas de tarefas",
+
+	"todoEvent"=>"Evento",
+
+	"chooseEvent"=>"Escolha um Evento",
+
+	"todoPeak"=>"Tipo de Patrocínio",
+
+	"choosepeak"=>"Escolha um Patrocinador",
+
+	"removeTodo" => "tarefa excluído",
+
+	"todoTitle" => "Título da tarefa",
+
+	"todoDescription" => "Descrição da tarefa",
+
+	"todosList" => "O status da tarefa",
+
+	"todoActions" => "Ações",
+
+	"todosListSponzor" => "Minhas tarefas",
+
+	"todoStatus" => "Estado",
+
+	"addTodosListSponzor" => "AAdicionar tarefas",
+
+	"addSponzorTodo" => "Adicionar tarefa",
 );

@@ -12,5 +12,7 @@
 
 	@include ('users.dashboard.settings')
 
+	@include ('users.dashboard.todo')
+
 @stop
 

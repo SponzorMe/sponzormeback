@@ -10,7 +10,7 @@
                     <th class="text-center">{{trans('dashboard.kind')}}</th>
                     <th class="text-center">{{trans('dashboard.quantity')}}</th>
                     <th class="text-center">${{trans('dashboard.usd')}}</th>
-                    <th class="text-center">{{trans('dashboard.sponzor?')}}</th>
+                    <th class="text-center">{{trans('dashboard.sponzor')}}?</th>
                   </tr>
                 </thead>
                 <tbody>

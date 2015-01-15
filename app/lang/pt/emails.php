@@ -7,35 +7,35 @@ return array(
     | Language strings for views
     |--------------------------------------------------------------------------
     */
-    'subject'                       => 'Bienvenido a SponzorMe',
+    'subject'                       => 'Bem-vindo ao SponzorMe',
 
     
-    'click'                        => 'Click Aquí',
+    'click'                        => 'Clique Aqui',
 
-    'invitefriend'                 => 'Hola, <br/><br/> Estas invitado para usar <a href="http://sponzor.me">SponzorMe</a>.',
+    'invitefriend'                 => 'Olá, <br/><br/> Você está convidado a usar <a href="http://sponzor.me">SponzorMe</a>.',
 
     'header'                        => '
     <p dir="ltr">
-        Hola,
+        Olá,
     </p>
     <br/>
     <p dir="ltr">
-        Mi nombre es Carlos y soy el fundador de SponzorMe. Yo solo queria contactarte y decirte gracias por unirte! Te queria decir que este proyecto nació de una
-        necesidad que yo mismo tenía cada vez que organizaba un evento y que es un problema que muchas veces acaba con las comunidades y con el entusiasmo de sus
-        organizadores. Si tienes un tiempo te invito a leer nuestra entrada donde puedes ver lo que motiva al equipo de SponzorMe (    <a href="http://bloges.sponzor.me/">http://bloges.sponzor.me/</a> )
+        Meu nome é Carlos e eu sou o fundador da SponzorMe. Eu só queria entrar em contato com você e dizer obrigado por se juntar! 
+        Eu queria dizer que este projeto nasceu de uma necessidade que eu tinha sempre que organizar um evento e é um problema que muitas 
+        vezes acaba com as comunidades e com o entusiasmo de seus organizadores. Se você tiver tempo eu convido você a ler a nossa entrada, 
+        onde você pode ver o que motiva a equipe SponzorMe (<a href="http://blogpt.sponzor.me/">http://blogpt.sponzor.me/</a> )
+    </p>
+    <p dir="ltr">
+        Como você sabe que esta é uma jornada e sabemos que a maioria das coisas, é por isso que vamos precisar da sua ajuda. 
+        Quaisquer comentários, preocupações, problemas, sugestões. Estou disponível para ouvir.
     </p>
     <br/>
     <p dir="ltr">
-        Como sabes esto es un viaje y no sabemos la mayoría de las cosas, es por esto que vamos a necesitar de tu ayuda. Cualquier comentario, preocupación,
-        problema, sugerencia. Estoy disponible para escucharte.
+        Meu e-mail é: <a href="mailto:carlos@sponzor.me">carlos@sponzor.me</a>
     </p>
     <br/>
     <p dir="ltr">
-        Mi correo es: <a href="mailto:carlos@sponzor.me">carlos@sponzor.me</a>
-    </p>
-    <br/>
-    <p dir="ltr">
-        Para empezar debes confirmar tu correo electronico en el siguiente link:
+        Para começar você deve confirmar seu e-mail no seguinte link:
     </p>
     <br/>
     <p dir="ltr">',
@@ -43,11 +43,11 @@ return array(
     '</p>
     <br/>
     <p dir="ltr">
-    Gracias de nuevo por unirte - Es grandioso conocerte :)
+    Mais uma vez obrigado por se juntar - É muito bom conhecê-lo :)
     </p>
     <br/>
     <p dir="ltr">
-    Un abrazo,
+    Um abraço,,
     </p>
     <p>
     Carlos Rojas

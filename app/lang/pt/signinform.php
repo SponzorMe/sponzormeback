@@ -13,9 +13,9 @@ return array(
 	|
 	*/
 
-	"title"         => "Registrarse",
-	"rememberme"       => "Recuerdame",
-	"signin"       => "Registrarse",
-	'forgot' => "¿Olvidó su contraseña?",
+	"title"         => "Juntar",
+	"rememberme"       => "Lembrar",
+	"signin"       => "Juntar",
+	'forgot' => "¿Esqueceu sua senha?",
 
 );

@@ -11,8 +11,8 @@
               <table class="table table-striped" data-ng-controller="followingController">
                 <thead>
                   <tr>
-                    <th class="text-center">{{trans('dashboard.name')}}</th>
-                    <th class="text-center">{{trans('dashboard.email')}}</th>
+                    <th class="text-center">{{trans('dashboard.OrganizerName')}}</th>
+                    <th class="text-center">{{trans('dashboard.OrganizerEmail')}}</th>
                     <th class="text-center">{{trans('dashboard.location')}}</th>
                     <th class="text-center">{{trans('dashboard.eventtitle')}}</th>
                     <th class="text-center">{{trans('dashboard.sponzoring')}} type</th>
@@ -24,10 +24,11 @@
                   <tr data-ng-repeat="s in sponzors.list" >
                     <td class="text-center"><%s.name%></td>
                     <td class="text-center"><%s.email%></td>
-                    <td class="text-center"><%s.city%>, <% s.state %>, <% s.country %></td>
+                    <td class="text-center"><%s.eventlocation%></td>
                     <td class="text-center"><%s.event%></td>
                     <td class="text-center"><%s.kind%></td>
-                    <td class="text-center"><%s.eventstate%></td>
+                    <td class="text-center" ng-if="s.eventstate == 0"><i class="fa fa-cog fa-spin" ng-class="icon"></i> {{trans('dashboard.eventPendingApprobation')}}</td>
+                    <td class="text-center" ng-if="s.eventstate == 1"><i class="fa fa-cog fa-spin" ng-class="icon"></i><i class="fa fa-check">{{trans('dashboard.eventApprobed')}}</td>
                     <td class="text-center">
                       <a href="" ng-click="removeRelSponzorPeak(s.idRelSponzoring)"><i class="fa fa-trash-o"></i></a>
                     </td>

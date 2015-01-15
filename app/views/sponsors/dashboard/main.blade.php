@@ -23,11 +23,12 @@
             <div data-ng-repeat="s in search.list" class="col-lg-5 col-lg-offset-1 evento">
               <div class="pull-left"><img class="organizer-image img-circle" src="{{asset('images/users/user.png')}}" alt="User"></div>
               <div class="info-event">
-                <div class=""><h1><% s.title %></h1></div>
-                <div class=""><% s.location %></div>
-                <div class=""><% s.email %></div>   
+                <div class=""><h1><a href="{{URL::to('event/<% s.event %>')}}" target="_blank">
+<% s.title %></a></h1></div>
+                <div class=""><% s.eventlocation %></div>
+                <div class=""><% s.email %></div>
                 <div class="">
-                <span class="text-success"><a href="#" data-ng-click="openDialog($index)"><i class="fa fa-check">
+                <span class="text-success"><a href="" data-ng-click="openDialog($index)"><i class="fa fa-check">
                   </i>Sponzor</a></span>                  
                 </div>
               </div>        

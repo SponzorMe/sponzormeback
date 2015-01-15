@@ -7,7 +7,7 @@
 [LAMP](http://en.wikipedia.org/wiki/LAMP_%28software_bundle%29).
 
 ####Front
-[GruntJS](http://getbootstrap.com).
+[Gulp](http://gulpjs.com/).
 [Bower](http://bower.io).
 [SaaS](http://sass-lang.com).
 [AngularJS](https://angularjs.org/).
@@ -30,7 +30,7 @@ Before you begin, make sure you have both ```git``` and ```composer``` installed
 
 1. Clone the repo
 2. Run ```php composer.phar update```
-3. Set up your datbase configuration in ```app/config/database.php```
+3. Set up your database configuration in ```app/config/database.php```
 4. Edit ```app/config/mail.php``` to work with your mail setup.
 5. Run the migrations: ```php artisan migrate```
 6. Seed the Database: ```php artisan db:seed```
@@ -39,9 +39,43 @@ Before you begin, make sure you have both ```git``` and ```composer``` installed
 ### Instructions Front-End
 
 1. Install Bower 
-2. bower install
-3. npm install
+
+$# bower install
+$# sudo npm install
+
+2. Install Gulp
+
+###Linux Version
+
+$# sudo npm install -g gulp
+
+$# sudo npm install --save-dev gulp
+
+$# sudo npm install --save-dev gulp-uglify
+
+$# sudo npm install --save-dev gulp-flatten
+
+$# sudo npm install --save-dev gulp-filter
+
+$# sudo npm install --save-dev gulp-minify-css
+
+$# sudo npm install --save-dev gulp-rename
+
+$# sudo npm install --save-dev main-bower-files
+
+$# sudo npm install --save-dev gulp-sass
+
+###Windows Version
+
+npm install -g gulp 
+npm install --save-dev gulp 
+npm install --save-dev gulp-uglify 
+npm install --save-dev gulp-flatten 
+npm install --save-dev gulp-filter 
+npm install --save-dev gulp-minify-css 
+npm install --save-dev gulp-rename 
+npm install --save-dev main-bower-files 
+npm install --save-dev gulp-sass 
 
 
 Be responsable with this code and make the force be with you :)
-

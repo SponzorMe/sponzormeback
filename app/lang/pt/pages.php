@@ -10,7 +10,7 @@ return array(
 
 	'flashsuccess'	=> 'Exitoso',
 
-	'flasherror'	=> 'Error',
+	'flasherror'	=> 'erro',
 
 	'flashwarning'	=> 'Cuidado',
 
@@ -20,49 +20,49 @@ return array(
 
 	'login'			=> "Conecte-se",
 
-	'logout'		=> "Salir",
+	'logout'		=> "Sair",
 
 	'home'			=> "Home",
 
-	'users'			=> "Usuarios",
+	'users'			=> "Usuários",
 
-	'user'			=> "Usuario",
+	'user'			=> "Usuário",
 
 	'groups'		=> "Grupos",
 
-	'helloworld'	=> "",
+	'helloworld'	=> "SponzorMe",
 
-	'description'	=> "",
+	'description'	=> "Events, Sponsors, Marketplace",
 
-	'loginstatus'	=> "Tu estas logeado actualmente.",
+	'loginstatus'	=> "Você está atualmente conectado.",
 
-	'sessiondata'	=> "Datos de la sesión",
+	'sessiondata'	=> "Os dados da sessão",
 
-	'currentusers'	=> "Usuarios Actuales",
+	'currentusers'	=> "Usuários atuais",
 
-	'options'		=> 'Opciones',
+	'options'		=> 'Opções',
 
 	'status'		=> "Estado",
 
-	'active'		=> "Activo",
+	'active'		=> "Ativo",
 
-	'notactive'		=> "No activo",
+	'notactive'		=> "Não ativo",
 
 	'suspended'		=> "Suspendido",
 
-	'banned'		=> "Baneado",
+	'banned'		=> "Banido",
 
 	'actionedit'	=> "Editar",
 
-	'actionsuspend'	=> "Suspender",
+	'actionsuspend'	=> "Suspendo",
 
-	'actionunsuspend' => "No suspender",
+	'actionunsuspend' => "Não Suspendo",
 
-	'actionban'		=> "Ban",
+	'actionban'		=> "Banimento",
 
-	'actionunban'	=> "Un-Ban",
+	'actionunban'	=> "Não banimento",
 
-	'actiondelete'	=> "Borrar",
+	'actiondelete'	=> "Excluir",
 
 	'sponsorreg'	=> "Você está patrocinando?",
 
@@ -72,69 +72,61 @@ return array(
 
 	'nextaction'	=> "Fazer upload de seu evento e deixe a mágica começar...",
 
-	'slide1'	=> "Eventos",
-
-	'slide2'	=> "Marcas",
-
-	'slide3'	=> "Tecnología",
-
-	'slide4'	=> "Comunidades",
-
-	'slide5'	=> "Conexiones",
-
 	'testimonials'	=> "Depoimentos",
 
 	'blog'	=> "Blog",
 
-	'blogUrl'	=> "http://bloges.sponzor.me/",
+	'blogUrl'	=> "http://blogpt.sponzor.me/",
 
-	'woman'	=> "Mujer",
+	'woman'	=> "Mulher",
 
-	'man'	=> "Hombre",
+	'man'	=> "Homem",
 
-	'ageiam'	=> "Tengo",
+	'ageiam'	=> "Eu tenho",
 
-	'old'	=> "Años",
+	'old'	=> "Anos de idade",
 
 	'chooseSex'	=> "Genero",
 
-	'livein'	=> "Vivo en",
+	'livein'	=> "Localização",
 
 	'country'	=> "País",
 
-	'state'	=> "Departamento",
+	'state'	=> "Estados",
 
-	'city'	=> "Ciudad",
+	'city'	=> "Cidade",
 
-	'next'	=> "Siguiente",
+	'next'	=> "Next",
 
-	'areyouinterested'	=> "¿Estoy interesado en?",
+	'areyouinterested'	=> "¿Estou interessado na?",
 
-	'next'	=> "Seguiente",
+	'weresendingandemail'	=> "Enviamos um e-mail para",
 
-	'weresendingandemail'	=> "Hemos enviado un email a",
+	'toactivateyouraccount'	=> "para ativar sua conta.",
 
-	'toactivateyouraccount'	=> "para activar tu cuenta.",
+	'forbidden'	=> "Spaces",
 
-	'forbidden'	=> "Prohibido",
+	'aboutyou'	=> "Algo sobre você!",
 
-	'aboutyou'	=> "Algo sobre tí!",
-
-	'almostdone'	=> "Ya casi está!",
-
-	'team'	=> "Equipamento",
-
-	'support'	=> "Soporte",
-
-	'supportUrl'	=> "http://support.sponzor.me/",
-
-	'terms'	=> "Terminos del Servicio",
-
-	'privacy'	=> "Privacidade",
+	'almostdone'	=> "Quase seja!",
 
 	'dashboard'	=> "Dashboard",
 
+	'team'	=> "Equipamento",
+
+	'support'	=> "Apoio",
+
+	'supportUrl'	=> "http://support.sponzor.me/",
+
+	'terms'	=> "Termos de Serviço",
+
+	'privacy'	=> "Privacidade",
+
 	'getting'	=> "Vamos fazê-lo",
+
+	'error404' =>"Ohh.....Isso é constrangedor, mas não conseguimos encontrar o seu pedido.",
+
+	'backhome' =>"Retorno"
 
 
 );

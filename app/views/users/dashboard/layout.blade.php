@@ -3,34 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  
   <title>Dashboard</title>
+  <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}"/>
  <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('components/bootstrap/dist/css/bootstrap.min.css')}}"/>
   <link rel="stylesheet" href="{{ asset('components/font-awesome/css/font-awesome.min.css')}}"/>
   <link rel="stylesheet" href="{{ asset('components/ngDialog/css/ngDialog.min.css')}}"/>
-  <link rel="stylesheet" href="{{ asset('components/ngDialog/css/ngDialog-theme-default.min.css')}}"/>  
+  <link rel="stylesheet" href="{{ asset('components/ngDialog/css/ngDialog-theme-default.min.css')}}"/>
+  <!--Date timer-->
+  <link rel="stylesheet" href="{{ asset('components/bootstrap/dist/css/bootstrap.css')}}">
+  <link rel="stylesheet" href="{{ asset('components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css')}}"/>
+  <!--Estilos principales-->
   <link rel="stylesheet" href="{{ asset('css/dashboard.css')}}"/>  
   <!-- Javascripts ================================================== -->
   <script src="{{ asset('components/jquery/dist/jquery.min.js') }}"></script>
   <script src="{{ asset('components/angular/angular.min.js')}}"></script>
-
   <script src="{{ asset('components/angular-cookies/angular-cookies.min.js')}}"></script>
-
   <script src="{{ asset('components/angular-bootstrap/ui-bootstrap.min.js')}}"></script>
   <script src="{{ asset('components/angular-bootstrap/ui-bootstrap-tpls.min.js')}}"></script>
-
   <script src="{{ asset('components/angular-ui-router/release/angular-ui-router.min.js')}}"></script>
-
   <script src="{{ asset('components/ngDialog/js/ngDialog.min.js')}}"></script>
-
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
-        <script src="{{ asset('components/ngAutocomplete/src/ngAutocomplete.js')}}"></script>
-
+  <script src="{{ asset('components/ngAutocomplete/src/ngAutocomplete.js')}}"></script>
   <script src="{{ asset('components/angular-sanitize/angular-sanitize.min.js')}}"></script>
-  <script src="{{ asset('components/angular-file-upload/angular-file-upload.min.js')}}"></script>
-
-  <script src="{{ asset('js/dashboard.js')}}"></script><!--script principal-->
+  <script src="{{ asset('components/angular-file-upload/angular-file-upload.min.js')}}"></script>  <!--Date timer-->
+  <script type="text/javascript" src="{{ asset('components/moment/moment.js')}}"></script>
+  <script type="text/javascript" src="{{ asset('components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+  <script type="text/javascript" src="{{ asset('components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js')}}"></script>
+  <script src="{{ asset('js/dashboard.js')}}"></script><!--controller principal-->
   <script src="{{ asset('js/services/customizationService.js') }}"></script><!-- load our service -->
 </head>
 <!--Navegación y encabezado-->
@@ -63,7 +64,14 @@
         </li>
         <li class="sidebar-list">
           <a href="#/friend">{{trans('dashboard.invitefriend')}} <span class="menu-icon fa fa-cogs"></span></a>
-        </li>        
+        </li>
+        <li class="sidebar-list">
+          <a href="#/todo">{{trans('dashboard.todo')}} <span class="menu-icon fa fa-cogs"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="{{ URL::to('logout') }}">{{trans('pages.logout')}}<span class="menu-icon fa fa-cogs"></span></a>
+        </li>    
+                        
       </ul>
       <div class="sidebar-footer">
         <div class="col-xs-4">
@@ -93,7 +101,7 @@
           <div class="col-xs-12">
             <div class="user pull-right">
               <div class="item dropdown">
-                <a href="#" class="dropdown-toggle">
+                <a href="" class="dropdown-toggle">
                   <img src="{{ asset('images/photo.png')}}">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
@@ -116,7 +124,7 @@
                 </ul>
               </div>
               <div class="item dropdown">
-               <a href="#" class="dropdown-toggle">
+               <a href="" class="dropdown-toggle">
                   <i class="fa fa-bell-o"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">

@@ -110,6 +110,7 @@ return array(
 		'Authority\Service\Form\FormServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
+		'Artdarek\Pusherer\PushererServiceProvider',
 		'Barryvdh\Cors\CorsServiceProvider'
 
 	),

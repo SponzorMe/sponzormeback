@@ -109,7 +109,9 @@ return array(
 		'Authority\Repo\RepoServiceProvider',
 		'Authority\Service\Form\FormServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
-		'Intervention\Image\ImageServiceProvider'
+		'Intervention\Image\ImageServiceProvider',
+		'Artdarek\Pusherer\PushererServiceProvider',
+		'Barryvdh\Cors\CorsServiceProvider'
 
 	),
 

@@ -1,3 +1,0 @@
-root
-uFM2KfX6VjPVjX
-cd /var/www/staging.sponzor.me/web

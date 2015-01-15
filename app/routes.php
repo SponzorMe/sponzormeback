@@ -136,11 +136,25 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::get('description', 'ApiController@index');
 
+	Route::get('peak/todo/{idPeak}', 'ApiController@getTodo');
+
+	Route::get('peak/todo/remove/{idPeak}', 'ApiController@removeTodo');
+
+	Route::post('set/peak/todo', 'ApiController@saveTodo');
+
+	Route::get('get/task/relpeak/{RelPeak}/{type}', 'ApiController@getTaskBySponzorByRelPeak');
+
+	Route::get('update/task/sponzor/{idSponzorTask}/{status}', 'ApiController@changeStatusTaskBySponzor');
+
 	Route::resource('/', 'ApiController@index');
 
 	Route::get('image', 'ApiController@imageTest');
+
+	Route::get('rel_peak/todo/remove/{idRelPeak}', 'ApiController@removeTaskSponzorPeak');
 	
 });
+
+Route::get('event/{eventId}', 'ApiController@eventById');
 
 Route::get('testimonials', 'HomeController@testimonials'); //testimonials
 

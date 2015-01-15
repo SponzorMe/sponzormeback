@@ -8,46 +8,46 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
-	'created' 		=>  "Tu cuenta ha sido creada, revisa tu email por el link de confirmación.",	
+	'created' 		=>  "Sua conta foi criada, verifique seu e-mail para o link de confirmação.",	
 
-	'loginreq' 		=>	"El campo de login es requerido.",
+	'loginreq' 		=>	"O campo de login é necessário.",
 
-	'exists'		=>	"El usuario ya existe.",
+	'exists'		=>	"Usuário já existe.",
 
-	'notfound'		=>	"Usuario no encontrado.",
+	'notfound'		=>	"Usuário não encontrado.",
 
-	'noaccess'		=>	"No tienes permisos para ejecutar esta acción.",
+	'noaccess'		=>	"Você não está autorizado a realizar esta ação.",
 
-	'updated'		=>	"Perfil actualizado.",
+	'updated'		=>	"Perfil atualizado.",
 
-	'notupdated'	=>	"Imposible actualizar el perfil.",
+	'notupdated'	=>	"Não é possível atualizar o perfil.",
 
-	'activated'		=>	"Activación completada. <a href=':url' class='alert-link'>Ya puedes logear!</a>",
+	'activated'		=>	"Ativação concluída. <a href=':url' class='alert-link'>Agora você pode entrar!</a>",
 
-	'notactivated'	=>	"La activación no se puede completar.",
+	'notactivated'	=>	"A ativação não pode ser concluída.",
 
-	'alreadyactive'	=>	"La cuenta ya se encuentra activada.",
+	'alreadyactive'	=>	"A conta já está ativado.",
 
-	'emailconfirm'	=>	"Revisa tu e-mail por el link de confirmación.",
+	'emailconfirm'	=>	"Verifique se o seu e-mail para o link de confirmação.",
 
-	'emailinfo'		=>	"Revisa tu e-mail por instrucciones.",
+	'emailinfo'		=>	"Verifique se o seu e-mail para obter instruções.",
 
-	'emailpassword'	=>	"Tu contraseña ha cambiado, revisa tu email por mas instrucciones.",
+	'emailpassword'	=>	"Sua senha foi alterada, verifique seu e-mail para obter mais instruções.",
 
-	'problem'		=>	"Hay un problema, por favor contacta con el administrador.",
+	'problem'		=>	"Há um problema, por favor, entre em contato com o administrador do site.",
 
-	'passwordchg'	=> 	"Tu contraseña ha cambiado.",
+	'passwordchg'	=> 	"Sua senha foi alterada.",
 
-	'passwordprob'	=>	"Tu contraseña no se puede cambiar.",
+	'passwordprob'	=>	"Sua senha não pode ser alterada",
 
-	'oldpassword'	=>	"Contraseña original incorrecta.",
+	'oldpassword'	=>	"Senha original incorreto.",
 
-	'suspended'		=>	"La cuenta ha sido suspendida por :minutes minutos.",
+	'suspended'		=>	"A conta foi suspensa por :minutes minutos.",
 
-	'unsuspended'	=>	"La cuenta ha sido reestablecida.",
+	'unsuspended'	=>	"A conta foi restaurado.",
 
-	'banned'		=>	"El usuario ha sido baneado.",
+	'banned'		=>	"O usuário foi banido.",
 
-	'unbanned'		=>	"El usuario ha sido des-baneado.",
+	'unbanned'		=>	"O usuário foi unbanned.",
 
 );

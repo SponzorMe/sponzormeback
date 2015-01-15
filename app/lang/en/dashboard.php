@@ -37,7 +37,7 @@ return array(
 
 	'comunity'						=> 'Comunity',
 
-	'peak'							=> 'Peaks',
+	'peak'							=> 'Perks',
 
 	'yourevents'					=> 'Your Events',
 
@@ -102,6 +102,8 @@ return array(
 	'eventdetails'					=>	'Event Details',
 
 	'submitbutton'					=>	'Submit',
+
+	'deleteEvent' 					=>	'Event Deleted.',
 
 	'createEventSuccess'			=>	'The Event has been created successfuly',
 
@@ -229,10 +231,66 @@ return array(
 
 	'configureEventbriteImport'	=> "Configure your import from eventbrite",
 
-	'eventImage'=>"Event Image"
+	'eventImage'=>"Event Image",
+	"sponzor" =>"Sponzor",
+	"eventPendingApprobation" =>"Waiting for the organizer approbation",
 
+	"OrganizerName" =>"Organizer Name",
 
+	"OrganizerEmail" =>"Organizer Email",
 
+	"eventApprobed" => "Event Aprobbed",
 
+	"newSponzorEmailNotification" => "new Sponzor is interested in your Event!",
+
+	'sponzorButton'				=> 'Sponzor!',
+
+	'sponzoringKind'				=> 'Sponzoring Kind',
+
+	'description' => 'Description',
+
+	'contactOrganizer'=>'Ask to Organizer',
+
+	'nextEvent'=>'Next Event',
+
+	'members'=>'Miembros',
+
+	"sponzorButtonNotSponsor"=>"You need an Sponzor account to Sponzor this event",
+
+	"sponzorButtonNotlogin"=>"Log in to sponzor",
+
+	/*
+	|--------------------------------------------------------------------------
+	| Task Lists
+	|--------------------------------------------------------------------------
+	*/
+
+	"todo"=>"Task List",
+
+	"todoEvent"=>"Event",
+
+	"chooseEvent"=>"Choose an Event",
+
+	"todoPeak"=>"Type of Sponzor",
+
+	"choosepeak"=>"Choose an Sponzor",
+
+	"todoTitle" => "Task Title",
+
+	"removeTodo" => "Task Deleted",
+
+	"todoDescription" => "Task Description",
+
+	"todosList" => "Tasks Status",
+
+	"todoActions" => "Actions",
+
+	"todosListSponzor" => "My Tasks",
+
+	"todoStatus" => "Status",
+
+	"addTodosListSponzor" => "Add Tasks",
+
+	"addSponzorTodo" => "Add Task",
 
 );

@@ -219,27 +219,32 @@ class UserController extends BaseController {
 	 */
 	public function activate($id, $code)
 	{
-        if(!is_numeric($id))
-        {
-            // @codeCoverageIgnoreStart
-            return \App::abort(404);
-            // @codeCoverageIgnoreEnd
+        try{
+            if(!is_numeric($id))
+            {
+                // @codeCoverageIgnoreStart
+                return \App::abort(404);
+                // @codeCoverageIgnoreEnd
+            }
+
+            $result = $this->user->activate($id, $code);
+
+            if( $result['success'] )
+            {
+                // Success!
+                Session::flash('success', $result['message']);
+                return Redirect::route('home');
+
+            } else {
+                Session::flash('error', $result['message']);
+                return Redirect::route('home');
+            }
         }
-
-		$result = $this->user->activate($id, $code);
-
-        if( $result['success'] )
+        catch(Exception $e)
         {
-            // Success!
-            Session::flash('success', $result['message']);
-            return Redirect::route('home');
-
-        } else {
-            Session::flash('error', $result['message']);
-            return Redirect::route('home');
-        }
+            return View::make('error404');
+        }        
 	}
-
 	/**
 	 * Process resend activation request
 	 * @return Response

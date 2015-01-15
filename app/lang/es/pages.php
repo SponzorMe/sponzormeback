@@ -30,11 +30,11 @@ return array(
 
 	'groups'		=> "Grupos",
 
-	'helloworld'	=> "",
+	'helloworld'	=> "SponzorMe",
 
-	'description'	=> "",
+	'description'	=> "Events, Sponsors, Marketplace",
 
-	'loginstatus'	=> "Tu estas logeado actualmente.",
+	'loginstatus'	=> "Tu estas ingresado actualmente.",
 
 	'sessiondata'	=> "Datos de la sesión",
 
@@ -58,9 +58,9 @@ return array(
 
 	'actionunsuspend' => "No suspender",
 
-	'actionban'		=> "Ban",
+	'actionban'		=> "Prohibir",
 
-	'actionunban'	=> "Un-Ban",
+	'actionunban'	=> "No Prohibir",
 
 	'actiondelete'	=> "Borrar",
 
@@ -71,16 +71,6 @@ return array(
 	'copy'	=> "Conectamos Eventos con Patrocinadores",
 
 	'nextaction'	=> "Solo sube tu evento y deja que la magia comience...",
-
-	'slide1'	=> "Eventos",
-
-	'slide2'	=> "Marcas",
-
-	'slide3'	=> "Tecnología",
-
-	'slide4'	=> "Comunidades",
-
-	'slide5'	=> "Conexiones",
 
 	'testimonials'	=> "Testimonios",
 
@@ -110,8 +100,6 @@ return array(
 
 	'areyouinterested'	=> "¿Estoy interesado en?",
 
-	'next'	=> "Seguiente",
-
 	'weresendingandemail'	=> "Hemos enviado un email a",
 
 	'toactivateyouraccount'	=> "para activar tu cuenta.",
@@ -121,6 +109,8 @@ return array(
 	'aboutyou'	=> "Algo sobre tí!",
 
 	'almostdone'	=> "Ya casi está!",
+
+	'dashboard'	=> "Dashboard",
 
 	'team'	=> "Equipo",
 
@@ -132,9 +122,11 @@ return array(
 
 	'privacy'	=> "Privacidad",
 
-	'dashboard'	=> "Dashboard",
-
 	'getting'	=> "Vamos a hacerlo",
+
+	'error404' =>"Ohh.....Esto es bochornoso pero no hemos podido encontrar tu solicitud.",
+
+	'backhome' =>"Regresar"
 
 
 );

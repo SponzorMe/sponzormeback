@@ -49,7 +49,17 @@
                 {{trans('dashboard.neweventstarts')}}
               </label>
               <div class="col-sm-7">
-                <input  type="date" data-ng-model="newevent.starts" name="starts" class="form-control" />
+                <div class="dropdown">
+                    <a class="dropdown-toggle my-toggle-select" id="dLabel1"  role="button" data-toggle="dropdown" data-target="#" href="">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                          <input type="text" id="starts" class="form-control" data-ng-model="newevent.starts">                        
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="newevent.starts" data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select' }"></datetimepicker>
+                    </ul>
+                </div>                
               </div>
             </div>
             <div class="form-group" id="ends">
@@ -57,7 +67,17 @@
                 {{trans('dashboard.neweventends')}}
               </label>
               <div class="col-sm-7">
-                <input  type="date" data-ng-model="newevent.ends" name="ends" class="form-control" />
+                <div class="dropdown">
+                    <a class="dropdown-toggle my-toggle-select" id="dLabel2"  role="button" data-toggle="dropdown" data-target="#" href="">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                          <input type="text" id="ends" class="form-control" data-ng-model="newevent.ends">                        
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="newevent.ends" data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select' }"></datetimepicker>
+                    </ul>
+                </div>    
                 <input type="hidden" data-ng-model="newevent.organizer" name="organizer" ng-init="newevent.organizer = event.organizer"/>
               </div>
             </div>
@@ -195,32 +215,11 @@
                     <td class="text-center"><% e.privacy %></td>
                     <td class="text-center"><a href="" ng-click="imageEvent(e.image)"><i class="fa fa-file-image-o"></i></a></td>
                     <td class="text-center">
-                      <a href="" ng-click="seeEvent(e)"><i class="fa fa-arrows-alt"></i></a>
+                      <a href="{{URL::to('event/<% e.id %>')}}" target="_blank"><i class="fa fa-arrows-alt"></i></a>
                       <a href="" ng-click="editEvent(e.id)"><i class="fa fa-edit"></i></a>
                       <a href="" ng-click="removeEvent(e.id)"><i class="fa fa-trash-o"></i></a>
                     </td>
                   </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-8">
-        <div class="widget">
-          <div class="widget-header">
-            <i class="fa fa-tasks"></i> {{trans('dashboard.events')}}
-            <a href="#/events" class="pull-right">{{trans('dashboard.manage')}}</a>
-          </div>
-
-          <div class="widget-body large no-padding">
-            <div class="table-responsive">
-              <table class="table table-striped">
-              <thead>
-                
-              </thead>
-                <tbody>
-                  
                 </tbody>
               </table>
             </div>
@@ -233,6 +232,7 @@
   <div class="text-center">  
     <h3 data-ng-show="message == 'errorImage' ">{{trans('dashboard.errorAddingImage')}}</h3>
     <h3 data-ng-show="message == 'removeEvent' ">{{trans('dashboard.deleteEvent')}}</h3>
+    <h3 data-ng-show="message == 'removeTodo' ">{{trans('dashboard.removeTodo')}}</h3>
   </div>
   <div class="ngdialog-buttons text-center">
     <button class="btn btn-danger" ng-click="closeThisDialog()"><i class="fa fa-times"></i> {{trans('dashboard.close')}}</button>

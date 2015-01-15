@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>@yield('title')</title>
-
+		<link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -25,7 +25,7 @@
 		for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2.2.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
 		mixpanel.init("02b693fb4dcbd5acc87697d494112164");</script>
 		<!-- end Mixpanel -->
-	
+		
 	</head>
 
 	<body id="page">

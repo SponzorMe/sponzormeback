@@ -1,10 +1,9 @@
 (function(){
-angular.module('Dashboard', ['ui.bootstrap', 'ui.router','ngCookies','ngDialog', 'ngAutocomplete', 'customizationService','angularFileUpload'], 
+angular.module('Dashboard', ['ui.bootstrap', 'ui.router','ngCookies','ngDialog', 'ngAutocomplete', 'customizationService','angularFileUpload','ui.bootstrap.datetimepicker'], 
     function($interpolateProvider){
         $interpolateProvider.startSymbol('<%');
         $interpolateProvider.endSymbol('%>');
     });
-
 /**
  * Route configuration for the Dashboard module.
  */
@@ -51,15 +50,18 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
             url: '/eventbrite',
             templateUrl: 'eventbrite.html'
         })
+        .state('todo', {
+            url: '/todo',
+            templateUrl: 'todo.html'
+        })
+        
 }]);
-
 /**
  * Master Controller
  */
 angular.module('Dashboard').controller('MasterCtrl', ['$scope', '$cookieStore', MasterCtrl]);
 
 function MasterCtrl($scope, $cookieStore, Customization) {    
-    var mobileView = 992;
     //--Start Global Variables--//
     $scope.event                = {"current": false, "organizer": "1234", "sponzor":"12334", "message":"" };
     $scope.localizationOptions  = null;
@@ -84,51 +86,42 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     $scope.files                = [];
     $scope.users                = {};
     $scope.temp                 = {'image':""};
+    $scope.todo                 = {'list':"",'title':"",'description':"",'event':"",'peak':"",'eventId':"",'listSponzor':"",'currentRelPeak':0,'currentEvent':""};
     //--End GLobal Variables--//
 
-    $scope.getWidth = function() { return window.innerWidth; };
+    var mobileView = 992;
 
-    $scope.$watch($scope.getWidth, function(newValue, oldValue)
-    {
-        if(newValue >= mobileView)
-        {
-            if(angular.isDefined($cookieStore.get('toggle')))
-            {
-                if($cookieStore.get('toggle') == false)
-                {
-                    $scope.toggle = false;
-                }            
-                else
-                {
-                    $scope.toggle = true;
-                }
-            }
-            else 
-            {
+    $scope.getWidth = function() {
+        return window.innerWidth;
+    };
+
+    $scope.$watch($scope.getWidth, function(newValue, oldValue) {
+        if (newValue >= mobileView) {
+            if (angular.isDefined($cookieStore.get('toggle'))) {
+                $scope.toggle = ! $cookieStore.get('toggle') ? false : true;
+            } else {
                 $scope.toggle = true;
             }
-        }
-        else
-        {
+        } else {
             $scope.toggle = false;
         }
+
     });
 
-    $scope.toggleSidebar = function() 
-    {
-        $scope.toggle = ! $scope.toggle;
-
+    $scope.toggleSidebar = function() {
+        $scope.toggle = !$scope.toggle;
         $cookieStore.put('toggle', $scope.toggle);
     };
 
-    window.onresize = function() { $scope.$apply(); };
+    window.onresize = function() {
+        $scope.$apply();
+    };
 }
 /**
 * Indicadores Controller
 **/
  angular.module('Dashboard').controller('indicatorsController', ['$scope', '$cookieStore', 'Customization',indicatorsController]);
-function indicatorsController($scope,$Cookie,Customization)
-{
+function indicatorsController($scope,$Cookie,Customization){
     Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
     {
         $scope.eventos.size = adata.Events.length;
@@ -169,14 +162,12 @@ function AlertsCtrl($scope) {
     $scope.closeAlert = function(index) {
         $scope.alerts.splice(index, 1);
     };
-
 }
 /**
  * Loading Directive
  * @see http://tobiasahlin.com/spinkit/
  */
 angular.module('Dashboard').directive('rdLoading', rdLoading);
-
 function rdLoading () {
     var directive = {
         restrict: 'AE',
@@ -187,11 +178,9 @@ function rdLoading () {
 
 /**
  * Events Controller 
- */
- 
- angular.module('Dashboard').controller('eventsController', ['$scope', '$cookieStore', 'Customization','ngDialog', 'FileUploader', eventsController]);
-function eventsController($scope,$Cookie,Customization,ngDialog,FileUploader)
-{
+ */ 
+ angular.module('Dashboard').controller('eventsController', ['$scope', '$filter','$cookieStore', 'Customization','ngDialog', 'FileUploader', eventsController]);
+function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUploader){
     Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
     {
         $scope.eventos.list = adata.Events;
@@ -256,6 +245,8 @@ function eventsController($scope,$Cookie,Customization,ngDialog,FileUploader)
         $scope.newevent.location_reference=$scope.details3.reference;
         if($scope.imageReady)
         {
+            $scope.newevent.starts=$filter('date')($scope.newevent.starts, "yyyy-MM-dd HH:mm:00");
+            $scope.newevent.ends=$filter('date')($scope.newevent.ends, "yyyy-MM-dd HH:mm:00");
             Customization.saveEvent($scope.newevent)
                 .success(function(data) {
                     if(data.success)
@@ -273,7 +264,6 @@ function eventsController($scope,$Cookie,Customization,ngDialog,FileUploader)
                         });                        
                         $(".form-group").removeClass("has-error");
                         $(".form-group").removeClass("has-success");
-                        console.log($scope.newevent);
                         $scope.newevent={"organizer":$scope.event.organizer}; //Limpiamos el evento                           
                         $scope.sponzors = []; //Limpiamos los sponzors
                         $scope.imageReady=false;
@@ -361,12 +351,10 @@ function eventsController($scope,$Cookie,Customization,ngDialog,FileUploader)
                 $scope.temp.image="";
             }                
         };
-
 }
 
 angular.module('Dashboard').controller('peaksController', ['$scope', '$cookieStore', 'Customization',peaksController]);
-function peaksController($scope,$Cookie,Customization)
-{
+function peaksController($scope,$Cookie,Customization){
     $scope.$watch('event.current', function(newvalue, oldvalue){ 
         if($scope.event.current)
         {
@@ -378,8 +366,7 @@ function peaksController($scope,$Cookie,Customization)
     });
 }
 angular.module('Dashboard').controller('sponzorsController', ['$scope', '$cookieStore', 'Customization',sponzorsController]);
-function sponzorsController($scope,$Cookie,Customization)
-{
+function sponzorsController($scope,$Cookie,Customization){
 
     Customization.getSponzorsByOrganizer($scope.event.organizer).success(function(adata) 
     {
@@ -402,10 +389,24 @@ function sponzorsController($scope,$Cookie,Customization)
             });
         });       
     }
+    $scope.getTaskSponzorPeak = function (relPeak){
+        Customization.getTaskBySponzorRelPeak(relPeak,0).success(function(adata){
+           $scope.todo.list=adata.TaskBySponzor;  
+        });
+    }
+    $scope.removeTaskSponzorPeak = function (idTaskSponzor, relPeak){
+        Customization.removeTaskSponzorPeak(idTaskSponzor).success(function(adata){
+           $scope.getTaskSponzorPeak(relPeak);  
+        });
+    }
+    $scope.updateStatusTaskSponzorPeak = function (idTaskSponzor, status, relPeak){
+        Customization.updateStatusTaskSponzorPeak(idTaskSponzor,status).success(function(adata){
+           $scope.getTaskSponzorPeak(relPeak);  
+        });
+    }
 }
 angular.module('Dashboard').controller('settingsController', ['$scope', '$cookieStore', 'Customization',settingsController]);
-function settingsController($scope,$Cookie,Customization)
-{
+function settingsController($scope,$Cookie,Customization){
     $scope.viewUserInfo = function(){
         $scope.account.loadingEventbrite=false;
         Customization.getUserInfo($scope.event.organizer).success(function(adata){
@@ -522,16 +523,10 @@ function settingsController($scope,$Cookie,Customization)
     $scope.viewUserInfo();
 }
 
-angular.module('Dashboard').controller('auto', ['$scope','$cookieStore','$location', 'Customization', auto]);
-function auto($scope,$Cookie,$location,Customization)
-{   
-}
-
 angular.module('Dashboard').controller('searchController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',searchController]);
-function searchController($scope,$Cookie,$location,Customization,ngDialog)
-{
+function searchController($scope,$Cookie,$location,Customization,ngDialog){
     
-     $scope.openDialog = function(id)
+    $scope.openDialog = function(id)
     {
         $scope.search.current=$scope.search.list[id];
         ngDialog.open({ template: 'peaksDialog.html', controller: 'searchController', scope: $scope });       
@@ -540,7 +535,7 @@ function searchController($scope,$Cookie,$location,Customization,ngDialog)
             $scope.peaks=adata.Peaks;
         });
     }
-     $scope.sponzor = function(idpeak,user)
+    $scope.sponzor = function(idpeak,user)
     {
         ngDialog.close();
         Customization.setSponzorPeak({"peak":idpeak,"user":user})
@@ -572,8 +567,7 @@ function searchController($scope,$Cookie,$location,Customization,ngDialog)
 }
 
 angular.module('Dashboard').controller('followingController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',followingController]);
-function followingController($scope,$Cookie,$location,Customization,ngDialog)
-{
+function followingController($scope,$Cookie,$location,Customization,ngDialog){
     $scope.sponzors.list=[];
     Customization.getEventsBySponzors($scope.sponzors.current,0).success(function(data) 
     {
@@ -594,8 +588,7 @@ function followingController($scope,$Cookie,$location,Customization,ngDialog)
 }
 
 angular.module('Dashboard').controller('sponzoringController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',sponzoringController]);
-function sponzoringController($scope,$Cookie,$location,Customization,ngDialog)
-{
+function sponzoringController($scope,$Cookie,$location,Customization,ngDialog){
     $scope.sponzors.list=[];
     Customization.getEventsBySponzors($scope.sponzors.current,1).success(function(data) 
     {
@@ -613,11 +606,56 @@ function sponzoringController($scope,$Cookie,$location,Customization,ngDialog)
             });
         });       
     }
+    $scope.getTaskSponzorPeak = function(relPeak,event,idPeak){
+        Customization.getTaskBySponzorRelPeak(relPeak,0).success(function(adata){
+           $scope.todo.list=adata.TaskBySponzor;
+        });
+        Customization.getTaskBySponzorRelPeak(relPeak,1).success(function(adata){
+           $scope.todo.listSponzor=adata.TaskBySponzor;
+        });
+        $scope.todo.peak=idPeak;
+        $scope.todo.currentRelPeak=relPeak;
+        $scope.todo.currentEvent=event;        
+    }
+    $scope.updateStatusTaskSponzorPeak = function (idTaskSponzor, status, relPeak){
+        Customization.updateStatusTaskSponzorPeak(idTaskSponzor,status).success(function(adata){
+            $scope.getTaskSponzorPeak(relPeak,$scope.todo.currentEvent);
+        });
+    }
+    $scope.createSponzorTask = function (){
+        ngDialog.open({ template: 'createSponzorTodo.html', controller: 'sponzoringController', scope: $scope });
+    }
+    $scope.addTodo = function ()
+    {
+        console.log("e"+$scope.todo.currentEvent,"peak"+$scope.todo.currentRelPeak);
+        Customization.setPeakTodo(
+        $scope.todo.title,
+        $scope.todo.description,
+        $scope.todo.currentEvent,        
+        $scope.todo.peak,
+        1,
+        $scope.todo.currentRelPeak
+    ).success(function(adata){
+
+        //Limpiamos los datos
+        $scope.todo.title="";
+        $scope.todo.description="";
+        $scope.getTaskSponzorPeak($scope.todo.currentRelPeak,$scope.todo.currentEvent);
+        ngDialog.close();
+        }).error(function(data) {
+            console.log(data);
+        });        
+    }
+    $scope.removeTaskSponzorPeak = function (idTaskSponzor, relPeak){
+        Customization.removeTaskSponzorPeak(idTaskSponzor).success(function(adata){
+            console.log(adata);
+        $scope.getTaskSponzorPeak(relPeak,$scope.todo.currentEvent); 
+        });
+    }
 }
 
 angular.module('Dashboard').controller('friendController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',friendController]);
-function friendController($scope,$Cookie,$location,Customization,ngDialog)
-{
+function friendController($scope,$Cookie,$location,Customization,ngDialog){
     $scope.invitefriend = function(){
         Customization.inviteFriend($scope.friend.email,$scope.friend.message).success(function(adata){
             $scope.alerts.push({msg: adata.message});
@@ -631,8 +669,7 @@ function friendController($scope,$Cookie,$location,Customization,ngDialog)
 }
 
 angular.module('Dashboard').controller('rssController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',rssController]);
-function rssController($scope,$Cookie,$location,Customization,ngDialog)
-{
+function rssController($scope,$Cookie,$location,Customization,ngDialog){
     var blogUrl=($("#blogUrl").attr('href'));
     var url=blogUrl+"feeds/posts/default";
     $.ajax({
@@ -651,13 +688,62 @@ function rssController($scope,$Cookie,$location,Customization,ngDialog)
 } 
 
 angular.module('Dashboard').controller('eventbriteController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',eventbriteController]);
-function eventbriteController($scope,$Cookie,$location,Customization,ngDialog)
-{
+function eventbriteController($scope,$Cookie,$location,Customization,ngDialog){
      Customization.connectEverbrite().success(function(adata){
             }).error(function(data) {
                 console.log(data);
             });
+} 
+
+angular.module('Dashboard').controller('todoController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',todoController]);
+function todoController($scope,$Cookie,$location,Customization,ngDialog){
+    $scope.addTodo = function ()
+    {
+        Customization.setPeakTodo(
+        $scope.todo.title,
+        $scope.todo.description,
+        $scope.todo.event.id,        
+        $scope.todo.peak.id,
+        0
+    ).success(function(adata){
+
+        //Limpiamos los datos
+        $scope.todo.title="";
+        $scope.todo.description="";
+        $scope.updateTodos();
         
+        }).error(function(data) {
+            console.log(data);
+        });
+    }
+    $scope.updatePeak = function ()
+    {
+       Customization.getPeaks($scope.todo.event.id).success(function(adata) 
+        {
+            $scope.peaks=adata.Peaks;        
+        });
+    }
+    $scope.updateTodos = function ()
+    {
+       Customization.getPeakTodo($scope.todo.peak.id).success(function(adata) 
+        {
+            $scope.todo.list=adata.Todos;        
+        });
+    }
+    $scope.removeTodo = function(todoId)
+    {         
+        Customization.removeTodo(todoId).success(function(adata) 
+        {
+            //Si se borro exitosamente el todo entonces mostramos el template.
+            $scope.message="removeTodo";
+            ngDialog.open({ template: 'generalMessage.html', controller: 'todoController', scope: $scope });
+            $scope.updateTodos();
+        });
+    }
+    Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
+    {
+        $scope.events=adata.Events;
+    });
 }   
 
 

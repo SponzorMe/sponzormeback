@@ -102,6 +102,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::post('create/event', 'ApiController@createEvent'); //Create an Event
 
+	Route::post('event/upload/image/{eventId}', 'ApiController@eventUploadImage'); //Create an Event
+
 	Route::post('sponzor/event', 'ApiController@sponzorAnEvent'); //Functionality to set a peak
 
 	Route::get('remove/event/{idEvent}', 'ApiController@removeEvent'); //Create an Event
@@ -116,9 +118,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::get('remove/relsponzorpeak/{idRelSponzor}', 'ApiController@removeRelSponzorPeak');
 
-	Route::get('test', 'ApiController@test');
+	Route::get('connectEvenbrite', 'ApiController@connectEvenbrite');
 
-	Route::get('test2', 'ApiController@test2');
+	Route::get('connectMeetup', 'ApiController@connectMeetup');
 
 	Route::get('eventbrite/events/{userToken}', 'ApiController@getEventbriteEvents');
 
@@ -126,16 +128,41 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::get('meetup/groups/{refreshToken}', 'ApiController@getMeetupGroups');
 
-	Route::post('invitefriend', 'ApiController@inviteFriend');	
+	Route::post('invitefriend', 'ApiController@inviteFriend');
 
-	Route::resource('/', 'ApiController');
+	Route::get('eventbrite/unconnect/{userId}', 'ApiController@unconnectEventbrite');
+
+	Route::get('meetup/unconnect/{userId}', 'ApiController@unconnectMeetup');
+
+	Route::get('description', 'ApiController@index');
+
+	Route::get('peak/todo/{idPeak}', 'ApiController@getTodo');
+
+	Route::get('peak/todo/remove/{idPeak}', 'ApiController@removeTodo');
+
+	Route::post('set/peak/todo', 'ApiController@saveTodo');
+
+	Route::get('get/task/relpeak/{RelPeak}/{type}', 'ApiController@getTaskBySponzorByRelPeak');
+
+	Route::get('update/task/sponzor/{idSponzorTask}/{status}', 'ApiController@changeStatusTaskBySponzor');
+
+	Route::resource('/', 'ApiController@index');
+
+	Route::get('image', 'ApiController@imageTest');
+
+	Route::get('rel_peak/todo/remove/{idRelPeak}', 'ApiController@removeTaskSponzorPeak');
+	
 });
+
+Route::get('event/{eventId}', 'ApiController@eventById');
 
 Route::get('testimonials', 'HomeController@testimonials'); //testimonials
 
 Route::get('language/{lang}', 'HomeController@setLanguage'); //Language Settings
 
+
+
 App::missing(function($exception)
 {
-	return View::make('index');
+	return View::make('error404');
 });

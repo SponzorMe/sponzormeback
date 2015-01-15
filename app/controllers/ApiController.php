@@ -8,7 +8,6 @@ use Authority\Service\Form\ResendActivation\ResendActivationForm;
 use Authority\Service\Form\ForgotPassword\ForgotPasswordForm;
 use Authority\Service\Form\ChangePassword\ChangePasswordForm;
 use Authority\Service\Form\SuspendUser\SuspendUserForm;
-include(app_path().'/includes/Eventbrite.php');
 class ApiController extends BaseController {
 
 	protected $registerForm;
@@ -26,8 +25,7 @@ class ApiController extends BaseController {
 	 * Url: public/api/v1
 	 * @return Response
 	 */
-
-	public function test()
+	public function connectEvenbrite()
 	{
 		$get_code=Input::get("code");
 		if(empty($get_code))
@@ -36,8 +34,8 @@ class ApiController extends BaseController {
 		}
 		else
 		{
-			$params["client_id"]="MI3YNPLR3R73AD36YS";
-			$params["client_secret"]="V72EKSC2YWR5Y4XKVKCUL4W45ZAAVXJSEG3KOBAFIVKR6ESIX5";
+			$params["client_id"]=Config::get('constants.evenbriteClientId');
+			$params["client_secret"]=Config::get('constants.eventbriteClientSecret');
 			$params["code"]=$get_code;
 			$params["grant_type"]="authorization_code";
 			$ch = curl_init();
@@ -67,9 +65,9 @@ class ApiController extends BaseController {
 		}
 			return Redirect::to('users/dashboard#/settings');
 	}
-	public function test2()
+	public function connectMeetup()
 	{
-		$redirect_url="http://beta.sponzor.me/api/v1/test2";
+		$redirect_url=Config::get('constants.meetupRedirectUrl');
 		$get_code=Input::get("code");
 		if(empty($get_code))
 		{
@@ -77,8 +75,8 @@ class ApiController extends BaseController {
 		}
 		else
 		{
-			$params["client_id"]="lc876qakj5itnsnebm3dijus12";
-			$params["client_secret"]="t9lpatu023l44gjbtkno2a9ku9";
+			$params["client_id"]=Config::get('constants.meetupClientId');
+			$params["client_secret"]=Config::get('constants.meetupClientSecret');
 			$params["code"]=$get_code;
 			$params["redirect_uri"]=$redirect_url;
 			$params["grant_type"]="authorization_code";
@@ -109,10 +107,9 @@ class ApiController extends BaseController {
 	}
 	public function getMeetupGroups($refresh_token)
 	{
-		
-                $params["client_id"]="lc876qakj5itnsnebm3dijus12";
-                $params["client_secret"]="t9lpatu023l44gjbtkno2a9ku9";
-                $params["grant_type"]="refresh_token";
+		$params["client_id"]=Config::get('constants.meetupClientId');
+		$params["client_secret"]=Config::get('constants.meetupClientSecret');
+		$params["grant_type"]="refresh_token";
 		$params["refresh_token"]=$refresh_token;		
 		$ch = curl_init();
         curl_setopt($ch, CURLOPT_POST, TRUE);
@@ -158,9 +155,9 @@ class ApiController extends BaseController {
 	}
 	public function getMeetupEvents($groupId,$refresh_token)
 	{
-$params["client_id"]="lc876qakj5itnsnebm3dijus12";
-                        $params["client_secret"]="t9lpatu023l44gjbtkno2a9ku9";		
-$params["grant_type"]="refresh_token";
+		$params["client_id"]=Config::get('constants.meetupClientId');
+		$params["client_secret"]=Config::get('constants.meetupClientSecret');
+		$params["grant_type"]="refresh_token";
 		$params["refresh_token"]=$refresh_token;		
 		$ch = curl_init();
         curl_setopt($ch, CURLOPT_POST, TRUE);
@@ -226,9 +223,21 @@ $params["grant_type"]="refresh_token";
 		}
 
 	}
+	public function unconnectMeetup($userId)
+	{
+		$user = UserCustomization::find($userId);
+		$user->meetupRefreshKey="";
+		$user->save();
+	}
+	public function unconnectEventbrite($userId)
+	{
+		$user = UserCustomization::find($userId);
+		$user->eventbriteKey="";
+		$user->save();
+	}
 	public function index()
 	{
-      return View::make('api/description');
+      return View::make('api.description');
 	}
 	/**
 	 * Check if the key is valid.
@@ -275,7 +284,7 @@ $params["grant_type"]="refresh_token";
 			$user->login_code    		= md5($key);
 			$user->login_valid_until	= $tomorrow;
 			$user->save();
-			return Response::json(array("success" => true,"status"=>"Authenticated","key"=>$key));
+			return Response::json(array("success" => true,"status"=>"Authenticated","key"=>$key,"userId"=>$user->id));
 		}
 		catch (Exception $e)
 		{
@@ -341,10 +350,12 @@ $params["grant_type"]="refresh_token";
 	public function getUserData($key)
 	{
 		$userId=Input::get('userId');
+
 		if($this->key_valid($key) || $key=="SebasGameMaster")
 		{
 			$user = UserCustomization::where('id', '=', $userId)->get();
-			return Response::json(array("success" => true,"status"=>"Authenticated","User"=>$user->toArray()));
+			$permission = UsersGroups::where('user_id', '=', $userId)->get();
+			return Response::json(array("success" => true,"status"=>"Authenticated","User"=>$user->toArray(),"permission"=>$permission->toArray()));
 		}
 		else
 		{
@@ -435,9 +446,8 @@ $params["grant_type"]="refresh_token";
 				$user = UserCustomization::find($userId);
 				$age=Input::get('age');
 				$sex=Input::get('sex');
-				$country=Input::get('country');
-				$state=Input::get('state');
-				$city=Input::get('city');
+				$location=Input::get('location');
+				$location_reference=Input::get('location_reference');
 				$email=Input::get('email');
 				$name=Input::get('name');
 				$description=Input::get('description');
@@ -449,14 +459,11 @@ $params["grant_type"]="refresh_token";
 				if (!empty($sex))
 					$user->sex = $sex;
 
-				if (!empty($country))
-					$user->country = $country;
+				if (!empty($location_reference))
+					$user->location_reference = $location_reference;
 
-				if (!empty($state))
-					$user->state = $state;
-
-				if (!empty($city))
-					$user->city = $city;
+				if (!empty($location))
+					$user->location = $location;
 
 				if (!empty($email))
 					$user->email = $email;
@@ -497,10 +504,7 @@ $params["grant_type"]="refresh_token";
             	'events.title as event', 
             	'users.name as name', 
             	'users.email as email',
-            	'users.city as city',
-            	'users.state as state',
-            	'users.country as country',
-            	'users.state as state',
+            	'users.location as location',
             	'rel_peaks.kind as kind',
             	'rel_peaks.usd as usd',
             	'rel_sponzors_events.state as eventstate',
@@ -511,13 +515,53 @@ $params["grant_type"]="refresh_token";
         return Response::json(array("success" => true,"status"=>"Authenticated","Sponzors"=>$sponzors));
 	}
 	public function updateRelSponzorPeak($idRelSponzor,$newState){
-		$relSponzor=RelSponzorsEvents::find($idRelSponzor);
-		$relSponzor->state=$newState;
-		$relSponzor->save();
-		return Response::json(array("success" => true,"status"=>"Authenticated","message"=>"State Updated Succesfuly"));
+		if(is_numeric($newState))
+		{
+			$relSponzor=RelSponzorsEvents::find($idRelSponzor);
+			if($relSponzor->state==$newState) //Si esta igual no podemos crear mas peaks task.
+				$noPeak=true;
+			else
+			{
+				$relSponzor->state=$newState;
+				$relSponzor->save();
+				$noPeak=false;
+			}			
+			//Aca es donde se actializa el estado de aprobación o no del sponzor.
+			Pusherer::trigger('events-channerl', 'Sponzoring', array( 'type' => "UpdateSponzorToEvent", 'peakId'=>$idRelSponzor, 'state'=>$newState));
+			//Si el estado se convierte en 1, porque el organizador lo aprobó entonces creamos la relacion con los todo 
+			if($newState==1 and !$noPeak) //siempre y cuando el estado anterior no haya sido uno.
+			{
+				$peakTask=PeakTask::where("peak_id","=",$relSponzor->rel_peak)->get();//traemos los todos asociados al peak.
+				foreach ($peakTask as $p) {
+					$this->internalcreateTaskBySponzor(
+						$p->id, $relSponzor->rel_peak, 
+						$relSponzor->idsponzor, 
+						$p->user_id, 
+						0,
+						$p->event_id,
+						$idRelSponzor);//Creamos los todos asociados al peak
+				}			
+			}
+			elseif($newState==0)
+			{
+				TaskBySponzor::where('sponzor_event_id', '=', $idRelSponzor)->delete(); //Borramos la relacion de los todos al relsponzor
+			}
+			else
+			{
+				return Response::json(array("success" => true,"status"=>"Authenticated","message"=>"Nothing to do, this is the current state"));
+			}
+			return Response::json(array("success" => true,"status"=>"Authenticated","message"=>"State Updated Succesfuly"));
+		}
+		else
+		{
+			return Response::json(array("success" => true,"status"=>"Authenticated","error"=>true,"message"=>"Bad value for status"));
+		}
+		
 	}
 	public function removeRelSponzorPeak($idRelSponzor){
 		RelSponzorsEvents::where('id', '=', $idRelSponzor)->delete(); //Borramos la relacion de los peaks.
+		TaskBySponzor::where('sponzor_event_id', '=', $idRelSponzor)->delete(); //Borramos la relacion de los todos al relsponzor
+		Pusherer::trigger('events-channerl', 'Sponzoring', array( 'type' => "RemoveSponzorToEvent", 'peakId'=>$idRelSponzor));//Actualizamos a pusher
 		return Response::json(array("success" => true,"status"=>"Authenticated","message"=>"Removed Succesfuly"));
 	}
 	public function getEvents()
@@ -537,10 +581,11 @@ $params["grant_type"]="refresh_token";
             ->select(
             	'events.*', 
             	'users.*',
-            	'events.id as event'
+            	'events.id as event',
+            	'events.location as eventlocation'
             	)
             ->where("title",'like',"%$text%")
-            ->orWhere("location",'like',"%$text%")->get();
+            ->orWhere("events.location",'like',"%$text%")->get();
 		return Response::json(array("success" => true,"status"=>$text,"Events"=>$events));
 	}
 	public function getPeaks($idEvent)
@@ -570,6 +615,35 @@ $params["grant_type"]="refresh_token";
 	{
 		return Response::json(InterestsCategories::where("lang",'=',$lang)->get());
 	}
+	public function createThumb($imagePath,$eventId,$extension)
+	{
+		$img = Image::make($imagePath)->resize(450, 450);
+    	$img->save("images/events/thumbs/thumb_event_".$eventId.".".$extension);
+	}
+	public function imageTest()
+	{
+		$img = Image::make("images/events/event_95.JPG")->resize(450, 450);
+    	$img->save("images/events/thumbs/thumb_event_S.png");
+	}
+	public function eventUploadImage($eventId)
+	{
+		try
+		{
+			$file = Input::file('file');
+			$extension=Input::file('file')->getClientOriginalExtension();
+			Input::file('file')->move("images/events/", "event_".$eventId.".".$extension);
+			$event=Events::find($eventId);
+			$event->image="event_".$eventId.".".$extension;
+			$event->save();
+			$this->createThumb("images/events/event_".$eventId.".".$extension,$eventId,$extension);
+			return Response::json(array("success" => true,"path"=>"event_".$eventId.".".$extension));
+		}
+		catch(Exception $e)
+		{
+			return Response::json(array("success" => false));
+		}
+		
+	}
 	public function createEvent()
 	{
 		// validate
@@ -594,13 +668,14 @@ $params["grant_type"]="refresh_token";
 		} else {
 			// store
 			$evento=array(
-					'title'       	=> Input::get('title'),
-					'description'   => Input::get('description'),
-					'location' 		=> Input::get('location'),
-					'starts'		=> Input::get('starts'),
-					'ends' 			=> Input::get('ends'),
-					'organizer' 	=> Input::get('organizer'),
-					'privacy' 		=> Input::get('privacy')
+					'title'       			=> Input::get('title'),
+					'description'   		=> Input::get('description'),
+					'location' 				=> Input::get('location'),
+					'starts'				=> Input::get('starts'),
+					'location_reference'	=> Input::get('location_reference'),
+					'ends' 					=> Input::get('ends'),
+					'organizer' 			=> Input::get('organizer'),
+					'privacy' 				=> Input::get('privacy')
 					);			
 			$type=Input::get('type');
 			if(!empty($type))
@@ -653,13 +728,44 @@ $params["grant_type"]="refresh_token";
 		$peakid=Input::get('peak');
 		$userid=Input::get('user');
 		$peak=Peaks::find($peakid);
-		$peak->id_event; //aca tengo el evento
+		$sponzor=UserCustomization::find($userid);
 		$rel=RelSponzorsEvents::create(array(
 				"idsponzor"	=>$userid,
 				"idevent"	=>$peak->id,
 				"rel_peak"	=>$peakid,
 				"state"		=>0
-			));
+			));		
+		//conseguimos el id y el email del organizador para notificarlo.
+		$organizer=DB::table('events')
+		->join('users', 'events.organizer', '=', 'users.id')
+		->where("events.id","=",$peak->id_event)->get();
+		//Enviamos la notificación via pusher
+		Pusherer::trigger('events-channel', 'New Sponzoring', 
+			array( 
+				'type' 			=> "AddSponzorToEvent", 
+				'sponzorId'		=>$userid,
+				'kind'			=>$peak->kind,
+				'eventId'		=>$peak->id_event,
+				'peakId'		=>$peak->id,
+				'relPeakId'		=>$rel->id,
+				'organizerId'	=>$organizer[0]->id
+				)
+		);
+		$organizerEmail=$organizer[0]->email;
+		//Procedemos a enviar el email
+		Mail::send('emails.newSponzor', 
+			array(
+				'eventTitle' => $organizer[0]->title,
+				'sponzoringType' => $peak->kind,
+				'sponzorEmail' => $sponzor->email,
+				'sponzorName' => $sponzor->name
+				), 
+			function($message) use ($organizerEmail)
+			{
+			    $message->to("$organizerEmail", "SponzorMe")->subject(Lang::get('dashboard.newSponzorEmailNotification'));
+			}
+		);
+		//Finalmente devolvemos la respuesta
 		return Response::json(array('success' => true,'error'=>false,'message'=>"User Updated Succesfuly","data"=>$rel));
 	}
 	public function getEventsBySponzor($sponzor,$status)
@@ -670,12 +776,12 @@ $params["grant_type"]="refresh_token";
             ->join('users', 'users.id', '=', 'events.organizer')
             ->select(
             	'events.title as event', 
+            	'events.id as eventId',
+            	'events.location as eventlocation', 
             	'users.name as name', 
             	'users.email as email',
-            	'users.city as city',
-            	'users.state as state',
-            	'users.country as country',
-            	'users.state as state',
+            	'users.location as location',
+            	'rel_peaks.id as idpeak',
             	'rel_peaks.kind as kind',
             	'rel_sponzors_events.state as eventstate',
             	'rel_sponzors_events.id as idRelSponzoring'
@@ -707,33 +813,181 @@ $params["grant_type"]="refresh_token";
 			
 		}
 	}
-	public function groupSetUp()
+	public function eventById($id)
 	{
-				$group = Sentry::findGroupById(1);   $group->delete();
-				$group = Sentry::findGroupById(2);   $group->delete();
-				$group = Sentry::findGroupById(3);   $group->delete();
-			$group = Sentry::createGroup(array(
-	        'name'        => 'Admins',
-	        'permissions' => array(
-	            'admin' => 1,
-	            'users' => 1,
-	            'sponzors' => 1,
-	        ),
-    		));
-			$group = Sentry::createGroup(array(
-	        'name'        => 'Users',
-	        'permissions' => array(
-	            'admin' => 0,
-	            'users' => 1,
-	        ),
-    		));
-    		$group = Sentry::createGroup(array(
-	        'name'        => 'Sponzors',
-	        'permissions' => array(
-	            'admin' => 0,
-	            'users' => 0,
-	            'sponzors' => 1,
-	        ),
-    		));
+		try{
+			$event = Events::where("id",'=',$id)->get();
+			$data["organizer"] = UserCustomization::where("id",'=',$event[0]->organizer)->get();
+			$data["category"] = Category::where("id",'=',$event[0]->type)->get();
+			$data["peaks"] = Peaks::where("id_event",'=',$id)->get();
+			$data["tasks"] = PeakTask::where("event_id",'=',$id)->get();
+			$data["event"]=$event;
+			$events = Events::where("organizer",'=',$event[0]->organizer)->orderBy('starts', 'desc')->take(1)->get();
+			$data["nextEvent"]=$events[0]->starts;
+			return View::make('event')->with($data);
+		}
+		catch(Exception $e)
+		{
+			return View::make('error404');
+		}
+
+	}
+	public function saveTodo()
+	{
+		$title=Input::get("title");
+		$description=Input::get("description");
+		$event=Input::get("event");
+		$peak=Input::get("peak");
+		$type=Input::get("type");
+		$user_id=Session::get('userId');
+		$relPeak=Input::get('relPeak');
+		$data=PeakTask::create(
+			array(
+				"title"=>$title,
+				"description"=>$description,
+				"event_id"=>$event,
+				"peak_id"=>$peak,
+				"user_id"=>$user_id,
+				"type"=>$type)
+			);
+		if($type==1) //Si es una todo del sponzor, entonces nosotros creamos al real peak
+		{
+			$this->internalcreateTaskBySponzor(
+						$data->id, 
+						$peak, 
+						$user_id, 
+						$user_id, 
+						0,
+						$event,
+						$relPeak);
+		}
+		return Response::json(array("success" => true,"status"=>"Authenticated","peakTodo"=>$data));
+	}
+	public function getTodo($idPeak)
+	{
+		$peakTask=PeakTask::where("peak_id","=",$idPeak)->get();
+		return Response::json(array("success" => true,"Todos"=>$peakTask->toArray()));
+	}
+	public function removeTodo($idTodo)
+	{
+		try{
+			$todo = PeakTask::find($idTodo);
+			$todo->delete();
+			return Response::json(array("success" => true,"error"=>false));
+		}
+		catch(Exception $e)
+		{
+			return Response::json(array("success" => true,"error"=>true,"Message"=>$e->getMessage()));
+		}
+	}
+	private function internalcreateTaskBySponzor($task_id, $peak_id, $sponzor_id, $organizer_id, $status, $event_id,$sponzor_event_id)
+	{
+		try
+		{
+			$data=TaskBySponzor::create(
+				array(
+					"task_id"=>$task_id,
+					"peak_id"=>$peak_id,
+					"sponzor_id"=>$sponzor_id,
+					"organizer_id"=>$organizer_id,
+					"status"=>$status,
+					"event_id"=>$event_id,
+					"sponzor_event_id"=>$sponzor_event_id)
+				);
+			return true;
+		}
+		catch(Exception $e)
+		{
+			return false;
+		}
+	}
+	public function getTaskBySponzorByRelPeak($rel_peak,$type)
+	{
+		$data=TaskBySponzor::where('sponzor_event_id', '=', $rel_peak)->where("type",'=',$type)
+		->join("peak_task","task_id",'=',"peak_task.id")
+		->select(
+            	'peak_task.*', 
+            	'task_by_sponzor.*',
+            	'task_by_sponzor.id as idTS'
+            	)
+		->get(); //Borramos la relacion de los todos al relsponzor
+		return Response::json(array("success" => $type,"status"=>"Authenticated","TaskBySponzor"=>$data->toArray()));
+	}
+	public function createTaskBySponzor()
+	{
+		$task_id=Input::get("task_id");
+		$peak_id=Input::get("peak_id");
+		$sponzor_id=Input::get("sponzor_id");
+		$organizer_id=Input::get("organizer_id");
+		$status=Input::get("status");
+		$event_id=Session::get('event_id');
+		$sponzor_event_id=Session::get('sponzor_event_id');
+		$data=TaskBySponzor::create(
+			array(
+				"task_id"=>$task_id,
+				"peak_id"=>$peak_id,
+				"sponzor_id"=>$sponzor_id,
+				"organizer_id"=>$organizer_id,
+				"status"=>$status,
+				"event_id"=>$event_id,
+				"sponzor_event_id"=>$sponzor_event_id)
+			);
+		return Response::json(array("success" => true,"status"=>"Authenticated","TaskBySponzor"=>$data));
+	}
+	public function deleteTaskBySponzor($idTodoSponzor)
+	{
+		try
+		{
+			$todoSponzor = TaskBySponzor::find($idTodoSponzor);
+			$todoSponzor->delete();
+			return Response::json(array("success" => true,"error"=>false));
+		}
+		catch(Exception $e)
+		{
+			return Response::json(
+				array(
+					"success" => true,
+					"error"=>true,
+					"Message"=>$e->getMessage()
+					)
+				);
+		}
+	}
+	public function changeStatusTaskBySponzor($idTodoSponzor,$status)
+	{
+		try
+		{
+			$todoSponzor = TaskBySponzor::find($idTodoSponzor);
+			$todoSponzor->status=$status;
+			$todoSponzor->save();
+			return Response::json(array("success" => true,"error"=>false));
+		}
+		catch(Exception $e)
+		{
+			return Response::json(
+				array(
+					"success" => true,
+					"error"=>true,
+					"Message"=>$e->getMessage()
+					)
+				);
+		}
+	}
+	public function removeTaskSponzorPeak($idTaskRelPeak)
+	{
+		try{
+			$todoSponzor = TaskBySponzor::find($idTaskRelPeak);
+			$todo = PeakTask::find($todoSponzor->task_id);
+			if($todo->type==1)
+			{
+				$todo->delete();
+			}
+			$todoSponzor->delete();
+			return Response::json(array("success" => true,"error"=>false));
+		}
+		catch(Exception $e)
+		{
+			return Response::json(array("success" => true,"error"=>true,"Message"=>$e->getMessage()));
+		}
 	}
 }

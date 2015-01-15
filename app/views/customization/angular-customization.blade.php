@@ -22,27 +22,18 @@
 	    </div> <br/><br/>
 	    <div class="form-group">
 	    	<label for="country"> {{trans('pages.livein')}}</label>
-	    </div>
-	    <div class="form-group">
-	    		<input type="hidden" id="userId" value="{{ Session::get('userId') }}" required/>
-				<select class="form-control" ng-model="userData.country" name="country" id="country" required></select>
-		</div>
+	    </div>	    
 		<div class="form-group">
-		<label>{{trans('pages.state')}}</label><br/> 
+		<label>{{trans('pages.location')}}</label><br/> 
 		</div>
 			<div class="form-group">
 				
-				<select class="form-control" ng-model="userData.state" name="state" id="state" required></select>
-			</div>
-		<div class="form-group">
-				<label>{{trans('pages.city')}}</label> <br/> 
-		</div>
-			<div class="form-group">
-				<select class="form-control" ng-model="userData.city" name="city" id="city" required></select>
-			</div><br/>
-		<div class="">	
+				<input type="text" class="form-control" ng-model="userData.location" ng-autocomplete="results" details="details" options="options" required/>
+				<input type="hidden" id="userId" value="{{ Session::get('userId') }}" required/>
+			</div>	
+			<div class="">	
 			<button type="submit" class="btn btn-block">{{trans('pages.next')}}</button>
-		</div>		
+		</div>	
 	</form>
 	</div>
 	<!--Step 2, the user choose the categories and the interests --> 

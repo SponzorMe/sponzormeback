@@ -8,7 +8,6 @@ angular.module('customizationService', [])
 		  		newPathname += pathArray[i]+"/";
 		}		
 		newPathname=window.location.protocol + "//"+ newPathname;
-		console.log(newPathname);
 		var path = newPathname;
 		return {
 			// get all the categories
@@ -145,6 +144,43 @@ angular.module('customizationService', [])
 				global = $http.get(path + 'api/v1/meetup/events/'+groupId+'/'+userToken);
 				return global;
 			},
+			unconnectMeetup : function(userId){
+				global = $http.get(path + 'api/v1/meetup/unconnect/'+userId);
+				return global;
+			},
+			unconnectEventbrite : function(userId){
+				global = $http.get(path + 'api/v1/eventbrite/unconnect/'+userId);
+				return global;
+			},
+			getPeakTodo : function(peakId){
+				global = $http.get(path + 'api/v1/peak/todo/'+peakId);
+				return global;
+			},
+			setPeakTodo : function(title, description, event, peak, type, relPeak){
+				Data={"title":title,"description":description,"event":event,"peak":peak,"type":type,"relPeak":relPeak};
+				return $http({
+					method: 'POST',
+					url: path + 'api/v1/set/peak/todo',
+					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+					data: $.param(Data)
+				});
+			},
+			removeTodo : function(todoId){
+				global = $http.get(path + 'api/v1/peak/todo/remove/'+todoId);
+				return global;
+			},
+			getTaskBySponzorRelPeak : function(realPeak,type){
+				global = $http.get(path + 'api/v1/get/task/relpeak/'+realPeak+"/"+type);
+				return global;
+			},
+			updateStatusTaskSponzorPeak : function(idSponzorTask,status){
+				global = $http.get(path + 'api/v1/update/task/sponzor/'+idSponzorTask+'/'+status);
+				return global;
+			},
+			removeTaskSponzorPeak : function(idTaskSponzor){
+				global = $http.get(path + 'api/v1/rel_peak/todo/remove/'+idTaskSponzor);
+				return global;
+			}			
 		}
 
 	});

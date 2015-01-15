@@ -24,11 +24,11 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$env = $app->detectEnvironment(function () {
-    return getenv("LARAVEL_ENV") !== null
-        ? getenv("LARAVEL_ENV")
-        : 'prod'; // or whatever fallback you prefer
-});
+$env = $app->detectEnvironment(array(
+    'local' => array('localhost','127.0.0.1','Casa','Sebastian'),
+    'staging' => array('staging.sponzor.me','staging.*','server.sponzor.me','sponzorme'),
+    'production'=>array('www.sponzor.me')
+));
 
 /*
 |--------------------------------------------------------------------------

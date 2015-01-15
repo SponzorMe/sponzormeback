@@ -1,11 +1,16 @@
-angular.module('mainController', [])
+angular.module('mainController', ['ngAutocomplete'])
 
 	// inject the Comment service into our controller
 	.controller('mainController', function($scope, $http, Customization) {
         $scope._interests = {};
 		var interestscheked = new Array(); //Array to store the interests
 		var userId=$("#userId").val();
-
+		$scope.options = {
+          country: '',
+          types: '(cities)'
+        };
+        $scope.details="";
+        $scope.results="";
 		$("#step2").hide();
 		$("#step3").hide();
 		$("#step4").hide();
@@ -46,6 +51,7 @@ angular.module('mainController', [])
 				});
 		}
 		$scope.submitUserInfo = function() {
+			$scope.userData.location_reference=$scope.details.reference;
 			Customization.saveUser($scope.userData,userId)
 				.success(function(data) {
 					Customization.getCategories()

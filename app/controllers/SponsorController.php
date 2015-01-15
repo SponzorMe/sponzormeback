@@ -483,7 +483,7 @@ class SponsorController extends BaseController {
 	}
     public function dashboard()
     {
-        return View::make('sponsors.dashboard');
+        return View::make('sponsors.dashboard.template');
     }
 
 

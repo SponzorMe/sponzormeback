@@ -8,7 +8,7 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
-	'flashsuccess'	=> 'Success',
+	'flashsuccess'	=> 'Exitoso',
 
 	'flasherror'	=> 'Error',
 
@@ -16,7 +16,7 @@ return array(
 
 	'flashinfo'		=> 'FYI',
 
-	'register'		=> 'Sign Up',
+	'register'		=> 'Sign In',
 
 	'login'			=> "Login",
 
@@ -30,9 +30,9 @@ return array(
 
 	'groups'		=> "Groups",
 
-	'helloworld'	=> "",
+	'helloworld'	=> "SponzorMe",
 
-	'description'	=> "",
+	'description'	=> "Events, Sponsors, Marketplace",
 
 	'loginstatus'	=> "You are currently logged in.",
 
@@ -72,16 +72,6 @@ return array(
 
 	'nextaction'	=> "Just upload your event and let the magic begin...",
 
-	'slide1'	=> "Events",
-
-	'slide2'	=> "Trademarks",
-
-	'slide3'	=> "Technology",
-
-	'slide4'	=> "Communities",
-
-	'slide5'	=> "Links",
-
 	'testimonials'	=> "Testimonials",
 
 	'blog'	=> "Blog",
@@ -110,8 +100,6 @@ return array(
 
 	'areyouinterested'	=> "Are you interested in?",
 
-	'next'	=> "Next",
-
 	'weresendingandemail'	=> "We sent an email to",
 
 	'toactivateyouraccount'	=> "to activate your account",
@@ -132,6 +120,15 @@ return array(
 
 	'terms'	=> "Terms of Service",
 
-	'privacy'	=> "Privacy"
+	'privacy'	=> "Privacy",
+
+	'location'	=> "Location",
+
+	'getting'	=> "Let's do it",
+
+	'error404' =>"Ohh.....This is embarrassing but we could not find your request.",
+
+	'backhome' =>"Back to home"
+
 
 );

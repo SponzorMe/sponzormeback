@@ -33,11 +33,11 @@ return array(
 
 	'blog'							=> 'Blog',
 
-	'balance'						=> 'Equilibrio',
+	'balance'						=> 'Saldo',
 
 	'comunity'						=> 'Comunidad',
 
-	'peak'							=> 'Modos de patrocinio',
+	'peak'							=> 'Beneficios',
 
 	'yourevents'					=> 'Sus Eventos',
 
@@ -45,7 +45,7 @@ return array(
 
 	'latestsponzors'				=> 'Últimos Sponzors',
 
-	'neweventtitle'					=>	'Tìtulo',
+	'neweventtitle'					=>	'Titulo',
 
 	'neweventtitledescription'		=>	'Dar un nombre distintivo',
 
@@ -85,7 +85,7 @@ return array(
 
 	'privacyoption1'				=>	'Página privada',
 
-	'privacydescription0'			=>	'Listar en evenbrite y Motores de busqueda',
+	'privacydescription0'			=>	'Listar en SponzorMe y Motores de busqueda',
 
 	'privacydescription1'			=>	'No listar este evento publicamente',
 
@@ -103,6 +103,8 @@ return array(
 
 	'submitbutton'					=>	'Enviar',
 
+	'deleteEvent' 					=>	'Evento Borrado.',
+
 	'createEventSuccess'			=>	'El evento ha sido creado exitosamente',
 
 	'removeEventSuccess'			=>	'El evento ha sido exitosamente removido',
@@ -117,7 +119,7 @@ return array(
 
 	'typesponzor'					=>	'Tipo de patrocinador',
 
-	'quantitysponzor'				=>	'Catidad Disponible',
+	'quantitysponzor'				=>	'Cantidad Disponible',
 
 	'pricesponzor'					=>	'Precio',
 
@@ -216,4 +218,40 @@ return array(
 	'meetupMessage' =>"Conectar tu cuenta con Meetup",
 
 	'meetupButton'				=> 'Conectar con Meetup!',
+
+	/*
+	|--------------------------------------------------------------------------
+	| Task Lists
+	|--------------------------------------------------------------------------
+	*/
+
+	"todo"=>"Lista de Tareas",
+
+	"todoEvent"=>"Evento",
+
+	"chooseEvent"=>"Elegir un Evento",
+
+	"todoPeak"=>"Tipo de Patrocinador",
+
+	"choosepeak"=>"Elegir un Patrocinador",
+
+	"removeTodo" => "Tarea Borrada",
+
+	"todoTitle" => "Titulo de la Tarea",
+
+	"todoDescription" => "Descripcion de la Tarea",
+
+	"todosList" => "Estado de Tareas",
+
+	"todoActions" => "Acciones",
+
+	"todosListSponzor" => "Mis Tareas",
+
+	"todoStatus" => "Estado",
+
+	"addTodosListSponzor" => "Agregar Tareas",
+
+	"addSponzorTodo" => "Agregar Tarea",
+
+
 );

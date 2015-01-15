@@ -2,25 +2,13 @@
 <html lang="es">
 	<head>
 		<meta charset="utf-8" />
-		<title> 
-			@section('title') 
-			@show 
-		</title>
-
+		<title>@yield('title')</title>
+		<link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-		<!-- Bootstrap 3.0: Latest compiled and minified CSS -->
-		<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> -->
-		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-       <link rel="stylesheet" href="{{ asset('css/default.css') }}">
-       <link rel="stylesheet" href="{{ asset('css/style3.css') }}">
-       <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> <!-- fuente roboto -->
-
-		<!-- Optional theme -->
-		<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"> -->
-		<link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
-		<!-- Styles for the customization -->
-			<link rel="stylesheet" href="{{ asset('css/customstyles.css') }}"> 
+		
+		<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> 
+        <!-- fuente roboto -->
 		<style>
 		@section('styles')
 			body {
@@ -28,19 +16,16 @@
 			}
 		@show
 		</style>
-
 		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="{{ asset('components/html5shiv/dist/html5shiv.min.js') }}</script>
 		<![endif]-->
-
-	<!-- start Mixpanel -->
-
-	<script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
-	for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2.2.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
-	mixpanel.init("02b693fb4dcbd5acc87697d494112164");</script>
-	
-	<!-- end Mixpanel -->
+		<!-- start Mixpanel -->
+		<script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+		for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2.2.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+		mixpanel.init("02b693fb4dcbd5acc87697d494112164");</script>
+		<!-- end Mixpanel -->
+		
 	</head>
 
 	<body id="page">
@@ -107,7 +92,8 @@
 	      <div class="col-md-4">&nbsp;&nbsp;&nbsp;
 	          <img height="12px" src="{{asset('images/footer_logo.png')}}">&nbsp;&nbsp;
 	          <a class="" href="{{ URL::to('language/es') }}"><img height="16px" src="{{asset('images/spanish.png')}}"></a>&nbsp;
-	          <a class="" href="{{ URL::to('language/en') }}"><img height="16px" src="{{asset('images/english.png')}}"></a>
+	          <a class="" href="{{ URL::to('language/en') }}"><img height="16px" src="{{asset('images/english.png')}}"></a>&nbsp;
+	          <a class="" href="{{ URL::to('language/pt') }}"><img height="16px" src="{{asset('images/pt.png')}}"></a>
 	      </div>
 	      <div class="col-md-4">
 	          <a href="{{ URL::to('testimonials') }}">{{trans('pages.testimonials')}}</a>&nbsp;|&nbsp
@@ -122,20 +108,17 @@
 
 		<!-- ./ container -->
 
-		<!-- Javascripts
-		================================================== -->
-		<script src="{{ asset('js/jquery-2.0.2.min.js') }}"></script>
-		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-		<script src="{{ asset('js/restfulizer.js') }}"></script> 
-        <script src="{{ asset('js/modernizr.custom.86080.js') }}"></script>
-        <!-- Thanks to Zizaco for the Restfulizer script.  http://zizaco.net  -->
-        <!-- ANGULAR -->
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
-		<!-- all angular resources will be loaded from the /public folder -->
-		<script src="{{ asset('js/controllers/mainController.js') }}"></script> <!-- load our controller -->
-		<script src="{{ asset('js/services/customizationService.js') }}"></script> <!-- load our service -->
+	<!-- Javascripts ================================================== -->
+		<script src="{{ asset('components/jquery/dist/jquery.min.js') }}"></script>
+		<script src="{{ asset('components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/modernizr.custom.86080.js') }}"></script>        
+        <script src="{{ asset('components/angular/angular.min.js')}}"></script>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+        <script src="{{ asset('components/ngAutocomplete/src/ngAutocomplete.js')}}"></script>
+		<script src="{{ asset('js/controllers/mainController.js') }}"></script>
+		<script src="{{ asset('js/services/customizationService.js') }}"></script>
 		<script src="{{ asset('js/app.js') }}"></script> <!-- load our application -->
-		<script src="{{ asset('js/scripts.js') }}"></script> <!-- load our custom scripts -->
+		<script src="{{ asset('js/own_scripts/scripts.js') }}"></script>
         
 	<!-- Start Google Analytics -->
 		<script>
@@ -150,10 +133,9 @@
 	<!-- End Google Analytics -->	
 
 	<!-- Track Event Mix Panel -->
-
-	<script>
-	mixpanel.track("beta");
-	</script>
+		<script>
+		mixpanel.track("beta");
+		</script>
 	<!-- End Mix Panel -->
 	</body>
 </html>

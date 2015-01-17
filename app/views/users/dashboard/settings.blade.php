@@ -110,7 +110,7 @@
           <div class="clearfix"></div>
         </div>
         <div class="widget-body medium" ng-if="account.eventbriteKey == ''">
-        <p><h2>{{trans('dashboard.eventbriteEvents')}}</h2></p>
+        <p>{{trans('settings.eventbrite_msg')}}</p>
           <div  class="text-center"><a class="btn btn-success" href='https://www.eventbrite.com/oauth/authorize?response_type=code&client_id={{Config::get("constants.evenbriteClientId")}}'>{{trans('dashboard.eventbriteButton')}}</a>
           </div>
         </div>

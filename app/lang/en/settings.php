@@ -8,5 +8,6 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 	'eventbrite_msg'						=> 'Por favor conecte su cuenta de Eventbrite',
+	'meetup_msg'						    => 'Por favor conecte su cuenta de Meetup',
 
 );

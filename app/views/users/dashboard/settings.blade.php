@@ -161,7 +161,7 @@
           <div class="clearfix"></div>
         </div>
         <div class="widget-body medium" ng-if="account.meetupRefreshKey == ''">
-          <p>{{trans('dashboard.meetup_msg')}}</p>
+          <p>{{trans('settings.meetup_msg')}}</p>
           <div  class="text-center">
           <a class="btn btn-danger" href='https://secure.meetup.com/oauth2/authorize?client_id={{Config::get("constants.meetupClientId")}}&response_type=code&redirect_uri={{Config::get("constants.meetupRedirectUrl")}}'>
           {{trans('dashboard.meetupButton')}}</a>

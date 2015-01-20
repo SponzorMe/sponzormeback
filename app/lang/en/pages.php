@@ -128,7 +128,17 @@ return array(
 
 	'error404' =>"Ohh.....This is embarrassing but we could not find your request.",
 
-	'backhome' =>"Back to home"
+	'backhome' =>"Back to home",
+
+	'language'=>"My Prefer language is: ",
+
+	'chooseLang'=>"Choose language",
+
+	"en"=>"English",
+
+	"es"=>"Spanish",
+
+	"pt"=>"Portuguese",
 
 
 );

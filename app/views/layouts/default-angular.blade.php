@@ -113,7 +113,7 @@
 		<script src="{{ asset('components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('js/modernizr.custom.86080.js') }}"></script>        
         <script src="{{ asset('components/angular/angular.min.js')}}"></script>
-        <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
         <script src="{{ asset('components/ngAutocomplete/src/ngAutocomplete.js')}}"></script>
 		<script src="{{ asset('js/controllers/mainController.js') }}"></script>
 		<script src="{{ asset('js/services/customizationService.js') }}"></script>

@@ -126,7 +126,17 @@ return array(
 
 	'error404' =>"Ohh.....Isso é constrangedor, mas não conseguimos encontrar o seu pedido.",
 
-	'backhome' =>"Retorno"
+	'backhome' =>"Retorno",
+
+	'language'=>"Mi leguaje favorito es: ",
+
+	'chooseLang'=>"Escoje tu lenguaje",
+
+	"en"=>"Inglés",
+
+	"es"=>"Español",
+
+	"pt"=>"Portugues",
 
 
 );

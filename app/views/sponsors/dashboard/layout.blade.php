@@ -60,6 +60,9 @@
         <li class="sidebar-list">
           <a href="#/sponzoring">{{trans('dashboard.sponzoring')}} <span class="menu-icon fa fa-cogs"></span></a>
         </li>
+        <li class="sidebar-list">
+          <a href="{{ URL::to('logout') }}">{{trans('pages.logout')}}<span class="menu-icon fa fa-cogs"></span></a>
+        </li>   
       </ul>
       <div class="sidebar-footer">
         <div class="col-xs-4">

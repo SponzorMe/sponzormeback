@@ -103,7 +103,7 @@ class ApiController extends BaseController {
 				echo '<script type="text/javascript">alert("'.Lang::get('dashboard.evenbriteNotConnected').'");</script>';
 			}
 		}
-		return Redirect::to('users/dashboard#/settings');		
+		//return Redirect::to('users/dashboard#/settings');		
 	}
 	public function getMeetupGroups($refresh_token)
 	{

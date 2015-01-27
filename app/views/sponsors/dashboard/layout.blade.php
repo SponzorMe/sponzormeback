@@ -32,6 +32,22 @@
   <script type="text/javascript" src="{{ asset('components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js')}}"></script>
   <script src="{{ asset('js/dashboard.js')}}"></script><!--controller principal-->
   <script src="{{ asset('js/services/customizationService.js') }}"></script><!-- load our service -->
+  <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script><!-- Pusher Service -->
+  <script type="text/javascript">
+
+    var pusher = new Pusher('d88e93903c0ddc65df8c');
+    var eventsChannel = pusher.subscribe('events-channel');
+    eventsChannel.bind('New-Sponzoring', function(data) {
+      if(data.organizerId=={{ Session::get('userId') }})
+      {
+        alert("omg alguien ha patrocinado un evento tuyo.");
+      }
+    });
+    eventsChannel.bind('Sponzoring', function(data) {
+      console.log(data);
+    });
+
+  </script>
 </head>
 @if (Sentry::check())
 <body ng-controller="MasterCtrl">

@@ -16,16 +16,16 @@ return array(
 	/**
 	 * App id
 	 */
-	'app_id' => '101646', 
+	'app_id' => '101764', 
 
 	/**
 	 * App key
 	 */
-	'key' => '49fed187e2a541e70cef',
+	'key' => 'd88e93903c0ddc65df8c',
 
 	/**
 	 * App Secret
 	 */
-	'secret' => '0965f9d2c7f17aa5b302'	
+	'secret' => '774d8b310d93e51e2917'	
 
 );

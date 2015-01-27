@@ -89,8 +89,12 @@ class ApiController extends BaseController {
 	        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);       
 	        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 	        $json_data = curl_exec($ch);
+			echo "<hr/> 1 <br/>";
+			var_dump($json_data);
 	        curl_close($ch);
 	        $token_array=json_decode($json_data,true);
+			echo "<hr/>2 <br/>";
+			var_dump($token_array);
 			if(!empty($token_array["access_token"]))
 			{
 				$user = UserCustomization::find(Session::get('userId'));

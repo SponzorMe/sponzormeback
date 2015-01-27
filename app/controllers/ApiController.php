@@ -102,8 +102,8 @@ class ApiController extends BaseController {
 				$user = UserCustomization::find(Session::get('userId'));
 				echo "<hr/>4 <br/>";
 				var_dump($user);
-				//$user->meetupRefreshKey=$token_array["refresh_token"];
-				//$user->save();
+				$user->meetupRefreshKey=$token_array["refresh_token"];
+				$user->save();
 				echo '<script type="text/javascript">alert("'.Lang::get('dashboard.evenbriteConnected').'");</script>';
 			}
 			else
@@ -111,7 +111,7 @@ class ApiController extends BaseController {
 				echo '<script type="text/javascript">alert("'.Lang::get('dashboard.evenbriteNotConnected').'");</script>';
 			}
 		}
-		//return Redirect::to('users/dashboard#/settings');		
+		return Redirect::to('users/dashboard#/settings');		
 	}
 	public function getMeetupGroups($refresh_token)
 	{

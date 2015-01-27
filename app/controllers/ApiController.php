@@ -99,7 +99,7 @@ class ApiController extends BaseController {
 			{
 				echo "<hr/>3 <br/>";
 				$uid=Session::get('userId');
-				if(empty($uid)
+				if(empty($uid))
 				{
 					$user = Sentry::getUser();
 				}

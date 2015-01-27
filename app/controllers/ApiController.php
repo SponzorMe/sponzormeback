@@ -103,7 +103,7 @@ class ApiController extends BaseController {
 				echo "<hr/>4 <br/>";
 				var_dump($user);
 				//$user->meetupRefreshKey=$token_array["refresh_token"];
-				$user->save();
+				//$user->save();
 				echo '<script type="text/javascript">alert("'.Lang::get('dashboard.evenbriteConnected').'");</script>';
 			}
 			else

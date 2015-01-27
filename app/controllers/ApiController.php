@@ -97,21 +97,27 @@ class ApiController extends BaseController {
 			var_dump($token_array);
 			if(!empty($token_array["access_token"]))
 			{
-				echo "<hr/>3 <br/>";
-				$uid=Session::get('userId');
-				if(empty($uid))
-				{
-					$user = Sentry::getUser();
+			try{			
+					echo "<hr/>3 <br/>";
+					$uid=Session::get('userId');
+					if(empty($uid))
+					{
+						$user = Sentry::getUser();
+					}
+					else
+					{
+						$user = UserCustomization::find(Session::get('userId'));
+					}				
+					echo "<hr/>4 <br/>";
+					var_dump($user);
+					$user->meetupRefreshKey=$token_array["refresh_token"];
+					$user->save();
+					echo '<script type="text/javascript">alert("'.Lang::get('dashboard.evenbriteConnected').'");</script>';
 				}
-				else
+				catch(Exception $e)
 				{
-					$user = UserCustomization::find(Session::get('userId'));
-				}				
-				echo "<hr/>4 <br/>";
-				var_dump($user);
-				$user->meetupRefreshKey=$token_array["refresh_token"];
-				$user->save();
-				echo '<script type="text/javascript">alert("'.Lang::get('dashboard.evenbriteConnected').'");</script>';
+					return Redirect::to('users/dashboard#/settings');
+				}
 			}
 			else
 			{

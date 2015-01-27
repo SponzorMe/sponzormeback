@@ -97,8 +97,12 @@ class ApiController extends BaseController {
 			var_dump($token_array);
 			if(!empty($token_array["access_token"]))
 			{
+				echo "<hr/>3 <br/>";
+				echo Session::get('userId');
 				$user = UserCustomization::find(Session::get('userId'));
-				$user->meetupRefreshKey=$token_array["refresh_token"];
+				echo "<hr/>4 <br/>";
+				var_dump($user);
+				//$user->meetupRefreshKey=$token_array["refresh_token"];
 				$user->save();
 				echo '<script type="text/javascript">alert("'.Lang::get('dashboard.evenbriteConnected').'");</script>';
 			}

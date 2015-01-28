@@ -8,3 +8,9 @@ stats/*
 node_modules/*
 vendor/*
 public/components/*
+.elasticbeanstalk/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

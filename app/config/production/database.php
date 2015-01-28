@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'beta',
-			'username'  => 'beta',
-			'password'  => '7VMrjqCfUB749w',
+			'host'      => 'sponzormedb.csmlh2qpdi3z.us-east-1.rds.amazonaws.com:3306',
+			'database'  => 'sponzorme',
+			'username'  => 'sponzorme',
+			'password'  => 'U4vVkyARqypE8e$',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => 'web_',

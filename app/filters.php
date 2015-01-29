@@ -17,6 +17,10 @@
 // if( ! Request::secure()) { return Redirect::secure(Request::path()); } }); 
 App::before(function($request)
 {
+ if( ! Request::secure())
+    {
+        return Redirect::secure(Request::path());
+    }
 $lang=Session::get("lang");
  if(empty($lang)) { $lang="en"; Session::put('lang', $lang); }
  App::setLocale($lang); 

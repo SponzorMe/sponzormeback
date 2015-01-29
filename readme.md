@@ -41,6 +41,7 @@ Before you begin, make sure you have both ```git``` and ```composer``` installed
 1. Install Bower 
 
 $# bower install
+$# Elegir opcion 2 angular#1.2.28 which resolved to 1.2.28
 $# sudo npm install
 
 2. Install Gulp

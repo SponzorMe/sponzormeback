@@ -5,3 +5,9 @@ protected/config/main.php
 .requirements.txt
 .htaccess
 stats/*
+.elasticbeanstalk/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

@@ -1,6 +1,6 @@
 //PARAMETROS DE LA API DE YAHOO
 var ApyKey="39i.f0DV34GOlH0sVKIe41bE0Gq5xf_5fNxUOawoHc24DVMSw7gGfjURibF_5guxgA--";
-var ApyUrl="http://where.yahooapis.com/v1/";
+var ApyUrl="//where.yahooapis.com/v1/";
 $(document).on("ready",function (){
   getCountries();
   $(document).on('change','#country',function()

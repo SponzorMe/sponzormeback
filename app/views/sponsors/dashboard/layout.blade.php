@@ -61,20 +61,20 @@
           <a href="#/sponzoring">{{trans('dashboard.sponzoring')}} <span class="menu-icon fa fa-cogs"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="{{ URL::to('logout') }}">{{trans('pages.logout')}}<span class="menu-icon fa fa-cogs"></span></a>
+          <a href="{{ secure_url(URL::to('logout')) }}">{{trans('pages.logout')}}<span class="menu-icon fa fa-cogs"></span></a>
         </li>   
       </ul>
       <div class="sidebar-footer">
         <div class="col-xs-4">
-          <a href="{{ URL::to(trans('pages.blogUrl')) }}">{{trans('pages.blog')}}</a>
+          <a href="{{ secure_url(URL::to(trans('pages.blogUrl'))) }}">{{trans('pages.blog')}}</a>
         </div>
         <div class="col-xs-4">
-          <a href="{{ URL::to('testimonials') }}" target="_blank">
+          <a href="{{ secure_url(URL::to('testimonials')) }}" target="_blank">
             {{trans('dashboard.about')}}
           </a>
         </div>
         <div class="col-xs-4">
-          <a target="_blank" href="{{ URL::to(trans('pages.supportUrl')) }}">
+          <a target="_blank" href="{{ secure_url(URL::to(trans('pages.supportUrl'))) }}">
             {{trans('dashboard.support')}}
           </a>
         </div>
@@ -108,7 +108,7 @@
                   </li>
                   <li class="divider"></li>
                   <li class="link">
-                    <a href="{{ URL::to('logout') }}">
+                    <a href="{{ secure_url(URL::to('logout')) }}">
                       {{trans('dashboard.logout')}}
                     </a>
                   </li>

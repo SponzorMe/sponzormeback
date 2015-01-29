@@ -43,29 +43,29 @@
 	        <div class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
 				@if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
-					<li {{ (Request::is('users*') ? 'class="active"' : '') }}><a href="{{ URL::to('/users') }}">{{trans('pages.users')}}</a></li>
-					<li {{ (Request::is('groups*') ? 'class="active"' : '') }}><a href="{{ URL::to('/groups') }}">{{trans('pages.groups')}}</a></li>
+					<li {{ (Request::is('users*') ? 'class="active"' : '') }}><a href="{{ secure_url(URL::to('/users')) }}">{{trans('pages.users')}}</a></li>
+					<li {{ (Request::is('groups*') ? 'class="active"' : '') }}><a href="{{ secure_url(URL::to('/groups')) }}">{{trans('pages.groups')}}</a></li>
 				@endif
 	          </ul>
 	          <ul class="nav navbar-nav navbar-right">
 	            @if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
-					<li {{ (Request::is('users*') ? 'class="active"' : '') }}><a href="{{ URL::to('/users') }}">{{trans('pages.users')}}</a></li>
-					<li {{ (Request::is('groups*') ? 'class="active"' : '') }}><a href="{{ URL::to('/groups') }}">{{trans('pages.groups')}}</a></li>
+					<li {{ (Request::is('users*') ? 'class="active"' : '') }}><a href="{{ secure_url(URL::to('/users')) }}">{{trans('pages.users')}}</a></li>
+					<li {{ (Request::is('groups*') ? 'class="active"' : '') }}><a href="{{ secure_url(URL::to('/groups')) }}">{{trans('pages.groups')}}</a></li>
 				@endif
 	          </ul>
 	          <ul class="nav navbar-nav navbar-right">
 	            @if (Sentry::check())
 				<li {{ (Request::is('users/show/' . Session::get('userId')) ? 'class="active"' : '') }}><a href="/users/{{ Session::get('userId') }}">{{ Session::get('email') }}</a></li>
 					@if (Sentry::check() && Sentry::getUser()->hasAccess('users'))
-						<li><a href="{{ URL::to('users/dashboard') }}">{{trans('pages.dashboard')}}</a></li>
+						<li><a href="{{ secure_url(URL::to('users/dashboard')) }}">{{trans('pages.dashboard')}}</a></li>
 					@elseif (Sentry::check() && Sentry::getUser()->hasAccess('sponsors'))
-						<li><a href="{{ URL::to('sponsors/dashboard') }}">{{trans('pages.dashboard')}}</a></li>
+						<li><a href="{{ secure_url(URL::to('sponsors/dashboard')) }}">{{trans('pages.dashboard')}}</a></li>
 					@endif
-				<li><a href="{{ URL::to('logout') }}">{{trans('pages.logout')}}</a></li>
+				<li><a href="{{ secure_url(URL::to('logout')) }}">{{trans('pages.logout')}}</a></li>
 				@else
-				<li {{ (Request::is('login') ? 'class="active"' : '') }}><a href="{{ URL::to('login') }}">{{trans('pages.login')}}</a></li>
-				<li {{ (Request::is('sponsors/create') ? 'class="active"' : '') }}><a href="{{ URL::to('sponsors/create') }}">{{trans('pages.sponsorreg')}}</a></li>
-				<li {{ (Request::is('users/create') ? 'class="active"' : '') }}><a href="{{ URL::to('users/create') }}">{{trans('pages.organizerreg')}}</a></li>
+				<li {{ (Request::is('login') ? 'class="active"' : '') }}><a href="{{ secure_url(URL::to('login')) }}">{{trans('pages.login')}}</a></li>
+				<li {{ (Request::is('sponsors/create') ? 'class="active"' : '') }}><a href="{{ secure_url(URL::to('sponsors/create')) }}">{{trans('pages.sponsorreg')}}</a></li>
+				<li {{ (Request::is('users/create') ? 'class="active"' : '') }}><a href="{{ secure_url(URL::to('users/create')) }}">{{trans('pages.organizerreg')}}</a></li>
 				@endif
 	          </ul>
 	        </div><!--/.nav-collapse -->
@@ -91,14 +91,14 @@
 	      <div class="row">
 	      <div class="col-md-4">&nbsp;&nbsp;&nbsp;
 	          <img height="12px" src="{{secure_asset('images/footer_logo.png')}}">&nbsp;&nbsp;
-	          <a class="" href="{{ URL::to('language/es') }}"><img height="16px" src="{{secure_asset('images/spanish.png')}}"></a>&nbsp;
-	          <a class="" href="{{ URL::to('language/en') }}"><img height="16px" src="{{secure_asset('images/english.png')}}"></a>&nbsp;
-	          <a class="" href="{{ URL::to('language/pt') }}"><img height="16px" src="{{secure_asset('images/pt.png')}}"></a>
+	          <a class="" href="{{ secure_url(URL::to('language/es')) }}"><img height="16px" src="{{secure_asset('images/spanish.png')}}"></a>&nbsp;
+	          <a class="" href="{{ secure_url(URL::to('language/en')) }}"><img height="16px" src="{{secure_asset('images/english.png')}}"></a>&nbsp;
+	          <a class="" href="{{ secure_url(URL::to('language/pt')) }}"><img height="16px" src="{{secure_asset('images/pt.png')}}"></a>
 	      </div>
 	      <div class="col-md-4">
-	          <a href="{{ URL::to('testimonials') }}">{{trans('pages.testimonials')}}</a>&nbsp;|&nbsp
-	          <a href="{{ URL::to(trans('pages.supportUrl')) }}" target="_blank">{{trans('pages.support')}}</a>&nbsp;|&nbsp
-	          <a href="{{ URL::to(trans('pages.blogUrl')) }}" target="_blank">{{trans('pages.blog')}}</a> &nbsp|&nbsp{{trans('pages.team')}}&nbsp;|&nbsp{{trans('pages.privacy')}}
+	          <a href="{{ secure_url(URL::to('testimonials')) }}">{{trans('pages.testimonials')}}</a>&nbsp;|&nbsp
+	          <a href="{{ secure_url(URL::to(trans('pages.supportUrl'))) }}" target="_blank">{{trans('pages.support')}}</a>&nbsp;|&nbsp
+	          <a href="{{ secure_url(URL::to(trans('pages.blogUrl'))) }}" target="_blank">{{trans('pages.blog')}}</a> &nbsp|&nbsp{{trans('pages.team')}}&nbsp;|&nbsp{{trans('pages.privacy')}}
 	      </div>
 	      <div class="col-md-4" align="right">
 	          Made with Love ❤&nbsp;&nbsp;&nbsp;

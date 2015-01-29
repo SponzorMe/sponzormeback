@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<link rel="stylesheet" href="{{ asset('css/style.css') }}">
-        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> 
+        <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> 
         <!-- fuente roboto -->
 		<style>
 		@section('styles')

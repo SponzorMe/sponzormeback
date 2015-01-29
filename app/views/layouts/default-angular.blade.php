@@ -3,10 +3,10 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>@yield('title')</title>
-		<link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}"/>
+		<link rel="shortcut icon" href="{{ secure_asset('images/favicon.ico') }}"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
-		<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+		<link rel="stylesheet" href="{{ secure_asset('css/style.css') }}">
         <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> 
         <!-- fuente roboto -->
 		<style>
@@ -18,7 +18,7 @@
 		</style>
 		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>
-		<script src="{{ asset('components/html5shiv/dist/html5shiv.min.js') }}</script>
+		<script src="{{ secure_asset('components/html5shiv/dist/html5shiv.min.js') }}</script>
 		<![endif]-->
 		<!-- start Mixpanel -->
 		<script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
@@ -38,7 +38,7 @@
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
 	          </button>
-	          <a class="" href="{{ URL::route('home') }}"><img height="45px" src="{{asset('images/logo.gif')}}"></a>
+	          <a class="" href="{{ URL::route('home') }}"><img height="45px" src="{{secure_asset('images/logo.gif')}}"></a>
 	        </div>
 	        <div class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
@@ -90,10 +90,10 @@
 		<div class="footer">
 	      <div class="row">
 	      <div class="col-md-4">&nbsp;&nbsp;&nbsp;
-	          <img height="12px" src="{{asset('images/footer_logo.png')}}">&nbsp;&nbsp;
-	          <a class="" href="{{ URL::to('language/es') }}"><img height="16px" src="{{asset('images/spanish.png')}}"></a>&nbsp;
-	          <a class="" href="{{ URL::to('language/en') }}"><img height="16px" src="{{asset('images/english.png')}}"></a>&nbsp;
-	          <a class="" href="{{ URL::to('language/pt') }}"><img height="16px" src="{{asset('images/pt.png')}}"></a>
+	          <img height="12px" src="{{secure_asset('images/footer_logo.png')}}">&nbsp;&nbsp;
+	          <a class="" href="{{ URL::to('language/es') }}"><img height="16px" src="{{secure_asset('images/spanish.png')}}"></a>&nbsp;
+	          <a class="" href="{{ URL::to('language/en') }}"><img height="16px" src="{{secure_asset('images/english.png')}}"></a>&nbsp;
+	          <a class="" href="{{ URL::to('language/pt') }}"><img height="16px" src="{{secure_asset('images/pt.png')}}"></a>
 	      </div>
 	      <div class="col-md-4">
 	          <a href="{{ URL::to('testimonials') }}">{{trans('pages.testimonials')}}</a>&nbsp;|&nbsp
@@ -109,16 +109,16 @@
 		<!-- ./ container -->
 
 	<!-- Javascripts ================================================== -->
-		<script src="{{ asset('components/jquery/dist/jquery.min.js') }}"></script>
-		<script src="{{ asset('components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('js/modernizr.custom.86080.js') }}"></script>        
-        <script src="{{ asset('components/angular/angular.min.js')}}"></script>
+		<script src="{{ secure_asset('components/jquery/dist/jquery.min.js') }}"></script>
+		<script src="{{ secure_asset('components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+        <script src="{{ secure_asset('js/modernizr.custom.86080.js') }}"></script>        
+        <script src="{{ secure_asset('components/angular/angular.min.js')}}"></script>
         <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
-        <script src="{{ asset('components/ngAutocomplete/src/ngAutocomplete.js')}}"></script>
-		<script src="{{ asset('js/controllers/mainController.js') }}"></script>
-		<script src="{{ asset('js/services/customizationService.js') }}"></script>
-		<script src="{{ asset('js/app.js') }}"></script> <!-- load our application -->
-		<script src="{{ asset('js/own_scripts/scripts.js') }}"></script>
+        <script src="{{ secure_asset('components/ngAutocomplete/src/ngAutocomplete.js')}}"></script>
+		<script src="{{ secure_asset('js/controllers/mainController.js') }}"></script>
+		<script src="{{ secure_asset('js/services/customizationService.js') }}"></script>
+		<script src="{{ secure_asset('js/app.js') }}"></script> <!-- load our application -->
+		<script src="{{ secure_asset('js/own_scripts/scripts.js') }}"></script>
         
 	<!-- Start Google Analytics -->
 		<script>

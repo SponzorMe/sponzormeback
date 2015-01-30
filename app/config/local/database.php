@@ -54,6 +54,16 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
+			'host'      => 'localhost',
+			'database'  => 'beta',
+			'username'  => 'beta',
+			'password'  => '7VMrjqCfUB749w',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => 'web_',
+		),
+		'mysql2' => array(
+			'driver'    => 'mysql',
 			'host'      => 'aa1f5ln8emj29y3.cmogtvjrvqqk.us-west-1.rds.amazonaws.com',
 			'database'  => 'ebdb',
 			'username'  => 'sponzorme',

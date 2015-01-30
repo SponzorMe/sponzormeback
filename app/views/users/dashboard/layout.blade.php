@@ -49,6 +49,13 @@
     });
 
   </script>
+  <script type="text/javascript">
+    var pusher = new Pusher('d88e93903c0ddc65df8c');
+    var channel = pusher.subscribe('test_channel');
+    channel.bind('my_event', function(data) {
+      alert(data.message);
+    });
+  </script>
 </head>
 <!--Navegación y encabezado-->
 @if (Sentry::check())
@@ -60,32 +67,32 @@
     <div id="sidebar-wrapper">
       <ul class="sidebar">
         <li class="sidebar-main">
-          <a href="#" ng-click="toggleSidebar()">
+          <a href="" ng-click="toggleSidebar()">
             {{trans('dashboard.dashboard')}}
             <span class="menu-icon glyphicon glyphicon-transfer"></span>
           </a>
         </li>
         <li class="sidebar-title"><span>{{trans('dashboard.navigation')}}</span></li>
         <li class="sidebar-list">
-          <a href="#">{{trans('dashboard.dashboard')}}<span class="menu-icon fa fa-tachometer"></span></a>
+          <a href="#/">{{trans('dashboard.dashboard')}}<span class="menu-icon fa fa-tachometer"></span></a>
         </li>
         <li class="sidebar-list">
           <a href="#/events">{{trans('dashboard.events')}} <span class="menu-icon fa fa-table"></span></a>
+        </li>        
+        <li class="sidebar-list">
+          <a href="#/sponzors">{{trans('dashboard.sponzors')}} <span class="menu-icon fa fa-bookmark-o"></span></a>
+        </li>        
+        <li class="sidebar-list">
+          <a href="#/todo">{{trans('dashboard.todo')}} <span class="menu-icon fa fa-tasks"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#/settings">{{trans('dashboard.settings')}}<span class="menu-icon fa fa-tasks"></span></a>
+          <a href="#/friend">{{trans('dashboard.invitefriend')}} <span class="menu-icon fa fa-smile-o"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#/sponzors">{{trans('dashboard.sponzors')}} <span class="menu-icon fa fa-cogs"></span></a>
+          <a href="#/settings">{{trans('dashboard.settings')}}<span class="menu-icon fa fa-cogs"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#/friend">{{trans('dashboard.invitefriend')}} <span class="menu-icon fa fa-cogs"></span></a>
-        </li>
-        <li class="sidebar-list">
-          <a href="#/todo">{{trans('dashboard.todo')}} <span class="menu-icon fa fa-cogs"></span></a>
-        </li>
-        <li class="sidebar-list">
-          <a href="{{ URL::to('logout') }}">{{trans('pages.logout')}}<span class="menu-icon fa fa-cogs"></span></a>
+          <a href="{{ URL::to('logout') }}">{{trans('pages.logout')}}<span class="menu-icon fa fa-sign-out"></span></a>
         </li>    
                         
       </ul>
@@ -123,7 +130,7 @@
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li class="dropdown-header">
                     {{ Session::get('email') }}                     
-                    <input type="hidden" ng-model="event.organizer" ng-init="event.organizer = {{ Session::get('userId') }}" />                   
+                    <input type="hidden" ng-model="event.organizer" ng-init="event.organizer = {{ Session::get('userId') }}" />           
                   </li>
                   <li class="divider"></li>
                   <li class="link">
@@ -173,7 +180,8 @@
   </div><!-- End Page Wrapper -->
 	@yield("content")
 @else
-    <p>{{trans('pages.forbidden')}}</p>
+    <h1>{{trans('pages.forbidden')}}</h1>
+    {{Redirect::to('login');}}
 @endif
   
 </body>

@@ -231,7 +231,7 @@ return array(
 
 	'configureEventbriteImport'	=> "Configure your import from eventbrite",
 
-	'eventImage'=>"Event Image",
+	'eventImage'=>"Image",
 	"sponzor" =>"Sponzor",
 	"eventPendingApprobation" =>"Waiting for the organizer approbation",
 

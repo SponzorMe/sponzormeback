@@ -58,7 +58,7 @@
     <div id="sidebar-wrapper">
       <ul class="sidebar">
         <li class="sidebar-main">
-          <a href="#" ng-click="toggleSidebar()">
+          <a href="" ng-click="toggleSidebar()">
             Dashboard
             <span class="menu-icon glyphicon glyphicon-transfer"></span>
           </a>
@@ -66,16 +66,19 @@
         <li class="sidebar-title"><span>{{trans('dashboard.navigation')}}</span></li>
         <li class="sidebar-list">
           <a href="#">{{trans('dashboard.dashboard')}}<span class="menu-icon fa fa-tachometer"></span></a>
-        </li>        
+        </li>       
         <li class="sidebar-list">
-          <a href="#/settings">{{trans('dashboard.settings')}}<span class="menu-icon fa fa-tasks"></span></a>
+          <a href="#/following">{{trans('dashboard.following')}} <span class="menu-icon fa fa-eye"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#/following">{{trans('dashboard.following')}} <span class="menu-icon fa fa-table"></span></a>
+          <a href="#/sponzoring">{{trans('dashboard.sponzoring')}} <span class="menu-icon fa fa-bolt"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#/sponzoring">{{trans('dashboard.sponzoring')}} <span class="menu-icon fa fa-cogs"></span></a>
+          <a href="#/settings">{{trans('dashboard.settings')}}<span class="menu-icon fa fa-cogs"></span></a>
         </li>
+        <li class="sidebar-list">
+          <a href="{{ URL::to('logout') }}">{{trans('pages.logout')}}<span class="menu-icon fa fa-sign-out"></span></a>
+        </li>  
       </ul>
       <div class="sidebar-footer">
         <div class="col-xs-4">

@@ -25,7 +25,17 @@ class SessionController extends BaseController {
 	 */
 	public function create()
 	{
-		return View::make('sessions.login');
+		if (Sentry::check() && Sentry::getUser()->hasAccess('users'))
+            {
+            	return Redirect::to(('users/dashboard'));
+            }
+            elseif (Sentry::check() && Sentry::getUser()->hasAccess('sponsors'))
+            {
+            	return Redirect::to(('sponsors/dashboard'));
+            }
+            else{
+            	return View::make('sessions.login');
+            }	
 	}
 
 	/**
@@ -44,12 +54,15 @@ class SessionController extends BaseController {
             							'userId' => $result['sessionData']['userId'],
             							'email' => $result['sessionData']['email']
             							));
-
-            
+            Session::put('userId', $result['sessionData']['userId']); //Guardamos en la session el Id del usuario
             if (Sentry::check() && Sentry::getUser()->hasAccess('users'))
+            {
             	return Redirect::to(('users/dashboard'));
+            }
             elseif (Sentry::check() && Sentry::getUser()->hasAccess('sponsors'))
-            	return Redirect::to('sponsors/dashboard');
+            {
+            	return Redirect::to(('sponsors/dashboard'));
+            }         	
             
 
         } else {

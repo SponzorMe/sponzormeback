@@ -85,6 +85,7 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     $scope.rss                  = [];
     $scope.files                = [];
     $scope.users                = {};
+    $scope.loadingpeaks         = true;
     $scope.temp                 = {'image':""};
     $scope.todo                 = {'list':"",'title':"",'description':"",'event':"",'peak':"",'eventId':"",'listSponzor':"",'currentRelPeak':0,'currentEvent':""};
     //--End GLobal Variables--//
@@ -125,17 +126,12 @@ function indicatorsController($scope,$Cookie,Customization){
     Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
     {
         $scope.eventos.size = adata.Events.length;
+        $scope.eventos.list = adata.Events;
+        $scope.event.current = adata.Events[0].id;
     });
     Customization.getSponzorsByOrganizer($scope.event.organizer).success(function(adata) 
     {
         $scope.sponzors.size = adata.Sponzors.length;
-    });
-    Customization.countAllUsers().success(function(adata) 
-    {
-        $scope.users.size=adata.size+1000;
-    });
-    Customization.getSponzorsByOrganizer($scope.event.organizer).success(function(adata) 
-    {
         var balance=0;
         for(i=0;i<adata.Sponzors.length;i++)
         {            
@@ -145,6 +141,10 @@ function indicatorsController($scope,$Cookie,Customization){
             }
         }
         $scope.sponzors.balance = balance;
+    });
+    Customization.countAllUsers().success(function(adata) 
+    {
+        $scope.users.size=adata.size+1000;
     });
 }
 
@@ -181,15 +181,18 @@ function rdLoading () {
  */ 
  angular.module('Dashboard').controller('eventsController', ['$scope', '$filter','$cookieStore', 'Customization','ngDialog', 'FileUploader', eventsController]);
 function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUploader){
-    Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
+    if(window.location.hash=="#/events")
     {
-        $scope.eventos.list = adata.Events;
-        $scope.event.current = adata.Events[0].id;
-    });
+       Customization.getEventsByOrganizer($scope.event.organizer).success(function(adata) 
+        {
+            $scope.eventos.list = adata.Events;
+            $scope.event.current = adata.Events[0].id;
+        }); 
+    }
     Customization.getCategories1().success(function(adata) 
     {
         $scope.categorias.list = adata;
-    });    
+    }); 
     $scope.addsponzor = function () {
         $scope.sponzors.push({ 
             kind: "",
@@ -210,7 +213,7 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
                 $scope.event.current = adata.Events[0].id;
             });
             $scope.message="removeEvent";
-            ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope });    
+            ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope });
         })
         .error(function(data) {
             console.log(data);
@@ -245,6 +248,7 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
         $scope.newevent.location_reference=$scope.details3.reference;
         if($scope.imageReady)
         {
+            ngDialog.open({ template: 'loading.html', controller: 'eventsController', scope: $scope });
             $scope.newevent.starts=$filter('date')($scope.newevent.starts, "yyyy-MM-dd HH:mm:00");
             $scope.newevent.ends=$filter('date')($scope.newevent.ends, "yyyy-MM-dd HH:mm:00");
             Customization.saveEvent($scope.newevent)
@@ -310,14 +314,16 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
                             $("#ends").addClass("has-success");
                         }
                     }
+                    ngDialog.close();
                 })
-                .error(function(data) {
+                .error(function(data) {                    
                     console.log(data);
                 });
-            
+            ngDialog.close();
         }
         else
         {
+            $scope.message="errorImage";
             ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope });
         }
     };
@@ -355,13 +361,18 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
 
 angular.module('Dashboard').controller('peaksController', ['$scope', '$cookieStore', 'Customization',peaksController]);
 function peaksController($scope,$Cookie,Customization){
-    $scope.$watch('event.current', function(newvalue, oldvalue){ 
+    $scope.$watch('event.current', function(newvalue, oldvalue){
+        $scope.loadingpeaks=true;
         if($scope.event.current)
         {
+            //Mostramos el boton de cargar.            
             Customization.getPeaks(newvalue).success(function(adata) 
-            {
-                $scope.peaks=adata.Peaks;           
+            {                
+                $scope.peaks=adata.Peaks;
+                $scope.loadingpeaks=false;           
             });
+            
+            //Ocultamos el boton de cargar
         }
     });
 }

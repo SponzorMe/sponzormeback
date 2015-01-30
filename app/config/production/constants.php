@@ -1,10 +1,36 @@
 <?php
 return array(
-	'evenbriteClientId'=>'MI3YNPLR3R73AD36YS',
-	'eventbriteClientSecret'=>'V72EKSC2YWR5Y4XKVKCUL4W45ZAAVXJSEG3KOBAFIVKR6ESIX5',
-	'eventbriteRedirectUrl'=>'https://www.sponzor.me/public/api/v1/connectEvenbrite',//Setear esto en la API
-	'meetupClientId'=>'lc876qakj5itnsnebm3dijus12',
-	'meetupClientSecret'=>'t9lpatu023l44gjbtkno2a9ku9',
-	'meetupRedirectUrl'=>'https://www.sponzor.me/public/api/v1/connectMeetup'//Setear esto en la API
+	/*
+	|--------------------------------------------------------------------------
+	| EventBrite Keys
+	|--------------------------------------------------------------------------
+	|
+	| Set the eventbrite keys provided by the API page, the eventbriteRedirectUrl should be the same
+	| in both parts (EventBrite API page and this file)
+	|
+	*/
+	'evenbriteClientId'=>'UIIEUBJUVOI5JDEZND',
+	'eventbriteClientSecret'=>'IEPASK4CMUONNNBXA6DQ34O3VGIPFDGAGROF7HPR3LWRS6HREK',
+	'eventbriteRedirectUrl'=>'http://localhost/sponzorme/public/api/v1/connectEventbrite',
+	/*
+	|--------------------------------------------------------------------------
+	| Meetup Keys
+	|--------------------------------------------------------------------------
+	|
+	| Set the eventbrite keys provided by the API page, the eventbriteRedirectUrl should be the same
+	| in both parts (Meetup API page and this file)
+	|
+	*/
+	'meetupClientId'=>'sc88mha7rapt4pmhfuo52i68uv',
+	'meetupClientSecret'=>'5ofl3jc9njcale7d7l9uaeunrn',
+	'meetupRedirectUrl'=>'http://localhost/sponzorme/public/api/v1/connectMeetup',
+	/*
+	|--------------------------------------------------------------------------
+	| Other Constants
+	|--------------------------------------------------------------------------
+	|
+	| Feel Free to add more constants below.
+	|
+	*/
 	);
 ?>

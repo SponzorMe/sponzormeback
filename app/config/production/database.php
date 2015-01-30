@@ -54,7 +54,7 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'aa1p31a549ng9t2.cmegpcynpscb.us-east-1.rds.amazonaws.com:3306',
+			'host'      => 'aa1f5ln8emj29y3.cmogtvjrvqqk.us-west-1.rds.amazonaws.com',
 			'database'  => 'ebdb',
 			'username'  => 'sponzorme',
 			'password'  => 'U4vVkyARqypE8e$',

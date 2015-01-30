@@ -46,7 +46,8 @@ class CustomizationController extends \BaseController {
 		$rules = array(
 			'age'       => 'required',
 			'sex'      => 'required',
-			'location' => 'required'
+			'location' => 'required',
+			"lang"     => 'required'
 		);
 		$validator = Validator::make(Input::all(), $rules);
 		if ($validator->fails()) {
@@ -55,6 +56,7 @@ class CustomizationController extends \BaseController {
 					'success' => false,
 					'age' => Input::get('age'),
 					'sex' => Input::get('sex'),
+					'lang' => Input::get('lang'),
 					'location' => Input::get('location'),
 					'location_reference' => Input::get('location_reference')
 					));
@@ -63,10 +65,12 @@ class CustomizationController extends \BaseController {
 			$user = UserCustomization::find($id);
 			$user->age       			= Input::get('age');
 			$user->sex      			= Input::get('sex');
+			$user->lang      			= Input::get('lang');
 			$user->location_reference 	= Input::get('location_reference');
 			$user->location      		= Input::get('location');
 			$user->custom_status    	= 1;
 			$user->save();
+			Session::put('lang', $user->lang );
 
 			return Response::json(array('success' => true));
 		}

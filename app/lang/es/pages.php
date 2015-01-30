@@ -126,7 +126,17 @@ return array(
 
 	'error404' =>"Ohh.....Esto es bochornoso pero no hemos podido encontrar tu solicitud.",
 
-	'backhome' =>"Regresar"
+	'backhome' =>"Regresar",
 
+
+	'language'=>"Mi leguaje favorito es: ",
+
+	'chooseLang'=>"Escoje tu lenguaje",
+
+	"en"=>"Inglés",
+
+	"es"=>"Español",
+
+	"pt"=>"Portugues",
 
 );

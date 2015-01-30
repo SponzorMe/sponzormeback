@@ -1,13 +1,10 @@
-protected/config/main.php
 assets/*
 uploads/*
 composer.lock
+protected/config/main.php
 .requirements.txt
 .htaccess
 stats/*
-node_modules/*
-vendor/*
-public/components/*
 .elasticbeanstalk/
 
 # Elastic Beanstalk Files

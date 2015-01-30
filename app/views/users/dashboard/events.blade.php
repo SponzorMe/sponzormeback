@@ -13,8 +13,6 @@
             <i class="fa fa-plus"></i>{{trans('dashboard.addevent')}}
             <div class="clearfix"></div>
           </div>
-          <h4 class="h4formdash">{{trans('dashboard.eventdetails')}}</h4>      
-          <hr />
           <form class="form-horizontal" role="form">
           <!--form field-->
             <div class="form-group" id="title">
@@ -82,13 +80,8 @@
               </div>
             </div>
             <hr/>
-            <h4 class="h4formdash">{{trans('dashboard.eventaditionalseetings')}}</h4>  
-            <hr/>
             <!--form field-->
             <div class="form-group" id="public">
-              <div class="col-sm-11">
-                <h5 class="h4formdash">{{trans('dashboard.neweventprivacy')}}</h5>
-              </div>
               <div class="col-sm-4 control-label">
                   <input id="privacy0"  type="radio" data-ng-model="newevent.privacy" name="privacy" value="0" /> 
               </div>  
@@ -122,8 +115,6 @@
             </div>
             <!-- Imagen -->
             <hr/>
-            <h4 class="h4formdash">{{trans('dashboard.eventImage')}}</h4>  
-            <hr/>
             <div class="form-group" id="image">
                 <div class="col-sm-12 ">
                   <input class="col-sm-6 " id="imageInput" type="file" ng-model="temp.image" nv-file-select uploader="uploader"/><br/>
@@ -131,8 +122,6 @@
             </div>
             <div class="clearfix"></div>
             <!-- End Imagen -->
-            <hr/>
-            <h4 class="h4formdash">{{trans('dashboard.eventsponzors')}}</h4>  
             <hr/>
             <!--form field-->            
             <div class="table-responsive">              
@@ -189,7 +178,6 @@
             <i class="fa fa-tasks"></i> {{trans('dashboard.events')}}
             <a href="#/events" class="pull-right">{{trans('dashboard.manage')}}</a>
           </div>
-
           <div class="widget-body large no-padding">
             <div class="table-responsive">
               <table class="table table-striped">
@@ -198,7 +186,6 @@
                 <th class="text-center">{{trans('dashboard.neweventlocation')}}</th>
                 <th class="text-center">{{trans('dashboard.neweventstarts')}}</th>
                 <th class="text-center">{{trans('dashboard.neweventends')}}</th>
-                <th class="text-center">{{trans('dashboard.neweventdescription')}}</th>
                 <th class="text-center">{{trans('dashboard.eventtype')}}</th>
                 <th class="text-center">{{trans('dashboard.eventprivacy')}}</th>
                 <th class="text-center">{{trans('dashboard.eventImage')}}</th>
@@ -207,17 +194,18 @@
                 <tbody>
                   <tr data-ng-repeat="e in eventos.list" data-ng-class="{success : event.current === e.id}">
                     <td class="text-center"><% e.title %></td>
-                    <td class="text-center"><% e.location %></td>
+                    <td class="text-center" style="width:20%"><% e.location %></td>
                     <td class="text-center"><% e.starts %></td>
                     <td class="text-center"><% e.ends %></td>
-                    <td class="text-center"><% e.description %></td>
                     <td class="text-center"><% e.type %></td>
                     <td class="text-center"><% e.privacy %></td>
                     <td class="text-center"><a href="" ng-click="imageEvent(e.image)"><i class="fa fa-file-image-o"></i></a></td>
                     <td class="text-center">
-                      <a href="{{URL::to('event/<% e.id %>')}}" target="_blank"><i class="fa fa-arrows-alt"></i></a>
-                      <a href="" ng-click="editEvent(e.id)"><i class="fa fa-edit"></i></a>
-                      <a href="" ng-click="removeEvent(e.id)"><i class="fa fa-trash-o"></i></a>
+                      <a href="{{URL::to('event/<% e.id %>')}}" target="_blank"><i class="fa fa-arrows-alt"></i></a> 
+                      <a href="" ng-click="editEvent(e.id)"><i class="fa fa-edit"></i></a> 
+                      <a href="" ng-click="removeEvent(e.id)"><i class="fa fa-trash-o"></i></a> 
+                      <a href="" data-ng-click="event.current = e.id"><i class="fa fa-trophy" ng-show="event.current === e.id"></i></a> 
+                      <a href="" data-ng-click="event.current = e.id"><i class="fa fa-trophy text-danger" ng-show="event.current != e.id"></i></a> 
                     </td>
                   </tr>
                 </tbody>
@@ -225,6 +213,34 @@
             </div>
           </div>
         </div>
+        <br/>
+        <div class="widget">
+          <div class="widget-header">
+            <i class="fa fa-trophy"></i> {{trans('dashboard.peak')}} <% peaks %>
+            <div class="clearfix"></div>
+          </div>
+          <div class="widget-body medium no-padding">
+            <div class="table-responsive">              
+              <table class="table table-striped table-center"  ng-controller="peaksController">
+                <thead>
+                  <tr>
+                    <th class="text-center">{{trans('dashboard.kind')}}</th>
+                    <th class="text-center">{{trans('dashboard.quantity')}}</th>
+                    <th class="text-center">${{trans('dashboard.usd')}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-show="loadingpeaks"><td colspan="3"><rd-loading ng-show="loadingpeaks"></rd-loading></td></tr>                  
+                  <tr ng-show="!loadingpeaks" data-ng-repeat="p in peaks">
+                    <td class="text-center"><% p.kind %></td>
+                    <td class="text-center"><% p.quantity %></td>
+                    <td class="text-center"><% p.usd %></td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
       </div>
       </div>
   </script>
@@ -246,32 +262,10 @@
     <button class="btn btn-danger" ng-click="closeThisDialog()"><i class="fa fa-times"></i> {{trans('dashboard.close')}}</button>
   </div>
 </script>
-<script type="text/ng-template" id="seeEvent.html">
+<script type="text/ng-template" id="loading.html">
   <div class="text-center">
-    <h2><% seeEventData.title %></h2>
-    <img src="{{asset('images/events/<% seeEventData.image %>')}}" width="100%" />
-  <table class="table table-striped">
-    <tr>
-      <td class="text-center"><% seeEventData.location %></td>
-    </tr>
-    <tr>
-      <td class="text-center"><% seeEventData.starts %></td>
-    </tr>
-    <tr>
-      <td class="text-center"><% seeEventData.ends %></td>
-    </tr>
-    <tr>
-      <td class="text-center"><% seeEventData.description %></td>
-    </tr>
-    <tr>
-      <td class="text-center"><% seeEventData.type %></td>
-    </tr>
-    <tr>
-      <td class="text-center"><% seeEventData.privacy %></td>
-    </tr>
-  </table>
-  </div>
-  <div class="ngdialog-buttons text-center">
-    <button class="btn btn-danger" ng-click="closeThisDialog()"><i class="fa fa-times"></i> {{trans('dashboard.close')}}</button>
-  </div>
+    <h2><% loading.message %></h2>
+
+    <rd-loading></rd-loading>
+    </div>
 </script>

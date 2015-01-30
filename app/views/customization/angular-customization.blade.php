@@ -21,13 +21,23 @@
 		</select> 
 	    </div> <br/><br/>
 	    <div class="form-group">
+	    	<label for="country"> {{trans('pages.language')}}</label>
+	    </div>
+	    <div class="form-group">
+		<select class="form-control" ng-model="userData.lang" name="lang" id="lang">			
+			<option value="" selected>{{trans('pages.chooseLang')}}</option>
+			<option value="en">{{trans('pages.en')}}</option>
+			<option value="es">{{trans('pages.es')}}</option>
+			<option value="pt">{{trans('pages.pt')}}</option>
+		</select> 
+	    </div> <br/><br/>
+	    <div class="form-group">
 	    	<label for="country"> {{trans('pages.livein')}}</label>
-	    </div>	    
+	    </div>	 
 		<div class="form-group">
 		<label>{{trans('pages.location')}}</label><br/> 
 		</div>
-			<div class="form-group">
-				
+			<div class="form-group">				
 				<input type="text" class="form-control" ng-model="userData.location" ng-autocomplete="results" details="details" options="options" required/>
 				<input type="hidden" id="userId" value="{{ Session::get('userId') }}" required/>
 			</div>	
@@ -49,8 +59,7 @@
 				</div>
 			</div>
 			<div class="col-md-12" id="step3">
-				<div class="row contenedor-categorias">
-					
+				<div class="row contenedor-categorias">					
 					<div class="interest col-md-4" ng-repeat="interest in interests">
 						<label>
 							<input type="checkbox" id="interest<% interest.idinterests %>" data-ng-model='_interests[interest.idinterests]' name="interest[]" value="<% interest.idinterests %>" data-ng-click="toggle(interest.idinterests)" data-ng-true-value="1" data-ng-false-value="0" /> 

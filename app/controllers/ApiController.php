@@ -548,7 +548,13 @@ class ApiController extends BaseController {
 				$noPeak=false;
 			}			
 			//Aca es donde se actializa el estado de aprobación o no del sponzor.
-			Pusherer::trigger('events-channerl', 'Sponzoring', array( 'type' => "UpdateSponzorToEvent", 'peakId'=>$idRelSponzor, 'state'=>$newState));
+			Pusherer::trigger('events-channel', 'Sponzoring', 
+				array( 
+					'type' => "UpdateSponzorToEvent", 
+					'peakId'=>$idRelSponzor, 
+					'state'=>$newState,
+					'sponzorId'=>$relSponzor->idsponzor 
+					));
 			//Si el estado se convierte en 1, porque el organizador lo aprobó entonces creamos la relacion con los todo 
 			if($newState==1 and !$noPeak) //siempre y cuando el estado anterior no haya sido uno.
 			{
@@ -580,10 +586,25 @@ class ApiController extends BaseController {
 		
 	}
 	public function removeRelSponzorPeak($idRelSponzor){
+		try{
+		$rel=RelSponzorsEvents::where('id', '=', $idRelSponzor)->take(1)->get();
+		$event=Events::where('id', '=', $rel[0]->idevent)->take(1)->get();
 		RelSponzorsEvents::where('id', '=', $idRelSponzor)->delete(); //Borramos la relacion de los peaks.
 		TaskBySponzor::where('sponzor_event_id', '=', $idRelSponzor)->delete(); //Borramos la relacion de los todos al relsponzor
-		Pusherer::trigger('events-channerl', 'Sponzoring', array( 'type' => "RemoveSponzorToEvent", 'peakId'=>$idRelSponzor));//Actualizamos a pusher
+		Pusherer::trigger('events-channel', 'Sponzoring', 
+		array( 
+			'type' => "RemoveSponzorToEvent", 
+			'peakId'=>$idRelSponzor,
+			'sponzorId'=>$rel[0]->idsponzor,
+			'organizerId'=>$event[0]->organizer,
+			'eventId'=>$event[0]->id
+		));//Actualizamos a pusher
 		return Response::json(array("success" => true,"status"=>"Authenticated","message"=>"Removed Succesfuly"));
+		}
+		catch (Exception $e)
+		{
+			return Response::json(array('success' => true,'error'=>false,'message'=>$e->getMessage()));
+		}
 	}
 	public function getEvents()
 	{
@@ -761,7 +782,7 @@ class ApiController extends BaseController {
 		->join('users', 'events.organizer', '=', 'users.id')
 		->where("events.id","=",$peak->id_event)->get();
 		//Enviamos la notificación via pusher
-		Pusherer::trigger('events-channel', 'New Sponzoring', 
+		Pusherer::trigger('events-channel', 'New-Sponzoring', 
 			array( 
 				'type' 			=> "AddSponzorToEvent", 
 				'sponzorId'		=>$userid,

@@ -6,7 +6,6 @@ protected/config/main.php
 .htaccess
 stats/*
 .elasticbeanstalk/
-
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml

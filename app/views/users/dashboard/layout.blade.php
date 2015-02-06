@@ -24,7 +24,7 @@
   <script src="{{ asset('components/angular-bootstrap/ui-bootstrap-tpls.min.js')}}"></script>
   <script src="{{ asset('components/angular-ui-router/release/angular-ui-router.min.js')}}"></script>
   <script src="{{ asset('components/ngDialog/js/ngDialog.min.js')}}"></script>
-  <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
   <script src="{{ asset('components/ngAutocomplete/src/ngAutocomplete.js')}}"></script>
   <script src="{{ asset('components/angular-sanitize/angular-sanitize.min.js')}}"></script>
   <script src="{{ asset('components/angular-file-upload/angular-file-upload.min.js')}}"></script>  <!--Date timer-->
@@ -123,11 +123,12 @@
         <div class="row header">
           <div class="col-xs-12">
             <div class="user pull-right">
-              <div class="item dropdown">
-                <a href="" class="dropdown-toggle">
+
+              <div class="item dropdown" dropdown is-open="status.isopen"> 
+                <a href="#" class="dropdown-toggle" dropdown-toggle ng-disabled="disabled">
                   <img src="{{ asset('images/photo.png')}}">
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right">
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
                   <li class="dropdown-header">
                     {{ Session::get('email') }}                     
                     <input type="hidden" ng-model="event.organizer" ng-init="event.organizer = {{ Session::get('userId') }}" />           
@@ -146,11 +147,11 @@
                   </li>
                 </ul>
               </div>
-              <div class="item dropdown">
-               <a href="" class="dropdown-toggle">
+              <div class="item dropdown" dropdown>
+               <a href="#" class="dropdown-toggle" dropdown-toggle>
                   <i class="fa fa-bell-o"></i>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right">
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
                   <li class="dropdown-header">
                     {{trans('dashboard.notifications')}}
                   </li>

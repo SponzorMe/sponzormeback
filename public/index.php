@@ -6,6 +6,8 @@
  * @author   Taylor Otwell <taylorotwell@gmail.com>
  */
 
+define('LARAVEL_START', microtime(true));
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader

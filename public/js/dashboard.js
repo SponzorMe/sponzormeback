@@ -343,7 +343,6 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
         ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope });
         };
         uploader.onAfterAddingFile = function(fileItem) {
-        console.info('onAfterAddingFile', fileItem);
         $scope.imageReady=true;
         };
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
@@ -483,7 +482,7 @@ function settingsController($scope,$Cookie,Customization){
             .success(function(data)
             {
                 $scope.viewUserInfo();
-            });        
+            }); 
     }
     $scope.unconnectEventbrite = function()
     {
@@ -638,7 +637,6 @@ function sponzoringController($scope,$Cookie,$location,Customization,ngDialog){
     }
     $scope.addTodo = function ()
     {
-        console.log("e"+$scope.todo.currentEvent,"peak"+$scope.todo.currentRelPeak);
         Customization.setPeakTodo(
         $scope.todo.title,
         $scope.todo.description,
@@ -659,7 +657,6 @@ function sponzoringController($scope,$Cookie,$location,Customization,ngDialog){
     }
     $scope.removeTaskSponzorPeak = function (idTaskSponzor, relPeak){
         Customization.removeTaskSponzorPeak(idTaskSponzor).success(function(adata){
-            console.log(adata);
         $scope.getTaskSponzorPeak(relPeak,$scope.todo.currentEvent); 
         });
     }

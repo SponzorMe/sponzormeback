@@ -31,7 +31,6 @@ angular.module('mainController', ['ngAutocomplete'])
 			});
 			$("#step3").show();
 			$.each(interestscheked,function( index, value ) {
-  				console.log( index +" "+value);
   				$("#interest"+value).attr("checked",true);
 			});
 			
@@ -47,7 +46,6 @@ angular.module('mainController', ['ngAutocomplete'])
 					console.log(data);
 				})
 				.error(function(data) {
-					console.log(data);
 				});
 		}
 		$scope.submitUserInfo = function() {
@@ -69,7 +67,6 @@ angular.module('mainController', ['ngAutocomplete'])
 
 				})
 				.error(function(data) {
-					console.log(data);
 				});
 		};
 	});

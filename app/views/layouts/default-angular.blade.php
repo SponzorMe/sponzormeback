@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<link rel="stylesheet" href="{{ asset('css/style.css') }}">
-        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> 
+        <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> 
         <!-- fuente roboto -->
 		<style>
 		@section('styles')
@@ -113,12 +113,11 @@
 		<script src="{{ asset('components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('js/modernizr.custom.86080.js') }}"></script>        
         <script src="{{ asset('components/angular/angular.min.js')}}"></script>
-        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+        <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
         <script src="{{ asset('components/ngAutocomplete/src/ngAutocomplete.js')}}"></script>
 		<script src="{{ asset('js/controllers/mainController.js') }}"></script>
 		<script src="{{ asset('js/services/customizationService.js') }}"></script>
 		<script src="{{ asset('js/app.js') }}"></script> <!-- load our application -->
-		<script src="{{ asset('js/own_scripts/scripts.js') }}"></script>
         
 	<!-- Start Google Analytics -->
 		<script>

@@ -50,7 +50,16 @@ Route::resource('groups', 'GroupController');
 
 Route::get('/', array('as' => 'home', function()
 {
-	return View::make('home');
+	if (Sentry::check() && Sentry::getUser()->hasAccess('users'))
+    {
+    	return Redirect::to(('users/dashboard'));
+    }
+    elseif (Sentry::check() && Sentry::getUser()->hasAccess('sponsors'))
+    {
+    	return Redirect::to(('sponsors/dashboard'));
+    }
+    else
+    {return View::make('home');}	
 }));
 
 //Customization Routes.

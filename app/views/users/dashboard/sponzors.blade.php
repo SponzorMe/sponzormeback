@@ -26,7 +26,7 @@
                     <td class="text-center"><%s.email%></td>
                     <td class="text-center"><%s.event%></td>
                     <td class="text-center"><%s.kind%></td>
-                    <td class="text-center"><%s.eventstate%></td>
+                    <td class="text-center"><div ng-if="s.eventstate == 0">{{trans('dashboard.eventstate0')}}</div><div ng-if="s.eventstate == 1">{{trans('dashboard.eventstate1')}}</div></td>
                     <td class="text-center">
                       <div style="display: inline-block">
                         <div ng-if="s.eventstate == 0"> 
@@ -45,10 +45,11 @@
             </div>
           </div>
         </div>
+        </div>
 
         <!-- A partir de aca se muestran las notas de acuerdo al peak y al sponzor seleccionado -->
       <div class="row" data-ng-controller="sponzorsController">
-      <div class="col-lg-12">
+      <div class="col-lg-10 col-lg-offset-1">
         <div class="widget">
           <div class="widget-header">
             <i class="fa fa-plus"></i>{{trans('dashboard.todosList')}}

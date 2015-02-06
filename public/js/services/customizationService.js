@@ -102,7 +102,6 @@ angular.module('customizationService', [])
 			},
 			getUserInfo : function(idOrganizer)	{
 				Data={"userId":idOrganizer};
-				console.log(Data);
 				return $http({
 					method: 'POST',
 					url: path + 'api/v1/user/SebasGameMaster',

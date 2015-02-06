@@ -42,18 +42,17 @@ class ApiController extends BaseController {
 	        curl_setopt($ch, CURLOPT_POST, TRUE);
 	        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
 	        curl_setopt($ch, CURLOPT_URL, "https://www.eventbrite.com/oauth/token");
-	        curl_setopt($ch, CURLOPT_HEADER, 1);
+	        curl_setopt($ch, CURLOPT_HEADER, false);
 	        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 	        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
 	        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 	        $json_data = curl_exec($ch);
 	        curl_close($ch);
-	        $response = explode("path=/",$json_data);
-	        $response;
-	        $token_array=json_decode($response[1],true);
+	       	$token_array=json_decode($json_data,true);
 			if(!empty($token_array["access_token"]))
 			{
-				$user = UserCustomization::find(Session::get('userId'));
+				$user2 = Sentry::getUser();
+				$user = UserCustomization::find($user2->id);
 				$user->eventbriteKey=$token_array["access_token"];
 				$user->save();
 				echo '<script type="text/javascript">alert("'.Lang::get('dashboard.evenbriteConnected').'");</script>';
@@ -64,6 +63,38 @@ class ApiController extends BaseController {
 			}
 		}
 			return Redirect::to('users/dashboard#/settings');
+	}
+	public function getEventbriteEvents($access_token)
+	{
+		//Obtenemos los datos del usuario
+		$ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://www.eventbriteapi.com/v3/users/me/?token=".$access_token);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        $json_user_data = curl_exec($ch);
+        curl_close($ch);
+        $user_array=json_decode($json_user_data,true);
+		if(empty($user_array["id"]))
+			return Response::json(array("success" => false,"message"=>$user_array["error_description"]));
+
+		if(!empty($user_array["id"]))
+		{
+			//Obtenemos los datos del usuario
+			$ch = curl_init();
+	        curl_setopt($ch, CURLOPT_URL, "https://www.eventbriteapi.com/v3/users/".$user_array["id"]."/owned_events/");
+	        curl_setopt($ch, CURLOPT_HEADER, false);
+	        curl_setopt($ch,CURLOPT_HTTPHEADER,array (
+		        "Authorization: Bearer ".$access_token));
+	        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
+	        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+	        $json_events_data = curl_exec($ch);
+	        curl_close($ch);
+        	$events=json_decode($json_events_data,true);
+	        return Response::json(array("success" => true,"Events"=>$events));
+		}
 	}
 	public function connectMeetup()
 	{
@@ -93,7 +124,8 @@ class ApiController extends BaseController {
 	        $token_array=json_decode($json_data,true);
 			if(!empty($token_array["access_token"]))
 			{
-				$user = UserCustomization::find(Session::get('userId'));
+				$user2 = Sentry::getUser();
+				$user = UserCustomization::find($user2->id);
 				$user->meetupRefreshKey=$token_array["refresh_token"];
 				$user->save();
 				echo '<script type="text/javascript">alert("'.Lang::get('dashboard.evenbriteConnected').'");</script>';
@@ -188,41 +220,7 @@ class ApiController extends BaseController {
 	    /*traigo los grupos, el usuario escoje grupos, el usuario ve los 
 	    eventos que escoje, el usuario importa el evento.*/
 	}
-	public function getEventbriteEvents($access_token)
-	{
-		//Obtenemos los datos del usuario
-		$ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "https://www.eventbriteapi.com/v3/users/me/?token=".$access_token);
-        curl_setopt($ch, CURLOPT_HEADER, TRUE);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        $json_user_data = curl_exec($ch);
-        curl_close($ch);
-        $response2= explode("Path=/",$json_user_data);
-        $user_array=json_decode($response2[7],true);
-		if(empty($user_array["id"]))
-			return Response::json(array("success" => false,"message"=>$user_array["error_description"]));
-
-		if(!empty($user_array["id"]))
-		{
-			//Obtenemos los datos del usuario
-			$ch = curl_init();
-	        curl_setopt($ch, CURLOPT_URL, "https://www.eventbriteapi.com/v3/users/".$user_array["id"]."/owned_events/");
-	        curl_setopt($ch, CURLOPT_HEADER, TRUE);
-	        curl_setopt($ch,CURLOPT_HTTPHEADER,array (
-		        "Authorization: Bearer ".$access_token));
-	        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
-	        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-	        $json_events_data = curl_exec($ch);
-	        curl_close($ch);
-	        $response2= explode("Path=/",$json_events_data);
-        	$events=json_decode($response2[7],true);
-	        return Response::json(array("success" => true,"Events"=>$events));
-		}
-
-	}
+	
 	public function unconnectMeetup($userId)
 	{
 		$user = UserCustomization::find($userId);
@@ -234,10 +232,6 @@ class ApiController extends BaseController {
 		$user = UserCustomization::find($userId);
 		$user->eventbriteKey="";
 		$user->save();
-	}
-	public function index()
-	{
-      return View::make('api.description');
 	}
 	/**
 	 * Check if the key is valid.

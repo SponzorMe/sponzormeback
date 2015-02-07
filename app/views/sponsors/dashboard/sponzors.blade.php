@@ -28,11 +28,10 @@
                     <td class="text-center"><%s.eventlocation%></td>
                     <td class="text-center"><%s.event%></td>
                     <td class="text-center"><%s.kind%></td>
-                    <td class="text-center"><%s.eventstate%></td>
+                    <td class="text-center"><div ng-if="s.eventstate == 0">{{trans('dashboard.eventstate0')}}</div><div ng-if="s.eventstate == 1">{{trans('dashboard.eventstate1')}}</div></td>
                     <td class="text-center">
                       <a  href="" ng-if="s.eventstate == 1" ng-click="getTaskSponzorPeak(s.idRelSponzoring,s.eventId,s.idpeak)">
                       <i class="fa fa-tasks"></i></a>
-                      <a href="" ng-click="removeRelSponzorPeak(s.idRelSponzoring)"><i class="fa fa-trash-o"></i></a>
                     </td>
                   </tr>
                 </tbody>

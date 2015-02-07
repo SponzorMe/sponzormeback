@@ -519,15 +519,13 @@ class ApiController extends BaseController {
 				$relSponzor->state=$newState;
 				$relSponzor->save();
 				$noPeak=false;
-			}			
-			//Aca es donde se actializa el estado de aprobación o no del sponzor.
-			Pusherer::trigger('events-channel', 'Sponzoring', 
-				array( 
-					'type' => "UpdateSponzorToEvent", 
-					'peakId'=>$idRelSponzor, 
-					'state'=>$newState,
-					'sponzorId'=>$relSponzor->idsponzor 
-					));
+			}		
+			$event=Events::find($relSponzor->idevent);//Obtenemos la información del evento			
+			$organizer=UserCustomization::find($event->organizer);//Sacamos los datos de organizador para enviarcelos al sponzor
+			
+			$sponzor=DB::table('rel_sponzors_events')
+			->join('users', 'rel_sponzors_events.idsponzor', '=', 'users.id')
+			->where("rel_sponzors_events.id","=",$idRelSponzor)->get();//conseguimos el id y el email del sponzor para notificarlo.
 			//Si el estado se convierte en 1, porque el organizador lo aprobó entonces creamos la relacion con los todo 
 			if($newState==1 and !$noPeak) //siempre y cuando el estado anterior no haya sido uno.
 			{
@@ -540,10 +538,54 @@ class ApiController extends BaseController {
 						0,
 						$p->event_id,
 						$idRelSponzor);//Creamos los todos asociados al peak
-				}			
+				}							
+				Pusherer::trigger('events-channel', 'Sponzoring', //Aca configuramos la notificación de aceptación al sponzor.
+				array( 
+					'type' => "UpdateSponzorToEvent", 
+					'peakId'=>$idRelSponzor, 
+					'state'=>$newState,
+					'sponzorId'=>$relSponzor->idsponzor,
+					'message'=>Lang::get('dashboard.NotificationOrganizerSponzorAceptance', array('titleEvent'=>$event->title))
+					));
+				$sponzorEmail=$sponzor[0]->email;
+				$title=$event->title;
+				//Procedemos a enviar el email al sponzor diciendole que se acepto el patrocinio del evento
+				Mail::send('emails.OrganizerSponzorAceptance', 
+					array(
+						'eventTitle' => $event->title,
+						'organizerEmail' => $organizer->email,
+						'organizerName' => $organizer->name
+						), 
+					function($message) use ($sponzorEmail,$title)
+					{
+					    $message->to("$sponzorEmail", "SponzorMe")->subject(Lang::get('dashboard.OrganizerSponzorAceptanceEmailNotification', array('titleEvent'=>$title)));
+					}
+				);	
 			}
-			elseif($newState==0)
+			elseif($newState==0)//Si lo que ocurrio fue que el organizador desacepto un patrocinio
 			{
+				Pusherer::trigger('events-channel', 'Sponzoring', //Aca configuramos la notificación de aceptación al sponzor.
+				array( 
+					'type' => "UpdateSponzorToEvent", 
+					'peakId'=>$idRelSponzor, 
+					'state'=>$newState,
+					'sponzorId'=>$relSponzor->idsponzor,
+					'message'=>Lang::get('dashboard.NotificationOrganizerSponzorDesaceptance', array('titleEvent'=>$event->title))
+					));
+				$sponzorEmail=$sponzor[0]->email;
+				$title=$event->title;
+				//Procedemos a enviar el email al sponzor diciendole que se desacepto el patrocinio del evento
+				Mail::send('emails.OrganizerSponzorAceptance', 
+					array(
+						'eventTitle' => $event->title,
+						'organizerEmail' => $organizer->email,
+						'organizerName' => $organizer->name
+						), 
+					function($message) use ($sponzorEmail,$title)
+					{
+					    $message->to("$sponzorEmail", "SponzorMe")->subject(Lang::get('dashboard.OrganizerSponzorDesaceptanceEmailNotification', array('titleEvent'=>$title)));
+					}
+				);	
 				TaskBySponzor::where('sponzor_event_id', '=', $idRelSponzor)->delete(); //Borramos la relacion de los todos al relsponzor
 			}
 			else
@@ -754,6 +796,8 @@ class ApiController extends BaseController {
 		$organizer=DB::table('events')
 		->join('users', 'events.organizer', '=', 'users.id')
 		->where("events.id","=",$peak->id_event)->get();
+
+		$event=Events::find($peak->id_event);
 		//Enviamos la notificación via pusher
 		Pusherer::trigger('events-channel', 'New-Sponzoring', 
 			array( 
@@ -763,7 +807,8 @@ class ApiController extends BaseController {
 				'eventId'		=>$peak->id_event,
 				'peakId'		=>$peak->id,
 				'relPeakId'		=>$rel->id,
-				'organizerId'	=>$organizer[0]->id
+				'organizerId'	=>$organizer[0]->id,
+				'message'		=>Lang::get('dashboard.NotificationNewSponzorAnEvent', array('titleEvent'=>$event->title))
 				)
 		);
 		$organizerEmail=$organizer[0]->email;

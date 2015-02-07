@@ -24,7 +24,7 @@
   <script src="{{ asset('components/angular-bootstrap/ui-bootstrap-tpls.min.js')}}"></script>
   <script src="{{ asset('components/angular-ui-router/release/angular-ui-router.min.js')}}"></script>
   <script src="{{ asset('components/ngDialog/js/ngDialog.min.js')}}"></script>
-  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+  <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
   <script src="{{ asset('components/ngAutocomplete/src/ngAutocomplete.js')}}"></script>
   <script src="{{ asset('components/angular-sanitize/angular-sanitize.min.js')}}"></script>
   <script src="{{ asset('components/angular-file-upload/angular-file-upload.min.js')}}"></script>  <!--Date timer-->
@@ -36,25 +36,8 @@
   <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script><!-- Pusher Service -->
   <script type="text/javascript">
 
-    var pusher = new Pusher('d88e93903c0ddc65df8c');
-    var eventsChannel = pusher.subscribe('events-channel');
-    eventsChannel.bind('New-Sponzoring', function(data) {
-      if(data.organizerId=={{ Session::get('userId') }})
-      {
-        alert("omg alguien ha patrocinado un evento tuyo.");
-      }
-    });
-    eventsChannel.bind('Sponzoring', function(data) {
-      console.log(data);
-    });
+    
 
-  </script>
-  <script type="text/javascript">
-    var pusher = new Pusher('d88e93903c0ddc65df8c');
-    var channel = pusher.subscribe('test_channel');
-    channel.bind('my_event', function(data) {
-      alert(data.message);
-    });
   </script>
 </head>
 <!--Navegación y encabezado-->
@@ -124,8 +107,9 @@
           <div class="col-xs-12">
             <div class="user pull-right">
 
-              <div class="item dropdown" dropdown is-open="status.isopen"> 
-                <a href="#" class="dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+              <div class="item dropdown" dropdown is-open="status.isopen">
+                <a href="" class="dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+
                   <img src="{{ asset('images/photo.png')}}">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -148,7 +132,7 @@
                 </ul>
               </div>
               <div class="item dropdown" dropdown>
-               <a href="#" class="dropdown-toggle" dropdown-toggle>
+                <a href="" class="dropdown-toggle" dropdown-toggle>
                   <i class="fa fa-bell-o"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right" role="menu">

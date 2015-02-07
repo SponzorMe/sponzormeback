@@ -301,4 +301,21 @@ return array(
 
 	"addSponzorTodo" => "Add Task",
 
+	/*
+	|--------------------------------------------------------------------------
+	| Messages for pusher notifications
+	|--------------------------------------------------------------------------
+	*/
+
+	"NotificationNewSponzorAnEvent"=> 'You have a new Sponzor for the event <a href="#/sponzors"> :titleEvent </a>',
+
+	"NotificationOrganizerSponzorAceptance" => 'The organizer has accepted your sponzoring in the event <a href="#/sponzors">:titleEvent</a>',
+
+	"OrganizerSponzorAceptanceEmailNotification"=> 'You sponzoring by the event :titleEvent has been accepted',
+
+	"NotificationOrganizerSponzorDesaceptance"=>'You sponzoring by the event <a href="#/sponzors"> :titleEvent </a> has been not accepted',
+
+	"OrganizerSponzorDesaceptanceEmailNotification"=>'You sponzoring by the event :titleEvent has been not accepted',
+
+
 );

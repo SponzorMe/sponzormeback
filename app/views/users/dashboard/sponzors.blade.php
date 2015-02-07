@@ -1,7 +1,6 @@
 <!--Template asociado a los sponzors-->
   <script type="text/ng-template" id="sponzors.html">
-  <input type="hidden" ng-model="event.organizer" ng-init="event.organizer = {{ Session::get('userId') }}" /> 
-    <div class="row">
+    <div class="row" data-ng-controller="sponzorsController">
       <div class="col-lg-10 col-lg-offset-1">      
         <div class="widget">
           <div class="widget-header">
@@ -9,7 +8,7 @@
           </div>
           <div class="widget-body medium no-padding">
             <div class="table-responsive">
-              <table class="table table-striped" data-ng-controller="sponzorsController">
+              <table class="table table-striped" >
                 <thead>
                   <tr>
                     <th class="text-center">{{trans('dashboard.name')}}</th>
@@ -37,7 +36,7 @@
                         </div>
                       </div>
                       <a  href="" ng-if="s.eventstate == 1" ng-click="getTaskSponzorPeak(s.idRelSponzoring)"><i class="fa fa-tasks"></i></a>
-                      <a href="" ng-click="removeRelSponzorPeak(s.idRelSponzoring)"><i class="fa fa-trash-o"></i></a>
+                      <a href="" ng-if="s.eventstate == 0" ng-click="removeRelSponzorPeak(s.idRelSponzoring)"><i class="fa fa-trash-o"></i></a>
                     </td>
                   </tr>
                 </tbody>
@@ -48,7 +47,7 @@
         </div>
 
         <!-- A partir de aca se muestran las notas de acuerdo al peak y al sponzor seleccionado -->
-      <div class="row" data-ng-controller="sponzorsController">
+      <div class="row">
       <div class="col-lg-10 col-lg-offset-1">
         <div class="widget">
           <div class="widget-header">

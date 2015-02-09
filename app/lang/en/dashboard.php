@@ -311,11 +311,18 @@ return array(
 
 	"NotificationOrganizerSponzorAceptance" => 'The organizer has accepted your sponzoring in the event <a href="#/sponzors">:titleEvent</a>',
 
-	"OrganizerSponzorAceptanceEmailNotification"=> 'You sponzoring by the event :titleEvent has been accepted',
+	"OrganizerSponzorAceptanceEmailNotification"=> 'Your sponzoring by the event :titleEvent has been accepted',
 
-	"NotificationOrganizerSponzorDesaceptance"=>'You sponzoring by the event <a href="#/sponzors"> :titleEvent </a> has been not accepted',
+	"NotificationOrganizerSponzorDesaceptance"=>'Your sponzoring by the event <a href="#/sponzors"> :titleEvent </a> has been not accepted',
 
-	"OrganizerSponzorDesaceptanceEmailNotification"=>'You sponzoring by the event :titleEvent has been not accepted',
+	"OrganizerSponzorDesaceptanceEmailNotification"=>'Your sponzoring by the event :titleEvent has been not accepted',
 
+	"NotificationSponzorDelete"=>'Your sponzoring by the event :titleEvent has been not accepted and has been removed',
+
+	"NotificationOrganizerDelete"=>'The sponzoring by the event :titleEvent has been removed by the sponzor',
+
+	"NotificationSponzorDeleteEmailNotification"=> 'Your sponzoring by the event :titleEvent has been not accepted and has been removed',
+
+	"NotificationOrganizerDeleteEmailNotification"=>'The sponzoring by the event :titleEvent has been removed by the sponzor',
 
 );

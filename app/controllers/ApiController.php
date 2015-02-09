@@ -602,19 +602,59 @@ class ApiController extends BaseController {
 	}
 	public function removeRelSponzorPeak($idRelSponzor){
 		try{
-		$rel=RelSponzorsEvents::where('id', '=', $idRelSponzor)->take(1)->get();
-		$event=Events::where('id', '=', $rel[0]->idevent)->take(1)->get();
-		RelSponzorsEvents::where('id', '=', $idRelSponzor)->delete(); //Borramos la relacion de los peaks.
-		TaskBySponzor::where('sponzor_event_id', '=', $idRelSponzor)->delete(); //Borramos la relacion de los todos al relsponzor
-		Pusherer::trigger('events-channel', 'Sponzoring', 
-		array( 
-			'type' => "RemoveSponzorToEvent", 
-			'peakId'=>$idRelSponzor,
-			'sponzorId'=>$rel[0]->idsponzor,
-			'organizerId'=>$event[0]->organizer,
-			'eventId'=>$event[0]->id
-		));//Actualizamos a pusher
-		return Response::json(array("success" => true,"status"=>"Authenticated","message"=>"Removed Succesfuly"));
+			$rel=RelSponzorsEvents::where('id', '=', $idRelSponzor)->take(1)->get();
+			$event=Events::where('id', '=', $rel[0]->idevent)->take(1)->get();
+			$user=Sentry::getUser();//Obtenemos el usuario que hizo la peticion para saber si es organizer o sponzor
+			$organizer=UserCustomization::find($event[0]->organizer); //Obtenemos el organizer
+			$sponzor=UserCustomization::find($rel[0]->idsponzor);//Obtenemos el sponzor
+			if($user->id==$event[0]->organizer) {//Si es el id del organizer
+				$message=Lang::get('dashboard.NotificationSponzorDelete', array('titleEvent'=>$event[0]->title));//fue el organizer quien lo elminó
+				$email=$sponzor->email;//Sacamos el email
+				$bandera=true;//Para saber a quien le enviamos el email
+			}
+			else{
+				$message=Lang::get('dashboard.NotificationOrganizerDelete', array('titleEvent'=>$event[0]->title));//fue el sponzor quien lo elminó
+				$email=$organizer->email;//Sacamos el email
+				$bandera=false;//Para saber a quien le enviamos el email				
+			}
+			RelSponzorsEvents::where('id', '=', $idRelSponzor)->delete(); //Borramos la relacion de los peaks.
+			TaskBySponzor::where('sponzor_event_id', '=', $idRelSponzor)->delete(); //Borramos la relacion de todas las tareas al relsponzor
+			Pusherer::trigger('events-channel', 'Sponzoring', 
+				array( 
+					'type' 			=> "RemoveSponzorToEvent", 
+					'peakId'		=> $idRelSponzor,
+					'sponzorId'		=> $rel[0]->idsponzor,
+					'organizerId'	=> $event[0]->organizer,
+					'eventId'		=> $event[0]->id,
+					'message'		=> $message
+				)
+			);			
+			$title=$event[0]->title;//Sacamos el titulo del evento
+			if($bandera){//Si bandera == true es porque se lo mandamos al sponzor
+				Mail::send('emails.sponzorSponzoringDelete', 
+					array(
+						'eventTitle' => $event[0]->title,
+						'organizerEmail' => $organizer->email,
+						'organizerName' => $organizer->name
+						), 
+					function($message) use ($email,$title){
+						$message->to("$email", "SponzorMe")->subject(Lang::get('dashboard.NotificationSponzorDeleteEmailNotification', array('titleEvent'=>$title)));
+					}
+				);
+			}
+			else{//Si bandera == false es porque se lo mandamos al organizador
+				Mail::send('emails.organizerSponzoringDelete', 
+					array(
+						'eventTitle' => $event[0]->title,
+						'sponzorEmail' => $sponzor->email,
+						'sponzorName' => $sponzor->name
+						), 
+					function($message) use ($email,$title){
+						$message->to("$email", "SponzorMe")->subject(Lang::get('dashboard.NotificationOrganizerDeleteEmailNotification', array('titleEvent'=>$title)));
+					}
+				);
+			}
+			return Response::json(array("success" => true,"status"=>"Authenticated","message"=>"Removed Succesfuly"));
 		}
 		catch (Exception $e)
 		{

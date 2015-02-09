@@ -33,12 +33,7 @@
   <script type="text/javascript" src="{{ asset('components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js')}}"></script>
   <script src="{{ asset('js/dashboard.js')}}"></script><!--controller principal-->
   <script src="{{ asset('js/services/customizationService.js') }}"></script><!-- load our service -->
-  <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script><!-- Pusher Service -->
-  <script type="text/javascript">
-
-    
-
-  </script>
+  <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script>
 </head>
 <!--Navegación y encabezado-->
 @if (Sentry::check())

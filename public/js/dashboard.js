@@ -27,7 +27,6 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
         .state('sponzors', {
             url: '/sponzors',
             templateUrl: 'sponzors.html',
-            controller: 'sponzorsController'
         })
         .state('settings', {
             url: '/settings',
@@ -117,6 +116,27 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     window.onresize = function() {
         $scope.$apply();
     };
+    /*
+    |--------------------------------------------------------------------------
+    | Messages and events for pusher notifications
+    |--------------------------------------------------------------------------
+    */
+    var pusher = new Pusher('d88e93903c0ddc65df8c');
+    var eventsChannel = pusher.subscribe('events-channel');
+    //Si un patrocinador patrocina un evento del organizador.
+    eventsChannel.bind('New-Sponzoring', function(data) {
+      if(data.organizerId==$scope.event.organizer){
+        $scope.alerts.push({msg: unescape(data.message)});
+      }
+    });
+    //Cuando un organizador acepta el patrocinio de un patrocinador
+    eventsChannel.bind('Sponzoring', function(data) {
+      console.log(data);
+      if(data.sponzorId==$scope.event.sponzor)
+      {
+        $scope.alerts.push({msg: unescape(data.message)});
+      }
+    });
 }
 /**
 * Indicadores Controller

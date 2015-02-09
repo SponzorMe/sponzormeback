@@ -672,15 +672,10 @@ class ApiController extends BaseController {
 	{
 		return Response::json(InterestsCategories::where("lang",'=',$lang)->get());
 	}
-	public function createThumb($imagePath,$eventId,$extension)
+	public function createEventThumb($imagePath,$eventId,$extension)
 	{
 		$img = Image::make($imagePath)->resize(450, 450);
     	$img->save("images/events/thumbs/thumb_event_".$eventId.".".$extension);
-	}
-	public function imageTest()
-	{
-		$img = Image::make("images/events/event_95.JPG")->resize(450, 450);
-    	$img->save("images/events/thumbs/thumb_event_S.png");
 	}
 	public function eventUploadImage($eventId)
 	{
@@ -692,14 +687,38 @@ class ApiController extends BaseController {
 			$event=Events::find($eventId);
 			$event->image="event_".$eventId.".".$extension;
 			$event->save();
-			$this->createThumb("images/events/event_".$eventId.".".$extension,$eventId,$extension);
+			$this->createEventThumb("images/events/event_".$eventId.".".$extension,$eventId,$extension);
 			return Response::json(array("success" => true,"path"=>"event_".$eventId.".".$extension));
 		}
 		catch(Exception $e)
 		{
-			return Response::json(array("success" => false));
+			return Response::json(array("success" => false,'message'=>$e->getMessage())); //Devolvemos la respues de error.
+		}		
+	}	
+	public function userUploadImage($userId){ //Funcion para subir la imagen de los usuarios
+		try
+		{
+			$file = Input::file('file'); //Obtenemos la imagen
+			if(empty($file))
+				return Response::json(array("success" => false,'message'=>"image is required"));
+			else{
+			$extension=Input::file('file')->getClientOriginalExtension(); //Obtenemos la extensión del archivo
+			Input::file('file')->move("images/users/", "user_".$userId.".".$extension);//Movemos el archivo
+			$event=UserCustomization::find($userId);//Encontramos el usuario
+			$event->image="user_".$userId.".".$extension;//Asignamos la imagen
+			$event->save();//guardamos en la base de datos
+			$this->createUserThumb("images/users/user_".$userId.".".$extension,$userId,$extension);//llamamos a la funcion que hace el thumb
+			return Response::json(array("success" => true,"path"=>"user_".$userId.".".$extension));//devolvemos la respuesta
+			}
 		}
-		
+		catch(Exception $e) //Si hay algun error
+		{
+			return Response::json(array("success" => false,'message'=>$e->getMessage())); //Devolvemos la respues de error.
+		}		
+	}
+	public function createUserThumb($imagePath,$userId,$extension){
+		$img = Image::make($imagePath)->resize(450, 450); //Cambiamos el tamaño de la imagen
+    	$img->save("images/users/thumbs/thumb_user_".$userId.".".$extension); //Guardamos la imagen en el path de thumbs
 	}
 	public function createEvent()
 	{

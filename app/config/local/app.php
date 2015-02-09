@@ -25,7 +25,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost/sponzorme',
+	'url' => 'https://localhost/sponzorme',
 
 	/*
 	|--------------------------------------------------------------------------

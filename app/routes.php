@@ -111,7 +111,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::post('create/event', 'ApiController@createEvent'); //Create an Event
 
-	Route::post('event/upload/image/{eventId}', 'ApiController@eventUploadImage'); //Create an Event
+	Route::post('event/upload/image/{eventId}', 'ApiController@eventUploadImage'); //Upload the image for the event
+
+	Route::post('user/upload/image/{userId}', 'ApiController@userUploadImage'); //Upload the image for the user
 
 	Route::post('sponzor/event', 'ApiController@sponzorAnEvent'); //Functionality to set a peak
 

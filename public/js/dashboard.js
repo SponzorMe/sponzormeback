@@ -27,6 +27,7 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
         .state('sponzors', {
             url: '/sponzors',
             templateUrl: 'sponzors.html',
+            controller: 'sponzorsController'
         })
         .state('settings', {
             url: '/settings',
@@ -58,7 +59,7 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
 /**
  * Master Controller
  */
-angular.module('Dashboard').controller('MasterCtrl', ['$scope', '$cookieStore', MasterCtrl]);
+angular.module('Dashboard').controller('MasterCtrl', ['$scope', '$cookieStore', 'Customization', MasterCtrl]);
 
 function MasterCtrl($scope, $cookieStore, Customization) {    
     //--Start Global Variables--//
@@ -88,6 +89,8 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     $scope.temp                 = {'image':""};
     $scope.todo                 = {'list':"",'title':"",'description':"",'event':"",'peak':"",'eventId':"",'listSponzor':"",'currentRelPeak':0,'currentEvent':""};
     //--End GLobal Variables--//
+    $scope.accountheader = {};
+    $scope.accountheader.image = "";
 
     var mobileView = 992;
 
@@ -116,27 +119,60 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     window.onresize = function() {
         $scope.$apply();
     };
-    /*
-    |--------------------------------------------------------------------------
-    | Messages and events for pusher notifications
-    |--------------------------------------------------------------------------
-    */
-    var pusher = new Pusher('d88e93903c0ddc65df8c');
-    var eventsChannel = pusher.subscribe('events-channel');
-    //Si un patrocinador patrocina un evento del organizador.
-    eventsChannel.bind('New-Sponzoring', function(data) {
-      if(data.organizerId==$scope.event.organizer){
-        $scope.alerts.push({msg: unescape(data.message)});
-      }
-    });
-    //Cuando un organizador acepta el patrocinio de un patrocinador
-    eventsChannel.bind('Sponzoring', function(data) {
-      console.log(data);
-      if(data.sponzorId==$scope.event.sponzor)
-      {
-        $scope.alerts.push({msg: unescape(data.message)});
-      }
-    });
+
+    $scope.viewUserInfoheader = function(){
+        
+        $scope.accountheader.loadingEventbrite=false;
+        Customization.getUserInfo($scope.event.organizer).success(function(adata){
+            $scope.accountheader.description=adata.User[0].description;
+            var urlimage = $scope.pathheader();
+            if(adata.User[0].image != ""){
+                $scope.accountheader.image=urlimage+'/images/users/'+adata.User[0].image;
+            }else{
+                $scope.accountheader.image=urlimage+'/images/photo.png';
+            }
+            $scope.accountheader.name=adata.User[0].name;
+            $scope.accountheader.age=adata.User[0].age;
+            $scope.accountheader.sex=adata.User[0].sex;
+            $scope.accountheader.company=adata.User[0].company;
+            $scope.accountheader.email=adata.User[0].email;
+            $scope.accountheader.location=adata.User[0].location;
+            $scope.accountheader.location_reference=adata.User[0].location_reference;
+            $scope.accountheader.eventbriteKey=adata.User[0].eventbriteKey;
+            $scope.accountheader.meetupRefreshKey=adata.User[0].meetupRefreshKey;
+            if(adata.User[0].eventbriteKey!=undefined && adata.User[0].eventbriteKey.trim()!="")
+            {
+                Customization.getEventbriteEvents(adata.User[0].eventbriteKey).success(function(data){
+                     $scope.eventbriteevents.list=data.Events.events;
+                     $scope.accountheader.loadingEventbrite=true;
+                });
+            }        
+        $scope.accountheader.loadingGroupsMeetup=false;
+       if($scope.accountheader.meetupRefreshKey!=undefined && $scope.accountheader.meetupRefreshKey.trim()!="")
+        {
+            Customization.getMeetupGroups($scope.accountheader.meetupRefreshKey).success(function(data){
+                 $scope.meetupgroups.list=data.Groups.results;
+                 $scope.accountheader.meetupRefreshKey=data.refresh_token;
+                 $scope.accountheader.loadingGroupsMeetup=true;
+            });
+        }
+        
+        });
+    }
+
+    $scope.pathheader = function()
+    {
+        var newURL = window.location.host + "/" + window.location.pathname;
+        var pathArray = newURL.split( '/' );
+        var newPathname = "";
+        for (i = 0; i < pathArray.length-2; i++) {
+            if(pathArray[i]!="")
+                newPathname += pathArray[i]+"/";
+        }       
+        newPathname=window.location.protocol + "//"+ newPathname;
+        var path = newPathname;
+        return path;
+    }
 }
 /**
 * Indicadores Controller
@@ -363,6 +399,7 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
         ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope });
         };
         uploader.onAfterAddingFile = function(fileItem) {
+        console.info('onAfterAddingFile', fileItem);
         $scope.imageReady=true;
         };
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
@@ -435,12 +472,54 @@ function sponzorsController($scope,$Cookie,Customization){
         });
     }
 }
-angular.module('Dashboard').controller('settingsController', ['$scope', '$cookieStore', 'Customization',settingsController]);
-function settingsController($scope,$Cookie,Customization){
+angular.module('Dashboard').controller('settingsController', ['$scope', '$cookieStore', 'Customization','FileUploader','ngDialog',settingsController]);
+function settingsController($scope,$Cookie,Customization, FileUploader, ngDialog){
+    
+    var uploader = $scope.uploader = new FileUploader();
+    uploader.filters.push({
+        name: 'imageFilter',
+        fn: function(item /*{File|FileLikeObject}*/, options) {
+            var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+            return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+        }
+    });
+
+    uploader.onAfterAddingFile = function(fileItem) {
+        //console.info('onAfterAddingFile', fileItem);
+    };
+    
+    $scope.path = function()
+    {
+        var newURL = window.location.host + "/" + window.location.pathname;
+        var pathArray = newURL.split( '/' );
+        var newPathname = "";
+        for (i = 0; i < pathArray.length-2; i++) {
+            if(pathArray[i]!="")
+                newPathname += pathArray[i]+"/";
+        }       
+        newPathname=window.location.protocol + "//"+ newPathname;
+        var path = newPathname;
+        return path;
+    }
+
+    var urlimage = $scope.path();
+            
+    $scope.imageReady=false;
+
+    
+
+
     $scope.viewUserInfo = function(){
         $scope.account.loadingEventbrite=false;
         Customization.getUserInfo($scope.event.organizer).success(function(adata){
             $scope.account.description=adata.User[0].description;
+            
+            if(adata.User[0].image != ""){
+                $scope.account.image=urlimage+'/images/users/'+adata.User[0].image;
+            }else{
+                $scope.account.image=urlimage+'/images/photo.png';
+            }
+            
             $scope.account.name=adata.User[0].name;
             $scope.account.age=adata.User[0].age;
             $scope.account.sex=adata.User[0].sex;
@@ -502,7 +581,7 @@ function settingsController($scope,$Cookie,Customization){
             .success(function(data)
             {
                 $scope.viewUserInfo();
-            }); 
+            });        
     }
     $scope.unconnectEventbrite = function()
     {
@@ -521,6 +600,7 @@ function settingsController($scope,$Cookie,Customization){
         $scope.newevent.location=e.venue.address_1+", " +e.venue.name+", " +e.venue.city;
         $scope.b=true;
     }
+    
     $scope.editAccount = function(){        
         //**Acá se hacen las validaciones de las reglas del formulario
         if(angular.isUndefined($scope.details2.reference) && 
@@ -531,9 +611,44 @@ function settingsController($scope,$Cookie,Customization){
         }
         else
         {
+
+            path=$scope.path();
+            if(uploader.queue[0] != undefined){
+                uploader.queue[0].url=path+'api/v1/user/upload/image/'+$scope.event.organizer;
+                uploader.uploadAll(); //Subo la imagen
+
+                uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter,  options) {
+                    console.info('onWhenAddingFileFailed', item, filter, options);
+                    $scope.message="errorImage";
+                    ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope });
+                };
+                uploader.onAfterAddingFile = function(fileItem) {
+                    console.info('onAfterAddingFile', fileItem);
+                    $scope.imageReady=true;
+                };
+                uploader.onCompleteItem = function(fileItem, response, status, headers) {
+                    if(response.success)
+                    {
+                        $scope.imageReady=true;
+                        $scope.imagePath=response.path;
+                        $scope.account.image = response.path;
+                        console.log(response.path);
+                        $scope.accountheader.image = urlimage+'/images/users/'+response.path;
+                        $scope.event.message="La imagen se actualizo satisfactoriamente";
+                        ngDialog.open({ template: 'successevent.html', controller: 'settingsController', scope: $scope });
+                        uploader.clearQueue();
+                        document.getElementById("imageInput").value = "";
+                    }                
+                };
+            }
+
+
+            
+
             $scope.account.userId=$scope.event.organizer;
             var a= {
                 "description":$scope.account.description,
+                "image":$scope.account.image,
                 "name":$scope.account.name,
                 "sex":$scope.account.sex,
                 "age":$scope.account.age,
@@ -544,11 +659,16 @@ function settingsController($scope,$Cookie,Customization){
                 "comunity_size":$scope.account.comunitSize,
                 "userId":$scope.event.organizer
             };
+            console.log(a);
             Customization.editAccount(a).success(function(adata){
                     $scope.alerts.push({msg: adata.message});
                     $scope.viewUserInfo();
             });
         }
+
+        
+        
+
     }
     $scope.viewUserInfo();
 }
@@ -657,6 +777,7 @@ function sponzoringController($scope,$Cookie,$location,Customization,ngDialog){
     }
     $scope.addTodo = function ()
     {
+        console.log("e"+$scope.todo.currentEvent,"peak"+$scope.todo.currentRelPeak);
         Customization.setPeakTodo(
         $scope.todo.title,
         $scope.todo.description,
@@ -677,6 +798,7 @@ function sponzoringController($scope,$Cookie,$location,Customization,ngDialog){
     }
     $scope.removeTaskSponzorPeak = function (idTaskSponzor, relPeak){
         Customization.removeTaskSponzorPeak(idTaskSponzor).success(function(adata){
+            console.log(adata);
         $scope.getTaskSponzorPeak(relPeak,$scope.todo.currentEvent); 
         });
     }

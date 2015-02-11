@@ -32,7 +32,7 @@
   <script type="text/javascript" src="{{ asset('components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js')}}"></script>
   <script src="{{ asset('js/dashboard.js')}}"></script><!--controller principal-->
   <script src="{{ asset('js/services/customizationService.js') }}"></script><!-- load our service -->
-  <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script><!-- Pusher Service -->
+  <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript" async="async"></script><!-- Pusher Service -->
 </head>
 @if (Sentry::check())
 <body ng-controller="MasterCtrl">
@@ -93,14 +93,15 @@
           <div class="col-xs-12">
             <div class="user pull-right">
               <div class="item dropdown" dropdown is-open="status.isopen">
+                <input type="hidden" ng-model="event.organizer" ng-init="event.organizer = {{ Session::get('userId') }}" />
+                    <input type="hidden" ng-model="event.sponzor" ng-init="event.sponzor = {{ Session::get('userId') }}" />  
                 <a href="" class="dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-                  <img src="{{ asset('images/photo.png')}}">
+                  <input type="hidden" data-ng-init="viewUserInfoheader()" />
+                   <img data-ng-src="<%accountheader.image%>" style="border-radius:50%;" src="{{ asset('images/photo.png')}}">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
                   <li class="dropdown-header">
-                    {{ Session::get('email') }}                     
-                    <input type="hidden" ng-model="event.organizer" ng-init="event.organizer = {{ Session::get('userId') }}" />
-                    <input type="hidden" ng-model="event.sponzor" ng-init="event.sponzor = {{ Session::get('userId') }}" />                   
+                    {{ Session::get('email') }}                                       
                   </li>
                   <li class="divider"></li>
                   <li class="link">

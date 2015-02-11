@@ -81,6 +81,21 @@
                 <textarea rows="5" data-ng-model="account.description" name="description" class="form-control"></textarea>
               </div>
             </div>
+            <div class="form-group">
+
+                <div class="col-sm-12">
+                  <label class="col-sm-2 control-label" for="label">Imagen</label>
+                  <div class="col-sm-5">
+                    <div style="height:120px; wigth:120px;">
+                       <img ng-src="<%account.image%>" style="border-radius:50%; height:120px; wigth:120px;"> 
+                    </div>
+                    <div style="margin:25px;">
+                      <input type="file" id="imageInput" nv-file-select uploader="uploader"/>
+                    </div>
+                  </div>
+                <div>               
+            </div>
+          <div class="clearfix"></div>
             <div class="clearfix"></div>
             <hr/>
             <!--form field-->
@@ -93,3 +108,12 @@
         </div>
       </div>      
   </script>
+
+  <script type="text/ng-template" id="successevent.html">
+    <div class="text-center">
+      <h3><% event.message %></h3>
+    </div>
+    <div class="ngdialog-buttons text-center">
+      <button class="btn btn-danger" ng-click="closeThisDialog()"><i class="fa fa-times"></i> {{trans('dashboard.close')}}</button>
+    </div>
+</script>

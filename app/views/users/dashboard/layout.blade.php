@@ -34,11 +34,6 @@
   <script src="{{ asset('js/dashboard.js')}}"></script><!--controller principal-->
   <script src="{{ asset('js/services/customizationService.js') }}"></script><!-- load our service -->
   <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript" async="async"></script><!-- Pusher Service -->
-  <script type="text/javascript">
-
-    
-
-  </script>
 </head>
 <!--Navegación y encabezado-->
 @if (Sentry::check())
@@ -158,7 +153,13 @@
           </div>
         </div>
         <!-- End Header Bar -->
-
+        <!--Alertas-->
+        <div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
+          <div class="col-xs-12">
+            <alert data-ng-repeat="alert in alerts" type="<% alert.type %>" close="closeAlert($index)">
+            <%alert.msg %></alert>
+          </div>
+        </div>
         <!-- Main Content -->
         <section data-ui-view></section>
       </div><!-- End Page Content -->

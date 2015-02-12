@@ -143,7 +143,13 @@
           </div>
         </div>
          <!-- End Header Bar -->
-
+         <!--Alerts Div-->
+        <div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
+          <div class="col-xs-12">
+            <alert data-ng-repeat="alert in alerts" type="<% alert.type %>" close="closeAlert($index)">
+            <%alert.msg %></alert>
+          </div>
+        </div>
         <!-- Main Content -->
         <section data-ui-view></section>
       </div><!-- End Page Content -->

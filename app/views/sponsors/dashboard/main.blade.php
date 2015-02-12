@@ -1,11 +1,5 @@
 <!--Template asociado al dashboard principal-->
   <script type="text/ng-template" id="dashboard.html">
-    <div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
-      <div class="col-xs-12">
-        <alert data-ng-repeat="alert in alerts" type="<% alert.type %>" close="closeAlert($index)">
-        <%alert.msg %></alert>
-      </div>
-    </div>
     <div class="row">
       <div class="col-lg-10 col-lg-offset-1  ">
         <h1>{{trans('dashboard.searchtitle')}}</h1>

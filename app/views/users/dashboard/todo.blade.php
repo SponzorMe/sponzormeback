@@ -1,12 +1,5 @@
 <!--Template asociado a hacer todos sobre eventos-->
 <script type="text/ng-template" id="todo.html">
-
-<div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
-      <div class="col-xs-12">
-        <alert data-ng-repeat="alert in alerts" type="<% alert.type %>" close="closeAlert($index)">
-        <%alert.msg %></alert>
-      </div>
-    </div>
     <div class="row">
       <div class="col-lg-12">
         <div class="widget">

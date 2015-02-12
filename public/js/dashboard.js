@@ -173,6 +173,33 @@ function MasterCtrl($scope, $cookieStore, Customization) {
         var path = newPathname;
         return path;
     }
+    /*
+    |--------------------------------------------------------------------------
+    | Messages and events for pusher notifications
+    |--------------------------------------------------------------------------
+    
+    var pusher = new Pusher('d88e93903c0ddc65df8c');
+    var eventsChannel = pusher.subscribe('events-channel');
+    //Si un patrocinador patrocina un evento del organizador.
+    eventsChannel.bind('New-Sponzoring', function(data) {
+      if(data.organizerId==$scope.event.organizer){
+        $scope.alerts.push({msg: unescape(data.message)});
+      }
+    });
+    //Cuando un organizador acepta el patrocinio de un patrocinador
+    eventsChannel.bind('Sponzoring', function(data) {
+      if(data.sponzorId==$scope.event.sponzor)
+      {
+        $scope.alerts.push({msg: unescape(data.message)});
+      }
+    });
+    //Cuando un sponzor borra el patrocinio de un evento
+    eventsChannel.bind('Sponzoring', function(data) {
+      if(data.organizerId==$scope.event.organizer)
+      {
+        $scope.alerts.push({msg: unescape(data.message)});
+      }
+    });*/
 }
 /**
 * Indicadores Controller

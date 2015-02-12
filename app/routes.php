@@ -70,10 +70,15 @@ Route::get('user/customization', function()
 { return View::make('customization/customization');});
 Route::group(array('prefix' => 'api'), function() {
 	Route::get('categories', 'CustomizationController@getCategories');
+
 	Route::get('interests', 'CustomizationController@getInterests');
+
 	Route::get('interests/categories/{id}', 'CustomizationController@getInterestsByCategories');
+
 	Route::post('update/{id}', 'CustomizationController@update');
+
 	Route::post('save/interests/{id}', 'CustomizationController@saveInterests');
+	
 });
 Route::group(array('prefix' => 'api/v1'), function() {
 
@@ -145,8 +150,6 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::get('meetup/unconnect/{userId}', 'ApiController@unconnectMeetup');
 
-	Route::get('description', 'ApiController@index');
-
 	Route::get('peak/todo/{idPeak}', 'ApiController@getTodo');
 
 	Route::get('peak/todo/remove/{idPeak}', 'ApiController@removeTodo');
@@ -170,8 +173,6 @@ Route::get('event/{eventId}', 'ApiController@eventById');
 Route::get('testimonials', 'HomeController@testimonials'); //testimonials
 
 Route::get('language/{lang}', 'HomeController@setLanguage'); //Language Settings
-
-
 
 App::missing(function($exception)
 {

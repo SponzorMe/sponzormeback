@@ -932,6 +932,7 @@ class ApiController extends BaseController {
 			
 		}
 	}
+	/*Funcion para mostrar la informacion de un evento*/
 	public function eventById($id)
 	{
 		try{
@@ -949,7 +950,25 @@ class ApiController extends BaseController {
 		{
 			return View::make('error404');
 		}
-
+	}
+	/*Funcion que crea solo el formulario de patrocinio por evento, para ser embebido en otra parte*/
+	public function formSponzorEventById($id)
+	{
+		try{
+			$event = Events::where("id",'=',$id)->get();
+			$data["organizer"] = UserCustomization::where("id",'=',$event[0]->organizer)->get();
+			$data["category"] = Category::where("id",'=',$event[0]->type)->get();
+			$data["peaks"] = Peaks::where("id_event",'=',$id)->get();
+			$data["tasks"] = PeakTask::where("event_id",'=',$id)->get();
+			$data["event"]=$event;
+			$events = Events::where("organizer",'=',$event[0]->organizer)->orderBy('starts', 'desc')->take(1)->get();
+			$data["nextEvent"]=$events[0]->starts;
+			return View::make('formSponzorEvent')->with($data);
+		}
+		catch(Exception $e)
+		{
+			return View::make('error404');
+		}
 	}
 	public function saveTodo()
 	{
@@ -1108,5 +1127,95 @@ class ApiController extends BaseController {
 		{
 			return Response::json(array("success" => true,"error"=>true,"Message"=>$e->getMessage()));
 		}
+	}
+	public function storeExternalSponzor()
+	{
+		$company=Input::get("company"); //Obtenemos las variables enviadas por el formulario
+		$name=Input::get("name");
+		$email=Input::get("email");
+		$peak_id=Input::get("peak");	
+		try //Si el usuario ya se encuentra registrado, sigue este flujo
+		{		    
+		    $user = Sentry::findUserByLogin($email); // Encontramos el usuario con el email introducido
+		}
+		catch (Exception $e) //Se dispara cuando el usuario no existe
+		{
+		    $user = Sentry::register(array( //creamos el usuario
+		        'email'    => $email,
+		        'password' => "123456"
+		    ));
+		    $activationCode = $user->getActivationCode(); //Obtenemos el codigo de activación
+		    Event::fire('user.signup', array(  //Enviamos el correo de activacion
+            	'email' => $email, 
+            	'userId' => $user->id, 
+                'activationCode' => $activationCode
+            ));
+            Session::put('userId', $user->id ); //guardamos las sesiones por si acaso
+            Session::put('email', $email );
+            UsersGroups::create(array( //Le asignamos el grupo
+                "user_id" =>$user->id,
+                "group_id"=>6 //6 es el grupo de los sponzors
+            ));//Asignamos el grupo del usuario.
+            $resetCode = $user->getResetPasswordCode(); //Le reseteamos el passowrd
+            Event::fire('user.forgot', array( //Le mandamos el password al correo
+				'email' => $email,
+				'userId' => $user->id,
+				'resetCode' => $resetCode
+			));
+			$user->name=$name;
+			$user->company=$company;
+			$user->save();
+		}
+		if($user->hasAccess('sponsors')){ //Preguntamos si el usuario es realmente un sponzor
+		    	$peakid=$peak_id;
+				$userid=$user->id;
+				$peak=Peaks::find($peakid);
+				$sponzor=UserCustomization::find($userid);
+				$rel=RelSponzorsEvents::create(array(
+					"idsponzor"	=>$userid,
+					"idevent"	=>$peak->id,
+					"rel_peak"	=>$peakid,
+					"state"		=>0
+				));		
+				//conseguimos el id y el email del organizador para notificarlo.
+				$organizer=DB::table('events')
+				->join('users', 'events.organizer', '=', 'users.id')
+				->where("events.id","=",$peak->id_event)->get();
+
+				$event=Events::find($peak->id_event);
+				//Enviamos la notificación via pusher
+				Pusherer::trigger('events-channel', 'New-Sponzoring', 
+					array( 
+						'type' 			=> "AddSponzorToEvent", 
+						'sponzorId'		=>$userid,
+						'kind'			=>$peak->kind,
+						'eventId'		=>$peak->id_event,
+						'peakId'		=>$peak->id,
+						'relPeakId'		=>$rel->id,
+						'organizerId'	=>$organizer[0]->id,
+						'message'		=>Lang::get('dashboard.NotificationNewSponzorAnEvent', array('titleEvent'=>$event->title))
+						)
+				);
+				$organizerEmail=$organizer[0]->email;
+				//Procedemos a enviar el email
+				Mail::send('emails.newSponzor', 
+					array(
+						'eventTitle' => $organizer[0]->title,
+						'sponzoringType' => $peak->kind,
+						'sponzorEmail' => $sponzor->email,
+						'sponzorName' => $sponzor->name
+						), 
+					function($message) use ($organizerEmail)
+					{
+					    $message->to("$organizerEmail", "SponzorMe")->subject(Lang::get('dashboard.newSponzorEmailNotification'));
+					}
+				);
+				echo "<h1>".Lang::get('widget.sponzoringsaveandemailsent')."</h1>";
+		    }
+		    else{
+		    	echo "<h1>".Lang::get('widget.nosponzoremail')."</h1>";
+		    }
+				
+
 	}
 }

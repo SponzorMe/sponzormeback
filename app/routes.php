@@ -165,10 +165,14 @@ Route::group(array('prefix' => 'api/v1'), function() {
 	Route::get('image', 'ApiController@imageTest');
 
 	Route::get('rel_peak/todo/remove/{idRelPeak}', 'ApiController@removeTaskSponzorPeak');
+
+	Route::post('save/external/sponzor', 'ApiController@storeExternalSponzor');
 	
 });
 
 Route::get('event/{eventId}', 'ApiController@eventById');
+
+Route::get('form/event/{eventId}', 'ApiController@formSponzorEventById');
 
 Route::get('testimonials', 'HomeController@testimonials'); //testimonials
 

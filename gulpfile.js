@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
+concat    = require('gulp-concat');
 
 // define plug-ins
 var flatten = require('gulp-flatten');
@@ -60,7 +61,15 @@ gulp.task('libs', function() {
 //sass
 
 gulp.task('sass', function () {
-    gulp.src('public/scss/*.scss')
+    return gulp.src('public/scss/*.scss')
         .pipe(sass())
-        .pipe(gulp.dest(dest_path + '/build/css'));
+        .pipe(gulp.dest(dest_path + '/build/css'))
+        .pipe(concat('style.css'))
+        .pipe(minifycss())
+        .pipe(rename('style.css'))
+        .pipe(gulp.dest(dest_path + '/css'));
 });
+
+gulp.task('default', ['sass','libs']);
+
+

@@ -326,6 +326,11 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
         var path = newPathname;
         return path;
     }
+    $scope.codeWidget = function (eventId)
+    {
+        $scope.eventId=eventId;
+        ngDialog.open({ template: 'codeWidget.html', controller: 'eventsController', scope: $scope });
+    }
     $scope.newEvent = function(){                    
         $scope.newevent.peaks =  $scope.sponzors;
         $scope.newevent.location_reference=$scope.details3.reference;

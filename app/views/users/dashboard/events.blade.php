@@ -199,7 +199,9 @@
                       <a href="" ng-click="editEvent(e.id)"><i class="fa fa-edit"></i></a> 
                       <a href="" ng-click="removeEvent(e.id)"><i class="fa fa-trash-o"></i></a> 
                       <a href="" data-ng-click="event.current = e.id"><i class="fa fa-trophy" ng-show="event.current === e.id"></i></a> 
-                      <a href="" data-ng-click="event.current = e.id"><i class="fa fa-trophy text-danger" ng-show="event.current != e.id"></i></a> 
+                      <a href="" data-ng-click="event.current = e.id"><i class="fa fa-trophy text-danger" ng-show="event.current != e.id"></i></a>
+                      <a href="" ng-click="codeWidget(e.id)"><i class="fa fa-rocket"></i></i></a>  
+                      
                     </td>
                   </tr>
                 </tbody>
@@ -251,6 +253,15 @@
 <script type="text/ng-template" id="generalImage.html">
   <div class="text-center">
     <img src="{{asset('images/events/<% currentImage %>')}}" width="100%" />
+  </div>
+  <div class="ngdialog-buttons text-center">
+    <button class="btn btn-danger" ng-click="closeThisDialog()"><i class="fa fa-times"></i> {{trans('dashboard.close')}}</button>
+  </div>
+</script>
+<script type="text/ng-template" id="codeWidget.html">
+  <div class="text-center">
+  <pre><xmp>
+  <object data="{{URL::to('form/event/<% eventId %>')}}" width="600" height="400">     <embed wmode="transparent" src="{{URL::to('form/event/<% eventId %>')}}" width="600" height="400" /> Error: Embedded data could not be displayed. </object></xmp></pre>    
   </div>
   <div class="ngdialog-buttons text-center">
     <button class="btn btn-danger" ng-click="closeThisDialog()"><i class="fa fa-times"></i> {{trans('dashboard.close')}}</button>

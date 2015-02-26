@@ -13,11 +13,11 @@
 
 App::before(function($request)
 {
-	//https filter
+	/*https filter
 	if( ! Request::secure())
     {
         return Redirect::secure(Request::path());
-    }
+    }*/
 	//Lang filter
 	$lang=Session::get("lang");
 	if(empty($lang))

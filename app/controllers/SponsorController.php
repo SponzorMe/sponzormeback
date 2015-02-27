@@ -58,9 +58,9 @@ class SponsorController extends BaseController {
 	 */
 	public function index()
 	{
-        $sponsors = $this->user->all();
-      
-        return View::make('sponsors.index')->with('sponsors', $sponsors);
+        /*$sponsors = $this->user->all();      
+        return View::make('sponsors.index')->with('sponsors', $sponsors);*/
+        return Redirect::action('SponsorController@dashboard');    
 	}
 
 	/**

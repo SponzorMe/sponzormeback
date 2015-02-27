@@ -58,9 +58,10 @@ class UserController extends BaseController {
 	 */
 	public function index()
 	{
-        $users = $this->user->all();
-      
-        return View::make('users.index')->with('users', $users);
+       /*$users = $this->user->all();      
+        return View::make('users.index')->with('users', $users);*/
+        return Redirect::action('UserController@dashboard');
+
 	}
 
 	/**

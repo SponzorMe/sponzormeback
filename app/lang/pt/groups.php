@@ -8,17 +8,17 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
-	'created' 		=> "Grupo criado.",	
+	'created' 		=> "Grupo criado.",
 
-	'loginreq' 		=> "Entrar campo obrigatório.",
+	'loginreq' 		=> "Entrar campo obrigatório"
 
-	'userexists' 	=> "Usuário já existe.",
+	'userexists' 	=> "usuário já existe.",
 
 	'updated' 		=> "O grupo foi atualizado.",
 
 	'updateproblem' => "Houve um problema ao atualizar o grupo.",
 
-	'namereq' 		=> "Você deve fornecer um nome para o grupo.",
+	'namereq' 	=>	 "Você deve fornecer um nome para o grupo.",
 
 	'groupexists' 	=> "O grupo que você está tentando criar já existe.",
 

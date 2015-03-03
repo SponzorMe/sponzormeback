@@ -12,7 +12,7 @@ return array(
     
     'click'                        => 'Clique Aqui',
 
-    'invitefriend'                 => 'Olá, <br/><br/> Você está convidado a usar <a href="http://sponzor.me">SponzorMe</a>.',
+    'invitefriend'                 => 'Olá, <br/><br/> Você está sendo convidado a usar <a href="http://sponzor.me">SponzorMe</a>.',
 
     'header'                        => '
     <p dir="ltr">
@@ -20,13 +20,13 @@ return array(
     </p>
     <br/>
     <p dir="ltr">
-        Meu nome é Carlos e eu sou o fundador da SponzorMe. Eu só queria entrar em contato com você e dizer obrigado por se juntar! 
-        Eu queria dizer que este projeto nasceu de uma necessidade que eu tinha sempre que organizar um evento e é um problema que muitas 
-        vezes acaba com as comunidades e com o entusiasmo de seus organizadores. Se você tiver tempo eu convido você a ler a nossa entrada, 
+        Meu nome é Carlos e eu sou o fundador da SponzorMe. Eu somente queria entrar em contato com você e dizer obrigado por se juntar!
+        Eu queria dizer que este projeto nasceu de uma necessidade que eu sempre tive de organizar um evento, e este é um problema que muitas 
+        vezes acaba com as comunidades e com o entusiasmo de seus organizadores. Se você tiver tempo eu lhe convido a ler a nossa entrada, 
         onde você pode ver o que motiva a equipe SponzorMe (<a href="http://blogpt.sponzor.me/">http://blogpt.sponzor.me/</a> )
     </p>
     <p dir="ltr">
-        Como você sabe que esta é uma jornada e sabemos que a maioria das coisas, é por isso que vamos precisar da sua ajuda. 
+        Como você sabe que esta é uma jornada e sabemos que a maioria das coisas é, por isso, vamos precisar da sua ajuda. 
         Quaisquer comentários, preocupações, problemas, sugestões. Estou disponível para ouvir.
     </p>
     <br/>
@@ -43,11 +43,11 @@ return array(
     '</p>
     <br/>
     <p dir="ltr">
-    Mais uma vez obrigado por se juntar - É muito bom conhecê-lo :)
+    Mais uma vez obrigado por se juntar! É muito bom conhecê-lo! :)
     </p>
     <br/>
     <p dir="ltr">
-    Um abraço,,
+    Um abraço,
     </p>
     <p>
     Carlos Rojas

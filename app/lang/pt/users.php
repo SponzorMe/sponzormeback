@@ -30,7 +30,7 @@ return array(
 
 	'emailconfirm'	=>	"Verifique se o seu e-mail para o link de confirmação.",
 
-	'emailinfo'		=>	"Verifique se o seu e-mail para obter instruções.",
+	'emailinfo'		=>	"Verifique se o seu e-mail para obter informações.",
 
 	'emailpassword'	=>	"Sua senha foi alterada, verifique seu e-mail para obter mais instruções.",
 
@@ -40,14 +40,14 @@ return array(
 
 	'passwordprob'	=>	"Sua senha não pode ser alterada",
 
-	'oldpassword'	=>	"Senha original incorreto.",
+	'oldpassword'	=>	"Senha incorreta.",
 
 	'suspended'		=>	"A conta foi suspensa por :minutes minutos.",
 
-	'unsuspended'	=>	"A conta foi restaurado.",
+	'unsuspended'	=>	"A conta foi restaurada.",
 
-	'banned'		=>	"O usuário foi banido.",
+	'banned'		=>	"O usuário foi excluído.",
 
-	'unbanned'		=>	"O usuário foi unbanned.",
+	'unbanned'		=>	"O usuário foi excluído.",
 
 );

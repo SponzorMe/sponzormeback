@@ -774,5 +774,7 @@ body.outlook p {
 	</head>
 	<body>
 		{{trans('emails.invitefriend')}}
+    <br/><br/>
+    "{{{$message1}}}"
 	</body>
 </html>

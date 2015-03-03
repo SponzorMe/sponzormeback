@@ -782,7 +782,19 @@ class ApiController extends BaseController {
 					'peaks'	  => Input::get('peaks')
 					));
 		} else {
-			// store
+			//Validamos que las fechas sean consistentes
+			$starts = new DateTime(Input::get('starts'));
+			$ends = new DateTime(Input::get('ends'));
+			if($ends<$starts)
+			{
+				return Response::json(
+				array(
+					'success' => false,
+					'message' => Lang::get("dashboard.newEventInvalidDates"),
+					'peaks'	  => Input::get('peaks')
+					));
+			}
+			// Guardamos el evento
 			$evento=array(
 					'title'       			=> Input::get('title'),
 					'description'   		=> Input::get('description'),
@@ -844,6 +856,16 @@ class ApiController extends BaseController {
 		$peakid=Input::get('peak');
 		$userid=Input::get('user');
 		$peak=Peaks::find($peakid);
+		//primero verificamos que ese patrocinio no exista
+		$rel=RelSponzorsEvents::where("idsponzor","=",$userid)
+		->where("rel_peak","=",$peakid)
+		->where("idevent","=",$peak->id)
+		->get();
+		//Ojo trabajarle a esta vuelta
+		if($rel[0]->id>0){//Si ya hay un sponzoring con esos datos no hacemos na
+			return Response::json(array('success' => false,'error'=>true,'message'=>"Sponzoring Already Exist","data"=>$rel));
+		}
+
 		$sponzor=UserCustomization::find($userid);
 		$rel=RelSponzorsEvents::create(array(
 				"idsponzor"	=>$userid,
@@ -885,7 +907,7 @@ class ApiController extends BaseController {
 			}
 		);
 		//Finalmente devolvemos la respuesta
-		return Response::json(array('success' => true,'error'=>false,'message'=>"User Updated Succesfuly","data"=>$rel));
+		return Response::json(array('success' => true,'error'=>false,'message'=>"Sponzoring Updated Succesfuly","data"=>$rel));
 	}
 	public function getEventsBySponzor($sponzor,$status)
 	{
@@ -913,13 +935,13 @@ class ApiController extends BaseController {
 	public function inviteFriend()
 	{
 		$email=Input::get('email');
-		$message=Input::get('message');
+		$message1=Input::get('message');
 		if (empty($email))
 			return Response::json(array("success" => false, "message"=>Lang::get('dashboard.friendemailrequired')));
 		else
 		{
 			try{
-				Mail::send('emails.auth.invitefriend', array('key' => 'value'), function($message)
+				Mail::send('emails.auth.invitefriend', array('message1' => $message1), function($message)
 				{
 				    $message->to(Input::get('email'))->subject(Lang::get('dashboard.friendinvitiation'));
 				});
@@ -979,6 +1001,8 @@ class ApiController extends BaseController {
 		$type=Input::get("type");
 		$user_id=Session::get('userId');
 		$relPeak=Input::get('relPeak');
+		if(empty($title)||empty($event)||empty($peak)||empty($user_id))
+			return Response::json(array("success" => false, "error"=>true, "status"=>"Authenticated","message"=>"title is required"));
 		$data=PeakTask::create(
 			array(
 				"title"=>$title,
@@ -1215,7 +1239,5 @@ class ApiController extends BaseController {
 		    else{
 		    	echo "<h1>".Lang::get('widget.nosponzoremail')."</h1>";
 		    }
-				
-
 	}
 }

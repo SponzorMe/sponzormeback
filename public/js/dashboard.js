@@ -26,8 +26,7 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
         })
         .state('sponzors', {
             url: '/sponzors',
-            templateUrl: 'sponzors.html',
-            controller: 'sponzorsController'
+            templateUrl: 'sponzors.html'
         })
         .state('settings', {
             url: '/settings',
@@ -176,7 +175,7 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     /*
     |--------------------------------------------------------------------------
     | Messages and events for pusher notifications
-    |--------------------------------------------------------------------------
+    |--------------------------------------------------------------------------*/
     
     var pusher = new Pusher('d88e93903c0ddc65df8c');
     var eventsChannel = pusher.subscribe('events-channel');
@@ -199,7 +198,7 @@ function MasterCtrl($scope, $cookieStore, Customization) {
       {
         $scope.alerts.push({msg: unescape(data.message)});
       }
-    });*/
+    });
 }
 /**
 * Indicadores Controller
@@ -287,6 +286,7 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
         $scope.sponzors.splice(index, 1);
     }
     $scope.removeEvent = function(index){
+        ngDialog.open({ template: 'loading.html', controller: 'eventsController', scope: $scope });//Mostramos el Loading
         Customization.removeEvent(index)
         .success(function(data){
             $scope.alerts.push({msg: data.message});
@@ -295,6 +295,7 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
                 $scope.eventos.list = adata.Events;
                 $scope.event.current = adata.Events[0].id;
             });
+            ngDialog.close();//Cerraos el loading
             $scope.message="removeEvent";
             ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope });
         })
@@ -336,7 +337,7 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
         $scope.newevent.location_reference=$scope.details3.reference;
         if($scope.imageReady)
         {
-            ngDialog.open({ template: 'loading.html', controller: 'eventsController', scope: $scope });
+            ngDialog.open({ template: 'loading.html', controller: 'eventsController', scope: $scope });//Mostramos el Loading
             $scope.newevent.starts=$filter('date')($scope.newevent.starts, "yyyy-MM-dd HH:mm:00");
             $scope.newevent.ends=$filter('date')($scope.newevent.ends, "yyyy-MM-dd HH:mm:00");
             Customization.saveEvent($scope.newevent)
@@ -365,49 +366,57 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
                     {
                         message = String(data.message);
                         message = message.replace("[","").replace("]","").replace(/,/g," ");
-                        $scope.alerts = [{type: 'danger', msg: message}];
-                        if(angular.isUndefined($scope.newevent.title))
+                        $scope.alerts.push({msg: unescape(message)});
+                        if(angular.isUndefined($scope.newevent.title)){
+                            $("#title").removeClass("has-success");
                             $("#title").addClass("has-error");
+                        }                           
                         else
                         {
                             $("#title").removeClass("has-error");
                             $("#title").addClass("has-success");
                         }
-                        if(angular.isUndefined($scope.newevent.location))
+                        if(angular.isUndefined($scope.newevent.location)){
+                            $("#location").removeClass("has-success");
                             $("#location").addClass("has-error");
-                        else
-                        {
+                        }
+                        else{
                             $("#location").removeClass("has-error");
                             $("#location").addClass("has-success");
                         }
-                        if(angular.isUndefined($scope.newevent.description))
+                        if(angular.isUndefined($scope.newevent.description)){
+                            $("#description").removeClass("has-success");
                             $("#description").addClass("has-error");
-                        else
-                        {
+                        }                            
+                        else{
                             $("#description").removeClass("has-error");
                             $("#description").addClass("has-success");
                         }
-                        if(angular.isUndefined($scope.newevent.starts))
+                        if(angular.isUndefined($scope.newevent.starts)){
+                            $("#starts").removeClass("has-success");
                             $("#starts").addClass("has-error");
-                        else
-                        {
+                        }                            
+                        else{
                             $("#starts").removeClass("has-error");
                             $("#starts").addClass("has-success");
                         }
-                        if(angular.isUndefined($scope.newevent.ends))
+                        if(angular.isUndefined($scope.newevent.ends)){
+                            $("#ends").removeClass("has-success");
                             $("#ends").addClass("has-error");
-                        else
-                        {
+                        }                            
+                        else{
                             $("#ends").removeClass("has-error");
                             $("#ends").addClass("has-success");
-                        }
+                        }                        
                     }
-                    ngDialog.close();
+                    $scope.text=message;
+                    ngDialog.close();//Si hubo error cerramos el loading.
+                    $scope.message="errorInFields";//Seteamos el mensaje de error
+                    ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope }); //Mostramos el mensaje
                 })
                 .error(function(data) {                    
                     console.log(data);
-                });
-            ngDialog.close();
+                });            
         }
         else
         {
@@ -427,12 +436,12 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
             });
         uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter,  options) {
         console.info('onWhenAddingFileFailed', item, filter, options);
-        $scope.message="errorImage";
-        ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope });
+            ngDialog.close();//Cerraos el loading
+            $scope.message="errorImage";
+            ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope });
         };
         uploader.onAfterAddingFile = function(fileItem) {
-        console.info('onAfterAddingFile', fileItem);
-        $scope.imageReady=true;
+            $scope.imageReady=true;
         };
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
             if(response.success)
@@ -464,43 +473,53 @@ function peaksController($scope,$Cookie,Customization){
         }
     });
 }
-angular.module('Dashboard').controller('sponzorsController', ['$scope', '$cookieStore', 'Customization',sponzorsController]);
-function sponzorsController($scope,$Cookie,Customization){
+angular.module('Dashboard').controller('sponzorsController', ['$scope', '$cookieStore', 'Customization','ngDialog',sponzorsController]);
+function sponzorsController($scope,$Cookie,Customization,ngDialog){
 
     Customization.getSponzorsByOrganizer($scope.event.organizer).success(function(adata) 
     {
         $scope.sponzors.list=adata.Sponzors;
     });
     $scope.updateRelSponzorPeak = function(id,state){
+        ngDialog.open({ template: 'loading.html', controller: 'sponzorsController', scope: $scope });//Mostramos el Loading
         Customization.updateRelSponzorPeak(id,state).success(function(adata) 
-        {
+        {            
             $scope.alerts.push({msg: adata.message});
             Customization.getSponzorsByOrganizer($scope.event.organizer).success(function(adata){
                 $scope.sponzors.list=adata.Sponzors;
-            });
-        });        
+                ngDialog.close();
+            });            
+        });
     }
     $scope.removeRelSponzorPeak = function(id){
-        Customization.removeRelSponzorPeak(id).success(function(adata){
+        ngDialog.open({ template: 'loading.html', controller: 'sponzorsController', scope: $scope });//Mostramos el Loading
+        Customization.removeRelSponzorPeak(id).success(function(adata){            
             $scope.alerts.push({msg: adata.message});
             Customization.getSponzorsByOrganizer($scope.event.organizer).success(function(adata){
                 $scope.sponzors.list=adata.Sponzors;
+                ngDialog.close();
             });
         });       
     }
     $scope.getTaskSponzorPeak = function (relPeak){
+        ngDialog.open({ template: 'loading.html', controller: 'sponzorsController', scope: $scope });//Mostramos el Loading
         Customization.getTaskBySponzorRelPeak(relPeak,0).success(function(adata){
            $scope.todo.list=adata.TaskBySponzor;  
+           ngDialog.close();
         });
     }
     $scope.removeTaskSponzorPeak = function (idTaskSponzor, relPeak){
+        ngDialog.open({ template: 'loading.html', controller: 'sponzorsController', scope: $scope });//Mostramos el Loading
         Customization.removeTaskSponzorPeak(idTaskSponzor).success(function(adata){
-           $scope.getTaskSponzorPeak(relPeak);  
+           $scope.getTaskSponzorPeak(relPeak);
+           ngDialog.close();
         });
     }
     $scope.updateStatusTaskSponzorPeak = function (idTaskSponzor, status, relPeak){
+        ngDialog.open({ template: 'loading.html', controller: 'sponzorsController', scope: $scope });//Mostramos el Loading
         Customization.updateStatusTaskSponzorPeak(idTaskSponzor,status).success(function(adata){
-           $scope.getTaskSponzorPeak(relPeak);  
+           $scope.getTaskSponzorPeak(relPeak);
+           ngDialog.close();
         });
     }
 }
@@ -723,6 +742,7 @@ function searchController($scope,$Cookie,$location,Customization,ngDialog){
         Customization.setSponzorPeak({"peak":idpeak,"user":user})
         .success(function(adata) 
         {
+            console.log(adata);
             $location.path("/following");
 
         });
@@ -881,6 +901,7 @@ angular.module('Dashboard').controller('todoController', ['$scope', '$cookieStor
 function todoController($scope,$Cookie,$location,Customization,ngDialog){
     $scope.addTodo = function ()
     {
+        ngDialog.open({ template: 'loading.html', controller: 'sponzorsController', scope: $scope });//Mostramos el Loading
         Customization.setPeakTodo(
         $scope.todo.title,
         $scope.todo.description,
@@ -888,12 +909,22 @@ function todoController($scope,$Cookie,$location,Customization,ngDialog){
         $scope.todo.peak.id,
         0
     ).success(function(adata){
-
         //Limpiamos los datos
-        $scope.todo.title="";
-        $scope.todo.description="";
-        $scope.updateTodos();
-        
+        if(adata.success){
+            $scope.todo.title="";
+            $scope.todo.description="";
+            $scope.updateTodos();
+            ngDialog.close();
+            $scope.message="taskCreated";//Seteamos el mensaje de error
+            ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope }); //Mostramos el mensaje
+        }
+        else{
+            ngDialog.close();
+            $scope.message="errorInFieldsTask";//Seteamos el mensaje de error
+            ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope }); //Mostramos el mensaje
+                
+        }
+               
         }).error(function(data) {
             console.log(data);
         });

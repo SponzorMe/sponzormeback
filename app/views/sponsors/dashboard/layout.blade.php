@@ -32,7 +32,7 @@
   <script type="text/javascript" src="{{ asset('components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js')}}"></script>
   <script src="{{ asset('js/dashboard.js')}}"></script><!--controller principal-->
   <script src="{{ asset('js/services/customizationService.js') }}"></script><!-- load our service -->
-  <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript" async="async"></script><!-- Pusher Service -->
+  <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script><!-- Pusher Service -->
 </head>
 @if (Sentry::check())
 <body ng-controller="MasterCtrl">

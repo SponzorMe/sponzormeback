@@ -1,4 +1,3 @@
-<?="<pre>Working in Local...<pre>"?>
 <?php
 return array(
 

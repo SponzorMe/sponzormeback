@@ -243,8 +243,11 @@
   <script type="text/ng-template" id="generalMessage.html">
   <div class="text-center">  
     <h3 data-ng-show="message == 'errorImage' ">{{trans('dashboard.errorAddingImage')}}</h3>
+    <h3 data-ng-show="message == 'errorInFields' ">{{trans('dashboard.errorInNewEventFields')}}:<%text%></h3>
     <h3 data-ng-show="message == 'removeEvent' ">{{trans('dashboard.deleteEvent')}}</h3>
     <h3 data-ng-show="message == 'removeTodo' ">{{trans('dashboard.removeTodo')}}</h3>
+    <h3 data-ng-show="message == 'errorInFieldsTask' ">{{trans('dashboard.errorInFieldsTask')}}</h3>
+    <h3 data-ng-show="message == 'taskCreated' ">{{trans('dashboard.taskCreated')}}</h3>
   </div>
   <div class="ngdialog-buttons text-center">
     <button class="btn btn-danger" ng-click="closeThisDialog()"><i class="fa fa-times"></i> {{trans('dashboard.close')}}</button>
@@ -260,8 +263,8 @@
 </script>
 <script type="text/ng-template" id="codeWidget.html">
   <div class="text-center">
-  <pre><xmp>
-  <object data="{{URL::to('form/event/<% eventId %>')}}" width="600" height="400">     <embed wmode="transparent" src="{{URL::to('form/event/<% eventId %>')}}" width="600" height="400" /> Error: Embedded data could not be displayed. </object></xmp></pre>    
+  <h3>{{trans('dashboard.pasteSponzorsForm')}}</h3>
+  <pre><xmp><object data="{{URL::to('form/event/<% eventId %>')}}" width="600" height="400">     <embed wmode="transparent" src="{{URL::to('form/event/<% eventId %>')}}" width="600" height="400" /> Error: Embedded data could not be displayed. </object></xmp></pre>    
   </div>
   <div class="ngdialog-buttons text-center">
     <button class="btn btn-danger" ng-click="closeThisDialog()"><i class="fa fa-times"></i> {{trans('dashboard.close')}}</button>
@@ -269,8 +272,6 @@
 </script>
 <script type="text/ng-template" id="loading.html">
   <div class="text-center">
-    <h2><% loading.message %></h2>
-
     <rd-loading></rd-loading>
     </div>
 </script>

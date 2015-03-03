@@ -1,4 +1,3 @@
-<?="<pre>Working in Staging...<pre>"?>
 <?php
 return array(
 

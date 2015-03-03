@@ -67,7 +67,7 @@
                 <tr data-ng-repeat="t in todo.list" ng-class="{success: t.status === 1, warning: t.status === 0}">
                   <td><% t.title %></td>
                   <td><% t.description %></td>
-                  <td><% t.status %></td>
+                  <td><div ng-if="t.status == 0">{{trans('dashboard.taskNoCompleted')}}</div><div ng-if="t.status == 1">{{trans('dashboard.taskCompleted')}}</div></td>
                   <td>
                     <span class="text-success">
                       <a href="" ng-if="t.status == 0" ng-click="updateStatusTaskSponzorPeak(t.idTS,1,t.sponzor_event_id)">

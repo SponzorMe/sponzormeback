@@ -1,3 +1,4 @@
+<?php echo "<div style='Color:#000;#background-color#fff;'><pre>Working in Local Environment</pre></div>"; ?>
 <?php
 return array(
 

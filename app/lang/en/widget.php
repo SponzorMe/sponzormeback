@@ -38,8 +38,7 @@ return array(
 
 	"nosponzoremail"=>"We Sorry, the entered email is not a valid sponzor email.",
 
-	"sponzoringsaveandemailsent"=>"Your sponzorchip request has been sent please check your email to further instructions"
+	"sponzoringsaveandemailsent"=>"Your sponzorchip request has been sent please check your email to further instructions",
 
-
-
+	"validationRules"=>"Please complete all field form"
 );

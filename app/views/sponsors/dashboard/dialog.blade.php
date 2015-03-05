@@ -4,7 +4,8 @@
     <h4>{{trans('dashboard.by')}}: <span ng-if="search.current.name == null || search.current.name == ''" %><%search.current.email%></span>
       <span ng-if="search.current.name != null"><%search.current.name%></span>
     </h4>
-      <table class="table table-striped">
+      <rd-loading ng-show="loading==1"></rd-loading>
+      <table class="table table-striped" ng-if="loading==0">
                 <thead>
                   <tr>
                     <th class="text-center">{{trans('dashboard.kind')}}</th>

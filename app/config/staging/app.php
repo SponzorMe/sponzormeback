@@ -1,4 +1,3 @@
-<?php echo "<div style='Color:#000;#background-color#fff;'><pre>Working in Staging Environment</pre></div>"; ?>
 <?php
 return array(
 

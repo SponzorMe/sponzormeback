@@ -683,7 +683,6 @@ function settingsController($scope,$Cookie,Customization, FileUploader, ngDialog
                         $scope.imageReady=true;
                         $scope.imagePath=response.path;
                         $scope.account.image = response.path;
-                        console.log(response.path);
                         $scope.accountheader.image = urlimage+'/images/users/'+response.path;
                         $scope.event.message="La imagen se actualizo satisfactoriamente";
                         ngDialog.open({ template: 'successevent.html', controller: 'settingsController', scope: $scope });
@@ -710,7 +709,6 @@ function settingsController($scope,$Cookie,Customization, FileUploader, ngDialog
                 "comunity_size":$scope.account.comunitSize,
                 "userId":$scope.event.organizer
             };
-            console.log(a);
             Customization.editAccount(a).success(function(adata){
                     $scope.alerts.push({msg: adata.message});
                     $scope.viewUserInfo();
@@ -723,38 +721,42 @@ function settingsController($scope,$Cookie,Customization, FileUploader, ngDialog
     }
     $scope.viewUserInfo();
 }
-
+//Este controlador es solo para el dashboard de los sponzors
 angular.module('Dashboard').controller('searchController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',searchController]);
 function searchController($scope,$Cookie,$location,Customization,ngDialog){
     
     $scope.openDialog = function(id)
     {
         $scope.search.current=$scope.search.list[id];
+        $scope.loading=1;
         ngDialog.open({ template: 'peaksDialog.html', controller: 'searchController', scope: $scope });       
         Customization.getPeaks($scope.search.list[id].event).success(function(adata) 
         {
             $scope.peaks=adata.Peaks;
+            $scope.loading=0;
         });
     }
-    $scope.sponzor = function(idpeak,user)
+    $scope.sponzor = function(idpeak,user)//Esta es la función que ejecuta el patrocinio cuando se le da en el boton de listo
     {
-        ngDialog.close();
+        ngDialog.close();//Cerramos el dialogo de los peaks
+        ngDialog.open({ template: 'loading.html', controller: 'searchController', scope: $scope });//Mostramos el Loading general
         Customization.setSponzorPeak({"peak":idpeak,"user":user})
         .success(function(adata) 
         {
-            console.log(adata);
             $location.path("/following");
-
+            ngDialog.close(); //Cerramos el loading general
         });
     }
-    $scope.searchEvents = function()
+    $scope.searchEvents = function() //Funcion que se ejecuta en el dashboard de los sponzors, cuando buscan un evento que patrocinar
     {
         if($scope.search1!="")
         {
+            $scope.searchloading=1;
             Customization.searchEvents($scope.search1)
             .success(function(adata)
             {
                 $scope.search.list = adata.Events;
+                $scope.searchloading=0;
             })
             .error(function(data) 
             {
@@ -771,9 +773,11 @@ function searchController($scope,$Cookie,$location,Customization,ngDialog){
 angular.module('Dashboard').controller('followingController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',followingController]);
 function followingController($scope,$Cookie,$location,Customization,ngDialog){
     $scope.sponzors.list=[];
+    $scope.followloading=1;
     Customization.getEventsBySponzors($scope.sponzors.current,0).success(function(data) 
     {
        $scope.sponzors.list=data.Sponzors;
+       $scope.followloading=0;
     }).
     error(function(data) 
     {
@@ -829,7 +833,6 @@ function sponzoringController($scope,$Cookie,$location,Customization,ngDialog){
     }
     $scope.addTodo = function ()
     {
-        console.log("e"+$scope.todo.currentEvent,"peak"+$scope.todo.currentRelPeak);
         Customization.setPeakTodo(
         $scope.todo.title,
         $scope.todo.description,
@@ -850,7 +853,6 @@ function sponzoringController($scope,$Cookie,$location,Customization,ngDialog){
     }
     $scope.removeTaskSponzorPeak = function (idTaskSponzor, relPeak){
         Customization.removeTaskSponzorPeak(idTaskSponzor).success(function(adata){
-            console.log(adata);
         $scope.getTaskSponzorPeak(relPeak,$scope.todo.currentEvent); 
         });
     }

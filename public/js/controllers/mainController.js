@@ -42,8 +42,7 @@ angular.module('mainController', ['ngAutocomplete'])
 					$("#step1").hide();	
 					$("#step2").hide();
 					$("#step3").hide();
-					$("#step4").show();	
-					console.log(data);
+					$("#step4").show();
 				})
 				.error(function(data) {
 				});

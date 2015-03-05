@@ -679,6 +679,7 @@ class ApiController extends BaseController {
             	'events.*', 
             	'users.*',
             	'events.id as event',
+            	'events.image as eventimage',
             	'events.location as eventlocation'
             	)
             ->where("title",'like',"%$text%")
@@ -862,9 +863,9 @@ class ApiController extends BaseController {
 		->where("idevent","=",$peak->id)
 		->get();
 		//Ojo trabajarle a esta vuelta
-		if($rel[0]->id>0){//Si ya hay un sponzoring con esos datos no hacemos na
+		/*if($rel[0]->id>0){//Si ya hay un sponzoring con esos datos no hacemos na
 			return Response::json(array('success' => false,'error'=>true,'message'=>"Sponzoring Already Exist","data"=>$rel));
-		}
+		}*/
 
 		$sponzor=UserCustomization::find($userid);
 		$rel=RelSponzorsEvents::create(array(
@@ -1158,39 +1159,51 @@ class ApiController extends BaseController {
 		$name=Input::get("name");
 		$email=Input::get("email");
 		$peak_id=Input::get("peak");	
-		try //Si el usuario ya se encuentra registrado, sigue este flujo
-		{		    
-		    $user = Sentry::findUserByLogin($email); // Encontramos el usuario con el email introducido
+		$rules = array(
+			'company'       => 'required',
+			'name'      => 'required',
+			'email' => 'required',
+			'peak_id' => 'required'
+		);
+		$validator = Validator::make(Input::all(), $rules);//Validamos que hayan llegado todos los campos
+		if ($validator->fails()) {//Si no se cumple se retorna mensaje
+			$messages=$validator->messages();
+			echo "<h1>".Lang::get('widget.validationRules')."</h1>";
+			echo "<p>".$messages."</p>";
 		}
-		catch (Exception $e) //Se dispara cuando el usuario no existe
-		{
-		    $user = Sentry::register(array( //creamos el usuario
-		        'email'    => $email,
-		        'password' => "123456"
-		    ));
-		    $activationCode = $user->getActivationCode(); //Obtenemos el codigo de activación
-		    Event::fire('user.signup', array(  //Enviamos el correo de activacion
-            	'email' => $email, 
-            	'userId' => $user->id, 
-                'activationCode' => $activationCode
-            ));
-            Session::put('userId', $user->id ); //guardamos las sesiones por si acaso
-            Session::put('email', $email );
-            UsersGroups::create(array( //Le asignamos el grupo
-                "user_id" =>$user->id,
-                "group_id"=>6 //6 es el grupo de los sponzors
-            ));//Asignamos el grupo del usuario.
-            $resetCode = $user->getResetPasswordCode(); //Le reseteamos el passowrd
-            Event::fire('user.forgot', array( //Le mandamos el password al correo
-				'email' => $email,
-				'userId' => $user->id,
-				'resetCode' => $resetCode
-			));
-			$user->name=$name;
-			$user->company=$company;
-			$user->save();
-		}
-		if($user->hasAccess('sponsors')){ //Preguntamos si el usuario es realmente un sponzor
+		else{//Si llenaron todos los campos -> a trabajar!
+			try{//Si el usuario ya se encuentra registrado, sigue este flujo					    
+			    $user = Sentry::findUserByLogin($email); // Encontramos el usuario con el email introducido
+			}
+			catch (Exception $e) //Se dispara cuando el usuario no existe
+			{
+			    $user = Sentry::register(array( //creamos el usuario
+			        'email'    => $email,
+			        'password' => "123456"
+			    ));
+			    $activationCode = $user->getActivationCode(); //Obtenemos el codigo de activación
+			    Event::fire('user.signup', array(  //Enviamos el correo de activacion
+	            	'email' => $email, 
+	            	'userId' => $user->id, 
+	                'activationCode' => $activationCode
+	            ));
+	            Session::put('userId', $user->id ); //guardamos las sesiones por si acaso
+	            Session::put('email', $email );
+	            UsersGroups::create(array( //Le asignamos el grupo
+	                "user_id" =>$user->id,
+	                "group_id"=>6 //6 es el grupo de los sponzors
+	            ));//Asignamos el grupo del usuario.
+	            $resetCode = $user->getResetPasswordCode(); //Le reseteamos el passowrd
+	            Event::fire('user.forgot', array( //Le mandamos el password al correo
+					'email' => $email,
+					'userId' => $user->id,
+					'resetCode' => $resetCode
+				));
+				$user->name=$name;
+				$user->company=$company;
+				$user->save();
+			}
+			if($user->hasAccess('sponsors')){ //Preguntamos si el usuario es realmente un sponzor
 		    	$peakid=$peak_id;
 				$userid=$user->id;
 				$peak=Peaks::find($peakid);
@@ -1235,9 +1248,10 @@ class ApiController extends BaseController {
 					}
 				);
 				echo "<h1>".Lang::get('widget.sponzoringsaveandemailsent')."</h1>";
-		    }
-		    else{
-		    	echo "<h1>".Lang::get('widget.nosponzoremail')."</h1>";
-		    }
+			}
+			else{
+			    echo "<h1>".Lang::get('widget.nosponzoremail')."</h1>";
+			}
+		}
 	}
 }

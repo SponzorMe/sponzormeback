@@ -253,7 +253,5 @@ return array(
 
 	"addSponzorTodo" => "Agregar Tarea",
 
-	
-
 
 );

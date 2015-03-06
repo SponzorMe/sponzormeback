@@ -117,8 +117,9 @@
                   </li>
                 </ul>
               </div>
-              <div class="item dropdown" dropdown>
+              <div class="item dropdown" dropdown is-open="status.isopens">
                 <a href="" class="dropdown-toggle" dropdown-toggle>
+                  <section class="numalert" ng-show="viewitem"><%alertsnot.length%></section>
                   <i class="fa fa-bell-o"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -126,9 +127,31 @@
                     {{trans('dashboard.notifications')}}
                   </li>
                   <li class="divider"></li>
-                  <li>
-                    <a href="#">{{trans('dashboard.notification')}}</a>
-                  </li>
+                  <section ng-show="!viewitem">
+                    {{trans('dashboard.notnotifications')}}
+                  </section>
+                  <ul class="notifications_list">
+                    <div class="item_noticiations color-<% alertnot.color %>" data-ng-repeat="alertnot in alertsnot" type="<% alertnot.type %>">
+                      <div class="imagen_notification_close">
+                        <a href="#" ng-click="closeAlert($index, $event)">
+                          <i class="fa fa-times-circle-o"></i>
+                        </a>
+                      </div>
+                      <div class="imagen_notification swidget.sponzorname">
+                        <p ng-bind-html="alertnot.type"></p>
+                      </div>
+                      <div class="textitem">
+                        <div class="nameuser">System</div>
+                          <div>
+                            <p ng-bind-html="alertnot.msg"></p>
+                          </div>
+                      </div>
+                      <div class="pyilS">
+                        <div class="PpHGGf IWa Iub gac Sgb" aria-label="Ignorar" role="button" tabindex="0">  
+                        </div>
+                      </div>
+                    </div>
+                  </ul>
                 </ul>
               </div>
             </div>

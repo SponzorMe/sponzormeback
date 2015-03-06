@@ -196,6 +196,7 @@
                     <td class="text-center"><a href="" ng-click="imageEvent(e.image)"><i class="fa fa-file-image-o"></i></a></td>
                     <td class="text-center">
                       <a href="{{URL::to('event/<% e.id %>')}}" target="_blank"><i class="fa fa-arrows-alt"></i></a> 
+                      <a href="{{URL::to('form/event/<% e.id %>')}}" target="_blank"><i class="fa fa-code"></i></a> 
                       <a href="" ng-click="editEvent(e.id)"><i class="fa fa-edit"></i></a> 
                       <a href="" ng-click="removeEvent(e.id)"><i class="fa fa-trash-o"></i></a> 
                       <a href="" data-ng-click="event.current = e.id"><i class="fa fa-trophy" ng-show="event.current === e.id"></i></a> 

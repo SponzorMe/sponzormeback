@@ -1,5 +1,5 @@
 (function(){
-angular.module('Dashboard', ['ui.bootstrap', 'ui.router','ngCookies','ngDialog', 'ngAutocomplete', 'customizationService','angularFileUpload','ui.bootstrap.datetimepicker'], 
+angular.module('Dashboard', ['ui.bootstrap', 'ui.router','ngCookies','ngDialog', 'ngAutocomplete', 'customizationService','angularFileUpload','ui.bootstrap.datetimepicker', 'ngSanitize'], 
     function($interpolateProvider){
         $interpolateProvider.startSymbol('<%');
         $interpolateProvider.endSymbol('%>');
@@ -78,6 +78,7 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     $scope.newevent             = {};
     $scope.a                    = false;
     $scope.alerts               = [];
+    $scope.alertsnot            = [];
     $scope.sponzors             = [];
     $scope.account              = {};
     $scope.friend               = {};
@@ -90,6 +91,8 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     //--End GLobal Variables--//
     $scope.accountheader = {};
     $scope.accountheader.image = "";
+
+    $scope.viewitem = false;
 
     var mobileView = 992;
 
@@ -183,6 +186,7 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     eventsChannel.bind('New-Sponzoring', function(data) {
       if(data.organizerId==$scope.event.organizer){
         $scope.alerts.push({msg: unescape(data.message)});
+        $scope.alertsnot.push({msg: unescape(data.message), type: '<i class="fa fa-check-circle-o"></i>', color: 'amarillo'});
       }
     });
     //Cuando un organizador acepta el patrocinio de un patrocinador
@@ -190,6 +194,7 @@ function MasterCtrl($scope, $cookieStore, Customization) {
       if(data.sponzorId==$scope.event.sponzor)
       {
         $scope.alerts.push({msg: unescape(data.message)});
+        $scope.alertsnot.push({msg: unescape(data.message), type: '<i class="fa fa-check-circle"></i>', color: 'verde'});
       }
     });
     //Cuando un sponzor borra el patrocinio de un evento
@@ -197,8 +202,37 @@ function MasterCtrl($scope, $cookieStore, Customization) {
       if(data.organizerId==$scope.event.organizer)
       {
         $scope.alerts.push({msg: unescape(data.message)});
+        $scope.alertsnot.push({msg: unescape(data.message), type: '<i class="fa fa-circle-o"></i>', color: 'red'});
       }
     });
+
+
+
+    // for (var i = 0; i < 20; i++) {
+    //     var numbertype = Math.floor((Math.random() * (4 - 1)) + 1);
+    //     typeobj = ['<i class="fa fa-check-circle-o"></i>', '<i class="fa fa-check-circle"></i>', '<i class="fa fa-circle-o"></i>'];
+    //     var namecolor = ['amarillo', 'verde', 'red']
+    //     $scope.alertsnot.push({msg: 'You have a new Sponzor for the event <a href="#/sponzors">test</a>', type: typeobj[numbertype-1], color: namecolor[numbertype-1]});
+    // };
+
+    $scope.$watch('alertsnot', function () {
+        if ($scope.alertsnot.length > 0){
+            $scope.viewitem = true;
+        }else{
+            $scope.viewitem = false;
+        }
+    }, true);
+
+    
+
+    $scope.closeAlert = function(index, event){
+        event.preventDefault();
+        event.stopPropagation();
+        $scope.status.isopens = true;
+        $scope.alertsnot.splice(index, 1);
+        //$scope.animateclass = 'animatebox';
+    }
+    
 }
 /**
 * Indicadores Controller

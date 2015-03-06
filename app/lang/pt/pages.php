@@ -8,135 +8,135 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
-	'flashsuccess' => "Sucesso",
+	'flashsuccess'	=> 'Exitoso',
 
-'flasherror' => "Erro",
+	'flasherror'	=> 'erro',
 
-'flashwarning' => "Cuidado - advertência",
+	'flashwarning'	=> 'Cuidado',
 
-'flashinfo' => 'FYI',
+	'flashinfo'		=> 'FYI',
 
-'register' => "Registrar-se/Registre-se",
+	'register'		=> 'Registrarse',
 
-'login' => "Conecte-se- loguin",
+	'login'			=> "Conecte-se",
 
-'logout' => "Sair",
+	'logout'		=> "Sair",
 
-'home' => "Início - home",
+	'home'			=> "Home",
 
-'users' => "Usuários",
+	'users'			=> "Usuários",
 
-'user' => "Usuário",
+	'user'			=> "Usuário",
 
-'groups' => "Grupos",
+	'groups'		=> "Grupos",
 
-'helloworld' => "SponzorMe",
+	'helloworld'	=> "SponzorMe",
 
-'description' => "Eventos, Sponsors, Marketplace,",
+	'description'	=> "Events, Sponsors, Marketplace",
 
-'loginstatus' => "Você está conectado",
+	'loginstatus'	=> "Você está atualmente conectado.",
 
-'sessiondata' => "Os dados da sessão",
+	'sessiondata'	=> "Os dados da sessão",
 
-'currentusers' => "Usuários atuais",
+	'currentusers'	=> "Usuários atuais",
 
-'options' => "Opções",
+	'options'		=> 'Opções',
 
-'status' => "Status",
+	'status'		=> "Estado",
 
-'active' => "Ativo",
+	'active'		=> "Ativo",
 
-'notactive' => "Não ativo",
+	'notactive'		=> "Não ativo",
 
-'suspended' => "Suspenso",
+	'suspended'		=> "Suspendido",
 
-'banned' => "Banido",
+	'banned'		=> "Banido",
 
-'actionedit' => "Editar",
+	'actionedit'	=> "Editar",
 
-'actionsuspend' => "Suspenso",
+	'actionsuspend'	=> "Suspendo",
 
-'actionunsuspend' => "Não Suspenso",
+	'actionunsuspend' => "Não Suspendo",
 
-'actionban' => "Banimento",
+	'actionban'		=> "Banimento",
 
-'actionunban' => "Não suspenso",
+	'actionunban'	=> "Não banimento",
 
-'actiondelete' => "Excluir",
+	'actiondelete'	=> "Excluir",
 
-'sponsorreg' => "Você está patrocinando?",
+	'sponsorreg'	=> "Você está patrocinando?",
 
-'organizerreg' => "Você é organizador?",
+	'organizerreg'	=> "Você é organizador?",
 
-'copy' => "Conectar eventos com patrocinadores",
+	'copy'	=> "Conectar eventos com patrocinadores",
 
-'nextaction' => "Faça upload de seu evento e deixe a mágica começar!",
+	'nextaction'	=> "Fazer upload de seu evento e deixe a mágica começar...",
 
-'testimonials' => "Depoimentos",
+	'testimonials'	=> "Depoimentos",
 
-'blog' => "Blog",
+	'blog'	=> "Blog",
 
-'blogUrl' => "http://blogpt.sponzor.me/",
+	'blogUrl'	=> "http://blogpt.sponzor.me/",
 
-'woman' => "Mulher",
+	'woman'	=> "Mulher",
 
-'man' => "Homem",
+	'man'	=> "Homem",
 
-'ageiam' => "Eu tenho",
+	'ageiam'	=> "Eu tenho",
 
-'old' => "Idade",
+	'old'	=> "Anos de idade",
 
-'chooseSex' => "Gênero",
+	'chooseSex'	=> "Genero",
 
-'livein' => "Localização",
+	'livein'	=> "Localização",
 
-'country' => "País",
+	'country'	=> "País",
 
-'state' => "Estados",
+	'state'	=> "Estados",
 
-'city' => "Cidade",
+	'city'	=> "Cidade",
 
-'next' => "Próximo",
+	'next'	=> "Next",
 
-'areyouinterested' => "Estou interessado em...",
+	'areyouinterested'	=> "¿Estou interessado na?",
 
-'weresendingandemail' => "Enviamos um e-mail para",
+	'weresendingandemail'	=> "Enviamos um e-mail para",
 
-'toactivateyouraccount' => "para ativar sua conta.",
+	'toactivateyouraccount'	=> "para ativar sua conta.",
 
-'forbidden' => "Espaços",
+	'forbidden'	=> "Spaces",
 
-'aboutyou' => "Algo sobre você!",
+	'aboutyou'	=> "Algo sobre você!",
 
-'almostdone' => "Seja!",
+	'almostdone'	=> "Quase seja!",
 
-'dashboard' => "Dashboard",
+	'dashboard'	=> "Dashboard",
 
-'team' => "Equipamento",
+	'team'	=> "Equipamento",
 
-'support' => "Apoio",
+	'support'	=> "Apoio",
 
-'supportUrl' => "http://support.sponzor.me/",
+	'supportUrl'	=> "http://support.sponzor.me/",
 
-'terms' => "Termos de Serviço",
+	'terms'	=> "Termos de Serviço",
 
-'privacy' => "Privacidade",
+	'privacy'	=> "Privacidade",
 
-'getting' => "Vamos fazê-lo",
+	'getting'	=> "Vamos fazê-lo",
 
-'error404' => "Oh! Isso é constrangedor, mas não conseguimos encontrar o seu pedido.",
+	'error404' =>"Ohh.....Isso é constrangedor, mas não conseguimos encontrar o seu pedido.",
 
-'backhome' => "Retorno",
+	'backhome' =>"Retorno",
 
-'language'=> "Minha língua favorita é:",
+	'language'=>"Mi leguaje favorito es: ",
 
-'chooseLang' => "Escolha sua língua:",
+	'chooseLang'=>"Escoje tu lenguaje",
 
-"en" => "Inglês",
+	"en"=>"Inglés",
 
-"es" => "Espanhol",
+	"es"=>"Español",
 
-"pt" => "Português",
+	"pt"=>"Portugues",
 
 
 );

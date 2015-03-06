@@ -11,7 +11,7 @@ return array(
 
 	'events'						=> 'Eventos',
 
-	'settings'						=> 'Configurações',
+	'settings'						=> 'Configuração',
 
 	'sponzors'						=> 'Sponzors',
 
@@ -37,21 +37,21 @@ return array(
 
 	'comunity'						=> 'Comunidade',
 
-	'peak'							=> 'Benefícios',
+	'peak'							=> 'Beneficios',
 
 	'yourevents'					=> 'Seus Eventos',
 
 	'suggestions'					=> 'Sugestões',
 
-	'latestsponzors'				=> 'Últimos Sponsors',
+	'latestsponzors'				=> 'Últimas Sponsors',
 
-	'neweventtitle'					=>	'Novo título',
+	'neweventtitle'					=>	'Tìtulo',
 
-	'neweventtitledescription'		=>	'Descrição do evento',
+	'neweventtitledescription'		=>	'Dê um nome distinto',
 
 	'neweventdescription'			=>	'Descrição',
 
-	'neweventdescriptiondescription'=>	'Diga às pessoas o quão especial é o seu evento',
+	'neweventdescriptiondescription'=>	'Diga às pessoas o quão especial o seu evento',
 
 	'neweventlocation'				=>	'Localização',
 
@@ -63,11 +63,11 @@ return array(
 
 	'neweventstarts'				=>	'Inicia',
 
-	'neweventstartsdescription'		=>	'Descrição inicial',
+	'neweventstartsdescription'		=>	'A ação começa',
 
 	'neweventends'					=>	'Termina',
 
-	'neweventendsdescription'		=>	'As extremidades da descrição',
+	'neweventendsdescription'		=>	'As extremidades de ação!',
 
 	'neweventtype'					=>	'Tipo de evento',
 
@@ -97,7 +97,7 @@ return array(
 
 	'bronzeSponzor'					=>	'Bronze Sponsor',
 
-	'buttonsugestions'				=>	'Boton',
+	'buttonsugestions'				=>	'Botão',
 
 	'eventdetails'					=>	'Detalhes do Evento',
 
@@ -153,9 +153,9 @@ return array(
 
 	'email'							=>	'E-mail',
 
-	'location'						=>	'localização',
+	'location'						=>	'Localização',
 
-	'eventtitle'					=>	'Tí­tulo do Evento',
+	'eventtitle'					=>	'Título do Evento',
 
 	'state'							=>	'Estado',
 
@@ -163,11 +163,11 @@ return array(
 
 	'yousponzring'					=>	'Eventos que você está patrocinando',
 
-	'title'							=>	'título',
+	'title'							=>	'Título',
 
 	'title'							=>	'Inicia',
 
-	'perks'							=>	'benefícios',
+	'perks'							=>	'Benefícios',
 
 	'kind'							=>	'Tipo',
 
@@ -175,37 +175,37 @@ return array(
 
 	'usd'							=>	'USD',
 
-	'navigation'					=>	'navegação',
+	'navigation'					=>	'Navegação',
 
 	'home'							=>	'Iniciação',
 
-	'notification'					=>	'notificação',
+	'notification'					=>	'Notificação',
 
-	'notifications'					=>	'notificações',
+	'notifications'					=>	'Notificações',
 
 	'starts'						=>	'Inicia',
 
 	'friendemail' 					=> 'E-mail do seu amigo',
 
-	'friendmessage'				=> 'Mensagem para seu amigo',
+	'friendmessage'					=> 'Mensagem para seu amigo',
 
 	'invitefriend'					=> 'Convide seu amigo',
 
-	'seemore'					=> 'Veja mais ...',
+	'seemore'						=> 'Veja mais ...',
 
-	'manage'					=> 'Gerir',
+	'manage'						=> 'Gerir',
 
-	'searchtitle'				=> 'Procure o seu próximo evento ...',
+	'searchtitle'					=> 'Procure o seu próximo evento ...',
 
-	'eventbriteMessage'				=> 'Conecte-se à sua conta Eventbrite',
+	'eventbriteMessage'				=> 'Conecte-se com a sua conta Eventbrite',
 
-	'eventbriteButton'				=> 'Conectar!',
+	'eventbriteButton'				=> 'Conectar !',
 
 	'eventbriteButtonUnconnect'		=> 'Sair =(',
 
 	'evenbriteNotConnected'			=> "Opss, ",
 
-	'evenbriteConnected'			=> "Temos conectado com sucesso contas, algo deu errado. Você será redirecionado à página inicial.",
+	'evenbriteConnected'			=> "Temos conectado com sucesso contas, algo deu errado. Você será redirecionado para a página inicial.",
 
 	'import'						=> "Importação",
 
@@ -213,11 +213,11 @@ return array(
 
 	'configureImport'				=> "Configure sua importação a partir de Eventbrite",
 
-	'comunitySize' 					=> "Tamanho da sua comunidade",
+	'comunitySize' =>"Tamanho da sua comunidade",
 
-	'meetupMessage' 				=> "Conecte sua conta com Meetup",
+	'meetupMessage' =>"Conecte sua conta com Meetup",
 
-	'meetupButton'					=> 'Conecte-se com Meetup!',
+	'meetupButton'				=> 'Conecte-se com Meetup!',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -225,17 +225,17 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
-	"todo"	=>	"Listas de tarefas",
+	"todo"=>"Listas de tarefas",
 
-	"todoEvent"	=>	"Evento",
+	"todoEvent"=>"Evento",
 
-	"chooseEvent"	=>	"Escolha um Evento",
+	"chooseEvent"=>"Escolha um Evento",
 
-	"todoPeak"	=>	"Tipo de Patrocí­nio",
+	"todoPeak"=>"Tipo de Patrocínio",
 
-	"choosepeak"	=>	"Escolha um Patrocinador",
+	"choosepeak"=>"Escolha um Patrocinador",
 
-	"removeTodo" => "Tarefa excluída",
+	"removeTodo" => "tarefa excluído",
 
 	"todoTitle" => "Título da tarefa",
 
@@ -249,7 +249,7 @@ return array(
 
 	"todoStatus" => "Estado",
 
-	"addTodosListSponzor" => "Adicionar tarefas",
+	"addTodosListSponzor" => "AAdicionar tarefas",
 
 	"addSponzorTodo" => "Adicionar tarefa",
 );

@@ -1,6 +1,3 @@
-<html>
-<head>
-  <title>Dashboard</title>
 <!Doctype html>
 <html lang="en" ng-app="EventPage">
 <head>
@@ -17,6 +14,56 @@
   <!-- Javascripts ================================================== -->
 </head>
 <body>
+<div id="page-wrapper" class="active">
+  <div id="sidebar-wrapper">
+    <ul class="sidebar">
+      <li class="">
+        <br>
+        <div class="img-div col-centered" style="background-color: #FFF;">
+        <img src="{{ asset('images/users/user.png')}}"  width="300px" height="300px" />
+        </div>
+      </li>
+      <li><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span style="color:#fff;">{{$organizer[0]->location}}</span>
+      </li> 
+      <li><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <span style="color:#fff;">{{trans('dashboard.comunity')}}: {{$organizer[0]->comunity_size}}</span>
+      </li>
+      <li><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <span style="color:#fff;">{{trans('dashboard.nextEvent')}} : <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$nextEvent}}</span>
+      </li>   
+      <li><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span style="color:#fff;"><br>
+            <p style="color:#fff;">{{trans('dashboard.conf_event')}} : <p>
+            <p><strong itemprop="name">{{$event[0]->title}}</strong></p>
+            <p>{{$category[0]->title}}</p>
+            <p><img src="{{ asset('images/tag.png')}}" width="10">{{$category[0]->title}}<br></p>
+            <p><img src="images/map.png" width="10"> &nbsp; {{$event[0]->location}} &nbsp;<br></p>
+            <p><img src="{{ asset('images/calendar.png')}}" width="10">&nbsp;{{$event[0]->starts}}</p>
+          
+        <span style="color:#fff;"><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:{{$organizer[0]->email}}">{{trans('dashboard.contactOrganizer')}}</a></span>
+      </li>  
+    </ul>
+     <div class="sidebar-footer">
+      <div class="col-xs-4">
+        <a id="blogUrl" href="http://blogen.sponzor.me/">Blog</a>
+      </div>
+      <div class="col-xs-4">
+        <a href="http://staging.sponzor.me/testimonials" target="_blank">
+          About          </a>
+      </div>
+      <div class="col-xs-4">
+        <a target="_blank" href="http://support.sponzor.me/">
+          Support</a>
+      </div>
+    </div>
+  </div>
   <div class="col-xs-12">
     <div class="col-sm-12">
     <h1 align="center">{{trans('widget.signupform')}}</h1>   </div> 
@@ -60,5 +107,6 @@
     </table>
     {{ Form::close() }}
   </div>
+</div>
 </body>
 </html>

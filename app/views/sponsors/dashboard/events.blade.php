@@ -2,14 +2,13 @@
       <input type="hidden" ng-model="sponzors.current" ng-init="sponzors.current = {{ Session::get('userId') }}" /> 
     <div class="row">
       <div class="col-lg-10 col-lg-offset-1">      
-        <div class="widget" >
+        <div class="widget">
           <div class="widget-header">
             <i class="fa fa-tasks"></i> {{trans('dashboard.youfollowing')}}
           </div>
-          <div class="widget-body medium no-padding" style="height:550px" data-ng-controller="followingController"><!--Arreglar front end-->
-            <rd-loading ng-show="followloading==1"></rd-loading>
-            <div class="table-responsive" style="height:550px" ng-if="followloading==0">
-              <table class="table table-striped">
+          <div class="widget-body medium no-padding">
+            <div class="table-responsive">
+              <table class="table table-striped" data-ng-controller="followingController">
                 <thead>
                   <tr>
                     <th class="text-center">{{trans('dashboard.OrganizerName')}}</th>

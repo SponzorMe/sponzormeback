@@ -232,7 +232,17 @@ return array(
 	'configureEventbriteImport'	=> "Configure your import from eventbrite",
 
 	'eventImage'=>"Image",
+
 	"sponzor" =>"Sponzor",
+
+	"errorAddingImage"=>"You must upload a valid image",
+
+	"errorInNewEventFields"=>"You must complete appropriately all form fields",
+
+	"pasteSponzorsForm"=>"Place this code in your website and let's start!",
+
+	"newEventInvalidDates"=>"Invalid dates for the event",
+
 	"eventPendingApprobation" =>"Waiting for the organizer approbation",
 
 	"OrganizerName" =>"Organizer Name",
@@ -258,6 +268,14 @@ return array(
 	"sponzorButtonNotSponsor"=>"You need an Sponzor account to Sponzor this event",
 
 	"sponzorButtonNotlogin"=>"Log in to sponzor",
+
+	"eventstate0"=>"Waiting your approbation",
+
+	"eventstate1"=>"Aprobed",
+
+	"meetupconnectaccounttest"=> "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+
+	"eventbriteconnectaccounttest" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
 
 	/*
 	|--------------------------------------------------------------------------
@@ -292,5 +310,36 @@ return array(
 	"addTodosListSponzor" => "Add Tasks",
 
 	"addSponzorTodo" => "Add Task",
+
+	"taskNoCompleted" =>"No completed",
+	"taskCompleted" =>"Completed",
+
+	"errorInFieldsTask"=>"You must complete all fields",
+
+	"taskCreated"=>"Task created successfuly",
+
+	/*
+	|--------------------------------------------------------------------------
+	| Messages for pusher notifications
+	|--------------------------------------------------------------------------
+	*/
+
+	"NotificationNewSponzorAnEvent"=> 'You have a new Sponzor for the event <a href="#/sponzors"> :titleEvent </a>',
+
+	"NotificationOrganizerSponzorAceptance" => 'The organizer has accepted your sponzoring in the event <a href="#/sponzors">:titleEvent</a>',
+
+	"OrganizerSponzorAceptanceEmailNotification"=> 'Your sponzoring by the event :titleEvent has been accepted',
+
+	"NotificationOrganizerSponzorDesaceptance"=>'Your sponzoring by the event <a href="#/sponzors"> :titleEvent </a> has been not accepted',
+
+	"OrganizerSponzorDesaceptanceEmailNotification"=>'Your sponzoring by the event :titleEvent has been not accepted',
+
+	"NotificationSponzorDelete"=>'Your sponzoring by the event :titleEvent has been not accepted and has been removed',
+
+	"NotificationOrganizerDelete"=>'The sponzoring by the event :titleEvent has been removed by the sponzor',
+
+	"NotificationSponzorDeleteEmailNotification"=> 'Your sponzoring by the event :titleEvent has been not accepted and has been removed',
+
+	"NotificationOrganizerDeleteEmailNotification"=>'The sponzoring by the event :titleEvent has been removed by the sponzor',
 
 );

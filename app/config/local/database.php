@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'mysql-remote-local',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -45,14 +45,7 @@ return array(
 	*/
 
 	'connections' => array(
-
-		'sqlite' => array(
-			'driver'   => 'sqlite',
-			'database' => __DIR__.'/../database/production.sqlite',
-			'prefix'   => '',
-		),
-
-		'mysql' => array(
+		'mysql-local-local' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'beta',
@@ -62,37 +55,16 @@ return array(
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => 'web_',
 		),
-		'mysql2' => array(
+		'mysql-remote-local' => array(
 			'driver'    => 'mysql',
-			'host'      => 'aa1f5ln8emj29y3.cmogtvjrvqqk.us-west-1.rds.amazonaws.com',
-			'database'  => 'ebdb',
-			'username'  => 'sponzorme',
-			'password'  => 'U4vVkyARqypE8e$',
+			'host'      => '173.194.249.216',
+			'database'  => 'beta',
+			'username'  => 'root',
+			'password'  => 'local-sponzorme',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => 'web_',
 		),
-
-		'pgsql' => array(
-			'driver'   => 'pgsql',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
-			'charset'  => 'utf8',
-			'prefix'   => '',
-			'schema'   => 'public',
-		),
-
-		'sqlsrv' => array(
-			'driver'   => 'sqlsrv',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
-			'prefix'   => '',
-		),
-
 	),
 
 	/*

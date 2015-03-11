@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'mysql-remote-production',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -46,41 +46,15 @@ return array(
 
 	'connections' => array(
 
-		'sqlite' => array(
-			'driver'   => 'sqlite',
-			'database' => __DIR__.'/../database/production.sqlite',
-			'prefix'   => '',
-		),
-
-		'mysql' => array(
+		'mysql-remote-production' => array(
 			'driver'    => 'mysql',
-			'host'      => 'aa1f5ln8emj29y3.cmogtvjrvqqk.us-west-1.rds.amazonaws.com',
-			'database'  => 'ebdb',
-			'username'  => 'sponzorme',
-			'password'  => 'U4vVkyARqypE8e$',
+			'host'      => '173.194.244.143',
+			'database'  => 'sponzorme',
+			'username'  => 'root',
+			'password'  => 'production-sponzorme',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => 'web_',
-		),
-
-		'pgsql' => array(
-			'driver'   => 'pgsql',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
-			'charset'  => 'utf8',
-			'prefix'   => '',
-			'schema'   => 'public',
-		),
-
-		'sqlsrv' => array(
-			'driver'   => 'sqlsrv',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
-			'prefix'   => '',
 		),
 
 	),

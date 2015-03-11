@@ -50,7 +50,7 @@
         </li>
         <li class="sidebar-title"><span>{{trans('dashboard.navigation')}}</span></li>
         <li class="sidebar-list">
-          <a href="#">{{trans('dashboard.dashboard')}}<span class="menu-icon fa fa-tachometer"></span></a>
+          <a href="#/main">{{trans('dashboard.dashboard')}}<span class="menu-icon fa fa-tachometer"></span></a>
         </li>       
         <li class="sidebar-list">
           <a href="#/following">{{trans('dashboard.following')}} <span class="menu-icon fa fa-eye"></span></a>

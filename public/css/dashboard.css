@@ -528,3 +528,6 @@ h1.suggh1 {
 .imagen_notification_close a {
   color: white !important;
 }
+.perks_class {
+  min-height: 422px;
+}

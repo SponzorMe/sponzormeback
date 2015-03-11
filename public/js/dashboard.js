@@ -52,8 +52,7 @@ angular.module('Dashboard').config(['$stateProvider', '$urlRouterProvider',
         .state('todo', {
             url: '/todo',
             templateUrl: 'todo.html'
-        })
-        
+        })        
 }]);
 /**
  * Master Controller
@@ -830,9 +829,11 @@ function followingController($scope,$Cookie,$location,Customization,ngDialog){
 angular.module('Dashboard').controller('sponzoringController', ['$scope', '$cookieStore','$location', 'Customization','ngDialog',sponzoringController]);
 function sponzoringController($scope,$Cookie,$location,Customization,ngDialog){
     $scope.sponzors.list=[];
+    $scope.sponzoringEventsloading=1;
     Customization.getEventsBySponzors($scope.sponzors.current,1).success(function(data) 
     {
        $scope.sponzors.list=data.Sponzors;
+       $scope.sponzoringEventsloading=0;
     }).
     error(function(data) 
     {
@@ -846,20 +847,28 @@ function sponzoringController($scope,$Cookie,$location,Customization,ngDialog){
             });
         });       
     }
-    $scope.getTaskSponzorPeak = function(relPeak,event,idPeak){
+    $scope.getTaskSponzorPeakSponzoring = function(relPeak,event,idPeak){
+        $scope.todo.loadingTask=1;
+        $scope.todo.loadingTaskRel=1;
         Customization.getTaskBySponzorRelPeak(relPeak,0).success(function(adata){
            $scope.todo.list=adata.TaskBySponzor;
+           $scope.todo.loadingTask=0;
         });
         Customization.getTaskBySponzorRelPeak(relPeak,1).success(function(adata){
            $scope.todo.listSponzor=adata.TaskBySponzor;
-        });
+           $scope.todo.loadingTaskRel=0;
+        });        
         $scope.todo.peak=idPeak;
         $scope.todo.currentRelPeak=relPeak;
         $scope.todo.currentEvent=event;        
     }
     $scope.updateStatusTaskSponzorPeak = function (idTaskSponzor, status, relPeak){
-        Customization.updateStatusTaskSponzorPeak(idTaskSponzor,status).success(function(adata){
-            $scope.getTaskSponzorPeak(relPeak,$scope.todo.currentEvent);
+        $scope.todo.loadingTaskRel=1;
+        Customization.updateStatusTaskSponzorPeak(idTaskSponzor,status).success(function(adata){            
+            Customization.getTaskBySponzorRelPeak(relPeak,1).success(function(adata){
+                $scope.todo.listSponzor=adata.TaskBySponzor;
+                $scope.todo.loadingTaskRel=0;
+            });
         });
     }
     $scope.createSponzorTask = function (){
@@ -867,6 +876,7 @@ function sponzoringController($scope,$Cookie,$location,Customization,ngDialog){
     }
     $scope.addTodo = function ()
     {
+        $scope.todo.loadingTaskRel=1;
         Customization.setPeakTodo(
         $scope.todo.title,
         $scope.todo.description,
@@ -875,19 +885,25 @@ function sponzoringController($scope,$Cookie,$location,Customization,ngDialog){
         1,
         $scope.todo.currentRelPeak
     ).success(function(adata){
-
-        //Limpiamos los datos
         $scope.todo.title="";
         $scope.todo.description="";
-        $scope.getTaskSponzorPeak($scope.todo.currentRelPeak,$scope.todo.currentEvent);
         ngDialog.close();
-        }).error(function(data) {
-            console.log(data);
-        });        
+        Customization.getTaskBySponzorRelPeak($scope.todo.currentRelPeak,$scope.todo.currentEvent).success(function(adata){
+            $scope.todo.listSponzor=adata.TaskBySponzor;
+            $scope.todo.loadingTaskRel=0;
+        });
+    }).error(function(data) {
+        console.log(data);
+        $scope.todo.loadingTaskRel=0;
+    });        
     }
     $scope.removeTaskSponzorPeak = function (idTaskSponzor, relPeak){
+        $scope.todo.loadingTaskRel=1;
         Customization.removeTaskSponzorPeak(idTaskSponzor).success(function(adata){
-        $scope.getTaskSponzorPeak(relPeak,$scope.todo.currentEvent); 
+            Customization.getTaskBySponzorRelPeak(relPeak,1).success(function(adata){
+                $scope.todo.listSponzor=adata.TaskBySponzor;
+                $scope.todo.loadingTaskRel=0;
+            });
         });
     }
 }

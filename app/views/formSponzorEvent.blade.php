@@ -20,7 +20,7 @@
       <li class="">
         <br>
         <div class="img-div col-centered" style="background-color: #FFF;">
-        <img src="{{ asset('images/users/'.$organizer[0]->image)}}"  width="300px" height="300px" />
+          <img src="{{asset('images/users/'.$organizer[0]->image)}}"  width="300px" height="300px" />
         </div>
       </li>
       <li><br>

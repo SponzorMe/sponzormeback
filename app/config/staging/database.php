@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'mysql-remote-staging',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -45,44 +45,16 @@ return array(
 	*/
 
 	'connections' => array(
-
-		'sqlite' => array(
-			'driver'   => 'sqlite',
-			'database' => __DIR__.'/../database/production.sqlite',
-			'prefix'   => '',
-		),
-
-		'mysql' => array(
+		'mysql-remote-staging' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
+			'host'      => '173.194.82.208',
 			'database'  => 'staging',
-			'username'  => 'staging',
-			'password'  => 'eyl@3J8P',
+			'username'  => 'root',
+			'password'  => 'staging-sponzorme',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => 'web_',
 		),
-
-		'pgsql' => array(
-			'driver'   => 'pgsql',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
-			'charset'  => 'utf8',
-			'prefix'   => '',
-			'schema'   => 'public',
-		),
-
-		'sqlsrv' => array(
-			'driver'   => 'sqlsrv',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
-			'prefix'   => '',
-		),
-
 	),
 
 	/*

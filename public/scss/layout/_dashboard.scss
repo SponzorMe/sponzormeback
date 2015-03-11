@@ -390,11 +390,11 @@ ul.sidebar .sidebar-list .menu-icon {
   overflow-y: auto;
 }
 .widget .widget-body.medium {
-  height: 250px;
+  min-height: 250px;
   overflow-y: auto;
 }
 .widget .widget-body.small {
-  height: 150px;
+  min-height: 150px;
   overflow-y: auto;
 }
 .widget .widget-body.no-padding {

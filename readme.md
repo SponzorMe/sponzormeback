@@ -26,7 +26,7 @@ Before you start to doing anything. YOU HAVE READ THIS.
 
 ### Instructions
 
-Before you begin, make sure you have both ```git``` and ```composer``` installed on your system. 
+Before you begin, make sure you have both ```git``` and ```composer``` installed on your system.
 
 1. Clone the repo
 2. Run ```php composer.phar update```
@@ -38,12 +38,16 @@ Before you begin, make sure you have both ```git``` and ```composer``` installed
 
 ### Instructions Front-End
 
-1. Install Bower 
+1. Install Bower
 
 $# bower install
 $# sudo npm install
 
 2. Install Gulp
+
+### Short install
+
+$# sudo npm install
 
 ###Linux Version
 
@@ -67,15 +71,40 @@ $# sudo npm install --save-dev gulp-sass
 
 ###Windows Version
 
-npm install -g gulp 
-npm install --save-dev gulp 
-npm install --save-dev gulp-uglify 
-npm install --save-dev gulp-flatten 
-npm install --save-dev gulp-filter 
-npm install --save-dev gulp-minify-css 
-npm install --save-dev gulp-rename 
-npm install --save-dev main-bower-files 
-npm install --save-dev gulp-sass 
+npm install -g gulp
+npm install --save-dev gulp
+npm install --save-dev gulp-uglify
+npm install --save-dev gulp-flatten
+npm install --save-dev gulp-filter
+npm install --save-dev gulp-minify-css
+npm install --save-dev gulp-rename
+npm install --save-dev main-bower-files
+npm install --save-dev gulp-sass
+
+3. Local
+
+Para el ambiente de desarrollo local si estas usando Apache (XAMPP, WAMP, etc) puedes agregar estas lineas al final del archivo http.conf:
+
+<pre>
+#Default
+&lt;VirtualHost *:80&gt;
+    DocumentRoot /xampp/htdocs/sponzorme
+    ServerName localhost
+&lt;/VirtualHost&gt;
+
+#Programando.la
+&lt;VirtualHost *:80&gt;
+    DocumentRoot /xampp/htdocs/programandola
+    ServerName local.sponzor.me
+&lt;/VirtualHost&gt;
+</pre>
+
+Para que puedas ingresar al sitio local (en tu maquina) desde el navegador usando la direccion **local.sponzor.me** estando en Windows puedes editar el archivo *'C:/Windows/System32/drivers/etc/hosts'* y en Mac en *'/private/etc/hosts'* y agregar esta linea al final:
+
+<pre>127.0.0.1  local.sponzor.me</pre>
+
+De ser necesario cambia *'/xammp/htdocs'* por la carpeta donde tienes guardado tus sitios web, por ejemplo en Ubuntu usualmente es *'/var/www'*.
+
 
 
 Be responsable with this code and make the force be with you :)

@@ -96,13 +96,13 @@ Para el ambiente de desarrollo local si estas usando Apache (XAMPP, WAMP, etc) p
 <pre>
 #Default
 &lt;VirtualHost *:80&gt;
-    DocumentRoot /xampp/htdocs/sponzorme
+    DocumentRoot /xampp/htdocs/
     ServerName localhost
 &lt;/VirtualHost&gt;
 
-#Programando.la
+#SponzorMe
 &lt;VirtualHost *:80&gt;
-    DocumentRoot /xampp/htdocs/programandola
+    DocumentRoot /xampp/htdocs/sponzorme
     ServerName local.sponzor.me
 &lt;/VirtualHost&gt;
 </pre>

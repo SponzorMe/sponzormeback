@@ -24,11 +24,16 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$env = $app->detectEnvironment(array(
-    'local' => array('localhost','127.0.0.1','local.sponzor.me','Carloss-MacBook-Pro.local'),
-    'staging' => array('staging.sponzor.me','staging.*','servergamma.netbump.co'),
-    'production'=>array('www.sponzor.me','sponzor.me')
-));
+$env = $app->detectEnvironment(function(){
+$hosts = array(
+'local.sponzor.me' => 'local',
+'staging.sponzor.me' => 'staging',
+'www.sponzor.me' => 'production',
+);
+if(isset($hosts[$_SERVER['SERVER_NAME']])){
+return $hosts[$_SERVER['SERVER_NAME']];
+}
+});
 
 /*
 |--------------------------------------------------------------------------

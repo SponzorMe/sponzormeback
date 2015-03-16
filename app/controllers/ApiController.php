@@ -1136,6 +1136,24 @@ class ApiController extends BaseController {
 				);
 		}
 	}
+	public function getDemoStatus($userId){
+		$demoStatus=UserCustomization::where("id","=",$userId)->pluck('demo');
+		return Response::json(array("success" => true,"demoStatus"=>$demoStatus));
+	}
+	public function setDemoStatus($userId,$status){
+		try
+		{
+			if($status>1)
+				$status=1;
+			$user=UserCustomization::find($userId);
+			$user->demo=$status;
+			$user->save();
+			return Response::json(array("success" => true,"message"=>"Demos status changed Succesfuly","User"=>$user->toArray()));
+		}
+		catch(Exception $e){
+			return Response::json(array("success" => false,"message"=>"User Not Found"));
+		}
+	}
 	public function removeTaskSponzorPeak($idTaskRelPeak)
 	{
 		try{

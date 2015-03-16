@@ -167,6 +167,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
 	Route::get('rel_peak/todo/remove/{idRelPeak}', 'ApiController@removeTaskSponzorPeak');
 
 	Route::post('save/external/sponzor', 'ApiController@storeExternalSponzor');
+
+	Route::get('get/demo/status/{userId}', 'ApiController@getDemoStatus');
+	Route::get('set/demo/status/{userId}/{status}', 'ApiController@setDemoStatus');
 	
 });
 

@@ -205,15 +205,6 @@ function MasterCtrl($scope, $cookieStore, Customization) {
       }
     });
 
-
-
-    // for (var i = 0; i < 20; i++) {
-    //     var numbertype = Math.floor((Math.random() * (4 - 1)) + 1);
-    //     typeobj = ['<i class="fa fa-check-circle-o"></i>', '<i class="fa fa-check-circle"></i>', '<i class="fa fa-circle-o"></i>'];
-    //     var namecolor = ['amarillo', 'verde', 'red']
-    //     $scope.alertsnot.push({msg: 'You have a new Sponzor for the event <a href="#/sponzors">test</a>', type: typeobj[numbertype-1], color: namecolor[numbertype-1]});
-    // };
-
     $scope.$watch('alertsnot', function () {
         if ($scope.alertsnot.length > 0){
             $scope.viewitem = true;
@@ -231,6 +222,25 @@ function MasterCtrl($scope, $cookieStore, Customization) {
         $scope.alertsnot.splice(index, 1);
         //$scope.animateclass = 'animatebox';
     }
+
+    $scope.getDemoStatus = function(userId){
+        Customization.getDemoStatus(userId).success(function(adata) 
+        {
+            //Aca tienes si vio o no el demo, 0 no lo vió, 1 ya lo vió
+            console.log("mira el estatus es: "+adata.demoStatus);
+        });        
+    }
+    $scope.setDemoStatus = function(userId,status){
+        Customization.setDemoStatus(userId,status).success(function(adata) 
+        {
+            //Aca tienes si vio o no el demo, 0 no lo vió, 1 ya lo vió
+            console.log(adata.User.demo);
+        });
+    }
+    $scope.setDemoStatus(28,0);//Aca llamamos a la función de ejemplo borra cuando lo entendas
+    $scope.getDemoStatus(28);//Aca llamamos a la función de ejemplo borra cuando lo entendas
+    $scope.setDemoStatus(28,1);//Aca llamamos a la función de ejemplo borra cuando lo entendas
+    $scope.getDemoStatus(28);//Aca llamamos a la función de ejemplo borra cuando lo entendas
     
 }
 /**

@@ -179,6 +179,14 @@ angular.module('customizationService', [])
 			removeTaskSponzorPeak : function(idTaskSponzor){
 				global = $http.get(path + 'api/v1/rel_peak/todo/remove/'+idTaskSponzor);
 				return global;
+			},
+			getDemoStatus : function(userId){
+				global = $http.get(path + 'api/v1/get/demo/status/'+userId);
+				return global;
+			},
+			setDemoStatus : function(userId,newStatus){
+				global = $http.get(path + 'api/v1/set/demo/status/'+userId+'/'+newStatus);
+				return global;
 			}			
 		}
 

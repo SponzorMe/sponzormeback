@@ -51,7 +51,7 @@ return array(
 			'host'      => '173.194.244.143',
 			'database'  => 'sponzorme',
 			'username'  => 'root',
-			'password'  => 'production-sponzorme',
+			'password'  => 'produccion-sponzorme',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => 'web_',

@@ -113,6 +113,31 @@ Para que puedas ingresar al sitio local (en tu maquina) desde el navegador usand
 
 De ser necesario cambia *'/xammp/htdocs'* por la carpeta donde tienes guardado tus sitios web, por ejemplo en Ubuntu usualmente es *'/var/www'*.
 
+Ahora debemos crear un Vhost para tu localhost, sino no vas a poder acceder a tus otros proyectos.
 
+<pre>
+<VirtualHost *:80>
+    ServerName localhost
+    DocumentRoot "/Applications/XAMPP/xamppfiles/htdocs"
+    <Directory "/Applications/XAMPP/xamppfiles/htdocs">
+        Options Indexes FollowSymLinks Includes execCGI
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>
+
+#SponzorMe
+
+<VirtualHost *:80>
+    DocumentRoot "//Applications/XAMPP/xamppfiles/htdocs/sponzorme/public"
+    ServerName local.sponzor.me
+    <Directory "/Applications/XAMPP/xamppfiles/htdocs/sponzorme/public">
+        Options Indexes FollowSymLinks Includes execCGI
+        AllowOverride All
+        Require all granted
+    </Directory>
+    ErrorLog "logs/local.sponzor.me.local-error_log"
+</VirtualHost>
+</pre>
 
 Be responsable with this code and make the force be with you :)

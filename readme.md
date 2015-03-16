@@ -138,6 +138,6 @@ Ahora debemos crear un Vhost para tu localhost, sino no vas a poder acceder a tu
     &lt;/Directory&gt;
     ErrorLog "logs/local.sponzor.me.local-error_log"
 &lt;/VirtualHost&gt;
-&lt;/pre>
+</pre>
 
 Be responsable with this code and make the force be with you :)

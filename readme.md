@@ -116,28 +116,28 @@ De ser necesario cambia *'/xammp/htdocs'* por la carpeta donde tienes guardado t
 Ahora debemos crear un Vhost para tu localhost, sino no vas a poder acceder a tus otros proyectos.
 
 <pre>
-<VirtualHost *:80>
+&lt;VirtualHost *:80&gt;
     ServerName localhost
     DocumentRoot "/Applications/XAMPP/xamppfiles/htdocs"
-    <Directory "/Applications/XAMPP/xamppfiles/htdocs">
+    &lt;Directory "/Applications/XAMPP/xamppfiles/htdocs"&gt;
         Options Indexes FollowSymLinks Includes execCGI
         AllowOverride All
         Require all granted
-    </Directory>
-</VirtualHost>
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;
 
 #SponzorMe
 
-<VirtualHost *:80>
+&lt;VirtualHost *:80&gt;
     DocumentRoot "//Applications/XAMPP/xamppfiles/htdocs/sponzorme/public"
     ServerName local.sponzor.me
-    <Directory "/Applications/XAMPP/xamppfiles/htdocs/sponzorme/public">
+    &lt;Directory "/Applications/XAMPP/xamppfiles/htdocs/sponzorme/public"&gt;
         Options Indexes FollowSymLinks Includes execCGI
         AllowOverride All
         Require all granted
-    </Directory>
+    &lt;/Directory&gt;
     ErrorLog "logs/local.sponzor.me.local-error_log"
-</VirtualHost>
-</pre>
+&lt;/VirtualHost&gt;
+&lt;/pre>
 
 Be responsable with this code and make the force be with you :)

@@ -72,13 +72,21 @@ $# sudo npm install --save-dev gulp-sass
 ###Windows Version
 
 npm install -g gulp
+
 npm install --save-dev gulp
+
 npm install --save-dev gulp-uglify
+
 npm install --save-dev gulp-flatten
+
 npm install --save-dev gulp-filter
+
 npm install --save-dev gulp-minify-css
+
 npm install --save-dev gulp-rename
+
 npm install --save-dev main-bower-files
+
 npm install --save-dev gulp-sass
 
 3. Local

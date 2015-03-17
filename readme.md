@@ -45,11 +45,13 @@ $# sudo npm install
 
 2. Install Gulp
 
-### Short install
+### Short Version
 
 $# sudo npm install
 
-###Linux Version
+### Long Version
+
+####Linux Version
 
 $# sudo npm install -g gulp
 
@@ -69,7 +71,7 @@ $# sudo npm install --save-dev main-bower-files
 
 $# sudo npm install --save-dev gulp-sass
 
-###Windows Version
+####Windows Version
 
 npm install -g gulp
 

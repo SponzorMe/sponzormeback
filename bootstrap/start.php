@@ -26,6 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(function(){
 $hosts = array(
+'localhost' => 'local',
 'local.sponzor.me' => 'local',
 'staging.sponzor.me' => 'staging',
 'www.sponzor.me' => 'production',

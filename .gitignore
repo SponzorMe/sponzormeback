@@ -5,6 +5,7 @@ protected/config/main.php
 .requirements.txt
 .htaccess
 stats/*
+vendor/*
 .elasticbeanstalk/
 
 # Elastic Beanstalk Files

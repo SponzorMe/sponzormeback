@@ -48,19 +48,19 @@ return array(
 
 	'head20privacy' 		=>	"Leyes internacionales de privacidad:",
 
-	'head12privacy'		=>	"Programas de Puerto Seguro entre EE. UU. y la U.E. y entre EE. UU. y Suiza:",
+	'head21privacy'		=>	"Programas de Puerto Seguro entre EE. UU. y la U.E. y entre EE. UU. y Suiza:",
 
-  'head13privacy' 		=>  "Otros términos y condiciones:",
+  'head22privacy' 		=>  "Otros términos y condiciones:",
 
-	'head14privacy' 		=>	"Cambios en esta Política de privacidad:",
+	'head23privacy' 		=>	"Cambios en esta Política de privacidad:",
 
-	'head15privacy'		=>	"Acceso a la información:",
+	'head24privacy'		=>	"Acceso a la información:",
 
-  'head16privacy' 		=>  "Conservación y eliminación:",
+  'head25privacy' 		=>  "Conservación y eliminación:",
 
-	'head17privacy' 		=>	"Contacto de SponzorMe:",
+	'head26privacy' 		=>	"Contacto de SponzorMe:",
 
-	'head18privacy'		=>	"Resolución de disputas:",
+	'head27privacy'		=>	"Resolución de disputas:",
 
 	'text1' 		=>  'Te damos la bienvenida a SponzorMe. SponzorMe, Inc. ("Compañía", "nosotros", "nosotros" y/o "nuestro") permite que la gente de todo el mundo planifique, promocione y venda entradas para cualquier evento. Y hacemos que descubrir y compartir eventos a los que se va a asistir con personas que se conoce sea más fácil para todo el mundo. Lo hacemos a través de nuestros sitios web y dominios, los servicios están disponibles en nuestros sitios web y dominios o a través de ellos o también los podemos proporcionar nosotros, y el software disponible en nuestros sitios web y dominios o que proporcionemos nosotros, (incluidas nuestras aplicaciones móviles) (de forma colectiva, los "Services").',
 

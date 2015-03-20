@@ -48,19 +48,19 @@ return array(
 
 	'head20privacy' 		=>	"Legislação internacional de privacidade:",
 
-	'head12privacy'		=>	"Programas US-EU & US-Swiss Safe Harbor:",
+	'head21privacy'		=>	"Programas US-EU & US-Swiss Safe Harbor:",
 
-  'head13privacy' 		=>  "Outros termos e condições:",
+  'head22privacy' 		=>  "Outros termos e condições:",
 
-	'head14privacy' 		=>	"Alterações a esta Política de Privacidade:",
+	'head23privacy' 		=>	"Alterações a esta Política de Privacidade:",
 
-	'head15privacy'		=>	"Acesso a Informações:",
+	'hea24privacy'		=>	"Acesso a Informações:",
 
-  'head16privacy' 		=>  "Retenção e Eliminação:",
+  'head25privacy' 		=>  "Retenção e Eliminação:",
 
-	'head17privacy' 		=>	"Contactar o SponzorMe:",
+	'head26privacy' 		=>	"Contactar o SponzorMe:",
 
-	'head18privacy'		=>	"Contestar Resolução:",
+	'head27privacy'		=>	"Contestar Resolução:",
 
 	'text1' 		=>  'Bem-vindo ao SponzorMe. O SponzorMe, Inc. ("Empresa", "nós", "nos" e/ou "nosso") permite que pessoas em todo o mundo planeiem, promovam e vendam bilhetes para qualquer evento. Facilitamos a todos a pesquisa de eventos e a partilha de eventos em que participam, com as pessoas que conhecem. Isto acontece através dos nossos websites e domínios, dos serviços disponíveis nos ou através dos nossos websites e domínios, ou de outra forma prestados por nós, e do software disponível nos ou através dos nossos websites e domínios, ou de outra forma disponibilizado por nós (incluindo as nossas aplicações móveis) (em conjunto designados como "Services").',
 

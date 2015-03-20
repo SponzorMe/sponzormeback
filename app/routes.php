@@ -179,6 +179,8 @@ Route::get('form/event/{eventId}', 'ApiController@formSponzorEventById');
 
 Route::get('testimonials', 'HomeController@testimonials'); //testimonials
 
+Route::get('privacy', 'HomeController@privacy'); //privacy
+
 Route::get('language/{lang}', 'HomeController@setLanguage'); //Language Settings
 
 App::missing(function($exception)

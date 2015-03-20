@@ -10,6 +10,10 @@ class HomeController extends BaseController {
 	{
 		return View::make('testimonials');
 	}
+	public function privacy()
+	{
+		return View::make('privacy');
+	}
 	public function setLanguage($lang)
 	{
 		Session::put('lang', $lang);

@@ -456,12 +456,12 @@
 // example: @include pseudo-fix(before)
 // example: @include pseudo-fix(after)
 
-@mixin pseudo-fix($pseudo){
-	*zoom: expression( 
-	  this.runtimeStyle.zoom="1",
-	  this.appendChild( document.createElement("small") ).className=$pseudo
-	 );
-}
+//@mixin pseudo-fix($pseudo){
+//	*zoom: expression( 
+//	  this.runtimeStyle.zoom="1",
+//	  this.appendChild( document.createElement("small") ).className=$pseudo
+//	 );
+//}
 
 // -----------------------------------------
 

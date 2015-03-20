@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
+concat    = require('gulp-concat');
 
 // define plug-ins
 var flatten = require('gulp-flatten');
@@ -15,11 +16,11 @@ var src_path = 'public/components';
 var dest_path =  'public';
 
 
-gulp.task('minify', function () {
-   gulp.src('public/js/app.js')
-      .pipe(uglify())
-      .pipe(gulp.dest(dest_path + '/build/js/vendor'))
-});
+// gulp.task('minify', function () {
+//    gulp.src('public/js/app.js')
+//       .pipe(uglify())
+//       .pipe(gulp.dest(dest_path + '/build/js/vendor'))
+// });
 
 
 // grab libraries files from bower_components, minify and push in /public
@@ -59,8 +60,16 @@ gulp.task('libs', function() {
 
 //sass
 
-gulp.task('sass', function () {
+ gulp.task('sass', function () {
     gulp.src('public/scss/*.scss')
+    return gulp.src('public/scss/*.scss')
         .pipe(sass())
-        .pipe(gulp.dest(dest_path + '/build/css'));
-});
+        .pipe(gulp.dest(dest_path + '/build/css'))
+        .pipe(concat('style.css'))
+        .pipe(minifycss())
+        .pipe(rename('style.css'))
+        .pipe(gulp.dest(dest_path + '/css'));
+ });
+
+gulp.task('default', ['libs','sass']);
+

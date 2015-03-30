@@ -1,4 +1,3 @@
-<?php echo "<script type='text/javascript'>console.log('Entorno Local')</script>"; ?>
 <?php
 return array(
 

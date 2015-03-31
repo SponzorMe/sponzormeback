@@ -9,6 +9,13 @@ var minifycss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var mainBowerFiles = require('main-bower-files');
 var sass = require('gulp-sass');
+// var browserSync = require('browser-sync');
+// var reload = browserSync.reload;
+
+// livereload
+var livereload = require('gulp-livereload');
+// var lr = require('tiny-lr');
+// var server = lr();
 
 
 // Define paths variables
@@ -56,11 +63,13 @@ gulp.task('libs', function() {
 	.pipe(fontFilter)
 	.pipe(flatten())
 	.pipe(gulp.dest(dest_path + '/build/fonts'))
+	.pipe(livereload());
 });
 
 //sass
 
  gulp.task('sass', function () {
+ 	console.log('entro....');
     gulp.src('public/scss/*.scss')
     return gulp.src('public/scss/*.scss')
         .pipe(sass())
@@ -68,8 +77,39 @@ gulp.task('libs', function() {
         .pipe(concat('style.css'))
         .pipe(minifycss())
         .pipe(rename('style.css'))
-        .pipe(gulp.dest(dest_path + '/css'));
+        .pipe(gulp.dest(dest_path + '/css'))
+        .pipe(livereload());
  });
 
-gulp.task('default', ['libs','sass']);
+// watch files for changes and reload
+// gulp.task('serve', function() {
+// 	gulp.watch('public/scss/*.scss', ['sass'],{cwd: 'public'}, reload);
+// 	gulp.watch('public/scss/layout/*.scss', ['sass'],{cwd: 'public'}, reload);
+//   	gulp.watch('public/js/*.js', ['libs']);
+// 	  browserSync({
+// 	  	proxy: {
+// 		    target: "local.sponzor.me",
+// 		    middeware: function (req, res, next) {
+// 		        console.log(req.url);
+// 		        next();
+// 		    }
+// 		}
+// 	  });
+  
+// });
+
+/* Watcher */
+gulp.task('watcher', function() {
+    livereload.listen({
+    	port: 80,
+    	host: 'local.sponzor.me',
+    	reloadPage:   index.html
+    });
+    gulp.watch('public/scss/*.scss', ['sass']);
+	gulp.watch('public/scss/layout/*.scss', ['sass']);
+  	gulp.watch('public/js/*.js', ['libs']);
+});
+
+gulp.task('default', ['libs','sass','watcher']);
+
 

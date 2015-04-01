@@ -15,6 +15,15 @@
   <link rel="stylesheet" href="{{ asset('components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css')}}"/>
   <!--Estilos principales-->
   <link rel="stylesheet" href="{{ asset('css/dashboard.css')}}"/>  
+
+  <!-- demo styles -->
+  <link rel="stylesheet" href="{{ asset('css/demo/demo.css')}}">
+
+  <!-- Add IntroJs styles -->
+  <link rel="stylesheet" href="{{ asset('css/demo/introjs.css')}}">
+
+  <link rel="stylesheet" href="{{ asset('css/demo/bootstrap-responsive.min.css')}}">
+
   <!-- Javascripts ================================================== -->
   <script src="{{ asset('components/jquery/dist/jquery.min.js') }}"></script>
   <script src="{{ asset('components/angular/angular.min.js')}}"></script>
@@ -30,7 +39,7 @@
   <script type="text/javascript" src="{{ asset('components/moment/moment.js')}}"></script>
   <script type="text/javascript" src="{{ asset('components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
   <script type="text/javascript" src="{{ asset('components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js')}}"></script>
-  <script src="{{ asset('js/bootstro.min.js')}}"></script><!--controller principal-->
+  <script src="{{ asset('js/demo/intro.js')}}"></script><!--controller principal-->
   <script src="{{ asset('js/dashboard.js')}}"></script><!--controller principal-->
   <script src="{{ asset('js/services/customizationService.js') }}"></script><!-- load our service -->
   <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script><!-- Pusher Service -->
@@ -43,7 +52,7 @@
 
     <div id="sidebar-wrapper">
       <ul class="sidebar">
-        <li class="sidebar-main">
+        <li class="sidebar-main" id="step3">
           <a href="" ng-click="toggleSidebar()">
             Dashboard
             <span class="menu-icon glyphicon glyphicon-transfer"></span>
@@ -66,7 +75,7 @@
           <a href="{{ URL::to('logout') }}">{{trans('pages.logout')}}<span class="menu-icon fa fa-sign-out"></span></a>
         </li>  
       </ul>
-      <div class="sidebar-footer">
+      <div class="sidebar-footer" id="step4">
         <div class="col-xs-4">
           <a href="{{ URL::to(trans('pages.blogUrl')) }}">{{trans('pages.blog')}}</a>
         </div>
@@ -157,7 +166,7 @@
               </div>
             </div>
             <div class="meta">
-              <div class="page">
+              <div class="page" id="step2">
                 {{trans('dashboard.dashboard')}}
               </div>
               <div class="breadcrumb-links">

@@ -101,9 +101,9 @@ gulp.task('libs', function() {
 /* Watcher */
 gulp.task('watcher', function() {
     livereload.listen({
-    	port: 80,
+    	port: 8081,
     	host: 'local.sponzor.me',
-    	reloadPage:   index.html
+    	reloadPage:   'index.html'
     });
     gulp.watch('public/scss/*.scss', ['sass']);
 	gulp.watch('public/scss/layout/*.scss', ['sass']);

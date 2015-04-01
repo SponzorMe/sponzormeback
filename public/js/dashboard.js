@@ -228,19 +228,102 @@ function MasterCtrl($scope, $cookieStore, Customization) {
         {
             //Aca tienes si vio o no el demo, 0 no lo vió, 1 ya lo vió
             console.log("mira el estatus es: "+adata.demoStatus);
+
+            var host = window.location.href;
+
+            var hostarray = host.split("/");
+
+            console.log(hostarray);
+
+            $scope.visita = adata.demoStatus;
+
+            console.log($scope.visita);
+
+            if ($scope.visita == 0){
+                console.log('entro');
+                var hostsponsors = hostarray.indexOf("sponsors");
+                if(hostsponsors == 3){
+
+                    var intro = introJs();
+                    intro.setOptions({
+                        steps: [
+                          {
+                            element: '#step1',
+                            intro: "Bienvenido a SponzorMe.</br>Esperamos que disfrutes en usar esta plataforma, tanto como nosotros en construirla.</br>Cualquier duda no importa lo insignificante que parezca déjamela saber a carlos@sponzor.me",
+                            position: 'left'
+                          },
+                          {
+                            element: '#step2',
+                            intro: "Empecemos, explorando un poco tu .</br>Lo primero es que vas a ver en esta zona es un buscador. Simplemente ingresa las palabras mágicas de los eventos que buscas y déjanos encontrar los eventos que pueden interesarte...",
+                            position: 'bottom'
+                          },
+                          {
+                            element: '#step3',
+                            intro: 'Ahora miremos un poco de nuestro menu.</br>Aca podras encontrar lo siguiente.</br>Dashboard -> Para volver a tu buscador.</br>Siguiendo -> Esos eventos que quieres patrocinar, pero que aun el organizador no acepta.</br>Patrocinando -> Esos eventos que estas patrocinando, Como se encuentran los acuerdos con tus patrocinadores, y puedes crear algunas tareas para que no te acuerdes a ultima hora que tenias que enviar a hacer esas camisetas...</br>Invita a tus amigos -> Esparce el amor. Envíaselo a esa persona que sabes necesita algo como esto y lo va a disfrutar.</br>Configuración -> Acá podrás actualizar tu información y conectar tus cuentas externas.</br>Desconectar -> Aca podras salir de nuestra plataforma de una manera segura. Sabemos que es temporal por que te queremos <B',
+                            position: 'right'
+                          },
+                          {
+                            element: '#step4',
+                            intro: "Ahora miremos un poco de esas opciones con un poco menos de relevancia pero que te gustaran cuando las necesites.</br>Blog ->   Lee un poco de lo que escribe nuestro equipo.</br>About -> Lee un poco sobre el equipo.</br>Soporte -> Algun problema? escribele a nuestro equipo de expertos para que resuelvan lo antes posible ese inconveniente.",
+                            position: 'right'
+                          }
+                        ]
+                    });
+
+                      intro.start();
+
+                }else{
+                    var intro = introJs();
+                    intro.setOptions({
+                        steps: [
+                          {
+                            element: '#step1',
+                            intro: "Bienvenido a SponzorMe.</br>Esperamos que disfrutes en usar esta plataforma, tanto como nosotros en construirla.</br>Cualquier duda no importa lo insignificante que parezca déjamela saber a carlos@sponzor.me",
+                            position: 'left'
+                          },
+                          {
+                            element: '#step2',
+                            intro: "Empecemos, explorando un poco tu dashboard.</br>Lo primero es que vas a ver en esta zona un resumen de todo lo que esta sucediendo.</br>Podrás ver un resumen global, Resumen de tus Eventos, Resumen de tus Patrocinios y Algunas sugerencias que nuestro equipo de expertos ha preparado para ti.",
+                            position: 'bottom'
+                          },
+                          {
+                            element: '#step3',
+                            intro: 'Ahora miremos un poco de nuestro menu.</br>Aca podras encontrar lo siguiente. </br>Dashboard -> Para volver al resumen de todas las actividades.</br>Eventos -> Para poder crear, editar y gestionar tus eventos.</br>Sponzors -> Para poder crear, editar y gestionar tus patrocinadores.</br>Task List -> Para poder manejar tus acuerdos con tus patrocinadores y mantener buenas y sanas relaciones con ellos.</br>Invita a tus amigos -> Esparce el amor. Envíaselo a esa persona que sabes necesita algo como esto y lo va a disfrutar.</br>Configuración -> Acá podrás actualizar tu información y conectar tus cuentas externas.</br>Desconectar -> Aca podras salir de nuestra plataforma de una manera segura. Sabemos que es temporal por que te queremos <B',
+                            position: 'right'
+                          },
+                          {
+                            element: '#step4',
+                            intro: "Ahora miremos un poco de esas opciones con un poco menos de relevancia pero que te gustaran cuando las necesites.</br>Blog ->   Lee un poco de lo que escribe nuestro equipo.</br>About -> Lee un poco sobre el equipo.</br>Soporte -> Algun problema? escribele a nuestro equipo de expertos para que resuelvan lo antes posible ese inconveniente.",
+                            position: 'right'
+                          }
+                        ]
+                    });
+
+                      intro.start();
+                }
+                $scope.setDemoStatus(28,1);
+            }
+
         });        
     }
     $scope.setDemoStatus = function(userId,status){
         Customization.setDemoStatus(userId,status).success(function(adata) 
         {
             //Aca tienes si vio o no el demo, 0 no lo vió, 1 ya lo vió
+            return adata.User.demo;
             console.log(adata.User.demo);
         });
     }
+    
     $scope.setDemoStatus(28,0);//Aca llamamos a la función de ejemplo borra cuando lo entendas
     $scope.getDemoStatus(28);//Aca llamamos a la función de ejemplo borra cuando lo entendas
-    $scope.setDemoStatus(28,1);//Aca llamamos a la función de ejemplo borra cuando lo entendas
-    $scope.getDemoStatus(28);//Aca llamamos a la función de ejemplo borra cuando lo entendas
+    //$scope.setDemoStatus(28,1);//Aca llamamos a la función de ejemplo borra cuando lo entendas
+    //$scope.getDemoStatus(28);//Aca llamamos a la función de ejemplo borra cuando lo entendas
+
+    
+    
+
+    
     
 }
 /**

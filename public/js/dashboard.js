@@ -227,7 +227,7 @@ function MasterCtrl($scope, $cookieStore, Customization) {
         Customization.getDemoStatus(userId).success(function(adata) 
         {
             //Aca tienes si vio o no el demo, 0 no lo vió, 1 ya lo vió
-            console.log("mira el estatus es: "+adata.demoStatus);
+            console.log(adata);
 
             var host = window.location.href;
 
@@ -301,7 +301,7 @@ function MasterCtrl($scope, $cookieStore, Customization) {
 
                       intro.start();
                 }
-                $scope.setDemoStatus(28,1);
+                $scope.setDemoStatus(userId,1);
             }
 
         });        
@@ -314,13 +314,10 @@ function MasterCtrl($scope, $cookieStore, Customization) {
             console.log(adata.User.demo);
         });
     }
-    
-    $scope.setDemoStatus(28,0);//Aca llamamos a la función de ejemplo borra cuando lo entendas
-    $scope.getDemoStatus(28);//Aca llamamos a la función de ejemplo borra cuando lo entendas
-    //$scope.setDemoStatus(28,1);//Aca llamamos a la función de ejemplo borra cuando lo entendas
-    //$scope.getDemoStatus(28);//Aca llamamos a la función de ejemplo borra cuando lo entendas
-
-    
+    //Si el DOM esta listo entonces ejecutamos el script, de lo contrario no.
+    angular.element(document).ready(function () {
+        $scope.getDemoStatus($scope.event.organizer);
+    });
     
 
     

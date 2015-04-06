@@ -28,6 +28,7 @@ $env = $app->detectEnvironment(function(){
 $hosts = array(
 'localhost' => 'local',
 'local.sponzor.me' => 'local',
+'Casa' => 'local',
 'staging.sponzor.me' => 'staging',
 'www.sponzor.me' => 'production',
 );

@@ -45,16 +45,6 @@ return array(
 	*/
 
 	'connections' => array(
-		'mysql-local-local' => array(
-			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'beta',
-			'username'  => 'beta',
-			'password'  => '7VMrjqCfUB749w',
-			'charset'   => 'utf8',
-			'collation' => 'utf8_unicode_ci',
-			'prefix'    => 'web_',
-		),
 		'mysql-remote-local' => array(
 			'driver'    => 'mysql',
 			'host'      => '173.194.249.216',

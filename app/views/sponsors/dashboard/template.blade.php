@@ -10,6 +10,8 @@
 
 	@include ('sponsors.dashboard.settings')
 
+	@include ('sponsors.dashboard.friend')
+
 	@include ('sponsors.dashboard.dialog')
 
 @stop

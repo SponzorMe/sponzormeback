@@ -72,6 +72,9 @@
           <a href="#/settings">{{trans('dashboard.settings')}}<span class="menu-icon fa fa-cogs"></span></a>
         </li>
         <li class="sidebar-list">
+          <a href="#/friend">{{trans('dashboard.invitefriend')}} <span class="menu-icon fa fa-smile-o"></span></a>
+        </li>
+        <li class="sidebar-list">
           <a href="{{ URL::to('logout') }}">{{trans('pages.logout')}}<span class="menu-icon fa fa-sign-out"></span></a>
         </li>  
       </ul>

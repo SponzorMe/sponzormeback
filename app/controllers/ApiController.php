@@ -1138,7 +1138,7 @@ class ApiController extends BaseController {
 	}
 	public function getDemoStatus($userId){
 		$demoStatus=UserCustomization::where("id","=",$userId)->pluck('demo');
-		return Response::json(array("success" => true,"demoStatus"=>$demoStatus));
+		return Response::json(array("success" => true,"demoStatus"=>$demoStatus,"lang"=>Session::get("lang")));
 	}
 	public function setDemoStatus($userId,$status){
 		try

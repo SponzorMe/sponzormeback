@@ -227,7 +227,7 @@ function MasterCtrl($scope, $cookieStore, Customization) {
         Customization.getDemoStatus(userId).success(function(adata) 
         {
             //Aca tienes si vio o no el demo, 0 no lo vió, 1 ya lo vió
-            console.log(adata);
+            console.log(adata);//Aca tenes el lenguaje en ingles es español
 
             var host = window.location.href;
 
@@ -236,6 +236,8 @@ function MasterCtrl($scope, $cookieStore, Customization) {
             console.log(hostarray);
 
             $scope.visita = adata.demoStatus;
+
+            $scope.lang = adata.lang;//Aca tenes el lenguaje
 
             console.log($scope.visita);
 

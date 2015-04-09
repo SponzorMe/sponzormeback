@@ -309,7 +309,70 @@ function MasterCtrl($scope, $cookieStore, Customization) {
             }
 
             if($scope.lang == 'en'){
-                
+                if ($scope.visita == 0){
+                    console.log('entro');
+                    var hostsponsors = hostarray.indexOf("sponsors");
+                    if(hostsponsors == 3){
+
+                        var intro = introJs();
+                        intro.setOptions({
+                            steps: [
+                              {
+                                element: '#step1',
+                                intro: "Welcome to SponzorMe.</br>We hope you enjoy using this platform as much as we did when putting it together.</br>Any questions as meaningless as they can seem, please send them to carlos@sponzor.me",
+                                position: 'left'
+                              },
+                              {
+                                element: '#step2',
+                                intro: "Let’s start by exploring your dashboard .</br>The first thing you will see in this area is a search box. Simply type the magic words that describe the event that you are looking for and let us find the events that might interest you...",
+                                position: 'bottom'
+                              },
+                              {
+                                element: '#step3',
+                                intro: 'Let’s look at our menu.</br>You will be able to find the following:</br>Dashboard -> To come back to the search box.</br>Following -> The events you want to sponsor which hasn’t been accepted by the organizer yet.</br>PSponsored -> The events you are currently sponsoring, the agreements you have with the organizers, and activities that you might forget in the last minute such as sending those T-shirts...</br>Invite your friends -> Spread the love. Send it to someone that might need something like this and that will enjoy it..</br>Settings -> You will be able to update your information and connect your external accounts.</br>Disconnect -> You can log out of our platform in a safe way. We know this will be temporal because we love you. <B',
+                                position: 'right'
+                              },
+                              {
+                                element: '#step4',
+                                intro: "Now let’s take a look at those options that are less relevant but that you will like when you need them.</br>Blog ->   Read a bit about what our team writes.</br>About -> Read a bit about our team.</br>Support -> Do you have a problem? Write to our team of experts so that they can solve your problem.",
+                                position: 'right'
+                              }
+                            ]
+                        });
+
+                          intro.start();
+
+                    }else{
+                        var intro = introJs();
+                        intro.setOptions({
+                            steps: [
+                              {
+                                element: '#step1',
+                                intro: "Welcome to SponzorMe.</br>We hope you enjoy using this platform as much as we did when putting it together.</br>Any questions as meaningless as they can seem, please send them to carlos@sponzor.me",
+                                position: 'left'
+                              },
+                              {
+                                element: '#step2',
+                                intro: "Let’s start by exploring your dashboard.</br>The first thing you will see in this area is a summary of everything that is happening. You will be able to see a global summary, an event summary, a sponsor summary and a few suggestions that our team of experts has prepared for you.",
+                                position: 'bottom'
+                              },
+                              {
+                                element: '#step3',
+                                intro: 'Let’s look at our menu.</br>You will be able to find the following:</br>Dashboard -> Shows a summary of all your activities.</br>Events -> Allows you to create, edit, and manage your events.</br>Sponzors -> Allows you to create, edit, and manage your sponsors.</br>Task List -> You can manage your agreements with your sponsors and allows you to keep a good relationship with them.</br>Invite your friends -> Spread the love. Send it to someone that might need something like this and that will enjoy it. </br>Settings -> You will be able to update your information and connect your external accounts.</br>Disconnect -> You can log out of our platform in a safe way. We know this will be temporal because we love you. <B',
+                                position: 'right'
+                              },
+                              {
+                                element: '#step4',
+                                intro: "Now let’s take a look at those options that are less relevant but that you will like when you need them.</br>Blog ->   Read a bit about what our team writes.</br>About -> Read a bit about our team.</br>Support -> Do you have a problem? Write to our team of experts so that they can solve your problem.",
+                                position: 'right'
+                              }
+                            ]
+                        });
+
+                          intro.start();
+                    }
+                    //$scope.setDemoStatus(userId,1);
+                }
             }
 
             if($scope.lang == 'es'){

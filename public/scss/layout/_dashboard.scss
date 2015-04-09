@@ -578,3 +578,12 @@ h1.suggh1{
   min-height: 422px;
 
 }
+
+ul.sidebar .sidebar-main a, .sidebar-footer, ul.sidebar .sidebar-list a:hover, #page-wrapper:not(.active) ul.sidebar .sidebar-title.separator {
+  background: #D36060 !important;
+}
+
+.btn-primary {
+  background: #4C5457 !important;
+  border-color: #4C5457;
+}

@@ -107,3 +107,28 @@ p.codrops-demos a.current-demo:hover{
 	vertical-align: top;
 	width:75%;
 }
+
+#page .navbar {
+  background-color: #20222D !important;
+}
+
+.navbar-header p {
+  font-family: Pacifico,cursive;
+  font-size: 26px;
+  margin-top: 4px;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-header a:hover {
+  text-decoration:none;
+}
+
+.navbar-header p:hover {
+  text-decoration:none;
+}
+
+.btn-primary {
+  background: #4C5457 !important;
+  border-color: #4C5457;
+}

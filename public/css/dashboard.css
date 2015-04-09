@@ -531,3 +531,21 @@ h1.suggh1 {
 .perks_class {
   min-height: 422px;
 }
+
+ul.sidebar .sidebar-main a, ul.sidebar .sidebar-list a:hover, #page-wrapper:not(.active) ul.sidebar .sidebar-title.separator {
+  background: #D36060 !important;
+}
+
+.sidebar-footer{
+  background: #20222D !important;
+}
+
+#sidebar-wrapper {
+  background: #4C5457;
+}
+
+ul.sidebar .sidebar-list a:hover {
+  color: #fff;
+  border-left: 3px solid #53B4C4;
+  text-indent: 22px;
+}

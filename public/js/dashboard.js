@@ -241,70 +241,146 @@ function MasterCtrl($scope, $cookieStore, Customization) {
 
             console.log($scope.visita);
 
-            if ($scope.visita == 0){
-                console.log('entro');
-                var hostsponsors = hostarray.indexOf("sponsors");
-                if(hostsponsors == 3){
+            if($scope.lang == 'pt'){
+                if ($scope.visita == 0){
+                    console.log('entro');
+                    var hostsponsors = hostarray.indexOf("sponsors");
+                    if(hostsponsors == 3){
 
-                    var intro = introJs();
-                    intro.setOptions({
-                        steps: [
-                          {
-                            element: '#step1',
-                            intro: "Bienvenido a SponzorMe.</br>Esperamos que disfrutes en usar esta plataforma, tanto como nosotros en construirla.</br>Cualquier duda no importa lo insignificante que parezca déjamela saber a carlos@sponzor.me",
-                            position: 'left'
-                          },
-                          {
-                            element: '#step2',
-                            intro: "Empecemos, explorando un poco tu .</br>Lo primero es que vas a ver en esta zona es un buscador. Simplemente ingresa las palabras mágicas de los eventos que buscas y déjanos encontrar los eventos que pueden interesarte...",
-                            position: 'bottom'
-                          },
-                          {
-                            element: '#step3',
-                            intro: 'Ahora miremos un poco de nuestro menu.</br>Aca podras encontrar lo siguiente.</br>Dashboard -> Para volver a tu buscador.</br>Siguiendo -> Esos eventos que quieres patrocinar, pero que aun el organizador no acepta.</br>Patrocinando -> Esos eventos que estas patrocinando, Como se encuentran los acuerdos con tus patrocinadores, y puedes crear algunas tareas para que no te acuerdes a ultima hora que tenias que enviar a hacer esas camisetas...</br>Invita a tus amigos -> Esparce el amor. Envíaselo a esa persona que sabes necesita algo como esto y lo va a disfrutar.</br>Configuración -> Acá podrás actualizar tu información y conectar tus cuentas externas.</br>Desconectar -> Aca podras salir de nuestra plataforma de una manera segura. Sabemos que es temporal por que te queremos <B',
-                            position: 'right'
-                          },
-                          {
-                            element: '#step4',
-                            intro: "Ahora miremos un poco de esas opciones con un poco menos de relevancia pero que te gustaran cuando las necesites.</br>Blog ->   Lee un poco de lo que escribe nuestro equipo.</br>About -> Lee un poco sobre el equipo.</br>Soporte -> Algun problema? escribele a nuestro equipo de expertos para que resuelvan lo antes posible ese inconveniente.",
-                            position: 'right'
-                          }
-                        ]
-                    });
+                        var intro = introJs();
+                        intro.setOptions({
+                            steps: [
+                              {
+                                element: '#step1',
+                                intro: "Bem-vindo ao SponzorMe</br>Esperamos que você goste de usar esta plataforma, tanto quanto nós construí-lo.</br>Quaisquer comentários, preocupações, problemas, sugestões. Estou disponível para ouvir em carlos@sponzor.me",
+                                position: 'left'
+                              },
+                              {
+                                element: '#step2',
+                                intro: "Vamos começar a explorar um pouco o seu painel.</br>A primeira é que você vai ver nesta área é um motor de busca. Basta digitar as palavras mágicas dos eventos que você deseja e deixe-nos encontrar os eventos que você pode estar interessado ...",
+                                position: 'bottom'
+                              },
+                              {
+                                element: '#step3',
+                                intro: 'Agora vamos olhar para alguns dos nosso menu.</br>Aqui você pode encontrar o seguinte.</br>Dashboard -> Para retornar à sua pesquisa.</br>Siguiendo -> Esses eventos que você deseja patrocinar, mas ainda assim o organizador não aceita.</br>Patrocinando -> Estes eventos estão patrocinando, como são os acordos com seus patrocinadores, e você pode criar algumas tarefas que você não se lembra, no último minuto que você tinha que enviar para fazer essas camisas.</br>Convide seus amigos -> Espalhar o amor. Diga a pessoa que você sabe que você precisa de algo como isso e você vai gostar.</br>Configuração -> Aqui você pode atualizar suas informações e conectar suas contas externas.</br>Sair -> Aqui você pode deixar a nossa plataforma de segurança.',
+                                position: 'right'
+                              },
+                              {
+                                element: '#step4',
+                                intro: "Agora vamos olhar para algumas dessas opções com um pouco menos relevante, mas você gostou quando você precisar deles.</br>Blog ->   Leia algumas das coisas que a nossa equipa escreve.</br>About -> Leia um pouco sobre a equipe.</br>Soporte -> Algum problema? Escreva para o nosso time de especialistas para resolver este problema o mais rapidamente possível.",
+                                position: 'right'
+                              }
+                            ]
+                        });
 
-                      intro.start();
+                          intro.start();
 
-                }else{
-                    var intro = introJs();
-                    intro.setOptions({
-                        steps: [
-                          {
-                            element: '#step1',
-                            intro: "Bienvenido a SponzorMe.</br>Esperamos que disfrutes en usar esta plataforma, tanto como nosotros en construirla.</br>Cualquier duda no importa lo insignificante que parezca déjamela saber a carlos@sponzor.me",
-                            position: 'left'
-                          },
-                          {
-                            element: '#step2',
-                            intro: "Empecemos, explorando un poco tu dashboard.</br>Lo primero es que vas a ver en esta zona un resumen de todo lo que esta sucediendo.</br>Podrás ver un resumen global, Resumen de tus Eventos, Resumen de tus Patrocinios y Algunas sugerencias que nuestro equipo de expertos ha preparado para ti.",
-                            position: 'bottom'
-                          },
-                          {
-                            element: '#step3',
-                            intro: 'Ahora miremos un poco de nuestro menu.</br>Aca podras encontrar lo siguiente. </br>Dashboard -> Para volver al resumen de todas las actividades.</br>Eventos -> Para poder crear, editar y gestionar tus eventos.</br>Sponzors -> Para poder crear, editar y gestionar tus patrocinadores.</br>Task List -> Para poder manejar tus acuerdos con tus patrocinadores y mantener buenas y sanas relaciones con ellos.</br>Invita a tus amigos -> Esparce el amor. Envíaselo a esa persona que sabes necesita algo como esto y lo va a disfrutar.</br>Configuración -> Acá podrás actualizar tu información y conectar tus cuentas externas.</br>Desconectar -> Aca podras salir de nuestra plataforma de una manera segura. Sabemos que es temporal por que te queremos <B',
-                            position: 'right'
-                          },
-                          {
-                            element: '#step4',
-                            intro: "Ahora miremos un poco de esas opciones con un poco menos de relevancia pero que te gustaran cuando las necesites.</br>Blog ->   Lee un poco de lo que escribe nuestro equipo.</br>About -> Lee un poco sobre el equipo.</br>Soporte -> Algun problema? escribele a nuestro equipo de expertos para que resuelvan lo antes posible ese inconveniente.",
-                            position: 'right'
-                          }
-                        ]
-                    });
+                    }else{
+                        var intro = introJs();
+                        intro.setOptions({
+                            steps: [
+                              {
+                                element: '#step1',
+                                intro: "Bem-vindo ao SponzorMe</br>Esperamos que você goste de usar esta plataforma, tanto quanto nós construí-lo.</br>Quaisquer comentários, preocupações, problemas, sugestões. Estou disponível para ouvir em carlos@sponzor.me",
+                                position: 'left'
+                              },
+                              {
+                                element: '#step2',
+                                intro: "Vamos começar a explorar um pouco o seu painel.</br>A primeira é que você vai ver nesta área um resumo de tudo o que está acontecendo. Você vai ver um resumo geral, visão geral de seus eventos, visão geral de seus patrocínios e algumas sugestões que nossa equipe de especialistas preparou para você....",
+                                position: 'bottom'
+                              },
+                              {
+                                element: '#step3',
+                                intro: 'Agora vamos olhar para alguns dos nosso menu.</br>Aqui você pode encontrar o seguinte.</br>Dashboard -> Para retornar à visão geral de todas as atividades.</br>Eventos -> Para criar, editar e gerenciar seus eventos.</br>Sponzors -> Para criar, editar e gerenciar seus patrocinadores.</br>Task List -> Para gerenciar seus contratos com seus patrocinadores e manter relações boas e saudáveis.</br>Convide seus amigos -> Espalhar o amor. Diga a pessoa que você sabe que você precisa de algo como isso e você vai gostar.</br>Configuração -> Aqui você pode atualizar suas informações e conectar suas contas externas.</br>Sair -> Aqui você pode deixar a nossa plataforma de segurança.',
+                                position: 'right'
+                              },
+                              {
+                                element: '#step4',
+                                intro: "Agora vamos olhar para algumas dessas opções com um pouco menos relevante, mas você gostou quando você precisar deles.</br>Blog ->   Leia algumas das coisas que a nossa equipa escreve.</br>About -> Leia um pouco sobre a equipe.</br>Soporte -> Algum problema? Escreva para o nosso time de especialistas para resolver este problema o mais rapidamente possível.",
+                                position: 'right'
+                              }
+                            ]
+                        });
 
-                      intro.start();
+                          intro.start();
+                    }
+                    //$scope.setDemoStatus(userId,1);
                 }
-                $scope.setDemoStatus(userId,1);
             }
+
+            if($scope.lang == 'en'){
+                
+            }
+
+            if($scope.lang == 'es'){
+                if ($scope.visita == 0){
+                    console.log('entro');
+                    var hostsponsors = hostarray.indexOf("sponsors");
+                    if(hostsponsors == 3){
+
+                        var intro = introJs();
+                        intro.setOptions({
+                            steps: [
+                              {
+                                element: '#step1',
+                                intro: "Bienvenido a SponzorMe.</br>Esperamos que disfrutes en usar esta plataforma, tanto como nosotros en construirla.</br>Cualquier duda no importa lo insignificante que parezca déjamela saber a carlos@sponzor.me",
+                                position: 'left'
+                              },
+                              {
+                                element: '#step2',
+                                intro: "Empecemos, explorando un poco tu .</br>Lo primero es que vas a ver en esta zona es un buscador. Simplemente ingresa las palabras mágicas de los eventos que buscas y déjanos encontrar los eventos que pueden interesarte...",
+                                position: 'bottom'
+                              },
+                              {
+                                element: '#step3',
+                                intro: 'Ahora miremos un poco de nuestro menu.</br>Aca podras encontrar lo siguiente.</br>Dashboard -> Para volver a tu buscador.</br>Siguiendo -> Esos eventos que quieres patrocinar, pero que aun el organizador no acepta.</br>Patrocinando -> Esos eventos que estas patrocinando, Como se encuentran los acuerdos con tus patrocinadores, y puedes crear algunas tareas para que no te acuerdes a ultima hora que tenias que enviar a hacer esas camisetas...</br>Invita a tus amigos -> Esparce el amor. Envíaselo a esa persona que sabes necesita algo como esto y lo va a disfrutar.</br>Configuración -> Acá podrás actualizar tu información y conectar tus cuentas externas.</br>Desconectar -> Aca podras salir de nuestra plataforma de una manera segura. Sabemos que es temporal por que te queremos <B',
+                                position: 'right'
+                              },
+                              {
+                                element: '#step4',
+                                intro: "Ahora miremos un poco de esas opciones con un poco menos de relevancia pero que te gustaran cuando las necesites.</br>Blog ->   Lee un poco de lo que escribe nuestro equipo.</br>About -> Lee un poco sobre el equipo.</br>Soporte -> Algun problema? escribele a nuestro equipo de expertos para que resuelvan lo antes posible ese inconveniente.",
+                                position: 'right'
+                              }
+                            ]
+                        });
+
+                          intro.start();
+
+                    }else{
+                        var intro = introJs();
+                        intro.setOptions({
+                            steps: [
+                              {
+                                element: '#step1',
+                                intro: "Bienvenido a SponzorMe.</br>Esperamos que disfrutes en usar esta plataforma, tanto como nosotros en construirla.</br>Cualquier duda no importa lo insignificante que parezca déjamela saber a carlos@sponzor.me",
+                                position: 'left'
+                              },
+                              {
+                                element: '#step2',
+                                intro: "Empecemos, explorando un poco tu dashboard.</br>Lo primero es que vas a ver en esta zona un resumen de todo lo que esta sucediendo.</br>Podrás ver un resumen global, Resumen de tus Eventos, Resumen de tus Patrocinios y Algunas sugerencias que nuestro equipo de expertos ha preparado para ti.",
+                                position: 'bottom'
+                              },
+                              {
+                                element: '#step3',
+                                intro: 'Ahora miremos un poco de nuestro menu.</br>Aca podras encontrar lo siguiente. </br>Dashboard -> Para volver al resumen de todas las actividades.</br>Eventos -> Para poder crear, editar y gestionar tus eventos.</br>Sponzors -> Para poder crear, editar y gestionar tus patrocinadores.</br>Task List -> Para poder manejar tus acuerdos con tus patrocinadores y mantener buenas y sanas relaciones con ellos.</br>Invita a tus amigos -> Esparce el amor. Envíaselo a esa persona que sabes necesita algo como esto y lo va a disfrutar.</br>Configuración -> Acá podrás actualizar tu información y conectar tus cuentas externas.</br>Desconectar -> Aca podras salir de nuestra plataforma de una manera segura. Sabemos que es temporal por que te queremos <B',
+                                position: 'right'
+                              },
+                              {
+                                element: '#step4',
+                                intro: "Ahora miremos un poco de esas opciones con un poco menos de relevancia pero que te gustaran cuando las necesites.</br>Blog ->   Lee un poco de lo que escribe nuestro equipo.</br>About -> Lee un poco sobre el equipo.</br>Soporte -> Algun problema? escribele a nuestro equipo de expertos para que resuelvan lo antes posible ese inconveniente.",
+                                position: 'right'
+                              }
+                            ]
+                        });
+
+                          intro.start();
+                    }
+                    //$scope.setDemoStatus(userId,1);
+                }
+            }
+
+            
+            $scope.setDemoStatus(userId,0);
 
         });        
     }

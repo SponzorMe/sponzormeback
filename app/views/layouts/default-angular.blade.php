@@ -8,6 +8,7 @@
 		
 		<link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> 
+        <link href='//fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
         <!-- fuente roboto -->
 		<style>
 		@section('styles')
@@ -38,7 +39,7 @@
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
 	          </button>
-	          <a class="" href="{{ URL::route('home') }}"><img height="45px" src="{{asset('images/logo.gif')}}"></a>
+	          <a class="" href="{{ URL::route('home') }}"><p height="45px">SponzorMe</p></a>
 	        </div>
 	        <div class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
@@ -90,7 +91,7 @@
 		<div class="footer">
 	      <div class="row">
 	      <div class="col-md-4">&nbsp;&nbsp;&nbsp;
-	          <img height="12px" src="{{asset('images/footer_logo.png')}}">&nbsp;&nbsp;
+	          <p id="newlog">SponzorMe</p>&nbsp;&nbsp;
 	          <a class="" href="{{ URL::to('language/es') }}"><img height="16px" src="{{asset('images/spanish.png')}}"></a>&nbsp;
 	          <a class="" href="{{ URL::to('language/en') }}"><img height="16px" src="{{asset('images/english.png')}}"></a>&nbsp;
 	          <a class="" href="{{ URL::to('language/pt') }}"><img height="16px" src="{{asset('images/pt.png')}}"></a>

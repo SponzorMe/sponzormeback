@@ -1,7 +1,7 @@
 <!--Template asociado a los eventos-->
   <script type="text/ng-template" id="events.html">
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-6">
         <div class="widget">
           <div class="widget-header">
             <i class="fa fa-plus"></i>{{trans('dashboard.addevent')}}
@@ -166,7 +166,7 @@
       </div>
       </div>
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-6">
         <div class="widget">
           <div class="widget-header">
             <i class="fa fa-tasks"></i> {{trans('dashboard.events')}}

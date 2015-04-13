@@ -304,7 +304,7 @@ function MasterCtrl($scope, $cookieStore, Customization) {
 
                           intro.start();
                     }
-                    //$scope.setDemoStatus(userId,1);
+                    $scope.setDemoStatus(userId,1);
                 }
             }
 
@@ -371,7 +371,7 @@ function MasterCtrl($scope, $cookieStore, Customization) {
 
                           intro.start();
                     }
-                    //$scope.setDemoStatus(userId,1);
+                    $scope.setDemoStatus(userId,1);
                 }
             }
 
@@ -438,12 +438,12 @@ function MasterCtrl($scope, $cookieStore, Customization) {
 
                           intro.start();
                     }
-                    //$scope.setDemoStatus(userId,1);
+                    $scope.setDemoStatus(userId,1);
                 }
             }
 
             
-            $scope.setDemoStatus(userId,0);
+            //$scope.setDemoStatus(userId,0);
 
         });        
     }

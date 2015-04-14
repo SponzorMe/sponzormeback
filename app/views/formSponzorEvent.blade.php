@@ -38,16 +38,15 @@
       </li>   
       <li><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span style="color:#fff;"><br>
-            <p style="color:#fff;">{{trans('dashboard.conf_event')}} : <p>
-            <p><strong itemprop="name">{{$event[0]->title}}</strong></p>
-            <p>{{$category[0]->title}}</p>
-            <p><img src="{{ asset('images/tag.png')}}" width="10">{{$category[0]->title}}<br></p>
-            <p><img src="images/map.png" width="10"> &nbsp; {{$event[0]->location}} &nbsp;<br></p>
-            <p><img src="{{ asset('images/calendar.png')}}" width="10">&nbsp;{{$event[0]->starts}}</p>
+        <span style="color:#fff; margin-left: 37px !important;"><br>
+            <p style="margin-left: 37px !important;"><strong itemprop="name">{{$event[0]->title}}</strong></p>
+            <p style="margin-left: 37px !important;">{{$category[0]->title}}</p>
+            <p style="margin-left: 37px !important;"><img src="{{ asset('images/tag.png')}}" width="10">{{$category[0]->title}}<br></p>
+            <p style="margin-left: 37px !important;">&nbsp; {{$event[0]->location}} &nbsp;<br></p>
+            <p style="margin-left: 37px !important;"><img src="{{ asset('images/calendar.png')}}" width="10">&nbsp;{{$event[0]->starts}}</p>
           
         <span style="color:#fff;"><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:{{$organizer[0]->email}}">{{trans('dashboard.contactOrganizer')}}</a></span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:{{$organizer[0]->email}}" style="margin-left: 37px !important;">{{trans('dashboard.contactOrganizer')}}</a></span>
       </li>  
     </ul>
      <div class="sidebar-footer">

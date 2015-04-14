@@ -971,6 +971,9 @@ class ApiController extends BaseController {
 			$data["event"]=$event;
 			$events = Events::where("organizer",'=',$event[0]->organizer)->orderBy('starts', 'desc')->take(1)->get();
 			$data["nextEvent"]=$events[0]->starts;
+			if($data["organizer"][0]->image == ''){
+				$data["organizer"][0]->image = 'user.png';
+			}
 			return View::make('event')->with($data);
 		}
 		catch(Exception $e)
@@ -990,6 +993,9 @@ class ApiController extends BaseController {
 			$data["event"]=$event;
 			$events = Events::where("organizer",'=',$event[0]->organizer)->orderBy('starts', 'desc')->take(1)->get();
 			$data["nextEvent"]=$events[0]->starts;
+			if($data["organizer"][0]->image == ''|| empty($data["organizer"][0]->image)){
+				$data["organizer"][0]->image = 'user.png';
+			}
 			return View::make('formSponzorEvent')->with($data);
 		}
 		catch(Exception $e)

@@ -126,7 +126,7 @@
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <div class="caption">
-        <h3>{{trans('dashboard.sponzoringKind')}}: <strong>{{$p->kind}}</strong></h3>
+        <h3><strong>{{$p->kind}}</strong></h3>
         <hr/>
         <ul class="list-group">
         	<li class="list-group-item">${{$p->usd}} USD</li>

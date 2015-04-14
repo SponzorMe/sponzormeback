@@ -82,6 +82,7 @@ class SessionController extends BaseController {
 	public function destroy()
 	{
 		$this->session->destroy();
+		Session::flush();
 		Event::fire('user.logout');
 		return Redirect::to('/');
 	}

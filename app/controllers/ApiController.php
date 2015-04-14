@@ -124,7 +124,8 @@ class ApiController extends BaseController {
 	        $token_array=json_decode($json_data,true);
 			if(!empty($token_array["access_token"]))
 			{
-				$user2 = Sentry::getUser();
+				$user2 = UserCustomization::find(Session::get('userId'));
+				//$user2 = Sentry::getUser();
 				$user = UserCustomization::find($user2->id);
 				$user->meetupRefreshKey=$token_array["refresh_token"];
 				$user->save();
@@ -152,8 +153,11 @@ class ApiController extends BaseController {
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);        
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         $json_data = curl_exec($ch);
+        var_dump($json_data);
         curl_close($ch);
         $token_array=json_decode($json_data,true);
+        var_dump($token_array);
+        /*--Aca empieza el error de meetup--*/
         $user = UserCustomization::find(Session::get('userId'));
 		$user->meetupRefreshKey=$token_array["refresh_token"];
 		$user->save();

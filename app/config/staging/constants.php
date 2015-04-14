@@ -9,9 +9,9 @@ return array(
 	| in both parts (EventBrite API page and this file)
 	|
 	*/
-	'evenbriteClientId'=>'UIIEUBJUVOI5JDEZND',
-	'eventbriteClientSecret'=>'IEPASK4CMUONNNBXA6DQ34O3VGIPFDGAGROF7HPR3LWRS6HREK',
-	'eventbriteRedirectUrl'=>'http://localhost/sponzorme/public/api/v1/connectEventbrite',
+	'evenbriteClientId'=>'6WILTRRV7HVLBSRSGP',
+	'eventbriteClientSecret'=>'REYYYTW7MW4ABJUI275V3JESPWRR55E5OLKTVC63VNXWFL4WLB',
+	'eventbriteRedirectUrl'=>'http://staging.sponzor.me/api/v1/connectEventbrite',
 	/*
 	|--------------------------------------------------------------------------
 	| Meetup Keys
@@ -21,9 +21,9 @@ return array(
 	| in both parts (Meetup API page and this file)
 	|
 	*/
-	'meetupClientId'=>'sc88mha7rapt4pmhfuo52i68uv',
-	'meetupClientSecret'=>'5ofl3jc9njcale7d7l9uaeunrn',
-	'meetupRedirectUrl'=>'http://localhost/sponzorme/public/api/v1/connectMeetup',
+	'meetupClientId'=>'scqnorvk4o3utc3k19qfj45vng',
+	'meetupClientSecret'=>'2vmtjsr3rh1tg70jmqut5g46rr',
+	'meetupRedirectUrl'=>'http://staging.sponzor.me/api/v1/connectMeetup',
 	/*
 	|--------------------------------------------------------------------------
 	| Other Constants

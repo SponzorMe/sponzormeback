@@ -226,24 +226,16 @@ function MasterCtrl($scope, $cookieStore, Customization) {
     $scope.getDemoStatus = function(userId){
         Customization.getDemoStatus(userId).success(function(adata) 
         {
-            //Aca tienes si vio o no el demo, 0 no lo vió, 1 ya lo vió
-            console.log(adata);//Aca tenes el lenguaje en ingles es español
-
             var host = window.location.href;
 
             var hostarray = host.split("/");
 
-            console.log(hostarray);
-
             $scope.visita = adata.demoStatus;
 
-            $scope.lang = adata.lang;//Aca tenes el lenguaje
-
-            console.log($scope.visita);
+            $scope.lang = adata.lang;//Lenguaje que está usando el usuario por defecto.
 
             if($scope.lang == 'pt'){
                 if ($scope.visita == 0){
-                    console.log('entro');
                     var hostsponsors = hostarray.indexOf("sponsors");
                     if(hostsponsors == 3){
 
@@ -310,7 +302,6 @@ function MasterCtrl($scope, $cookieStore, Customization) {
 
             if($scope.lang == 'en'){
                 if ($scope.visita == 0){
-                    console.log('entro');
                     var hostsponsors = hostarray.indexOf("sponsors");
                     if(hostsponsors == 3){
 
@@ -377,7 +368,6 @@ function MasterCtrl($scope, $cookieStore, Customization) {
 
             if($scope.lang == 'es'){
                 if ($scope.visita == 0){
-                    console.log('entro');
                     var hostsponsors = hostarray.indexOf("sponsors");
                     if(hostsponsors == 3){
 
@@ -452,17 +442,12 @@ function MasterCtrl($scope, $cookieStore, Customization) {
         {
             //Aca tienes si vio o no el demo, 0 no lo vió, 1 ya lo vió
             return adata.User.demo;
-            console.log(adata.User.demo);
         });
     }
     //Si el DOM esta listo entonces ejecutamos el script, de lo contrario no.
     angular.element(document).ready(function () {
         $scope.getDemoStatus($scope.event.organizer);
     });
-    
-
-    
-    
 }
 /**
 * Indicadores Controller
@@ -493,7 +478,6 @@ function indicatorsController($scope,$Cookie,Customization){
         $scope.users.size=adata.size+1000;
     });
 }
-
 /**
  * Alerts Controller
  */
@@ -817,13 +801,8 @@ function settingsController($scope,$Cookie,Customization, FileUploader, ngDialog
         return path;
     }
 
-    var urlimage = $scope.path();
-            
+    var urlimage = $scope.path();            
     $scope.imageReady=false;
-
-    
-
-
     $scope.viewUserInfo = function(){
         $scope.account.loadingEventbrite=false;
         Customization.getUserInfo($scope.event.organizer).success(function(adata){
@@ -954,10 +933,7 @@ function settingsController($scope,$Cookie,Customization, FileUploader, ngDialog
                         document.getElementById("imageInput").value = "";
                     }                
                 };
-            }
-
-
-            
+            }         
 
             $scope.account.userId=$scope.event.organizer;
             var a= {
@@ -978,10 +954,6 @@ function settingsController($scope,$Cookie,Customization, FileUploader, ngDialog
                     $scope.viewUserInfo();
             });
         }
-
-        
-        
-
     }
     $scope.viewUserInfo();
 }

@@ -974,6 +974,10 @@ class ApiController extends BaseController {
 			if($data["organizer"][0]->image == ''){
 				$data["organizer"][0]->image = 'user.png';
 			}
+
+			if($data["event"][0]->image == ''){
+				$data["event"][0]->image = 'user.png';
+			}
 			return View::make('event')->with($data);
 		}
 		catch(Exception $e)
@@ -995,6 +999,9 @@ class ApiController extends BaseController {
 			$data["nextEvent"]=$events[0]->starts;
 			if($data["organizer"][0]->image == ''|| empty($data["organizer"][0]->image)){
 				$data["organizer"][0]->image = 'user.png';
+			}
+			if($data["event"][0]->image == ''){
+				$data["event"][0]->image = 'user.png';
 			}
 			return View::make('formSponzorEvent')->with($data);
 		}

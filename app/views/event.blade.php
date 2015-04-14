@@ -1,15 +1,12 @@
 @if (!$event[0]->privacy || $event[0]->privacy && Sentry::check())
 
-<html>
-<head>
-  <title>Dashboard</title>
 <!Doctype html>
 <html lang="en" ng-app="EventPage">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <title>Dashboard</title>
+  <title>{{$event[0]->title}}</title>
   <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}"/>
  <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('components/bootstrap/dist/css/bootstrap.min.css')}}"/>
@@ -69,7 +66,7 @@
         <li><br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          <span style="color:#fff;"><br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:{{$organizer[0]->email}}">{{trans('dashboard.contactOrganizer')}}</a></span>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:{{$organizer[0]->email}}" style="margin-left:38px;">{{trans('dashboard.contactOrganizer')}}</a></span>
         </li>  
       </ul>
        <div class="sidebar-footer">
@@ -144,7 +141,7 @@
       </a>
       @endif
       @if (Sentry::check() && (Sentry::getUser()->hasAccess('users')))
-      <a href="#" class="btn btn-danger center-block" role="button">{{trans('dashboard.sponzorButtonNotSponsor')}}</a>
+      <a href="#" class="btn btn-danger center-block" role="button"><p style="white-space: pre-line !important; margin:0px !important;">{{trans('dashboard.sponzorButtonNotSponsor')}}</p></a>
       
       @endif
       @if (!Sentry::check())

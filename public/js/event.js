@@ -1,5 +1,5 @@
 (function(){
-angular.module('EventPage', ['ui.bootstrap', 'ui.router','ngCookies','ngDialog', 'ngAutocomplete', 'customizationService','angularFileUpload'], 
+angular.module('EventPage', ['ui.bootstrap', 'ui.router','ngCookies','ngDialog', 'ngAutocomplete', 'customizationService','angularFileUpload', 'ngSanitize'], 
     function($interpolateProvider){
         $interpolateProvider.startSymbol('<%');
         $interpolateProvider.endSymbol('%>');

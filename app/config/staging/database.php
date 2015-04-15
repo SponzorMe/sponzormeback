@@ -48,7 +48,7 @@ return array(
 		'mysql-remote-staging' => array(
 			'driver'    => 'mysql',
 			'host'      => '173.194.82.208',
-			'database'  => 'staging',
+			'database'  => 'beta',
 			'username'  => 'root',
 			'password'  => 'staging-sponzorme',
 			'charset'   => 'utf8',

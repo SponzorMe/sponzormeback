@@ -99,7 +99,9 @@
 	      <div class="col-md-4">
 	          <a href="{{ URL::to('testimonials') }}">{{trans('pages.testimonials')}}</a>&nbsp;|&nbsp
 	          <a href="{{ URL::to(trans('pages.supportUrl')) }}" target="_blank">{{trans('pages.support')}}</a>&nbsp;|&nbsp
-	          <a href="{{ URL::to(trans('pages.blogUrl')) }}" target="_blank">{{trans('pages.blog')}}</a> &nbsp|&nbsp{{trans('pages.team')}}&nbsp;|&nbsp{{trans('pages.privacy')}}
+	          <a href="{{ URL::to(trans('pages.blogUrl')) }}" target="_blank">{{trans('pages.blog')}}</a> 
+	          &nbsp|&nbsp{{trans('pages.team')}}&nbsp;|&nbsp
+	          <a href="{{ URL::to('privacy') }}" target="_blank">{{trans('pages.privacy')}}</a> 
 	      </div>
 	      <div class="col-md-4" align="right">
 	          Made with Love ❤&nbsp;&nbsp;&nbsp;

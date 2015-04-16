@@ -45,6 +45,14 @@
   <script src="{{ asset('js/dashboard.js')}}"></script><!--controller principal-->
   <script src="{{ asset('js/services/customizationService.js') }}"></script><!-- load our service -->
   <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script><!-- Pusher Service -->
+
+  <link rel="shortcut icon" type="image/png" href="{{ asset('components/jasmine/lib/jasmine-core/jasmine_favicon.png')}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('components/jasmine/lib/jasmine-core/jasmine.css')}}">
+
+  <script type="text/javascript" src="{{ asset('components/jasmine/lib/jasmine-core/jasmine.js')}}"></script>
+  <script type="text/javascript" src="{{ asset('components/jasmine/lib/jasmine-core/jasmine-html.js')}}"></script>
+  <script type="text/javascript" src="{{ asset('components/jasmine/lib/jasmine-core/boot.js')}}"></script>
+
 </head>
 <!--Navegación y encabezado-->
 @if (Sentry::check())

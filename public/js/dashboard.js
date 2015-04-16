@@ -588,6 +588,7 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
             ngDialog.open({ template: 'loading.html', controller: 'eventsController', scope: $scope });//Mostramos el Loading
             $scope.newevent.starts=$filter('date')($scope.newevent.starts, "yyyy-MM-dd HH:mm:00");
             $scope.newevent.ends=$filter('date')($scope.newevent.ends, "yyyy-MM-dd HH:mm:00");
+            var message = "";
             Customization.saveEvent($scope.newevent)
                 .success(function(data) {
                     if(data.success)

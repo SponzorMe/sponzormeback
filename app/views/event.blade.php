@@ -101,7 +101,7 @@
 <span class="type">{{$category[0]->title}}</span>
 <h1><strong itemprop="name">{{$event[0]->title}}</strong></h1>
 <div id="tags">
-<img src="{{ asset('images/tag.png')}}" width="10">{{$category[0]->title}}<img src="images/map.png" width="10"> &nbsp; {{$event[0]->location}} &nbsp;<img src="{{ asset('images/calendar.png')}}" width="10">&nbsp;{{$event[0]->starts}}
+<img src="{{ asset('images/tag.png')}}" width="10">{{$category[0]->title}}<img src="{{ asset('images/map.png')}}" width="10"> &nbsp; {{$event[0]->location}} &nbsp;<img src="{{ asset('images/calendar.png')}}" width="10">&nbsp;{{$event[0]->starts}}
 </div>
 <div class="socials pull-left">
 	<a href="https://www.facebook.com/sharer/sharer.php?u={{URL::to('/api/v1/event/')}}{{$event[0]->id}}" target="_blank" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;">

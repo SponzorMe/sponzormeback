@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 concat    = require('gulp-concat');
+var jasmine = require('gulp-jasmine');
 
 // define plug-ins
 var flatten = require('gulp-flatten');
@@ -110,6 +111,15 @@ gulp.task('watcher', function() {
   	gulp.watch('public/js/*.js', ['libs']);
 });
 
+/* jasmine*/
+
+// gulp.task('testjasmine', function () {
+//     return gulp.src('public/js/*.js')
+//         .pipe(jasmine());
+// });
+
+//gulp.task('default', ['libs','sass','watcher','testjasmine']);
+//gulp.task('default', ['libs','sass','testjasmine']);
 gulp.task('default', ['libs','sass','watcher']);
 
 

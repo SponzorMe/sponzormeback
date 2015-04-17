@@ -181,7 +181,7 @@ Route::get('testimonials', 'HomeController@testimonials'); //testimonials
 
 Route::get('privacy', 'HomeController@privacy'); //privacy
 
-Route::get('jasmin', 'HomeController@jasmin'); //jasmin
+//Route::get('jasmin', 'HomeController@jasmin'); //jasmin
 
 Route::get('language/{lang}', 'HomeController@setLanguage'); //Language Settings
 

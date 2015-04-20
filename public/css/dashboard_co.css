@@ -1,11 +1,3 @@
-/* #592727 RED */
-/* #2f5927 GREEN */
-/* #30426a BLUE (default)*/
-/* Sidebar background color */
-/* Sidebar header and footer color */
-/* Sidebar title text colour */
-/*#627cb7*/
-/* Fonts */
 /* #592727 RED *//* #2f5927 GREEN *//* #30426a BLUE (default)*//* Sidebar background color *//* Sidebar header and footer color *//* Sidebar title text colour *//*#627cb7*//* Fonts */@font-face {
   font-family: 'Montserrat';
   src: url('../../fonts/montserrat-regular-webfont.eot');
@@ -26,7 +18,7 @@
   overflow-y: scroll;
 }
 body {
-  background: #f3f3f3 !important;
+  background: #f3f3f3;
   font-family: "Montserrat";
   color: #333 !important;
 }
@@ -570,8 +562,3 @@ ul.sidebar .sidebar-list a:hover {
 #public label {
   height: 45px !important;
   margin-top: 9px !important; }
-
-.dropdown-menu {
-  margin: 0px 0px 0px -97px !important;
-
-}

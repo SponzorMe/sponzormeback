@@ -1,5 +1,6 @@
 assets/*
 uploads/*
+public/images/*
 composer.lock
 public/images/*
 protected/config/main.php

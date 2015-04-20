@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 concat    = require('gulp-concat');
+var jasmine = require('gulp-jasmine');
 
 // define plug-ins
 var flatten = require('gulp-flatten');
@@ -57,6 +58,7 @@ gulp.task('libs', function() {
         suffix: ".min"
     }))
 	.pipe(gulp.dest(dest_path + '/build/css'))
+	.pipe(gulp.dest(dest_path + '/css'))
 	.pipe(cssFilter.restore())
 
 	// grab vendor font files from bower_components and push in /public 
@@ -74,6 +76,10 @@ gulp.task('libs', function() {
     return gulp.src('public/scss/*.scss')
         .pipe(sass())
         .pipe(gulp.dest(dest_path + '/build/css'))
+        .pipe(concat('dashboard.css'))
+        .pipe(minifycss())
+        .pipe(rename('dashboard.css'))
+        .pipe(gulp.dest(dest_path + '/css'))
         .pipe(concat('style.css'))
         .pipe(minifycss())
         .pipe(rename('style.css'))
@@ -110,6 +116,15 @@ gulp.task('watcher', function() {
   	gulp.watch('public/js/*.js', ['libs']);
 });
 
+/* jasmine*/
+
+// gulp.task('testjasmine', function () {
+//     return gulp.src('public/js/*.js')
+//         .pipe(jasmine());
+// });
+
+//gulp.task('default', ['libs','sass','watcher','testjasmine']);
+//gulp.task('default', ['libs','sass','testjasmine']);
 gulp.task('default', ['libs','sass','watcher']);
 
 

@@ -14,6 +14,10 @@ class HomeController extends BaseController {
 	{
 		return View::make('privacy');
 	}
+	// public function jasmin()
+	// {
+	// 	return View::make('jasmin');
+	// }
 	public function setLanguage($lang)
 	{
 		Session::put('lang', $lang);

@@ -1,6 +1,7 @@
 assets/*
 uploads/*
 composer.lock
+public/images/*
 protected/config/main.php
 .requirements.txt
 .htaccess

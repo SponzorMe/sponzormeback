@@ -126,9 +126,10 @@ function MasterCtrl($scope, $cookieStore, Customization) {
         $scope.accountheader.loadingEventbrite=false;
         Customization.getUserInfo($scope.event.organizer).success(function(adata){
             $scope.accountheader.description=adata.User[0].description;
+            d = new Date();
             var urlimage = $scope.pathheader();
             if(adata.User[0].image != ""){
-                $scope.accountheader.image=urlimage+'/images/users/'+adata.User[0].image;
+                $scope.accountheader.image=urlimage+'/images/users/'+adata.User[0].image + '?'+d.getTime();
             }else{
                 $scope.accountheader.image=urlimage+'/images/photo.png';
             }
@@ -808,9 +809,9 @@ function settingsController($scope,$Cookie,Customization, FileUploader, ngDialog
         $scope.account.loadingEventbrite=false;
         Customization.getUserInfo($scope.event.organizer).success(function(adata){
             $scope.account.description=adata.User[0].description;
-            
+            d = new Date();
             if(adata.User[0].image != ""){
-                $scope.account.image=urlimage+'/images/users/'+adata.User[0].image;
+                $scope.account.image=urlimage+'/images/users/'+adata.User[0].image + '?'+d.getTime();
             }else{
                 $scope.account.image=urlimage+'/images/photo.png';
             }
@@ -926,7 +927,7 @@ function settingsController($scope,$Cookie,Customization, FileUploader, ngDialog
                     {
                         $scope.imageReady=true;
                         $scope.imagePath=response.path;
-                        $scope.account.image = response.path;
+                        $scope.account.image = urlimage+'/images/users/' +response.path;
                         $scope.accountheader.image = urlimage+'/images/users/'+response.path;
                         $scope.event.message="La imagen se actualizo satisfactoriamente";
                         ngDialog.open({ template: 'successevent.html', controller: 'settingsController', scope: $scope });

@@ -549,3 +549,12 @@ ul.sidebar .sidebar-list a:hover {
   border-left: 3px solid #53B4C4;
   text-indent: 22px;
 }
+
+.eventcss strong {
+  word-break: break-all;
+}
+
+
+.events-slider p{
+  word-break: break-all;
+}

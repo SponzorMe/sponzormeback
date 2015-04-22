@@ -694,7 +694,7 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
             }
             else
             {
-                ngDialog.close();//Cerraos el loading
+                ngDialog.close();//Cerramos el loading
                 $scope.message="errorImage";
                 ngDialog.open({ template: 'generalMessage.html', controller: 'emptyController', scope: $scope });
             }               

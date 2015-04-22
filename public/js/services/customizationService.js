@@ -114,7 +114,7 @@ angular.module('customizationService', [])
 				return global;
 			},
 			editAccount : function(data){
-				
+				console.log(data);
 				return $http({
 					method: 'POST',
 					url: path + 'api/v1/edit/user/SebasGameMaster',

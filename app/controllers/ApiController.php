@@ -474,6 +474,9 @@ class ApiController extends BaseController {
 
 				if (!empty($company))
 					$user->company = $company;
+
+				if (!empty($comunity_size))
+					$user->comunity_size = $comunity_size;
 				$user->save();
 
 				return Response::json(array('success' => true,'error'=>false,'message'=>"User Updated Succesfuly","data"=>$user));

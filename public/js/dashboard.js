@@ -140,25 +140,6 @@ function MasterCtrl($scope, $cookieStore, Customization) {
             $scope.accountheader.email=adata.User[0].email;
             $scope.accountheader.location=adata.User[0].location;
             $scope.accountheader.location_reference=adata.User[0].location_reference;
-            $scope.accountheader.eventbriteKey=adata.User[0].eventbriteKey;
-            $scope.accountheader.meetupRefreshKey=adata.User[0].meetupRefreshKey;
-            if(adata.User[0].eventbriteKey!=undefined && adata.User[0].eventbriteKey.trim()!="")
-            {
-                Customization.getEventbriteEvents(adata.User[0].eventbriteKey).success(function(data){
-                     $scope.eventbriteevents.list=data.Events.events;
-                     $scope.accountheader.loadingEventbrite=true;
-                });
-            }        
-        $scope.accountheader.loadingGroupsMeetup=false;
-       if($scope.accountheader.meetupRefreshKey!=undefined && $scope.accountheader.meetupRefreshKey.trim()!="")
-        {
-            Customization.getMeetupGroups($scope.accountheader.meetupRefreshKey).success(function(data){
-                 $scope.meetupgroups.list=data.Groups.results;
-                 $scope.accountheader.meetupRefreshKey=data.refresh_token;
-                 $scope.accountheader.loadingGroupsMeetup=true;
-            });
-        }
-        
         });
     }
 
@@ -432,10 +413,6 @@ function MasterCtrl($scope, $cookieStore, Customization) {
                     $scope.setDemoStatus(userId,1);
                 }
             }
-
-            
-            //$scope.setDemoStatus(userId,0);
-
         });        
     }
     $scope.setDemoStatus = function(userId,status){
@@ -507,10 +484,13 @@ function rdLoading () {
     return directive;
 };
 
+angular.module('Dashboard').controller('emptyController', ['$scope', '$filter','$cookieStore', 'Customization','ngDialog', 'FileUploader', emptyController]);
+function emptyController($scope,$filter,$Cookie,Customization,ngDialog,FileUploader){
+}
 /**
  * Events Controller 
  */ 
- angular.module('Dashboard').controller('eventsController', ['$scope', '$filter','$cookieStore', 'Customization','ngDialog', 'FileUploader', eventsController]);
+angular.module('Dashboard').controller('eventsController', ['$scope', '$filter','$cookieStore', 'Customization','ngDialog', 'FileUploader', eventsController]);
 function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUploader){
     if(window.location.hash=="#/events")
     {
@@ -518,12 +498,13 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
         {
             $scope.eventos.list = adata.Events;
             $scope.event.current = adata.Events[0].id;
+        });
+        Customization.getCategories1().success(function(adata) 
+        {
+            $scope.categorias.list = adata;
         }); 
     }
-    Customization.getCategories1().success(function(adata) 
-    {
-        $scope.categorias.list = adata;
-    }); 
+    
     $scope.addsponzor = function () {
         $scope.sponzors.push({ 
             kind: "",
@@ -586,14 +567,14 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
         $scope.newevent.location_reference=$scope.details3.reference;
         if($scope.imageReady)
         {
-            ngDialog.open({ template: 'loading.html', controller: 'eventsController', scope: $scope });//Mostramos el Loading
+            ngDialog.open({ template: 'loading.html', controller: 'emptyController', scope: $scope });//Mostramos el Loading
             $scope.newevent.starts=$filter('date')($scope.newevent.starts, "yyyy-MM-dd HH:mm:00");
             $scope.newevent.ends=$filter('date')($scope.newevent.ends, "yyyy-MM-dd HH:mm:00");
             var message = "";
             Customization.saveEvent($scope.newevent)
                 .success(function(data) {
                     if(data.success)
-                    {                        
+                    {                      
                         path=$scope.path();
                         uploader.queue[0].url=path+'api/v1/event/upload/image/'+data.evento_id;
                         uploader.uploadAll(); //Subo la imagen
@@ -657,21 +638,27 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
                         else{
                             $("#ends").removeClass("has-error");
                             $("#ends").addClass("has-success");
-                        }                        
-                    }
-                    $scope.text=message;
-                    ngDialog.close();//Si hubo error cerramos el loading.
-                    $scope.message="errorInFields";//Seteamos el mensaje de error
-                    ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope }); //Mostramos el mensaje
+                        } 
+                        $scope.text=message;
+                        ngDialog.close();//Si hubo error cerramos el loading.
+                        $scope.message="errorInFields";//Seteamos el mensaje de error
+                        ngDialog.open({ template: 'generalMessage.html', controller: 'emptyController', scope: $scope }); //Mostramos el mensaje                       
+                    }                 
+                    
                 })
                 .error(function(data) {                    
                     console.log(data);
+                    $scope.text=message;
+                    ngDialog.close();//Si hubo error cerramos el loading.
+                    $scope.message="errorInFields";//Seteamos el mensaje de error
+                    ngDialog.open({ template: 'generalMessage.html', controller: 'emptyController', scope: $scope }); //Mostramos el mensaje                       
+                    
                 });            
         }
         else
         {
             $scope.message="errorImage";
-            ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope });
+            ngDialog.open({ template: 'generalMessage.html', controller: 'emptyController', scope: $scope });
         }
     };
        $scope.imageReady=false;
@@ -688,7 +675,7 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
         console.info('onWhenAddingFileFailed', item, filter, options);
             ngDialog.close();//Cerraos el loading
             $scope.message="errorImage";
-            ngDialog.open({ template: 'generalMessage.html', controller: 'eventsController', scope: $scope });
+            ngDialog.open({ template: 'generalMessage.html', controller: 'emptyController', scope: $scope });
         };
         uploader.onAfterAddingFile = function(fileItem) {
             $scope.imageReady=true;
@@ -696,13 +683,21 @@ function eventsController($scope,$filter,$Cookie,Customization,ngDialog,FileUplo
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
             if(response.success)
             {
+                
                 $scope.imageReady=true;
-                $scope.imagePath=response.path;
-                ngDialog.open({ template: 'successevent.html', controller: 'eventsController', scope: $scope });
+                $scope.imagePath=response.path;                
                 uploader.clearQueue();
                 document.getElementById("imageInput").value = "";
                 $scope.temp.image="";
-            }                
+                ngDialog.close();
+                ngDialog.open({ template: 'successevent.html', controller: 'emptyController', scope: $scope });
+            }
+            else
+            {
+                ngDialog.close();//Cerraos el loading
+                $scope.message="errorImage";
+                ngDialog.open({ template: 'generalMessage.html', controller: 'emptyController', scope: $scope });
+            }               
         };
 }
 
@@ -716,10 +711,8 @@ function peaksController($scope,$Cookie,Customization){
             Customization.getPeaks(newvalue).success(function(adata) 
             {                
                 $scope.peaks=adata.Peaks;
-                $scope.loadingpeaks=false;           
-            });
-            
-            //Ocultamos el boton de cargar
+                $scope.loadingpeaks=false; //Ocultamos el boton de cargar        
+            });           
         }
     });
 }
@@ -821,6 +814,7 @@ function settingsController($scope,$Cookie,Customization, FileUploader, ngDialog
             $scope.account.sex=adata.User[0].sex;
             $scope.account.company=adata.User[0].company;
             $scope.account.email=adata.User[0].email;
+            $scope.account.comunitySize=adata.User[0].comunity_size;
             $scope.account.location=adata.User[0].location;
             $scope.account.location_reference=adata.User[0].location_reference;
             $scope.account.eventbriteKey=adata.User[0].eventbriteKey;
@@ -831,7 +825,8 @@ function settingsController($scope,$Cookie,Customization, FileUploader, ngDialog
                      $scope.eventbriteevents.list=data.Events.events;
                      $scope.account.loadingEventbrite=true;
                 });
-            }        
+            }
+        /*Funcionalidad de meetup desabilitada hasta nueva orden        
         $scope.account.loadingGroupsMeetup=false;
        if($scope.account.meetupRefreshKey!=undefined && $scope.account.meetupRefreshKey.trim()!="")
         {
@@ -841,6 +836,7 @@ function settingsController($scope,$Cookie,Customization, FileUploader, ngDialog
                  $scope.account.loadingGroupsMeetup=true;
             });
         }
+        */
         
         });
         $scope.options2 = {
@@ -848,6 +844,7 @@ function settingsController($scope,$Cookie,Customization, FileUploader, ngDialog
           types: '(cities)'
         };
     }
+    /*
     $scope.$watch('meetupgroups.current', function(newValue, oldValue)
     {
         if($scope.meetupgroups.current)
@@ -862,6 +859,7 @@ function settingsController($scope,$Cookie,Customization, FileUploader, ngDialog
             });
         }            
     });
+    */
     $scope.importFromEventbrite = function(e)
     {
         $scope.newevent.description=e.description.text;
@@ -948,7 +946,7 @@ function settingsController($scope,$Cookie,Customization, FileUploader, ngDialog
                 "location_reference":$scope.details2.reference,
                 "email":$scope.account.email,
                 "company":$scope.account.company,
-                "comunity_size":$scope.account.comunitSize,
+                "comunity_size":$scope.account.comunitySize,
                 "userId":$scope.event.organizer
             };
             Customization.editAccount(a).success(function(adata){

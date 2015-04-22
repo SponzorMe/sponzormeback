@@ -161,6 +161,8 @@
         </div>
     </div>      
   </div>
+  <!--
+  /*Comentado hasta tener respuesta de meetup
   <div class="row">
     <div class="col-lg-6">
       <div class="widget">
@@ -214,6 +216,7 @@
         </div>          
       </div>
     </div>
+    */-->
     <div class="col-lg-6" ng-show="b">
         <div class="widget">
           <div class="widget-header">

@@ -44,8 +44,7 @@
   <script src="{{ asset('components/angular-file-upload/angular-file-upload.min.js')}}"></script>
   <script src="{{ asset('components/angular-mocks/angular-mocks.js')}}"></script>
   <script src="{{ asset('js/services/customizationService.js') }}"></script><!-- load our service -->
-  <script src="{{ asset('js/dashboardj.js')}}"></script><!--script principal-->
-  <script src="{{ asset('js/jasmindashboard.js')}}"></script><!--script principal-->
+  <script src="{{ asset('js/jasminservices.js')}}"></script><!--script principal-->
 </head>
 <body>
 </body>

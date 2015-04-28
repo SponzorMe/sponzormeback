@@ -2,6 +2,8 @@ var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 concat    = require('gulp-concat');
 var jasmine = require('gulp-jasmine');
+var notify = require('gulp-notify');
+
 
 // define plug-ins
 var flatten = require('gulp-flatten');
@@ -116,15 +118,29 @@ gulp.task('watcher', function() {
   	gulp.watch('public/js/*.js', ['libs']);
 });
 
-/* jasmine*/
 
-// gulp.task('testjasmine', function () {
-//     return gulp.src('public/js/*.js')
-//         .pipe(jasmine());
-// });
+/* karma */
+
+var karma = require('karma').server;
+
+gulp.task('karmatest', function(done) {
+  // Be sure to return the stream
+  // NOTE: Using the fake './foobar' so as to run the files
+  // listed in karma.conf.js INSTEAD of what was passed to
+  // gulp.src !
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done);
+
+});
+
+gulp.task('autotest', function() {
+  return gulp.watch(['public/js/**/*.js', 'spec/test/*.js'], ['karmatest']);
+});
 
 //gulp.task('default', ['libs','sass','watcher','testjasmine']);
-//gulp.task('default', ['libs','sass','testjasmine']);
-gulp.task('default', ['libs','sass','watcher']);
+gulp.task('default', ['libs','sass','karmatest']);
+//gulp.task('default', ['libs','sass','watcher']);
 
 

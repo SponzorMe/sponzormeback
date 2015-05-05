@@ -1,16 +1,3 @@
-assets/*
-uploads/*
-public/images/*
-composer.lock
-public/images/*
-protected/config/main.php
-.requirements.txt
-.htaccess
-stats/*
-vendor/*
-.elasticbeanstalk/
-
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
+/vendor
+/node_modules
+.env

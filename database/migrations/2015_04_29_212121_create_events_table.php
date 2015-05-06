@@ -24,9 +24,12 @@ class CreateEventsTable extends Migration {
 			$table->foreign('organizer')->references('id')->on('users');
 			$table->string('image');
 			$table->longText('description');
+			$table->integer('category')->unsigned();
+			$table->foreign('category')->references('id')->on('categories');
 			$table->integer('type')->unsigned();
 			$table->foreign('type')->references('id')->on('event_types');
 			$table->boolean('privacy');
+			$table->string('lang',5);
 			$table->timestamps();
 		});
 	}

@@ -7,6 +7,7 @@
 > 2. MySQL 5.5 o superior.
 > 3. Git. [gitLink]
 > 4. NodeJs [nodeLink]
+> 5. Composer [composerLink]
 
 ### Instalación
 
@@ -26,6 +27,8 @@ sponzorme/database
 > 4. Ejecute las migraciones y los seeders mediante el comando: 
 ```sh
 $ php artisan migrate
+$ composer dumpautoload
+$ php artisan migrate:refresh --seed
 ```
 
 ### Versión Actual
@@ -37,3 +40,5 @@ $ php artisan migrate
 [gitLink]: http://git-scm.com/
 
 [nodeLink]: https://nodejs.org/
+
+[composerLink]: https://getcomposer.org/

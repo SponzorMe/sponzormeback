@@ -1,14 +1,11 @@
 <?php namespace App\Http\Controllers;
 
-use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+use App\Models\Category;
 
-use App\Models\User as User;
-
-class UserController extends Controller {
+class CategoryController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -17,10 +14,10 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-		$users = User::get();
+		$categories = Category::get();
 		return response()->json([
 			"success" => true,
-			"users"=>$users->toArray()
+			"categories"=>$categories->toArray()
 			], 200
 		);
 	}
@@ -32,20 +29,20 @@ class UserController extends Controller {
 	 */
 	public function show($id)
 	{
-		$user = User::find($id);
-		if(!$user){
+		$category = Category::find($id);
+		if(!$category){
 			return response()->json(
 				["message"=>"Resource not found",
 				], 404
 			);
 		}
-		else
-		{
-			$events=$user->events;
+		else {
+			$category->events;
+			$category->interests;
 			return response()->json(
 				["data"=>
 					[
-						"user"=>$user->toArray(),
+						"category"=>$category->toArray(),
 					]
 				], 200
 			);

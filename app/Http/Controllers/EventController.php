@@ -1,15 +1,15 @@
 <?php namespace App\Http\Controllers;
 
-use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\Models\User as User;
+use App\Models\Event;
 
-class UserController extends Controller {
+class EventController extends Controller {
 
+	
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -17,10 +17,10 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-		$users = User::get();
+		$events = Event::get();
 		return response()->json([
 			"success" => true,
-			"users"=>$users->toArray()
+			"events"=>$events->toArray()
 			], 200
 		);
 	}
@@ -32,8 +32,8 @@ class UserController extends Controller {
 	 */
 	public function show($id)
 	{
-		$user = User::find($id);
-		if(!$user){
+		$event = Event::find($id);
+		if(!$event){
 			return response()->json(
 				["message"=>"Resource not found",
 				], 404
@@ -41,11 +41,17 @@ class UserController extends Controller {
 		}
 		else
 		{
-			$events=$user->events;
+			$category=$event->category()->get();
+			$type=$event->type()->get();
+			$organizer=$event->organizer()->get();
+			$event->perks;
 			return response()->json(
 				["data"=>
 					[
-						"user"=>$user->toArray(),
+						"event"=>$event->toArray(),
+						"category"=>$category->toArray(),
+						"type"=>$type->toArray(),
+						"organizer"=>$type->toArray(),
 					]
 				], 200
 			);

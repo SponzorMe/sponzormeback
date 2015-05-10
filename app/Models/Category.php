@@ -16,13 +16,25 @@ class Category extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['name', 'desc', 'id'];
+	protected $fillable = ['name', 'desc'];
+
+	protected $hidden = ['created_at', 'updated_at'];
 
 	/**
-	 * The attributes excluded from the model's JSON form.
+	 *  One category has one or many events.
 	 *
-	 * @var array
 	 */
-	protected $hidden = [];
+	public function events()
+    {
+        return $this->hasMany('App\Models\Event','category');
+    }
+    /**
+	 *  One category has one or many interests (subtopics).
+	 *
+	 */
+	public function interests()
+    {
+        return $this->hasMany('App\Models\InterestCategory','category_id');
+    }
 
 }

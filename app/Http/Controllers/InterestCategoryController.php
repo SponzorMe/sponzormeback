@@ -1,14 +1,11 @@
 <?php namespace App\Http\Controllers;
 
-use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+use App\Models\InterestCategory;
 
-use App\Models\User as User;
-
-class UserController extends Controller {
+class InterestCategoryController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -17,10 +14,10 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-		$users = User::get();
+		$InterestCategory = InterestCategory::get();
 		return response()->json([
 			"success" => true,
-			"users"=>$users->toArray()
+			"InterestCategory"=>$InterestCategory->toArray()
 			], 200
 		);
 	}
@@ -32,20 +29,19 @@ class UserController extends Controller {
 	 */
 	public function show($id)
 	{
-		$user = User::find($id);
-		if(!$user){
+		$InterestCategory = InterestCategory::find($id);
+		if(!$InterestCategory){
 			return response()->json(
 				["message"=>"Resource not found",
 				], 404
 			);
 		}
-		else
-		{
-			$events=$user->events;
+		else {
 			return response()->json(
 				["data"=>
 					[
-						"user"=>$user->toArray(),
+						"InterestCategory"=>$InterestCategory->toArray(),
+						"Category"=>$InterestCategory->category()->get(),
 					]
 				], 200
 			);

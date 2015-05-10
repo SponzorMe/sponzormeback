@@ -16,9 +16,9 @@ class CreateTasksSponzorsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('task_id')->unsigned();
-			$table->foreign('task_id')->references('id')->on('peak_tasks');
-			$table->integer('peak_id')->unsigned();
-			$table->foreign('peak_id')->references('id')->on('peaks');
+			$table->foreign('task_id')->references('id')->on('perk_tasks');
+			$table->integer('perk_id')->unsigned();
+			$table->foreign('perk_id')->references('id')->on('perks');
 			$table->integer('sponzor_id')->unsigned();
 			$table->foreign('sponzor_id')->references('id')->on('users');
 			$table->integer('organizer_id')->unsigned();

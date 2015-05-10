@@ -33,7 +33,7 @@ $ php artisan migrate:refresh --seed
 
 ### Versión Actual
 
-2.0
+2.0.0.1
 
 [xamppLink]: https://www.apachefriends.org/es/index.html
 

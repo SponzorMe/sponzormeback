@@ -1,14 +1,12 @@
 <?php namespace App\Http\Controllers;
 
-use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Models\Perk;
 
-use App\Models\User as User;
-
-class UserController extends Controller {
+class PerkController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -17,10 +15,10 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-		$users = User::get();
+		$Perk = Perk::get();
 		return response()->json([
 			"success" => true,
-			"users"=>$users->toArray()
+			"Perk"=>$Perk->toArray()
 			], 200
 		);
 	}
@@ -32,20 +30,19 @@ class UserController extends Controller {
 	 */
 	public function show($id)
 	{
-		$user = User::find($id);
-		if(!$user){
+		$Perk = Perk::find($id);
+		if(!$Perk){
 			return response()->json(
 				["message"=>"Resource not found",
 				], 404
 			);
 		}
-		else
-		{
-			$events=$user->events;
+		else {
+			$Perk->events;
 			return response()->json(
 				["data"=>
 					[
-						"user"=>$user->toArray(),
+						"Perk"=>$Perk->toArray(),
 					]
 				], 200
 			);

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSponzorsEventsTable extends Migration {
+class CreatePerkTasksTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,15 +12,18 @@ class CreateSponzorsEventsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('sponzors_events', function(Blueprint $table)
+		Schema::create('perk_tasks', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('sponzor_id')->unsigned();
-			$table->foreign('sponzor_id')->references('id')->on('users');
+			$table->integer('user_id')->unsigned();
+			$table->foreign('user_id')->references('id')->on('users');
 			$table->integer('perk_id')->unsigned();
 			$table->foreign('perk_id')->references('id')->on('perks');
 			$table->integer('event_id')->unsigned();
 			$table->foreign('event_id')->references('id')->on('events');
+			$table->string('title');
+			$table->longText('description');
+			$table->boolean('type');
 			$table->boolean('status');
 			$table->timestamps();
 		});
@@ -33,7 +36,7 @@ class CreateSponzorsEventsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('sponzors_events');
+		Schema::drop('perk_tasks');
 	}
 
 }

@@ -13,16 +13,11 @@
 
 Route::get('/', 'WelcomeController@index');
 
-Route::get('home', 'HomeController@index');
+Route::get('home', 'WelcomeController@index');
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
-
-//Users Routes
-Route::get('users', 'UserController@index');
-Route::get('users/{id}', 'UserController@show');
-Route::post('users', 'UserController@store');
-Route::put('users/{id}', 'UserController@update');
-Route::delete('users/{id}', 'UserController@destroy');
+Route::resource('users','UserController');
+Route::resource('events','EventController');
+Route::resource('categories','CategoryController');
+Route::resource('event_types','EventTypeController');
+Route::resource('interests_category','InterestCategoryController');
+Route::resource('perks','PerkController');

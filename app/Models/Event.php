@@ -40,5 +40,9 @@ class Event extends Model {
     {
         return $this->hasMany('App\Models\Perk','id_event');
     }
+    public function sponzorship()
+    {
+        return $this->hasMany('App\Models\Sponzorship','id_event');
+    }
 
 }

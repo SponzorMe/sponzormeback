@@ -38,11 +38,11 @@ class PerkController extends Controller {
 			);
 		}
 		else {
-			$Perk->events;
 			return response()->json(
 				["data"=>
 					[
 						"Perk"=>$Perk->toArray(),
+						"Event"=>$Perk->event,
 					]
 				], 200
 			);

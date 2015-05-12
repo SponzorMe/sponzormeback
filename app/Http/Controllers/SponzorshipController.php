@@ -1,14 +1,12 @@
 <?php namespace App\Http\Controllers;
 
-use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Models\Sponzorship;
 
-use App\Models\User as User;
-
-class UserController extends Controller {
+class SponzorshipController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -17,10 +15,10 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-		$users = User::get();
+		$SponzorsEvents = Sponzorship::get();
 		return response()->json([
 			"success" => true,
-			"users"=>$users->toArray()
+			"SponzorsEvents"=>$SponzorsEvents->toArray()
 			], 200
 		);
 	}
@@ -32,22 +30,21 @@ class UserController extends Controller {
 	 */
 	public function show($id)
 	{
-		$user = User::find($id);
-		if(!$user){
+		$SponzorEvent = Sponzorship::find($id);
+		if(!$SponzorEvent){
 			return response()->json(
 				["message"=>"Resource not found",
 				], 404
 			);
 		}
-		else
-		{
-			$events=$user->events;
-			$events=$user->categories;
-			$events=$user->interests;
+		else {
 			return response()->json(
 				["data"=>
 					[
-						"user"=>$user->toArray(),
+						"SponzorEvent"=>$SponzorEvent->toArray(),
+						"Event"=>$SponzorEvent->event,
+						"Sponzor"=>$SponzorEvent->user,
+						"Perk"=>$SponzorEvent->perk,
 					]
 				], 200
 			);

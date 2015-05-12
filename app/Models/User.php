@@ -33,4 +33,12 @@ class User extends Model {
     {
         return $this->hasMany('App\Models\Event','organizer');
     }
+    public function interests()
+    {
+        return $this->hasMany('App\Models\UserInterest','user_id');
+    }
+    public function categories()
+    {
+        return $this->hasMany('App\Models\UserCategory','user_id');
+    }
 }

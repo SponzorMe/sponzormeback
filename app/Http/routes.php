@@ -21,3 +21,8 @@ Route::resource('categories','CategoryController');
 Route::resource('event_types','EventTypeController');
 Route::resource('interests_category','InterestCategoryController');
 Route::resource('perks','PerkController');
+Route::resource('perk_tasks','PerkTaskController');
+Route::resource('sponzorships','SponzorshipController');
+Route::resource('user_interests','UserInterestController');
+Route::resource('user_categories','UserCategoryController');
+Route::resource('task_sponzor','TaskSponzorController');

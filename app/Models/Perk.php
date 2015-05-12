@@ -28,5 +28,13 @@ class Perk extends Model {
     {
         return $this->belongsTo('App\Models\Event','id_event');
     }
+    public function tasks()
+    {
+        return $this->hasMany('App\Models\PerkTask','perk_id');
+    }
+    public function sponzor_tasks()
+    {
+        return $this->hasMany('App\Models\TaskSponzor','perk_id');
+    }
 
 }

@@ -16,7 +16,7 @@ class PerkTask extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['title', 'description', 'type', 'status'];
+	protected $fillable = ['title','description', 'type', 'status','user_id', 'perk_id', 'event_id', 'status'];
 
 	protected $hidden = ['created_at', 'updated_at'];
 

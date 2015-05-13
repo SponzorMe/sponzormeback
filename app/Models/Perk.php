@@ -16,7 +16,7 @@ class Perk extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['kind', 'usd', 'total_quantity', 'available_quantity'];
+	protected $fillable = ['kind', 'usd', 'total_quantity', 'reserved_quantity','id_event'];
 
 	protected $hidden = ['created_at', 'updated_at'];
 

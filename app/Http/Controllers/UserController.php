@@ -3,13 +3,15 @@
 use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
-
-use App\Models\User as User;
+use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller {
-
+	public function __construct()
+	{
+		$this->middleware('auth.basic',['only'=>['store','update','destroy']]);
+	}
 	/**
 	 * Display a listing of the resource.
 	 *

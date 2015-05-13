@@ -2,12 +2,15 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 use App\Models\PerkTask;
+use Illuminate\Support\Facades\Validator;
 
 class PerkTaskController extends Controller {
-
+	public function __construct()
+	{
+		$this->middleware('auth.basic',['only'=>['store','update','destroy']]);
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -54,9 +57,26 @@ class PerkTaskController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//Falta por implementar.		
+		$validation = Validator::make($request->all(), [
+			'title'=>'required|max:255',
+			'description'=>'required', 
+			'type'=>'required|max:5',
+			'status'=>'required|max:5',
+			'user_id'=>'required|max:11|exists:users,id', 
+			'perk_id'=>'required|max:11|exists:perks,id', 
+			'event_id'=>'required|max:11|exists:events,id',
+    	 ]);
+		if($validation->fails())
+		{
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
+		}
+		else
+		{
+			$PerkTask=PerkTask::create($request->all());
+			return response()->json(['message'=>"Inserted",'PerkTask'=>$PerkTask],201);
+		}			
 	}
 	/**
 	 * Update the specified resource in storage.

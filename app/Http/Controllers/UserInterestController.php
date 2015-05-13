@@ -2,12 +2,15 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 use App\Models\UserInterest;
+use Illuminate\Support\Facades\Validator;
 
 class UserInterestController extends Controller {
-
+	public function __construct()
+	{
+		$this->middleware('auth.basic',['only'=>['store','update','destroy']]);
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -54,9 +57,21 @@ class UserInterestController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//Falta por implementar.		
+		$validation = Validator::make($request->all(), [
+			'user_id'=>'required|max:11|exists:users,id',
+			'interest_id'=>'required|max:11|exists:interests_categories,id_interest',
+    	 ]);
+		if($validation->fails())
+		{
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
+		}
+		else
+		{
+			$UserInterest=UserInterest::create($request->all());
+			return response()->json(['message'=>"Inserted",'UserInterest'=>$UserInterest],201);
+		}			
 	}
 	/**
 	 * Update the specified resource in storage.

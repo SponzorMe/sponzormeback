@@ -10,16 +10,14 @@ class InterestCategory extends Model {
 	 * @var string
 	 */
 	protected $table = 'interests_categories';
-	protected $primaryKey = 'id_interest';
 
+	protected $primaryKey = 'id_interest';
 	/**
 	 * The attributes that are mass assignable.
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['name', 'desc', 'lang'];
-
-
+	protected $fillable = ['name', 'description', 'category_id', 'lang'];
 
 	protected $hidden = ['created_at', 'updated_at'];
 

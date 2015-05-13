@@ -1,15 +1,8 @@
 <?php namespace App;
 
-use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
-
-	use Authenticatable, CanResetPassword;
-
+class User extends Model {
 	/**
 	 * The database table used by the model.
 	 *
@@ -29,6 +22,23 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $hidden = ['password', 'remember_token'];
-
+	protected $hidden = ['password', 'remember_token', 'created_at', 'updated_at'];
+	
+	public function user(){
+ 
+        return $this->belongsTo('App\Models\User');
+ 
+    }
+    public function events()
+    {
+        return $this->hasMany('App\Models\Event','organizer');
+    }
+    public function interests()
+    {
+        return $this->hasMany('App\Models\UserInterest','user_id');
+    }
+    public function categories()
+    {
+        return $this->hasMany('App\Models\UserCategory','user_id');
+    }
 }

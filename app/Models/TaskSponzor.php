@@ -16,7 +16,7 @@ class TaskSponzor extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['status'];
+	protected $fillable = ['status','task_id','perk_id','sponzor_id','organizer_id','event_id','sponzorship_id','status'];
 	
 	protected $hidden = ['created_at', 'updated_at'];
 

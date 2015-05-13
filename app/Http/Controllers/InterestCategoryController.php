@@ -4,9 +4,14 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\InterestCategory;
+use Illuminate\Support\Facades\Validator;
 
 class InterestCategoryController extends Controller {
 
+	public function __construct()
+	{
+		$this->middleware('auth.basic',['only'=>['store','update','destroy']]);
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -52,9 +57,23 @@ class InterestCategoryController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//Falta por implementar.		
+		$validation = Validator::make($request->all(), [
+			'name'=>'required|max:255',
+			'description'=>'required|max:255',
+			'lang'=>'required|max:5',
+			'category_id'=>'required|max:11|exists:categories,id',
+    	 ]);
+		if($validation->fails())
+		{
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
+		}
+		else
+		{
+			$InterestCategory=InterestCategory::create($request->all());
+			return response()->json(['message'=>"Inserted",'InterestCategory'=>$InterestCategory],201);
+		}			
 	}
 	/**
 	 * Update the specified resource in storage.

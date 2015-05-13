@@ -16,7 +16,7 @@ class UserInterest extends Model {
 	 *
 	 * @var array
 	 */
-	
+	protected $fillable = ['user_id','interest_id'];
 	protected $hidden = ['created_at', 'updated_at'];
 
 	/**

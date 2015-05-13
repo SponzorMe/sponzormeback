@@ -16,6 +16,7 @@ class UserCategory extends Model {
 	 *
 	 * @var array
 	 */
+	protected $fillable = ['user_id','category_id'];
 	
 	protected $hidden = ['created_at', 'updated_at'];
 

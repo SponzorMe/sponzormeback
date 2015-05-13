@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSponzorshipTable extends Migration {
+class CreateSponzorshipsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -21,7 +21,7 @@ class CreateSponzorshipTable extends Migration {
 			$table->foreign('perk_id')->references('id')->on('perks');
 			$table->integer('event_id')->unsigned();
 			$table->foreign('event_id')->references('id')->on('events');
-			$table->boolean('status');
+			$table->boolean('status')->default(0);
 			$table->timestamps();
 		});
 	}

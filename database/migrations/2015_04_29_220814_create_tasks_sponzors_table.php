@@ -26,7 +26,7 @@ class CreateTasksSponzorsTable extends Migration {
 			$table->integer('event_id')->unsigned();
 			$table->foreign('event_id')->references('id')->on('events');
 			$table->integer('sponzorship_id')->unsigned();
-			$table->foreign('sponzorship_id')->references('id')->on('sponzorship');
+			$table->foreign('sponzorship_id')->references('id')->on('sponzorships');
 			$table->boolean('status');			
 			$table->timestamps();
 		});

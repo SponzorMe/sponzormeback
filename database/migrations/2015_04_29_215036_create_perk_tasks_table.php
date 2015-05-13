@@ -24,7 +24,7 @@ class CreatePerkTasksTable extends Migration {
 			$table->string('title');
 			$table->longText('description');
 			$table->boolean('type');
-			$table->boolean('status');
+			$table->boolean('status')->default(0);
 			$table->timestamps();
 		});
 	}

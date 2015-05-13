@@ -2,13 +2,17 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
-
 use App\Models\Event;
+use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller {
 
+
+	public function __construct()
+	{
+		$this->middleware('auth.basic',['only'=>['store','update','destroy']]);
+	}
 	
 	/**
 	 * Display a listing of the resource.
@@ -62,9 +66,31 @@ class EventController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//Falta por implementar.		
+		$validation = Validator::make($request->all(), [
+			'title'=>'required|max:255',
+			'location'=>'required|max:255',
+			'ends'=>'required|max:255',
+			'starts'=>'required|max:255',
+			'location_reference'=>'required|max:255',
+			'image'=>'required|max:255',
+			'description'=>'required',
+			'privacy'=>'required|max:255',
+			'lang'=>'required|max:5',
+			'organizer'=>'required|exists:users,id',
+			'category'=>'required|exists:categories,id',
+			'type'=>'required|exists:event_types,id',
+    	 ]);
+		if($validation->fails())
+		{
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
+		}
+		else
+		{
+			$event=Event::create($request->all());
+			return response()->json(['message'=>"Inserted",'event'=>$event],201);
+		}			
 	}
 	/**
 	 * Update the specified resource in storage.

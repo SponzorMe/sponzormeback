@@ -2,12 +2,15 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 use App\Models\UserCategory;
+use Illuminate\Support\Facades\Validator;
 
 class UserCategoryController extends Controller {
-
+	public function __construct()
+	{
+		$this->middleware('auth.basic',['only'=>['store','update','destroy']]);
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -54,9 +57,21 @@ class UserCategoryController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//Falta por implementar.		
+		$validation = Validator::make($request->all(), [
+			'user_id'=>'required|max:11|exists:users,id',
+			'category_id'=>'required|max:11|exists:categories,id',
+    	 ]);
+		if($validation->fails())
+		{
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
+		}
+		else
+		{
+			$UserCategory=UserCategory::create($request->all());
+			return response()->json(['message'=>"Inserted",'UserCategory'=>$UserCategory],201);
+		}			
 	}
 	/**
 	 * Update the specified resource in storage.

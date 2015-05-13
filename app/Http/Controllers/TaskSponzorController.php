@@ -2,12 +2,15 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 use App\Models\TaskSponzor;
+use Illuminate\Support\Facades\Validator;
 
 class TaskSponzorController extends Controller {
-
+	public function __construct()
+	{
+		$this->middleware('auth.basic',['only'=>['store','update','destroy']]);
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -57,9 +60,26 @@ class TaskSponzorController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//Falta por implementar.		
+		$validation = Validator::make($request->all(), [
+			'status'=>'max:4',
+			'task_id'=>'required|max:11|exists:perk_tasks,id',
+			'perk_id'=>'required|max:11|exists:perks,id', 
+			'sponzor_id'=>'required|max:11|exists:users,id', 
+			'organizer_id'=>'required|max:11|exists:users,id', 
+			'event_id'=>'required|max:11|exists:events,id',
+			'sponzorship_id'=>'required|max:11|exists:sponzorships,id',
+    	 ]);
+		if($validation->fails())
+		{
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
+		}
+		else
+		{
+			$TaskSponzor=TaskSponzor::create($request->all());
+			return response()->json(['message'=>"Inserted",'TaskSponzor'=>$TaskSponzor],201);
+		}			
 	}
 	/**
 	 * Update the specified resource in storage.

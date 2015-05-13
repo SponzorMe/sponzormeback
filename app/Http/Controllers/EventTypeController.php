@@ -2,11 +2,16 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 use App\Models\EventType;
+use Illuminate\Support\Facades\Validator;
 
 class EventTypeController extends Controller {
+
+	public function __construct()
+	{
+		$this->middleware('auth.basic',['only'=>['store','update','destroy']]);
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -47,14 +52,22 @@ class EventTypeController extends Controller {
 			);
 		}		
 	}
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//Falta por implementar.		
+		$validation = Validator::make($request->all(), [
+			'name'=>'required|unique:event_types,name|max:255',
+			'description'=>'required|max:255',
+			'lang'=>'required|max:5',
+    	 ]);
+		if($validation->fails())
+		{
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
+		}
+		else
+		{
+			$eventType=EventType::create($request->all());
+			return response()->json(['message'=>"Inserted",'eventype'=>$eventType],201);
+		}			
 	}
 	/**
 	 * Update the specified resource in storage.

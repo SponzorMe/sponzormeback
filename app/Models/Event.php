@@ -19,7 +19,7 @@ class Event extends Model {
 	protected $fillable = ['title','location','ends',
 						   'starts','location_reference',
 						   'image','description','privacy',
-						   'lang','organizer'
+						   'lang','organizer','category','type'
 						  ];
 
 	protected $hidden = ['category', 'type', 'organizer', 'created_at', 'updated_at'];

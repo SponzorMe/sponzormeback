@@ -20,7 +20,7 @@ class PerksTableSeeder extends Seeder {
 				'id_event' => 1,
 				'usd' => '23',
 				'total_quantity' => '4',				
-				'available_quantity' => '2'
+				'reserved_quantity' => '3'
 			),
 		));
 	}

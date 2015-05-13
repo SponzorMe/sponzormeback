@@ -2,12 +2,15 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 use App\Models\Sponzorship;
+use Illuminate\Support\Facades\Validator;
 
 class SponzorshipController extends Controller {
-
+	public function __construct()
+	{
+		$this->middleware('auth.basic',['only'=>['store','update','destroy']]);
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -55,9 +58,23 @@ class SponzorshipController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//Falta por implementar.		
+		$validation = Validator::make($request->all(), [
+			'status'=>'required|max:4',
+			'sponzor_id'=>'required|max:11|exists:users,id', 
+			'perk_id'=>'required|max:11|exists:perks,id', 
+			'event_id'=>'required|max:11|exists:events,id',
+    	 ]);
+		if($validation->fails())
+		{
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
+		}
+		else
+		{
+			$Sponzorship=Sponzorship::create($request->all());
+			return response()->json(['message'=>"Inserted",'Sponzorship'=>$Sponzorship],201);
+		}			
 	}
 	/**
 	 * Update the specified resource in storage.

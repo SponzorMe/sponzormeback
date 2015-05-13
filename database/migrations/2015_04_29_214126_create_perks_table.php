@@ -18,7 +18,7 @@ class CreatePerksTable extends Migration {
 			$table->string('kind');
 			$table->string('usd');
 			$table->integer('total_quantity');
-			$table->integer('available_quantity');
+			$table->integer('reserved_quantity')->default(0);
 			$table->integer('id_event')->unsigned();
 			$table->foreign('id_event')->references('id')->on('events')->onDelete('cascade');
 			$table->timestamps();

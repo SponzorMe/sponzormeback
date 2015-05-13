@@ -4,7 +4,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateCategoriesTable extends Migration {
-
 	/**
 	 * Run the migrations.
 	 *
@@ -15,13 +14,12 @@ class CreateCategoriesTable extends Migration {
 		Schema::create('categories', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('title');
+			$table->string('title')->unique();
 			$table->string('body');
 			$table->string('lang');
 			$table->timestamps();
 		});
 	}
-
 	/**
 	 * Reverse the migrations.
 	 *
@@ -31,5 +29,4 @@ class CreateCategoriesTable extends Migration {
 	{
 		Schema::drop('categories');
 	}
-
 }

@@ -9,14 +9,14 @@ class Sponzorship extends Model {
 	 *
 	 * @var string
 	 */
-	protected $table = 'sponzors_events';
+	protected $table = 'Sponzorships';
 
 	/**
 	 * The attributes that are mass assignable.
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['status'];
+	protected $fillable = ['status','sponzor_id','perk_id','event_id'];
 
 	protected $hidden = ['created_at', 'updated_at'];
 

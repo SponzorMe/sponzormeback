@@ -4,9 +4,14 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller {
 
+	public function __construct()
+	{
+		$this->middleware('auth.basic',['only'=>['store','update','destroy']]);
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -53,9 +58,22 @@ class CategoryController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//Falta por implementar.		
+		$validation = Validator::make($request->all(), [
+        	'title' =>'required|unique:categories,title|max:255',
+        	'body' => 'required',
+        	'lang' => 'required|max:5',
+    	 ]);
+		if($validation->fails())
+		{
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
+		}
+		else
+		{
+			$category=Category::create($request->all());
+			return response()->json(['message'=>"Inserted",'category'=>$category],201);
+		}			
 	}
 	/**
 	 * Update the specified resource in storage.

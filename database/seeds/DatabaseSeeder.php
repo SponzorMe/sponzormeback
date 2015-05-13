@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('InterestsCategoriesTableSeeder');
 		$this->call('PerksTableSeeder');
 		$this->call('PerkTaskTableSeeder');
-		$this->call('SponzorsEventsTableSeeder');
+		$this->call('SponzorshipsTableSeeder');
 		$this->call('UserInterestsTableSeeder');
 		$this->call('UserCategoryTableSeeder');
 		$this->call('TasksSponzorsTableSeeder');

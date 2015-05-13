@@ -147,7 +147,6 @@ return [
 		 * Custom service providers...
 		 */
 		'Intervention\Image\ImageServiceProvider',
-		'Barryvdh\Cors\CorsServiceProvider',
 		'Orangehill\Iseed\IseedServiceProvider',
 	],
 

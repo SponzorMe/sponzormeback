@@ -84,9 +84,145 @@ class PerkTaskController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request,$id)
 	{
-		//Falta por implementar.
+		$PerkTask=PerkTask::find($id);
+		if(!$PerkTask){
+			return response()->json(['message'=>"Not found"],404);
+		}
+		else{
+			//Get all values
+			$title			= $request->input("title");
+			$description	= $request->input("description");
+			$type			= $request->input("type");
+			$status			= $request->input("status");
+			$user_id		= $request->input("user_id");
+			$perk_id		= $request->input("perk_id");
+			$event_id		= $request->input("event_id");
+		}
+		if($request->method()==="PATCH"){//PATCH At least one field is required
+			$warnings=array();
+			$flag=0;//If 0 persist nothing was updated.
+			if(!empty($title)){				
+				$validator = Validator::make(
+				    ['title' => $title],
+				    ['title' => ['required', 'max:255']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$PerkTask->title=$title;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}		
+			}
+			if(!empty($description)){
+				$PerkTask->description=$description;
+				$flag=1;
+			}
+			if(!empty($type)){				
+				$validator = Validator::make(
+				    ['type' => $type],
+				    ['type' => ['required', 'max:5']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$PerkTask->type=$type;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}		
+			}
+			if(!empty($status)){				
+				$validator = Validator::make(
+				    ['status' => $status],
+				    ['status' => ['required', 'max:5']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$PerkTask->status=$status;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}		
+			}
+			if(!empty($user_id)){				
+				$validator = Validator::make(
+				    ['user_id' => $user_id],
+				    ['user_id' => ['required', 'max:11','exists:users,id']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$PerkTask->user_id=$user_id;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}		
+			}
+			if(!empty($perk_id)){				
+				$validator = Validator::make(
+				    ['perk_id' => $perk_id],
+				    ['perk_id' => ['required', 'max:11','exists:perks,id']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$PerkTask->perk_id=$perk_id;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}							
+			}
+			if(!empty($event_id)){				
+				$validator = Validator::make(
+				    ['event_id' => $event_id],
+				    ['event_id' => ['required', 'max:11','exists:events,id']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$PerkTask->event_id=$event_id;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}							
+			}
+			if($flag){
+				$PerkTask->save();
+				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'PerkTask'=>$PerkTask],200);
+			}
+			else{
+				return response()->json(['message'=>"Nothing updated",'warnings'=>$warnings,'PerkTask'=>$PerkTask],200);
+			}
+		}
+		elseif($request->method()==="PUT"){//PUT all fields are required
+			$validation = Validator::make($request->all(), [
+	        	'title'=>'required|max:255',
+				'description'=>'required', 
+				'type'=>'required|max:5',
+				'status'=>'required|max:5',
+				'user_id'=>'required|max:11|exists:users,id', 
+				'perk_id'=>'required|max:11|exists:perks,id', 
+				'event_id'=>'required|max:11|exists:events,id',
+	    	 ]);
+			if($validation->fails())
+			{
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
+			}
+			else
+			{
+				$PerkTask->title=$title;
+				$PerkTask->description=$description;
+				$PerkTask->type=$type;
+				$PerkTask->status=$status;
+				$PerkTask->user_id=$user_id;
+				$PerkTask->perk_id=$perk_id;
+				$PerkTask->event_id=$event_id;
+				$PerkTask->save();
+				return response()->json(['message'=>"Updated",'PerkTask'=>$PerkTask],200);
+			}
+		}
+		else{
+			return response()->json(['message'=>"Method Not Allowed"],405);
+		}
 	}
 	/**
 	 * Remove the specified resource from storage.

@@ -82,9 +82,106 @@ class SponzorshipController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request,$id)
 	{
-		//Falta por implementar.
+		$Sponzorship=Sponzorship::find($id);
+		if(!$Sponzorship){
+			return response()->json(['message'=>"Not found"],404);
+		}
+		else{
+			//Get all values
+			$status		= $request->input("status");
+			$sponzor_id	= $request->input("sponzor_id");
+			$perk_id	= $request->input("perk_id");
+			$event_id	= $request->input("event_id");
+		}
+		if($request->method()==="PATCH"){//PATCH At least one field is required
+			$warnings=array();
+			$flag=0;//If 0 persist nothing was updated.
+			if(!empty($status)){				
+				$validator = Validator::make(
+				    ['status' => $status],
+				    ['status' => ['required', 'max:4']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$Sponzorship->status=$status;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}		
+			}
+			if(!empty($sponzor_id)){			
+				$validator = Validator::make(
+				    ['sponzor_id' => $sponzor_id],
+				    ['sponzor_id' => ['required', 'max:4','exists:users,id']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$Sponzorship->sponzor_id=$sponzor_id;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}				
+			}
+			if(!empty($perk_id)){			
+				$validator = Validator::make(
+				    ['perk_id' => $perk_id],
+				    ['perk_id' => ['required', 'max:4','exists:perks,id']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$Sponzorship->perk_id=$perk_id;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}				
+			}
+			if(!empty($event_id)){			
+				$validator = Validator::make(
+				    ['event_id' => $event_id],
+				    ['event_id' => ['required', 'max:4', 'exists:events,id']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$Sponzorship->event_id=$event_id;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}				
+			}
+			if($flag){
+				$Sponzorship->save();
+				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'Sponzorship'=>$Sponzorship],200);
+			}
+			else{
+				return response()->json(['message'=>"Nothing updated",'warnings'=>$warnings,'Sponzorship'=>$Sponzorship],200);
+			}
+		}
+		elseif($request->method()==="PUT"){//PUT all fields are required
+			$validation = Validator::make($request->all(), [
+        	'status'=>'required|max:4',
+			'sponzor_id'=>'required|max:11|exists:users,id', 
+			'perk_id'=>'required|max:11|exists:perks,id', 
+			'event_id'=>'required|max:11|exists:events,id',
+	    	 ]);
+			if($validation->fails())
+			{
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
+			}
+			else
+			{
+				$Sponzorship->status=$status;
+				$Sponzorship->sponzor_id=$sponzor_id;
+				$Sponzorship->perk_id=$perk_id;
+				$Sponzorship->event_id=$event_id;
+				$Sponzorship->save();
+				return response()->json(['message'=>"Updated",'Sponzorship'=>$Sponzorship],200);
+			}
+		}
+		else{
+			return response()->json(['message'=>"Method Not Allowed"],405);
+		}
 	}
 	/**
 	 * Remove the specified resource from storage.

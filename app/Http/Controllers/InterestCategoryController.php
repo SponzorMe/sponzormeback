@@ -81,9 +81,97 @@ class InterestCategoryController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request,$id)
 	{
-		//Falta por implementar.
+		$InterestCategory=InterestCategory::find($id);
+		if(!$InterestCategory){
+			return response()->json(['message'=>"Not found"],404);
+		}
+		else{
+			//Get all values
+			$name			= $request->input("name");
+			$description	= $request->input("description");
+			$lang			= $request->input("lang");
+			$category_id	= $request->input("category_id");
+		}		
+		if($request->method()==="PATCH"){//PATCH At least one field is required
+			$warnings=array();
+			$flag=0;//If 0 persist nothing was updated.
+			if(!empty($name)){				
+				$validator = Validator::make(
+				    ['name' => $name],
+				    ['name' => ['required', 'max:255','unique:event_types,name,'.$id]]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$InterestCategory->name=$name;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}		
+			}
+			if(!empty($description)){
+				$InterestCategory->description=$description;
+				$flag=1;
+			}
+			if(!empty($lang)){				
+				$validator = Validator::make(
+				    ['lang' => $lang],
+				    ['lang' => ['required', 'max:5']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$InterestCategory->lang=$lang;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}				
+			}
+			if(!empty($category_id)){				
+				$validator = Validator::make(
+				    ['category_id' => $category_id],
+				    ['category_id' => ['required', 'max:5','exists:categories,id']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$InterestCategory->category_id=$category_id;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}				
+			}
+			if($flag){
+				$InterestCategory->save();
+				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'InterestCategory'=>$InterestCategory],200);
+			}
+			else{
+				return response()->json(['message'=>"Nothing updated",'warnings'=>$warnings,'InterestCategory'=>$InterestCategory],200);
+			}
+		}
+		elseif($request->method()==="PUT"){//PUT all fields are required
+			$validation = Validator::make($request->all(), [
+        	'name'=>'required|max:255',
+			'description'=>'required|max:255',
+			'lang'=>'required|max:5',
+			'category_id'=>'required|max:11|exists:categories,id',
+	    	 ]);
+			if($validation->fails())
+			{
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
+			}
+			else
+			{
+				$InterestCategory->name=$name;
+				$InterestCategory->description=$description;
+				$InterestCategory->lang=$lang;
+				$InterestCategory->category_id=$category_id;
+				$InterestCategory->save();
+				return response()->json(['message'=>"Updated",'InterestCategory'=>$InterestCategory],200);
+			}
+		}
+		else{
+			return response()->json(['message'=>"Method Not Allowed"],405);
+		}
 	}
 	/**
 	 * Remove the specified resource from storage.

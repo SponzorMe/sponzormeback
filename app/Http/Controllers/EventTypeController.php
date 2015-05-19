@@ -75,9 +75,81 @@ class EventTypeController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request,$id)
 	{
-		//Falta por implementar.
+		$EventType=EventType::find($id);
+		if(!$EventType){
+			return response()->json(['message'=>"Not found"],404);
+		}
+		else{
+			//Get all values
+			$name			= $request->input("name");
+			$description	= $request->input("description");
+			$lang			= $request->input("lang");
+		}		
+		if($request->method()==="PATCH"){//PATCH At least one field is required
+			$warnings=array();
+			$flag=0;//If 0 persist nothing was updated.
+			if(!empty($name)){				
+				$validator = Validator::make(
+				    ['name' => $name],
+				    ['name' => ['required', 'max:255','unique:event_types,name,'.$id]]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$EventType->name=$name;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}		
+			}
+			if(!empty($description)){
+				$EventType->description=$description;
+				$flag=1;
+			}
+			if(!empty($lang)){				
+				$validator = Validator::make(
+				    ['lang' => $lang],
+				    ['lang' => ['required', 'max:5']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$EventType->lang=$lang;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}				
+			}
+			if($flag){
+				$EventType->save();
+				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'EventType'=>$EventType],200);
+			}
+			else{
+				return response()->json(['message'=>"Nothing updated",'warnings'=>$warnings,'EventType'=>$EventType],200);
+			}
+		}
+		elseif($request->method()==="PUT"){//PUT all fields are required
+			$validation = Validator::make($request->all(), [
+        	'name' =>'required|max:255|unique:event_types,name,'.$id,
+        	'description' => 'required',
+        	'lang' => 'required|max:5',
+	    	 ]);
+			if($validation->fails())
+			{
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
+			}
+			else
+			{
+				$EventType->name=$name;
+				$EventType->description=$description;
+				$EventType->lang=$lang;
+				$EventType->save();
+				return response()->json(['message'=>"Updated",'EventType'=>$EventType],200);
+			}
+		}
+		else{
+			return response()->json(['message'=>"Method Not Allowed"],405);
+		}
 	}
 	/**
 	 * Remove the specified resource from storage.

@@ -159,6 +159,19 @@ class EventTypeController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//Falta por implementar.
+		$EventType=EventType::find($id);
+		if(!$EventType){
+			return response()->json(['message'=>"Not found"],404);
+		}
+		else{
+			$events=$EventType->events;
+			if(sizeof($events)>0){
+				return response()->json(['message'=>"This EventType has events, first remove the events and try again"],409);			
+			}
+			else{
+				$EventType->delete();
+				return response()->json(['message'=>"Deleted"],200);
+			}
+		}			
 	}
 }

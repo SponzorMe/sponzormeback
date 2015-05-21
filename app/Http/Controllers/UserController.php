@@ -550,7 +550,44 @@ class UserController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//Falta por implementar.
+		$User=User::find($id);
+		if(!$User){
+			return response()->json(['message'=>"Not found"],404);
+		}
+		else{
+			$events=$User->events;
+			$interests=$User->interests;
+			$categories=$User->categories;
+			$perk_tasks=$User->perk_tasks;
+			$sponzorships=$User->sponzorships;
+			$tasks_sponzor_like_organizer=$User->tasks_sponzor_like_organizer;
+			$tasks_sponzor_like_sponzor=$User->tasks_sponzor_like_sponzor;
+			if(sizeof($events)>0){
+				return response()->json(['message'=>"This user has events, first remove the events and try again"],409);			
+			}
+			elseif(sizeof($categories)>0){
+				return response()->json(['message'=>"This user has categories, first remove the categories and try again"],409);			
+			}
+			elseif(sizeof($interests)>0){
+				return response()->json(['message'=>"This user has interests, first remove the interests and try again"],409);			
+			}
+			elseif(sizeof($perk_tasks)>0){
+				return response()->json(['message'=>"This user has perk_tasks, first remove the perk_tasks and try again"],409);			
+			}
+			elseif(sizeof($sponzorships)>0){
+				return response()->json(['message'=>"This user has sponzorships, first remove the sponzorships and try again"],409);			
+			}
+			elseif(sizeof($tasks_sponzor_like_organizer)>0){
+				return response()->json(['message'=>"This user has tasks_sponzor_like_organizer, first remove the tasks_sponzor_like_organizer and try again"],409);			
+			}
+			elseif(sizeof($tasks_sponzor_like_sponzor)>0){
+				return response()->json(['message'=>"This user has tasks_sponzor_like_sponzor, first remove the tasks_sponzor_like_sponzor and try again"],409);			
+			}
+			else{
+				$User->delete();
+				return response()->json(['message'=>"Deleted"],200);
+			}			
+		}
 	}
 
 }

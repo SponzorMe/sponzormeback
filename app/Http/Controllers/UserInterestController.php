@@ -156,7 +156,14 @@ class UserInterestController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//Falta por implementar.
+		$UserInterest=UserInterest::find($id);
+		if(!$UserInterest){
+			return response()->json(['message'=>"Not found"],404);
+		}
+		else{
+			$UserInterest->delete();
+			return response()->json(['message'=>"Deleted"],200);
+		}
 	}
 
 }

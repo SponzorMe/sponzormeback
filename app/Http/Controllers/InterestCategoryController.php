@@ -181,7 +181,15 @@ class InterestCategoryController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//Falta por implementar.
+		$InterestCategory=InterestCategory::find($id);
+		if(!$InterestCategory){
+			return response()->json(['message'=>"Not found"],404);
+		}
+		else{
+				$InterestCategory->delete();
+				return response()->json(['message'=>"Deleted"],200);
+			}			
+		}
 	}
 
 }

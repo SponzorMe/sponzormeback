@@ -47,4 +47,20 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->hasMany('App\Models\UserCategory','user_id');
     }
+    public function perk_tasks()
+    {
+        return $this->hasMany('App\Models\PerkTask','user_id');
+    }
+    public function sponzorships()
+    {
+        return $this->hasMany('App\Models\Sponzorship','sponzor_id');
+    }
+    public function tasks_sponzor_like_organizer()
+    {
+        return $this->hasMany('App\Models\TaskSponzor','organizer_id');
+    }
+    public function tasks_sponzor_like_sponzor()
+    {
+        return $this->hasMany('App\Models\TaskSponzor','sponzor_id');
+    }
 }

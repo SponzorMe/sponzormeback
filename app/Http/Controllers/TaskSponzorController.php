@@ -244,7 +244,14 @@ class TaskSponzorController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//Falta por implementar.
+		$TaskSponzor=TaskSponzor::find($id);
+		if(!$TaskSponzor){
+			return response()->json(['message'=>"Not found"],404);
+		}
+		else{
+			$TaskSponzor->delete();
+			return response()->json(['message'=>"Deleted"],200);
+		}
 	}
 
 }

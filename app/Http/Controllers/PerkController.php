@@ -207,7 +207,23 @@ class PerkController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//Falta por implementar.
+		$Perk=Perk::find($id);
+		if(!$Perk){
+			return response()->json(['message'=>"Not found"],404);
+		}
+		else{
+			$tasks=$Perk->tasks;
+			$sponzor_tasks=$Perk->sponzor_tasks;
+			if(sizeof($tasks)>0){
+				return response()->json(['message'=>"This Perk has tasks, first remove the tasks and try again"],409);
+			}
+			elseif(sizeof($sponzor_tasks)>0){
+				return response()->json(['message'=>"This Perk has Sponzor tasks, first remove the Sponzor tasks and try again"],409);
+			}
+			else{
+				$Perk->delete();
+				return response()->json(['message'=>"Deleted"],200);
+			}			
+		}
 	}
-
 }

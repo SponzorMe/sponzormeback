@@ -232,7 +232,14 @@ class PerkTaskController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//Falta por implementar.
+		$PerkTask=PerkTask::find($id);
+		if(!$PerkTask){
+			return response()->json(['message'=>"Not found"],404);
+		}
+		else{
+			$PerkTask->delete();
+			return response()->json(['message'=>"Deleted"],200);
+		}
 	}
 
 }

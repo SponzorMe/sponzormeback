@@ -191,7 +191,14 @@ class SponzorshipController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//Falta por implementar.
+		$Sponzorship=Sponzorship::find($id);
+		if(!$Sponzorship){
+			return response()->json(['message'=>"Not found"],404);
+		}
+		else{
+			$Sponzorship->delete();
+			return response()->json(['message'=>"Deleted"],200);
+		}
 	}
 
 }

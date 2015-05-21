@@ -165,7 +165,24 @@ class CategoryController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//Falta por implementar.
+		$category=Category::find($id);
+		if(!$category){
+			return response()->json(['message'=>"Not found"],404);
+		}
+		else{
+			$events=$category->events;
+			$interests=$category->interests;
+			if(sizeof($events)>0){
+				return response()->json(['message'=>"This category has events, first remove the events and try again"],409);			
+			}
+			elseif(sizeof($interests)>0){
+				return response()->json(['message'=>"This category has interests, first remove the interests and try again"],409);			
+			}
+			else{
+				$category->delete();
+				return response()->json(['message'=>"Deleted"],200);
+			}			
+		}
 	}
 
 }

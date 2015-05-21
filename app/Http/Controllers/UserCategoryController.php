@@ -156,7 +156,14 @@ class UserCategoryController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//Falta por implementar.
+		$UserCategory=UserCategory::find($id);
+		if(!$UserCategory){
+			return response()->json(['message'=>"Not found"],404);
+		}
+		else{
+			$UserCategory->delete();
+			return response()->json(['message'=>"Deleted"],200);
+		}
 	}
 
 }

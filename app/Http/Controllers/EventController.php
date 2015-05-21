@@ -337,7 +337,24 @@ class EventController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//Falta por implementar.
+		$event=Event::find($id);
+		if(!$event){
+			return response()->json(['message'=>"Not found"],404);
+		}
+		else{
+			$perks=$event->perks;
+			$sponzorship=$event->sponzorship;
+			if(sizeof($perks)>0){
+				return response()->json(['message'=>"This event has perks, first remove the perks and try again"],409);			
+			}
+			elseif(sizeof($sponzorship)>0){
+				return response()->json(['message'=>"This event has sponzorship, first remove the sponzorship and try again"],409);			
+			}
+			else{
+				$event->delete();
+				return response()->json(['message'=>"Deleted"],200);
+			}			
+		}
 	}
 
 }

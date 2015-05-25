@@ -11,19 +11,21 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
-
-Route::get('home', 'WelcomeController@index');
-
-Route::resource('users','UserController');
-Route::resource('events','EventController');
-Route::resource('categories','CategoryController');
-Route::resource('event_types','EventTypeController');
-Route::resource('interests_category','InterestCategoryController');
-Route::resource('perks','PerkController');
-
-Route::resource('perk_tasks','PerkTaskController');
-Route::resource('sponzorships','SponzorshipController');
-Route::resource('task_sponzor','TaskSponzorController');
-Route::resource('user_interests','UserInterestController');
-Route::resource('user_categories','UserCategoryController');
+Route::resource('users','UserController',['except'=>['edit','create']]);
+Route::resource('events','EventController',['except'=>['edit','create']]);
+Route::resource('categories','CategoryController',['except'=>['edit','create']]);
+Route::resource('event_types','EventTypeController',['except'=>['edit','create']]);
+Route::resource('interests_category','InterestCategoryController',['except'=>['edit','create']]);
+Route::resource('perks','PerkController',['except'=>['edit','create']]);
+Route::resource('perk_tasks','PerkTaskController',['except'=>['edit','create']]);
+Route::resource('sponzorships','SponzorshipController',['except'=>['edit','create']]);
+Route::resource('task_sponzor','TaskSponzorController',['except'=>['edit','create']]);
+Route::resource('user_interests','UserInterestController',['except'=>['edit','create']]);
+Route::resource('user_categories','UserCategoryController',['except'=>['edit','create']]);
+Route::pattern('route_not_found','.*');
+Route::any('/{route_not_found}', function(){
+	return response()->json(
+		["message"=>"Route not available",
+		], 404
+	);
+});

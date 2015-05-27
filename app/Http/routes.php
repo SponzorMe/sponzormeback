@@ -22,6 +22,7 @@ Route::resource('sponzorships','SponzorshipController',['except'=>['edit','creat
 Route::resource('task_sponzor','TaskSponzorController',['except'=>['edit','create']]);
 Route::resource('user_interests','UserInterestController',['except'=>['edit','create']]);
 Route::resource('user_categories','UserCategoryController',['except'=>['edit','create']]);
+Route::post('auth','Auth\AuthController@authenticate');
 Route::pattern('route_not_found','.*');
 Route::any('/{route_not_found}', function(){
 	return response()->json(

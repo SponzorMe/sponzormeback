@@ -30,10 +30,25 @@ $ php artisan migrate
 $ composer dumpautoload
 $ php artisan migrate:refresh --seed
 ```
+> 5. Instale la libreria de cors: 
+
+```sh
+composer require barryvdh/laravel-cors 0.5.x@dev
+```
+
+> 6. Add the CorsServiceProvider to your config/app.php providers array:
+
+```sh
+'Barryvdh\Cors\CorsServiceProvider',
+
+```sh
+> 7. Make public the corsService provider with the following command
+
+ php artisan vendor:publish --provider="Barryvdh\Cors\CorsServiceProvider"
 
 ### Versión Actual
 
-2.0.0.1
+2.0.0.2
 
 [xamppLink]: https://www.apachefriends.org/es/index.html
 

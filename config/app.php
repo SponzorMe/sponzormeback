@@ -148,6 +148,7 @@ return [
 		 */
 		'Intervention\Image\ImageServiceProvider',
 		'Orangehill\Iseed\IseedServiceProvider',
+		'Barryvdh\Cors\CorsServiceProvider',
 	],
 
 	/*

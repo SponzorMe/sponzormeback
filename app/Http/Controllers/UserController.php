@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller {
 	public function __construct()
 	{
-		$this->middleware('auth.basic.once',['only'=>['update','destroy']]);
+		$this->middleware('auth.basic.once',['only'=>['store','update','destroy']]);
 	}
 	/**
 	 * Display a listing of the resource.
@@ -505,7 +505,7 @@ class UserController extends Controller {
 	    	 ]);
 			if($validation->fails())
 			{
-				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],200);	
 			}
 			else
 			{

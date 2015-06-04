@@ -33,9 +33,11 @@ return array(
             'maxAge' => 3600,
         ),
         '*' => array(
+            'supportsCredentials' => true,
             'allowedOrigins' => array('*'),
-            'allowedHeaders' => array('Content-Type'),
-            'allowedMethods' => array('POST', 'PUT', 'GET', 'DELETE'),
+            'allowedHeaders' => array('*'),
+            'allowedMethods' => array('POST', 'PUT', 'GET', 'PATCH', 'DELETE'),
+            'exposedHeaders' => array('*'),
             'maxAge' => 3600,
             'hosts' => array('api.*'),
         ),

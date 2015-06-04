@@ -15,11 +15,14 @@ class AuthController extends Controller {
     {
     	$email=$request->input("email");
     	$password=$request->input("password");
-        if (Auth::attempt(['email' => $email, 'password' => $password]))
+        $a=Auth::attempt(['email' => $email, 'password' => $password]);
+        //dd($a);
+        if ($a)
 		{
 		    return response()->json([
 				"success" => true,
-				"user"=>Auth::user()
+				"user"=>Auth::user(),
+                "token"=>Auth::user()->token
 				], 200
 			);
 		}

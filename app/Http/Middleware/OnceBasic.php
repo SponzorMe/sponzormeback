@@ -33,6 +33,7 @@ class OnceBasic implements Middleware {
 	 */
 	public function handle($request, Closure $next)
 	{
+		//Autenticacion desabilitada hasta nueva orden
 		$fallo = $this->auth->onceBasic();
 		if ($fallo){
 			return response()->json(['message'=>"Invalid credentials"],401);

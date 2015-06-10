@@ -1,145 +1,59 @@
-## SponzorMe Platform v 1.0
-
-###Stack
-
-####Backend
-[Sentry 2](https://github.com/cartalyst/sentry) integrated with [Laravel 4](https://github.com/laravel/laravel/tree/develop).
-[LAMP](http://en.wikipedia.org/wiki/LAMP_%28software_bundle%29).
-
-####Front
-[Gulp](http://gulpjs.com/).
-[Bower](http://bower.io).
-[SaaS](http://sass-lang.com).
-[AngularJS](https://angularjs.org/).
-[Bootstrap 3.0](http://getbootstrap.com).
-
-###Must Read
-
-Before you start to doing anything. YOU HAVE READ THIS.
-
-[PHP Style Guide](https://github.com/SponzorMe/php-style-guide).
-[CSS Style Guide](https://github.com/SponzorMe/css-style-guide).
-[JS Style Guide](https://github.com/SponzorMe/javascript-style-guide).
-[SaaS Build Structure](https://github.com/SponzorMe/sass-build-structure).
+## Sponzorme App
 
 
+### Requerimientos
 
-### Instructions
+> 1. Apache Server con PHP 5.5 o superior. [xamppLink]
+> 2. MySQL 5.5 o superior.
+> 3. Git. [gitLink]
+> 4. NodeJs [nodeLink]
+> 5. Composer [composerLink]
 
-Before you begin, make sure you have both ```git``` and ```composer``` installed on your system.
+### Instalación
 
-1. Clone the repo
-2. Run ```php composer.phar update```
-3. Set up your database configuration in ```app/config/database.php```
-4. Edit ```app/config/mail.php``` to work with your mail setup.
-5. Run the migrations: ```php artisan migrate```
-6. Seed the Database: ```php artisan db:seed```
+Para instalar Sponzorme en su computador siga los siguientes pasos:
 
+> 1. Clone el repositorio en su máquina. 
+> 2. Corra composer update
+```sh
+$ git clone https://github.com/carlosrojaso/sponzorme.git
+```
+> 3. Cree la base de datos con el nombre sponzorme
+> 4. Cambie las credenciales de su base de datos en: 
+```sh
+sponzorme/.env
+sponzorme/database
+```
+> 4. Ejecute las migraciones y los seeders mediante el comando: 
+```sh
+$ php artisan migrate
+$ composer dumpautoload
+$ php artisan migrate:refresh --seed
+```
+> 5. Instale la libreria de cors: 
 
-### Instructions Front-End
+```sh
+composer require barryvdh/laravel-cors 0.5.x@dev
+```
 
-1. Install Bower
+> 6. Add the CorsServiceProvider to your config/app.php providers array:
 
-$# bower install
-$# sudo npm install
+```sh
+'Barryvdh\Cors\CorsServiceProvider',
 
-2. Install Gulp
+```sh
+> 7. Make public the corsService provider with the following command
 
-### Short Version
+ php artisan vendor:publish --provider="Barryvdh\Cors\CorsServiceProvider"
 
-$# sudo npm install
+### Versión Actual
 
-### Long Version
+2.0.0.2
 
-####Linux Version
+[xamppLink]: https://www.apachefriends.org/es/index.html
 
-$# sudo npm install -g gulp
+[gitLink]: http://git-scm.com/
 
-$# sudo npm install --save-dev gulp
+[nodeLink]: https://nodejs.org/
 
-$# sudo npm install --save-dev gulp-uglify
-
-$# sudo npm install --save-dev gulp-flatten
-
-$# sudo npm install --save-dev gulp-filter
-
-$# sudo npm install --save-dev gulp-minify-css
-
-$# sudo npm install --save-dev gulp-rename
-
-$# sudo npm install --save-dev main-bower-files
-
-$# sudo npm install --save-dev gulp-sass
-
-####Windows Version
-
-npm install -g gulp
-
-npm install --save-dev gulp
-
-npm install --save-dev gulp-uglify
-
-npm install --save-dev gulp-flatten
-
-npm install --save-dev gulp-filter
-
-npm install --save-dev gulp-minify-css
-
-npm install --save-dev gulp-rename
-
-npm install --save-dev main-bower-files
-
-npm install --save-dev gulp-sass
-
-3. Local
-
-Para el ambiente de desarrollo local si estas usando Apache (XAMPP, WAMP, etc) puedes agregar estas lineas al final del archivo http.conf:
-
-<pre>
-#Default
-&lt;VirtualHost *:80&gt;
-    DocumentRoot /xampp/htdocs/
-    ServerName localhost
-&lt;/VirtualHost&gt;
-
-#SponzorMe
-&lt;VirtualHost *:80&gt;
-    DocumentRoot /xampp/htdocs/sponzorme
-    ServerName local.sponzor.me
-&lt;/VirtualHost&gt;
-</pre>
-
-Para que puedas ingresar al sitio local (en tu maquina) desde el navegador usando la direccion **local.sponzor.me** estando en Windows puedes editar el archivo *'C:/Windows/System32/drivers/etc/hosts'* y en Mac en *'/private/etc/hosts'* y agregar esta linea al final:
-
-<pre>127.0.0.1  local.sponzor.me</pre>
-
-De ser necesario cambia *'/xammp/htdocs'* por la carpeta donde tienes guardado tus sitios web, por ejemplo en Ubuntu usualmente es *'/var/www'*.
-
-Ahora debemos crear un Vhost para tu localhost, sino no vas a poder acceder a tus otros proyectos.
-
-<pre>
-&lt;VirtualHost *:80&gt;
-    ServerName localhost
-    DocumentRoot "/Applications/XAMPP/xamppfiles/htdocs"
-    &lt;Directory "/Applications/XAMPP/xamppfiles/htdocs"&gt;
-        Options Indexes FollowSymLinks Includes execCGI
-        AllowOverride All
-        Require all granted
-    &lt;/Directory&gt;
-&lt;/VirtualHost&gt;
-
-#SponzorMe
-
-&lt;VirtualHost *:80&gt;
-    DocumentRoot "//Applications/XAMPP/xamppfiles/htdocs/sponzorme/public"
-    ServerName local.sponzor.me
-    &lt;Directory "/Applications/XAMPP/xamppfiles/htdocs/sponzorme/public"&gt;
-        Options Indexes FollowSymLinks Includes execCGI
-        AllowOverride All
-        Require all granted
-    &lt;/Directory&gt;
-    ErrorLog "logs/local.sponzor.me.local-error_log"
-&lt;/VirtualHost&gt;
-</pre>
-
-Be responsable with this code and make the force be with you :)
+[composerLink]: https://getcomposer.org/

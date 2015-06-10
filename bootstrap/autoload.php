@@ -26,6 +26,9 @@ require __DIR__.'/../vendor/autoload.php';
 | by a request. The Artisan "optimize" is used to create this file.
 |
 */
+ /*Compiled path required for the update*/
+ 
+$compiledPath = __DIR__.'/cache/compiled.php';
 
 if (file_exists($compiledPath = __DIR__.'/../vendor/compiled.php'))
 {

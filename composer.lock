@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cf23973200e194c660387477a9e7de5f",
+    "hash": "b6072d9c4b2b486bef7b7e969cf7bb76",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -771,6 +771,49 @@
                 "storage"
             ],
             "time": "2015-06-07 21:27:37"
+        },
+        {
+            "name": "mandrill/mandrill",
+            "version": "1.0.54",
+            "source": {
+                "type": "git",
+                "url": "https://bitbucket.org/mailchimp/mandrill-api-php.git",
+                "reference": "9f336b08ea148c80db3b694f3dc737cd4f414e19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/mailchimp/mandrill-api-php/get/9f336b08ea148c80db3b694f3dc737cd4f414e19.zip",
+                "reference": "9f336b08ea148c80db3b694f3dc737cd4f414e19",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Mandrill": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Mandrill Devs",
+                    "email": "community@mandrill.com",
+                    "homepage": "http://mandrill.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "API client library for the Mandrill email as a service platform",
+            "homepage": "https://bitbucket.org/mailchimp/mandrill-api-php",
+            "keywords": [
+                "api",
+                "email"
+            ],
+            "time": "2014-10-16 21:08:20"
         },
         {
             "name": "monolog/monolog",
@@ -1989,6 +2032,51 @@
                 "environment"
             ],
             "time": "2015-05-30 15:59:26"
+        },
+        {
+            "name": "weblee/mandrill",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/weblee/Mandrill.git",
+                "reference": "8b8539a9f5c8118aff363c3f7def53beeb449007"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/weblee/Mandrill/zipball/8b8539a9f5c8118aff363c3f7def53beeb449007",
+                "reference": "8b8539a9f5c8118aff363c3f7def53beeb449007",
+                "shasum": ""
+            },
+            "require": {
+                "mandrill/mandrill": "1.0.*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Weblee\\Mandrill\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lee Smith",
+                    "email": "lee@weblee.co.uk"
+                }
+            ],
+            "description": "Laravel 5 Mandrill API Wrapper",
+            "keywords": [
+                "email",
+                "laravel",
+                "mandrill"
+            ],
+            "time": "2015-02-06 10:46:16"
         }
     ],
     "packages-dev": [
@@ -3227,7 +3315,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "barryvdh/laravel-cors": 20,
-        "orangehill/iseed": 20
+        "orangehill/iseed": 20,
+        "weblee/mandrill": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

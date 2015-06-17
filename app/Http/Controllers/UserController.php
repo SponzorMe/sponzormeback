@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Weblee\Mandrill\Mail;
 
 class UserController extends Controller {
 	public function __construct()
@@ -56,13 +57,58 @@ class UserController extends Controller {
 		}		
 	}
 	/**
-	 * Store a newly created resource in storage.
-	 *
+	 * Send Welcome Email throught mandriall APP
+	 * https://mandrillapp.com/api/docs/messages.php.html
+	 * @param  int  $activationLink
+	 * @param  int  $userEmail
+	 * @param  int  $userName
 	 * @return Response
 	 */
+	private function welcomeEmail($activationLink,$userEmail,$userName){
+		try{
+		    $template_name = 'welcome';
+		    $template_content = array(
+		        array(
+		            'name' => 'activationLink',
+		            'content' => 'sebas.com'
+		        )
+		    );
+		    $message = array(
+		        'to' => array(
+		            array(
+		                'email' =>	$userEmail,
+		                'name' 	=> 	$userName,
+		                'type' 	=> 'to'
+		            )
+		        ),
+		        'global_merge_vars' => array(
+		            array(
+		                'name' => 'activationLink',
+		            	'content' => $activationLink
+		            ),
+		            array(
+		                'name' => 'name',
+		            	'content' => $userName
+		            )
+		        ),
+		    );
+	    	$result = \MandrillMail::messages()->sendTemplate($template_name, $template_content, $message);
+			if($result[0]["status"]=="sent" AND !$result[0]["reject_reason"]){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		catch(Exeption $e){
+			return false;
+		}
+	}
+	public function testEmail(){
+		echo $this->welcomeEmail("sisas.com","seagomezar@gmail.com","sebastian Gomez");
+	}
 	public function store(Request $request)
 	{
-		
 		$validation = Validator::make($request->all(), [
 			'email' 	=> 'required|email|max:255|unique:users',
 			'password' 	=> 'required|confirmed|min:6',
@@ -81,6 +127,7 @@ class UserController extends Controller {
 				'type' => $request->input('type'),
 				'password' => bcrypt($request->input('password')),
 			]);
+			//Here we send the welecome email
 			return response()->json(['message'=>"Inserted",'User'=>$user],201);
 		}
 	}

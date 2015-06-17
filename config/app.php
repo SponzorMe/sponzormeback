@@ -149,6 +149,7 @@ return [
 		'Intervention\Image\ImageServiceProvider',
 		'Orangehill\Iseed\IseedServiceProvider',
 		'Barryvdh\Cors\CorsServiceProvider',
+		'Weblee\Mandrill\MandrillServiceProvider'
 	],
 
 	/*
@@ -196,6 +197,7 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+		'MandrillMail'  => 'Weblee\Mandrill\MandrillFacade'
 
 	],
 

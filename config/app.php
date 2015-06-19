@@ -26,7 +26,8 @@ return [
 	|
 	*/
 
-	'url' => 'http://localhost/sponzorme5',
+	'url' => 'http://api.sponzor.me',
+	'activation_url' => "http://api.sponzor.me/verify_activation/", //Activation account URL
 
 	/*
 	|--------------------------------------------------------------------------

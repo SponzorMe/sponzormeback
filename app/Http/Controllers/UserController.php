@@ -19,7 +19,7 @@ class UserController extends Controller {
 	 * @return Response
 	 */
 	public function index()
-	{
+	{		
 		$users = User::get();
 		return response()->json([
 			"success" => true,
@@ -104,8 +104,48 @@ class UserController extends Controller {
 			return false;
 		}
 	}
-	public function testEmail(){
-		echo $this->welcomeEmail("sisas.com","seagomezar@gmail.com","sebastian Gomez");
+	/**
+	 * Verify the user's email and the activation code
+	 * @param  POST  $email
+	 * @return Response
+	 */
+	public function sendActivationLink(Request $request){
+		$email=$request->input('email');
+		$user=User::where("email","=",$email)->first();
+		if(!$user){//If the user does not exist.
+			return response()->json(['message'=>"User does not exist",'code'=>'404'],404);
+		}
+		elseif($user->activated){//If the user is already activated
+			return response()->json(['message'=>"User is already activated",'code'=>'201'],201);
+		}
+		else{//So we reset the activation link
+			$activationCode = md5($email.str_random(30));
+			$user->activation_code=$activationCode;
+			$user->save();
+			$link=\Config::get('constants.activation_url').$activationCode;
+			$flag = $this->welcomeEmail($link,$user->email,$user->name);
+			if($flag){
+				return response()->json(['message'=>"Activation Link sent",'code'=>'200'],200);
+			}
+			else{
+				return response()->json(['message'=>"Email Cannot be sent",'code'=>'201'],201);
+			}
+		}
+	}
+	public function verifyActivationLink($activationCode){
+		$user=User::where("activation_code","=",$activationCode)->first();
+		if(!$user){//If the user does not exist.
+			return response()->json(['message'=>"User does not exist",'code'=>'404'],404);
+		}
+		elseif($user->activated){//If the user is already activated
+			return response()->json(['message'=>"User is already activated",'code'=>'201'],201);
+		}
+		else{//So we activate the user
+			$user->activated=1;
+			$user->activation_code="";
+			$user->save();
+			return response()->json(['message'=>"Account activated",'code'=>'200'],200);
+		}
 	}
 	public function store(Request $request)
 	{
@@ -127,7 +167,7 @@ class UserController extends Controller {
 				'type' => $request->input('type'),
 				'password' => bcrypt($request->input('password')),
 			]);
-			//Here we send the welecome email
+			$emailSender=$this->sendActivationLink($request);
 			return response()->json(['message'=>"Inserted",'User'=>$user],201);
 		}
 	}

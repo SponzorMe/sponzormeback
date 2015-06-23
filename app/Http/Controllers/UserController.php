@@ -104,6 +104,32 @@ class UserController extends Controller {
 			return false;
 		}
 	}
+	private function subscribeToMailchimp($email,$name,$type){
+		$MailChimp = new \Drewm\MailChimp('2cc5e8c25894c43a2a4f022e6e47c352-us7');
+		$name=explode(" ", trim($name));		
+		if($type==1){//If new user is sponzor
+			$result = $MailChimp->call('lists/subscribe', array(
+                'id'                => 'da62c9f3ff',
+                'email'             => array('email'=>$email),
+                'merge_vars'        => array('FNAME'=>$name[0], 'LNAME'=>$name[1]),
+                'double_optin'      => false,
+                'update_existing'   => true,
+                'replace_interests' => false,
+                'send_welcome'      => false,
+            ));
+		}
+		else{//If the new user is organizer		
+			$result = $MailChimp->call('lists/subscribe', array(
+                'id'                => '1d8e15698d',
+                'email'             => array('email'=>$email),
+                'merge_vars'        => array('FNAME'=>$name[0], 'LNAME'=>$name[1]),
+                'double_optin'      => false,
+                'update_existing'   => true,
+                'replace_interests' => false,
+                'send_welcome'      => false,
+            ));
+		}
+	}
 	/**
 	 * Verify the user's email and the activation code
 	 * @param  POST  $email
@@ -168,6 +194,7 @@ class UserController extends Controller {
 				'password' => bcrypt($request->input('password')),
 			]);
 			$emailSender=$this->sendActivationLink($request);
+			$this->subscribeToMailchimp($request->input('email'),$request->input('name'),$request->input('type'));
 			return response()->json(['message'=>"Inserted",'User'=>$user],201);
 		}
 	}

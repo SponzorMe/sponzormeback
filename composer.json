@@ -12,7 +12,8 @@
       	"barryvdh/laravel-cors": "0.5.x@dev",
       	"orangehill/iseed": "dev-master",
       	"weblee/mandrill": "dev-master",
-      	"mandrill/mandrill": "1.0.*"
+      	"mandrill/mandrill": "1.0.*",
+      	"drewm/mailchimp-api": "dev-master"
 	},
 	"require-dev": {
 		"fzaninotto/faker": "~1.4",

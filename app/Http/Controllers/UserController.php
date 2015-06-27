@@ -64,9 +64,14 @@ class UserController extends Controller {
 	 * @param  int  $userName
 	 * @return Response
 	 */
-	private function welcomeEmail($activationLink,$userEmail,$userName){
+	private function welcomeEmail($activationLink,$userEmail,$userName,$lang="en"){
 		try{
-		    $template_name = 'welcome';
+			if($lang=="en")
+		    	$template_name = 'welcome-english';
+		    if($lang=="es")
+		    	$template_name = 'welcome';
+		    if($lang=="pt")
+		    	$template_name = 'welcome-portuguese';
 		    $template_content = array(
 		        array(
 		            'name' => 'activationLink',
@@ -104,12 +109,26 @@ class UserController extends Controller {
 			return false;
 		}
 	}
-	private function subscribeToMailchimp($email,$name,$type){
+	private function subscribeToMailchimp($email,$name,$type,$lang="en"){
 		$MailChimp = new \Drewm\MailChimp('2cc5e8c25894c43a2a4f022e6e47c352-us7');
-		$name=explode(" ", trim($name));		
+		$name=explode(" ", trim($name));
+		switch ($lang) {
+		    case "pt":
+		        $sponzorList='3a5d1a0864';
+		        $organizerList='d0ae68ea63';
+		        break;
+		    case "es":
+		        $sponzorList='da62c9f3ff';
+		        $organizerList='1d8e15698d';
+		        break;
+		    case "en":
+		        $sponzorList='4017131605';
+	        	$organizerList='d14bde02d9';
+		        break;
+		}	
 		if($type==1){//If new user is sponzor
 			$result = $MailChimp->call('lists/subscribe', array(
-                'id'                => 'da62c9f3ff',
+                'id'                => $sponzorList,
                 'email'             => array('email'=>$email),
                 'merge_vars'        => array('FNAME'=>$name[0], 'LNAME'=>$name[1]),
                 'double_optin'      => false,
@@ -120,7 +139,7 @@ class UserController extends Controller {
 		}
 		else{//If the new user is organizer		
 			$result = $MailChimp->call('lists/subscribe', array(
-                'id'                => '1d8e15698d',
+                'id'                => $organizerList,
                 'email'             => array('email'=>$email),
                 'merge_vars'        => array('FNAME'=>$name[0], 'LNAME'=>$name[1]),
                 'double_optin'      => false,
@@ -149,7 +168,7 @@ class UserController extends Controller {
 			$user->activation_code=$activationCode;
 			$user->save();
 			$link=\Config::get('constants.activation_url').$activationCode;
-			$flag = $this->welcomeEmail($link,$user->email,$user->name);
+			$flag = $this->welcomeEmail($link,$user->email,$user->name,$user->lang);
 			if($flag){
 				return response()->json(['message'=>"Activation Link sent",'code'=>'200'],200);
 			}
@@ -180,6 +199,7 @@ class UserController extends Controller {
 			'password' 	=> 'required|confirmed|min:6',
 			'name'		=>'required|max:255',
 			'type'		=>'required|max:1',
+			'lang'		=>'required|max:5',
     	 ]);
 		if($validation->fails())
 		{
@@ -191,10 +211,11 @@ class UserController extends Controller {
 				'name' => $request->input('name'),
 				'email' => $request->input('email'),
 				'type' => $request->input('type'),
+				'lang' => $request->input('lang'),
 				'password' => bcrypt($request->input('password')),
 			]);
 			$emailSender=$this->sendActivationLink($request);
-			$this->subscribeToMailchimp($request->input('email'),$request->input('name'),$request->input('type'));
+			$this->subscribeToMailchimp($request->input('email'),$request->input('name'),$request->input('type'),$request->input('lang'));
 			return response()->json(['message'=>"Inserted",'User'=>$user],201);
 		}
 	}

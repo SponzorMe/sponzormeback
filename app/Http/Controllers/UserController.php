@@ -11,7 +11,7 @@ use Weblee\Mandrill\Mail;
 class UserController extends Controller {
 	public function __construct()
 	{
-		$this->middleware('auth.basic.once',['only'=>['store','update','destroy']]);
+		$this->middleware('auth.basic.once',['only'=>['update','destroy']]);
 	}
 	/**
 	 * Display a listing of the resource.

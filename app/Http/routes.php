@@ -25,6 +25,8 @@ Route::resource('user_categories','UserCategoryController',['except'=>['edit','c
 Route::post('auth','Auth\AuthController@authenticate');
 Route::post('send_activation','UserController@sendActivationLink');
 Route::get('verify_activation/{activationCode}','UserController@verifyActivationLink');
+Route::post('send_reset_password','Auth\PasswordController@sendResetPasswordToken');
+Route::post('update_password/{token}','Auth\PasswordController@updatePassword');
 Route::get('test','UserController@test');
 Route::pattern('route_not_found','.*');
 Route::any('/{route_not_found}', function(){

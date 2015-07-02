@@ -112,6 +112,9 @@ class UserController extends Controller {
 	private function subscribeToMailchimp($email,$name,$type,$lang="en"){
 		$MailChimp = new \Drewm\MailChimp('2cc5e8c25894c43a2a4f022e6e47c352-us7');
 		$name=explode(" ", trim($name));
+		if(empty($name[1])){//
+			$name[1]=" ";//If nothing was explode assign empty string by default.
+		}
 		switch ($lang) {
 		    case "pt":
 		        $sponzorList='3a5d1a0864';

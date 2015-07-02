@@ -11,5 +11,7 @@
 	*/
 return array(
 	//Used in UserController
-	'activation_url' => "http://api.sponzor.me/verify_activation/" //Activation account URL
+	'activation_url' => "http://api.sponzor.me/verify_activation/", //Activation account URL
+	//Used in password controller
+	'reset_password_url' => "http://api.sponzor.me/reset_password_token/" //Reset password URL
 );

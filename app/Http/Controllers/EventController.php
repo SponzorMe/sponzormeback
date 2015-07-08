@@ -106,15 +106,15 @@ class EventController extends Controller {
 		}
 		else{
 			//Get all values
-			$title	= $request->input("title");
+			$title		= $request->input("title");
 			$location	= $request->input("location");
-			$ends	= $request->input("ends");
-			$starts	= $request->input("starts");
+			$ends		= $request->input("ends");
+			$starts		= $request->input("starts");
 			$location_reference	= $request->input("location_reference");
-			$image	= $request->input("image");
-			$description	= $request->input("description");
+			$image		= $request->input("image");
+			$description= $request->input("description");
 			$privacy	= $request->input("privacy");
-			$lang	= $request->input("lang");
+			$lang		= $request->input("lang");
 			$organizer	= $request->input("organizer");
 			$category	= $request->input("category");
 			$type	= $request->input("type");			
@@ -309,18 +309,18 @@ class EventController extends Controller {
 			}
 			else
 			{
-				$event->$title =$title;
-				$event->$location =$location;	
-				$event->$ends =$ends;	
-				$event->$starts =$starts;	
-				$event->$location_reference =$location_reference;	
-				$event->$image =$image;
-				$event->$description =$description;	
-				$event->$privacy =$privacy;
-				$event->$lang =$lang;
-				$event->$organizer =$organizer;
-				$event->$category =$category;
-				$event->$type =$type;
+				$event->title =$title;
+				$event->location =$location;	
+				$event->ends =$ends;	
+				$event->starts =$starts;	
+				$event->location_reference =$location_reference;	
+				$event->image =$image;
+				$event->description =$description;	
+				$event->privacy =$privacy;
+				$event->lang =$lang;
+				$event->organizer =$organizer;
+				$event->category =$category;
+				$event->type =$type;
 				$event->save();
 				return response()->json(['message'=>"Updated",'event'=>$event],200);
 			}

@@ -11,7 +11,7 @@ use Weblee\Mandrill\Mail;
 class UserController extends Controller {
 	public function __construct()
 	{
-		$this->middleware('auth.basic.once',['only'=>['update','destroy']]);
+		$this->middleware('auth.basic.once',['only'=>['update','destroy','index','show']]);
 	}
 	/**
 	 * Display a listing of the resource.
@@ -206,7 +206,7 @@ class UserController extends Controller {
     	 ]);
 		if($validation->fails())
 		{
-			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],200);	
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],400);	
 		}
 		else
 		{
@@ -643,7 +643,7 @@ class UserController extends Controller {
 	    	 ]);
 			if($validation->fails())
 			{
-				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],200);	
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],400);	
 			}
 			else
 			{

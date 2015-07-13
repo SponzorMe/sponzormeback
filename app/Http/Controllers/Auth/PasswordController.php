@@ -59,21 +59,32 @@ class PasswordController extends Controller {
 	 * @return Response
 	 */
 	public function updatePassword(Request $request, $token){
-		$passwordReset=PasswordResets::where("email","=",$request->input("email"))->first();
-		if($passwordReset->token==$token){
-			$user=User::where("email","=",$request->input("email"))->first();
-			if(!$user){//If the user does not exist.
-				return response()->json(['message'=>"User does not exist",'code'=>'404'],404);
+		$validation = Validator::make($request->all(), [
+			'email' 	=> 'required|email|max:255|exists:users',
+			'password' 	=> 'required|confirmed|min:6'
+    	 ]);
+		if($validation->fails())
+		{
+			return response()->json(['message'=>"Not changed",'error'=>$validation->messages()],400);	
+		}
+		else
+		{
+			$passwordReset=PasswordResets::where("email","=",$request->input("email"))->first();
+			if($passwordReset && $passwordReset->token==$token){
+				$user=User::where("email","=",$request->input("email"))->first();
+				if(!$user){//If the user does not exist.
+					return response()->json(['message'=>"User does not exist",'code'=>'404'],404);
+				}
+				else{
+					$user->password=bcrypt($request->input("password"));
+					$user->save();
+					PasswordResets::where("email","=",$request->input("email"))->where("token","=",$token)->delete();
+					return response()->json(['message'=>"Password Reseted",'code'=>'200'],200);
+				}
 			}
 			else{
-				$user->password=bcrypt($request->input("password"));
-				$user->save();
-				PasswordResets::where("email","=",$request->input("email"))->where("token","=",$token)->delete();
-				return response()->json(['message'=>"Password Reset",'code'=>'200'],200);
+				return response()->json(['message'=>"The token does not match",'code'=>'200'],200);
 			}
-		}
-		else{
-			return response()->json(['message'=>"The token does not match",'code'=>'200'],200);
 		}
 	}
 	/**

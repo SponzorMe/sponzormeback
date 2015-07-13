@@ -188,8 +188,6 @@ class InterestCategoryController extends Controller {
 		else{
 				$InterestCategory->delete();
 				return response()->json(['message'=>"Deleted"],200);
-			}			
-		}
+		}			
 	}
-
 }

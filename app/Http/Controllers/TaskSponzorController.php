@@ -46,10 +46,10 @@ class TaskSponzorController extends Controller {
 					[
 						"TaskSponzor"=>$TaskSponzor->toArray(),
 						"Task"=>$TaskSponzor->task,
-						"organizer"=>$TaskSponzor->organizer,
+						"Organizer"=>$TaskSponzor->organizer,
 						"Sponzor"=>$TaskSponzor->sponzor,
-						"sponzor_event"=>$TaskSponzor->sponzor_event,
-						"event"=>$TaskSponzor->event,
+						"Sponzorship"=>$TaskSponzor->sponzorships,
+						"Event"=>$TaskSponzor->event,
 					]
 				], 200
 			);

@@ -49,7 +49,7 @@ return [
 		'mysql' => [
 			'driver'    => 'mysql',
 			'host'      => env('DB_HOST', 'localhost'),
-			'database'  => env('DB_DATABASE', 'sponzorme5'),
+			'database'  => env('DB_DATABASE', 'sponzorme'),
 			'username'  => env('DB_USERNAME', ''),
 			'password'  => env('DB_PASSWORD', ''),
 			'charset'   => 'utf8',

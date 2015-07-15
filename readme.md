@@ -13,24 +13,24 @@
 
 Para instalar Sponzorme en su computador siga los siguientes pasos:
 
-> 1. Clone el repositorio en su máquina. 
-> 2. Corra composer update
+> 1. Get the respository
+> 2. Run composer update
 ```sh
 $ git clone https://github.com/carlosrojaso/sponzorme.git
 ```
-> 3. Cree la base de datos con el nombre sponzorme
-> 4. Cambie las credenciales de su base de datos en: 
+> 3. Create the database with the "sponzorme" like a name
+> 4. Use your database credentials at:
 ```sh
 sponzorme/.env
 sponzorme/database
 ```
-> 4. Ejecute las migraciones y los seeders mediante el comando: 
+> 4. Execute the migrations and the seeds with the command:
 ```sh
 $ php artisan migrate
 $ composer dumpautoload
 $ php artisan migrate:refresh --seed
 ```
-> 5. Instale la libreria de cors: 
+> 5. Set up cors library:
 
 ```sh
 composer require barryvdh/laravel-cors 0.5.x@dev
@@ -46,7 +46,9 @@ composer require barryvdh/laravel-cors 0.5.x@dev
 
  php artisan vendor:publish --provider="Barryvdh\Cors\CorsServiceProvider"
 
-### Versión Actual
+### Actual Version
+
+> 8. Execute the unit test whit the command phpunit:
 
 2.0.0.2
 

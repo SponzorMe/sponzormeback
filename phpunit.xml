@@ -11,7 +11,13 @@
          syntaxCheck="false">
     <testsuites>
         <testsuite name="Application Test Suite">
-            <directory>./tests/</directory>
+            <directory>./tests/PostTest.php</directory><!--First Insert the data-->
+            <directory>./tests/PatchTest.php</directory><!--Then Edit the data via PATCH-->
+            <directory>./tests/PutTest.php</directory><!--Then Edit the data via PUT-->
+            <directory>./tests/GetTest.php</directory><!--Then Get the data via PUT-->
+            <directory>./tests/GetOneTest.php</directory><!--Then Get the data via-->
+            <directory>./tests/DestroyTest.php</directory><!--Then Get the data via-->
+            <directory>./tests/CustomTest.php</directory><!--Then the others custom tests-->
         </testsuite>
     </testsuites>
     <php>

@@ -48,7 +48,15 @@ composer require barryvdh/laravel-cors 0.5.x@dev
 
 ### Actual Version
 
-> 8. Execute the unit test whit the command phpunit:
+> 8. Execute the unit tests whit the command phpunit:
+```sh
+$ phpunit
+```
+
+> 9. Reset the database after the tests using:
+```sh
+$ php artisan migrate:refresh --seed
+```
 
 2.0.0.2
 

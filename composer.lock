@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "21b697cd3109ac2f8f8685b54cda8c77",
+    "hash": "c33f3a643842cac65635ad68aadb1dc0",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -324,7 +324,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drewm/mailchimp-api/zipball/0e8773aa7cbf4c5a00241f0977b8e8db5a2b8905",
+                "url": "https://api.github.com/repos/drewm/mailchimp-api/zipball/707d555962442b21a75683a56bdb7cebd0a19f72",
                 "reference": "0e8773aa7cbf4c5a00241f0977b8e8db5a2b8905",
                 "shasum": ""
             },
@@ -350,6 +350,58 @@
             "description": "Super-simple, minimum abstraction MailChimp API v2 wrapper",
             "homepage": "https://github.com/drewm/mailchimp-api",
             "time": "2015-06-17 09:02:05"
+        },
+        {
+            "name": "fzaninotto/faker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "b1abe41e1357ad790398d7a668b19ac733b4e1c1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/b1abe41e1357ad790398d7a668b19ac733b4e1c1",
+                "reference": "b1abe41e1357ad790398d7a668b19ac733b4e1c1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "suggest": {
+                "ext-intl": "*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.6.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2015-07-15 08:28:00"
         },
         {
             "name": "illuminate/html",
@@ -2176,58 +2228,6 @@
             "time": "2015-06-14 21:17:01"
         },
         {
-            "name": "fzaninotto/faker",
-            "version": "v1.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/d0190b156bcca848d401fb80f31f504f37141c8d",
-                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~1.5"
-            },
-            "suggest": {
-                "ext-intl": "*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.5.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Faker\\": "src/Faker/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François Zaninotto"
-                }
-            ],
-            "description": "Faker is a PHP library that generates fake data for you.",
-            "keywords": [
-                "data",
-                "faker",
-                "fixtures"
-            ],
-            "time": "2015-05-29 06:29:14"
-        },
-        {
             "name": "hamcrest/hamcrest-php",
             "version": "v1.2.2",
             "source": {
@@ -3352,7 +3352,8 @@
         "barryvdh/laravel-cors": 20,
         "orangehill/iseed": 20,
         "weblee/mandrill": 20,
-        "drewm/mailchimp-api": 20
+        "drewm/mailchimp-api": 20,
+        "fzaninotto/faker": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

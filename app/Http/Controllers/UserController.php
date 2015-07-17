@@ -19,7 +19,7 @@ class UserController extends Controller {
 	 * @return Response
 	 */
 	public function index()
-	{		
+	{
 		$users = User::get();
 		return response()->json([
 			"success" => true,
@@ -54,7 +54,7 @@ class UserController extends Controller {
 					]
 				], 200
 			);
-		}		
+		}
 	}
 	/**
 	 * Send Welcome Email throught mandriall APP
@@ -128,7 +128,7 @@ class UserController extends Controller {
 		        $sponzorList='4017131605';
 	        	$organizerList='d14bde02d9';
 		        break;
-		}	
+		}
 		if($type==1){//If new user is sponzor
 			$result = $MailChimp->call('lists/subscribe', array(
                 'id'                => $sponzorList,
@@ -140,7 +140,7 @@ class UserController extends Controller {
                 'send_welcome'      => false,
             ));
 		}
-		else{//If the new user is organizer		
+		else{//If the new user is organizer
 			$result = $MailChimp->call('lists/subscribe', array(
                 'id'                => $organizerList,
                 'email'             => array('email'=>$email),
@@ -202,11 +202,11 @@ class UserController extends Controller {
 			'password' 	=> 'required|confirmed|min:6',
 			'name'		=>'required|max:255',
 			'type'		=>'required|max:1',
-			'lang'		=>'required|max:5',
+			'lang'		=>'required|max:5|in:en,es,pt'
     	 ]);
 		if($validation->fails())
 		{
-			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],400);	
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],400);
 		}
 		else
 		{
@@ -266,7 +266,7 @@ class UserController extends Controller {
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
-			if(!empty($email)){			
+			if(!empty($email)){
 				$validator = Validator::make(
 				    ['email' => $email],
 				    ['email' => ['required','email','max:255','unique:users,email,'.$id]]
@@ -277,9 +277,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($password)){			
+			if(!empty($password)){
 				$validator = Validator::make(
 				    ['password' => $password],
 				    ['password' => ['required', 'min:6','confirmed']]
@@ -290,9 +290,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($name)){			
+			if(!empty($name)){
 				$validator = Validator::make(
 				    ['name' => $name],
 				    ['name' => ['required', 'max:255']]
@@ -303,9 +303,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($type)){			
+			if(!empty($type)){
 				$validator = Validator::make(
 				    ['type' => $type],
 				    ['type' => ['required', 'max:1']]
@@ -316,9 +316,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($activated)){			
+			if(!empty($activated)){
 				$validator = Validator::make(
 				    ['activated' => $activated],
 				    ['activated' => ['required', 'max:1']]
@@ -329,9 +329,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($activation_code)){			
+			if(!empty($activation_code)){
 				$validator = Validator::make(
 				    ['activation_code' => $activation_code],
 				    ['activation_code' => ['required', 'max:255']]
@@ -342,9 +342,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($activated_at)){			
+			if(!empty($activated_at)){
 				$validator = Validator::make(
 				    ['activated_at' => $activated_at],
 				    ['activated_at' => ['required', 'max:255']]
@@ -355,9 +355,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($last_login)){			
+			if(!empty($last_login)){
 				$validator = Validator::make(
 				    ['last_login' => $last_login],
 				    ['last_login' => ['required', 'max:255']]
@@ -368,9 +368,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($persist_code)){			
+			if(!empty($persist_code)){
 				$validator = Validator::make(
 				    ['persist_code' => $persist_code],
 				    ['persist_code' => ['required', 'max:255']]
@@ -381,9 +381,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($reset_password_code)){			
+			if(!empty($reset_password_code)){
 				$validator = Validator::make(
 				    ['reset_password_code' => $reset_password_code],
 				    ['reset_password_code' => ['required', 'max:255']]
@@ -394,9 +394,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($company)){			
+			if(!empty($company)){
 				$validator = Validator::make(
 				    ['company' => $company],
 				    ['company' => ['required', 'max:255']]
@@ -407,9 +407,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($sex)){			
+			if(!empty($sex)){
 				$validator = Validator::make(
 				    ['sex' => $sex],
 				    ['sex' => ['required', 'max:255']]
@@ -420,9 +420,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($age)){			
+			if(!empty($age)){
 				$validator = Validator::make(
 				    ['age' => $age],
 				    ['age' => ['required', 'max:255']]
@@ -433,9 +433,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($custom_status)){			
+			if(!empty($custom_status)){
 				$validator = Validator::make(
 				    ['custom_status' => $custom_status],
 				    ['custom_status' => ['required', 'max:255']]
@@ -446,9 +446,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($login_code)){			
+			if(!empty($login_code)){
 				$validator = Validator::make(
 				    ['login_code' => $login_code],
 				    ['login_code' => ['required', 'max:255']]
@@ -459,9 +459,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($login_valid_until)){			
+			if(!empty($login_valid_until)){
 				$validator = Validator::make(
 				    ['login_valid_until' => $login_valid_until],
 				    ['login_valid_until' => ['required', 'max:255']]
@@ -472,12 +472,12 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($lang)){			
+			if(!empty($lang)){
 				$validator = Validator::make(
 				    ['lang' => $lang],
-				    ['lang' => ['required', 'max:5']]
+				    ['lang' => ['required', 'max:5','in:en,es,pt']]
 				);
 				if(!$validator->fails()){
 					$flag=1;
@@ -485,9 +485,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($image)){			
+			if(!empty($image)){
 				$validator = Validator::make(
 				    ['image' => $image],
 				    ['image' => ['required', 'max:5']]
@@ -498,9 +498,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($description)){			
+			if(!empty($description)){
 				$validator = Validator::make(
 				    ['description' => $description],
 				    ['description' => ['required', 'max:400']]
@@ -511,9 +511,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($eventbriteKey)){			
+			if(!empty($eventbriteKey)){
 				$validator = Validator::make(
 				    ['eventbriteKey' => $eventbriteKey],
 				    ['eventbriteKey' => ['required', 'max:255']]
@@ -524,9 +524,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($meetupRefreshKey)){			
+			if(!empty($meetupRefreshKey)){
 				$validator = Validator::make(
 				    ['meetupRefreshKey' => $meetupRefreshKey],
 				    ['meetupRefreshKey' => ['required', 'max:255']]
@@ -537,9 +537,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($comunity_size)){			
+			if(!empty($comunity_size)){
 				$validator = Validator::make(
 				    ['comunity_size' => $comunity_size],
 				    ['comunity_size' => ['required', 'max:255']]
@@ -550,9 +550,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($location)){			
+			if(!empty($location)){
 				$validator = Validator::make(
 				    ['location' => $location],
 				    ['location' => ['required', 'max:255']]
@@ -563,9 +563,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($location_reference)){			
+			if(!empty($location_reference)){
 				$validator = Validator::make(
 				    ['location_reference' => $location_reference],
 				    ['location_reference' => ['required', 'max:255']]
@@ -576,9 +576,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($demo)){			
+			if(!empty($demo)){
 				$validator = Validator::make(
 				    ['demo' => $demo],
 				    ['demo' => ['required', 'max:5']]
@@ -589,9 +589,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($status)){			
+			if(!empty($status)){
 				$validator = Validator::make(
 				    ['status' => $status],
 				    ['status' => ['required', 'max:255']]
@@ -602,7 +602,7 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
 			if($flag){
 				$User->save();
@@ -630,7 +630,7 @@ class UserController extends Controller {
 			'custom_status'		=>'required|max:255',
 			'login_code'		=>'required|max:255',
 			'login_valid_until'		=>'required|max:255',
-			'lang'		=>'required|max:255',
+			'lang'		=>'required|max:5|in:en,es,pt',
 			'image'		=>'required|max:255',
 			'description'		=>'required|max:255',
 			'eventbriteKey'		=>'required|max:255',
@@ -643,7 +643,7 @@ class UserController extends Controller {
 	    	 ]);
 			if($validation->fails())
 			{
-				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],400);	
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],400);
 			}
 			else
 			{
@@ -701,30 +701,30 @@ class UserController extends Controller {
 			$tasks_sponzor_like_organizer=$User->tasks_sponzor_like_organizer;
 			$tasks_sponzor_like_sponzor=$User->tasks_sponzor_like_sponzor;
 			if(sizeof($events)>0){
-				return response()->json(['message'=>"This user has events, first remove the events and try again"],409);			
+				return response()->json(['message'=>"This user has events, first remove the events and try again"],409);
 			}
 			elseif(sizeof($categories)>0){
-				return response()->json(['message'=>"This user has categories, first remove the categories and try again"],409);			
+				return response()->json(['message'=>"This user has categories, first remove the categories and try again"],409);
 			}
 			elseif(sizeof($interests)>0){
-				return response()->json(['message'=>"This user has interests, first remove the interests and try again"],409);			
+				return response()->json(['message'=>"This user has interests, first remove the interests and try again"],409);
 			}
 			elseif(sizeof($perk_tasks)>0){
-				return response()->json(['message'=>"This user has perk_tasks, first remove the perk_tasks and try again"],409);			
+				return response()->json(['message'=>"This user has perk_tasks, first remove the perk_tasks and try again"],409);
 			}
 			elseif(sizeof($sponzorships)>0){
-				return response()->json(['message'=>"This user has sponzorships, first remove the sponzorships and try again"],409);			
+				return response()->json(['message'=>"This user has sponzorships, first remove the sponzorships and try again"],409);
 			}
 			elseif(sizeof($tasks_sponzor_like_organizer)>0){
-				return response()->json(['message'=>"This user has tasks_sponzor_like_organizer, first remove the tasks_sponzor_like_organizer and try again"],409);			
+				return response()->json(['message'=>"This user has tasks_sponzor_like_organizer, first remove the tasks_sponzor_like_organizer and try again"],409);
 			}
 			elseif(sizeof($tasks_sponzor_like_sponzor)>0){
-				return response()->json(['message'=>"This user has tasks_sponzor_like_sponzor, first remove the tasks_sponzor_like_sponzor and try again"],409);			
+				return response()->json(['message'=>"This user has tasks_sponzor_like_sponzor, first remove the tasks_sponzor_like_sponzor and try again"],409);
 			}
 			else{
 				$User->delete();
 				return response()->json(['message'=>"Deleted"],200);
-			}			
+			}
 		}
 	}
 

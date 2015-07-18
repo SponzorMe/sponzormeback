@@ -40,13 +40,13 @@ composer require barryvdh/laravel-cors 0.5.x@dev
 
 ```sh
 'Barryvdh\Cors\CorsServiceProvider',
+```
 
-```sh
 > 7. Make public the corsService provider with the following command
 
+```sh
  php artisan vendor:publish --provider="Barryvdh\Cors\CorsServiceProvider"
-
-### Actual Version
+```
 
 > 8. Execute the unit tests whit the command phpunit:
 ```sh
@@ -58,7 +58,9 @@ $ phpunit
 $ php artisan migrate:refresh --seed
 ```
 
-2.0.0.2
+### Actual Version
+
+2.0.0.3
 
 [xamppLink]: https://www.apachefriends.org/es/index.html
 

@@ -150,7 +150,8 @@ return [
 		'Intervention\Image\ImageServiceProvider',
 		'Orangehill\Iseed\IseedServiceProvider',
 		'Barryvdh\Cors\CorsServiceProvider',
-		'Weblee\Mandrill\MandrillServiceProvider'
+		'Weblee\Mandrill\MandrillServiceProvider',
+		'Barryvdh\Cors\CorsServiceProvider'
 	],
 
 	/*

@@ -113,7 +113,7 @@ class PatchTest extends TestCase {
         $this->seeInDatabase('event_types', ['name' => $eventType["name"]]);
       }
 	}
-	public function testEvents()
+	public function testPatchEvents()
   {
        $faker = Faker\Factory::create();
 			 $users = User::all()->lists('id');
@@ -140,7 +140,7 @@ class PatchTest extends TestCase {
         $this->seeInDatabase('events', ['title' => $event["title"]]);
       }
 	}
-	public function testPerks()
+	public function testPatchPerks()
   {
        $faker = Faker\Factory::create();
 			 $events = Event::all()->lists('id');
@@ -157,7 +157,7 @@ class PatchTest extends TestCase {
         $this->seeInDatabase('perks', ['kind' => $perk["kind"]]);
       }
 	}
-	public function testPerkTasks()
+	public function testPatchPerkTasks()
   {
        $faker = Faker\Factory::create();
 			 $events = Event::all()->lists('id');
@@ -179,7 +179,7 @@ class PatchTest extends TestCase {
         $this->seeInDatabase('perk_tasks', ['title' => $perkTaks["title"]]);
       }
 	}
-	public function testSponzorships()
+	public function testPatchSponzorships()
   {
        $faker = Faker\Factory::create();
 			 $events = Event::all()->lists('id');
@@ -201,7 +201,7 @@ class PatchTest extends TestCase {
 					'perk_id' => $sponzorship["perk_id"]]);
       }
 	}
-	public function testTaskSponzor()
+	public function testPatchTaskSponzor()
   {
        $faker 				= Faker\Factory::create();
 			 $events 				= Event::all()->lists('id');
@@ -227,7 +227,7 @@ class PatchTest extends TestCase {
 					'perk_id' => $taskSponzor["perk_id"]]);
       }
 	}
-	public function testUserCategory()
+	public function testPatchUserCategory()
   {
        $faker = Faker\Factory::create();
 			 $categories = Category::all()->lists('id');
@@ -244,7 +244,7 @@ class PatchTest extends TestCase {
         $this->seeInDatabase('users_categories', ['user_id' => $userCategory["user_id"],'category_id' => $userCategory["category_id"]]);
       }
 	}
-	public function testUserInterests()
+	public function testPatchUserInterests()
   {
        $faker = Faker\Factory::create();
 			 $interests = InterestCategory::all()->lists('id_interest');

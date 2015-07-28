@@ -13,7 +13,7 @@ class EventController extends Controller {
 	{
 		$this->middleware('auth.basic.once',['only'=>['store','update','destroy']]);
 	}
-	
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -49,6 +49,7 @@ class EventController extends Controller {
 			$type=$event->type()->get();
 			$organizer=$event->organizer()->get();
 			$event->perks;
+			$event->sponzorship;
 			return response()->json(
 				["data"=>
 					[
@@ -59,7 +60,7 @@ class EventController extends Controller {
 					]
 				], 200
 			);
-		}		
+		}
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -84,13 +85,13 @@ class EventController extends Controller {
     	 ]);
 		if($validation->fails())
 		{
-			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
 		}
 		else
 		{
 			$event=Event::create($request->all());
 			return response()->json(['message'=>"Inserted",'event'=>$event],201);
-		}			
+		}
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -117,13 +118,13 @@ class EventController extends Controller {
 			$lang		= $request->input("lang");
 			$organizer	= $request->input("organizer");
 			$category	= $request->input("category");
-			$type	= $request->input("type");			
+			$type	= $request->input("type");
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
-			
+
 			$flag=0;//If 0 persist nothing was updated.
 			$warnings=array();
-			if(!empty($title)){				
+			if(!empty($title)){
 				$validator = Validator::make(
 				    ['title' => $title],
 				    ['title' => ['required', 'max:255']]
@@ -134,9 +135,9 @@ class EventController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($location)){				
+			if(!empty($location)){
 				$validator = Validator::make(
 				    ['location' => $location],
 				    ['location' => ['required', 'max:255']]
@@ -147,9 +148,9 @@ class EventController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}					
+				}
 			}
-			if(!empty($ends)){				
+			if(!empty($ends)){
 				$validator = Validator::make(
 				    ['ends' => $ends],
 				    ['ends' => ['required', 'max:255']]
@@ -160,9 +161,9 @@ class EventController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($starts)){				
+			if(!empty($starts)){
 				$validator = Validator::make(
 				    ['starts' => $starts],
 				    ['starts' => ['required', 'max:255']]
@@ -173,9 +174,9 @@ class EventController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}					
+				}
 			}
-			if(!empty($location_reference)){				
+			if(!empty($location_reference)){
 				$validator = Validator::make(
 				    ['location_reference' => $location_reference],
 				    ['location_reference' => ['required', 'max:255']]
@@ -186,9 +187,9 @@ class EventController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}					
+				}
 			}
-			if(!empty($image)){				
+			if(!empty($image)){
 				$validator = Validator::make(
 				    ['image' => $image],
 				    ['image' => ['required', 'max:255']]
@@ -199,9 +200,9 @@ class EventController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}					
+				}
 			}
-			if(!empty($description)){				
+			if(!empty($description)){
 				$validator = Validator::make(
 				    ['description' => $description],
 				    ['description' => ['required', 'max:255']]
@@ -212,9 +213,9 @@ class EventController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}					
+				}
 			}
-			if(!empty($privacy)){				
+			if(!empty($privacy)){
 				$validator = Validator::make(
 				    ['privacy' => $privacy],
 				    ['privacy' => ['required', 'max:255']]
@@ -225,9 +226,9 @@ class EventController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}					
+				}
 			}
-			if(!empty($lang)){				
+			if(!empty($lang)){
 				$validator = Validator::make(
 				    ['lang' => $lang],
 				    ['lang' => ['required', 'max:5']]
@@ -238,9 +239,9 @@ class EventController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($organizer)){				
+			if(!empty($organizer)){
 				$validator = Validator::make(
 				    ['organizer' => $organizer],
 				    ['organizer' => ['required','exists:users,id']]
@@ -251,9 +252,9 @@ class EventController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}							
+				}
 			}
-			if(!empty($category)){				
+			if(!empty($category)){
 				$validator = Validator::make(
 				    ['category' => $category],
 				    ['category' => ['required', 'max:5', 'exists:categories,id']]
@@ -264,9 +265,9 @@ class EventController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($type)){				
+			if(!empty($type)){
 				$validator = Validator::make(
 				    ['type' => $type],
 				    ['type' => ['required', 'max:5','exists:event_types,id']]
@@ -277,9 +278,9 @@ class EventController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			
+
 			if($flag){
 				$event->save();
 				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'event'=>$event],200);
@@ -305,17 +306,17 @@ class EventController extends Controller {
 	    	 ]);
 			if($validation->fails())
 			{
-				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
 			}
 			else
 			{
 				$event->title =$title;
-				$event->location =$location;	
-				$event->ends =$ends;	
-				$event->starts =$starts;	
-				$event->location_reference =$location_reference;	
+				$event->location =$location;
+				$event->ends =$ends;
+				$event->starts =$starts;
+				$event->location_reference =$location_reference;
 				$event->image =$image;
-				$event->description =$description;	
+				$event->description =$description;
 				$event->privacy =$privacy;
 				$event->lang =$lang;
 				$event->organizer =$organizer;
@@ -345,15 +346,15 @@ class EventController extends Controller {
 			$perks=$event->perks;
 			$sponzorship=$event->sponzorship;
 			if(sizeof($perks)>0){
-				return response()->json(['message'=>"This event has perks, first remove the perks and try again"],409);			
+				return response()->json(['message'=>"This event has perks, first remove the perks and try again"],409);
 			}
 			elseif(sizeof($sponzorship)>0){
-				return response()->json(['message'=>"This event has sponzorship, first remove the sponzorship and try again"],409);			
+				return response()->json(['message'=>"This event has sponzorship, first remove the sponzorship and try again"],409);
 			}
 			else{
 				$event->delete();
 				return response()->json(['message'=>"Deleted"],200);
-			}			
+			}
 		}
 	}
 

@@ -44,9 +44,13 @@ class UserController extends Controller {
 		}
 		else
 		{
-			$events=$user->events;
-			$events=$user->categories;
-			$events=$user->interests;
+			$user->events;
+			$user->categories;
+			$user->interests;
+			$user->perk_tasks;
+			$user->sponzorships;
+			$user->tasks_sponzor_like_organizer;
+			$user->tasks_sponzor_like_sponzor;
 			return response()->json(
 				["data"=>
 					[

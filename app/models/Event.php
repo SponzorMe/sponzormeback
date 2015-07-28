@@ -42,7 +42,7 @@ class Event extends Model {
     }
     public function sponzorship()
     {
-        return $this->hasMany('App\Models\Sponzorship','id_event');
+        return $this->hasMany('App\Models\Sponzorship','event_id');
     }
 
 }

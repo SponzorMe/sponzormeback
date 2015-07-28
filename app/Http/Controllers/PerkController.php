@@ -46,10 +46,12 @@ class PerkController extends Controller {
 					[
 						"Perk"=>$Perk->toArray(),
 						"Event"=>$Perk->event,
+						"Tasks"=>$Perk->tasks,
+						"SponzorTasks"=>$Perk->sponzor_tasks
 					]
 				], 200
 			);
-		}		
+		}
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -67,13 +69,13 @@ class PerkController extends Controller {
     	 ]);
 		if($validation->fails())
 		{
-			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
 		}
 		else
 		{
 			$Perk=Perk::create($request->all());
 			return response()->json(['message'=>"Inserted",'Perk'=>$Perk],201);
-		}			
+		}
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -98,7 +100,7 @@ class PerkController extends Controller {
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
-			if(!empty($usd)){				
+			if(!empty($usd)){
 				$validator = Validator::make(
 				    ['usd' => $usd],
 				    ['usd' => ['required', 'max:11']]
@@ -109,9 +111,9 @@ class PerkController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}		
+				}
 			}
-			if(!empty($kind)){				
+			if(!empty($kind)){
 				$validator = Validator::make(
 				    ['kind' => $kind],
 				    ['kind' => ['required', 'max:255']]
@@ -122,9 +124,9 @@ class PerkController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}		
+				}
 			}
-			if(!empty($id_event)){				
+			if(!empty($id_event)){
 				$validator = Validator::make(
 				    ['id_event' => $id_event],
 				    ['id_event' => ['required', 'max:11','exists:events,id']]
@@ -135,9 +137,9 @@ class PerkController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}		
+				}
 			}
-			if(!empty($reserved_quantity)){				
+			if(!empty($reserved_quantity)){
 				$validator = Validator::make(
 				    ['reserved_quantity' => $reserved_quantity],
 				    ['reserved_quantity' => ['required', 'max:255']]
@@ -148,9 +150,9 @@ class PerkController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}		
+				}
 			}
-			if(!empty($total_quantity)){				
+			if(!empty($total_quantity)){
 				$validator = Validator::make(
 				    ['total_quantity' => $total_quantity],
 				    ['total_quantity' => ['required', 'max:11']]
@@ -161,9 +163,9 @@ class PerkController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}		
+				}
 			}
-			
+
 			if($flag){
 				$Perk->save();
 				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'Perk'=>$Perk],200);
@@ -182,7 +184,7 @@ class PerkController extends Controller {
 	    	 ]);
 			if($validation->fails())
 			{
-				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
 			}
 			else
 			{
@@ -223,7 +225,7 @@ class PerkController extends Controller {
 			else{
 				$Perk->delete();
 				return response()->json(['message'=>"Deleted"],200);
-			}			
+			}
 		}
 	}
 }

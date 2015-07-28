@@ -9,7 +9,7 @@ class Sponzorship extends Model {
 	 *
 	 * @var string
 	 */
-	protected $table = 'Sponzorships';
+	protected $table = 'sponzorships';
 
 	/**
 	 * The attributes that are mass assignable.

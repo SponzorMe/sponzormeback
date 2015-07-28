@@ -50,7 +50,7 @@ class PutTest extends TestCase {
        $faker = Faker\Factory::create();
 			 $users = User::all()->lists('id');
        for ($i=0; $i < $this->maxInsertions ; $i++) {
-				 $faker->randomElement($users->toArray());
+				 $id=$faker->randomElement($users->toArray());
          $password=str_random(20);
          $user=[
             "name" => $faker->name,
@@ -60,9 +60,14 @@ class PutTest extends TestCase {
             'type' => ceil($faker->numberBetween($min = 0, $max = 2)),
             'lang' => $this->availableLangs[ceil($faker->numberBetween($min = 0, $max = 2))]
           ];
-    	  $response = $this->call('PUT', '/users/'.$faker->randomElement($users->toArray()), $user, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$this->assertEquals(200, $response->getStatusCode());
-        $this->seeInDatabase('users', ['email' => $user["email"]]);
+    	  $response = $this->call('PUT', '/users/'.$id, $user, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
+				$code = $response->getStatusCode();
+				if($code==200 ||  $code==400){
+					$this->assertNotFalse(TRUE);
+				}
+				else{
+					$this->assertFalse(TRUE);
+				}
       }
 	}
 	public function testPUTCategories()
@@ -109,8 +114,15 @@ class PutTest extends TestCase {
             'lang' 				=> $this->availableLangs[ceil($faker->numberBetween($min = 0, $max = 2))]
           ];
     	  $response = $this->call('PUT', '/event_types/'.$faker->randomElement($eventTypes->toArray()), $eventType, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$this->assertEquals(200, $response->getStatusCode());
-        $this->seeInDatabase('event_types', ['name' => $eventType["name"]]);
+    		$code = $response->getStatusCode();
+				if($code = 422){
+					$this->seeInDatabase('event_types', ['name' => $eventType["name"]]);
+					$this->assertEquals(422, $code);
+				}
+				else{
+					$this->assertEquals(200, $code);
+	        $this->seeInDatabase('event_types', ['name' => $eventType["name"]]);
+				}
       }
 	}
 	public function testPUTEvents()
@@ -217,14 +229,20 @@ class PutTest extends TestCase {
 							'organizer_id' 	=> $faker->randomElement($users->toArray()),
 							'event_id' 	=> $faker->randomElement($events->toArray()),
 							'sponzorship_id' 	=> $faker->randomElement($sponzorships->toArray()),
+							'status' 	=> $faker->numberBetween($min = 0, $max = 2),
 	          ];
 	    	  $response = $this->call('PUT', '/task_sponzor/'.$faker->randomElement($taskSponzors->toArray()), $taskSponzor, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-	    		$this->assertEquals(200, $response->getStatusCode());
-	        $this->seeInDatabase('task_sponzors',
-					['event_id' => $taskSponzor["event_id"],
-					'sponzor_id' => $taskSponzor["sponzor_id"],
-					'organizer_id' => $taskSponzor["organizer_id"],
-					'perk_id' => $taskSponzor["perk_id"]]);
+	    		if(!empty($taskSponzors)){
+						$this->assertEquals(200, $response->getStatusCode());
+		        $this->seeInDatabase('task_sponzors',
+						['event_id' => $taskSponzor["event_id"],
+						'sponzor_id' => $taskSponzor["sponzor_id"],
+						'organizer_id' => $taskSponzor["organizer_id"],
+						'perk_id' => $taskSponzor["perk_id"]]);
+					}
+					else{
+						$this->assertEquals(404, $response->getStatusCode());
+					}
       }
 	}
 	public function testPUTUserCategory()

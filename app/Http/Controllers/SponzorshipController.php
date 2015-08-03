@@ -51,7 +51,7 @@ class SponzorshipController extends Controller {
 					]
 				], 200
 			);
-		}		
+		}
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -62,19 +62,19 @@ class SponzorshipController extends Controller {
 	{
 		$validation = Validator::make($request->all(), [
 			'status'=>'required|max:4',
-			'sponzor_id'=>'required|max:11|exists:users,id', 
-			'perk_id'=>'required|max:11|exists:perks,id', 
+			'sponzor_id'=>'required|max:11|exists:users,id',
+			'perk_id'=>'required|max:11|exists:perks,id',
 			'event_id'=>'required|max:11|exists:events,id',
     	 ]);
 		if($validation->fails())
 		{
-			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
 		}
 		else
 		{
 			$Sponzorship=Sponzorship::create($request->all());
 			return response()->json(['message'=>"Inserted",'Sponzorship'=>$Sponzorship],201);
-		}			
+		}
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -89,16 +89,13 @@ class SponzorshipController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
-			//Get all values
-			$status		= $request->input("status");
-			$sponzor_id	= $request->input("sponzor_id");
-			$perk_id	= $request->input("perk_id");
-			$event_id	= $request->input("event_id");
+			$inputs = $request->all(); //Get the set of inputs
+			extract($inputs); //Creamos las variables desde el array de inputs
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
-			if(!empty($status)){				
+			if(!empty($status)){
 				$validator = Validator::make(
 				    ['status' => $status],
 				    ['status' => ['required', 'max:4']]
@@ -109,9 +106,9 @@ class SponzorshipController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}		
+				}
 			}
-			if(!empty($sponzor_id)){			
+			if(!empty($sponzor_id)){
 				$validator = Validator::make(
 				    ['sponzor_id' => $sponzor_id],
 				    ['sponzor_id' => ['required', 'max:4','exists:users,id']]
@@ -122,9 +119,9 @@ class SponzorshipController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($perk_id)){			
+			if(!empty($perk_id)){
 				$validator = Validator::make(
 				    ['perk_id' => $perk_id],
 				    ['perk_id' => ['required', 'max:4','exists:perks,id']]
@@ -135,9 +132,9 @@ class SponzorshipController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
-			if(!empty($event_id)){			
+			if(!empty($event_id)){
 				$validator = Validator::make(
 				    ['event_id' => $event_id],
 				    ['event_id' => ['required', 'max:4', 'exists:events,id']]
@@ -148,7 +145,7 @@ class SponzorshipController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}				
+				}
 			}
 			if($flag){
 				$Sponzorship->save();
@@ -161,13 +158,13 @@ class SponzorshipController extends Controller {
 		elseif($request->method()==="PUT"){//PUT all fields are required
 			$validation = Validator::make($request->all(), [
         	'status'=>'required|max:4',
-			'sponzor_id'=>'required|max:11|exists:users,id', 
-			'perk_id'=>'required|max:11|exists:perks,id', 
+			'sponzor_id'=>'required|max:11|exists:users,id',
+			'perk_id'=>'required|max:11|exists:perks,id',
 			'event_id'=>'required|max:11|exists:events,id',
 	    	 ]);
 			if($validation->fails())
 			{
-				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
 			}
 			else
 			{

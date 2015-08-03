@@ -65,7 +65,7 @@ class PerkController extends Controller {
 			'usd'=>'required|max:11',
 			'id_event'=>'required|max:11|exists:events,id',
 			'total_quantity'=>'required|max:11',
-			'reserved_quantity'=>'max:11',
+			'reserved_quantity'=>'required|max:11',
     	 ]);
 		if($validation->fails())
 		{
@@ -90,12 +90,8 @@ class PerkController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
-			//Get all values
-			$kind				= $request->input("kind");
-			$usd				= $request->input("usd");
-			$id_event			= $request->input("id_event");
-			$total_quantity		= $request->input("total_quantity");
-			$reserved_quantity	= $request->input("reserved_quantity");
+			$inputs = $request->all(); //Get the set of inputs
+			extract($inputs); //Creamos las variables desde el array de inputs
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
@@ -180,7 +176,7 @@ class PerkController extends Controller {
 				'usd'=>'required|max:11',
 				'id_event'=>'required|max:11|exists:events,id',
 				'total_quantity'=>'required|max:11',
-				'reserved_quantity'=>'max:11',
+				'reserved_quantity'=>'required|max:11',
 	    	 ]);
 			if($validation->fails())
 			{

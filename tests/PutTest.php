@@ -62,11 +62,15 @@ class PutTest extends TestCase {
           ];
     	  $response = $this->call('PUT', '/users/'.$id, $user, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
 				$code = $response->getStatusCode();
-				if($code==200 ||  $code==400){
-					$this->assertNotFalse(TRUE);
+				if($code == 200){
+					$this->assertEquals(200, $response->getStatusCode());
+					$this->seeInDatabase('users', ['email' => $user["email"]]);
+				}
+				elseif($code == 422){
+					$this->assertEquals(422, $response->getStatusCode());
 				}
 				else{
-					$this->assertFalse(TRUE);
+					$this->assertEquals(200, $response->getStatusCode());
 				}
       }
 	}
@@ -81,8 +85,17 @@ class PutTest extends TestCase {
             'lang' => $this->availableLangs[ceil($faker->numberBetween($min = 0, $max = 2))]
           ];
     	  $response = $this->call('PUT', '/categories/'.$faker->randomElement($categories->toArray()), $category, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$this->assertEquals(200, $response->getStatusCode());
-        $this->seeInDatabase('categories', ['title' => $category["title"]]);
+				$code = $response->getStatusCode();
+				if($code == 200){
+					$this->assertEquals(200, $response->getStatusCode());
+	        $this->seeInDatabase('categories', ['title' => $category["title"]]);
+				}
+				elseif($code == 422){
+					$this->assertEquals(422, $response->getStatusCode());
+				}
+				else{
+					$this->assertEquals(200, $response->getStatusCode());
+				}
       }
 	}
 	public function testPUTInterests()
@@ -99,8 +112,17 @@ class PutTest extends TestCase {
 						'category_id' => $faker->randomElement($categories->toArray())
           ];
     	  $response = $this->call('PUT', '/interests_category/'.$faker->randomElement($interests->toArray()), $interest, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$this->assertEquals(200, $response->getStatusCode());
-        $this->seeInDatabase('interests_categories', ['name' => $interest["name"]]);
+				$code = $response->getStatusCode();
+				if($code == 200){
+					$this->assertEquals(200, $response->getStatusCode());
+					$this->seeInDatabase('interests_categories', ['name' => $interest["name"]]);
+				}
+				elseif($code == 422){
+					$this->assertEquals(422, $response->getStatusCode());
+				}
+				else{
+					$this->assertEquals(200, $response->getStatusCode());
+				}
       }
 	}
 	public function testPUTEventType()
@@ -115,13 +137,15 @@ class PutTest extends TestCase {
           ];
     	  $response = $this->call('PUT', '/event_types/'.$faker->randomElement($eventTypes->toArray()), $eventType, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
     		$code = $response->getStatusCode();
-				if($code = 422){
+				if($code == 200){
+					$this->assertEquals(200, $response->getStatusCode());
 					$this->seeInDatabase('event_types', ['name' => $eventType["name"]]);
-					$this->assertEquals(422, $code);
+				}
+				elseif($code == 422){
+					$this->assertEquals(422, $response->getStatusCode());
 				}
 				else{
-					$this->assertEquals(200, $code);
-	        $this->seeInDatabase('event_types', ['name' => $eventType["name"]]);
+					$this->assertEquals(200, $response->getStatusCode());
 				}
       }
 	}
@@ -148,8 +172,17 @@ class PutTest extends TestCase {
             'location_reference'=> $faker->word
           ];
     	  $response = $this->call('PUT', '/events/'.$faker->randomElement($events->toArray()), $event, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$this->assertEquals(200, $response->getStatusCode());
-        $this->seeInDatabase('events', ['title' => $event["title"]]);
+				$code = $response->getStatusCode();
+				if($code == 200){
+					$this->assertEquals(200, $response->getStatusCode());
+					$this->seeInDatabase('events', ['title' => $event["title"]]);
+				}
+				elseif($code == 422){
+					$this->assertEquals(422, $response->getStatusCode());
+				}
+				else{
+					$this->assertEquals(200, $response->getStatusCode());
+				}
       }
 	}
 	public function testPUTPerks()
@@ -165,8 +198,17 @@ class PutTest extends TestCase {
             'total_quantity' 	=> $faker->numberBetween($min = 0, $max = 9999)
           ];
     	  $response = $this->call('PUT', '/perks/'.$faker->randomElement($perks->toArray()), $perk, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$this->assertEquals(200, $response->getStatusCode());
-        $this->seeInDatabase('perks', ['kind' => $perk["kind"]]);
+				$code = $response->getStatusCode();
+				if($code == 200){
+					$this->assertEquals(200, $response->getStatusCode());
+					$this->seeInDatabase('perks', ['kind' => $perk["kind"]]);
+				}
+				elseif($code == 422){
+					$this->assertEquals(422, $response->getStatusCode());
+				}
+				else{
+					$this->assertEquals(200, $response->getStatusCode());
+				}
       }
 	}
 	public function testPUTPerkTasks()
@@ -187,8 +229,17 @@ class PutTest extends TestCase {
 						'event_id' 	=> $faker->randomElement($events->toArray()),
           ];
     	  $response = $this->call('PUT', '/perk_tasks/'.$faker->randomElement($perkTasks->toArray()), $perkTaks, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$this->assertEquals(200, $response->getStatusCode());
-        $this->seeInDatabase('perk_tasks', ['title' => $perkTaks["title"]]);
+				$code = $response->getStatusCode();
+				if($code == 200){
+					$this->assertEquals(200, $response->getStatusCode());
+					$this->seeInDatabase('perk_tasks', ['title' => $perkTaks["title"]]);
+				}
+				elseif($code == 422){
+					$this->assertEquals(422, $response->getStatusCode());
+				}
+				else{
+					$this->assertEquals(200, $response->getStatusCode());
+				}
       }
 	}
 	public function testPUTSponzorships()
@@ -206,11 +257,20 @@ class PutTest extends TestCase {
 							'event_id' 	=> $faker->randomElement($events->toArray())
 	          ];
 	    	  $response = $this->call('PUT', '/sponzorships/'.$faker->randomElement($sponzorships->toArray()), $sponzorship, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-	    		$this->assertEquals(200, $response->getStatusCode());
-	        $this->seeInDatabase('sponzorships',
-					['event_id' => $sponzorship["event_id"],
-					'sponzor_id' => $sponzorship["sponzor_id"],
-					'perk_id' => $sponzorship["perk_id"]]);
+					$code = $response->getStatusCode();
+					if($code == 200){
+						$this->assertEquals(200, $response->getStatusCode());
+						$this->seeInDatabase('sponzorships',
+						['event_id' => $sponzorship["event_id"],
+						'sponzor_id' => $sponzorship["sponzor_id"],
+						'perk_id' => $sponzorship["perk_id"]]);
+					}
+					elseif($code == 422){
+						$this->assertEquals(422, $response->getStatusCode());
+					}
+					else{
+						$this->assertEquals(200, $response->getStatusCode());
+					}
       }
 	}
 	public function testPUTTaskSponzor()
@@ -233,15 +293,21 @@ class PutTest extends TestCase {
 	          ];
 	    	  $response = $this->call('PUT', '/task_sponzor/'.$faker->randomElement($taskSponzors->toArray()), $taskSponzor, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
 	    		if(!empty($taskSponzors)){
-						$this->assertEquals(200, $response->getStatusCode());
-		        $this->seeInDatabase('task_sponzors',
-						['event_id' => $taskSponzor["event_id"],
-						'sponzor_id' => $taskSponzor["sponzor_id"],
-						'organizer_id' => $taskSponzor["organizer_id"],
-						'perk_id' => $taskSponzor["perk_id"]]);
-					}
-					else{
-						$this->assertEquals(404, $response->getStatusCode());
+						$code = $response->getStatusCode();
+						if($code == 200){
+							$this->assertEquals(200, $response->getStatusCode());
+							$this->seeInDatabase('task_sponzors',
+							['event_id' => $taskSponzor["event_id"],
+							'sponzor_id' => $taskSponzor["sponzor_id"],
+							'organizer_id' => $taskSponzor["organizer_id"],
+							'perk_id' => $taskSponzor["perk_id"]]);
+						}
+						elseif($code == 422){
+							$this->assertEquals(422, $response->getStatusCode());
+						}
+						else{
+							$this->assertEquals(200, $response->getStatusCode());
+						}
 					}
       }
 	}
@@ -258,8 +324,18 @@ class PutTest extends TestCase {
             'category_id' => $faker->randomElement($categories->toArray())
           ];
     	  $response = $this->call('PUT', '/user_categories/'.$faker->randomElement($usersCategory->toArray()), $userCategory, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$this->assertEquals(200, $response->getStatusCode());
-        $this->seeInDatabase('users_categories', ['user_id' => $userCategory["user_id"],'category_id' => $userCategory["category_id"]]);
+				$code = $response->getStatusCode();
+				if($code == 200){
+					$this->assertEquals(200, $response->getStatusCode());
+					$this->seeInDatabase('users_categories', ['user_id' => $userCategory["user_id"],'category_id' => $userCategory["category_id"]]);
+				}
+				elseif($code == 422){
+					$this->assertEquals(422, $response->getStatusCode());
+				}
+				else{
+					$this->assertEquals(200, $response->getStatusCode());
+				}
+
       }
 	}
 	public function tesPUTtUserInterests()
@@ -274,8 +350,18 @@ class PutTest extends TestCase {
             'interest_id' => $faker->randomElement($interests->toArray())
           ];
     	  $response = $this->call('PUT', '/user_interests/'.$faker->randomElement($usersInterest->toArray()), $userInterests, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$this->assertEquals(200, $response->getStatusCode());
-        $this->seeInDatabase('users_interests', ['user_id' => $userInterests["user_id"],'interest_id' => $userInterests["interest_id"]]);
+				$code = $response->getStatusCode();
+				if($code == 200){
+					$this->assertEquals(200, $response->getStatusCode());
+					$this->seeInDatabase('users_interests', ['user_id' => $userInterests["user_id"],'interest_id' => $userInterests["interest_id"]]);
+				}
+				elseif($code == 422){
+					$this->assertEquals(422, $response->getStatusCode());
+				}
+				else{
+					$this->assertEquals(200, $response->getStatusCode());
+				}
+
       }
 	}
 

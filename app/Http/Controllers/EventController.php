@@ -106,19 +106,8 @@ class EventController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
-			//Get all values
-			$title		= $request->input("title");
-			$location	= $request->input("location");
-			$ends		= $request->input("ends");
-			$starts		= $request->input("starts");
-			$location_reference	= $request->input("location_reference");
-			$image		= $request->input("image");
-			$description= $request->input("description");
-			$privacy	= $request->input("privacy");
-			$lang		= $request->input("lang");
-			$organizer	= $request->input("organizer");
-			$category	= $request->input("category");
-			$type	= $request->input("type");
+			$inputs = $request->all(); //Get the set of inputs
+			extract($inputs); //Creamos las variables desde el array de inputs
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 

@@ -3,18 +3,18 @@
   stopOnFailure="false" syntaxCheck="false">
   <testsuites>
     <testsuite name="Application Test Suite">
+      <!--Then Get the data via GET-->
+      <directory>./tests/GetTest.php</directory>
+      <!--Then Get the data via-->
+      <directory>./tests/GetOneTest.php</directory>
       <!--First Insert the data-->
       <directory>./tests/PostTest.php</directory>
       <!--Then Edit the data via PATCH-->
       <directory>./tests/PatchTest.php</directory>
       <!--Then Edit the data via PUT-->
       <directory>./tests/PutTest.php</directory>
-      <!--Then Get the data via GET-->
-      <directory>./tests/GetTest.php</directory>
-      <!--Then Get the data via-->
-      <directory>./tests/GetOneTest.php</directory>
-      <!--Then Get the data via-->
-      <directory>./tests/DeleteTest.php</directory>
+      <!--Then Delete the data via
+      <directory>./tests/DeleteTest.php</directory-->
       <!--Then the others custom tests-->
       <directory>./tests/CustomTest.php</directory>
     </testsuite>

@@ -33,7 +33,7 @@ class DeleteTest extends TestCase {
 	 * For testing the protected url
 	 * @param string
 	 */
-	protected $maxDeletions = 1;
+	protected $maxDeletions = 30;
 
 	/**
 	* The list of available langs
@@ -51,12 +51,19 @@ class DeleteTest extends TestCase {
        for ($i=0; $i < $this->maxDeletions ; $i++) {
 				$users = User::all()->lists('id');
     	  $response = $this->call('DELETE', '/users/'.$faker->randomElement($users->toArray()), array(), array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$code = $response->getStatusCode();
-				if($code==200 || $code==409 || $code==404){
-					$this->assertNotFalse(TRUE);
+				$code = $response->getStatusCode();
+				if($code == 200){
+					$this->assertEquals(200, $response->getStatusCode());
+				}
+				elseif ($code == 409) {
+					$this->assertEquals(409, $response->getStatusCode());
+				}
+				elseif ($code == 404) {
+					$this->assertEquals(404, $response->getStatusCode());
 				}
 				else{
-					$this->assertFalse(TRUE);
+					$this->assertEquals(404, $response->getStatusCode());
+
 				}
       }
 	}
@@ -65,13 +72,22 @@ class DeleteTest extends TestCase {
        $faker = Faker\Factory::create();
        for ($i=0; $i < $this->maxDeletions ; $i++) {
 				$categories = Category::all()->lists('id');
-				$response = $this->call('DELETE', '/categories/'.$faker->randomElement($categories->toArray()), array(), array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
+				$id = $faker->randomElement($categories->toArray());
+				$response = $this->call('DELETE', '/categories/'.$id, array(), array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
 				$code = $response->getStatusCode();
-				if($code==200 || $code==409 || $code==404){
-					$this->assertNotFalse(TRUE);
+				if($code == 200){
+					$this->assertEquals(200, $response->getStatusCode());
+				}
+				elseif ($code == 409) {
+					$this->assertEquals(409, $response->getStatusCode());
+				}
+				elseif ($code == 404) {
+					$this->assertEquals(404, $response->getStatusCode());
 				}
 				else{
-					$this->assertFalse(TRUE);
+					echo $id;
+					$this->assertEquals(404, $response->getStatusCode());
+
 				}
       }
 	}
@@ -79,16 +95,23 @@ class DeleteTest extends TestCase {
   {
        $faker = Faker\Factory::create();
        for ($i=0; $i < $this->maxDeletions ; $i++) {
-				$interestCategory = InterestCategory::all()->lists('id');
-    	  $response = $this->call('POST', '/interests_category/'.$faker->randomElement($interestCategory->toArray()), array(), array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-				$code = $response->getStatusCode();
-				if($code==200 || $code==409 || $code==404){
-					$this->assertNotFalse(TRUE);
-				}
-				else{
-					$this->assertFalse(TRUE);
-				}
-      }
+					$interestCategory = InterestCategory::all()->lists('id_interest');
+	    	  $response = $this->call('POST', '/interests_category/'.$faker->randomElement($interestCategory->toArray()), array(), array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
+					$code = $response->getStatusCode();
+					if($code == 200){
+						$this->assertEquals(200, $response->getStatusCode());
+					}
+					elseif ($code == 409) {
+						$this->assertEquals(409, $response->getStatusCode());
+					}
+					elseif ($code == 404) {
+						$this->assertEquals(404, $response->getStatusCode());
+					}
+					else{
+						$this->assertEquals(404, $response->getStatusCode());
+
+					}
+       }
 	}
 
 	public function testDeleteEventType()
@@ -98,11 +121,18 @@ class DeleteTest extends TestCase {
 			 $eventTypes = EventType::all()->lists('id');
 			 $response = $this->call('DELETE', '/event_types/'.$faker->randomElement($eventTypes->toArray()), array(), array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
 			 $code = $response->getStatusCode();
-			 if($code==200 || $code==409 || $code==404){
-				 $this->assertNotFalse(TRUE);
+			 if($code == 200){
+				 $this->assertEquals(200, $response->getStatusCode());
+			 }
+			 elseif ($code == 409) {
+				 $this->assertEquals(409, $response->getStatusCode());
+			 }
+			 elseif ($code == 404) {
+				 $this->assertEquals(404, $response->getStatusCode());
 			 }
 			 else{
-				 $this->assertFalse(TRUE);
+				 $this->assertEquals(404, $response->getStatusCode());
+
 			 }
 		 }
 	}
@@ -113,11 +143,18 @@ class DeleteTest extends TestCase {
 				$events = Event::all()->lists('id');
 				$response = $this->call('DELETE', '/events/'.$faker->randomElement($events->toArray()), array(), array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
 				$code = $response->getStatusCode();
-				if($code==200 || $code==409 || $code==404){
-					$this->assertNotFalse(TRUE);
+				if($code == 200){
+					$this->assertEquals(200, $response->getStatusCode());
+				}
+				elseif ($code == 409) {
+					$this->assertEquals(409, $response->getStatusCode());
+				}
+				elseif ($code == 404) {
+					$this->assertEquals(404, $response->getStatusCode());
 				}
 				else{
-					$this->assertFalse(TRUE);
+					$this->assertEquals(404, $response->getStatusCode());
+
 				}
 			}
 	}
@@ -128,11 +165,18 @@ class DeleteTest extends TestCase {
 			 $perks = Perk::all()->lists('id');
 			 $response = $this->call('DELETE', '/perks/'.$faker->randomElement($perks->toArray()), array(), array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
 			 $code = $response->getStatusCode();
-			 if($code==200 || $code==409 || $code==404){
-				 $this->assertNotFalse(TRUE);
+			 if($code == 200){
+				 $this->assertEquals(200, $response->getStatusCode());
+			 }
+			 elseif ($code == 409) {
+				 $this->assertEquals(409, $response->getStatusCode());
+			 }
+			 elseif ($code == 404) {
+				 $this->assertEquals(404, $response->getStatusCode());
 			 }
 			 else{
-				 $this->assertFalse(TRUE);
+				 $this->assertEquals(404, $response->getStatusCode());
+
 			 }
 	 	}
 	}
@@ -143,11 +187,18 @@ class DeleteTest extends TestCase {
 				$perkTasks = PerkTask::all()->lists('id');
 				$response = $this->call('DELETE', '/perk_tasks/'.$faker->randomElement($perkTasks->toArray()), array(), array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
 				$code = $response->getStatusCode();
-				if($code==200 || $code==409 || $code==404){
-					$this->assertNotFalse(TRUE);
+				if($code == 200){
+					$this->assertEquals(200, $response->getStatusCode());
+				}
+				elseif ($code == 409) {
+					$this->assertEquals(409, $response->getStatusCode());
+				}
+				elseif ($code == 404) {
+					$this->assertEquals(404, $response->getStatusCode());
 				}
 				else{
-					$this->assertFalse(TRUE);
+					$this->assertEquals(404, $response->getStatusCode());
+
 				}
 		 	}
 	}
@@ -158,27 +209,40 @@ class DeleteTest extends TestCase {
 			 $sponzorships = Sponzorship::all()->lists('id');
 			 $response = $this->call('DELETE', '/sponzorships/'.$faker->randomElement($sponzorships->toArray()), array(), array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
 			 $code = $response->getStatusCode();
-			 if($code==200 || $code==409 || $code==404){
-				 $this->assertNotFalse(TRUE);
+			 if($code == 200){
+				 $this->assertEquals(200, $response->getStatusCode());
+			 }
+			 elseif ($code == 409) {
+				 $this->assertEquals(409, $response->getStatusCode());
+			 }
+			 elseif ($code == 404) {
+				 $this->assertEquals(404, $response->getStatusCode());
 			 }
 			 else{
-				 $this->assertFalse(TRUE);
+				 $this->assertEquals(404, $response->getStatusCode());
+
 			 }
-	 }
+	 	}
 	}
 	public function testDeleteTaskSponzor()
   {
 			$faker = Faker\Factory::create();
 			for ($i=0; $i < $this->maxDeletions ; $i++) {
-			$tasksSponzor = TaskSponzor::all()->lists('id');
-			$response = $this->call('DELETE', '/task_sponzor/'.$faker->randomElement($tasksSponzor->toArray()), array(), array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-			$code = $response->getStatusCode();
-			if($code==200 || $code==409 || $code==404){
-				$this->assertNotFalse(TRUE);
-			}
-			else{
-				$this->assertFalse(TRUE);
-			}
+				$tasksSponzor = TaskSponzor::all()->lists('id');
+				$response = $this->call('DELETE', '/task_sponzor/'.$faker->randomElement($tasksSponzor->toArray()), array(), array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
+				$code = $response->getStatusCode();
+				if($code == 200){
+					$this->assertEquals(200, $response->getStatusCode());
+				}
+				elseif ($code == 409) {
+					$this->assertEquals(409, $response->getStatusCode());
+				}
+				elseif ($code == 404) {
+					$this->assertEquals(404, $response->getStatusCode());
+				}
+				else{
+					$this->assertEquals(404, $response->getStatusCode());
+				}
 			}
 	}
 	public function testDeleteUserCategory()
@@ -188,12 +252,18 @@ class DeleteTest extends TestCase {
 			 $userCategories = UserCategory::all()->lists('id');
 			 $response = $this->call('DELETE', '/users_categories/'.$faker->randomElement($userCategories->toArray()), array(), array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
 			 $code = $response->getStatusCode();
- 			if($code==200 || $code==409 || $code==404){
- 				$this->assertNotFalse(TRUE);
- 			}
- 			else{
- 				$this->assertFalse(TRUE);
- 			}
+			 if($code == 200){
+				 $this->assertEquals(200, $response->getStatusCode());
+			 }
+			 elseif ($code == 409) {
+				 $this->assertEquals(409, $response->getStatusCode());
+			 }
+			 elseif ($code == 404) {
+				 $this->assertEquals(404, $response->getStatusCode());
+			 }
+			 else{
+				 $this->assertEquals(404, $response->getStatusCode());
+			 }
 		 }
 	}
 	public function testUserInterests()
@@ -203,12 +273,18 @@ class DeleteTest extends TestCase {
 				$userInterests = UserInterest::all()->lists('id');
 				$response = $this->call('DELETE', '/users_interests/'.$faker->randomElement($userInterests->toArray()), array(), array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
 				$code = $response->getStatusCode();
-				if($code==200 || $code==409 || $code==404){
-					$this->assertNotFalse(TRUE);
-				}
-				else{
-					$this->assertFalse(TRUE);
-				}
+	 			if($code == 200){
+	 			 $this->assertEquals(200, $response->getStatusCode());
+	 			}
+	 			elseif ($code == 409) {
+	 			 $this->assertEquals(409, $response->getStatusCode());
+	 			}
+	 			elseif ($code == 404) {
+	 			 $this->assertEquals(404, $response->getStatusCode());
+	 			}
+	 			else{
+					$this->assertEquals(404, $response->getStatusCode());
+	 			}
 			}
 	}
 }

@@ -239,33 +239,8 @@ class UserController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
-			//Get all values
-			$name = $request->input('name');
-			$email = $request->input('email');
-			$type = $request->input('type');
-			$password = bcrypt($request->input('password'));
-			$activated = $request->input('activated');
-			$activation_code = $request->input('activation_code');
-			$activated_at = $request->input('activated_at');
-			$last_login = $request->input('last_login');
-			$persist_code = $request->input('persist_code');
-			$reset_password_code = $request->input('reset_password_code');
-			$company = $request->input('company');
-			$sex = $request->input('sex');
-			$age = $request->input('age');
-			$custom_status = $request->input('custom_status');
-			$login_code = $request->input('login_code');
-			$login_valid_until = $request->input('login_valid_until');
-			$lang = $request->input('lang');
-			$image = $request->input('image');
-			$description = $request->input('description');
-			$eventbriteKey = $request->input('eventbriteKey');
-			$meetupRefreshKey = $request->input('meetupRefreshKey');
-			$comunity_size = $request->input('comunity_size');
-			$location = $request->input('location');
-			$location_reference = $request->input('location_reference');
-			$demo = $request->input('demo');
-			$status = $request->input('status');
+			$inputs = $request->all(); //Get the set of inputs
+			extract($inputs); //Creamos las variables desde el array de inputs
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
@@ -647,7 +622,7 @@ class UserController extends Controller {
 	    	 ]);
 			if($validation->fails())
 			{
-				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],400);
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
 			}
 			else
 			{

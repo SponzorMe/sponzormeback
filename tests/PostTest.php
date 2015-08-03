@@ -29,7 +29,7 @@ class PostTest extends TestCase {
 	 * For testing the protected url
 	 * @param string
 	 */
-	protected $maxInsertions = 1;
+	protected $maxInsertions = 30;
 
 	/**
 	* The list of available langs
@@ -56,8 +56,17 @@ class PostTest extends TestCase {
             'lang' => $this->availableLangs[ceil($faker->numberBetween($min = 0, $max = 2))]
           ];
     	  $response = $this->call('POST', '/users', $user, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$this->assertEquals(201, $response->getStatusCode());
-        $this->seeInDatabase('users', ['email' => $user["email"]]);
+				$code = $response->getStatusCode();
+				if($code == 201){
+					$this->assertEquals(201, $response->getStatusCode());
+	        $this->seeInDatabase('users', ['email' => $user["email"]]);
+				}
+				elseif($code == 422){
+					$this->assertEquals(422, $response->getStatusCode());
+				}
+				else{
+					$this->assertEquals(422, $response->getStatusCode());
+				}
       }
 	}
 	public function testPostCategories()
@@ -70,8 +79,17 @@ class PostTest extends TestCase {
             'lang' => $this->availableLangs[ceil($faker->numberBetween($min = 0, $max = 2))]
           ];
     	  $response = $this->call('POST', '/categories', $category, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$this->assertEquals(201, $response->getStatusCode());
-        $this->seeInDatabase('categories', ['title' => $category["title"]]);
+				$code = $response->getStatusCode();
+				if($code == 201){
+					$this->assertEquals(201, $response->getStatusCode());
+	        $this->seeInDatabase('categories', ['title' => $category["title"]]);
+				}
+				elseif($code == 422){
+					$this->assertEquals(422, $response->getStatusCode());
+				}
+				else{
+					$this->assertEquals(422, $response->getStatusCode());
+				}
       }
 	}
 	public function testPostInterests()
@@ -87,8 +105,17 @@ class PostTest extends TestCase {
 						'category_id' => $faker->randomElement($categories->toArray())
           ];
     	  $response = $this->call('POST', '/interests_category', $interest, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$this->assertEquals(201, $response->getStatusCode());
-        $this->seeInDatabase('interests_categories', ['name' => $interest["name"]]);
+				$code = $response->getStatusCode();
+				if($code == 201){
+					$this->assertEquals(201, $response->getStatusCode());
+        	$this->seeInDatabase('interests_categories', ['name' => $interest["name"]]);
+				}
+				elseif($code == 422){
+					$this->assertEquals(422, $response->getStatusCode());
+				}
+				else{
+					$this->assertEquals(422, $response->getStatusCode());
+				}
       }
 	}
 	public function testPostEventType()
@@ -101,8 +128,17 @@ class PostTest extends TestCase {
             'lang' 				=> $this->availableLangs[ceil($faker->numberBetween($min = 0, $max = 2))]
           ];
     	  $response = $this->call('POST', '/event_types', $eventType, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$this->assertEquals(201, $response->getStatusCode());
-        $this->seeInDatabase('event_types', ['name' => $eventType["name"]]);
+				$code = $response->getStatusCode();
+				if($code == 201){
+					$this->assertEquals(201, $response->getStatusCode());
+	        $this->seeInDatabase('event_types', ['name' => $eventType["name"]]);
+				}
+				elseif($code == 422){
+					$this->assertEquals(422, $response->getStatusCode());
+				}
+				else{
+					$this->assertEquals(422, $response->getStatusCode());
+				}
       }
 	}
 	public function testEvents()
@@ -127,8 +163,17 @@ class PostTest extends TestCase {
             'location_reference'=> $faker->word
           ];
     	  $response = $this->call('POST', '/events', $event, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$this->assertEquals(201, $response->getStatusCode());
-        $this->seeInDatabase('events', ['title' => $event["title"]]);
+				$code = $response->getStatusCode();
+				if($code == 201){
+					$this->assertEquals(201, $response->getStatusCode());
+	        $this->seeInDatabase('events', ['title' => $event["title"]]);
+				}
+				elseif($code == 422){
+					$this->assertEquals(422, $response->getStatusCode());
+				}
+				else{
+					$this->assertEquals(422, $response->getStatusCode());
+				}
       }
 	}
 	public function testPerks()
@@ -143,8 +188,17 @@ class PostTest extends TestCase {
             'total_quantity' 	=> $faker->numberBetween($min = 0, $max = 9999)
           ];
     	  $response = $this->call('POST', '/perks', $perk, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$this->assertEquals(201, $response->getStatusCode());
-        $this->seeInDatabase('perks', ['kind' => $perk["kind"]]);
+				$code = $response->getStatusCode();
+				if($code == 201){
+					$this->assertEquals(201, $response->getStatusCode());
+	        $this->seeInDatabase('perks', ['kind' => $perk["kind"]]);
+				}
+				elseif($code == 422){
+					$this->assertEquals(422, $response->getStatusCode());
+				}
+				else{
+					$this->assertEquals(422, $response->getStatusCode());
+				}
       }
 	}
 	public function testPerkTasks()
@@ -164,8 +218,17 @@ class PostTest extends TestCase {
 						'event_id' 	=> $faker->randomElement($events->toArray()),
           ];
     	  $response = $this->call('POST', '/perk_tasks', $perkTaks, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$this->assertEquals(201, $response->getStatusCode());
-        $this->seeInDatabase('perk_tasks', ['title' => $perkTaks["title"]]);
+				$code = $response->getStatusCode();
+				if($code == 201){
+					$this->assertEquals(201, $response->getStatusCode());
+	        $this->seeInDatabase('perk_tasks', ['title' => $perkTaks["title"]]);
+				}
+				elseif($code == 422){
+					$this->assertEquals(422, $response->getStatusCode());
+				}
+				else{
+					$this->assertEquals(422, $response->getStatusCode());
+				}
       }
 	}
 	public function testSponzorships()
@@ -182,11 +245,20 @@ class PostTest extends TestCase {
 							'event_id' 	=> $faker->randomElement($events->toArray())
 	          ];
 	    	  $response = $this->call('POST', '/sponzorships', $sponzorship, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-	    		$this->assertEquals(201, $response->getStatusCode());
-	        $this->seeInDatabase('sponzorships',
-					['event_id' => $sponzorship["event_id"],
-					'sponzor_id' => $sponzorship["sponzor_id"],
-					'perk_id' => $sponzorship["perk_id"]]);
+					$code = $response->getStatusCode();
+					if($code == 201){
+						$this->assertEquals(201, $response->getStatusCode());
+		        $this->seeInDatabase('sponzorships',
+						['event_id' => $sponzorship["event_id"],
+						'sponzor_id' => $sponzorship["sponzor_id"],
+						'perk_id' => $sponzorship["perk_id"]]);
+					}
+					elseif($code == 422){
+						$this->assertEquals(422, $response->getStatusCode());
+					}
+					else{
+						$this->assertEquals(422, $response->getStatusCode());
+					}
       }
 	}
 	public function testTaskSponzor()
@@ -206,12 +278,22 @@ class PostTest extends TestCase {
 							'sponzorship_id' 	=> $faker->randomElement($sponzorships->toArray()),
 	          ];
 	    	  $response = $this->call('POST', '/task_sponzor', $taskSponzor, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-	    		$this->assertEquals(201, $response->getStatusCode());
-	        $this->seeInDatabase('task_sponzors',
-					['event_id' => $taskSponzor["event_id"],
-					'sponzor_id' => $taskSponzor["sponzor_id"],
-					'organizer_id' => $taskSponzor["organizer_id"],
-					'perk_id' => $taskSponzor["perk_id"]]);
+	    		$code = $response->getStatusCode();
+					if($code == 201){
+						$this->assertEquals(201, $response->getStatusCode());
+		        $this->seeInDatabase('task_sponzors',
+						['event_id' => $taskSponzor["event_id"],
+						'sponzor_id' => $taskSponzor["sponzor_id"],
+						'organizer_id' => $taskSponzor["organizer_id"],
+						'perk_id' => $taskSponzor["perk_id"]]);
+					}
+					elseif($code == 422){
+						$this->assertEquals(422, $response->getStatusCode());
+					}
+					else{
+						$this->assertEquals(422, $response->getStatusCode());
+					}
+
       }
 	}
 	public function testUserCategory()
@@ -226,8 +308,17 @@ class PostTest extends TestCase {
             'category_id' => $faker->randomElement($categories->toArray())
           ];
     	  $response = $this->call('POST', '/user_categories', $userCategory, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$this->assertEquals(201, $response->getStatusCode());
-        $this->seeInDatabase('users_categories', ['user_id' => $userCategory["user_id"],'category_id' => $userCategory["category_id"]]);
+				$code = $response->getStatusCode();
+				if($code == 201){
+						$this->assertEquals(201, $response->getStatusCode());
+						$this->seeInDatabase('users_categories', ['user_id' => $userCategory["user_id"],'category_id' => $userCategory["category_id"]]);
+				}
+				elseif($code == 422){
+					$this->assertEquals(422, $response->getStatusCode());
+				}
+				else{
+					$this->assertEquals(422, $response->getStatusCode());
+				}
       }
 	}
 	public function testUserInterests()
@@ -241,9 +332,18 @@ class PostTest extends TestCase {
             'interest_id' => $faker->numberBetween($min = 1, $max = count($interests))
           ];
     	  $response = $this->call('POST', '/user_interests', $userInterests, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
-    		$this->assertEquals(201, $response->getStatusCode());
-        $this->seeInDatabase('users_interests', ['user_id' => $userInterests["user_id"],'interest_id' => $userInterests["interest_id"]]);
-      }
+				$code = $response->getStatusCode();
+				if($code == 201){
+					$this->assertEquals(201, $response->getStatusCode());
+        	$this->seeInDatabase('users_interests', ['user_id' => $userInterests["user_id"],'interest_id' => $userInterests["interest_id"]]);
+				}
+				elseif($code == 422){
+					$this->assertEquals(422, $response->getStatusCode());
+				}
+				else{
+					$this->assertEquals(422, $response->getStatusCode());
+				}
+			}
 	}
 
 }

@@ -50,7 +50,7 @@ class PerkTaskController extends Controller {
 						"Event"=>$PerkTask->user,					]
 				], 200
 			);
-		}		
+		}
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -61,22 +61,22 @@ class PerkTaskController extends Controller {
 	{
 		$validation = Validator::make($request->all(), [
 			'title'=>'required|max:255',
-			'description'=>'required', 
+			'description'=>'required',
 			'type'=>'required|max:5',
 			'status'=>'required|max:5',
-			'user_id'=>'required|max:11|exists:users,id', 
-			'perk_id'=>'required|max:11|exists:perks,id', 
+			'user_id'=>'required|max:11|exists:users,id',
+			'perk_id'=>'required|max:11|exists:perks,id',
 			'event_id'=>'required|max:11|exists:events,id',
     	 ]);
 		if($validation->fails())
 		{
-			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
 		}
 		else
 		{
 			$PerkTask=PerkTask::create($request->all());
 			return response()->json(['message'=>"Inserted",'PerkTask'=>$PerkTask],201);
-		}			
+		}
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -91,19 +91,13 @@ class PerkTaskController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
-			//Get all values
-			$title			= $request->input("title");
-			$description	= $request->input("description");
-			$type			= $request->input("type");
-			$status			= $request->input("status");
-			$user_id		= $request->input("user_id");
-			$perk_id		= $request->input("perk_id");
-			$event_id		= $request->input("event_id");
+			$inputs = $request->all(); //Get the set of inputs
+			extract($inputs); //Creamos las variables desde el array de inputs
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
-			if(!empty($title)){				
+			if(!empty($title)){
 				$validator = Validator::make(
 				    ['title' => $title],
 				    ['title' => ['required', 'max:255']]
@@ -114,13 +108,13 @@ class PerkTaskController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}		
+				}
 			}
 			if(!empty($description)){
 				$PerkTask->description=$description;
 				$flag=1;
 			}
-			if(!empty($type)){				
+			if(!empty($type)){
 				$validator = Validator::make(
 				    ['type' => $type],
 				    ['type' => ['required', 'max:5']]
@@ -131,9 +125,9 @@ class PerkTaskController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}		
+				}
 			}
-			if(!empty($status)){				
+			if(!empty($status)){
 				$validator = Validator::make(
 				    ['status' => $status],
 				    ['status' => ['required', 'max:5']]
@@ -144,9 +138,9 @@ class PerkTaskController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}		
+				}
 			}
-			if(!empty($user_id)){				
+			if(!empty($user_id)){
 				$validator = Validator::make(
 				    ['user_id' => $user_id],
 				    ['user_id' => ['required', 'max:11','exists:users,id']]
@@ -157,9 +151,9 @@ class PerkTaskController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}		
+				}
 			}
-			if(!empty($perk_id)){				
+			if(!empty($perk_id)){
 				$validator = Validator::make(
 				    ['perk_id' => $perk_id],
 				    ['perk_id' => ['required', 'max:11','exists:perks,id']]
@@ -170,9 +164,9 @@ class PerkTaskController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}							
+				}
 			}
-			if(!empty($event_id)){				
+			if(!empty($event_id)){
 				$validator = Validator::make(
 				    ['event_id' => $event_id],
 				    ['event_id' => ['required', 'max:11','exists:events,id']]
@@ -183,7 +177,7 @@ class PerkTaskController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}							
+				}
 			}
 			if($flag){
 				$PerkTask->save();
@@ -196,16 +190,16 @@ class PerkTaskController extends Controller {
 		elseif($request->method()==="PUT"){//PUT all fields are required
 			$validation = Validator::make($request->all(), [
 	        	'title'=>'required|max:255',
-				'description'=>'required', 
+				'description'=>'required',
 				'type'=>'required|max:5',
 				'status'=>'required|max:5',
-				'user_id'=>'required|max:11|exists:users,id', 
-				'perk_id'=>'required|max:11|exists:perks,id', 
+				'user_id'=>'required|max:11|exists:users,id',
+				'perk_id'=>'required|max:11|exists:perks,id',
 				'event_id'=>'required|max:11|exists:events,id',
 	    	 ]);
 			if($validation->fails())
 			{
-				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
 			}
 			else
 			{

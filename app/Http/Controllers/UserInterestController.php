@@ -50,7 +50,7 @@ class UserInterestController extends Controller {
 					]
 				], 200
 			);
-		}		
+		}
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -65,13 +65,13 @@ class UserInterestController extends Controller {
     	 ]);
 		if($validation->fails())
 		{
-			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
 		}
 		else
 		{
 			$UserInterest=UserInterest::create($request->all());
 			return response()->json(['message'=>"Inserted",'UserInterest'=>$UserInterest],201);
-		}			
+		}
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -86,14 +86,13 @@ class UserInterestController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
-			//Get all values
-			$user_id		= $request->input("user_id");
-			$interest_id	= $request->input("interest_id");
+			$inputs = $request->all(); //Get the set of inputs
+			extract($inputs); //Creamos las variables desde el array de inputs
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
-			if(!empty($user_id)){				
+			if(!empty($user_id)){
 				$validator = Validator::make(
 				    ['user_id' => $user_id],
 				    ['user_id' => ['required', 'max:255','exists:users,id']]
@@ -104,9 +103,9 @@ class UserInterestController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}		
+				}
 			}
-			if(!empty($interest_id)){				
+			if(!empty($interest_id)){
 				$validator = Validator::make(
 				    ['interest_id' => $interest_id],
 				    ['interest_id' => ['required', 'max:255','exists:interests_categories,id_interest']]
@@ -117,7 +116,7 @@ class UserInterestController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-				}		
+				}
 			}
 			if($flag){
 				$UserInterest->save();
@@ -134,7 +133,7 @@ class UserInterestController extends Controller {
 	    	 ]);
 			if($validation->fails())
 			{
-				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
 			}
 			else
 			{

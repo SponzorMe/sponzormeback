@@ -94,14 +94,8 @@ class TaskSponzorController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
-			//Get all values
-			$status	= $request->input("status");
-			$task_id		= $request->input("task_id");
-			$perk_id		= $request->input("perk_id");
-			$sponzor_id		= $request->input("sponzor_id");
-			$organizer_id	= $request->input("organizer_id");
-			$event_id		= $request->input("event_id");
-			$sponzorship_id	= $request->input("sponzorship_id");
+			$inputs = $request->all(); //Get the set of inputs
+			extract($inputs); //Creamos las variables desde el array de inputs
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();

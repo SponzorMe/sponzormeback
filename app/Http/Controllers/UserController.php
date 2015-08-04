@@ -113,6 +113,51 @@ class UserController extends Controller {
 			return false;
 		}
 	}
+	private function inviteFriendMail($friendEmail,$userMessage,$userName,$lang="en"){
+		try{
+			if($lang=="en")
+		    	$template_name = 'invite-english';
+		    if($lang=="es")
+		    	$template_name = 'invite-spanish';
+		    if($lang=="pt")
+		    	$template_name = 'invite-portuguese';
+		    $template_content = array(
+		        array(
+		            'name' => 'Invite-Friend',
+		            'content' => 'SponzorMe'
+		        )
+		    );
+		    $message = array(
+		        'to' => array(
+		            array(
+		                'email' =>	$friendEmail,
+		                'name' 	=> 	$friendEmail,
+		                'type' 	=> 'to'
+		            )
+		        ),
+		        'global_merge_vars' => array(
+		            array(
+		                'name' => 'userName',
+		            	'content' => $userName
+		            ),
+		            array(
+		                'name' => 'message',
+		            	'content' => $userMessage
+		            )
+		        ),
+		    );
+	    	$result = \MandrillMail::messages()->sendTemplate($template_name, $template_content, $message);
+			if($result[0]["status"]=="sent" AND !$result[0]["reject_reason"]){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		catch(Exeption $e){
+			return false;
+		}
+	}
 	private function subscribeToMailchimp($email,$name,$type,$lang="en"){
 		$MailChimp = new \Drewm\MailChimp('2cc5e8c25894c43a2a4f022e6e47c352-us7');
 		$name=explode(" ", trim($name));
@@ -197,6 +242,31 @@ class UserController extends Controller {
 			$user->activation_code="";
 			$user->save();
 			return response()->json(['message'=>"Account activated",'code'=>'200'],200);
+		}
+	}
+	public function inviteFriend(Request $request){
+		$validation = Validator::make($request->all(), [
+			'email' 	=> 'required|email|max:255',
+			'message' 	=> 'required|max:400',
+			'user_id'		=>'required|max:255|exists:users,id'
+    	 ]);
+		if($validation->fails())
+		{
+			return response()->json(['message'=>"No invited",'error'=>$validation->messages()],400);
+		}
+		else{
+			$user=User::find($request->input("user_id"));//Get the user info
+			if(!$user){
+				return response()->json(['message'=>"User does not exist",'code'=>'404'],404);
+			}else{
+					$flag = $this->inviteFriendMail($request->input("email"),$request->input("message"),$user->name,$user->lang);
+					if($flag){
+						return response()->json(['message'=>"Email Sent",'code'=>'200'],200);
+					}
+					else{
+						return response()->json(['message'=>"No Sent",'code'=>'422'],422);
+					}
+			}
 		}
 	}
 	public function store(Request $request)

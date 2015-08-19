@@ -24,7 +24,7 @@ class Sponzorship extends Model {
 	 *  One category belongs to an event.
 	 *
 	 */
-	public function event()
+		public function event()
     {
         return $this->belongsTo('App\Models\Event','event_id');
     }
@@ -32,7 +32,7 @@ class Sponzorship extends Model {
 	 *  One category belongs to an event.
 	 *
 	 */
-	public function user()
+		public function user()
     {
         return $this->belongsTo('App\Models\User','sponzor_id');
     }
@@ -40,9 +40,13 @@ class Sponzorship extends Model {
 	 *  One category belongs to an event.
 	 *
 	 */
-	public function perk()
+		public function perk()
     {
         return $this->belongsTo('App\Models\Perk','perk_id');
+    }
+		public function task_sponzor()
+    {
+        return $this->hasMany('App\Models\TaskSponzor');
     }
 
 }

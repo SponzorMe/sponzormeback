@@ -13,10 +13,11 @@
       <directory>./tests/PatchTest.php</directory>
       <!--Then Edit the data via PUT-->
       <directory>./tests/PutTest.php</directory>
-      <!--Then Delete the data via
-      <directory>./tests/DeleteTest.php</directory-->
       <!--Then the others custom tests-->
       <directory>./tests/CustomTest.php</directory>
+      <!--Then Delete the data via-->
+      <directory>./tests/DeleteTest.php</directory>
+
     </testsuite>
   </testsuites>
   <php>

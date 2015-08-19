@@ -28,6 +28,11 @@ class CustomTest extends TestCase {
 		protected $availableLangs = ["en","es","pt"];
 
 		/**
+		* The number of attemps
+		*/
+		protected $attemps = 100;
+
+		/**
 		 * Test insert some users
 		 *
 		 * @return void
@@ -79,7 +84,7 @@ class CustomTest extends TestCase {
 		}
 		public function testActivationLinkOk(){
 			$faker = Faker\Factory::create();
-			for ($i=0; $i < 5; $i++) {
+			for ($i=0; $i < $this->attemps; $i++) {
 				$password=str_random(20);
 				$user=[
 					 "name" => $faker->name,
@@ -97,8 +102,8 @@ class CustomTest extends TestCase {
 		 			 ];
 		 			 $response = $this->call('POST', '/send_activation', $request, array(), array(),array());
 		 			 $code = $response->getStatusCode();
-					 if($code == 201){
-		 					$this->assertEquals(201, $response->getStatusCode());
+					 if($code == 200){
+		 					$this->assertEquals(200, $response->getStatusCode());
 		 				}
 				 }
 			}

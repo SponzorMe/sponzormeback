@@ -141,7 +141,8 @@ class DeleteTest extends TestCase {
 			$faker = Faker\Factory::create();
 			for ($i=0; $i < $this->maxDeletions ; $i++) {
 				$events = Event::all()->lists('id');
-				$response = $this->call('DELETE', '/events/'.$faker->randomElement($events->toArray()), array(), array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
+				$id = $faker->randomElement($events->toArray());
+				$response = $this->call('DELETE', '/events/'.$id, array(), array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
 				$code = $response->getStatusCode();
 				if($code == 200){
 					$this->assertEquals(200, $response->getStatusCode());

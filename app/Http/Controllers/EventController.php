@@ -334,11 +334,15 @@ class EventController extends Controller {
 		else{
 			$perks=$event->perks;
 			$sponzorship=$event->sponzorship;
+			$perkTasks=$event->perk_tasks;
 			if(sizeof($perks)>0){
 				return response()->json(['message'=>"This event has perks, first remove the perks and try again"],409);
 			}
 			elseif(sizeof($sponzorship)>0){
 				return response()->json(['message'=>"This event has sponzorship, first remove the sponzorship and try again"],409);
+			}
+			elseif(sizeof($perkTasks)>0){
+				return response()->json(['message'=>"This event has perkTasks, first remove the perk tasks and try again"],409);
 			}
 			else{
 				$event->delete();

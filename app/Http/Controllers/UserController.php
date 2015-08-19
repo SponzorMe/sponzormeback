@@ -150,6 +150,9 @@ class UserController extends Controller {
 			if($result[0]["status"]=="sent" AND !$result[0]["reject_reason"]){
 				return true;
 			}
+			elseif ($result[0]["status"]=="queued") {
+				return false;
+			}
 			else{
 				return false;
 			}

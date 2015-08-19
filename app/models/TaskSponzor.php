@@ -17,7 +17,7 @@ class TaskSponzor extends Model {
 	 * @var array
 	 */
 	protected $fillable = ['status','task_id','perk_id','sponzor_id','organizer_id','event_id','sponzorship_id','status'];
-	
+
 	protected $hidden = ['created_at', 'updated_at'];
 
 	/**
@@ -44,9 +44,9 @@ class TaskSponzor extends Model {
     {
         return $this->belongsTo('App\Models\PerkTask','task_id');
     }
-    public function sponzor_event()
+    public function Sponzorship()
     {
-        return $this->belongsTo('App\Models\SponzorEvent','sponzor_event_id');
+        return $this->belongsTo('App\Models\Sponzorship','sponzorship_id');
     }
 
 }

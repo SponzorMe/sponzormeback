@@ -13,5 +13,5 @@ return array(
 	//Used in UserController
 	'activation_url' => "http://localhost:9000/#/activation/", //Activation account URL
 	//Used in password controller
-	'reset_password_url' => "http://api.sponzor.me/reset_password_token/" //Reset password URL
+	'reset_password_url' => "http://localhost:9000/#/reset/" //Reset password URL
 );

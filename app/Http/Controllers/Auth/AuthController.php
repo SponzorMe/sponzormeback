@@ -16,7 +16,6 @@ class AuthController extends Controller {
     	$email=$request->input("email");
     	$password=$request->input("password");
         $a=Auth::attempt(['email' => $email, 'password' => $password]);
-        //dd($a);
         if ($a)
 		{
 		    return response()->json([

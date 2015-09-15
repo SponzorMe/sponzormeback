@@ -230,6 +230,10 @@ class PerkTaskController extends Controller {
 		if(!$PerkTask){
 			return response()->json(['message'=>"Not found"],404);
 		}
+		$tasksSponzor=$PerkTask->task_sponzor;
+		if(sizeof($tasksSponzor)>0){
+			return response()->json(['message'=>"This task has tasks_sponzor, first remove the tasks_sponzor and try again"],409);
+		}
 		else{
 			$PerkTask->delete();
 			return response()->json(['message'=>"Deleted"],200);

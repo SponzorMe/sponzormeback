@@ -150,6 +150,9 @@ class UserController extends Controller {
 			if($result[0]["status"]=="sent" AND !$result[0]["reject_reason"]){
 				return true;
 			}
+			elseif ($result[0]["status"]=="queued") {
+				return false;
+			}
 			else{
 				return false;
 			}
@@ -539,7 +542,7 @@ class UserController extends Controller {
 			if(!empty($image)){
 				$validator = Validator::make(
 				    ['image' => $image],
-				    ['image' => ['required', 'max:5']]
+				    ['image' => ['required', 'max:255']]
 				);
 				if(!$validator->fails()){
 					$flag=1;

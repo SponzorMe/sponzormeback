@@ -79,7 +79,7 @@ return [
 	|
 	*/
 
-	'key' => env('APP_KEY', 'SomeRandomString'),
+	'key' => env('APP_KEY', ''),
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -147,7 +147,6 @@ return [
 		/*
 		 * Custom service providers...
 		 */
-		'Intervention\Image\ImageServiceProvider',
 		'Orangehill\Iseed\IseedServiceProvider',
 		'Barryvdh\Cors\CorsServiceProvider',
 		'Weblee\Mandrill\MandrillServiceProvider',

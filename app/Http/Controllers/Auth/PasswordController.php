@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Validator;
 use Weblee\Mandrill\Mail;
 use App\Models\User;
 use App\Models\PasswordResets;
-
 class PasswordController extends Controller {
 
 	/*
@@ -17,7 +16,7 @@ class PasswordController extends Controller {
 	| Password Reset Controller
 	|--------------------------------------------------------------------------
 	|
-	| This controller is responsible for provide a way to 
+	| This controller is responsible for provide a way to
 	| 1. Get an user by e-mail.
 	| 2. Send a reset link with a token
 	| 3. Validate a reset token and if true go to step 4
@@ -31,7 +30,7 @@ class PasswordController extends Controller {
     	 ]);
 		if($validation->fails())
 		{
-			return response()->json(['message'=>"User Not Found",'error'=>$validation->messages()],400);	
+			return response()->json(['message'=>"User Not Found",'error'=>$validation->messages()],400);
 		}
 		else
 		{
@@ -65,26 +64,26 @@ class PasswordController extends Controller {
     	 ]);
 		if($validation->fails())
 		{
-			return response()->json(['message'=>"Not changed",'error'=>$validation->messages()],400);	
+			return response()->json(['message'=>"Not changed",'error'=>$validation->messages()],400);
 		}
 		else
 		{
-			$passwordReset=PasswordResets::where("email","=",$request->input("email"))->first();
-			if($passwordReset && $passwordReset->token==$token){
-				$user=User::where("email","=",$request->input("email"))->first();
-				if(!$user){//If the user does not exist.
-					return response()->json(['message'=>"User does not exist",'code'=>'404'],404);
-				}
-				else{
-					$user->password=bcrypt($request->input("password"));
-					$user->save();
-					PasswordResets::where("email","=",$request->input("email"))->where("token","=",$token)->delete();
-					return response()->json(['message'=>"Password Reseted",'code'=>'200'],200);
-				}
-			}
-			else{
-				return response()->json(['message'=>"The token does not match",'code'=>'200'],200);
-			}
+					$passwordReset=PasswordResets::where("email","=",$request->input("email"))->orderBy('created_at', 'desc')->first();
+					if($passwordReset->token==$token){
+							$user=User::where("email","=",$request->input("email"))->first();
+							if(!$user){//If the user does not exist.
+								return response()->json(['message'=>"User does not exist",'code'=>'404'],404);
+							}
+							else{
+								$user->password=bcrypt($request->input("password"));
+								$user->save();
+								PasswordResets::where("email","=",$request->input("email"))->where("token","=",$token)->delete();
+								return response()->json(['message'=>"Password Reseted",'code'=>'200'],200);
+							}
+					}
+					else{
+						return response()->json(['message'=>"The token does not match",'code'=>$passwordReset],400);
+					}
 		}
 	}
 	/**
@@ -141,6 +140,6 @@ class PasswordController extends Controller {
 		}
 	}
 
-	
+
 
 }

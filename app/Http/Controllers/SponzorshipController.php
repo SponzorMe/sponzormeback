@@ -193,9 +193,14 @@ class SponzorshipController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
-			$Sponzorship->delete();
-			return response()->json(['message'=>"Deleted"],200);
+			$tasksSponzor=$Sponzorship->task_sponzor;
+			if(sizeof($tasksSponzor)>0){
+				return response()->json(['message'=>"This Sponzorship has tasks_sponzor, first remove the tasks_sponzor and try again"],409);
+			}
+			else{
+				$Sponzorship->delete();
+				return response()->json(['message'=>"Deleted"],200);
+			}
 		}
 	}
-
 }

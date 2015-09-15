@@ -12,9 +12,9 @@ class CategoriesTableSeeder extends Seeder {
 	public function run()
 	{
 		\DB::table('categories')->delete();
-        
+
 		\DB::table('categories')->insert(array (
-			0 => 
+			0 =>
 			array (
 				'id' => 1,
 				'title' => 'Outdoor',
@@ -23,7 +23,7 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '2014-08-20 10:11:45',
 				'lang' => 'en',
 			),
-			1 => 
+			1 =>
 			array (
 				'id' => 2,
 				'title' => 'Art & Culture',
@@ -32,7 +32,7 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '2014-08-20 10:11:45',
 				'lang' => 'en',
 			),
-			2 => 
+			2 =>
 			array (
 				'id' => 3,
 				'title' => 'Dancing',
@@ -41,7 +41,7 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '2014-08-20 10:11:45',
 				'lang' => 'en',
 			),
-			3 => 
+			3 =>
 			array (
 				'id' => 4,
 				'title' => 'Wellness',
@@ -50,7 +50,7 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '2014-08-20 10:11:45',
 				'lang' => 'en',
 			),
-			4 => 
+			4 =>
 			array (
 				'id' => 5,
 				'title' => 'Career & Business',
@@ -59,7 +59,7 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
-			5 => 
+			5 =>
 			array (
 				'id' => 6,
 				'title' => 'Eat & Foods',
@@ -68,7 +68,7 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
-			6 => 
+			6 =>
 			array (
 				'id' => 7,
 				'title' => 'Belief',
@@ -77,7 +77,7 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
-			7 => 
+			7 =>
 			array (
 				'id' => 8,
 				'title' => 'Sports & Fitness',
@@ -86,7 +86,7 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
-			8 => 
+			8 =>
 			array (
 				'id' => 9,
 				'title' => 'Education',
@@ -95,7 +95,7 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
-			9 => 
+			9 =>
 			array (
 				'id' => 10,
 				'title' => 'Photography',
@@ -104,7 +104,7 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
-			10 => 
+			10 =>
 			array (
 				'id' => 11,
 				'title' => 'Languages',
@@ -113,7 +113,7 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
-			11 => 
+			11 =>
 			array (
 				'id' => 12,
 				'title' => 'Books',
@@ -122,7 +122,7 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
-			12 => 
+			12 =>
 			array (
 				'id' => 13,
 				'title' => 'Music',
@@ -131,7 +131,7 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
-			13 => 
+			13 =>
 			array (
 				'id' => 14,
 				'title' => 'Technology',
@@ -139,258 +139,6 @@ class CategoriesTableSeeder extends Seeder {
 				'created_at' => '0000-00-00 00:00:00',
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
-			),
-			14 => 
-			array (
-				'id' => 15,
-				'title' => 'Exteriores',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'es',
-			),
-			15 => 
-			array (
-				'id' => 16,
-				'title' => 'Arte y Cultura',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'es',
-			),
-			16 => 
-			array (
-				'id' => 17,
-				'title' => 'Baile',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'es',
-			),
-			17 => 
-			array (
-				'id' => 18,
-				'title' => 'Bienestar',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'es',
-			),
-			18 => 
-			array (
-				'id' => 19,
-				'title' => 'Carreras y Negocios',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'es',
-			),
-			19 => 
-			array (
-				'id' => 20,
-				'title' => 'Comida y Bebidas',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'es',
-			),
-			20 => 
-			array (
-				'id' => 21,
-				'title' => 'Creencias',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'es',
-			),
-			21 => 
-			array (
-				'id' => 22,
-				'title' => 'Deportes y Fisico',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'es',
-			),
-			22 => 
-			array (
-				'id' => 23,
-				'title' => 'Educacion',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'es',
-			),
-			23 => 
-			array (
-				'id' => 24,
-				'title' => 'Fotografia',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'es',
-			),
-			24 => 
-			array (
-				'id' => 25,
-				'title' => 'Lenguajes',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'es',
-			),
-			25 => 
-			array (
-				'id' => 26,
-				'title' => 'Libros',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'es',
-			),
-			26 => 
-			array (
-				'id' => 27,
-				'title' => 'Musica',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'es',
-			),
-			27 => 
-			array (
-				'id' => 28,
-				'title' => 'Tecnologia',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'es',
-			),
-			28 => 
-			array (
-				'id' => 29,
-				'title' => ' Outdoor',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'pt',
-			),
-			29 => 
-			array (
-				'id' => 30,
-				'title' => ' Arte e Cultura',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'pt',
-			),
-			30 => 
-			array (
-				'id' => 31,
-				'title' => ' Dança',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'pt',
-			),
-			31 => 
-			array (
-				'id' => 32,
-				'title' => ' Bem estar',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'pt',
-			),
-			32 => 
-			array (
-				'id' => 33,
-				'title' => ' Carreira e Negócios',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'pt',
-			),
-			33 => 
-			array (
-				'id' => 34,
-				'title' => ' Comer e alimentos',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'pt',
-			),
-			34 => 
-			array (
-				'id' => 35,
-				'title' => ' Crenças',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'pt',
-			),
-			35 => 
-			array (
-				'id' => 36,
-				'title' => ' Esportes e Fitness',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'pt',
-			),
-			36 => 
-			array (
-				'id' => 37,
-				'title' => ' Educação',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'pt',
-			),
-			37 => 
-			array (
-				'id' => 38,
-				'title' => ' Fotografia',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'pt',
-			),
-			38 => 
-			array (
-				'id' => 39,
-				'title' => ' Línguas',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'pt',
-			),
-			39 => 
-			array (
-				'id' => 40,
-				'title' => ' Livros',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'pt',
-			),
-			40 => 
-			array (
-				'id' => 41,
-				'title' => ' Músicas',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'pt',
-			),
-			41 => 
-			array (
-				'id' => 42,
-				'title' => ' Tecnologia',
-				'body' => 'All About the Bussines!',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
-				'lang' => 'pt',
 			),
 		));
 	}

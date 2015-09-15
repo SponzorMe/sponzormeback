@@ -82,7 +82,7 @@ class PasswordController extends Controller {
 							}
 					}
 					else{
-						return response()->json(['message'=>"The token does not match",'code'=>$passwordReset],200);
+						return response()->json(['message'=>"The token does not match",'code'=>$passwordReset],400);
 					}
 		}
 	}

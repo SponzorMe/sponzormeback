@@ -542,7 +542,7 @@ class UserController extends Controller {
 			if(!empty($image)){
 				$validator = Validator::make(
 				    ['image' => $image],
-				    ['image' => ['required', 'max:5']]
+				    ['image' => ['required', 'max:255']]
 				);
 				if(!$validator->fails()){
 					$flag=1;

@@ -10,6 +10,7 @@ $i = 0;
 
 /* Server: localhost [1] */
 $i++;
+$i++;
 $cfg['Servers'][$i]['verbose'] = 'localhost';
 $cfg['Servers'][$i]['host'] = 'localhost';
 $cfg['Servers'][$i]['port'] = '3306';

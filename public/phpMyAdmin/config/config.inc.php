@@ -19,6 +19,17 @@ $cfg['Servers'][$i]['auth_type'] = 'cookie';
 $cfg['Servers'][$i]['user'] = 'root';
 $cfg['Servers'][$i]['password'] = 'secret';
 
+/* Server: localhost [1] */
+$i++;
+$cfg['Servers'][$i]['verbose'] = '173.194.82.208';
+$cfg['Servers'][$i]['host'] = '173.194.82.208';
+$cfg['Servers'][$i]['port'] = '3306';
+$cfg['Servers'][$i]['socket'] = '';
+$cfg['Servers'][$i]['connect_type'] = 'tcp';
+$cfg['Servers'][$i]['auth_type'] = 'cookie';
+$cfg['Servers'][$i]['user'] = 'root';
+$cfg['Servers'][$i]['password'] = 'api';
+
 /* End of servers configuration */
 
 $cfg['blowfish_secret'] = '55edf879d049a4.63651239';

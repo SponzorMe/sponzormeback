@@ -50,13 +50,15 @@ class EventController extends Controller {
 			$organizer=$event->organizer()->get();
 			$event->perks;
 			$event->sponzorship;
+			$event->perk_tasks;
+			$event->sponzor_tasks;
 			return response()->json(
 				["data"=>
 					[
 						"event"=>$event->toArray(),
 						"category"=>$category->toArray(),
 						"type"=>$type->toArray(),
-						"organizer"=>$type->toArray(),
+						"organizer"=>$organizer->toArray(),
 					]
 				], 200
 			);

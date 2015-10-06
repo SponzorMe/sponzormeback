@@ -26,12 +26,28 @@ class SponzorshipController extends Controller {
 		);
 	}
 	/**
-	* Display a list of sponzorships based of organizer id
+	* Display a list of sponzorships based in organizer id
 	*/
 	public function showByOrganizer($organizerId){
 			$sponzorships = Sponzorship::where('organizer_id', $organizerId)
 			->join('events', 'event_id', '=', 'events.id')
 			->join('users', 'sponzor_id', '=', 'users.id')
+			->join('perks', 'perk_id', '=', 'perks.id')
+			->select('users.name','users.email','events.title', 'perks.*', 'sponzorships.*')
+			->get();
+			return response()->json([
+				"success" => true,
+				"SponzorsEvents"=>$sponzorships->toArray()
+				], 200
+			);
+	}
+	/**
+	* Display a list of sponzorships based in sponzor id
+	*/
+	public function showBySponzor($sponzorId){
+			$sponzorships = Sponzorship::where('sponzor_id', $sponzorId)
+			->join('events', 'event_id', '=', 'events.id')
+			->join('users', 'organizer_id', '=', 'users.id')
 			->join('perks', 'perk_id', '=', 'perks.id')
 			->select('users.name','users.email','events.title', 'perks.*', 'sponzorships.*')
 			->get();

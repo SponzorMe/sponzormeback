@@ -25,6 +25,18 @@ class TaskSponzorController extends Controller {
 			], 200
 		);
 	}
+	/** Get the task sponzor by sponzorship join with dependence tasks**/
+	public function showBySponzorship($sponzorshipId){
+		$tasks = TaskSponzor::where('sponzorship_id', $sponzorshipId)
+		->join('perk_tasks', 'task_id', '=', 'perk_tasks.id')
+		->select('perk_tasks.title','perk_tasks.type', 'perk_tasks.description', 'task_sponzors.*')
+		->get();
+		return response()->json([
+			"success" => true,
+			"tasks"=>$tasks->toArray()
+			], 200
+		);
+	}
 	/**
 	 * Display the specified resource.
 	 *
@@ -100,7 +112,7 @@ class TaskSponzorController extends Controller {
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
-			if(!empty($status)){
+			if($status>=0){
 				$validator = Validator::make(
 				    ['status' => $status],
 				    ['status' => ['required', 'max:5']]

@@ -22,6 +22,7 @@ Route::resource('sponzorships','SponzorshipController',['except'=>['edit','creat
 Route::resource('task_sponzor','TaskSponzorController',['except'=>['edit','create']]);
 Route::resource('user_interests','UserInterestController',['except'=>['edit','create']]);
 Route::resource('user_categories','UserCategoryController',['except'=>['edit','create']]);
+Route::get('perk_tasks_sponzorship/{sponzorshipId}','TaskSponzorController@showBySponzorship');
 Route::get('sponzorships_organizer/{organizerId}','SponzorshipController@showByOrganizer');
 Route::get('sponzorships_sponzor/{sponzorId}','SponzorshipController@showBySponzor');
 Route::post('auth','Auth\AuthController@authenticate');

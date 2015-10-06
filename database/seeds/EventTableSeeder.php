@@ -12,14 +12,14 @@ class EventTableSeeder extends Seeder {
 	public function run()
 	{
 		\DB::table('events')->delete();
-        
+
 		\DB::table('events')->insert(array (
-			0 => 
+			0 =>
 			array (
-				'title' => 1,
-				'location' => 'Charity',
+				'title' => "My Fist Event",
+				'location' => 'Santiago de Chile',
 				'ends' => '2014-09-18 19:00:00',
-				'starts' => '0000-00-00 00:00:00',				
+				'starts' => '0000-00-00 00:00:00',
 				'location_reference' => 'referenceafsddf',
 				'organizer' => '3',//Ojo aca colocar el organizer de sponzorme
 				'image' => 'event_dummy.png',//Debe estar en public images/events
@@ -31,12 +31,12 @@ class EventTableSeeder extends Seeder {
 				'created_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
-			1 => 
+			1 =>
 			array (
-				'title' => 1,
-				'location' => 'Charity',
+				'title' => "My Second Event",
+				'location' => 'Medellin Colombia',
 				'ends' => '2014-09-18 19:00:00',
-				'starts' => '0000-00-00 00:00:00',				
+				'starts' => '0000-00-00 00:00:00',
 				'location_reference' => 'referenceafsddf',
 				'organizer' => '3',//Ojo aca colocar el organizer de sponzorme
 				'image' => 'event_dummy.png',//Debe estar en public images/events

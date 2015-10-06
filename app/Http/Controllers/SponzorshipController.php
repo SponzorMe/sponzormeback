@@ -73,6 +73,7 @@ class SponzorshipController extends Controller {
 			);
 		}
 		else {
+			$SponzorEvent->task_sponzor;
 			return response()->json(
 				["data"=>
 					[
@@ -130,7 +131,7 @@ class SponzorshipController extends Controller {
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
-			if(!empty($status)){
+			if($status>=0){
 				$validator = Validator::make(
 				    ['status' => $status],
 				    ['status' => ['required', 'max:4']]

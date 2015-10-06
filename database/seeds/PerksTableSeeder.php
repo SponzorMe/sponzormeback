@@ -12,14 +12,22 @@ class PerksTableSeeder extends Seeder {
 	public function run()
 	{
 		\DB::table('perks')->delete();
-        
+
 		\DB::table('perks')->insert(array (
-			0 => 
+			0 =>
 			array (
-				'kind' => 1,
+				'kind' => "Gold",
 				'id_event' => 1,
 				'usd' => '23',
-				'total_quantity' => '4',				
+				'total_quantity' => '4',
+				'reserved_quantity' => '3'
+			),
+			1 =>
+			array (
+				'kind' => "Plate",
+				'id_event' => 1,
+				'usd' => '23',
+				'total_quantity' => '4',
 				'reserved_quantity' => '3'
 			),
 		));

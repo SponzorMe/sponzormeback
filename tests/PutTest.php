@@ -252,6 +252,7 @@ class PutTest extends TestCase {
 				  $sponzorships 	= Sponzorship::all()->lists('id');
 	         $sponzorship=[
 	            'status' 	=> $faker->numberBetween($min = 0, $max = 4),
+							'organizer_id' 	=> $faker->randomElement($users->toArray()),
 							'sponzor_id' 	=> $faker->randomElement($users->toArray()),
 							'perk_id' 	=> $faker->randomElement($perks->toArray()),
 							'event_id' 	=> $faker->randomElement($events->toArray())

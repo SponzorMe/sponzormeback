@@ -49,6 +49,7 @@ class UserController extends Controller {
 			$user->interests;
 			$user->perk_tasks;
 			$user->sponzorships;
+			$user->sponzorships_like_organizer;
 			$user->tasks_sponzor_like_organizer;
 			$user->tasks_sponzor_like_sponzor;
 			return response()->json(
@@ -461,10 +462,10 @@ class UserController extends Controller {
 					$warnings[]=$validator->messages();
 				}
 			}
-			if(!empty($sex)){
+			if($sex==0 || $sex==1){
 				$validator = Validator::make(
 				    ['sex' => $sex],
-				    ['sex' => ['required', 'max:255']]
+				    ['sex' => ['max:255']]
 				);
 				if(!$validator->fails()){
 					$flag=1;
@@ -678,7 +679,7 @@ class UserController extends Controller {
 			'reset_password_code'		=>'required|max:255',
 			'company'		=>'required|max:255',
 			'sex'		=>'required|max:255',
-			'age'		=>'required|max:255',
+			'age'		=>'max:255',
 			'custom_status'		=>'required|max:255',
 			'login_code'		=>'required|max:255',
 			'login_valid_until'		=>'required|max:255',

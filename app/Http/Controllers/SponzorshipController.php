@@ -26,6 +26,22 @@ class SponzorshipController extends Controller {
 		);
 	}
 	/**
+	* Display a list of sponzorships based of organizer id
+	*/
+	public function showByOrganizer($organizerId){
+			$sponzorships = Sponzorship::where('organizer_id', $organizerId)
+			->join('events', 'event_id', '=', 'events.id')
+			->join('users', 'sponzor_id', '=', 'users.id')
+			->join('perks', 'perk_id', '=', 'perks.id')
+			->select('users.name','users.email','events.title', 'perks.*', 'sponzorships.*')
+			->get();
+			return response()->json([
+				"success" => true,
+				"SponzorsEvents"=>$sponzorships->toArray()
+				], 200
+			);
+	}
+	/**
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id
@@ -46,7 +62,8 @@ class SponzorshipController extends Controller {
 					[
 						"SponzorEvent"=>$SponzorEvent->toArray(),
 						"Event"=>$SponzorEvent->event,
-						"Sponzor"=>$SponzorEvent->user,
+						"Sponzor"=>$SponzorEvent->sponzor,
+						"Organizer"=>$SponzorEvent->organizer,
 						"Perk"=>$SponzorEvent->perk,
 					]
 				], 200
@@ -63,6 +80,7 @@ class SponzorshipController extends Controller {
 		$validation = Validator::make($request->all(), [
 			'status'=>'required|max:4',
 			'sponzor_id'=>'required|max:11|exists:users,id',
+			'organizer_id'=>'required|max:11|exists:users,id',
 			'perk_id'=>'required|max:11|exists:perks,id',
 			'event_id'=>'required|max:11|exists:events,id',
     	 ]);
@@ -121,6 +139,19 @@ class SponzorshipController extends Controller {
 					$warnings[]=$validator->messages();
 				}
 			}
+			if(!empty($organizer_id)){
+				$validator = Validator::make(
+				    ['organizer_id' => $organizer_id],
+				    ['organizer_id' => ['required', 'max:4','exists:users,id']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$Sponzorship->sponzor_id=$sponzor_id;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}
+			}
 			if(!empty($perk_id)){
 				$validator = Validator::make(
 				    ['perk_id' => $perk_id],
@@ -159,6 +190,7 @@ class SponzorshipController extends Controller {
 			$validation = Validator::make($request->all(), [
         	'status'=>'required|max:4',
 			'sponzor_id'=>'required|max:11|exists:users,id',
+			'organizer_id'=>'required|max:11|exists:users,id',
 			'perk_id'=>'required|max:11|exists:perks,id',
 			'event_id'=>'required|max:11|exists:events,id',
 	    	 ]);

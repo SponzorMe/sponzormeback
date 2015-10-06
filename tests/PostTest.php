@@ -241,6 +241,7 @@ class PostTest extends TestCase {
 	         $sponzorship=[
 	            'status' 	=> $faker->numberBetween($min = 0, $max = 4),
 							'sponzor_id' 	=> $faker->randomElement($users->toArray()),
+							'organizer_id' 	=> $faker->randomElement($users->toArray()),
 							'perk_id' 	=> $faker->randomElement($perks->toArray()),
 							'event_id' 	=> $faker->randomElement($events->toArray())
 	          ];

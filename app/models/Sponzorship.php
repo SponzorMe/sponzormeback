@@ -16,7 +16,7 @@ class Sponzorship extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['status','sponzor_id','perk_id','event_id'];
+	protected $fillable = ['status','sponzor_id','organizer_id','perk_id','event_id'];
 
 	protected $hidden = ['created_at', 'updated_at'];
 
@@ -32,9 +32,13 @@ class Sponzorship extends Model {
 	 *  One category belongs to an event.
 	 *
 	 */
-		public function user()
+		public function sponzor()
     {
         return $this->belongsTo('App\Models\User','sponzor_id');
+    }
+		public function organizer()
+    {
+        return $this->belongsTo('App\Models\User','organizer_id');
     }
     /**
 	 *  One category belongs to an event.

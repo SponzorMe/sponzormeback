@@ -99,6 +99,7 @@ class SponzorshipController extends Controller {
 			'organizer_id'=>'required|max:11|exists:users,id',
 			'perk_id'=>'required|max:11|exists:perks,id',
 			'event_id'=>'required|max:11|exists:events,id',
+			'cause'=>'required|max:255',
     	 ]);
 		if($validation->fails())
 		{
@@ -181,6 +182,19 @@ class SponzorshipController extends Controller {
 					$warnings[]=$validator->messages();
 				}
 			}
+			if(!empty($cause)){
+				$validator = Validator::make(
+				    ['cause' => $cause],
+				    ['cause' => ['required', 'max:255']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$Sponzorship->$cause=$cause;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}
+			}
 			if(!empty($event_id)){
 				$validator = Validator::make(
 				    ['event_id' => $event_id],
@@ -205,6 +219,7 @@ class SponzorshipController extends Controller {
 		elseif($request->method()==="PUT"){//PUT all fields are required
 			$validation = Validator::make($request->all(), [
         	'status'=>'required|max:4',
+					'cause'=>'required|max:255',
 			'sponzor_id'=>'required|max:11|exists:users,id',
 			'organizer_id'=>'required|max:11|exists:users,id',
 			'perk_id'=>'required|max:11|exists:perks,id',

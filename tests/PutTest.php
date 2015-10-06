@@ -255,7 +255,8 @@ class PutTest extends TestCase {
 							'organizer_id' 	=> $faker->randomElement($users->toArray()),
 							'sponzor_id' 	=> $faker->randomElement($users->toArray()),
 							'perk_id' 	=> $faker->randomElement($perks->toArray()),
-							'event_id' 	=> $faker->randomElement($events->toArray())
+							'event_id' 	=> $faker->randomElement($events->toArray()),
+							'cause' => $faker->realText($faker->numberBetween(10,20))
 	          ];
 	    	  $response = $this->call('PUT', '/sponzorships/'.$faker->randomElement($sponzorships->toArray()), $sponzorship, array(), array(),array("HTTP_AUTHORIZATION"=>"Basic $this->loginToken"));
 					$code = $response->getStatusCode();

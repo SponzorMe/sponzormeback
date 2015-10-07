@@ -462,7 +462,7 @@ class UserController extends Controller {
 					$warnings[]=$validator->messages();
 				}
 			}
-			if($sex==0 || $sex==1){
+			if(isset($sex) && $sex==0 && $sex==1){
 				$validator = Validator::make(
 				    ['sex' => $sex],
 				    ['sex' => ['max:255']]

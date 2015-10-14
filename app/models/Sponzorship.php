@@ -16,7 +16,7 @@ class Sponzorship extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['status','sponzor_id','organizer_id','perk_id','event_id'];
+	protected $fillable = ['status','sponzor_id','organizer_id','perk_id','event_id','cause'];
 
 	protected $hidden = ['created_at', 'updated_at'];
 

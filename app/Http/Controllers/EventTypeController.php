@@ -50,7 +50,11 @@ class EventTypeController extends Controller {
 					]
 				], 200
 			);
+<<<<<<< HEAD
 		}		
+=======
+		}
+>>>>>>> local
 	}
 	public function store(Request $request)
 	{
@@ -61,13 +65,21 @@ class EventTypeController extends Controller {
     	 ]);
 		if($validation->fails())
 		{
+<<<<<<< HEAD
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
+=======
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
+>>>>>>> local
 		}
 		else
 		{
 			$eventType=EventType::create($request->all());
 			return response()->json(['message'=>"Inserted",'eventype'=>$eventType],201);
+<<<<<<< HEAD
 		}			
+=======
+		}
+>>>>>>> local
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -82,6 +94,7 @@ class EventTypeController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
+<<<<<<< HEAD
 			//Get all values
 			$name			= $request->input("name");
 			$description	= $request->input("description");
@@ -91,6 +104,15 @@ class EventTypeController extends Controller {
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
 			if(!empty($name)){				
+=======
+			$inputs = $request->all(); //Get the set of inputs
+			extract($inputs); //Creamos las variables desde el array de inputs
+		}
+		if($request->method()==="PATCH"){//PATCH At least one field is required
+			$warnings=array();
+			$flag=0;//If 0 persist nothing was updated.
+			if(!empty($name)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['name' => $name],
 				    ['name' => ['required', 'max:255','unique:event_types,name,'.$id]]
@@ -101,13 +123,21 @@ class EventTypeController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}		
+=======
+				}
+>>>>>>> local
 			}
 			if(!empty($description)){
 				$EventType->description=$description;
 				$flag=1;
 			}
+<<<<<<< HEAD
 			if(!empty($lang)){				
+=======
+			if(!empty($lang)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['lang' => $lang],
 				    ['lang' => ['required', 'max:5']]
@@ -118,7 +148,11 @@ class EventTypeController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
+=======
+				}
+>>>>>>> local
 			}
 			if($flag){
 				$EventType->save();
@@ -136,7 +170,11 @@ class EventTypeController extends Controller {
 	    	 ]);
 			if($validation->fails())
 			{
+<<<<<<< HEAD
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
+=======
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
+>>>>>>> local
 			}
 			else
 			{
@@ -166,12 +204,22 @@ class EventTypeController extends Controller {
 		else{
 			$events=$EventType->events;
 			if(sizeof($events)>0){
+<<<<<<< HEAD
 				return response()->json(['message'=>"This EventType has events, first remove the events and try again"],409);			
+=======
+				return response()->json(['message'=>"This EventType has events, first remove the events and try again"],409);
+>>>>>>> local
 			}
 			else{
 				$EventType->delete();
 				return response()->json(['message'=>"Deleted"],200);
 			}
+<<<<<<< HEAD
 		}			
 	}
 }
+=======
+		}
+	}
+}
+>>>>>>> local

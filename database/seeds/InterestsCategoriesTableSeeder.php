@@ -12,9 +12,15 @@ class InterestsCategoriesTableSeeder extends Seeder {
 	public function run()
 	{
 		\DB::table('interests_categories')->delete();
+<<<<<<< HEAD
         
 		\DB::table('interests_categories')->insert(array (
 			1 => 
+=======
+
+		\DB::table('interests_categories')->insert(array (
+			1 =>
+>>>>>>> local
 			array (
 				'id_interest' => 1,
 				'name' => 'Outdoors',
@@ -24,7 +30,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			2 => 
+=======
+			2 =>
+>>>>>>> local
 			array (
 				'id_interest' => 2,
 				'name' => 'Hiking',
@@ -34,7 +44,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			3 => 
+=======
+			3 =>
+>>>>>>> local
 			array (
 				'id_interest' => 3,
 				'name' => 'Sailing',
@@ -44,7 +58,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			4 => 
+=======
+			4 =>
+>>>>>>> local
 			array (
 				'id_interest' => 4,
 				'name' => 'Cruises',
@@ -54,7 +72,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			5 => 
+=======
+			5 =>
+>>>>>>> local
 			array (
 				'id_interest' => 5,
 				'name' => 'Scuba Diving',
@@ -64,7 +86,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			6 => 
+=======
+			6 =>
+>>>>>>> local
 			array (
 				'id_interest' => 6,
 				'name' => 'Trail Running',
@@ -74,7 +100,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			7 => 
+=======
+			7 =>
+>>>>>>> local
 			array (
 				'id_interest' => 7,
 				'name' => 'Sport Bikes',
@@ -84,7 +114,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			8 => 
+=======
+			8 =>
+>>>>>>> local
 			array (
 				'id_interest' => 8,
 				'name' => 'Aviation',
@@ -94,7 +128,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			9 => 
+=======
+			9 =>
+>>>>>>> local
 			array (
 				'id_interest' => 9,
 				'name' => 'Adventure',
@@ -104,7 +142,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			10 => 
+=======
+			10 =>
+>>>>>>> local
 			array (
 				'id_interest' => 10,
 				'name' => 'Camping',
@@ -114,7 +156,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			11 => 
+=======
+			11 =>
+>>>>>>> local
 			array (
 				'id_interest' => 11,
 				'name' => 'Outdoor Adventures',
@@ -124,7 +170,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			12 => 
+=======
+			12 =>
+>>>>>>> local
 			array (
 				'id_interest' => 12,
 				'name' => 'Weekend Adventures',
@@ -134,7 +184,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			13 => 
+=======
+			13 =>
+>>>>>>> local
 			array (
 				'id_interest' => 13,
 				'name' => 'Live Music',
@@ -144,7 +198,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			14 => 
+=======
+			14 =>
+>>>>>>> local
 			array (
 				'id_interest' => 14,
 				'name' => 'Performing Arts',
@@ -154,7 +212,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			15 => 
+=======
+			15 =>
+>>>>>>> local
 			array (
 				'id_interest' => 15,
 				'name' => 'Collaboration',
@@ -164,7 +226,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			16 => 
+=======
+			16 =>
+>>>>>>> local
 			array (
 				'id_interest' => 16,
 				'name' => 'Artists',
@@ -174,7 +240,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			17 => 
+=======
+			17 =>
+>>>>>>> local
 			array (
 				'id_interest' => 17,
 				'name' => 'Acting',
@@ -184,7 +254,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			18 => 
+=======
+			18 =>
+>>>>>>> local
 			array (
 				'id_interest' => 18,
 				'name' => 'Theater',
@@ -194,7 +268,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			19 => 
+=======
+			19 =>
+>>>>>>> local
 			array (
 				'id_interest' => 19,
 				'name' => 'Creativity',
@@ -204,7 +282,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			20 => 
+=======
+			20 =>
+>>>>>>> local
 			array (
 				'id_interest' => 20,
 				'name' => 'Painting',
@@ -214,7 +296,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			21 => 
+=======
+			21 =>
+>>>>>>> local
 			array (
 				'id_interest' => 21,
 				'name' => 'Creative Circle',
@@ -224,7 +310,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			22 => 
+=======
+			22 =>
+>>>>>>> local
 			array (
 				'id_interest' => 22,
 				'name' => 'Arts & Entertainment',
@@ -234,7 +324,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			23 => 
+=======
+			23 =>
+>>>>>>> local
 			array (
 				'id_interest' => 23,
 				'name' => 'Graphic Design',
@@ -244,7 +338,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			24 => 
+=======
+			24 =>
+>>>>>>> local
 			array (
 				'id_interest' => 24,
 				'name' => 'Drawing',
@@ -254,7 +352,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			25 => 
+=======
+			25 =>
+>>>>>>> local
 			array (
 				'id_interest' => 25,
 				'name' => 'Ballroom Dancing',
@@ -264,7 +366,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			26 => 
+=======
+			26 =>
+>>>>>>> local
 			array (
 				'id_interest' => 26,
 				'name' => 'Dance Lessons',
@@ -274,7 +380,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			27 => 
+=======
+			27 =>
+>>>>>>> local
 			array (
 				'id_interest' => 27,
 				'name' => 'Belly Dance Lessons',
@@ -284,7 +394,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			28 => 
+=======
+			28 =>
+>>>>>>> local
 			array (
 				'id_interest' => 28,
 				'name' => 'Dancing',
@@ -294,7 +408,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			29 => 
+=======
+			29 =>
+>>>>>>> local
 			array (
 				'id_interest' => 29,
 				'name' => 'Social Dancing',
@@ -304,7 +422,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			30 => 
+=======
+			30 =>
+>>>>>>> local
 			array (
 				'id_interest' => 30,
 				'name' => 'Salsa',
@@ -314,7 +436,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			31 => 
+=======
+			31 =>
+>>>>>>> local
 			array (
 				'id_interest' => 31,
 				'name' => 'Latin Dance',
@@ -324,7 +450,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			32 => 
+=======
+			32 =>
+>>>>>>> local
 			array (
 				'id_interest' => 32,
 				'name' => 'Dance and Movement',
@@ -334,7 +464,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			33 => 
+=======
+			33 =>
+>>>>>>> local
 			array (
 				'id_interest' => 33,
 				'name' => 'Swing Dancing',
@@ -344,7 +478,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			34 => 
+=======
+			34 =>
+>>>>>>> local
 			array (
 				'id_interest' => 34,
 				'name' => 'Salsa Dance Lessons',
@@ -354,7 +492,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			35 => 
+=======
+			35 =>
+>>>>>>> local
 			array (
 				'id_interest' => 35,
 				'name' => 'Bachata',
@@ -364,7 +506,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			36 => 
+=======
+			36 =>
+>>>>>>> local
 			array (
 				'id_interest' => 36,
 				'name' => 'Tango',
@@ -374,7 +520,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			37 => 
+=======
+			37 =>
+>>>>>>> local
 			array (
 				'id_interest' => 37,
 				'name' => 'PTSD',
@@ -384,7 +534,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			38 => 
+=======
+			38 =>
+>>>>>>> local
 			array (
 				'id_interest' => 38,
 				'name' => 'Healthy Living',
@@ -394,7 +548,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			39 => 
+=======
+			39 =>
+>>>>>>> local
 			array (
 				'id_interest' => 39,
 				'name' => 'Intimacy',
@@ -404,7 +562,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			40 => 
+=======
+			40 =>
+>>>>>>> local
 			array (
 				'id_interest' => 40,
 				'name' => 'Meditation',
@@ -414,7 +576,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			41 => 
+=======
+			41 =>
+>>>>>>> local
 			array (
 				'id_interest' => 41,
 				'name' => 'Self-Improvement',
@@ -424,7 +590,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			42 => 
+=======
+			42 =>
+>>>>>>> local
 			array (
 				'id_interest' => 42,
 				'name' => 'Cancer Survivors',
@@ -434,7 +604,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			43 => 
+=======
+			43 =>
+>>>>>>> local
 			array (
 				'id_interest' => 43,
 				'name' => 'Medical Marijuana',
@@ -444,7 +618,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			44 => 
+=======
+			44 =>
+>>>>>>> local
 			array (
 				'id_interest' => 44,
 				'name' => 'Healthy Family',
@@ -454,7 +632,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			45 => 
+=======
+			45 =>
+>>>>>>> local
 			array (
 				'id_interest' => 45,
 				'name' => 'Special Needs Families',
@@ -464,7 +646,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			46 => 
+=======
+			46 =>
+>>>>>>> local
 			array (
 				'id_interest' => 46,
 				'name' => 'Grief Support',
@@ -474,7 +660,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			47 => 
+=======
+			47 =>
+>>>>>>> local
 			array (
 				'id_interest' => 47,
 				'name' => 'ADHD',
@@ -484,7 +674,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			48 => 
+=======
+			48 =>
+>>>>>>> local
 			array (
 				'id_interest' => 48,
 				'name' => 'Relationship Building',
@@ -494,7 +688,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			49 => 
+=======
+			49 =>
+>>>>>>> local
 			array (
 				'id_interest' => 49,
 				'name' => 'Real Estate',
@@ -504,7 +702,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			50 => 
+=======
+			50 =>
+>>>>>>> local
 			array (
 				'id_interest' => 50,
 				'name' => 'Asian Professionals',
@@ -514,7 +716,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			51 => 
+=======
+			51 =>
+>>>>>>> local
 			array (
 				'id_interest' => 51,
 				'name' => 'Business Strategy',
@@ -524,7 +730,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			52 => 
+=======
+			52 =>
+>>>>>>> local
 			array (
 				'id_interest' => 52,
 				'name' => 'Leadership Development',
@@ -534,7 +744,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			53 => 
+=======
+			53 =>
+>>>>>>> local
 			array (
 				'id_interest' => 53,
 				'name' => 'Indian Professionals',
@@ -544,7 +758,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			54 => 
+=======
+			54 =>
+>>>>>>> local
 			array (
 				'id_interest' => 54,
 				'name' => 'Professional Development',
@@ -554,7 +772,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			55 => 
+=======
+			55 =>
+>>>>>>> local
 			array (
 				'id_interest' => 55,
 				'name' => 'Leadership',
@@ -564,7 +786,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			56 => 
+=======
+			56 =>
+>>>>>>> local
 			array (
 				'id_interest' => 56,
 				'name' => 'Golf as a Business Tool',
@@ -574,7 +800,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			57 => 
+=======
+			57 =>
+>>>>>>> local
 			array (
 				'id_interest' => 57,
 				'name' => 'Fundraising',
@@ -584,7 +814,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			58 => 
+=======
+			58 =>
+>>>>>>> local
 			array (
 				'id_interest' => 58,
 				'name' => 'Young Professionals',
@@ -594,7 +828,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			59 => 
+=======
+			59 =>
+>>>>>>> local
 			array (
 				'id_interest' => 59,
 				'name' => 'Success',
@@ -604,7 +842,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			60 => 
+=======
+			60 =>
+>>>>>>> local
 			array (
 				'id_interest' => 60,
 				'name' => 'Latino/a Professionals',
@@ -614,7 +856,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			61 => 
+=======
+			61 =>
+>>>>>>> local
 			array (
 				'id_interest' => 61,
 				'name' => 'Dining Out',
@@ -624,7 +870,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			62 => 
+=======
+			62 =>
+>>>>>>> local
 			array (
 				'id_interest' => 62,
 				'name' => 'Pubs and Bars',
@@ -634,7 +884,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			63 => 
+=======
+			63 =>
+>>>>>>> local
 			array (
 				'id_interest' => 63,
 				'name' => 'Wine',
@@ -644,7 +898,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			64 => 
+=======
+			64 =>
+>>>>>>> local
 			array (
 				'id_interest' => 64,
 				'name' => 'Vegan',
@@ -654,7 +912,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			65 => 
+=======
+			65 =>
+>>>>>>> local
 			array (
 				'id_interest' => 65,
 				'name' => 'Beer',
@@ -664,7 +926,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			66 => 
+=======
+			66 =>
+>>>>>>> local
 			array (
 				'id_interest' => 66,
 				'name' => 'Exploring New Restaurants',
@@ -674,7 +940,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			67 => 
+=======
+			67 =>
+>>>>>>> local
 			array (
 				'id_interest' => 67,
 				'name' => 'Living Foods',
@@ -684,7 +954,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			68 => 
+=======
+			68 =>
+>>>>>>> local
 			array (
 				'id_interest' => 68,
 				'name' => 'BBQ',
@@ -694,7 +968,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			69 => 
+=======
+			69 =>
+>>>>>>> local
 			array (
 				'id_interest' => 69,
 				'name' => 'Healthy Eating',
@@ -704,7 +982,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			70 => 
+=======
+			70 =>
+>>>>>>> local
 			array (
 				'id_interest' => 70,
 				'name' => 'Indian Food',
@@ -714,7 +996,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			71 => 
+=======
+			71 =>
+>>>>>>> local
 			array (
 				'id_interest' => 71,
 				'name' => 'French Food',
@@ -724,7 +1010,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			72 => 
+=======
+			72 =>
+>>>>>>> local
 			array (
 				'id_interest' => 72,
 				'name' => 'Raw Food',
@@ -734,7 +1024,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			73 => 
+=======
+			73 =>
+>>>>>>> local
 			array (
 				'id_interest' => 73,
 				'name' => 'Law of Attraction',
@@ -744,7 +1038,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			74 => 
+=======
+			74 =>
+>>>>>>> local
 			array (
 				'id_interest' => 74,
 				'name' => 'Spirituality',
@@ -754,7 +1052,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			75 => 
+=======
+			75 =>
+>>>>>>> local
 			array (
 				'id_interest' => 75,
 				'name' => 'Bible Study',
@@ -764,7 +1066,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			76 => 
+=======
+			76 =>
+>>>>>>> local
 			array (
 				'id_interest' => 76,
 				'name' => 'Self Exploration',
@@ -774,7 +1080,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			77 => 
+=======
+			77 =>
+>>>>>>> local
 			array (
 				'id_interest' => 77,
 				'name' => 'NLP',
@@ -784,7 +1094,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			78 => 
+=======
+			78 =>
+>>>>>>> local
 			array (
 				'id_interest' => 78,
 				'name' => 'Catholic Social',
@@ -794,7 +1108,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			79 => 
+=======
+			79 =>
+>>>>>>> local
 			array (
 				'id_interest' => 79,
 				'name' => 'Freethinker',
@@ -804,7 +1122,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			80 => 
+=======
+			80 =>
+>>>>>>> local
 			array (
 				'id_interest' => 80,
 				'name' => 'Retreats',
@@ -814,7 +1136,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			81 => 
+=======
+			81 =>
+>>>>>>> local
 			array (
 				'id_interest' => 81,
 				'name' => 'A Course In Miracles',
@@ -824,7 +1150,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			82 => 
+=======
+			82 =>
+>>>>>>> local
 			array (
 				'id_interest' => 82,
 				'name' => 'Transformation',
@@ -834,7 +1164,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			83 => 
+=======
+			83 =>
+>>>>>>> local
 			array (
 				'id_interest' => 83,
 				'name' => 'Progressive Muslim',
@@ -844,7 +1178,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			84 => 
+=======
+			84 =>
+>>>>>>> local
 			array (
 				'id_interest' => 84,
 				'name' => 'Sensuality',
@@ -854,7 +1192,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			85 => 
+=======
+			85 =>
+>>>>>>> local
 			array (
 				'id_interest' => 85,
 				'name' => 'Fitness',
@@ -864,7 +1206,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			86 => 
+=======
+			86 =>
+>>>>>>> local
 			array (
 				'id_interest' => 86,
 				'name' => 'Exercise',
@@ -874,7 +1220,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			87 => 
+=======
+			87 =>
+>>>>>>> local
 			array (
 				'id_interest' => 87,
 				'name' => 'Walking',
@@ -884,7 +1234,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			88 => 
+=======
+			88 =>
+>>>>>>> local
 			array (
 				'id_interest' => 88,
 				'name' => 'NFL Football',
@@ -894,7 +1248,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			89 => 
+=======
+			89 =>
+>>>>>>> local
 			array (
 				'id_interest' => 89,
 				'name' => 'Golf',
@@ -904,7 +1262,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			90 => 
+=======
+			90 =>
+>>>>>>> local
 			array (
 				'id_interest' => 90,
 				'name' => 'Pick-up Tennis',
@@ -914,7 +1276,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			91 => 
+=======
+			91 =>
+>>>>>>> local
 			array (
 				'id_interest' => 91,
 				'name' => 'Volleyball',
@@ -924,7 +1290,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			92 => 
+=======
+			92 =>
+>>>>>>> local
 			array (
 				'id_interest' => 92,
 				'name' => 'Water Sports',
@@ -934,7 +1304,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			93 => 
+=======
+			93 =>
+>>>>>>> local
 			array (
 				'id_interest' => 93,
 				'name' => 'Cycling',
@@ -944,7 +1318,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			94 => 
+=======
+			94 =>
+>>>>>>> local
 			array (
 				'id_interest' => 94,
 				'name' => 'Roller Skating',
@@ -954,7 +1332,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			95 => 
+=======
+			95 =>
+>>>>>>> local
 			array (
 				'id_interest' => 95,
 				'name' => 'Recreational Sports',
@@ -964,7 +1346,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			96 => 
+=======
+			96 =>
+>>>>>>> local
 			array (
 				'id_interest' => 96,
 				'name' => 'Outdoor Fitness',
@@ -974,7 +1360,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			97 => 
+=======
+			97 =>
+>>>>>>> local
 			array (
 				'id_interest' => 97,
 				'name' => 'Science',
@@ -984,7 +1374,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			98 => 
+=======
+			98 =>
+>>>>>>> local
 			array (
 				'id_interest' => 98,
 				'name' => 'Education & Technology',
@@ -994,7 +1388,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			99 => 
+=======
+			99 =>
+>>>>>>> local
 			array (
 				'id_interest' => 99,
 				'name' => 'Intellectual Discussion',
@@ -1004,7 +1402,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			100 => 
+=======
+			100 =>
+>>>>>>> local
 			array (
 				'id_interest' => 100,
 				'name' => 'Learning',
@@ -1014,7 +1416,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			101 => 
+=======
+			101 =>
+>>>>>>> local
 			array (
 				'id_interest' => 101,
 				'name' => 'International Relations',
@@ -1024,7 +1430,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			102 => 
+=======
+			102 =>
+>>>>>>> local
 			array (
 				'id_interest' => 102,
 				'name' => 'Sexual Education',
@@ -1034,7 +1444,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			103 => 
+=======
+			103 =>
+>>>>>>> local
 			array (
 				'id_interest' => 103,
 				'name' => 'College Alumni',
@@ -1044,7 +1458,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			104 => 
+=======
+			104 =>
+>>>>>>> local
 			array (
 				'id_interest' => 104,
 				'name' => 'Homeschool Support',
@@ -1054,7 +1472,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			105 => 
+=======
+			105 =>
+>>>>>>> local
 			array (
 				'id_interest' => 105,
 				'name' => 'Evolution',
@@ -1064,7 +1486,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			106 => 
+=======
+			106 =>
+>>>>>>> local
 			array (
 				'id_interest' => 106,
 				'name' => 'Communication Skills',
@@ -1074,7 +1500,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			107 => 
+=======
+			107 =>
+>>>>>>> local
 			array (
 				'id_interest' => 107,
 				'name' => 'Public Speaking',
@@ -1084,7 +1514,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			108 => 
+=======
+			108 =>
+>>>>>>> local
 			array (
 				'id_interest' => 108,
 				'name' => 'Philosophy',
@@ -1094,7 +1528,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			109 => 
+=======
+			109 =>
+>>>>>>> local
 			array (
 				'id_interest' => 109,
 				'name' => 'Photography',
@@ -1104,7 +1542,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			110 => 
+=======
+			110 =>
+>>>>>>> local
 			array (
 				'id_interest' => 110,
 				'name' => 'Watching Movies',
@@ -1114,7 +1556,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			111 => 
+=======
+			111 =>
+>>>>>>> local
 			array (
 				'id_interest' => 111,
 				'name' => 'Fashion Photography',
@@ -1124,7 +1570,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			112 => 
+=======
+			112 =>
+>>>>>>> local
 			array (
 				'id_interest' => 112,
 				'name' => 'Film and Video Production',
@@ -1134,7 +1584,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			113 => 
+=======
+			113 =>
+>>>>>>> local
 			array (
 				'id_interest' => 113,
 				'name' => 'Digital Photography',
@@ -1144,7 +1598,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			114 => 
+=======
+			114 =>
+>>>>>>> local
 			array (
 				'id_interest' => 114,
 				'name' => 'Film',
@@ -1154,7 +1612,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			115 => 
+=======
+			115 =>
+>>>>>>> local
 			array (
 				'id_interest' => 115,
 				'name' => 'Photography Classes',
@@ -1164,7 +1626,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			116 => 
+=======
+			116 =>
+>>>>>>> local
 			array (
 				'id_interest' => 116,
 				'name' => 'Movie Nights',
@@ -1174,7 +1640,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			117 => 
+=======
+			117 =>
+>>>>>>> local
 			array (
 				'id_interest' => 117,
 				'name' => 'Portrait Photography',
@@ -1184,7 +1654,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			118 => 
+=======
+			118 =>
+>>>>>>> local
 			array (
 				'id_interest' => 118,
 				'name' => 'Group Photo Shoots',
@@ -1194,7 +1668,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			119 => 
+=======
+			119 =>
+>>>>>>> local
 			array (
 				'id_interest' => 119,
 				'name' => 'Model Photography',
@@ -1204,7 +1682,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			120 => 
+=======
+			120 =>
+>>>>>>> local
 			array (
 				'id_interest' => 120,
 				'name' => 'Nature Photography',
@@ -1214,7 +1696,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			121 => 
+=======
+			121 =>
+>>>>>>> local
 			array (
 				'id_interest' => 121,
 				'name' => 'African Americans',
@@ -1224,7 +1710,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			122 => 
+=======
+			122 =>
+>>>>>>> local
 			array (
 				'id_interest' => 122,
 				'name' => 'French Language',
@@ -1234,7 +1724,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			123 => 
+=======
+			123 =>
+>>>>>>> local
 			array (
 				'id_interest' => 123,
 				'name' => 'Language & Culture',
@@ -1244,7 +1738,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			124 => 
+=======
+			124 =>
+>>>>>>> local
 			array (
 				'id_interest' => 124,
 				'name' => 'Asians',
@@ -1254,7 +1752,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			125 => 
+=======
+			125 =>
+>>>>>>> local
 			array (
 				'id_interest' => 125,
 				'name' => 'Black Women',
@@ -1264,7 +1766,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			126 => 
+=======
+			126 =>
+>>>>>>> local
 			array (
 				'id_interest' => 126,
 				'name' => 'Multicultural',
@@ -1274,7 +1780,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			127 => 
+=======
+			127 =>
+>>>>>>> local
 			array (
 				'id_interest' => 127,
 				'name' => 'Indian Culture',
@@ -1284,7 +1794,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			128 => 
+=======
+			128 =>
+>>>>>>> local
 			array (
 				'id_interest' => 128,
 				'name' => 'Cultural Diversity',
@@ -1294,7 +1808,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			129 => 
+=======
+			129 =>
+>>>>>>> local
 			array (
 				'id_interest' => 129,
 				'name' => 'Black Identity',
@@ -1304,7 +1822,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			130 => 
+=======
+			130 =>
+>>>>>>> local
 			array (
 				'id_interest' => 130,
 				'name' => 'Latino Culture',
@@ -1314,7 +1836,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			131 => 
+=======
+			131 =>
+>>>>>>> local
 			array (
 				'id_interest' => 131,
 				'name' => 'Culture Exchange',
@@ -1324,7 +1850,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			132 => 
+=======
+			132 =>
+>>>>>>> local
 			array (
 				'id_interest' => 132,
 				'name' => 'English Language',
@@ -1334,7 +1864,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			133 => 
+=======
+			133 =>
+>>>>>>> local
 			array (
 				'id_interest' => 133,
 				'name' => 'Book Club',
@@ -1344,7 +1878,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			134 => 
+=======
+			134 =>
+>>>>>>> local
 			array (
 				'id_interest' => 134,
 				'name' => 'Creative Writing',
@@ -1354,7 +1892,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			135 => 
+=======
+			135 =>
+>>>>>>> local
 			array (
 				'id_interest' => 135,
 				'name' => 'Reading',
@@ -1364,7 +1906,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			136 => 
+=======
+			136 =>
+>>>>>>> local
 			array (
 				'id_interest' => 136,
 				'name' => 'Poetry',
@@ -1374,7 +1920,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			137 => 
+=======
+			137 =>
+>>>>>>> local
 			array (
 				'id_interest' => 137,
 				'name' => 'Writing',
@@ -1384,7 +1934,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			138 => 
+=======
+			138 =>
+>>>>>>> local
 			array (
 				'id_interest' => 138,
 				'name' => 'Literature',
@@ -1394,7 +1948,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			139 => 
+=======
+			139 =>
+>>>>>>> local
 			array (
 				'id_interest' => 139,
 				'name' => 'Fiction',
@@ -1404,7 +1962,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			140 => 
+=======
+			140 =>
+>>>>>>> local
 			array (
 				'id_interest' => 140,
 				'name' => 'Readers',
@@ -1414,7 +1976,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			141 => 
+=======
+			141 =>
+>>>>>>> local
 			array (
 				'id_interest' => 141,
 				'name' => 'Writing Workshops',
@@ -1424,7 +1990,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			142 => 
+=======
+			142 =>
+>>>>>>> local
 			array (
 				'id_interest' => 142,
 				'name' => 'Novel Reading',
@@ -1434,7 +2004,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			143 => 
+=======
+			143 =>
+>>>>>>> local
 			array (
 				'id_interest' => 143,
 				'name' => 'Screenwriting',
@@ -1444,7 +2018,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			144 => 
+=======
+			144 =>
+>>>>>>> local
 			array (
 				'id_interest' => 144,
 				'name' => 'Novel Writing',
@@ -1454,7 +2032,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			145 => 
+=======
+			145 =>
+>>>>>>> local
 			array (
 				'id_interest' => 145,
 				'name' => 'Live Music',
@@ -1464,7 +2046,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			146 => 
+=======
+			146 =>
+>>>>>>> local
 			array (
 				'id_interest' => 146,
 				'name' => 'Musicians',
@@ -1474,7 +2060,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			147 => 
+=======
+			147 =>
+>>>>>>> local
 			array (
 				'id_interest' => 147,
 				'name' => 'Singing',
@@ -1484,7 +2074,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			148 => 
+=======
+			148 =>
+>>>>>>> local
 			array (
 				'id_interest' => 148,
 				'name' => 'Shamanic Drumming',
@@ -1494,7 +2088,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			149 => 
+=======
+			149 =>
+>>>>>>> local
 			array (
 				'id_interest' => 149,
 				'name' => 'Christian Music',
@@ -1504,7 +2102,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			150 => 
+=======
+			150 =>
+>>>>>>> local
 			array (
 				'id_interest' => 150,
 				'name' => 'Concerts',
@@ -1514,7 +2116,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			151 => 
+=======
+			151 =>
+>>>>>>> local
 			array (
 				'id_interest' => 151,
 				'name' => 'Latin Music',
@@ -1524,7 +2130,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			152 => 
+=======
+			152 =>
+>>>>>>> local
 			array (
 				'id_interest' => 152,
 				'name' => 'Music',
@@ -1534,7 +2144,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			153 => 
+=======
+			153 =>
+>>>>>>> local
 			array (
 				'id_interest' => 153,
 				'name' => 'Songwriting',
@@ -1544,7 +2158,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			154 => 
+=======
+			154 =>
+>>>>>>> local
 			array (
 				'id_interest' => 154,
 				'name' => 'Group Singing',
@@ -1554,7 +2172,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			155 => 
+=======
+			155 =>
+>>>>>>> local
 			array (
 				'id_interest' => 155,
 				'name' => 'Drum Circle',
@@ -1564,7 +2186,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			156 => 
+=======
+			156 =>
+>>>>>>> local
 			array (
 				'id_interest' => 156,
 				'name' => 'Choir',
@@ -1574,7 +2200,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			157 => 
+=======
+			157 =>
+>>>>>>> local
 			array (
 				'id_interest' => 157,
 				'name' => 'Programming',
@@ -1584,7 +2214,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			158 => 
+=======
+			158 =>
+>>>>>>> local
 			array (
 				'id_interest' => 158,
 				'name' => 'Blogging',
@@ -1594,7 +2228,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			159 => 
+=======
+			159 =>
+>>>>>>> local
 			array (
 				'id_interest' => 159,
 				'name' => 'Web Technology',
@@ -1604,7 +2242,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			160 => 
+=======
+			160 =>
+>>>>>>> local
 			array (
 				'id_interest' => 160,
 				'name' => 'Java',
@@ -1614,7 +2256,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			161 => 
+=======
+			161 =>
+>>>>>>> local
 			array (
 				'id_interest' => 161,
 				'name' => 'Artificial Intelligence',
@@ -1624,7 +2270,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			162 => 
+=======
+			162 =>
+>>>>>>> local
 			array (
 				'id_interest' => 162,
 				'name' => 'Software Development',
@@ -1634,7 +2284,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			163 => 
+=======
+			163 =>
+>>>>>>> local
 			array (
 				'id_interest' => 163,
 				'name' => 'Web Development',
@@ -1644,7 +2298,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			164 => 
+=======
+			164 =>
+>>>>>>> local
 			array (
 				'id_interest' => 164,
 				'name' => 'New Technology',
@@ -1654,7 +2312,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			165 => 
+=======
+			165 =>
+>>>>>>> local
 			array (
 				'id_interest' => 165,
 				'name' => 'Open Source',
@@ -1664,7 +2326,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			166 => 
+=======
+			166 =>
+>>>>>>> local
 			array (
 				'id_interest' => 166,
 				'name' => 'Web Design',
@@ -1674,7 +2340,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			167 => 
+=======
+			167 =>
+>>>>>>> local
 			array (
 				'id_interest' => 167,
 				'name' => 'Mobile Development',
@@ -1684,7 +2354,11 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			168 => 
+=======
+			168 =>
+>>>>>>> local
 			array (
 				'id_interest' => 168,
 				'name' => 'Technology Startups',
@@ -1694,6 +2368,7 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			169 => 
 			array (
 				'id_interest' => 169,
@@ -5056,6 +5731,8 @@ class InterestsCategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'pt',
 			),
+=======
+>>>>>>> local
 		));
 	}
 

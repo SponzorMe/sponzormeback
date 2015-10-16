@@ -51,7 +51,11 @@ class CategoryController extends Controller {
 					]
 				], 200
 			);
+<<<<<<< HEAD
 		}		
+=======
+		}
+>>>>>>> local
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -67,13 +71,21 @@ class CategoryController extends Controller {
     	 ]);
 		if($validation->fails())
 		{
+<<<<<<< HEAD
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
+=======
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
+>>>>>>> local
 		}
 		else
 		{
 			$category=Category::create($request->all());
 			return response()->json(['message'=>"Inserted",'category'=>$category],201);
+<<<<<<< HEAD
 		}			
+=======
+		}
+>>>>>>> local
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -88,15 +100,24 @@ class CategoryController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
+<<<<<<< HEAD
 			//Get all values
 			$title	= $request->input("title");
 			$body	= $request->input("body");
 			$lang	= $request->input("lang");
+=======
+			$inputs = $request->all(); //Get the set of inputs
+			extract($inputs); //Creamos las variables desde el array de inputs
+>>>>>>> local
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
+<<<<<<< HEAD
 			if(!empty($title)){				
+=======
+			if(!empty($title)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['title' => $title],
 				    ['title' => ['required', 'max:255','unique:categories,title,'.$id]]
@@ -107,13 +128,21 @@ class CategoryController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}		
+=======
+				}
+>>>>>>> local
 			}
 			if(!empty($body)){
 				$category->body=$body;
 				$flag=1;
 			}
+<<<<<<< HEAD
 			if(!empty($lang)){			
+=======
+			if(!empty($lang)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['lang' => $lang],
 				    ['lang' => ['required', 'max:5']]
@@ -124,7 +153,11 @@ class CategoryController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
+=======
+				}
+>>>>>>> local
 			}
 			if($flag){
 				$category->save();
@@ -142,7 +175,11 @@ class CategoryController extends Controller {
 	    	 ]);
 			if($validation->fails())
 			{
+<<<<<<< HEAD
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
+=======
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
+>>>>>>> local
 			}
 			else
 			{
@@ -172,16 +209,32 @@ class CategoryController extends Controller {
 		else{
 			$events=$category->events;
 			$interests=$category->interests;
+<<<<<<< HEAD
 			if(sizeof($events)>0){
 				return response()->json(['message'=>"This category has events, first remove the events and try again"],409);			
 			}
 			elseif(sizeof($interests)>0){
 				return response()->json(['message'=>"This category has interests, first remove the interests and try again"],409);			
+=======
+			$usersCategories=$category->usersCategories;
+			if(sizeof($events)>0){
+				return response()->json(['message'=>"This category has events, first remove the events and try again"],409);
+			}
+			elseif(sizeof($interests)>0){
+				return response()->json(['message'=>"This category has interests, first remove the interests and try again"],409);
+			}
+			elseif(sizeof($usersCategories)>0){
+				return response()->json(['message'=>"This category has User categories, first remove the interests and try again"],409);
+>>>>>>> local
 			}
 			else{
 				$category->delete();
 				return response()->json(['message'=>"Deleted"],200);
+<<<<<<< HEAD
 			}			
+=======
+			}
+>>>>>>> local
 		}
 	}
 

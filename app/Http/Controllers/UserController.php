@@ -6,11 +6,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+<<<<<<< HEAD
+=======
+use Weblee\Mandrill\Mail;
+>>>>>>> local
 
 class UserController extends Controller {
 	public function __construct()
 	{
+<<<<<<< HEAD
 		$this->middleware('auth.basic.once',['only'=>['store','update','destroy']]);
+=======
+		$this->middleware('auth.basic.once',['only'=>['update','destroy','index','show']]);
+>>>>>>> local
 	}
 	/**
 	 * Display a listing of the resource.
@@ -43,9 +51,20 @@ class UserController extends Controller {
 		}
 		else
 		{
+<<<<<<< HEAD
 			$events=$user->events;
 			$events=$user->categories;
 			$events=$user->interests;
+=======
+			$user->events;
+			$user->categories;
+			$user->interests;
+			$user->perk_tasks;
+			$user->sponzorships;
+			$user->sponzorships_like_organizer;
+			$user->tasks_sponzor_like_organizer;
+			$user->tasks_sponzor_like_sponzor;
+>>>>>>> local
 			return response()->json(
 				["data"=>
 					[
@@ -53,6 +72,7 @@ class UserController extends Controller {
 					]
 				], 200
 			);
+<<<<<<< HEAD
 		}		
 	}
 	/**
@@ -63,15 +83,241 @@ class UserController extends Controller {
 	public function store(Request $request)
 	{
 		
+=======
+		}
+	}
+	/**
+	 * Send Welcome Email throught mandriall APP
+	 * https://mandrillapp.com/api/docs/messages.php.html
+	 * @param  int  $activationLink
+	 * @param  int  $userEmail
+	 * @param  int  $userName
+	 * @return Response
+	 */
+	private function welcomeEmail($activationLink,$userEmail,$userName,$lang="en"){
+		try{
+			if($lang=="en")
+		    	$template_name = 'welcome-english';
+		    if($lang=="es")
+		    	$template_name = 'welcome';
+		    if($lang=="pt")
+		    	$template_name = 'welcome-portuguese';
+		    $template_content = array(
+		        array(
+		            'name' => 'activationLink',
+		            'content' => 'sebas.com'
+		        )
+		    );
+		    $message = array(
+		        'to' => array(
+		            array(
+		                'email' =>	$userEmail,
+		                'name' 	=> 	$userName,
+		                'type' 	=> 'to'
+		            )
+		        ),
+		        'global_merge_vars' => array(
+		            array(
+		                'name' => 'activationLink',
+		            	'content' => $activationLink
+		            ),
+		            array(
+		                'name' => 'name',
+		            	'content' => $userName
+		            )
+		        ),
+		    );
+	    	$result = \MandrillMail::messages()->sendTemplate($template_name, $template_content, $message);
+			if($result[0]["status"]=="sent" AND !$result[0]["reject_reason"]){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		catch(Exeption $e){
+			return false;
+		}
+	}
+	private function inviteFriendMail($friendEmail,$userMessage,$userName,$lang="en"){
+		try{
+			if($lang=="en")
+		    	$template_name = 'invite-english';
+		    if($lang=="es")
+		    	$template_name = 'invite-spanish';
+		    if($lang=="pt")
+		    	$template_name = 'invite-portuguese';
+		    $template_content = array(
+		        array(
+		            'name' => 'Invite-Friend',
+		            'content' => 'SponzorMe'
+		        )
+		    );
+		    $message = array(
+		        'to' => array(
+		            array(
+		                'email' =>	$friendEmail,
+		                'name' 	=> 	$friendEmail,
+		                'type' 	=> 'to'
+		            )
+		        ),
+		        'global_merge_vars' => array(
+		            array(
+		                'name' => 'userName',
+		            	'content' => $userName
+		            ),
+		            array(
+		                'name' => 'message',
+		            	'content' => $userMessage
+		            )
+		        ),
+		    );
+	    	$result = \MandrillMail::messages()->sendTemplate($template_name, $template_content, $message);
+			if($result[0]["status"]=="sent" AND !$result[0]["reject_reason"]){
+				return true;
+			}
+			elseif ($result[0]["status"]=="queued") {
+				return false;
+			}
+			else{
+				return false;
+			}
+		}
+		catch(Exeption $e){
+			return false;
+		}
+	}
+	private function subscribeToMailchimp($email,$name,$type,$lang="en"){
+		$MailChimp = new \Drewm\MailChimp('2cc5e8c25894c43a2a4f022e6e47c352-us7');
+		$name=explode(" ", trim($name));
+		if(empty($name[1])){//
+			$name[1]=" ";//If nothing was explode assign empty string by default.
+		}
+		switch ($lang) {
+		    case "pt":
+		        $sponzorList='3a5d1a0864';
+		        $organizerList='d0ae68ea63';
+		        break;
+		    case "es":
+		        $sponzorList='da62c9f3ff';
+		        $organizerList='1d8e15698d';
+		        break;
+		    case "en":
+		        $sponzorList='4017131605';
+	        	$organizerList='d14bde02d9';
+		        break;
+		}
+		if($type==1){//If new user is sponzor
+			$result = $MailChimp->call('lists/subscribe', array(
+                'id'                => $sponzorList,
+                'email'             => array('email'=>$email),
+                'merge_vars'        => array('FNAME'=>$name[0], 'LNAME'=>$name[1]),
+                'double_optin'      => false,
+                'update_existing'   => true,
+                'replace_interests' => false,
+                'send_welcome'      => false,
+            ));
+		}
+		else{//If the new user is organizer
+			$result = $MailChimp->call('lists/subscribe', array(
+                'id'                => $organizerList,
+                'email'             => array('email'=>$email),
+                'merge_vars'        => array('FNAME'=>$name[0], 'LNAME'=>$name[1]),
+                'double_optin'      => false,
+                'update_existing'   => true,
+                'replace_interests' => false,
+                'send_welcome'      => false,
+            ));
+		}
+	}
+	/**
+	 * Verify the user's email and the activation code
+	 * @param  POST  $email
+	 * @return Response
+	 */
+	public function sendActivationLink(Request $request){
+		$email=$request->input('email');
+		$user=User::where("email","=",$email)->first();
+		if(!$user){//If the user does not exist.
+			return response()->json(['message'=>"User does not exist",'code'=>'404'],404);
+		}
+		elseif($user->activated){//If the user is already activated
+			return response()->json(['message'=>"User is already activated",'code'=>'201'],201);
+		}
+		else{//So we reset the activation link
+			$activationCode = md5($email.str_random(30));
+			$user->activation_code=$activationCode;
+			$user->save();
+			$link=\Config::get('constants.activation_url').$activationCode;
+			$flag = $this->welcomeEmail($link,$user->email,$user->name,$user->lang);
+			if($flag){
+				return response()->json(['message'=>"Activation Link sent",'code'=>'200'],200);
+			}
+			else{
+				return response()->json(['message'=>"Email Cannot be sent",'code'=>'201'],201);
+			}
+		}
+	}
+	public function verifyActivationLink($activationCode){
+		$user=User::where("activation_code","=",$activationCode)->first();
+		if(!$user){//If the user does not exist.
+			return response()->json(['message'=>"User does not exist",'code'=>'404'],404);
+		}
+		elseif($user->activated){//If the user is already activated
+			return response()->json(['message'=>"User is already activated",'code'=>'201'],201);
+		}
+		else{//So we activate the user
+			$user->activated=1;
+			$user->activation_code="";
+			$user->save();
+			return response()->json(['message'=>"Account activated",'code'=>'200'],200);
+		}
+	}
+	public function inviteFriend(Request $request){
+		$validation = Validator::make($request->all(), [
+			'email' 	=> 'required|email|max:255',
+			'message' 	=> 'required|max:400',
+			'user_id'		=>'required|max:255|exists:users,id'
+    	 ]);
+		if($validation->fails())
+		{
+			return response()->json(['message'=>"No invited",'error'=>$validation->messages()],400);
+		}
+		else{
+			$user=User::find($request->input("user_id"));//Get the user info
+			if(!$user){
+				return response()->json(['message'=>"User does not exist",'code'=>'404'],404);
+			}else{
+					$flag = $this->inviteFriendMail($request->input("email"),$request->input("message"),$user->name,$user->lang);
+					if($flag){
+						return response()->json(['message'=>"Email Sent",'code'=>'200'],200);
+					}
+					else{
+						return response()->json(['message'=>"No Sent",'code'=>'422'],422);
+					}
+			}
+		}
+	}
+	public function store(Request $request)
+	{
+>>>>>>> local
 		$validation = Validator::make($request->all(), [
 			'email' 	=> 'required|email|max:255|unique:users',
 			'password' 	=> 'required|confirmed|min:6',
 			'name'		=>'required|max:255',
 			'type'		=>'required|max:1',
+<<<<<<< HEAD
     	 ]);
 		if($validation->fails())
 		{
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],200);	
+=======
+			'lang'		=>'required|max:5|in:en,es,pt'
+    	 ]);
+		if($validation->fails())
+		{
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],400);
+>>>>>>> local
 		}
 		else
 		{
@@ -79,8 +325,16 @@ class UserController extends Controller {
 				'name' => $request->input('name'),
 				'email' => $request->input('email'),
 				'type' => $request->input('type'),
+<<<<<<< HEAD
 				'password' => bcrypt($request->input('password')),
 			]);
+=======
+				'lang' => $request->input('lang'),
+				'password' => bcrypt($request->input('password')),
+			]);
+			$emailSender=$this->sendActivationLink($request);
+			$this->subscribeToMailchimp($request->input('email'),$request->input('name'),$request->input('type'),$request->input('lang'));
+>>>>>>> local
 			return response()->json(['message'=>"Inserted",'User'=>$user],201);
 		}
 	}
@@ -97,6 +351,7 @@ class UserController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
+<<<<<<< HEAD
 			//Get all values
 			$name = $request->input('name');
 			$email = $request->input('email');
@@ -124,11 +379,19 @@ class UserController extends Controller {
 			$location_reference = $request->input('location_reference');
 			$demo = $request->input('demo');
 			$status = $request->input('status');
+=======
+			$inputs = $request->all(); //Get the set of inputs
+			extract($inputs); //Creamos las variables desde el array de inputs
+>>>>>>> local
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
+<<<<<<< HEAD
 			if(!empty($email)){			
+=======
+			if(!empty($email)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['email' => $email],
 				    ['email' => ['required','email','max:255','unique:users,email,'.$id]]
@@ -139,9 +402,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($password)){			
+=======
+				}
+			}
+			if(!empty($password)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['password' => $password],
 				    ['password' => ['required', 'min:6','confirmed']]
@@ -152,9 +421,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($name)){			
+=======
+				}
+			}
+			if(!empty($name)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['name' => $name],
 				    ['name' => ['required', 'max:255']]
@@ -165,9 +440,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($type)){			
+=======
+				}
+			}
+			if(!empty($type)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['type' => $type],
 				    ['type' => ['required', 'max:1']]
@@ -178,9 +459,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($activated)){			
+=======
+				}
+			}
+			if(!empty($activated)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['activated' => $activated],
 				    ['activated' => ['required', 'max:1']]
@@ -191,9 +478,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($activation_code)){			
+=======
+				}
+			}
+			if(!empty($activation_code)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['activation_code' => $activation_code],
 				    ['activation_code' => ['required', 'max:255']]
@@ -204,9 +497,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($activated_at)){			
+=======
+				}
+			}
+			if(!empty($activated_at)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['activated_at' => $activated_at],
 				    ['activated_at' => ['required', 'max:255']]
@@ -217,9 +516,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($last_login)){			
+=======
+				}
+			}
+			if(!empty($last_login)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['last_login' => $last_login],
 				    ['last_login' => ['required', 'max:255']]
@@ -230,9 +535,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($persist_code)){			
+=======
+				}
+			}
+			if(!empty($persist_code)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['persist_code' => $persist_code],
 				    ['persist_code' => ['required', 'max:255']]
@@ -243,9 +554,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($reset_password_code)){			
+=======
+				}
+			}
+			if(!empty($reset_password_code)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['reset_password_code' => $reset_password_code],
 				    ['reset_password_code' => ['required', 'max:255']]
@@ -256,9 +573,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($company)){			
+=======
+				}
+			}
+			if(!empty($company)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['company' => $company],
 				    ['company' => ['required', 'max:255']]
@@ -269,12 +592,21 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($sex)){			
 				$validator = Validator::make(
 				    ['sex' => $sex],
 				    ['sex' => ['required', 'max:255']]
+=======
+				}
+			}
+			if(isset($sex) && ($sex==0 || $sex==1)){
+				$validator = Validator::make(
+				    ['sex' => $sex],
+				    ['sex' => ['max:255']]
+>>>>>>> local
 				);
 				if(!$validator->fails()){
 					$flag=1;
@@ -282,9 +614,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($age)){			
+=======
+				}
+			}
+			if(!empty($age)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['age' => $age],
 				    ['age' => ['required', 'max:255']]
@@ -295,9 +633,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($custom_status)){			
+=======
+				}
+			}
+			if(!empty($custom_status)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['custom_status' => $custom_status],
 				    ['custom_status' => ['required', 'max:255']]
@@ -308,9 +652,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($login_code)){			
+=======
+				}
+			}
+			if(!empty($login_code)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['login_code' => $login_code],
 				    ['login_code' => ['required', 'max:255']]
@@ -321,9 +671,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($login_valid_until)){			
+=======
+				}
+			}
+			if(!empty($login_valid_until)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['login_valid_until' => $login_valid_until],
 				    ['login_valid_until' => ['required', 'max:255']]
@@ -334,12 +690,21 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($lang)){			
 				$validator = Validator::make(
 				    ['lang' => $lang],
 				    ['lang' => ['required', 'max:5']]
+=======
+				}
+			}
+			if(!empty($lang)){
+				$validator = Validator::make(
+				    ['lang' => $lang],
+				    ['lang' => ['required', 'max:5','in:en,es,pt']]
+>>>>>>> local
 				);
 				if(!$validator->fails()){
 					$flag=1;
@@ -347,12 +712,21 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($image)){			
 				$validator = Validator::make(
 				    ['image' => $image],
 				    ['image' => ['required', 'max:5']]
+=======
+				}
+			}
+			if(!empty($image)){
+				$validator = Validator::make(
+				    ['image' => $image],
+				    ['image' => ['required', 'max:255']]
+>>>>>>> local
 				);
 				if(!$validator->fails()){
 					$flag=1;
@@ -360,9 +734,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($description)){			
+=======
+				}
+			}
+			if(!empty($description)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['description' => $description],
 				    ['description' => ['required', 'max:400']]
@@ -373,9 +753,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($eventbriteKey)){			
+=======
+				}
+			}
+			if(!empty($eventbriteKey)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['eventbriteKey' => $eventbriteKey],
 				    ['eventbriteKey' => ['required', 'max:255']]
@@ -386,9 +772,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($meetupRefreshKey)){			
+=======
+				}
+			}
+			if(!empty($meetupRefreshKey)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['meetupRefreshKey' => $meetupRefreshKey],
 				    ['meetupRefreshKey' => ['required', 'max:255']]
@@ -399,9 +791,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($comunity_size)){			
+=======
+				}
+			}
+			if(!empty($comunity_size)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['comunity_size' => $comunity_size],
 				    ['comunity_size' => ['required', 'max:255']]
@@ -412,9 +810,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($location)){			
+=======
+				}
+			}
+			if(!empty($location)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['location' => $location],
 				    ['location' => ['required', 'max:255']]
@@ -425,9 +829,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($location_reference)){			
+=======
+				}
+			}
+			if(!empty($location_reference)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['location_reference' => $location_reference],
 				    ['location_reference' => ['required', 'max:255']]
@@ -438,9 +848,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($demo)){			
+=======
+				}
+			}
+			if(!empty($demo)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['demo' => $demo],
 				    ['demo' => ['required', 'max:5']]
@@ -451,9 +867,15 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($status)){			
+=======
+				}
+			}
+			if(!empty($status)){
+>>>>>>> local
 				$validator = Validator::make(
 				    ['status' => $status],
 				    ['status' => ['required', 'max:255']]
@@ -464,7 +886,11 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}				
+=======
+				}
+>>>>>>> local
 			}
 			if($flag){
 				$User->save();
@@ -488,11 +914,19 @@ class UserController extends Controller {
 			'reset_password_code'		=>'required|max:255',
 			'company'		=>'required|max:255',
 			'sex'		=>'required|max:255',
+<<<<<<< HEAD
 			'age'		=>'required|max:255',
 			'custom_status'		=>'required|max:255',
 			'login_code'		=>'required|max:255',
 			'login_valid_until'		=>'required|max:255',
 			'lang'		=>'required|max:255',
+=======
+			'age'		=>'max:255',
+			'custom_status'		=>'required|max:255',
+			'login_code'		=>'required|max:255',
+			'login_valid_until'		=>'required|max:255',
+			'lang'		=>'required|max:5|in:en,es,pt',
+>>>>>>> local
 			'image'		=>'required|max:255',
 			'description'		=>'required|max:255',
 			'eventbriteKey'		=>'required|max:255',
@@ -505,7 +939,11 @@ class UserController extends Controller {
 	    	 ]);
 			if($validation->fails())
 			{
+<<<<<<< HEAD
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],200);	
+=======
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
+>>>>>>> local
 			}
 			else
 			{
@@ -563,6 +1001,7 @@ class UserController extends Controller {
 			$tasks_sponzor_like_organizer=$User->tasks_sponzor_like_organizer;
 			$tasks_sponzor_like_sponzor=$User->tasks_sponzor_like_sponzor;
 			if(sizeof($events)>0){
+<<<<<<< HEAD
 				return response()->json(['message'=>"This user has events, first remove the events and try again"],409);			
 			}
 			elseif(sizeof($categories)>0){
@@ -582,11 +1021,36 @@ class UserController extends Controller {
 			}
 			elseif(sizeof($tasks_sponzor_like_sponzor)>0){
 				return response()->json(['message'=>"This user has tasks_sponzor_like_sponzor, first remove the tasks_sponzor_like_sponzor and try again"],409);			
+=======
+				return response()->json(['message'=>"This user has events, first remove the events and try again"],409);
+			}
+			elseif(sizeof($categories)>0){
+				return response()->json(['message'=>"This user has categories, first remove the categories and try again"],409);
+			}
+			elseif(sizeof($interests)>0){
+				return response()->json(['message'=>"This user has interests, first remove the interests and try again"],409);
+			}
+			elseif(sizeof($perk_tasks)>0){
+				return response()->json(['message'=>"This user has perk_tasks, first remove the perk_tasks and try again"],409);
+			}
+			elseif(sizeof($sponzorships)>0){
+				return response()->json(['message'=>"This user has sponzorships, first remove the sponzorships and try again"],409);
+			}
+			elseif(sizeof($tasks_sponzor_like_organizer)>0){
+				return response()->json(['message'=>"This user has tasks_sponzor_like_organizer, first remove the tasks_sponzor_like_organizer and try again"],409);
+			}
+			elseif(sizeof($tasks_sponzor_like_sponzor)>0){
+				return response()->json(['message'=>"This user has tasks_sponzor_like_sponzor, first remove the tasks_sponzor_like_sponzor and try again"],409);
+>>>>>>> local
 			}
 			else{
 				$User->delete();
 				return response()->json(['message'=>"Deleted"],200);
+<<<<<<< HEAD
 			}			
+=======
+			}
+>>>>>>> local
 		}
 	}
 

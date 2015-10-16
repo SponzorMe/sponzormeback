@@ -16,7 +16,10 @@ class AuthController extends Controller {
     	$email=$request->input("email");
     	$password=$request->input("password");
         $a=Auth::attempt(['email' => $email, 'password' => $password]);
+<<<<<<< HEAD
         //dd($a);
+=======
+>>>>>>> local
         if ($a)
 		{
 		    return response()->json([
@@ -33,4 +36,8 @@ class AuthController extends Controller {
 			);
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> local

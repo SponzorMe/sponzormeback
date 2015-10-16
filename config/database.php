@@ -48,8 +48,13 @@ return [
 
 		'mysql' => [
 			'driver'    => 'mysql',
+<<<<<<< HEAD
 			'host'      => env('DB_HOST', 'localhost'),
 			'database'  => env('DB_DATABASE', 'sponzorme5'),
+=======
+			'host'      => env('DB_HOST', ''),
+			'database'  => env('DB_DATABASE', ''),
+>>>>>>> local
 			'username'  => env('DB_USERNAME', ''),
 			'password'  => env('DB_PASSWORD', ''),
 			'charset'   => 'utf8',

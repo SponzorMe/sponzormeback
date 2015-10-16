@@ -12,9 +12,15 @@ class CategoriesTableSeeder extends Seeder {
 	public function run()
 	{
 		\DB::table('categories')->delete();
+<<<<<<< HEAD
         
 		\DB::table('categories')->insert(array (
 			0 => 
+=======
+
+		\DB::table('categories')->insert(array (
+			0 =>
+>>>>>>> local
 			array (
 				'id' => 1,
 				'title' => 'Outdoor',
@@ -23,7 +29,11 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '2014-08-20 10:11:45',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			1 => 
+=======
+			1 =>
+>>>>>>> local
 			array (
 				'id' => 2,
 				'title' => 'Art & Culture',
@@ -32,7 +42,11 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '2014-08-20 10:11:45',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			2 => 
+=======
+			2 =>
+>>>>>>> local
 			array (
 				'id' => 3,
 				'title' => 'Dancing',
@@ -41,7 +55,11 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '2014-08-20 10:11:45',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			3 => 
+=======
+			3 =>
+>>>>>>> local
 			array (
 				'id' => 4,
 				'title' => 'Wellness',
@@ -50,7 +68,11 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '2014-08-20 10:11:45',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			4 => 
+=======
+			4 =>
+>>>>>>> local
 			array (
 				'id' => 5,
 				'title' => 'Career & Business',
@@ -59,7 +81,11 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			5 => 
+=======
+			5 =>
+>>>>>>> local
 			array (
 				'id' => 6,
 				'title' => 'Eat & Foods',
@@ -68,7 +94,11 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			6 => 
+=======
+			6 =>
+>>>>>>> local
 			array (
 				'id' => 7,
 				'title' => 'Belief',
@@ -77,7 +107,11 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			7 => 
+=======
+			7 =>
+>>>>>>> local
 			array (
 				'id' => 8,
 				'title' => 'Sports & Fitness',
@@ -86,7 +120,11 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			8 => 
+=======
+			8 =>
+>>>>>>> local
 			array (
 				'id' => 9,
 				'title' => 'Education',
@@ -95,7 +133,11 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			9 => 
+=======
+			9 =>
+>>>>>>> local
 			array (
 				'id' => 10,
 				'title' => 'Photography',
@@ -104,7 +146,11 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			10 => 
+=======
+			10 =>
+>>>>>>> local
 			array (
 				'id' => 11,
 				'title' => 'Languages',
@@ -113,7 +159,11 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			11 => 
+=======
+			11 =>
+>>>>>>> local
 			array (
 				'id' => 12,
 				'title' => 'Books',
@@ -122,7 +172,11 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			12 => 
+=======
+			12 =>
+>>>>>>> local
 			array (
 				'id' => 13,
 				'title' => 'Music',
@@ -131,7 +185,11 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			13 => 
+=======
+			13 =>
+>>>>>>> local
 			array (
 				'id' => 14,
 				'title' => 'Technology',
@@ -140,6 +198,7 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			14 => 
 			array (
 				'id' => 15,
@@ -392,6 +451,8 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'pt',
 			),
+=======
+>>>>>>> local
 		));
 	}
 

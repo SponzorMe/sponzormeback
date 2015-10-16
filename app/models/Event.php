@@ -42,15 +42,7 @@ class Event extends Model {
     }
     public function sponzorship()
     {
-        return $this->hasMany('App\Models\Sponzorship','event_id');
-    }
-		public function perk_tasks()
-    {
-        return $this->hasMany('App\Models\PerkTask','event_id');
-    }
-		public function sponzor_tasks()
-    {
-        return $this->hasMany('App\Models\TaskSponzor','event_id');
+        return $this->hasMany('App\Models\Sponzorship','id_event');
     }
 
 }

@@ -5,10 +5,14 @@
         "This file is @generated automatically"
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "hash": "cf23973200e194c660387477a9e7de5f",
 =======
     "hash": "ee5f20439d8d5bd4e7b26a61154d9a22",
 >>>>>>> local
+=======
+    "hash": "ee5f20439d8d5bd4e7b26a61154d9a22",
+>>>>>>> staging
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -105,6 +109,7 @@
         {
             "name": "classpreloader/classpreloader",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "1.4.0",
             "source": {
                 "type": "git",
@@ -116,6 +121,8 @@
                 "url": "https://api.github.com/repos/ClassPreloader/ClassPreloader/zipball/b76f3f4f603ebbe7e64351a7ef973431ddaf7b27",
                 "reference": "b76f3f4f603ebbe7e64351a7ef973431ddaf7b27",
 =======
+=======
+>>>>>>> staging
             "version": "2.0.0",
             "source": {
                 "type": "git",
@@ -126,11 +133,15 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/ClassPreloader/ClassPreloader/zipball/8c3c14b10309e3b40bce833913a6c0c0b8c8f962",
                 "reference": "8c3c14b10309e3b40bce833913a6c0c0b8c8f962",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
                 "nikic/php-parser": "~1.3",
+<<<<<<< HEAD
 <<<<<<< HEAD
                 "php": ">=5.3.3",
                 "symfony/console": "~2.1",
@@ -139,10 +150,14 @@
 =======
                 "php": ">=5.5.9"
 >>>>>>> local
+=======
+                "php": ">=5.5.9"
+>>>>>>> staging
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.0"
             },
+<<<<<<< HEAD
 <<<<<<< HEAD
             "bin": [
                 "classpreloader.php"
@@ -152,11 +167,16 @@
                 "branch-alias": {
                     "dev-master": "1.4-dev"
 =======
+=======
+>>>>>>> staging
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "2.0-dev"
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 }
             },
             "autoload": {
@@ -176,10 +196,14 @@
                 {
                     "name": "Graham Campbell",
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "email": "graham@cachethq.io"
 =======
                     "email": "graham@alt-three.com"
 >>>>>>> local
+=======
+                    "email": "graham@alt-three.com"
+>>>>>>> staging
                 }
             ],
             "description": "Helps class loading performance by generating a single PHP file containing all of the autoloaded files for a specific use case",
@@ -189,10 +213,14 @@
                 "preload"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-05-26 10:57:51"
 =======
             "time": "2015-06-28 21:39:13"
 >>>>>>> local
+=======
+            "time": "2015-06-28 21:39:13"
+>>>>>>> staging
         },
         {
             "name": "danielstjules/stringy",
@@ -352,7 +380,10 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> staging
             "name": "drewm/mailchimp-api",
             "version": "dev-master",
             "source": {
@@ -500,7 +531,10 @@
             "time": "2015-06-24 19:55:15"
         },
         {
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
             "name": "illuminate/html",
             "version": "v5.0.0",
             "source": {
@@ -549,6 +583,7 @@
         {
             "name": "intervention/image",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "2.2.1",
             "source": {
                 "type": "git",
@@ -560,6 +595,8 @@
                 "url": "https://api.github.com/repos/Intervention/image/zipball/79f0a35da7d4f75bb85d9c04513dd5929e21f75e",
                 "reference": "79f0a35da7d4f75bb85d9c04513dd5929e21f75e",
 =======
+=======
+>>>>>>> staging
             "version": "2.3.1",
             "source": {
                 "type": "git",
@@ -570,17 +607,25 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Intervention/image/zipball/156f9d6f8a186c68b92f0c50084718f02dae1b5f",
                 "reference": "156f9d6f8a186c68b92f0c50084718f02dae1b5f",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
                 "ext-fileinfo": "*",
+<<<<<<< HEAD
 <<<<<<< HEAD
                 "php": ">=5.3.0"
 =======
                 "guzzlehttp/psr7": "~1.1",
                 "php": ">=5.4.0"
 >>>>>>> local
+=======
+                "guzzlehttp/psr7": "~1.1",
+                "php": ">=5.4.0"
+>>>>>>> staging
             },
             "require-dev": {
                 "mockery/mockery": "~0.9.2",
@@ -593,13 +638,19 @@
             },
             "type": "library",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> staging
             "extra": {
                 "branch-alias": {
                     "dev-master": "2.3-dev"
                 }
             },
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
             "autoload": {
                 "psr-4": {
                     "Intervention\\Image\\": "src/Intervention/Image"
@@ -627,10 +678,14 @@
                 "watermark"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-05-09 16:06:30"
 =======
             "time": "2015-07-10 15:03:58"
 >>>>>>> local
+=======
+            "time": "2015-07-10 15:03:58"
+>>>>>>> staging
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -678,6 +733,7 @@
         {
             "name": "jakub-onderka/php-console-highlighter",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v0.3.1",
             "source": {
                 "type": "git",
@@ -689,6 +745,8 @@
                 "url": "https://api.github.com/repos/JakubOnderka/PHP-Console-Highlighter/zipball/05bce997da20acf873e6bf396276798f3cd2c76a",
                 "reference": "05bce997da20acf873e6bf396276798f3cd2c76a",
 =======
+=======
+>>>>>>> staging
             "version": "v0.3.2",
             "source": {
                 "type": "git",
@@ -699,7 +757,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/JakubOnderka/PHP-Console-Highlighter/zipball/7daa75df45242c8d5b75a22c00a201e7954e4fb5",
                 "reference": "7daa75df45242c8d5b75a22c00a201e7954e4fb5",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -710,9 +771,13 @@
                 "jakub-onderka/php-code-style": "~1.0",
                 "jakub-onderka/php-parallel-lint": "~0.5",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                 "jakub-onderka/php-var-dump-check": "~0.1",
 >>>>>>> local
+=======
+                "jakub-onderka/php-var-dump-check": "~0.1",
+>>>>>>> staging
                 "phpunit/phpunit": "~4.0",
                 "squizlabs/php_codesniffer": "~1.5"
             },
@@ -734,10 +799,14 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2014-07-14 20:59:35"
 =======
             "time": "2015-04-20 18:58:01"
 >>>>>>> local
+=======
+            "time": "2015-04-20 18:58:01"
+>>>>>>> staging
         },
         {
             "name": "jeremeamia/SuperClosure",
@@ -782,10 +851,14 @@
                     "email": "jeremeamia@gmail.com",
                     "homepage": "https://github.com/jeremeamia",
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "role": "Developer"
 =======
                     "role": "developer"
 >>>>>>> local
+=======
+                    "role": "developer"
+>>>>>>> staging
                 }
             ],
             "description": "Serialize Closure objects, including their context and binding",
@@ -804,6 +877,7 @@
         {
             "name": "laravel/framework",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v5.1.1",
             "source": {
                 "type": "git",
@@ -819,6 +893,8 @@
             "require": {
                 "classpreloader/classpreloader": "~1.2",
 =======
+=======
+>>>>>>> staging
             "version": "v5.1.7",
             "source": {
                 "type": "git",
@@ -833,7 +909,10 @@
             },
             "require": {
                 "classpreloader/classpreloader": "~2.0",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "danielstjules/stringy": "~1.8",
                 "doctrine/inflector": "~1.0",
                 "ext-mbstring": "*",
@@ -845,10 +924,14 @@
                 "nesbot/carbon": "~1.19",
                 "php": ">=5.5.9",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "psy/psysh": "0.4.*",
 =======
                 "psy/psysh": "~0.5.1",
 >>>>>>> local
+=======
+                "psy/psysh": "~0.5.1",
+>>>>>>> staging
                 "swiftmailer/swiftmailer": "~5.1",
                 "symfony/console": "2.7.*",
                 "symfony/css-selector": "2.7.*",
@@ -949,6 +1032,7 @@
                 "laravel"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-06-09 14:13:59"
         },
         {
@@ -968,6 +1052,8 @@
             "require": {
                 "ext-mbstring": "*",
 =======
+=======
+>>>>>>> staging
             "time": "2015-07-12 02:27:36"
         },
         {
@@ -985,11 +1071,15 @@
                 "shasum": ""
             },
             "require": {
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "php": ">=5.4.0"
             },
             "require-dev": {
                 "ext-fileinfo": "*",
+<<<<<<< HEAD
 <<<<<<< HEAD
                 "league/phpunit-coverage-listener": "~1.1",
                 "mockery/mockery": "~0.9",
@@ -999,11 +1089,16 @@
                 "predis/predis": "~1.0",
                 "tedivm/stash": "~0.12.0"
 =======
+=======
+>>>>>>> staging
                 "mockery/mockery": "~0.9",
                 "phpspec/phpspec": "^2.2",
                 "phpspec/prophecy-phpunit": "~1.0",
                 "phpunit/phpunit": "~4.1"
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
             },
             "suggest": {
                 "ext-fileinfo": "Required for MimeType",
@@ -1018,11 +1113,15 @@
                 "league/flysystem-sftp": "Allows you to use SFTP server storage via phpseclib",
                 "league/flysystem-webdav": "Allows you to use WebDAV storage",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter",
                 "predis/predis": "Allows you to use Predis for caching"
 =======
                 "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter"
 >>>>>>> local
+=======
+                "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter"
+>>>>>>> staging
             },
             "type": "library",
             "extra": {
@@ -1046,17 +1145,23 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "description": "Many filesystems, one API.",
             "keywords": [
                 "Cloud Files",
                 "WebDAV",
 =======
+=======
+>>>>>>> staging
             "description": "Filesystem abstraction: Many filesystems, one API.",
             "keywords": [
                 "Cloud Files",
                 "WebDAV",
                 "abstraction",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "aws",
                 "cloud",
                 "copy.com",
@@ -1065,9 +1170,13 @@
                 "files",
                 "filesystem",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                 "filesystems",
 >>>>>>> local
+=======
+                "filesystems",
+>>>>>>> staging
                 "ftp",
                 "rackspace",
                 "remote",
@@ -1075,6 +1184,7 @@
                 "sftp",
                 "storage"
             ],
+<<<<<<< HEAD
 <<<<<<< HEAD
             "time": "2015-06-07 21:27:37"
         },
@@ -1091,6 +1201,8 @@
                 "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c31a2c4e8db5da8b46c74cf275d7f109c0f249ac",
                 "reference": "c31a2c4e8db5da8b46c74cf275d7f109c0f249ac",
 =======
+=======
+>>>>>>> staging
             "time": "2015-07-13 09:25:28"
         },
         {
@@ -1148,7 +1260,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Seldaek/monolog/zipball/dc5150cc608f2334c72c3b6a553ec9668a4156b0",
                 "reference": "dc5150cc608f2334c72c3b6a553ec9668a4156b0",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -1160,6 +1275,7 @@
             },
             "require-dev": {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "aws/aws-sdk-php": "~2.4, >2.4.8",
                 "doctrine/couchdb": "~1.0@dev",
                 "graylog2/gelf-php": "~1.0",
@@ -1167,6 +1283,8 @@
                 "raven/raven": "~0.5",
                 "ruflin/elastica": "0.90.*",
 =======
+=======
+>>>>>>> staging
                 "aws/aws-sdk-php": "^2.4.9",
                 "doctrine/couchdb": "~1.0@dev",
                 "graylog2/gelf-php": "~1.0",
@@ -1175,7 +1293,10 @@
                 "phpunit/phpunit-mock-objects": "2.3.0",
                 "raven/raven": "~0.8",
                 "ruflin/elastica": ">=0.90 <3.0",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "swiftmailer/swiftmailer": "~5.3",
                 "videlalvaro/php-amqplib": "~2.4"
             },
@@ -1186,9 +1307,13 @@
                 "ext-mongo": "Allow sending log messages to a MongoDB server",
                 "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                 "php-console/php-console": "Allow sending log messages to Google Chrome",
 >>>>>>> local
+=======
+                "php-console/php-console": "Allow sending log messages to Google Chrome",
+>>>>>>> staging
                 "raven/raven": "Allow sending log messages to a Sentry server",
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
                 "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
@@ -1198,10 +1323,14 @@
             "extra": {
                 "branch-alias": {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "dev-master": "1.13.x-dev"
 =======
                     "dev-master": "1.15.x-dev"
 >>>>>>> local
+=======
+                    "dev-master": "1.15.x-dev"
+>>>>>>> staging
                 }
             },
             "autoload": {
@@ -1228,10 +1357,14 @@
                 "psr-3"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-03-09 09:58:04"
 =======
             "time": "2015-07-12 13:54:09"
 >>>>>>> local
+=======
+            "time": "2015-07-12 13:54:09"
+>>>>>>> staging
         },
         {
             "name": "mtdowling/cron-expression",
@@ -1280,6 +1413,7 @@
         {
             "name": "nesbot/carbon",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "1.19.0",
             "source": {
                 "type": "git",
@@ -1291,6 +1425,8 @@
                 "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/68868e0b02d2d803d0052a59d4e5003cccf87320",
                 "reference": "68868e0b02d2d803d0052a59d4e5003cccf87320",
 =======
+=======
+>>>>>>> staging
             "version": "1.20.0",
             "source": {
                 "type": "git",
@@ -1301,16 +1437,23 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/bfd3eaba109c9a2405c92174c8e17f20c2b9caf3",
                 "reference": "bfd3eaba109c9a2405c92174c8e17f20c2b9caf3",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "symfony/translation": "~2.6"
 =======
                 "symfony/translation": "~2.6|~3.0"
 >>>>>>> local
+=======
+                "symfony/translation": "~2.6|~3.0"
+>>>>>>> staging
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.0"
@@ -1340,6 +1483,7 @@
                 "time"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-05-09 03:23:44"
         },
         {
@@ -1355,6 +1499,8 @@
                 "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/dff239267fd1befa1cd40430c9ed12591aa720ca",
                 "reference": "dff239267fd1befa1cd40430c9ed12591aa720ca",
 =======
+=======
+>>>>>>> staging
             "time": "2015-06-25 04:19:39"
         },
         {
@@ -1369,7 +1515,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/196f177cfefa0f1f7166c0a05d8255889be12418",
                 "reference": "196f177cfefa0f1f7166c0a05d8255889be12418",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -1380,10 +1529,14 @@
             "extra": {
                 "branch-alias": {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "dev-master": "1.3-dev"
 =======
                     "dev-master": "1.4-dev"
 >>>>>>> local
+=======
+                    "dev-master": "1.4-dev"
+>>>>>>> staging
                 }
             },
             "autoload": {
@@ -1406,10 +1559,14 @@
                 "php"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-05-02 15:40:40"
 =======
             "time": "2015-07-14 17:31:05"
 >>>>>>> local
+=======
+            "time": "2015-07-14 17:31:05"
+>>>>>>> staging
         },
         {
             "name": "orangehill/iseed",
@@ -1462,7 +1619,10 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> staging
             "name": "psr/http-message",
             "version": "1.0",
             "source": {
@@ -1512,7 +1672,10 @@
             "time": "2015-05-04 20:22:00"
         },
         {
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
             "name": "psr/log",
             "version": "1.0.0",
             "source": {
@@ -1553,6 +1716,7 @@
         {
             "name": "psy/psysh",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v0.4.4",
             "source": {
                 "type": "git",
@@ -1564,6 +1728,8 @@
                 "url": "https://api.github.com/repos/bobthecow/psysh/zipball/489816db71649bd95b416e3ed9062d40528ab0ac",
                 "reference": "489816db71649bd95b416e3ed9062d40528ab0ac",
 =======
+=======
+>>>>>>> staging
             "version": "v0.5.2",
             "source": {
                 "type": "git",
@@ -1574,22 +1740,31 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/bobthecow/psysh/zipball/aaf8772ade08b5f0f6830774a5d5c2f800415975",
                 "reference": "aaf8772ade08b5f0f6830774a5d5c2f800415975",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
                 "dnoegel/php-xdg-base-dir": "0.1",
                 "jakub-onderka/php-console-highlighter": "0.3.*",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "nikic/php-parser": "~1.0",
                 "php": ">=5.3.0",
                 "symfony/console": "~2.3.10|~2.4.2|~2.5"
 =======
+=======
+>>>>>>> staging
                 "nikic/php-parser": "^1.2.1",
                 "php": ">=5.3.9",
                 "symfony/console": "~2.3.10|^2.4.2|~3.0",
                 "symfony/var-dumper": "~2.7|~3.0"
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "~1.5",
@@ -1610,10 +1785,14 @@
             "extra": {
                 "branch-alias": {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "dev-develop": "0.4.x-dev"
 =======
                     "dev-develop": "0.6.x-dev"
 >>>>>>> local
+=======
+                    "dev-develop": "0.6.x-dev"
+>>>>>>> staging
                 }
             },
             "autoload": {
@@ -1644,10 +1823,14 @@
                 "shell"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-03-26 18:43:54"
 =======
             "time": "2015-07-16 15:26:57"
 >>>>>>> local
+=======
+            "time": "2015-07-16 15:26:57"
+>>>>>>> staging
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1705,6 +1888,7 @@
         {
             "name": "symfony/console",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v2.7.0",
             "source": {
                 "type": "git",
@@ -1716,6 +1900,8 @@
                 "url": "https://api.github.com/repos/symfony/Console/zipball/7f0bec04961c61c961df0cb8c2ae88dbfd83f399",
                 "reference": "7f0bec04961c61c961df0cb8c2ae88dbfd83f399",
 =======
+=======
+>>>>>>> staging
             "version": "v2.7.2",
             "source": {
                 "type": "git",
@@ -1726,7 +1912,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/Console/zipball/8cf484449130cabfd98dcb4694ca9945802a21ed",
                 "reference": "8cf484449130cabfd98dcb4694ca9945802a21ed",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -1771,18 +1960,24 @@
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-05-29 16:22:24"
         },
         {
             "name": "symfony/css-selector",
             "version": "v2.7.0",
 =======
+=======
+>>>>>>> staging
             "time": "2015-07-09 16:07:40"
         },
         {
             "name": "symfony/css-selector",
             "version": "v2.7.2",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/CssSelector.git",
@@ -1836,6 +2031,7 @@
         {
             "name": "symfony/debug",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v2.7.0",
             "source": {
                 "type": "git",
@@ -1847,6 +2043,8 @@
                 "url": "https://api.github.com/repos/symfony/Debug/zipball/1df2971b27a6ff73dae4ea622f42802000ec332d",
                 "reference": "1df2971b27a6ff73dae4ea622f42802000ec332d",
 =======
+=======
+>>>>>>> staging
             "version": "v2.7.2",
             "source": {
                 "type": "git",
@@ -1857,7 +2055,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/Debug/zipball/9daa1bf9f7e615fa2fba30357e479a90141222e3",
                 "reference": "9daa1bf9f7e615fa2fba30357e479a90141222e3",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -1905,6 +2106,7 @@
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-05-22 14:54:25"
         },
         {
@@ -1920,6 +2122,8 @@
                 "url": "https://api.github.com/repos/symfony/DomCrawler/zipball/11d8eb8ccc1533f4c2d89a025f674894fda520b3",
                 "reference": "11d8eb8ccc1533f4c2d89a025f674894fda520b3",
 =======
+=======
+>>>>>>> staging
             "time": "2015-07-09 16:07:40"
         },
         {
@@ -1934,7 +2138,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/DomCrawler/zipball/9dabece63182e95c42b06967a0d929a5df78bc35",
                 "reference": "9dabece63182e95c42b06967a0d929a5df78bc35",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -1975,6 +2182,7 @@
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-05-22 14:54:25"
         },
         {
@@ -1990,6 +2198,8 @@
                 "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/687039686d0e923429ba6e958d0baa920cd5d458",
                 "reference": "687039686d0e923429ba6e958d0baa920cd5d458",
 =======
+=======
+>>>>>>> staging
             "time": "2015-07-09 16:07:40"
         },
         {
@@ -2004,7 +2214,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/9310b5f9a87ec2ea75d20fec0b0017c77c66dac3",
                 "reference": "9310b5f9a87ec2ea75d20fec0b0017c77c66dac3",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -2049,6 +2262,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
 <<<<<<< HEAD
             "time": "2015-05-02 15:21:08"
         },
@@ -2114,6 +2328,8 @@
                 "url": "https://api.github.com/repos/symfony/Finder/zipball/ccb8ed8339cf24824f2ef35dacec30d92ff44368",
                 "reference": "ccb8ed8339cf24824f2ef35dacec30d92ff44368",
 =======
+=======
+>>>>>>> staging
             "time": "2015-06-18 19:21:56"
         },
         {
@@ -2128,7 +2344,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/Finder/zipball/ae0f363277485094edc04c9f3cbe595b183b78e4",
                 "reference": "ae0f363277485094edc04c9f3cbe595b183b78e4",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -2165,6 +2384,7 @@
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-05-15 14:02:48"
         },
         {
@@ -2180,6 +2400,8 @@
                 "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/729de183da037c125c5f6366bd4f0631ba1a1abb",
                 "reference": "729de183da037c125c5f6366bd4f0631ba1a1abb",
 =======
+=======
+>>>>>>> staging
             "time": "2015-07-09 16:07:40"
         },
         {
@@ -2194,7 +2416,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/88903c0531b90d4ecd90282b18f08c0c77bde0b2",
                 "reference": "88903c0531b90d4ecd90282b18f08c0c77bde0b2",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -2235,6 +2460,7 @@
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-05-22 14:54:25"
         },
         {
@@ -2250,6 +2476,8 @@
                 "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/74acbb7ef9c4aae0620d3250b9b990d2fff28d16",
                 "reference": "74acbb7ef9c4aae0620d3250b9b990d2fff28d16",
 =======
+=======
+>>>>>>> staging
             "time": "2015-07-09 16:07:40"
         },
         {
@@ -2264,7 +2492,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/4a8a6f2a847475b3a38da50363a07f69b5cbf37e",
                 "reference": "4a8a6f2a847475b3a38da50363a07f69b5cbf37e",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -2332,6 +2563,7 @@
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-05-30 16:52:28"
         },
         {
@@ -2347,6 +2579,8 @@
                 "url": "https://api.github.com/repos/symfony/Process/zipball/e0a82b58e36afc60f8e79b8bc85a22bb064077c1",
                 "reference": "e0a82b58e36afc60f8e79b8bc85a22bb064077c1",
 =======
+=======
+>>>>>>> staging
             "time": "2015-07-13 19:27:49"
         },
         {
@@ -2361,7 +2595,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/Process/zipball/48aeb0e48600321c272955132d7606ab0a49adb3",
                 "reference": "48aeb0e48600321c272955132d7606ab0a49adb3",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -2398,6 +2635,7 @@
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-05-15 13:33:16"
         },
         {
@@ -2413,6 +2651,8 @@
                 "url": "https://api.github.com/repos/symfony/Routing/zipball/6f0333fb8b89cf6f8fd9d6740c5e83b73d9c95b9",
                 "reference": "6f0333fb8b89cf6f8fd9d6740c5e83b73d9c95b9",
 =======
+=======
+>>>>>>> staging
             "time": "2015-07-01 11:25:50"
         },
         {
@@ -2427,7 +2667,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/Routing/zipball/ea9134f277162b02e5f80ac058b75a77637b0d26",
                 "reference": "ea9134f277162b02e5f80ac058b75a77637b0d26",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -2486,6 +2729,7 @@
                 "url"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-05-19 06:58:17"
         },
         {
@@ -2501,6 +2745,8 @@
                 "url": "https://api.github.com/repos/symfony/Translation/zipball/cc1907bbeacfcc703c031b67545400d6e7d1eb79",
                 "reference": "cc1907bbeacfcc703c031b67545400d6e7d1eb79",
 =======
+=======
+>>>>>>> staging
             "time": "2015-07-09 16:07:40"
         },
         {
@@ -2515,7 +2761,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/Translation/zipball/c8dc34cc936152c609cdd722af317e4239d10dd6",
                 "reference": "c8dc34cc936152c609cdd722af317e4239d10dd6",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -2564,6 +2813,7 @@
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-05-29 14:44:44"
         },
         {
@@ -2579,6 +2829,8 @@
                 "url": "https://api.github.com/repos/symfony/var-dumper/zipball/120b187ec46215f7a53a506e53aa91a81c82a082",
                 "reference": "120b187ec46215f7a53a506e53aa91a81c82a082",
 =======
+=======
+>>>>>>> staging
             "time": "2015-07-09 16:07:40"
         },
         {
@@ -2593,7 +2845,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/var-dumper/zipball/fde603d9f4b2418ff0f0315b93eb039c9aa41205",
                 "reference": "fde603d9f4b2418ff0f0315b93eb039c9aa41205",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -2640,10 +2895,14 @@
                 "dump"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-05-02 15:21:08"
 =======
             "time": "2015-07-01 12:07:40"
 >>>>>>> local
+=======
+            "time": "2015-07-01 12:07:40"
+>>>>>>> staging
         },
         {
             "name": "vlucas/phpdotenv",
@@ -2691,6 +2950,7 @@
             ],
             "time": "2015-05-30 15:59:26"
 <<<<<<< HEAD
+<<<<<<< HEAD
         }
     ],
     "packages-dev": [
@@ -2728,6 +2988,8 @@
                 "psr-0": {
                     "Doctrine\\Instantiator\\": "src"
 =======
+=======
+>>>>>>> staging
         },
         {
             "name": "weblee/mandrill",
@@ -2754,7 +3016,10 @@
             "autoload": {
                 "psr-4": {
                     "Weblee\\Mandrill\\": "src"
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2763,6 +3028,7 @@
             ],
             "authors": [
                 {
+<<<<<<< HEAD
 <<<<<<< HEAD
                     "name": "Marco Pivetta",
                     "email": "ocramius@gmail.com",
@@ -2801,6 +3067,8 @@
             "suggest": {
                 "ext-intl": "*"
 =======
+=======
+>>>>>>> staging
                     "name": "Lee Smith",
                     "email": "lee@weblee.co.uk"
                 }
@@ -2838,25 +3106,36 @@
                 "ext-phar": "*",
                 "phpunit/phpunit": "~4.0",
                 "squizlabs/php_codesniffer": "~2.0"
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "dev-master": "1.5.x-dev"
 =======
                     "dev-master": "1.0.x-dev"
 >>>>>>> local
+=======
+                    "dev-master": "1.0.x-dev"
+>>>>>>> staging
                 }
             },
             "autoload": {
                 "psr-4": {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "Faker\\": "src/Faker/"
 =======
                     "Doctrine\\Instantiator\\": "src/Doctrine/Instantiator/"
 >>>>>>> local
+=======
+                    "Doctrine\\Instantiator\\": "src/Doctrine/Instantiator/"
+>>>>>>> staging
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2865,6 +3144,7 @@
             ],
             "authors": [
                 {
+<<<<<<< HEAD
 <<<<<<< HEAD
                     "name": "François Zaninotto"
                 }
@@ -2877,6 +3157,8 @@
             ],
             "time": "2015-05-29 06:29:14"
 =======
+=======
+>>>>>>> staging
                     "name": "Marco Pivetta",
                     "email": "ocramius@gmail.com",
                     "homepage": "http://ocramius.github.com/"
@@ -2889,7 +3171,10 @@
                 "instantiate"
             ],
             "time": "2015-06-14 21:17:01"
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -3225,6 +3510,7 @@
         {
             "name": "phpunit/php-code-coverage",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "2.1.5",
             "source": {
                 "type": "git",
@@ -3236,6 +3522,8 @@
                 "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/be2286cb8c7e1773eded49d9719219e6f74f9e3e",
                 "reference": "be2286cb8c7e1773eded49d9719219e6f74f9e3e",
 =======
+=======
+>>>>>>> staging
             "version": "2.1.8",
             "source": {
                 "type": "git",
@@ -3246,7 +3534,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/6044546998c7627ab997501a3d0db972b3db9790",
                 "reference": "6044546998c7627ab997501a3d0db972b3db9790",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -3296,10 +3587,14 @@
                 "xunit"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-06-09 13:05:42"
 =======
             "time": "2015-07-13 11:25:58"
 >>>>>>> local
+=======
+            "time": "2015-07-13 11:25:58"
+>>>>>>> staging
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3351,6 +3646,7 @@
         {
             "name": "phpunit/php-text-template",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "1.2.0",
             "source": {
                 "type": "git",
@@ -3362,6 +3658,8 @@
                 "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/206dfefc0ffe9cebf65c413e3d0e809c82fbf00a",
                 "reference": "206dfefc0ffe9cebf65c413e3d0e809c82fbf00a",
 =======
+=======
+>>>>>>> staging
             "version": "1.2.1",
             "source": {
                 "type": "git",
@@ -3372,7 +3670,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/31f8b717e51d9a2afca6c9f046f5d69fc27c8686",
                 "reference": "31f8b717e51d9a2afca6c9f046f5d69fc27c8686",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -3382,6 +3683,7 @@
             "autoload": {
                 "classmap": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "Text/"
                 ]
             },
@@ -3390,11 +3692,16 @@
                 ""
             ],
 =======
+=======
+>>>>>>> staging
                     "src/"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
             "license": [
                 "BSD-3-Clause"
             ],
@@ -3402,10 +3709,14 @@
                 {
                     "name": "Sebastian Bergmann",
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "email": "sb@sebastian-bergmann.de",
 =======
                     "email": "sebastian@phpunit.de",
 >>>>>>> local
+=======
+                    "email": "sebastian@phpunit.de",
+>>>>>>> staging
                     "role": "lead"
                 }
             ],
@@ -3414,6 +3725,7 @@
             "keywords": [
                 "template"
             ],
+<<<<<<< HEAD
 <<<<<<< HEAD
             "time": "2014-01-30 17:20:04"
         },
@@ -3430,6 +3742,8 @@
                 "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/19689d4354b295ee3d8c54b4f42c3efb69cbc17c",
                 "reference": "19689d4354b295ee3d8c54b4f42c3efb69cbc17c",
 =======
+=======
+>>>>>>> staging
             "time": "2015-06-21 13:50:34"
         },
         {
@@ -3444,7 +3758,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/83fe1bdc5d47658b727595c14da140da92b3d66d",
                 "reference": "83fe1bdc5d47658b727595c14da140da92b3d66d",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -3454,6 +3771,7 @@
             "autoload": {
                 "classmap": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "PHP/"
                 ]
             },
@@ -3462,11 +3780,16 @@
                 ""
             ],
 =======
+=======
+>>>>>>> staging
                     "src/"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
             "license": [
                 "BSD-3-Clause"
             ],
@@ -3483,6 +3806,7 @@
                 "timer"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2013-08-02 07:42:54"
         },
         {
@@ -3498,6 +3822,8 @@
                 "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/eab81d02569310739373308137284e0158424330",
                 "reference": "eab81d02569310739373308137284e0158424330",
 =======
+=======
+>>>>>>> staging
             "time": "2015-06-13 07:35:30"
         },
         {
@@ -3512,7 +3838,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/7a9b0969488c3c54fd62b4d504b3ec758fd005d9",
                 "reference": "7a9b0969488c3c54fd62b4d504b3ec758fd005d9",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -3549,6 +3878,7 @@
                 "tokenizer"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-04-08 04:46:07"
         },
         {
@@ -3564,6 +3894,8 @@
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/8e0c63329c8c4185296b8d357daa5c6bae43080f",
                 "reference": "8e0c63329c8c4185296b8d357daa5c6bae43080f",
 =======
+=======
+>>>>>>> staging
             "time": "2015-06-19 03:43:16"
         },
         {
@@ -3578,7 +3910,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9b97f9d807b862c2de2a36e86690000801c85724",
                 "reference": "9b97f9d807b862c2de2a36e86690000801c85724",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -3593,10 +3928,14 @@
                 "phpunit/php-file-iterator": "~1.4",
                 "phpunit/php-text-template": "~1.2",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "phpunit/php-timer": "~1.0",
 =======
                 "phpunit/php-timer": ">=1.0.6",
 >>>>>>> local
+=======
+                "phpunit/php-timer": ">=1.0.6",
+>>>>>>> staging
                 "phpunit/phpunit-mock-objects": "~2.3",
                 "sebastian/comparator": "~1.1",
                 "sebastian/diff": "~1.2",
@@ -3642,6 +3981,7 @@
                 "xunit"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-06-06 08:36:08"
         },
         {
@@ -3657,6 +3997,8 @@
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/253c005852591fd547fc18cd5b7b43a1ec82d8f7",
                 "reference": "253c005852591fd547fc18cd5b7b43a1ec82d8f7",
 =======
+=======
+>>>>>>> staging
             "time": "2015-07-13 11:28:34"
         },
         {
@@ -3671,7 +4013,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/1c330b1b6e1ea8fd15f2fbea46770576e366855c",
                 "reference": "1c330b1b6e1ea8fd15f2fbea46770576e366855c",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -3714,10 +4059,14 @@
                 "xunit"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-05-29 05:19:18"
 =======
             "time": "2015-07-04 05:41:32"
 >>>>>>> local
+=======
+            "time": "2015-07-04 05:41:32"
+>>>>>>> staging
         },
         {
             "name": "sebastian/comparator",
@@ -4058,6 +4407,7 @@
         {
             "name": "sebastian/version",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "1.0.5",
             "source": {
                 "type": "git",
@@ -4069,6 +4419,8 @@
                 "url": "https://api.github.com/repos/sebastianbergmann/version/zipball/ab931d46cd0d3204a91e1b9a40c4bc13032b58e4",
                 "reference": "ab931d46cd0d3204a91e1b9a40c4bc13032b58e4",
 =======
+=======
+>>>>>>> staging
             "version": "1.0.6",
             "source": {
                 "type": "git",
@@ -4079,7 +4431,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/version/zipball/58b3a85e7999757d6ad81c787a1fbf5ff6c628c6",
                 "reference": "58b3a85e7999757d6ad81c787a1fbf5ff6c628c6",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "type": "library",
@@ -4102,6 +4457,7 @@
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-02-24 06:35:25"
         },
         {
@@ -4117,6 +4473,8 @@
                 "url": "https://api.github.com/repos/symfony/Yaml/zipball/4a29a5248aed4fb45f626a7bbbd330291492f5c3",
                 "reference": "4a29a5248aed4fb45f626a7bbbd330291492f5c3",
 =======
+=======
+>>>>>>> staging
             "time": "2015-06-21 13:59:46"
         },
         {
@@ -4131,7 +4489,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/Yaml/zipball/4bfbe0ed3909bfddd75b70c094391ec1f142f860",
                 "reference": "4bfbe0ed3909bfddd75b70c094391ec1f142f860",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
                 "shasum": ""
             },
             "require": {
@@ -4168,10 +4529,14 @@
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-05-02 15:21:08"
 =======
             "time": "2015-07-01 11:25:50"
 >>>>>>> local
+=======
+            "time": "2015-07-01 11:25:50"
+>>>>>>> staging
         }
     ],
     "aliases": [],
@@ -4179,13 +4544,19 @@
     "stability-flags": {
         "barryvdh/laravel-cors": 20,
 <<<<<<< HEAD
+<<<<<<< HEAD
         "orangehill/iseed": 20
 =======
+=======
+>>>>>>> staging
         "orangehill/iseed": 20,
         "weblee/mandrill": 20,
         "drewm/mailchimp-api": 20,
         "fzaninotto/faker": 20
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
     },
     "prefer-stable": true,
     "prefer-lowest": false,

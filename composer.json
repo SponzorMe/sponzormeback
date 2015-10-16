@@ -8,6 +8,7 @@
 		"php": ">=5.5.9",
         "laravel/framework": "5.1.*",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"illuminate/html": "~5.0",
       	"intervention/image":"2.*",
       	"barryvdh/laravel-cors": "0.5.x@dev",
@@ -17,6 +18,8 @@
 		"fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
 =======
+=======
+>>>>>>> staging
 		    "illuminate/html": "~5.0",
       	"intervention/image":"2.*",
       	"barryvdh/laravel-cors": "0.5.x@dev",
@@ -28,7 +31,10 @@
 	},
 	"require-dev": {
 		    "mockery/mockery": "0.9.*",
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
         "phpunit/phpunit": "~4.0",
         "phpspec/phpspec": "~2.1"
 	},

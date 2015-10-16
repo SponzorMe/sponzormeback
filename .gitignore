@@ -3,7 +3,12 @@
 .env
 .env.*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /public/phpMyAdmin
 /public/phpMyAdmin/.*
 >>>>>>> local
+=======
+/public/phpMyAdmin
+/public/phpMyAdmin/.*
+>>>>>>> staging

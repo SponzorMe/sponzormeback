@@ -23,8 +23,11 @@ Route::resource('task_sponzor','TaskSponzorController',['except'=>['edit','creat
 Route::resource('user_interests','UserInterestController',['except'=>['edit','create']]);
 Route::resource('user_categories','UserCategoryController',['except'=>['edit','create']]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 Route::post('auth','Auth\AuthController@authenticate');
 =======
+=======
+>>>>>>> staging
 Route::get('perk_tasks_sponzorship/{sponzorshipId}','TaskSponzorController@showBySponzorship');
 Route::get('sponzorships_organizer/{organizerId}','SponzorshipController@showByOrganizer');
 Route::get('sponzorships_sponzor/{sponzorId}','SponzorshipController@showBySponzor');
@@ -34,7 +37,10 @@ Route::get('verify_activation/{activationCode}','UserController@verifyActivation
 Route::post('send_reset_password','Auth\PasswordController@sendResetPasswordToken');
 Route::post('update_password/{token}','Auth\PasswordController@updatePassword');
 Route::post('invite_friend','UserController@inviteFriend');
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 Route::pattern('route_not_found','.*');
 Route::any('/{route_not_found}', function(){
 	return response()->json(

@@ -14,10 +14,14 @@ class EventController extends Controller {
 		$this->middleware('auth.basic.once',['only'=>['store','update','destroy']]);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 =======
 
 >>>>>>> local
+=======
+
+>>>>>>> staging
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -54,11 +58,17 @@ class EventController extends Controller {
 			$organizer=$event->organizer()->get();
 			$event->perks;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			$event->sponzorship;
 			$event->perk_tasks;
 			$event->sponzor_tasks;
 >>>>>>> local
+=======
+			$event->sponzorship;
+			$event->perk_tasks;
+			$event->sponzor_tasks;
+>>>>>>> staging
 			return response()->json(
 				["data"=>
 					[
@@ -66,18 +76,24 @@ class EventController extends Controller {
 						"category"=>$category->toArray(),
 						"type"=>$type->toArray(),
 <<<<<<< HEAD
+<<<<<<< HEAD
 						"organizer"=>$type->toArray(),
 					]
 				], 200
 			);
 		}		
 =======
+=======
+>>>>>>> staging
 						"organizer"=>$organizer->toArray(),
 					]
 				], 200
 			);
 		}
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -103,20 +119,28 @@ class EventController extends Controller {
 		if($validation->fails())
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
 =======
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
 >>>>>>> local
+=======
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
+>>>>>>> staging
 		}
 		else
 		{
 			$event=Event::create($request->all());
 			return response()->json(['message'=>"Inserted",'event'=>$event],201);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}			
 =======
 		}
 >>>>>>> local
+=======
+		}
+>>>>>>> staging
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -131,6 +155,7 @@ class EventController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
+<<<<<<< HEAD
 <<<<<<< HEAD
 			//Get all values
 			$title	= $request->input("title");
@@ -152,6 +177,8 @@ class EventController extends Controller {
 			$warnings=array();
 			if(!empty($title)){				
 =======
+=======
+>>>>>>> staging
 			$inputs = $request->all(); //Get the set of inputs
 			extract($inputs); //Creamos las variables desde el array de inputs
 		}
@@ -160,7 +187,10 @@ class EventController extends Controller {
 			$flag=0;//If 0 persist nothing was updated.
 			$warnings=array();
 			if(!empty($title)){
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['title' => $title],
 				    ['title' => ['required', 'max:255']]
@@ -172,6 +202,7 @@ class EventController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($location)){				
@@ -180,6 +211,11 @@ class EventController extends Controller {
 			}
 			if(!empty($location)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($location)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['location' => $location],
 				    ['location' => ['required', 'max:255']]
@@ -191,6 +227,7 @@ class EventController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}					
 			}
 			if(!empty($ends)){				
@@ -199,6 +236,11 @@ class EventController extends Controller {
 			}
 			if(!empty($ends)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($ends)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['ends' => $ends],
 				    ['ends' => ['required', 'max:255']]
@@ -210,6 +252,7 @@ class EventController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($starts)){				
@@ -218,6 +261,11 @@ class EventController extends Controller {
 			}
 			if(!empty($starts)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($starts)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['starts' => $starts],
 				    ['starts' => ['required', 'max:255']]
@@ -229,6 +277,7 @@ class EventController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}					
 			}
 			if(!empty($location_reference)){				
@@ -237,6 +286,11 @@ class EventController extends Controller {
 			}
 			if(!empty($location_reference)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($location_reference)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['location_reference' => $location_reference],
 				    ['location_reference' => ['required', 'max:255']]
@@ -248,6 +302,7 @@ class EventController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}					
 			}
 			if(!empty($image)){				
@@ -256,6 +311,11 @@ class EventController extends Controller {
 			}
 			if(!empty($image)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($image)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['image' => $image],
 				    ['image' => ['required', 'max:255']]
@@ -267,6 +327,7 @@ class EventController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}					
 			}
 			if(!empty($description)){				
@@ -275,6 +336,11 @@ class EventController extends Controller {
 			}
 			if(!empty($description)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($description)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['description' => $description],
 				    ['description' => ['required', 'max:255']]
@@ -286,6 +352,7 @@ class EventController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}					
 			}
 			if(!empty($privacy)){				
@@ -294,6 +361,11 @@ class EventController extends Controller {
 			}
 			if(!empty($privacy)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($privacy)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['privacy' => $privacy],
 				    ['privacy' => ['required', 'max:255']]
@@ -305,6 +377,7 @@ class EventController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}					
 			}
 			if(!empty($lang)){				
@@ -313,6 +386,11 @@ class EventController extends Controller {
 			}
 			if(!empty($lang)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($lang)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['lang' => $lang],
 				    ['lang' => ['required', 'max:5']]
@@ -324,6 +402,7 @@ class EventController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($organizer)){				
@@ -332,6 +411,11 @@ class EventController extends Controller {
 			}
 			if(!empty($organizer)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($organizer)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['organizer' => $organizer],
 				    ['organizer' => ['required','exists:users,id']]
@@ -343,6 +427,7 @@ class EventController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}							
 			}
 			if(!empty($category)){				
@@ -351,6 +436,11 @@ class EventController extends Controller {
 			}
 			if(!empty($category)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($category)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['category' => $category],
 				    ['category' => ['required', 'max:5', 'exists:categories,id']]
@@ -362,6 +452,7 @@ class EventController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($type)){				
@@ -370,6 +461,11 @@ class EventController extends Controller {
 			}
 			if(!empty($type)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($type)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['type' => $type],
 				    ['type' => ['required', 'max:5','exists:event_types,id']]
@@ -381,6 +477,7 @@ class EventController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			
@@ -389,6 +486,11 @@ class EventController extends Controller {
 			}
 
 >>>>>>> local
+=======
+				}
+			}
+
+>>>>>>> staging
 			if($flag){
 				$event->save();
 				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'event'=>$event],200);
@@ -415,6 +517,7 @@ class EventController extends Controller {
 			if($validation->fails())
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
 			}
 			else
@@ -432,6 +535,8 @@ class EventController extends Controller {
 				$event->$category =$category;
 				$event->$type =$type;
 =======
+=======
+>>>>>>> staging
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
 			}
 			else
@@ -448,7 +553,10 @@ class EventController extends Controller {
 				$event->organizer =$organizer;
 				$event->category =$category;
 				$event->type =$type;
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 				$event->save();
 				return response()->json(['message'=>"Updated",'event'=>$event],200);
 			}
@@ -473,12 +581,15 @@ class EventController extends Controller {
 			$perks=$event->perks;
 			$sponzorship=$event->sponzorship;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if(sizeof($perks)>0){
 				return response()->json(['message'=>"This event has perks, first remove the perks and try again"],409);			
 			}
 			elseif(sizeof($sponzorship)>0){
 				return response()->json(['message'=>"This event has sponzorship, first remove the sponzorship and try again"],409);			
 =======
+=======
+>>>>>>> staging
 			$perkTasks=$event->perk_tasks;
 			if(sizeof($perks)>0){
 				return response()->json(['message'=>"This event has perks, first remove the perks and try again"],409);
@@ -488,16 +599,23 @@ class EventController extends Controller {
 			}
 			elseif(sizeof($perkTasks)>0){
 				return response()->json(['message'=>"This event has perkTasks, first remove the perk tasks and try again"],409);
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 			}
 			else{
 				$event->delete();
 				return response()->json(['message'=>"Deleted"],200);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}			
 =======
 			}
 >>>>>>> local
+=======
+			}
+>>>>>>> staging
 		}
 	}
 

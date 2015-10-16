@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ## Sponzorme App
 
 
@@ -59,6 +60,8 @@ composer require barryvdh/laravel-cors 0.5.x@dev
 
 [composerLink]: https://getcomposer.org/
 =======
+=======
+>>>>>>> staging
 ## Sponzorme Api
 
 
@@ -119,4 +122,7 @@ That's it!!
 [gitLink]: http://git-scm.com/
 
 [composerLink]: https://getcomposer.org/
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging

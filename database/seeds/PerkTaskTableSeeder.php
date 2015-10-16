@@ -13,6 +13,7 @@ class PerkTaskTableSeeder extends Seeder {
 	{
 		\DB::table('perk_tasks')->delete();
 <<<<<<< HEAD
+<<<<<<< HEAD
         
 		\DB::table('perk_tasks')->insert(array (
 			0 => 
@@ -22,6 +23,8 @@ class PerkTaskTableSeeder extends Seeder {
 				'type' => '23',
 				'status' => '4',				
 =======
+=======
+>>>>>>> staging
 
 		\DB::table('perk_tasks')->insert(array (
 			0 =>
@@ -40,7 +43,10 @@ class PerkTaskTableSeeder extends Seeder {
 				'description' => "Via paypal",
 				'type' => '1',
 				'status' => '0',
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 				'event_id' => '1',
 				'user_id' => '1',
 				'perk_id' => '1',
@@ -49,7 +55,11 @@ class PerkTaskTableSeeder extends Seeder {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> local
+=======
+}
+>>>>>>> staging

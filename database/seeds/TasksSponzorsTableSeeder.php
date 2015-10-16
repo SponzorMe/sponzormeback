@@ -13,18 +13,24 @@ class TasksSponzorsTableSeeder extends Seeder {
 	{
 		\DB::table('task_sponzors')->delete();
 <<<<<<< HEAD
+<<<<<<< HEAD
         
 		\DB::table('task_sponzors')->insert(array (
 			0 => 
 			array (
 				'status' => 1,				
 =======
+=======
+>>>>>>> staging
 
 		\DB::table('task_sponzors')->insert(array (
 			0 =>
 			array (
 				'status' => 0,
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 				'event_id' => '1',
 				'organizer_id' => '1',
 				'sponzor_id' => '1',
@@ -33,11 +39,14 @@ class TasksSponzorsTableSeeder extends Seeder {
 				'sponzorship_id' => '1',
 			),
 <<<<<<< HEAD
+<<<<<<< HEAD
 		));
 	}
 
 }
 =======
+=======
+>>>>>>> staging
 			1 =>
 			array (
 				'status' => 0,
@@ -52,4 +61,7 @@ class TasksSponzorsTableSeeder extends Seeder {
 	}
 
 }
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging

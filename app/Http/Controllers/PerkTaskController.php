@@ -51,10 +51,14 @@ class PerkTaskController extends Controller {
 				], 200
 			);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}		
 =======
 		}
 >>>>>>> local
+=======
+		}
+>>>>>>> staging
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -66,37 +70,51 @@ class PerkTaskController extends Controller {
 		$validation = Validator::make($request->all(), [
 			'title'=>'required|max:255',
 <<<<<<< HEAD
+<<<<<<< HEAD
 			'description'=>'required', 
 			'type'=>'required|max:5',
 			'status'=>'required|max:5',
 			'user_id'=>'required|max:11|exists:users,id', 
 			'perk_id'=>'required|max:11|exists:perks,id', 
 =======
+=======
+>>>>>>> staging
 			'description'=>'required',
 			'type'=>'required|max:5',
 			'status'=>'required|max:5',
 			'user_id'=>'required|max:11|exists:users,id',
 			'perk_id'=>'required|max:11|exists:perks,id',
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 			'event_id'=>'required|max:11|exists:events,id',
     	 ]);
 		if($validation->fails())
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
 =======
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
 >>>>>>> local
+=======
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
+>>>>>>> staging
 		}
 		else
 		{
 			$PerkTask=PerkTask::create($request->all());
 			return response()->json(['message'=>"Inserted",'PerkTask'=>$PerkTask],201);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}			
 =======
 		}
 >>>>>>> local
+=======
+		}
+>>>>>>> staging
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -112,6 +130,7 @@ class PerkTaskController extends Controller {
 		}
 		else{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			//Get all values
 			$title			= $request->input("title");
 			$description	= $request->input("description");
@@ -124,15 +143,23 @@ class PerkTaskController extends Controller {
 			$inputs = $request->all(); //Get the set of inputs
 			extract($inputs); //Creamos las variables desde el array de inputs
 >>>>>>> local
+=======
+			$inputs = $request->all(); //Get the set of inputs
+			extract($inputs); //Creamos las variables desde el array de inputs
+>>>>>>> staging
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if(!empty($title)){				
 =======
 			if(!empty($title)){
 >>>>>>> local
+=======
+			if(!empty($title)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['title' => $title],
 				    ['title' => ['required', 'max:255']]
@@ -144,20 +171,28 @@ class PerkTaskController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}		
 =======
 				}
 >>>>>>> local
+=======
+				}
+>>>>>>> staging
 			}
 			if(!empty($description)){
 				$PerkTask->description=$description;
 				$flag=1;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if(!empty($type)){				
 =======
 			if(!empty($type)){
 >>>>>>> local
+=======
+			if(!empty($type)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['type' => $type],
 				    ['type' => ['required', 'max:5']]
@@ -169,6 +204,7 @@ class PerkTaskController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}		
 			}
 			if(!empty($status)){				
@@ -177,6 +213,11 @@ class PerkTaskController extends Controller {
 			}
 			if(!empty($status)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($status)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['status' => $status],
 				    ['status' => ['required', 'max:5']]
@@ -188,6 +229,7 @@ class PerkTaskController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}		
 			}
 			if(!empty($user_id)){				
@@ -196,6 +238,11 @@ class PerkTaskController extends Controller {
 			}
 			if(!empty($user_id)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($user_id)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['user_id' => $user_id],
 				    ['user_id' => ['required', 'max:11','exists:users,id']]
@@ -207,6 +254,7 @@ class PerkTaskController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}		
 			}
 			if(!empty($perk_id)){				
@@ -215,6 +263,11 @@ class PerkTaskController extends Controller {
 			}
 			if(!empty($perk_id)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($perk_id)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['perk_id' => $perk_id],
 				    ['perk_id' => ['required', 'max:11','exists:perks,id']]
@@ -226,6 +279,7 @@ class PerkTaskController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}							
 			}
 			if(!empty($event_id)){				
@@ -234,6 +288,11 @@ class PerkTaskController extends Controller {
 			}
 			if(!empty($event_id)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($event_id)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['event_id' => $event_id],
 				    ['event_id' => ['required', 'max:11','exists:events,id']]
@@ -245,10 +304,14 @@ class PerkTaskController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}							
 =======
 				}
 >>>>>>> local
+=======
+				}
+>>>>>>> staging
 			}
 			if($flag){
 				$PerkTask->save();
@@ -262,27 +325,37 @@ class PerkTaskController extends Controller {
 			$validation = Validator::make($request->all(), [
 	        	'title'=>'required|max:255',
 <<<<<<< HEAD
+<<<<<<< HEAD
 				'description'=>'required', 
 				'type'=>'required|max:5',
 				'status'=>'required|max:5',
 				'user_id'=>'required|max:11|exists:users,id', 
 				'perk_id'=>'required|max:11|exists:perks,id', 
 =======
+=======
+>>>>>>> staging
 				'description'=>'required',
 				'type'=>'required|max:5',
 				'status'=>'required|max:5',
 				'user_id'=>'required|max:11|exists:users,id',
 				'perk_id'=>'required|max:11|exists:perks,id',
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 				'event_id'=>'required|max:11|exists:events,id',
 	    	 ]);
 			if($validation->fails())
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
 =======
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
 >>>>>>> local
+=======
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
+>>>>>>> staging
 			}
 			else
 			{
@@ -314,12 +387,18 @@ class PerkTaskController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> staging
 		$tasksSponzor=$PerkTask->task_sponzor;
 		if(sizeof($tasksSponzor)>0){
 			return response()->json(['message'=>"This task has tasks_sponzor, first remove the tasks_sponzor and try again"],409);
 		}
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 		else{
 			$PerkTask->delete();
 			return response()->json(['message'=>"Deleted"],200);
@@ -327,7 +406,11 @@ class PerkTaskController extends Controller {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> local
+=======
+}
+>>>>>>> staging

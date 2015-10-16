@@ -44,9 +44,5 @@ class PerkTask extends Model {
     {
         return $this->belongsTo('App\Models\Perk','perk_id');
     }
-	public function task_sponzor()
-	  {
-	      return $this->hasMany('App\Models\TaskSponzor','task_id');
-	  }
 
 }

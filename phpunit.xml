@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
          bootstrap="bootstrap/autoload.php"
@@ -22,6 +23,8 @@
         <env name="QUEUE_DRIVER" value="sync"/>
     </php>
 =======
+=======
+>>>>>>> staging
 <phpunit backupGlobals="false" backupStaticAttributes="false" bootstrap="bootstrap/autoload.php" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" processIsolation="false"
   stopOnFailure="false" syntaxCheck="false">
   <testsuites>
@@ -49,5 +52,8 @@
     <env  name="SESSION_DRIVER" value="array"/>
     <env  name="QUEUE_DRIVER" value="sync"/>
   </php>
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 </phpunit>

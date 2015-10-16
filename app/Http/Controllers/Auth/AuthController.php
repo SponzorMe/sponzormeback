@@ -17,9 +17,12 @@ class AuthController extends Controller {
     	$password=$request->input("password");
         $a=Auth::attempt(['email' => $email, 'password' => $password]);
 <<<<<<< HEAD
+<<<<<<< HEAD
         //dd($a);
 =======
 >>>>>>> local
+=======
+>>>>>>> staging
         if ($a)
 		{
 		    return response()->json([
@@ -37,7 +40,11 @@ class AuthController extends Controller {
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> local
+=======
+}
+>>>>>>> staging

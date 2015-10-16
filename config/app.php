@@ -27,11 +27,16 @@ return [
 	*/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	'url' => 'http://localhost/sponzorme5',
 =======
 	'url' => 'http://api.sponzor.me',
 	'activation_url' => "http://api.sponzor.me/verify_activation/", //Activation account URL
 >>>>>>> local
+=======
+	'url' => 'http://api.sponzor.me',
+	'activation_url' => "http://api.sponzor.me/verify_activation/", //Activation account URL
+>>>>>>> staging
 
 	/*
 	|--------------------------------------------------------------------------
@@ -84,10 +89,14 @@ return [
 	*/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	'key' => env('APP_KEY', 'SomeRandomString'),
 =======
 	'key' => env('APP_KEY', ''),
 >>>>>>> local
+=======
+	'key' => env('APP_KEY', ''),
+>>>>>>> staging
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -156,15 +165,21 @@ return [
 		 * Custom service providers...
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		'Intervention\Image\ImageServiceProvider',
 		'Orangehill\Iseed\IseedServiceProvider',
 		'Barryvdh\Cors\CorsServiceProvider',
 =======
+=======
+>>>>>>> staging
 		'Orangehill\Iseed\IseedServiceProvider',
 		'Barryvdh\Cors\CorsServiceProvider',
 		'Weblee\Mandrill\MandrillServiceProvider',
 		'Barryvdh\Cors\CorsServiceProvider'
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 	],
 
 	/*
@@ -213,9 +228,13 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		'MandrillMail'  => 'Weblee\Mandrill\MandrillFacade'
 >>>>>>> local
+=======
+		'MandrillMail'  => 'Weblee\Mandrill\MandrillFacade'
+>>>>>>> staging
 
 	],
 

@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\Controller;
 <<<<<<< HEAD
+<<<<<<< HEAD
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 =======
+=======
+>>>>>>> staging
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\PasswordBroker;
@@ -15,7 +18,10 @@ use Illuminate\Support\Facades\Validator;
 use Weblee\Mandrill\Mail;
 use App\Models\User;
 use App\Models\PasswordResets;
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 class PasswordController extends Controller {
 
 	/*
@@ -23,6 +29,7 @@ class PasswordController extends Controller {
 	| Password Reset Controller
 	|--------------------------------------------------------------------------
 	|
+<<<<<<< HEAD
 <<<<<<< HEAD
 	| This controller is responsible for handling password reset requests
 	| and uses a simple trait to include this behavior. You're free to
@@ -47,6 +54,8 @@ class PasswordController extends Controller {
 		$this->middleware('guest');
 	}
 =======
+=======
+>>>>>>> staging
 	| This controller is responsible for provide a way to
 	| 1. Get an user by e-mail.
 	| 2. Send a reset link with a token
@@ -172,6 +181,9 @@ class PasswordController extends Controller {
 	}
 
 
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 
 }

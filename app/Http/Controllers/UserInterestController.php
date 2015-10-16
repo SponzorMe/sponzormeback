@@ -51,10 +51,14 @@ class UserInterestController extends Controller {
 				], 200
 			);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}		
 =======
 		}
 >>>>>>> local
+=======
+		}
+>>>>>>> staging
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -70,20 +74,28 @@ class UserInterestController extends Controller {
 		if($validation->fails())
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
 =======
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
 >>>>>>> local
+=======
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
+>>>>>>> staging
 		}
 		else
 		{
 			$UserInterest=UserInterest::create($request->all());
 			return response()->json(['message'=>"Inserted",'UserInterest'=>$UserInterest],201);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}			
 =======
 		}
 >>>>>>> local
+=======
+		}
+>>>>>>> staging
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -99,6 +111,7 @@ class UserInterestController extends Controller {
 		}
 		else{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			//Get all values
 			$user_id		= $request->input("user_id");
 			$interest_id	= $request->input("interest_id");
@@ -106,15 +119,23 @@ class UserInterestController extends Controller {
 			$inputs = $request->all(); //Get the set of inputs
 			extract($inputs); //Creamos las variables desde el array de inputs
 >>>>>>> local
+=======
+			$inputs = $request->all(); //Get the set of inputs
+			extract($inputs); //Creamos las variables desde el array de inputs
+>>>>>>> staging
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if(!empty($user_id)){				
 =======
 			if(!empty($user_id)){
 >>>>>>> local
+=======
+			if(!empty($user_id)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['user_id' => $user_id],
 				    ['user_id' => ['required', 'max:255','exists:users,id']]
@@ -126,6 +147,7 @@ class UserInterestController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}		
 			}
 			if(!empty($interest_id)){				
@@ -134,6 +156,11 @@ class UserInterestController extends Controller {
 			}
 			if(!empty($interest_id)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($interest_id)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['interest_id' => $interest_id],
 				    ['interest_id' => ['required', 'max:255','exists:interests_categories,id_interest']]
@@ -145,10 +172,14 @@ class UserInterestController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}		
 =======
 				}
 >>>>>>> local
+=======
+				}
+>>>>>>> staging
 			}
 			if($flag){
 				$UserInterest->save();
@@ -166,10 +197,14 @@ class UserInterestController extends Controller {
 			if($validation->fails())
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
 =======
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
 >>>>>>> local
+=======
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
+>>>>>>> staging
 			}
 			else
 			{

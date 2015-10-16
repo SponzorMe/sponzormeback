@@ -27,7 +27,10 @@ class SponzorshipController extends Controller {
 	}
 	/**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> staging
 	* Display a list of sponzorships based in organizer id
 	*/
 	public function showByOrganizer($organizerId){
@@ -60,7 +63,10 @@ class SponzorshipController extends Controller {
 			);
 	}
 	/**
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id
@@ -77,29 +83,42 @@ class SponzorshipController extends Controller {
 		}
 		else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			$SponzorEvent->task_sponzor;
 >>>>>>> local
+=======
+			$SponzorEvent->task_sponzor;
+>>>>>>> staging
 			return response()->json(
 				["data"=>
 					[
 						"SponzorEvent"=>$SponzorEvent->toArray(),
 						"Event"=>$SponzorEvent->event,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						"Sponzor"=>$SponzorEvent->user,
 =======
 						"Sponzor"=>$SponzorEvent->sponzor,
 						"Organizer"=>$SponzorEvent->organizer,
 >>>>>>> local
+=======
+						"Sponzor"=>$SponzorEvent->sponzor,
+						"Organizer"=>$SponzorEvent->organizer,
+>>>>>>> staging
 						"Perk"=>$SponzorEvent->perk,
 					]
 				], 200
 			);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}		
 =======
 		}
 >>>>>>> local
+=======
+		}
+>>>>>>> staging
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -111,6 +130,7 @@ class SponzorshipController extends Controller {
 		$validation = Validator::make($request->all(), [
 			'status'=>'required|max:4',
 <<<<<<< HEAD
+<<<<<<< HEAD
 			'sponzor_id'=>'required|max:11|exists:users,id', 
 			'perk_id'=>'required|max:11|exists:perks,id', 
 			'event_id'=>'required|max:11|exists:events,id',
@@ -119,6 +139,8 @@ class SponzorshipController extends Controller {
 		{
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
 =======
+=======
+>>>>>>> staging
 			'sponzor_id'=>'required|max:11|exists:users,id',
 			'organizer_id'=>'required|max:11|exists:users,id',
 			'perk_id'=>'required|max:11|exists:perks,id',
@@ -128,17 +150,24 @@ class SponzorshipController extends Controller {
 		if($validation->fails())
 		{
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 		}
 		else
 		{
 			$Sponzorship=Sponzorship::create($request->all());
 			return response()->json(['message'=>"Inserted",'Sponzorship'=>$Sponzorship],201);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}			
 =======
 		}
 >>>>>>> local
+=======
+		}
+>>>>>>> staging
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -154,6 +183,7 @@ class SponzorshipController extends Controller {
 		}
 		else{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			//Get all values
 			$status		= $request->input("status");
 			$sponzor_id	= $request->input("sponzor_id");
@@ -163,15 +193,23 @@ class SponzorshipController extends Controller {
 			$inputs = $request->all(); //Get the set of inputs
 			extract($inputs); //Creamos las variables desde el array de inputs
 >>>>>>> local
+=======
+			$inputs = $request->all(); //Get the set of inputs
+			extract($inputs); //Creamos las variables desde el array de inputs
+>>>>>>> staging
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if(!empty($status)){				
 =======
 			if($status>=0){
 >>>>>>> local
+=======
+			if($status>=0){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['status' => $status],
 				    ['status' => ['required', 'max:4']]
@@ -183,6 +221,7 @@ class SponzorshipController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}		
 			}
 			if(!empty($sponzor_id)){			
@@ -191,6 +230,11 @@ class SponzorshipController extends Controller {
 			}
 			if(!empty($sponzor_id)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($sponzor_id)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['sponzor_id' => $sponzor_id],
 				    ['sponzor_id' => ['required', 'max:4','exists:users,id']]
@@ -202,10 +246,13 @@ class SponzorshipController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($perk_id)){			
 =======
+=======
+>>>>>>> staging
 				}
 			}
 			if(!empty($organizer_id)){
@@ -222,7 +269,10 @@ class SponzorshipController extends Controller {
 				}
 			}
 			if(!empty($perk_id)){
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['perk_id' => $perk_id],
 				    ['perk_id' => ['required', 'max:4','exists:perks,id']]
@@ -234,10 +284,13 @@ class SponzorshipController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($event_id)){			
 =======
+=======
+>>>>>>> staging
 				}
 			}
 			if(!empty($cause)){
@@ -254,7 +307,10 @@ class SponzorshipController extends Controller {
 				}
 			}
 			if(!empty($event_id)){
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['event_id' => $event_id],
 				    ['event_id' => ['required', 'max:4', 'exists:events,id']]
@@ -266,10 +322,14 @@ class SponzorshipController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 =======
 				}
 >>>>>>> local
+=======
+				}
+>>>>>>> staging
 			}
 			if($flag){
 				$Sponzorship->save();
@@ -283,23 +343,33 @@ class SponzorshipController extends Controller {
 			$validation = Validator::make($request->all(), [
         	'status'=>'required|max:4',
 <<<<<<< HEAD
+<<<<<<< HEAD
 			'sponzor_id'=>'required|max:11|exists:users,id', 
 			'perk_id'=>'required|max:11|exists:perks,id', 
 =======
+=======
+>>>>>>> staging
 					'cause'=>'required|max:255',
 			'sponzor_id'=>'required|max:11|exists:users,id',
 			'organizer_id'=>'required|max:11|exists:users,id',
 			'perk_id'=>'required|max:11|exists:perks,id',
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 			'event_id'=>'required|max:11|exists:events,id',
 	    	 ]);
 			if($validation->fails())
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
 =======
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
 >>>>>>> local
+=======
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
+>>>>>>> staging
 			}
 			else
 			{
@@ -329,12 +399,15 @@ class SponzorshipController extends Controller {
 		}
 		else{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			$Sponzorship->delete();
 			return response()->json(['message'=>"Deleted"],200);
 		}
 	}
 
 =======
+=======
+>>>>>>> staging
 			$tasksSponzor=$Sponzorship->task_sponzor;
 			if(sizeof($tasksSponzor)>0){
 				return response()->json(['message'=>"This Sponzorship has tasks_sponzor, first remove the tasks_sponzor and try again"],409);
@@ -345,5 +418,8 @@ class SponzorshipController extends Controller {
 			}
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 }

@@ -7,18 +7,26 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Weblee\Mandrill\Mail;
 >>>>>>> local
+=======
+use Weblee\Mandrill\Mail;
+>>>>>>> staging
 
 class UserController extends Controller {
 	public function __construct()
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$this->middleware('auth.basic.once',['only'=>['store','update','destroy']]);
 =======
 		$this->middleware('auth.basic.once',['only'=>['update','destroy','index','show']]);
 >>>>>>> local
+=======
+		$this->middleware('auth.basic.once',['only'=>['update','destroy','index','show']]);
+>>>>>>> staging
 	}
 	/**
 	 * Display a listing of the resource.
@@ -52,10 +60,13 @@ class UserController extends Controller {
 		else
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			$events=$user->events;
 			$events=$user->categories;
 			$events=$user->interests;
 =======
+=======
+>>>>>>> staging
 			$user->events;
 			$user->categories;
 			$user->interests;
@@ -64,7 +75,10 @@ class UserController extends Controller {
 			$user->sponzorships_like_organizer;
 			$user->tasks_sponzor_like_organizer;
 			$user->tasks_sponzor_like_sponzor;
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 			return response()->json(
 				["data"=>
 					[
@@ -72,6 +86,7 @@ class UserController extends Controller {
 					]
 				], 200
 			);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		}		
 	}
@@ -84,6 +99,8 @@ class UserController extends Controller {
 	{
 		
 =======
+=======
+>>>>>>> staging
 		}
 	}
 	/**
@@ -300,24 +317,33 @@ class UserController extends Controller {
 	}
 	public function store(Request $request)
 	{
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 		$validation = Validator::make($request->all(), [
 			'email' 	=> 'required|email|max:255|unique:users',
 			'password' 	=> 'required|confirmed|min:6',
 			'name'		=>'required|max:255',
 			'type'		=>'required|max:1',
 <<<<<<< HEAD
+<<<<<<< HEAD
     	 ]);
 		if($validation->fails())
 		{
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],200);	
 =======
+=======
+>>>>>>> staging
 			'lang'		=>'required|max:5|in:en,es,pt'
     	 ]);
 		if($validation->fails())
 		{
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],400);
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 		}
 		else
 		{
@@ -326,15 +352,21 @@ class UserController extends Controller {
 				'email' => $request->input('email'),
 				'type' => $request->input('type'),
 <<<<<<< HEAD
+<<<<<<< HEAD
 				'password' => bcrypt($request->input('password')),
 			]);
 =======
+=======
+>>>>>>> staging
 				'lang' => $request->input('lang'),
 				'password' => bcrypt($request->input('password')),
 			]);
 			$emailSender=$this->sendActivationLink($request);
 			$this->subscribeToMailchimp($request->input('email'),$request->input('name'),$request->input('type'),$request->input('lang'));
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 			return response()->json(['message'=>"Inserted",'User'=>$user],201);
 		}
 	}
@@ -351,6 +383,7 @@ class UserController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
+<<<<<<< HEAD
 <<<<<<< HEAD
 			//Get all values
 			$name = $request->input('name');
@@ -383,15 +416,23 @@ class UserController extends Controller {
 			$inputs = $request->all(); //Get the set of inputs
 			extract($inputs); //Creamos las variables desde el array de inputs
 >>>>>>> local
+=======
+			$inputs = $request->all(); //Get the set of inputs
+			extract($inputs); //Creamos las variables desde el array de inputs
+>>>>>>> staging
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if(!empty($email)){			
 =======
 			if(!empty($email)){
 >>>>>>> local
+=======
+			if(!empty($email)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['email' => $email],
 				    ['email' => ['required','email','max:255','unique:users,email,'.$id]]
@@ -403,6 +444,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($password)){			
@@ -411,6 +453,11 @@ class UserController extends Controller {
 			}
 			if(!empty($password)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($password)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['password' => $password],
 				    ['password' => ['required', 'min:6','confirmed']]
@@ -422,6 +469,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($name)){			
@@ -430,6 +478,11 @@ class UserController extends Controller {
 			}
 			if(!empty($name)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($name)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['name' => $name],
 				    ['name' => ['required', 'max:255']]
@@ -441,6 +494,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($type)){			
@@ -449,6 +503,11 @@ class UserController extends Controller {
 			}
 			if(!empty($type)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($type)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['type' => $type],
 				    ['type' => ['required', 'max:1']]
@@ -460,6 +519,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($activated)){			
@@ -468,6 +528,11 @@ class UserController extends Controller {
 			}
 			if(!empty($activated)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($activated)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['activated' => $activated],
 				    ['activated' => ['required', 'max:1']]
@@ -479,6 +544,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($activation_code)){			
@@ -487,6 +553,11 @@ class UserController extends Controller {
 			}
 			if(!empty($activation_code)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($activation_code)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['activation_code' => $activation_code],
 				    ['activation_code' => ['required', 'max:255']]
@@ -498,6 +569,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($activated_at)){			
@@ -506,6 +578,11 @@ class UserController extends Controller {
 			}
 			if(!empty($activated_at)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($activated_at)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['activated_at' => $activated_at],
 				    ['activated_at' => ['required', 'max:255']]
@@ -517,6 +594,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($last_login)){			
@@ -525,6 +603,11 @@ class UserController extends Controller {
 			}
 			if(!empty($last_login)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($last_login)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['last_login' => $last_login],
 				    ['last_login' => ['required', 'max:255']]
@@ -536,6 +619,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($persist_code)){			
@@ -544,6 +628,11 @@ class UserController extends Controller {
 			}
 			if(!empty($persist_code)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($persist_code)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['persist_code' => $persist_code],
 				    ['persist_code' => ['required', 'max:255']]
@@ -555,6 +644,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($reset_password_code)){			
@@ -563,6 +653,11 @@ class UserController extends Controller {
 			}
 			if(!empty($reset_password_code)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($reset_password_code)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['reset_password_code' => $reset_password_code],
 				    ['reset_password_code' => ['required', 'max:255']]
@@ -574,6 +669,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($company)){			
@@ -582,6 +678,11 @@ class UserController extends Controller {
 			}
 			if(!empty($company)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($company)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['company' => $company],
 				    ['company' => ['required', 'max:255']]
@@ -593,6 +694,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($sex)){			
@@ -600,13 +702,18 @@ class UserController extends Controller {
 				    ['sex' => $sex],
 				    ['sex' => ['required', 'max:255']]
 =======
+=======
+>>>>>>> staging
 				}
 			}
 			if(isset($sex) && ($sex==0 || $sex==1)){
 				$validator = Validator::make(
 				    ['sex' => $sex],
 				    ['sex' => ['max:255']]
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 				);
 				if(!$validator->fails()){
 					$flag=1;
@@ -614,6 +721,7 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 <<<<<<< HEAD
 				}				
 			}
@@ -623,6 +731,11 @@ class UserController extends Controller {
 			}
 			if(!empty($age)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($age)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['age' => $age],
 				    ['age' => ['required', 'max:255']]
@@ -634,6 +747,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($custom_status)){			
@@ -642,6 +756,11 @@ class UserController extends Controller {
 			}
 			if(!empty($custom_status)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($custom_status)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['custom_status' => $custom_status],
 				    ['custom_status' => ['required', 'max:255']]
@@ -653,6 +772,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($login_code)){			
@@ -661,6 +781,11 @@ class UserController extends Controller {
 			}
 			if(!empty($login_code)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($login_code)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['login_code' => $login_code],
 				    ['login_code' => ['required', 'max:255']]
@@ -672,6 +797,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($login_valid_until)){			
@@ -680,6 +806,11 @@ class UserController extends Controller {
 			}
 			if(!empty($login_valid_until)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($login_valid_until)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['login_valid_until' => $login_valid_until],
 				    ['login_valid_until' => ['required', 'max:255']]
@@ -691,6 +822,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($lang)){			
@@ -698,13 +830,18 @@ class UserController extends Controller {
 				    ['lang' => $lang],
 				    ['lang' => ['required', 'max:5']]
 =======
+=======
+>>>>>>> staging
 				}
 			}
 			if(!empty($lang)){
 				$validator = Validator::make(
 				    ['lang' => $lang],
 				    ['lang' => ['required', 'max:5','in:en,es,pt']]
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 				);
 				if(!$validator->fails()){
 					$flag=1;
@@ -713,6 +850,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($image)){			
@@ -720,13 +858,18 @@ class UserController extends Controller {
 				    ['image' => $image],
 				    ['image' => ['required', 'max:5']]
 =======
+=======
+>>>>>>> staging
 				}
 			}
 			if(!empty($image)){
 				$validator = Validator::make(
 				    ['image' => $image],
 				    ['image' => ['required', 'max:255']]
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 				);
 				if(!$validator->fails()){
 					$flag=1;
@@ -734,6 +877,7 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 <<<<<<< HEAD
 				}				
 			}
@@ -743,6 +887,11 @@ class UserController extends Controller {
 			}
 			if(!empty($description)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($description)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['description' => $description],
 				    ['description' => ['required', 'max:400']]
@@ -754,6 +903,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($eventbriteKey)){			
@@ -762,6 +912,11 @@ class UserController extends Controller {
 			}
 			if(!empty($eventbriteKey)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($eventbriteKey)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['eventbriteKey' => $eventbriteKey],
 				    ['eventbriteKey' => ['required', 'max:255']]
@@ -773,6 +928,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($meetupRefreshKey)){			
@@ -781,6 +937,11 @@ class UserController extends Controller {
 			}
 			if(!empty($meetupRefreshKey)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($meetupRefreshKey)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['meetupRefreshKey' => $meetupRefreshKey],
 				    ['meetupRefreshKey' => ['required', 'max:255']]
@@ -792,6 +953,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($comunity_size)){			
@@ -800,6 +962,11 @@ class UserController extends Controller {
 			}
 			if(!empty($comunity_size)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($comunity_size)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['comunity_size' => $comunity_size],
 				    ['comunity_size' => ['required', 'max:255']]
@@ -811,6 +978,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($location)){			
@@ -819,6 +987,11 @@ class UserController extends Controller {
 			}
 			if(!empty($location)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($location)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['location' => $location],
 				    ['location' => ['required', 'max:255']]
@@ -830,6 +1003,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($location_reference)){			
@@ -838,6 +1012,11 @@ class UserController extends Controller {
 			}
 			if(!empty($location_reference)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($location_reference)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['location_reference' => $location_reference],
 				    ['location_reference' => ['required', 'max:255']]
@@ -849,6 +1028,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($demo)){			
@@ -857,6 +1037,11 @@ class UserController extends Controller {
 			}
 			if(!empty($demo)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($demo)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['demo' => $demo],
 				    ['demo' => ['required', 'max:5']]
@@ -868,6 +1053,7 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($status)){			
@@ -876,6 +1062,11 @@ class UserController extends Controller {
 			}
 			if(!empty($status)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($status)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['status' => $status],
 				    ['status' => ['required', 'max:255']]
@@ -887,10 +1078,14 @@ class UserController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 =======
 				}
 >>>>>>> local
+=======
+				}
+>>>>>>> staging
 			}
 			if($flag){
 				$User->save();
@@ -915,18 +1110,24 @@ class UserController extends Controller {
 			'company'		=>'required|max:255',
 			'sex'		=>'required|max:255',
 <<<<<<< HEAD
+<<<<<<< HEAD
 			'age'		=>'required|max:255',
 			'custom_status'		=>'required|max:255',
 			'login_code'		=>'required|max:255',
 			'login_valid_until'		=>'required|max:255',
 			'lang'		=>'required|max:255',
 =======
+=======
+>>>>>>> staging
 			'age'		=>'max:255',
 			'custom_status'		=>'required|max:255',
 			'login_code'		=>'required|max:255',
 			'login_valid_until'		=>'required|max:255',
 			'lang'		=>'required|max:5|in:en,es,pt',
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 			'image'		=>'required|max:255',
 			'description'		=>'required|max:255',
 			'eventbriteKey'		=>'required|max:255',
@@ -940,10 +1141,14 @@ class UserController extends Controller {
 			if($validation->fails())
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],200);	
 =======
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
 >>>>>>> local
+=======
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
+>>>>>>> staging
 			}
 			else
 			{
@@ -1002,6 +1207,7 @@ class UserController extends Controller {
 			$tasks_sponzor_like_sponzor=$User->tasks_sponzor_like_sponzor;
 			if(sizeof($events)>0){
 <<<<<<< HEAD
+<<<<<<< HEAD
 				return response()->json(['message'=>"This user has events, first remove the events and try again"],409);			
 			}
 			elseif(sizeof($categories)>0){
@@ -1022,6 +1228,8 @@ class UserController extends Controller {
 			elseif(sizeof($tasks_sponzor_like_sponzor)>0){
 				return response()->json(['message'=>"This user has tasks_sponzor_like_sponzor, first remove the tasks_sponzor_like_sponzor and try again"],409);			
 =======
+=======
+>>>>>>> staging
 				return response()->json(['message'=>"This user has events, first remove the events and try again"],409);
 			}
 			elseif(sizeof($categories)>0){
@@ -1041,16 +1249,23 @@ class UserController extends Controller {
 			}
 			elseif(sizeof($tasks_sponzor_like_sponzor)>0){
 				return response()->json(['message'=>"This user has tasks_sponzor_like_sponzor, first remove the tasks_sponzor_like_sponzor and try again"],409);
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 			}
 			else{
 				$User->delete();
 				return response()->json(['message'=>"Deleted"],200);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}			
 =======
 			}
 >>>>>>> local
+=======
+			}
+>>>>>>> staging
 		}
 	}
 

@@ -21,10 +21,14 @@ return [
 
 	'mandrill' => [
 <<<<<<< HEAD
+<<<<<<< HEAD
 		'secret' => '',
 =======
 		'secret' => 'Xdo6dsGWJJcI6Rqzo8B37g',
 >>>>>>> local
+=======
+		'secret' => 'Xdo6dsGWJJcI6Rqzo8B37g',
+>>>>>>> staging
 	],
 
 	'ses' => [

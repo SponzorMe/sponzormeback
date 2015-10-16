@@ -47,18 +47,24 @@ class PerkController extends Controller {
 						"Perk"=>$Perk->toArray(),
 						"Event"=>$Perk->event,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					]
 				], 200
 			);
 		}		
 =======
+=======
+>>>>>>> staging
 						"Tasks"=>$Perk->tasks,
 						"SponzorTasks"=>$Perk->sponzor_tasks
 					]
 				], 200
 			);
 		}
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -73,28 +79,38 @@ class PerkController extends Controller {
 			'id_event'=>'required|max:11|exists:events,id',
 			'total_quantity'=>'required|max:11',
 <<<<<<< HEAD
+<<<<<<< HEAD
 			'reserved_quantity'=>'max:11',
     	 ]);
 		if($validation->fails())
 		{
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
 =======
+=======
+>>>>>>> staging
 			'reserved_quantity'=>'required|max:11',
     	 ]);
 		if($validation->fails())
 		{
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 		}
 		else
 		{
 			$Perk=Perk::create($request->all());
 			return response()->json(['message'=>"Inserted",'Perk'=>$Perk],201);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}			
 =======
 		}
 >>>>>>> local
+=======
+		}
+>>>>>>> staging
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -110,6 +126,7 @@ class PerkController extends Controller {
 		}
 		else{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			//Get all values
 			$kind				= $request->input("kind");
 			$usd				= $request->input("usd");
@@ -120,15 +137,23 @@ class PerkController extends Controller {
 			$inputs = $request->all(); //Get the set of inputs
 			extract($inputs); //Creamos las variables desde el array de inputs
 >>>>>>> local
+=======
+			$inputs = $request->all(); //Get the set of inputs
+			extract($inputs); //Creamos las variables desde el array de inputs
+>>>>>>> staging
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if(!empty($usd)){				
 =======
 			if(!empty($usd)){
 >>>>>>> local
+=======
+			if(!empty($usd)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['usd' => $usd],
 				    ['usd' => ['required', 'max:11']]
@@ -140,6 +165,7 @@ class PerkController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}		
 			}
 			if(!empty($kind)){				
@@ -148,6 +174,11 @@ class PerkController extends Controller {
 			}
 			if(!empty($kind)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($kind)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['kind' => $kind],
 				    ['kind' => ['required', 'max:255']]
@@ -159,6 +190,7 @@ class PerkController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}		
 			}
 			if(!empty($id_event)){				
@@ -167,6 +199,11 @@ class PerkController extends Controller {
 			}
 			if(!empty($id_event)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($id_event)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['id_event' => $id_event],
 				    ['id_event' => ['required', 'max:11','exists:events,id']]
@@ -178,6 +215,7 @@ class PerkController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}		
 			}
 			if(!empty($reserved_quantity)){				
@@ -186,6 +224,11 @@ class PerkController extends Controller {
 			}
 			if(!empty($reserved_quantity)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($reserved_quantity)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['reserved_quantity' => $reserved_quantity],
 				    ['reserved_quantity' => ['required', 'max:255']]
@@ -197,6 +240,7 @@ class PerkController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}		
 			}
 			if(!empty($total_quantity)){				
@@ -205,6 +249,11 @@ class PerkController extends Controller {
 			}
 			if(!empty($total_quantity)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($total_quantity)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['total_quantity' => $total_quantity],
 				    ['total_quantity' => ['required', 'max:11']]
@@ -216,6 +265,7 @@ class PerkController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}		
 			}
 			
@@ -224,6 +274,11 @@ class PerkController extends Controller {
 			}
 
 >>>>>>> local
+=======
+				}
+			}
+
+>>>>>>> staging
 			if($flag){
 				$Perk->save();
 				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'Perk'=>$Perk],200);
@@ -239,18 +294,24 @@ class PerkController extends Controller {
 				'id_event'=>'required|max:11|exists:events,id',
 				'total_quantity'=>'required|max:11',
 <<<<<<< HEAD
+<<<<<<< HEAD
 				'reserved_quantity'=>'max:11',
 	    	 ]);
 			if($validation->fails())
 			{
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
 =======
+=======
+>>>>>>> staging
 				'reserved_quantity'=>'required|max:11',
 	    	 ]);
 			if($validation->fails())
 			{
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 			}
 			else
 			{
@@ -292,10 +353,14 @@ class PerkController extends Controller {
 				$Perk->delete();
 				return response()->json(['message'=>"Deleted"],200);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}			
 =======
 			}
 >>>>>>> local
+=======
+			}
+>>>>>>> staging
 		}
 	}
 }

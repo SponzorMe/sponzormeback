@@ -13,6 +13,7 @@ class CategoriesTableSeeder extends Seeder {
 	{
 		\DB::table('categories')->delete();
 <<<<<<< HEAD
+<<<<<<< HEAD
         
 		\DB::table('categories')->insert(array (
 			0 => 
@@ -21,6 +22,11 @@ class CategoriesTableSeeder extends Seeder {
 		\DB::table('categories')->insert(array (
 			0 =>
 >>>>>>> local
+=======
+
+		\DB::table('categories')->insert(array (
+			0 =>
+>>>>>>> staging
 			array (
 				'id' => 1,
 				'title' => 'Outdoor',
@@ -30,10 +36,14 @@ class CategoriesTableSeeder extends Seeder {
 				'lang' => 'en',
 			),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			1 => 
 =======
 			1 =>
 >>>>>>> local
+=======
+			1 =>
+>>>>>>> staging
 			array (
 				'id' => 2,
 				'title' => 'Art & Culture',
@@ -43,10 +53,14 @@ class CategoriesTableSeeder extends Seeder {
 				'lang' => 'en',
 			),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			2 => 
 =======
 			2 =>
 >>>>>>> local
+=======
+			2 =>
+>>>>>>> staging
 			array (
 				'id' => 3,
 				'title' => 'Dancing',
@@ -56,10 +70,14 @@ class CategoriesTableSeeder extends Seeder {
 				'lang' => 'en',
 			),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			3 => 
 =======
 			3 =>
 >>>>>>> local
+=======
+			3 =>
+>>>>>>> staging
 			array (
 				'id' => 4,
 				'title' => 'Wellness',
@@ -69,10 +87,14 @@ class CategoriesTableSeeder extends Seeder {
 				'lang' => 'en',
 			),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			4 => 
 =======
 			4 =>
 >>>>>>> local
+=======
+			4 =>
+>>>>>>> staging
 			array (
 				'id' => 5,
 				'title' => 'Career & Business',
@@ -82,10 +104,14 @@ class CategoriesTableSeeder extends Seeder {
 				'lang' => 'en',
 			),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			5 => 
 =======
 			5 =>
 >>>>>>> local
+=======
+			5 =>
+>>>>>>> staging
 			array (
 				'id' => 6,
 				'title' => 'Eat & Foods',
@@ -95,10 +121,14 @@ class CategoriesTableSeeder extends Seeder {
 				'lang' => 'en',
 			),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			6 => 
 =======
 			6 =>
 >>>>>>> local
+=======
+			6 =>
+>>>>>>> staging
 			array (
 				'id' => 7,
 				'title' => 'Belief',
@@ -108,10 +138,14 @@ class CategoriesTableSeeder extends Seeder {
 				'lang' => 'en',
 			),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			7 => 
 =======
 			7 =>
 >>>>>>> local
+=======
+			7 =>
+>>>>>>> staging
 			array (
 				'id' => 8,
 				'title' => 'Sports & Fitness',
@@ -121,10 +155,14 @@ class CategoriesTableSeeder extends Seeder {
 				'lang' => 'en',
 			),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			8 => 
 =======
 			8 =>
 >>>>>>> local
+=======
+			8 =>
+>>>>>>> staging
 			array (
 				'id' => 9,
 				'title' => 'Education',
@@ -134,10 +172,14 @@ class CategoriesTableSeeder extends Seeder {
 				'lang' => 'en',
 			),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			9 => 
 =======
 			9 =>
 >>>>>>> local
+=======
+			9 =>
+>>>>>>> staging
 			array (
 				'id' => 10,
 				'title' => 'Photography',
@@ -147,10 +189,14 @@ class CategoriesTableSeeder extends Seeder {
 				'lang' => 'en',
 			),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			10 => 
 =======
 			10 =>
 >>>>>>> local
+=======
+			10 =>
+>>>>>>> staging
 			array (
 				'id' => 11,
 				'title' => 'Languages',
@@ -160,10 +206,14 @@ class CategoriesTableSeeder extends Seeder {
 				'lang' => 'en',
 			),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			11 => 
 =======
 			11 =>
 >>>>>>> local
+=======
+			11 =>
+>>>>>>> staging
 			array (
 				'id' => 12,
 				'title' => 'Books',
@@ -173,10 +223,14 @@ class CategoriesTableSeeder extends Seeder {
 				'lang' => 'en',
 			),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			12 => 
 =======
 			12 =>
 >>>>>>> local
+=======
+			12 =>
+>>>>>>> staging
 			array (
 				'id' => 13,
 				'title' => 'Music',
@@ -186,10 +240,14 @@ class CategoriesTableSeeder extends Seeder {
 				'lang' => 'en',
 			),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			13 => 
 =======
 			13 =>
 >>>>>>> local
+=======
+			13 =>
+>>>>>>> staging
 			array (
 				'id' => 14,
 				'title' => 'Technology',
@@ -198,6 +256,7 @@ class CategoriesTableSeeder extends Seeder {
 				'updated_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 <<<<<<< HEAD
 			14 => 
 			array (
@@ -453,6 +512,8 @@ class CategoriesTableSeeder extends Seeder {
 			),
 =======
 >>>>>>> local
+=======
+>>>>>>> staging
 		));
 	}
 

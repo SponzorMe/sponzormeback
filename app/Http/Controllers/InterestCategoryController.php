@@ -51,10 +51,14 @@ class InterestCategoryController extends Controller {
 				], 200
 			);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}		
 =======
 		}
 >>>>>>> local
+=======
+		}
+>>>>>>> staging
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -72,20 +76,28 @@ class InterestCategoryController extends Controller {
 		if($validation->fails())
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
 =======
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
 >>>>>>> local
+=======
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
+>>>>>>> staging
 		}
 		else
 		{
 			$InterestCategory=InterestCategory::create($request->all());
 			return response()->json(['message'=>"Inserted",'InterestCategory'=>$InterestCategory],201);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}			
 =======
 		}
 >>>>>>> local
+=======
+		}
+>>>>>>> staging
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -101,6 +113,7 @@ class InterestCategoryController extends Controller {
 		}
 		else{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			//Get all values
 			$name			= $request->input("name");
 			$description	= $request->input("description");
@@ -112,6 +125,8 @@ class InterestCategoryController extends Controller {
 			$flag=0;//If 0 persist nothing was updated.
 			if(!empty($name)){				
 =======
+=======
+>>>>>>> staging
 			$inputs = $request->all(); //Get the set of inputs
 			extract($inputs); //Creamos las variables desde el array de inputs
 		}
@@ -119,7 +134,10 @@ class InterestCategoryController extends Controller {
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
 			if(!empty($name)){
+<<<<<<< HEAD
 >>>>>>> local
+=======
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['name' => $name],
 				    ['name' => ['required', 'max:255','unique:event_types,name,'.$id]]
@@ -131,20 +149,28 @@ class InterestCategoryController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}		
 =======
 				}
 >>>>>>> local
+=======
+				}
+>>>>>>> staging
 			}
 			if(!empty($description)){
 				$InterestCategory->description=$description;
 				$flag=1;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if(!empty($lang)){				
 =======
 			if(!empty($lang)){
 >>>>>>> local
+=======
+			if(!empty($lang)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['lang' => $lang],
 				    ['lang' => ['required', 'max:5']]
@@ -156,6 +182,7 @@ class InterestCategoryController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 			}
 			if(!empty($category_id)){				
@@ -164,6 +191,11 @@ class InterestCategoryController extends Controller {
 			}
 			if(!empty($category_id)){
 >>>>>>> local
+=======
+				}
+			}
+			if(!empty($category_id)){
+>>>>>>> staging
 				$validator = Validator::make(
 				    ['category_id' => $category_id],
 				    ['category_id' => ['required', 'max:5','exists:categories,id']]
@@ -175,10 +207,14 @@ class InterestCategoryController extends Controller {
 				else{
 					$warnings[]=$validator->messages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}				
 =======
 				}
 >>>>>>> local
+=======
+				}
+>>>>>>> staging
 			}
 			if($flag){
 				$InterestCategory->save();
@@ -198,10 +234,14 @@ class InterestCategoryController extends Controller {
 			if($validation->fails())
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
 =======
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
 >>>>>>> local
+=======
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
+>>>>>>> staging
 			}
 			else
 			{
@@ -233,6 +273,7 @@ class InterestCategoryController extends Controller {
 				$InterestCategory->delete();
 				return response()->json(['message'=>"Deleted"],200);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}			
 		}
 	}
@@ -241,4 +282,8 @@ class InterestCategoryController extends Controller {
 		}
 	}
 >>>>>>> local
+=======
+		}
+	}
+>>>>>>> staging
 }

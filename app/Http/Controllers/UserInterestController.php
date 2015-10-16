@@ -50,7 +50,11 @@ class UserInterestController extends Controller {
 					]
 				], 200
 			);
+<<<<<<< HEAD
 		}
+=======
+		}		
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -65,13 +69,21 @@ class UserInterestController extends Controller {
     	 ]);
 		if($validation->fails())
 		{
+<<<<<<< HEAD
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
+=======
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 		}
 		else
 		{
 			$UserInterest=UserInterest::create($request->all());
 			return response()->json(['message'=>"Inserted",'UserInterest'=>$UserInterest],201);
+<<<<<<< HEAD
 		}
+=======
+		}			
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -86,13 +98,23 @@ class UserInterestController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
+<<<<<<< HEAD
 			$inputs = $request->all(); //Get the set of inputs
 			extract($inputs); //Creamos las variables desde el array de inputs
+=======
+			//Get all values
+			$user_id		= $request->input("user_id");
+			$interest_id	= $request->input("interest_id");
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
+<<<<<<< HEAD
 			if(!empty($user_id)){
+=======
+			if(!empty($user_id)){				
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['user_id' => $user_id],
 				    ['user_id' => ['required', 'max:255','exists:users,id']]
@@ -103,9 +125,15 @@ class UserInterestController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}
 			}
 			if(!empty($interest_id)){
+=======
+				}		
+			}
+			if(!empty($interest_id)){				
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['interest_id' => $interest_id],
 				    ['interest_id' => ['required', 'max:255','exists:interests_categories,id_interest']]
@@ -116,7 +144,11 @@ class UserInterestController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}
+=======
+				}		
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			}
 			if($flag){
 				$UserInterest->save();
@@ -133,7 +165,11 @@ class UserInterestController extends Controller {
 	    	 ]);
 			if($validation->fails())
 			{
+<<<<<<< HEAD
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
+=======
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			}
 			else
 			{

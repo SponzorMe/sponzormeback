@@ -50,7 +50,11 @@ class PerkTaskController extends Controller {
 						"Event"=>$PerkTask->user,					]
 				], 200
 			);
+<<<<<<< HEAD
 		}
+=======
+		}		
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -61,22 +65,38 @@ class PerkTaskController extends Controller {
 	{
 		$validation = Validator::make($request->all(), [
 			'title'=>'required|max:255',
+<<<<<<< HEAD
 			'description'=>'required',
 			'type'=>'required|max:5',
 			'status'=>'required|max:5',
 			'user_id'=>'required|max:11|exists:users,id',
 			'perk_id'=>'required|max:11|exists:perks,id',
+=======
+			'description'=>'required', 
+			'type'=>'required|max:5',
+			'status'=>'required|max:5',
+			'user_id'=>'required|max:11|exists:users,id', 
+			'perk_id'=>'required|max:11|exists:perks,id', 
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			'event_id'=>'required|max:11|exists:events,id',
     	 ]);
 		if($validation->fails())
 		{
+<<<<<<< HEAD
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
+=======
+			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 		}
 		else
 		{
 			$PerkTask=PerkTask::create($request->all());
 			return response()->json(['message'=>"Inserted",'PerkTask'=>$PerkTask],201);
+<<<<<<< HEAD
 		}
+=======
+		}			
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -91,13 +111,28 @@ class PerkTaskController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
+<<<<<<< HEAD
 			$inputs = $request->all(); //Get the set of inputs
 			extract($inputs); //Creamos las variables desde el array de inputs
+=======
+			//Get all values
+			$title			= $request->input("title");
+			$description	= $request->input("description");
+			$type			= $request->input("type");
+			$status			= $request->input("status");
+			$user_id		= $request->input("user_id");
+			$perk_id		= $request->input("perk_id");
+			$event_id		= $request->input("event_id");
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
+<<<<<<< HEAD
 			if(!empty($title)){
+=======
+			if(!empty($title)){				
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['title' => $title],
 				    ['title' => ['required', 'max:255']]
@@ -108,13 +143,21 @@ class PerkTaskController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}
+=======
+				}		
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			}
 			if(!empty($description)){
 				$PerkTask->description=$description;
 				$flag=1;
 			}
+<<<<<<< HEAD
 			if(!empty($type)){
+=======
+			if(!empty($type)){				
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['type' => $type],
 				    ['type' => ['required', 'max:5']]
@@ -125,9 +168,15 @@ class PerkTaskController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}
 			}
 			if(!empty($status)){
+=======
+				}		
+			}
+			if(!empty($status)){				
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['status' => $status],
 				    ['status' => ['required', 'max:5']]
@@ -138,9 +187,15 @@ class PerkTaskController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}
 			}
 			if(!empty($user_id)){
+=======
+				}		
+			}
+			if(!empty($user_id)){				
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['user_id' => $user_id],
 				    ['user_id' => ['required', 'max:11','exists:users,id']]
@@ -151,9 +206,15 @@ class PerkTaskController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}
 			}
 			if(!empty($perk_id)){
+=======
+				}		
+			}
+			if(!empty($perk_id)){				
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['perk_id' => $perk_id],
 				    ['perk_id' => ['required', 'max:11','exists:perks,id']]
@@ -164,9 +225,15 @@ class PerkTaskController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}
 			}
 			if(!empty($event_id)){
+=======
+				}							
+			}
+			if(!empty($event_id)){				
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['event_id' => $event_id],
 				    ['event_id' => ['required', 'max:11','exists:events,id']]
@@ -177,7 +244,11 @@ class PerkTaskController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
+<<<<<<< HEAD
 				}
+=======
+				}							
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			}
 			if($flag){
 				$PerkTask->save();
@@ -190,16 +261,28 @@ class PerkTaskController extends Controller {
 		elseif($request->method()==="PUT"){//PUT all fields are required
 			$validation = Validator::make($request->all(), [
 	        	'title'=>'required|max:255',
+<<<<<<< HEAD
 				'description'=>'required',
 				'type'=>'required|max:5',
 				'status'=>'required|max:5',
 				'user_id'=>'required|max:11|exists:users,id',
 				'perk_id'=>'required|max:11|exists:perks,id',
+=======
+				'description'=>'required', 
+				'type'=>'required|max:5',
+				'status'=>'required|max:5',
+				'user_id'=>'required|max:11|exists:users,id', 
+				'perk_id'=>'required|max:11|exists:perks,id', 
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				'event_id'=>'required|max:11|exists:events,id',
 	    	 ]);
 			if($validation->fails())
 			{
+<<<<<<< HEAD
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
+=======
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			}
 			else
 			{
@@ -230,14 +313,21 @@ class PerkTaskController extends Controller {
 		if(!$PerkTask){
 			return response()->json(['message'=>"Not found"],404);
 		}
+<<<<<<< HEAD
 		$tasksSponzor=$PerkTask->task_sponzor;
 		if(sizeof($tasksSponzor)>0){
 			return response()->json(['message'=>"This task has tasks_sponzor, first remove the tasks_sponzor and try again"],409);
 		}
+=======
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 		else{
 			$PerkTask->delete();
 			return response()->json(['message'=>"Deleted"],200);
 		}
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1

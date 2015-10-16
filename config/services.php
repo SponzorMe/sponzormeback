@@ -20,7 +20,11 @@ return [
 	],
 
 	'mandrill' => [
+<<<<<<< HEAD
 		'secret' => 'Xdo6dsGWJJcI6Rqzo8B37g',
+=======
+		'secret' => '',
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 	],
 
 	'ses' => [

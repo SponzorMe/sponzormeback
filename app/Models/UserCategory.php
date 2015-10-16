@@ -2,33 +2,25 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class PerkTask extends Model {
+class UserCategory extends Model {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'perk_tasks';
+	protected $table = 'users_categories';
 
 	/**
 	 * The attributes that are mass assignable.
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['title','description', 'type', 'status','user_id', 'perk_id', 'event_id', 'status'];
-
+	protected $fillable = ['user_id','category_id'];
+	
 	protected $hidden = ['created_at', 'updated_at'];
 
 	/**
-	 *  One category belongs to an event.
-	 *
-	 */
-	public function event()
-    {
-        return $this->belongsTo('App\Models\Event','event_id');
-    }
-    /**
 	 *  One category belongs to an event.
 	 *
 	 */
@@ -40,9 +32,9 @@ class PerkTask extends Model {
 	 *  One category belongs to an event.
 	 *
 	 */
-	public function perk()
+	public function category()
     {
-        return $this->belongsTo('App\Models\Perk','perk_id');
+        return $this->belongsTo('App\Models\Category','category_id');
     }
 
 }

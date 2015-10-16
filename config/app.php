@@ -26,8 +26,12 @@ return [
 	|
 	*/
 
+<<<<<<< HEAD
 	'url' => 'http://api.sponzor.me',
 	'activation_url' => "http://api.sponzor.me/verify_activation/", //Activation account URL
+=======
+	'url' => 'http://localhost/sponzorme5',
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 
 	/*
 	|--------------------------------------------------------------------------
@@ -79,7 +83,11 @@ return [
 	|
 	*/
 
+<<<<<<< HEAD
 	'key' => env('APP_KEY', ''),
+=======
+	'key' => env('APP_KEY', 'SomeRandomString'),
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -147,10 +155,16 @@ return [
 		/*
 		 * Custom service providers...
 		 */
+<<<<<<< HEAD
 		'Orangehill\Iseed\IseedServiceProvider',
 		'Barryvdh\Cors\CorsServiceProvider',
 		'Weblee\Mandrill\MandrillServiceProvider',
 		'Barryvdh\Cors\CorsServiceProvider'
+=======
+		'Intervention\Image\ImageServiceProvider',
+		'Orangehill\Iseed\IseedServiceProvider',
+		'Barryvdh\Cors\CorsServiceProvider',
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 	],
 
 	/*
@@ -198,7 +212,10 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+<<<<<<< HEAD
 		'MandrillMail'  => 'Weblee\Mandrill\MandrillFacade'
+=======
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 
 	],
 

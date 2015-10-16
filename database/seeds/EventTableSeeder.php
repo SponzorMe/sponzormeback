@@ -12,6 +12,7 @@ class EventTableSeeder extends Seeder {
 	public function run()
 	{
 		\DB::table('events')->delete();
+<<<<<<< HEAD
 
 		\DB::table('events')->insert(array (
 			0 =>
@@ -20,6 +21,16 @@ class EventTableSeeder extends Seeder {
 				'location' => 'Santiago de Chile',
 				'ends' => '2014-09-18 19:00:00',
 				'starts' => '0000-00-00 00:00:00',
+=======
+        
+		\DB::table('events')->insert(array (
+			0 => 
+			array (
+				'title' => 1,
+				'location' => 'Charity',
+				'ends' => '2014-09-18 19:00:00',
+				'starts' => '0000-00-00 00:00:00',				
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				'location_reference' => 'referenceafsddf',
 				'organizer' => '3',//Ojo aca colocar el organizer de sponzorme
 				'image' => 'event_dummy.png',//Debe estar en public images/events
@@ -31,12 +42,21 @@ class EventTableSeeder extends Seeder {
 				'created_at' => '0000-00-00 00:00:00',
 				'lang' => 'en',
 			),
+<<<<<<< HEAD
 			1 =>
 			array (
 				'title' => "My Second Event",
 				'location' => 'Medellin Colombia',
 				'ends' => '2014-09-18 19:00:00',
 				'starts' => '0000-00-00 00:00:00',
+=======
+			1 => 
+			array (
+				'title' => 1,
+				'location' => 'Charity',
+				'ends' => '2014-09-18 19:00:00',
+				'starts' => '0000-00-00 00:00:00',				
+>>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				'location_reference' => 'referenceafsddf',
 				'organizer' => '3',//Ojo aca colocar el organizer de sponzorme
 				'image' => 'event_dummy.png',//Debe estar en public images/events

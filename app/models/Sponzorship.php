@@ -9,14 +9,14 @@ class Sponzorship extends Model {
 	 *
 	 * @var string
 	 */
-	protected $table = 'Sponzorships';
+	protected $table = 'sponzorships';
 
 	/**
 	 * The attributes that are mass assignable.
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['status','sponzor_id','perk_id','event_id'];
+	protected $fillable = ['status','sponzor_id','organizer_id','perk_id','event_id','cause'];
 
 	protected $hidden = ['created_at', 'updated_at'];
 
@@ -24,7 +24,7 @@ class Sponzorship extends Model {
 	 *  One category belongs to an event.
 	 *
 	 */
-	public function event()
+		public function event()
     {
         return $this->belongsTo('App\Models\Event','event_id');
     }
@@ -32,17 +32,25 @@ class Sponzorship extends Model {
 	 *  One category belongs to an event.
 	 *
 	 */
-	public function user()
+		public function sponzor()
     {
         return $this->belongsTo('App\Models\User','sponzor_id');
+    }
+		public function organizer()
+    {
+        return $this->belongsTo('App\Models\User','organizer_id');
     }
     /**
 	 *  One category belongs to an event.
 	 *
 	 */
-	public function perk()
+		public function perk()
     {
         return $this->belongsTo('App\Models\Perk','perk_id');
+    }
+		public function task_sponzor()
+    {
+        return $this->hasMany('App\Models\TaskSponzor');
     }
 
 }

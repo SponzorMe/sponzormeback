@@ -51,11 +51,7 @@ class CategoryController extends Controller {
 					]
 				], 200
 			);
-<<<<<<< HEAD
 		}
-=======
-		}		
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -71,21 +67,13 @@ class CategoryController extends Controller {
     	 ]);
 		if($validation->fails())
 		{
-<<<<<<< HEAD
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
-=======
-			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 		}
 		else
 		{
 			$category=Category::create($request->all());
 			return response()->json(['message'=>"Inserted",'category'=>$category],201);
-<<<<<<< HEAD
 		}
-=======
-		}			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -100,24 +88,13 @@ class CategoryController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
-<<<<<<< HEAD
 			$inputs = $request->all(); //Get the set of inputs
 			extract($inputs); //Creamos las variables desde el array de inputs
-=======
-			//Get all values
-			$title	= $request->input("title");
-			$body	= $request->input("body");
-			$lang	= $request->input("lang");
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
-<<<<<<< HEAD
 			if(!empty($title)){
-=======
-			if(!empty($title)){				
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['title' => $title],
 				    ['title' => ['required', 'max:255','unique:categories,title,'.$id]]
@@ -128,21 +105,13 @@ class CategoryController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
-=======
-				}		
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			}
 			if(!empty($body)){
 				$category->body=$body;
 				$flag=1;
 			}
-<<<<<<< HEAD
 			if(!empty($lang)){
-=======
-			if(!empty($lang)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['lang' => $lang],
 				    ['lang' => ['required', 'max:5']]
@@ -153,11 +122,7 @@ class CategoryController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
-=======
-				}				
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			}
 			if($flag){
 				$category->save();
@@ -175,11 +140,7 @@ class CategoryController extends Controller {
 	    	 ]);
 			if($validation->fails())
 			{
-<<<<<<< HEAD
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
-=======
-				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			}
 			else
 			{
@@ -209,7 +170,6 @@ class CategoryController extends Controller {
 		else{
 			$events=$category->events;
 			$interests=$category->interests;
-<<<<<<< HEAD
 			$usersCategories=$category->usersCategories;
 			if(sizeof($events)>0){
 				return response()->json(['message'=>"This category has events, first remove the events and try again"],409);
@@ -219,22 +179,11 @@ class CategoryController extends Controller {
 			}
 			elseif(sizeof($usersCategories)>0){
 				return response()->json(['message'=>"This category has User categories, first remove the interests and try again"],409);
-=======
-			if(sizeof($events)>0){
-				return response()->json(['message'=>"This category has events, first remove the events and try again"],409);			
-			}
-			elseif(sizeof($interests)>0){
-				return response()->json(['message'=>"This category has interests, first remove the interests and try again"],409);			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			}
 			else{
 				$category->delete();
 				return response()->json(['message'=>"Deleted"],200);
-<<<<<<< HEAD
 			}
-=======
-			}			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 		}
 	}
 

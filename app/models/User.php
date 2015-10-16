@@ -21,7 +21,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['name', 'email', 'password'];
+	protected $fillable = ['name', 'email', 'password','lang','type', 'sex'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -29,11 +29,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var array
 	 */
 	protected $hidden = ['password', 'remember_token', 'created_at', 'updated_at'];
-	
+
 	public function user(){
- 
+
         return $this->belongsTo('App\Models\User');
- 
+
     }
     public function events()
     {
@@ -54,6 +54,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function sponzorships()
     {
         return $this->hasMany('App\Models\Sponzorship','sponzor_id');
+    }
+		public function sponzorships_like_organizer()
+    {
+        return $this->hasMany('App\Models\Sponzorship','organizer_id');
     }
     public function tasks_sponzor_like_organizer()
     {

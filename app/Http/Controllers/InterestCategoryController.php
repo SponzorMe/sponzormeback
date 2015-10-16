@@ -50,11 +50,7 @@ class InterestCategoryController extends Controller {
 					]
 				], 200
 			);
-<<<<<<< HEAD
 		}
-=======
-		}		
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -71,21 +67,13 @@ class InterestCategoryController extends Controller {
     	 ]);
 		if($validation->fails())
 		{
-<<<<<<< HEAD
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
-=======
-			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 		}
 		else
 		{
 			$InterestCategory=InterestCategory::create($request->all());
 			return response()->json(['message'=>"Inserted",'InterestCategory'=>$InterestCategory],201);
-<<<<<<< HEAD
 		}
-=======
-		}			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -100,7 +88,6 @@ class InterestCategoryController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
-<<<<<<< HEAD
 			$inputs = $request->all(); //Get the set of inputs
 			extract($inputs); //Creamos las variables desde el array de inputs
 		}
@@ -108,18 +95,6 @@ class InterestCategoryController extends Controller {
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
 			if(!empty($name)){
-=======
-			//Get all values
-			$name			= $request->input("name");
-			$description	= $request->input("description");
-			$lang			= $request->input("lang");
-			$category_id	= $request->input("category_id");
-		}		
-		if($request->method()==="PATCH"){//PATCH At least one field is required
-			$warnings=array();
-			$flag=0;//If 0 persist nothing was updated.
-			if(!empty($name)){				
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['name' => $name],
 				    ['name' => ['required', 'max:255','unique:event_types,name,'.$id]]
@@ -130,21 +105,13 @@ class InterestCategoryController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
-=======
-				}		
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			}
 			if(!empty($description)){
 				$InterestCategory->description=$description;
 				$flag=1;
 			}
-<<<<<<< HEAD
 			if(!empty($lang)){
-=======
-			if(!empty($lang)){				
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['lang' => $lang],
 				    ['lang' => ['required', 'max:5']]
@@ -155,15 +122,9 @@ class InterestCategoryController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($category_id)){
-=======
-				}				
-			}
-			if(!empty($category_id)){				
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['category_id' => $category_id],
 				    ['category_id' => ['required', 'max:5','exists:categories,id']]
@@ -174,11 +135,7 @@ class InterestCategoryController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
-=======
-				}				
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			}
 			if($flag){
 				$InterestCategory->save();
@@ -197,11 +154,7 @@ class InterestCategoryController extends Controller {
 	    	 ]);
 			if($validation->fails())
 			{
-<<<<<<< HEAD
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
-=======
-				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			}
 			else
 			{
@@ -232,13 +185,6 @@ class InterestCategoryController extends Controller {
 		else{
 				$InterestCategory->delete();
 				return response()->json(['message'=>"Deleted"],200);
-<<<<<<< HEAD
 		}
 	}
-=======
-			}			
-		}
-	}
-
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 }

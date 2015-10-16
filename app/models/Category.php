@@ -36,5 +36,9 @@ class Category extends Model {
     {
         return $this->hasMany('App\Models\InterestCategory','category_id');
     }
+	public function usersCategories()
+	    {
+	        return $this->hasMany('App\Models\UserCategory','category_id');
+	    }
 
 }

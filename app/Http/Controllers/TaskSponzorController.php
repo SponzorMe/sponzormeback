@@ -25,7 +25,6 @@ class TaskSponzorController extends Controller {
 			], 200
 		);
 	}
-<<<<<<< HEAD
 	/** Get the task sponzor by sponzorship join with dependence tasks**/
 	public function showBySponzorship($sponzorshipId){
 		$tasks = TaskSponzor::where('sponzorship_id', $sponzorshipId)
@@ -38,8 +37,6 @@ class TaskSponzorController extends Controller {
 			], 200
 		);
 	}
-=======
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 	/**
 	 * Display the specified resource.
 	 *
@@ -61,7 +58,6 @@ class TaskSponzorController extends Controller {
 					[
 						"TaskSponzor"=>$TaskSponzor->toArray(),
 						"Task"=>$TaskSponzor->task,
-<<<<<<< HEAD
 						"Organizer"=>$TaskSponzor->organizer,
 						"Sponzor"=>$TaskSponzor->sponzor,
 						"Sponzorship"=>$TaskSponzor->sponzorships,
@@ -70,16 +66,6 @@ class TaskSponzorController extends Controller {
 				], 200
 			);
 		}
-=======
-						"organizer"=>$TaskSponzor->organizer,
-						"Sponzor"=>$TaskSponzor->sponzor,
-						"sponzor_event"=>$TaskSponzor->sponzor_event,
-						"event"=>$TaskSponzor->event,
-					]
-				], 200
-			);
-		}		
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -91,35 +77,21 @@ class TaskSponzorController extends Controller {
 		$validation = Validator::make($request->all(), [
 			'status'=>'max:4',
 			'task_id'=>'required|max:11|exists:perk_tasks,id',
-<<<<<<< HEAD
 			'perk_id'=>'required|max:11|exists:perks,id',
 			'sponzor_id'=>'required|max:11|exists:users,id',
 			'organizer_id'=>'required|max:11|exists:users,id',
-=======
-			'perk_id'=>'required|max:11|exists:perks,id', 
-			'sponzor_id'=>'required|max:11|exists:users,id', 
-			'organizer_id'=>'required|max:11|exists:users,id', 
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			'event_id'=>'required|max:11|exists:events,id',
 			'sponzorship_id'=>'required|max:11|exists:sponzorships,id',
     	 ]);
 		if($validation->fails())
 		{
-<<<<<<< HEAD
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
-=======
-			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);	
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 		}
 		else
 		{
 			$TaskSponzor=TaskSponzor::create($request->all());
 			return response()->json(['message'=>"Inserted",'TaskSponzor'=>$TaskSponzor],201);
-<<<<<<< HEAD
 		}
-=======
-		}			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -134,28 +106,13 @@ class TaskSponzorController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
-<<<<<<< HEAD
 			$inputs = $request->all(); //Get the set of inputs
 			extract($inputs); //Creamos las variables desde el array de inputs
-=======
-			//Get all values
-			$status	= $request->input("status");
-			$task_id		= $request->input("task_id");
-			$perk_id		= $request->input("perk_id");
-			$sponzor_id		= $request->input("sponzor_id");
-			$organizer_id	= $request->input("organizer_id");
-			$event_id		= $request->input("event_id");
-			$sponzorship_id	= $request->input("sponzorship_id");
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
-<<<<<<< HEAD
 			if($status>=0){
-=======
-			if(!empty($status)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['status' => $status],
 				    ['status' => ['required', 'max:5']]
@@ -166,15 +123,9 @@ class TaskSponzorController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($task_id)){
-=======
-				}				
-			}
-			if(!empty($task_id)){				
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['task_id' => $task_id],
 				    ['task_id' => ['required', 'max:11','exists:perk_tasks,id']]
@@ -185,15 +136,9 @@ class TaskSponzorController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($perk_id)){
-=======
-				}		
-			}
-			if(!empty($perk_id)){				
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['perk_id' => $perk_id],
 				    ['perk_id' => ['required', 'max:11','exists:perks,id']]
@@ -204,15 +149,9 @@ class TaskSponzorController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($sponzor_id)){
-=======
-				}		
-			}	
-			if(!empty($sponzor_id)){				
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['sponzor_id' => $sponzor_id],
 				    ['sponzor_id' => ['required', 'max:11','exists:users,id']]
@@ -223,15 +162,9 @@ class TaskSponzorController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($organizer_id)){
-=======
-				}		
-			}	
-			if(!empty($organizer_id)){				
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['organizer_id' => $organizer_id],
 				    ['organizer_id' => ['required', 'max:11','exists:users,id']]
@@ -242,15 +175,9 @@ class TaskSponzorController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($event_id)){
-=======
-				}		
-			}
-			if(!empty($event_id)){				
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['event_id' => $event_id],
 				    ['event_id' => ['required', 'max:11','exists:events,id']]
@@ -261,15 +188,9 @@ class TaskSponzorController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($sponzorship_id)){
-=======
-				}		
-			}
-			if(!empty($sponzorship_id)){				
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['sponzorship_id' => $sponzorship_id],
 				    ['sponzorship_id' => ['required', 'max:11','exists:sponzorships,id']]
@@ -280,13 +201,8 @@ class TaskSponzorController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
-=======
-				}		
-			}			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			if($flag){
 				$TaskSponzor->save();
 				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'TaskSponzor'=>$TaskSponzor],200);
@@ -299,25 +215,15 @@ class TaskSponzorController extends Controller {
 			$validation = Validator::make($request->all(), [
         	'status'=>'max:4',
 			'task_id'=>'required|max:11|exists:perk_tasks,id',
-<<<<<<< HEAD
 			'perk_id'=>'required|max:11|exists:perks,id',
 			'sponzor_id'=>'required|max:11|exists:users,id',
 			'organizer_id'=>'required|max:11|exists:users,id',
-=======
-			'perk_id'=>'required|max:11|exists:perks,id', 
-			'sponzor_id'=>'required|max:11|exists:users,id', 
-			'organizer_id'=>'required|max:11|exists:users,id', 
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			'event_id'=>'required|max:11|exists:events,id',
 			'sponzorship_id'=>'required|max:11|exists:sponzorships,id',
 	    	 ]);
 			if($validation->fails())
 			{
-<<<<<<< HEAD
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
-=======
-				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);	
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			}
 			else
 			{

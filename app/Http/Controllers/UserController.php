@@ -6,19 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
-<<<<<<< HEAD
 use Weblee\Mandrill\Mail;
-=======
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 
 class UserController extends Controller {
 	public function __construct()
 	{
-<<<<<<< HEAD
 		$this->middleware('auth.basic.once',['only'=>['update','destroy','index','show']]);
-=======
-		$this->middleware('auth.basic.once',['only'=>['store','update','destroy']]);
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 	}
 	/**
 	 * Display a listing of the resource.
@@ -51,7 +44,6 @@ class UserController extends Controller {
 		}
 		else
 		{
-<<<<<<< HEAD
 			$user->events;
 			$user->categories;
 			$user->interests;
@@ -60,11 +52,6 @@ class UserController extends Controller {
 			$user->sponzorships_like_organizer;
 			$user->tasks_sponzor_like_organizer;
 			$user->tasks_sponzor_like_sponzor;
-=======
-			$events=$user->events;
-			$events=$user->categories;
-			$events=$user->interests;
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			return response()->json(
 				["data"=>
 					[
@@ -72,7 +59,6 @@ class UserController extends Controller {
 					]
 				], 200
 			);
-<<<<<<< HEAD
 		}
 	}
 	/**
@@ -289,35 +275,16 @@ class UserController extends Controller {
 	}
 	public function store(Request $request)
 	{
-=======
-		}		
-	}
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store(Request $request)
-	{
-		
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 		$validation = Validator::make($request->all(), [
 			'email' 	=> 'required|email|max:255|unique:users',
 			'password' 	=> 'required|confirmed|min:6',
 			'name'		=>'required|max:255',
 			'type'		=>'required|max:1',
-<<<<<<< HEAD
 			'lang'		=>'required|max:5|in:en,es,pt'
     	 ]);
 		if($validation->fails())
 		{
 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],400);
-=======
-    	 ]);
-		if($validation->fails())
-		{
-			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],200);	
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 		}
 		else
 		{
@@ -325,16 +292,11 @@ class UserController extends Controller {
 				'name' => $request->input('name'),
 				'email' => $request->input('email'),
 				'type' => $request->input('type'),
-<<<<<<< HEAD
 				'lang' => $request->input('lang'),
 				'password' => bcrypt($request->input('password')),
 			]);
 			$emailSender=$this->sendActivationLink($request);
 			$this->subscribeToMailchimp($request->input('email'),$request->input('name'),$request->input('type'),$request->input('lang'));
-=======
-				'password' => bcrypt($request->input('password')),
-			]);
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			return response()->json(['message'=>"Inserted",'User'=>$user],201);
 		}
 	}
@@ -351,47 +313,13 @@ class UserController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
-<<<<<<< HEAD
 			$inputs = $request->all(); //Get the set of inputs
 			extract($inputs); //Creamos las variables desde el array de inputs
-=======
-			//Get all values
-			$name = $request->input('name');
-			$email = $request->input('email');
-			$type = $request->input('type');
-			$password = bcrypt($request->input('password'));
-			$activated = $request->input('activated');
-			$activation_code = $request->input('activation_code');
-			$activated_at = $request->input('activated_at');
-			$last_login = $request->input('last_login');
-			$persist_code = $request->input('persist_code');
-			$reset_password_code = $request->input('reset_password_code');
-			$company = $request->input('company');
-			$sex = $request->input('sex');
-			$age = $request->input('age');
-			$custom_status = $request->input('custom_status');
-			$login_code = $request->input('login_code');
-			$login_valid_until = $request->input('login_valid_until');
-			$lang = $request->input('lang');
-			$image = $request->input('image');
-			$description = $request->input('description');
-			$eventbriteKey = $request->input('eventbriteKey');
-			$meetupRefreshKey = $request->input('meetupRefreshKey');
-			$comunity_size = $request->input('comunity_size');
-			$location = $request->input('location');
-			$location_reference = $request->input('location_reference');
-			$demo = $request->input('demo');
-			$status = $request->input('status');
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
 			$flag=0;//If 0 persist nothing was updated.
-<<<<<<< HEAD
 			if(!empty($email)){
-=======
-			if(!empty($email)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['email' => $email],
 				    ['email' => ['required','email','max:255','unique:users,email,'.$id]]
@@ -402,15 +330,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($password)){
-=======
-				}				
-			}
-			if(!empty($password)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['password' => $password],
 				    ['password' => ['required', 'min:6','confirmed']]
@@ -421,15 +343,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($name)){
-=======
-				}				
-			}
-			if(!empty($name)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['name' => $name],
 				    ['name' => ['required', 'max:255']]
@@ -440,15 +356,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($type)){
-=======
-				}				
-			}
-			if(!empty($type)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['type' => $type],
 				    ['type' => ['required', 'max:1']]
@@ -459,15 +369,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($activated)){
-=======
-				}				
-			}
-			if(!empty($activated)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['activated' => $activated],
 				    ['activated' => ['required', 'max:1']]
@@ -478,15 +382,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($activation_code)){
-=======
-				}				
-			}
-			if(!empty($activation_code)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['activation_code' => $activation_code],
 				    ['activation_code' => ['required', 'max:255']]
@@ -497,15 +395,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($activated_at)){
-=======
-				}				
-			}
-			if(!empty($activated_at)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['activated_at' => $activated_at],
 				    ['activated_at' => ['required', 'max:255']]
@@ -516,15 +408,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($last_login)){
-=======
-				}				
-			}
-			if(!empty($last_login)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['last_login' => $last_login],
 				    ['last_login' => ['required', 'max:255']]
@@ -535,15 +421,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($persist_code)){
-=======
-				}				
-			}
-			if(!empty($persist_code)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['persist_code' => $persist_code],
 				    ['persist_code' => ['required', 'max:255']]
@@ -554,15 +434,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($reset_password_code)){
-=======
-				}				
-			}
-			if(!empty($reset_password_code)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['reset_password_code' => $reset_password_code],
 				    ['reset_password_code' => ['required', 'max:255']]
@@ -573,15 +447,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($company)){
-=======
-				}				
-			}
-			if(!empty($company)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['company' => $company],
 				    ['company' => ['required', 'max:255']]
@@ -592,21 +460,12 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(isset($sex) && ($sex==0 || $sex==1)){
 				$validator = Validator::make(
 				    ['sex' => $sex],
 				    ['sex' => ['max:255']]
-=======
-				}				
-			}
-			if(!empty($sex)){			
-				$validator = Validator::make(
-				    ['sex' => $sex],
-				    ['sex' => ['required', 'max:255']]
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				);
 				if(!$validator->fails()){
 					$flag=1;
@@ -614,15 +473,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($age)){
-=======
-				}				
-			}
-			if(!empty($age)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['age' => $age],
 				    ['age' => ['required', 'max:255']]
@@ -633,15 +486,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($custom_status)){
-=======
-				}				
-			}
-			if(!empty($custom_status)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['custom_status' => $custom_status],
 				    ['custom_status' => ['required', 'max:255']]
@@ -652,15 +499,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($login_code)){
-=======
-				}				
-			}
-			if(!empty($login_code)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['login_code' => $login_code],
 				    ['login_code' => ['required', 'max:255']]
@@ -671,15 +512,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($login_valid_until)){
-=======
-				}				
-			}
-			if(!empty($login_valid_until)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['login_valid_until' => $login_valid_until],
 				    ['login_valid_until' => ['required', 'max:255']]
@@ -690,21 +525,12 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($lang)){
 				$validator = Validator::make(
 				    ['lang' => $lang],
 				    ['lang' => ['required', 'max:5','in:en,es,pt']]
-=======
-				}				
-			}
-			if(!empty($lang)){			
-				$validator = Validator::make(
-				    ['lang' => $lang],
-				    ['lang' => ['required', 'max:5']]
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				);
 				if(!$validator->fails()){
 					$flag=1;
@@ -712,21 +538,12 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($image)){
 				$validator = Validator::make(
 				    ['image' => $image],
 				    ['image' => ['required', 'max:255']]
-=======
-				}				
-			}
-			if(!empty($image)){			
-				$validator = Validator::make(
-				    ['image' => $image],
-				    ['image' => ['required', 'max:5']]
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				);
 				if(!$validator->fails()){
 					$flag=1;
@@ -734,15 +551,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($description)){
-=======
-				}				
-			}
-			if(!empty($description)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['description' => $description],
 				    ['description' => ['required', 'max:400']]
@@ -753,15 +564,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($eventbriteKey)){
-=======
-				}				
-			}
-			if(!empty($eventbriteKey)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['eventbriteKey' => $eventbriteKey],
 				    ['eventbriteKey' => ['required', 'max:255']]
@@ -772,15 +577,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($meetupRefreshKey)){
-=======
-				}				
-			}
-			if(!empty($meetupRefreshKey)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['meetupRefreshKey' => $meetupRefreshKey],
 				    ['meetupRefreshKey' => ['required', 'max:255']]
@@ -791,15 +590,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($comunity_size)){
-=======
-				}				
-			}
-			if(!empty($comunity_size)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['comunity_size' => $comunity_size],
 				    ['comunity_size' => ['required', 'max:255']]
@@ -810,15 +603,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($location)){
-=======
-				}				
-			}
-			if(!empty($location)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['location' => $location],
 				    ['location' => ['required', 'max:255']]
@@ -829,15 +616,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($location_reference)){
-=======
-				}				
-			}
-			if(!empty($location_reference)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['location_reference' => $location_reference],
 				    ['location_reference' => ['required', 'max:255']]
@@ -848,15 +629,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($demo)){
-=======
-				}				
-			}
-			if(!empty($demo)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['demo' => $demo],
 				    ['demo' => ['required', 'max:5']]
@@ -867,15 +642,9 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
 			}
 			if(!empty($status)){
-=======
-				}				
-			}
-			if(!empty($status)){			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				$validator = Validator::make(
 				    ['status' => $status],
 				    ['status' => ['required', 'max:255']]
@@ -886,11 +655,7 @@ class UserController extends Controller {
 				}
 				else{
 					$warnings[]=$validator->messages();
-<<<<<<< HEAD
 				}
-=======
-				}				
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			}
 			if($flag){
 				$User->save();
@@ -914,19 +679,11 @@ class UserController extends Controller {
 			'reset_password_code'		=>'required|max:255',
 			'company'		=>'required|max:255',
 			'sex'		=>'required|max:255',
-<<<<<<< HEAD
 			'age'		=>'max:255',
 			'custom_status'		=>'required|max:255',
 			'login_code'		=>'required|max:255',
 			'login_valid_until'		=>'required|max:255',
 			'lang'		=>'required|max:5|in:en,es,pt',
-=======
-			'age'		=>'required|max:255',
-			'custom_status'		=>'required|max:255',
-			'login_code'		=>'required|max:255',
-			'login_valid_until'		=>'required|max:255',
-			'lang'		=>'required|max:255',
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			'image'		=>'required|max:255',
 			'description'		=>'required|max:255',
 			'eventbriteKey'		=>'required|max:255',
@@ -939,11 +696,7 @@ class UserController extends Controller {
 	    	 ]);
 			if($validation->fails())
 			{
-<<<<<<< HEAD
 				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
-=======
-				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],200);	
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			}
 			else
 			{
@@ -1001,7 +754,6 @@ class UserController extends Controller {
 			$tasks_sponzor_like_organizer=$User->tasks_sponzor_like_organizer;
 			$tasks_sponzor_like_sponzor=$User->tasks_sponzor_like_sponzor;
 			if(sizeof($events)>0){
-<<<<<<< HEAD
 				return response()->json(['message'=>"This user has events, first remove the events and try again"],409);
 			}
 			elseif(sizeof($categories)>0){
@@ -1021,36 +773,11 @@ class UserController extends Controller {
 			}
 			elseif(sizeof($tasks_sponzor_like_sponzor)>0){
 				return response()->json(['message'=>"This user has tasks_sponzor_like_sponzor, first remove the tasks_sponzor_like_sponzor and try again"],409);
-=======
-				return response()->json(['message'=>"This user has events, first remove the events and try again"],409);			
-			}
-			elseif(sizeof($categories)>0){
-				return response()->json(['message'=>"This user has categories, first remove the categories and try again"],409);			
-			}
-			elseif(sizeof($interests)>0){
-				return response()->json(['message'=>"This user has interests, first remove the interests and try again"],409);			
-			}
-			elseif(sizeof($perk_tasks)>0){
-				return response()->json(['message'=>"This user has perk_tasks, first remove the perk_tasks and try again"],409);			
-			}
-			elseif(sizeof($sponzorships)>0){
-				return response()->json(['message'=>"This user has sponzorships, first remove the sponzorships and try again"],409);			
-			}
-			elseif(sizeof($tasks_sponzor_like_organizer)>0){
-				return response()->json(['message'=>"This user has tasks_sponzor_like_organizer, first remove the tasks_sponzor_like_organizer and try again"],409);			
-			}
-			elseif(sizeof($tasks_sponzor_like_sponzor)>0){
-				return response()->json(['message'=>"This user has tasks_sponzor_like_sponzor, first remove the tasks_sponzor_like_sponzor and try again"],409);			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			}
 			else{
 				$User->delete();
 				return response()->json(['message'=>"Deleted"],200);
-<<<<<<< HEAD
 			}
-=======
-			}			
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 		}
 	}
 

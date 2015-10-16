@@ -12,7 +12,6 @@ class SponzorshipsTableSeeder extends Seeder {
 	public function run()
 	{
 		\DB::table('sponzorships')->delete();
-<<<<<<< HEAD
 
 		\DB::table('sponzorships')->insert(array (
 			0 =>
@@ -41,22 +40,8 @@ class SponzorshipsTableSeeder extends Seeder {
 				'organizer_id' => '3',
 				'perk_id' => '2',
 				'cause' => 'I like your event, is amazing 3',
-=======
-        
-		\DB::table('sponzorships')->insert(array (
-			0 => 
-			array (
-				'status' => '4',				
-				'event_id' => '1',
-				'sponzor_id' => '1',
-				'perk_id' => '1',
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 			),
 		));
 	}
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1

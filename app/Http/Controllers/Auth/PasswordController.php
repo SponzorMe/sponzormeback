@@ -1,7 +1,6 @@
 <?php namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-<<<<<<< HEAD
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\PasswordBroker;
@@ -10,12 +9,6 @@ use Illuminate\Support\Facades\Validator;
 use Weblee\Mandrill\Mail;
 use App\Models\User;
 use App\Models\PasswordResets;
-=======
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Auth\PasswordBroker;
-use Illuminate\Foundation\Auth\ResetsPasswords;
-
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 class PasswordController extends Controller {
 
 	/*
@@ -23,7 +16,6 @@ class PasswordController extends Controller {
 	| Password Reset Controller
 	|--------------------------------------------------------------------------
 	|
-<<<<<<< HEAD
 	| This controller is responsible for provide a way to
 	| 1. Get an user by e-mail.
 	| 2. Send a reset link with a token
@@ -149,29 +141,5 @@ class PasswordController extends Controller {
 	}
 
 
-=======
-	| This controller is responsible for handling password reset requests
-	| and uses a simple trait to include this behavior. You're free to
-	| explore this trait and override any methods you wish to tweak.
-	|
-	*/
-
-	use ResetsPasswords;
-
-	/**
-	 * Create a new password controller instance.
-	 *
-	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
-	 * @param  \Illuminate\Contracts\Auth\PasswordBroker  $passwords
-	 * @return void
-	 */
-	public function __construct(Guard $auth, PasswordBroker $passwords)
-	{
-		$this->auth = $auth;
-		$this->passwords = $passwords;
-
-		$this->middleware('guest');
-	}
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 
 }

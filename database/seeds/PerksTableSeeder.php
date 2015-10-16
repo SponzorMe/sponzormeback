@@ -12,7 +12,6 @@ class PerksTableSeeder extends Seeder {
 	public function run()
 	{
 		\DB::table('perks')->delete();
-<<<<<<< HEAD
 
 		\DB::table('perks')->insert(array (
 			0 =>
@@ -29,16 +28,6 @@ class PerksTableSeeder extends Seeder {
 				'id_event' => 1,
 				'usd' => '23',
 				'total_quantity' => '4',
-=======
-        
-		\DB::table('perks')->insert(array (
-			0 => 
-			array (
-				'kind' => 1,
-				'id_event' => 1,
-				'usd' => '23',
-				'total_quantity' => '4',				
->>>>>>> 886196f6324c74af87a64306a83398414c37e1b1
 				'reserved_quantity' => '3'
 			),
 		));

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false" backupStaticAttributes="false" bootstrap="bootstrap/autoload.php" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" processIsolation="false"
+  stopOnFailure="false" syntaxCheck="false">
+  <testsuites>
+    <testsuite name="Application Test Suite">
+      <!--Then Get the data via GET-->
+      <directory>./tests/GetTest.php</directory>
+      <!--Then Get the data via-->
+      <directory>./tests/GetOneTest.php</directory>
+      <!--First Insert the data-->
+      <directory>./tests/PostTest.php</directory>
+      <!--Then Edit the data via PATCH-->
+      <directory>./tests/PatchTest.php</directory>
+      <!--Then Edit the data via PUT-->
+      <directory>./tests/PutTest.php</directory>
+      <!--Then the others custom tests-->
+      <directory>./tests/CustomTest.php</directory>
+      <!--Then Delete the data via-->
+      <directory>./tests/DeleteTest.php</directory>
+
+    </testsuite>
+  </testsuites>
+  <php>
+    <env  name="APP_ENV" value="local"/>
+    <env  name="CACHE_DRIVER" value="array"/>
+    <env  name="SESSION_DRIVER" value="array"/>
+    <env  name="QUEUE_DRIVER" value="sync"/>
+  </php>
+</phpunit>

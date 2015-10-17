@@ -31,6 +31,7 @@ Route::get('verify_activation/{activationCode}','UserController@verifyActivation
 Route::post('send_reset_password','Auth\PasswordController@sendResetPasswordToken');
 Route::post('update_password/{token}','Auth\PasswordController@updatePassword');
 Route::post('invite_friend','UserController@inviteFriend');
+Route::post('sponzorship_email','SponzorshipController@sendSponzorshipEmail');
 Route::pattern('route_not_found','.*');
 Route::any('/{route_not_found}', function(){
 	return response()->json(

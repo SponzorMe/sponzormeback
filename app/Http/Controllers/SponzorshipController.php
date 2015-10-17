@@ -10,7 +10,7 @@ use Weblee\Mandrill\Mail;
 class SponzorshipController extends Controller {
 	public function __construct()
 	{
-		$this->middleware('auth.basic.once',['only'=>['store','update','destroy']]);
+		$this->middleware('auth.basic.once',['only'=>['store','update','destroy','sendSponzorshipEmail']]);
 	}
 	public function sendSponzorshipEmail(){
 		try{

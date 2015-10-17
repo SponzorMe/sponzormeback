@@ -12,8 +12,8 @@
 return array(
 	//Used in UserController
 	//'activation_url' => "http://localhost:9000/#/activation/", //Activation account URL
-	'activation_url' => "http://front.sponzor.me/#/activation/", //Activation account URL
+	'activation_url' => "http://sponzor.me/#/activation/", //Activation account URL
 	//Used in password controller
 	//'reset_password_url' => "http://localhost:9000/#/reset/", //Reset password URL
-	'reset_password_url' => "http://front.sponzor.me/#/reset/" //Reset password URL
+	'reset_password_url' => "http://sponzor.me/#/reset/" //Reset password URL
 );

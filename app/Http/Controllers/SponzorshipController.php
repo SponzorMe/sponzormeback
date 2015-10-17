@@ -70,13 +70,13 @@ class SponzorshipController extends Controller {
 				    );
 			    	$result = \MandrillMail::messages()->sendTemplate($template_name, $template_content, $message);
 					if($result[0]["status"]=="sent" AND !$result[0]["reject_reason"]){
-						return true;
+						return response()->json(['message'=>"Sent"],200);
 					}
 					elseif ($result[0]["status"]=="queued") {
-						return false;
+						return response()->json(['message'=>"queued"],200);
 					}
 					else{
-						return false;
+						return response()->json(['message'=>"no sent"],422);
 					}
 				}
 				catch(Exeption $e){

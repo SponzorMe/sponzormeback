@@ -5,11 +5,69 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sponzorship;
 use Illuminate\Support\Facades\Validator;
+use Weblee\Mandrill\Mail;
 
 class SponzorshipController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth.basic.once',['only'=>['store','update','destroy']]);
+	}
+	public function sendSponzorshipEmail(){
+		try{
+			$sponzorEmail=$request->input('sponzorEmail');
+			$sponzorName=$request->input('sponzorName');
+			$eventName=$request->input('eventName');
+			$organizerEmail=$request->input('organizerEmail');
+			$lang=$request->input('lang');
+			if($lang=="en")
+		    	$template_name = 'approved-english';
+		    if($lang=="es")
+		    	$template_name = 'approved-spanish';
+		    if($lang=="pt")
+		    	$template_name = 'approved-portuguese';
+		    $template_content = array(
+		        array(
+		            'name' => 'Sponzorship-approved',
+		            'content' => 'SponzorMe'
+		        )
+		    );
+		    $message = array(
+		        'to' => array(
+		            array(
+		                'email' =>	$sponzorEmail,
+		                'name' 	=> 	$sponzorName,
+		                'type' 	=> 'to'
+		            )
+		        ),
+		        'global_merge_vars' => array(
+		            array(
+		                'name' => 'sponzorName',
+		            	'content' => $sponzorName
+		            ),
+		            array(
+		                'name' => 'eventName',
+		            	'content' => $eventName
+		            ),
+								array(
+		                'name' => 'organizerEmail',
+		            	'content' => $organizerEmail
+		            ),
+		        ),
+		    );
+	    	$result = \MandrillMail::messages()->sendTemplate($template_name, $template_content, $message);
+			if($result[0]["status"]=="sent" AND !$result[0]["reject_reason"]){
+				return true;
+			}
+			elseif ($result[0]["status"]=="queued") {
+				return false;
+			}
+			else{
+				return false;
+			}
+		}
+		catch(Exeption $e){
+			return false;
+		}
 	}
 	/**
 	 * Display a listing of the resource.
@@ -138,6 +196,9 @@ class SponzorshipController extends Controller {
 				);
 				if(!$validator->fails()){
 					$flag=1;
+					if($status==1 && $Sponzorship->status==0){//Trigger an sponzorship
+						//We send an email
+					}
 					$Sponzorship->status=$status;
 				}
 				else{

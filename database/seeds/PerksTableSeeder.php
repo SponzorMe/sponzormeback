@@ -17,7 +17,7 @@ class PerksTableSeeder extends Seeder {
 			0 =>
 			array (
 				'kind' => "Gold",
-				'id_event' => 1001,
+				'id_event' => 1003,
 				'usd' => '23',
 				'total_quantity' => '4',
 				'reserved_quantity' => '3'
@@ -25,7 +25,7 @@ class PerksTableSeeder extends Seeder {
 			1 =>
 			array (
 				'kind' => "Plate",
-				'id_event' => 1001,
+				'id_event' => 1003,
 				'usd' => '23',
 				'total_quantity' => '4',
 				'reserved_quantity' => '3'

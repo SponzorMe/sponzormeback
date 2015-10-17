@@ -16,27 +16,27 @@ class UserInterestsTableSeeder extends Seeder {
 		\DB::table('users_interests')->insert(array (
 			0 =>
 			array (
-				'user_id' => '1',
+				'user_id' => '1001',
 				'interest_id' => '1',
 			),
 			1 =>
 			array (
-				'user_id' => '1',
+				'user_id' => '1001',
 				'interest_id' => '2',
 			),
 			2 =>
 			array (
-				'user_id' => '2',
+				'user_id' => '1002',
 				'interest_id' => '3',
 			),
 			3 =>
 			array (
-				'user_id' => '2',
+				'user_id' => '1002',
 				'interest_id' => '4',
 			),
 			4 =>
 			array (
-				'user_id' => '3',
+				'user_id' => '1003',
 				'interest_id' => '5',
 			),
 		));

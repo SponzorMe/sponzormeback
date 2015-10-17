@@ -13,60 +13,75 @@ class SponzorshipController extends Controller {
 		$this->middleware('auth.basic.once',['only'=>['store','update','destroy','sendSponzorshipEmail']]);
 	}
 	public function sendSponzorshipEmail(){
-		try{
-			$sponzorEmail=$request->input('sponzorEmail');
-			$sponzorName=$request->input('sponzorName');
-			$eventName=$request->input('eventName');
-			$organizerEmail=$request->input('organizerEmail');
-			$lang=$request->input('lang');
-			if($lang=="en")
-		    	$template_name = 'approved-english';
-		    if($lang=="es")
-		    	$template_name = 'approved-spanish';
-		    if($lang=="pt")
-		    	$template_name = 'approved-portuguese';
-		    $template_content = array(
-		        array(
-		            'name' => 'Sponzorship-approved',
-		            'content' => 'SponzorMe'
-		        )
-		    );
-		    $message = array(
-		        'to' => array(
-		            array(
-		                'email' =>	$sponzorEmail,
-		                'name' 	=> 	$sponzorName,
-		                'type' 	=> 'to'
-		            )
-		        ),
-		        'global_merge_vars' => array(
-		            array(
-		                'name' => 'sponzorName',
-		            	'content' => $sponzorName
-		            ),
-		            array(
-		                'name' => 'eventName',
-		            	'content' => $eventName
-		            ),
-								array(
-		                'name' => 'organizerEmail',
-		            	'content' => $organizerEmail
-		            ),
-		        ),
-		    );
-	    	$result = \MandrillMail::messages()->sendTemplate($template_name, $template_content, $message);
-			if($result[0]["status"]=="sent" AND !$result[0]["reject_reason"]){
-				return true;
-			}
-			elseif ($result[0]["status"]=="queued") {
-				return false;
-			}
-			else{
-				return false;
-			}
+		$validation = Validator::make($request->all(), [
+				'sponzorEmail'=>'required|max:255',
+				'sponzorName'=>'required|max:255',
+				'eventName'=>'required|max:255',
+				'organizerEmail'=>'required|max:255',
+				'lang'=>'required|max:3'
+			 ]);
+		if($validation->fails())
+		{
+			return response()->json(['message'=>"No sent, incomplete fields",'error'=>$validation->messages()],422);
 		}
-		catch(Exeption $e){
-			return false;
+		else
+		{
+			try{
+
+					$sponzorEmail=$request->input('sponzorEmail');
+					$sponzorName=$request->input('sponzorName');
+					$eventName=$request->input('eventName');
+					$organizerEmail=$request->input('organizerEmail');
+					$lang=$request->input('lang');
+					if($lang=="en")
+				    	$template_name = 'approved-english';
+				    if($lang=="es")
+				    	$template_name = 'approved-spanish';
+				    if($lang=="pt")
+				    	$template_name = 'approved-portuguese';
+				    $template_content = array(
+				        array(
+				            'name' => 'Sponzorship-approved',
+				            'content' => 'SponzorMe'
+				        )
+				    );
+				    $message = array(
+				        'to' => array(
+				            array(
+				                'email' =>	$sponzorEmail,
+				                'name' 	=> 	$sponzorName,
+				                'type' 	=> 'to'
+				            )
+				        ),
+				        'global_merge_vars' => array(
+				            array(
+				                'name' => 'sponzorName',
+				            	'content' => $sponzorName
+				            ),
+				            array(
+				                'name' => 'eventName',
+				            	'content' => $eventName
+				            ),
+										array(
+				                'name' => 'organizerEmail',
+				            	'content' => $organizerEmail
+				            ),
+				        ),
+				    );
+			    	$result = \MandrillMail::messages()->sendTemplate($template_name, $template_content, $message);
+					if($result[0]["status"]=="sent" AND !$result[0]["reject_reason"]){
+						return true;
+					}
+					elseif ($result[0]["status"]=="queued") {
+						return false;
+					}
+					else{
+						return false;
+					}
+				}
+				catch(Exeption $e){
+					return false;
+				}
 		}
 	}
 	/**
@@ -196,9 +211,6 @@ class SponzorshipController extends Controller {
 				);
 				if(!$validator->fails()){
 					$flag=1;
-					if($status==1 && $Sponzorship->status==0){//Trigger an sponzorship
-						//We send an email
-					}
 					$Sponzorship->status=$status;
 				}
 				else{

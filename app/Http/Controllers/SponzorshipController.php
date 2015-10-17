@@ -12,7 +12,7 @@ class SponzorshipController extends Controller {
 	{
 		$this->middleware('auth.basic.once',['only'=>['store','update','destroy','sendSponzorshipEmail']]);
 	}
-	public function sendSponzorshipEmail(){
+	public function sendSponzorshipEmail(Request $request){
 		$validation = Validator::make($request->all(), [
 				'sponzorEmail'=>'required|max:255',
 				'sponzorName'=>'required|max:255',

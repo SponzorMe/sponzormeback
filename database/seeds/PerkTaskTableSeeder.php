@@ -20,8 +20,8 @@ class PerkTaskTableSeeder extends Seeder {
 				'description' => "Facebook, twitter, instagram!!,",
 				'type' => '0',
 				'status' => '0',
-				'event_id' => '1',
-				'user_id' => '1',
+				'event_id' => '1001',
+				'user_id' => '1001',
 				'perk_id' => '1',
 			),
 			1 =>
@@ -30,8 +30,8 @@ class PerkTaskTableSeeder extends Seeder {
 				'description' => "Via paypal",
 				'type' => '1',
 				'status' => '0',
-				'event_id' => '1',
-				'user_id' => '1',
+				'event_id' => '1001',
+				'user_id' => '1001',
 				'perk_id' => '1',
 			),
 		));

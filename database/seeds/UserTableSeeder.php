@@ -20,6 +20,7 @@ class UserTableSeeder extends Seeder {
         	'image' => 'admin_sponzorme.png',
         	'type' => '2',
         	'demo' => '0',
+          'id' => '1001',
         	]);
         //Main sponzor
         DB::table('users')->insert(
@@ -33,6 +34,7 @@ class UserTableSeeder extends Seeder {
         	'image' => 'sponzor_sponzorme.png',
         	'type' => '1',
         	'demo' => '0',
+          'id' => '1002',
         	]);
         //Main organizer
         DB::table('users')->insert(
@@ -46,8 +48,9 @@ class UserTableSeeder extends Seeder {
         	'image' => 'organizer_sponzorme.png',
         	'type' => '0',
         	'demo' => '0',
+          'id' => '1003',
         	]);
-        
+
     }
 
 }

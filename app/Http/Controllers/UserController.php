@@ -543,7 +543,7 @@ class UserController extends Controller {
 			if(!empty($image)){
 				$validator = Validator::make(
 				    ['image' => $image],
-				    ['image' => ['required', 'max:255']]
+				    ['image' => ['required']]
 				);
 				if(!$validator->fails()){
 					$flag=1;
@@ -556,7 +556,7 @@ class UserController extends Controller {
 			if(!empty($description)){
 				$validator = Validator::make(
 				    ['description' => $description],
-				    ['description' => ['required', 'max:400']]
+				    ['description' => ['required']]
 				);
 				if(!$validator->fails()){
 					$flag=1;
@@ -684,8 +684,8 @@ class UserController extends Controller {
 			'login_code'		=>'required|max:255',
 			'login_valid_until'		=>'required|max:255',
 			'lang'		=>'required|max:5|in:en,es,pt',
-			'image'		=>'required|max:255',
-			'description'		=>'required|max:255',
+			'image'		=>'required',
+			'description'		=>'required',
 			'eventbriteKey'		=>'required|max:255',
 			'meetupRefreshKey'		=>'required|max:255',
 			'comunity_size'		=>'required|max:255',

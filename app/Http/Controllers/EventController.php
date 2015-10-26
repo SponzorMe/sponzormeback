@@ -183,7 +183,7 @@ class EventController extends Controller {
 			if(!empty($image)){
 				$validator = Validator::make(
 				    ['image' => $image],
-				    ['image' => ['required', 'max:255']]
+				    ['image' => ['required']]
 				);
 				if(!$validator->fails()){
 					$flag=1;
@@ -196,7 +196,7 @@ class EventController extends Controller {
 			if(!empty($description)){
 				$validator = Validator::make(
 				    ['description' => $description],
-				    ['description' => ['required', 'max:255']]
+				    ['description' => ['required']]
 				);
 				if(!$validator->fails()){
 					$flag=1;

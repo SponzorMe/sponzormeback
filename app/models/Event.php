@@ -22,7 +22,7 @@ class Event extends Model {
 						   'lang','organizer','category','type'
 						  ];
 
-	protected $hidden = ['category', 'type', 'organizer', 'created_at', 'updated_at'];
+	protected $hidden = ['organizer', 'created_at', 'updated_at'];
 
 	public function organizer()
     {

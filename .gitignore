@@ -1,6 +1,8 @@
 /vendor
 /node_modules
 .env
+.env-production
+.composer.lock
 .env.*
 /public/phpMyAdmin
 /public/phpMyAdmin/.*

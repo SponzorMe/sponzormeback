@@ -106,7 +106,7 @@ class SponzorshipController extends Controller {
 			->join('events', 'event_id', '=', 'events.id')
 			->join('users', 'sponzor_id', '=', 'users.id')
 			->join('perks', 'perk_id', '=', 'perks.id')
-			->select('users.name','users.email','events.title', 'perks.*', 'sponzorships.*')
+			->select('users.name','users.email','events.title', 'events.starts', 'events.ends', 'perks.*', 'sponzorships.*')
 			->get();
 			return response()->json([
 				"success" => true,
@@ -122,7 +122,7 @@ class SponzorshipController extends Controller {
 			->join('events', 'event_id', '=', 'events.id')
 			->join('users', 'organizer_id', '=', 'users.id')
 			->join('perks', 'perk_id', '=', 'perks.id')
-			->select('users.name','users.email','events.title', 'events.starts', 'perks.*', 'sponzorships.*')
+			->select('users.name','users.email','events.title', 'events.starts', 'events.ends', 'perks.*', 'sponzorships.*')
 			->get();
 			return response()->json([
 				"success" => true,

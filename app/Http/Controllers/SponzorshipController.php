@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Sponzorship;
 use Illuminate\Support\Facades\Validator;
 use Weblee\Mandrill\Mail;
-use Fahim\PaypalIPN\PaypalIPNServiceProvider;
+use Fahim\PaypalIPN\PaypalIPNListener;
 
 class SponzorshipController extends Controller {
 	public function __construct()

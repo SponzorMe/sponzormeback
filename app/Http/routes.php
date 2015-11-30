@@ -32,6 +32,7 @@ Route::post('send_reset_password','Auth\PasswordController@sendResetPasswordToke
 Route::post('update_password/{token}','Auth\PasswordController@updatePassword');
 Route::post('invite_friend','UserController@inviteFriend');
 Route::post('sponzorship_email','SponzorshipController@sendSponzorshipEmail');
+Route::post('sponzorship_email_organizer','SponzorshipController@sendSponzorshipEmailOrganizer');
 Route::post('ipn','SponzorshipController@paypalIpn');
 Route::pattern('route_not_found','.*');
 Route::any('/{route_not_found}', function(){

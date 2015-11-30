@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sponzorship;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Weblee\Mandrill\Mail;
 use Fahim\PaypalIPN\PaypalIPNListener;
@@ -87,6 +88,66 @@ class SponzorshipController extends Controller {
 				                'name' => 'organizerEmail',
 				            	'content' => $organizerEmail
 				            ),
+				        ),
+				    );
+			    	$result = \MandrillMail::messages()->sendTemplate($template_name, $template_content, $message);
+					if($result[0]["status"]=="sent" AND !$result[0]["reject_reason"]){
+						return response()->json(['message'=>"Sent"],200);
+					}
+					elseif ($result[0]["status"]=="queued") {
+						return response()->json(['message'=>"queued"],200);
+					}
+					else{
+						return response()->json(['message'=>"no sent"],422);
+					}
+				}
+				catch(Exeption $e){
+					return false;
+				}
+		}
+	}
+	public function sendSponzorshipEmailOrganizer(Request $request){
+		$validation = Validator::make($request->all(), [
+				'organizerId'=>'required|max:255',
+				'eventName'=>'required|max:255',
+				'lang'=>'required|max:3'
+			 ]);
+		if($validation->fails())
+		{
+			return response()->json(['message'=>"No sent, incomplete fields",'error'=>$validation->messages()],422);
+		}
+		else
+		{
+			try{
+					$eventName=$request->input('eventName');
+					$organizerId=$request->input('organizerId');
+					$organizer = User::find($organizerId);
+					$lang=$request->input('lang');
+					if($lang=="en")
+				    	$template_name = 'sponsored-event-english';
+				    if($lang=="es")
+				    	$template_name = 'sponsored-event-spanish';
+				    if($lang=="pt")
+				    	$template_name = 'sponsored-event-portuguese';
+				    $template_content = array(
+				        array(
+				            'name' => 'New Sponzorship',
+				            'content' => 'SponzorMe'
+				        )
+				    );
+				    $message = array(
+				        'to' => array(
+				            array(
+				                'email' =>	$organizer->email,
+				                'name' 	=> 	$organizer->name,
+				                'type' 	=> 'to'
+				            )
+				        ),
+				        'global_merge_vars' => array(
+				            array(
+				                'name' => 'eventName',
+				            	'content' => $eventName
+				            )
 				        ),
 				    );
 			    	$result = \MandrillMail::messages()->sendTemplate($template_name, $template_content, $message);

@@ -6,11 +6,40 @@ use Illuminate\Http\Request;
 use App\Models\Sponzorship;
 use Illuminate\Support\Facades\Validator;
 use Weblee\Mandrill\Mail;
+use Fahim\PaypalIPN\PaypalIPNServiceProvider;
 
 class SponzorshipController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth.basic.once',['only'=>['store','update','destroy','sendSponzorshipEmail']]);
+	}
+	public function paypalIpn()
+	{
+	    $ipn = new PaypalIPNListener();
+	    $ipn->use_sandbox = true;
+
+	    $verified = $ipn->processIpn();
+
+	    $report = $ipn->getTextReport();
+
+	    Log::info("-----new payment-----");
+
+	    Log::info($report);
+
+	    if ($verified) {
+	        if($_POST['address_status'] == 'confirmed'){
+							$item_id = $_POST['item_number'];
+							$Sponzorship=Sponzorship::find($item_id);
+							if($Sponzorship){
+								$Sponzorship->status = 3;
+								$Sponzorship->save();
+								Log::info("payment verified and inserted to db");
+							}
+							Log::info("payment verified but invalid itemId");
+	        }
+	    } else {
+	        Log::info("Some thing went wrong in the payment !");
+	    }
 	}
 	public function sendSponzorshipEmail(Request $request){
 		$validation = Validator::make($request->all(), [

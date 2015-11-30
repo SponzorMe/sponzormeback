@@ -22,23 +22,15 @@ class SponzorshipController extends Controller {
 
 	    $report = $ipn->getTextReport();
 
-	    Log::info("-----new payment-----");
-
-	    Log::info($report);
-
 	    if ($verified) {
-	        if($_POST['address_status'] == 'confirmed'){
+	        if($_POST['payment_status'] == 'confirmed'){
 							$item_id = $_POST['item_number'];
 							$Sponzorship=Sponzorship::find($item_id);
 							if($Sponzorship){
 								$Sponzorship->status = 3;
 								$Sponzorship->save();
-								Log::info("payment verified and inserted to db");
 							}
-							Log::info("payment verified but invalid itemId");
 	        }
-	    } else {
-	        Log::info("Some thing went wrong in the payment !");
 	    }
 	}
 	public function sendSponzorshipEmail(Request $request){

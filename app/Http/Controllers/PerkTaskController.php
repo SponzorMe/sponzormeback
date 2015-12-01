@@ -18,7 +18,7 @@ class PerkTaskController extends Controller {
 	 */
 	public function index()
 	{
-		$PerkTasks = PerkTask::join('events', 'perk_tasks.event_id', '=', 'events.id')->select('perk_tasks.*', 'events.title')->get();
+		$PerkTasks = PerkTask::join('events', 'perk_tasks.event_id', '=', 'events.id')->select('perk_tasks.*', 'events.title as eventTitle')->get();
 		return response()->json([
 			"success" => true,
 			"PerkTasks"=>$PerkTasks->toArray()

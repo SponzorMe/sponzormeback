@@ -30,6 +30,7 @@ Route::post('send_activation','UserController@sendActivationLink');
 Route::get('verify_activation/{activationCode}','UserController@verifyActivationLink');
 Route::post('send_reset_password','Auth\PasswordController@sendResetPasswordToken');
 Route::post('update_password/{token}','Auth\PasswordController@updatePassword');
+Route::post('change_password','Auth\PasswordController@changePassword');
 Route::post('invite_friend','UserController@inviteFriend');
 Route::post('sponzorship_email','SponzorshipController@sendSponzorshipEmail');
 Route::post('sponzorship_email_organizer','SponzorshipController@sendSponzorshipEmailOrganizer');

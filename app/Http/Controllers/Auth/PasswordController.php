@@ -10,6 +10,10 @@ use Weblee\Mandrill\Mail;
 use App\Models\User;
 use App\Models\PasswordResets;
 class PasswordController extends Controller {
+	public function __construct()
+	{
+		$this->middleware('auth.basic.once',['only'=>['changePassword']]);
+	}
 
 	/*
 	|--------------------------------------------------------------------------
@@ -84,6 +88,34 @@ class PasswordController extends Controller {
 					else{
 						return response()->json(['message'=>"The token does not match",'code'=>$passwordReset],400);
 					}
+		}
+	}
+	/**
+	 * Change the user password
+	 * @param  string  $email
+	 * @param  string  $password
+	 * @return Response
+	 */
+	public function changePassword(Request $request){
+		$validation = Validator::make($request->all(), [
+			'email' 	=> 'required|email|max:255|exists:users',
+			'password' 	=> 'required|confirmed|min:6'
+    	 ]);
+		if($validation->fails())
+		{
+			return response()->json(['message'=>"Not changed",'error'=>$validation->messages()],400);
+		}
+		else
+		{
+				$user=User::where("email","=",$request->input("email"))->first();
+				if(!$user){//If the user does not exist.
+					return response()->json(['message'=>"User does not exist",'code'=>'404'],404);
+				}
+				else{
+					$user->password=bcrypt($request->input("password"));
+					$user->save();
+					return response()->json(['message'=>"Password Changed",'code'=>'200'],200);
+				}
 		}
 	}
 	/**

@@ -18,7 +18,7 @@ class PerkTaskController extends Controller {
 	 */
 	public function index()
 	{
-		$PerkTasks = PerkTask::get();
+		$PerkTasks = PerkTask::join('events', 'perk_tasks.event_id', '=', 'events.id')->select('perk_tasks.*', 'events.title')->get();
 		return response()->json([
 			"success" => true,
 			"PerkTasks"=>$PerkTasks->toArray()
@@ -33,7 +33,7 @@ class PerkTaskController extends Controller {
 	 */
 	public function show($id)
 	{
-		$PerkTask = PerkTask::find($id)->join('events', 'perk_tasks.event_id', '=', 'events.id')->select('perk_tasks.*', 'events.title')->get();
+		$PerkTask = PerkTask::find($id);
 		if(!$PerkTask){
 			return response()->json(
 				["message"=>"Resource not found",

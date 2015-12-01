@@ -127,7 +127,7 @@ class PerkTaskController extends Controller {
 					$warnings[]=$validator->messages();
 				}
 			}
-			if(!empty($status)){
+			if(!empty($status) || $status > -1){
 				$validator = Validator::make(
 				    ['status' => $status],
 				    ['status' => ['required', 'max:5']]

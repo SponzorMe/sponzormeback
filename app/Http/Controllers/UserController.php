@@ -5,6 +5,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\UserInterest;
+use App\Models\InterestCategory;
 use Illuminate\Support\Facades\Validator;
 use Weblee\Mandrill\Mail;
 
@@ -44,6 +46,7 @@ class UserController extends Controller {
 		}
 		else
 		{
+			$interests = InterestCategory::join('users_interests', 'users_interests.interest_id', '=','interests_categories.id')->where('users_interests.user_id', '=', $id)->get();
 			$user->events;
 			$user->categories;
 			$user->interests;
@@ -56,6 +59,7 @@ class UserController extends Controller {
 				["data"=>
 					[
 						"user"=>$user->toArray(),
+						"interests"=>$interests->toArray()
 					]
 				], 200
 			);

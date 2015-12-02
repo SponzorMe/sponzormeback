@@ -46,7 +46,7 @@ class UserController extends Controller {
 		}
 		else
 		{
-			$interests = InterestCategory::join('users_interests', 'users_interests.interest_id', '=','interests_categories.id')->where('users_interests.user_id', '=', $id)->get();
+			$interests = InterestCategory::join('users_interests', 'users_interests.interest_id', '=','interests_categories.id_interest')->where('users_interests.user_id', '=', $id)->get();
 			$user->events;
 			$user->categories;
 			$user->interests;

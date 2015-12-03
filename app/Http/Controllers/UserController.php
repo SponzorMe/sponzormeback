@@ -661,6 +661,71 @@ class UserController extends Controller {
 					$warnings[]=$validator->messages();
 				}
 			}
+			if(!empty($logo)){
+				$validator = Validator::make(
+				    ['logo' => $logo],
+				    ['logo' => ['required']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$User->logo=$logo;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}
+			}
+			if(!empty($pitch)){
+				$validator = Validator::make(
+				    ['pitch' => $pitch],
+				    ['pitch' => ['required']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$User->pitch=$pitch;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}
+			}
+			if(!empty($newsletter)){
+				$validator = Validator::make(
+				    ['newsletter' => $newsletter],
+				    ['newsletter' => ['required']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$User->newsletter=$newsletter;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}
+			}
+			if(!empty($phone)){
+				$validator = Validator::make(
+				    ['phone' => $phone],
+				    ['phone' => ['max:255']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$User->phone=$phone;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}
+			}
+			if(!empty($website)){
+				$validator = Validator::make(
+				    ['website' => $website],
+				    ['website' => ['max:255']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$User->website=$website;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}
+			}
 			if($flag){
 				$User->save();
 				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'User'=>$User],200);

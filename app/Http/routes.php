@@ -24,6 +24,7 @@ Route::resource('user_interests','UserInterestController',['except'=>['edit','cr
 Route::resource('user_categories','UserCategoryController',['except'=>['edit','create']]);
 Route::get('perk_tasks_sponzorship/{sponzorshipId}','TaskSponzorController@showBySponzorship');
 Route::get('sponzorships_organizer/{organizerId}','SponzorshipController@showByOrganizer');
+Route::get('perk_tasks_organizer/{organizerId}','PerkTaskController@byOrganizer');
 Route::get('sponzorships_sponzor/{sponzorId}','SponzorshipController@showBySponzor');
 Route::post('auth','Auth\AuthController@authenticate');
 Route::post('send_activation','UserController@sendActivationLink');

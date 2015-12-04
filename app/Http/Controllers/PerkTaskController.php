@@ -25,6 +25,17 @@ class PerkTaskController extends Controller {
 			], 200
 		);
 	}
+	public function byOrganizer($id)
+	{
+		$PerkTasks = PerkTask::join('events', 'perk_tasks.event_id', '=', 'events.id')
+		->select('perk_tasks.*', 'events.title as eventTitle', 'events.starts as eventStart', 'events.ends as eventEnds')
+		->where('perk_tasks.organizer_id','=',$id)->get();
+		return response()->json([
+			"success" => true,
+			"PerkTasks"=>$PerkTasks->toArray()
+			], 200
+		);
+	}
 	/**
 	 * Display the specified resource.
 	 *

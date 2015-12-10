@@ -9,6 +9,7 @@ use App\Models\UserInterest;
 use App\Models\InterestCategory;
 use Illuminate\Support\Facades\Validator;
 use Weblee\Mandrill\Mail;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller {
 	public function __construct()

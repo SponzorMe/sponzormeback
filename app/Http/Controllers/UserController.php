@@ -860,13 +860,36 @@ class UserController extends Controller {
 		if($_GET['code']){
 			$link=\Config::get('constants.redirect_evenbrite_front').$_GET['code'];
 			return Redirect::to($link);
-			exit;
 		}
 		else{
 			$link=\Config::get('constants.redirect_evenbrite_front').'0';
 			return Redirect::to($link);
-			exit;
 		}
 	}
-
+	/*Generate bearer token*/
+	public function getEventbriteToken($code){
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		  CURLOPT_URL => "https://www.eventbrite.com/oauth/token",
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_ENCODING => "",
+		  CURLOPT_MAXREDIRS => 10,
+		  CURLOPT_TIMEOUT => 30,
+		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		  CURLOPT_CUSTOMREQUEST => "POST",
+		  CURLOPT_POSTFIELDS => "code=$code&client_secret=IEPASK4CMUONNNBXA6DQ34O3VGIPFDGAGROF7HPR3LWRS6HREK&grant_type=authorization_code&client_id=UIIEUBJUVOI5JDEZND",
+		  CURLOPT_HTTPHEADER => array(
+		    "cache-control: no-cache",
+		    "content-type: application/x-www-form-urlencoded"
+		  ),
+		));
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+		curl_close($curl);
+		if ($err) {
+		  return response()->json($response,400);
+		} else {
+			return response()->json($response,200);
+		}
+	}
 }

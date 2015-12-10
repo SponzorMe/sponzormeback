@@ -849,5 +849,23 @@ class UserController extends Controller {
 			}
 		}
 	}
+	/**
+	 * Get Eventbrite Token and redirect to the front
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function acceptEventbrite(Request $r){
+		if($_GET['access_token']){
+			$link=\Config::get('constants.redirect_evenbrite_front').$_GET['access_token'];
+			header($link);
+			exit;
+		}
+		else{
+			$link=\Config::get('constants.redirect_evenbrite_front').'0';
+			header($link);
+			exit;
+		}
+	}
 
 }

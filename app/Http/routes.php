@@ -28,6 +28,7 @@ Route::get('perk_tasks_organizer/{organizerId}','PerkTaskController@byOrganizer'
 Route::get('sponzorships_sponzor/{sponzorId}','SponzorshipController@showBySponzor');
 Route::post('auth','Auth\AuthController@authenticate');
 Route::post('send_activation','UserController@sendActivationLink');
+Route::get('accept/eventbrite','UserController@acceptEventbrite');
 Route::get('verify_activation/{activationCode}','UserController@verifyActivationLink');
 Route::post('send_reset_password','Auth\PasswordController@sendResetPasswordToken');
 Route::post('update_password/{token}','Auth\PasswordController@updatePassword');

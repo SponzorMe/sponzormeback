@@ -857,8 +857,8 @@ class UserController extends Controller {
 	 * @return Response
 	 */
 	public function acceptEventbrite(Request $r){
-		if($_GET['access_token']){
-			$link=\Config::get('constants.redirect_evenbrite_front').$_GET['access_token'];
+		if($_GET['code']){
+			$link=\Config::get('constants.redirect_evenbrite_front').$_GET['code'];
 			return Redirect::to($link);
 			exit;
 		}

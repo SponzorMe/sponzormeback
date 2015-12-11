@@ -10,10 +10,9 @@
 	|
 	*/
 return array(
-	//Used in UserController
 	'activation_url' => "http://app.sponzor.me/#/activation/", //Activation account URL
-	//Used in password controller
-	//'reset_password_url' => "http://localhost:9000/#/reset/", //Reset password URL
 	'reset_password_url' => "http://app.sponzor.me/#/reset/", //Reset password URL
-	'redirect_evenbrite_front' => "http://localhost:9000/#/eventbrite/" //Reset password URL
+	'redirect_evenbrite_front' => "http://localhost:9000/#/eventbrite/",
+	'eventbrite_client_secret'=>"IEPASK4CMUONNNBXA6DQ34O3VGIPFDGAGROF7HPR3LWRS6HREK",
+	'eventbrite_client_id'=>"UIIEUBJUVOI5JDEZND"
 );

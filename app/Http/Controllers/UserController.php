@@ -868,6 +868,8 @@ class UserController extends Controller {
 	}
 	/*Generate bearer token*/
 	public function getEventbriteToken($code){
+		$client_secret = \Config::get('constants.eventbrite_client_secret');
+		$client_id = \Config::get('constants.eventbrite_client_id');
 		$curl = curl_init();
 		curl_setopt_array($curl, array(
 		  CURLOPT_URL => "https://www.eventbrite.com/oauth/token",
@@ -877,7 +879,7 @@ class UserController extends Controller {
 		  CURLOPT_TIMEOUT => 30,
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => "POST",
-		  CURLOPT_POSTFIELDS => "code=$code&client_secret=IEPASK4CMUONNNBXA6DQ34O3VGIPFDGAGROF7HPR3LWRS6HREK&grant_type=authorization_code&client_id=UIIEUBJUVOI5JDEZND",
+		  CURLOPT_POSTFIELDS => "code=$code&client_secret=$client_secret&grant_type=authorization_code&client_id=$client_id",
 		  CURLOPT_HTTPHEADER => array(
 		    "cache-control: no-cache",
 		    "content-type: application/x-www-form-urlencoded"

@@ -12,7 +12,7 @@
 return array(
 	'activation_url' => "http://app.sponzor.me/#/activation/", //Activation account URL
 	'reset_password_url' => "http://app.sponzor.me/#/reset/", //Reset password URL
-	'redirect_evenbrite_front' => "http://localhost:9000/#/eventbrite/",
-	'eventbrite_client_secret'=>"IEPASK4CMUONNNBXA6DQ34O3VGIPFDGAGROF7HPR3LWRS6HREK",
-	'eventbrite_client_id'=>"UIIEUBJUVOI5JDEZND"
+	'redirect_evenbrite_front' => "http://staging.sponzor.me/#/eventbrite/",
+	'eventbrite_client_secret'=>"REYYYTW7MW4ABJUI275V3JESPWRR55E5OLKTVC63VNXWFL4WLB",
+	'eventbrite_client_id'=>"6WILTRRV7HVLBSRSGP"
 );

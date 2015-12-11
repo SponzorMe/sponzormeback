@@ -12,7 +12,7 @@
 return array(
 	'activation_url' => "http://app.sponzor.me/#/activation/", //Activation account URL
 	'reset_password_url' => "http://app.sponzor.me/#/reset/", //Reset password URL
-	'redirect_evenbrite_front' => "http://carlosrojaso.github.io/sponzormefront/dist/#/eventbrite/",
-	'eventbrite_client_secret'=>"REYYYTW7MW4ABJUI275V3JESPWRR55E5OLKTVC63VNXWFL4WLB",
-	'eventbrite_client_id'=>"6WILTRRV7HVLBSRSGP"
+	'redirect_evenbrite_front' => "http://app.sponzor.me/#/eventbrite/",
+	'eventbrite_client_secret'=>"V72EKSC2YWR5Y4XKVKCUL4W45ZAAVXJSEG3KOBAFIVKR6ESIX5",
+	'eventbrite_client_id'=>"MI3YNPLR3R73AD36YS"
 );

@@ -883,6 +883,35 @@ class UserController extends Controller {
 		}
 	}
 	/*Generate bearer token*/
+	public function getMeetupToken($code){
+		$client_secret = \Config::get('constants.meetup_client_secret');
+		$client_id = \Config::get('constants.meetup_client_id');
+		$redirect_meetup_url = \Config::get('constants.redirect_meetup_url');
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		  CURLOPT_URL => "https://secure.meetup.com/oauth2/access",
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_ENCODING => "",
+		  CURLOPT_MAXREDIRS => 10,
+		  CURLOPT_TIMEOUT => 30,
+		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		  CURLOPT_CUSTOMREQUEST => "POST",
+		  CURLOPT_POSTFIELDS => "code=$code&client_secret=$client_secret&grant_type=authorization_code&client_id=$client_id&redirect_uri=$redirect_meetup_url",
+		  CURLOPT_HTTPHEADER => array(
+		    "cache-control: no-cache",
+		    "content-type: application/x-www-form-urlencoded"
+		  ),
+		));
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+		curl_close($curl);
+		if ($err) {
+		  return response()->json(['Code'=>$code, 'response'=>$response],400);
+		} else {
+			return response()->json(['Code'=>$code, 'response'=>$response],200);
+		}
+	}
+	/*Generate bearer token*/
 	public function getEventbriteToken($code){
 		$client_secret = \Config::get('constants.eventbrite_client_secret');
 		$client_id = \Config::get('constants.eventbrite_client_id');

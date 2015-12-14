@@ -930,9 +930,9 @@ class UserController extends Controller {
 		$err = curl_error($curl);
 		curl_close($curl);
 		if ($err) {
-		  return response()->json(['Code'=>$token, 'response'=>$response->toArray()],400);
+		  return response()->json(['Code'=>$token, 'response'=>$response],400);
 		} else {
-			return response()->json(['Code'=>$token, 'response'=>$response->toArray()],200);
+			return response()->json(['Code'=>$token, 'response'=>$response],200);
 		}
 	}
 	/*Generate bearer token*/

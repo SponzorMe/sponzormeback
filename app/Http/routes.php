@@ -32,7 +32,7 @@ Route::get('accept/eventbrite','UserController@acceptEventbrite');
 Route::get('accept/meetup','UserController@acceptMeetup');
 Route::get('token/eventbrite/{code}','UserController@getEventbriteToken');
 Route::get('token/meetup/{code}','UserController@getMeetupToken');
-Route::get('groups/meetup/{code}','UserController@getMeetupGroups');
+Route::get('events/meetup/{code}','UserController@getMeetupEvents');
 Route::get('verify_activation/{activationCode}','UserController@verifyActivationLink');
 Route::post('send_reset_password','Auth\PasswordController@sendResetPasswordToken');
 Route::post('update_password/{token}','Auth\PasswordController@updatePassword');

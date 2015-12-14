@@ -911,10 +911,9 @@ class UserController extends Controller {
 			return response()->json(['Code'=>$code, 'response'=>$response],200);
 		}
 	}
-	public function getMeetupGroups($token){
+	public function getMeetupEvents($token){
 		$curl = curl_init();
 		curl_setopt_array($curl, array(
-		  //CURLOPT_URL => "https://api.meetup.com/2/member/self/?access_token=".$token,
 		  CURLOPT_URL => "https://api.meetup.com/self/events/?access_token=".$token,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",

@@ -29,6 +29,7 @@ Route::get('sponzorships_sponzor/{sponzorId}','SponzorshipController@showBySponz
 Route::post('auth','Auth\AuthController@authenticate');
 Route::post('send_activation','UserController@sendActivationLink');
 Route::get('accept/eventbrite','UserController@acceptEventbrite');
+Route::get('accept/meetup','UserController@acceptMeetup');
 Route::get('token/eventbrite/{code}','UserController@getEventbriteToken');
 Route::get('verify_activation/{activationCode}','UserController@verifyActivationLink');
 Route::post('send_reset_password','Auth\PasswordController@sendResetPasswordToken');

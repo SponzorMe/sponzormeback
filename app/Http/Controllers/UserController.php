@@ -866,6 +866,22 @@ class UserController extends Controller {
 			return Redirect::to($link);
 		}
 	}
+	/**
+	 * Get Meetup Token and redirect to the front
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function acceptMeetup(Request $r){
+		if($_GET['code']){
+			$link=\Config::get('constants.redirect_meetup_front').$_GET['code'];
+			return Redirect::to($link);
+		}
+		else{
+			$link=\Config::get('constants.redirect_meetup_front').'0';
+			return Redirect::to($link);
+		}
+	}
 	/*Generate bearer token*/
 	public function getEventbriteToken($code){
 		$client_secret = \Config::get('constants.eventbrite_client_secret');

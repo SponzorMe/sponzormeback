@@ -45,6 +45,11 @@ class EventController extends Controller {
 		}
 		else
 		{
+			$sponzorships = Event::where('id', $id)
+			->join('sponzorships', 'event_id', '=', 'events.id')
+			->join('users', 'sponzor_id', '=', 'users.id')
+			->select('users.name','sponzorships.*')
+			->get();
 			$category=$event->category()->get();
 			$type=$event->type()->get();
 			$organizer=$event->organizer()->get();
@@ -59,6 +64,7 @@ class EventController extends Controller {
 						"category"=>$category->toArray(),
 						"type"=>$type->toArray(),
 						"organizer"=>$organizer->toArray(),
+						"sponzorships"=>$sponzorships->toArray()
 					]
 				], 200
 			);

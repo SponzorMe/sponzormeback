@@ -45,7 +45,7 @@ class EventController extends Controller {
 		}
 		else
 		{
-			$sponzorships = Event::where('id', $id)
+			$sponzorships = Event::where('events.id', $id)
 			->join('sponzorships', 'event_id', '=', 'events.id')
 			->join('users', 'sponzor_id', '=', 'users.id')
 			->select('users.name','sponzorships.*')

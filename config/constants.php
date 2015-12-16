@@ -16,7 +16,7 @@ return array(
 	'redirect_meetup_front' => "https://localhost:9000/#/meetup/",
 	'eventbrite_client_secret'=>"V72EKSC2YWR5Y4XKVKCUL4W45ZAAVXJSEG3KOBAFIVKR6ESIX5",
 	'eventbrite_client_id'=>"MI3YNPLR3R73AD36YS",
-	'meetup_client_secret'=>"5ofl3jc9njcale7d7l9uaeunrn",
-	'meetup_client_id'=>"sc88mha7rapt4pmhfuo52i68uv",
+	'meetup_client_secret'=>"2vmtjsr3rh1tg70jmqut5g46rr",
+	'meetup_client_id'=>"scqnorvk4o3utc3k19qfj45vng",
 	'redirect_meetup_url'=>"https://apistaging.sponzor.me/accept/meetup"
 );

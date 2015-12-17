@@ -12,19 +12,19 @@
 	if(getenv('APP_ENV')=='production'){
 		return array(
 			//Activation account URL [PRODUCTION]
-			'activation_url' => "http://app.sponzor.me/#/activation/",
+			'activation_url' => "https://app.sponzor.me/#/activation/",
 
 			//Activation account URL [PRODUCTION]
-			'activation_url' => "http://app.sponzor.me/#/activation/",
+			'activation_url' => "https://app.sponzor.me/#/activation/",
 
 			//Reset password URL [PRODUCTION]
-			'reset_password_url' => "http://app.sponzor.me/#/reset/",
+			'reset_password_url' => "https://app.sponzor.me/#/reset/",
 
 			//Redirect Url to import events from eventbrite [PRODUCTION]
-			'redirect_evenbrite_front' => "http://app.sponzor.me/#/eventbrite/",
+			'redirect_evenbrite_front' => "https://app.sponzor.me/#/eventbrite/",
 
 			//Redirect Url to import events from meetup [PRODUCTION]
-			'redirect_meetup_front' => "http://app.sponzor.me/#/meetup/",
+			'redirect_meetup_front' => "https://app.sponzor.me/#/meetup/",
 
 			//Redirect URL from meetup to API [PRODUCTION]
 			'redirect_meetup_url'=>"https://api.sponzor.me/accept/meetup",

@@ -120,7 +120,7 @@
 			'eventbrite_client_secret'=>"no-enviroment-detected",
 			'eventbrite_client_id'=>"no-enviroment-detected",
 
-			//Meetup Credentials [NOENVIROMENT]
+			//Meetup Credentials [STAGING]
 			'meetup_client_secret'=>"no-enviroment-detected",
 			'meetup_client_id'=>"no-enviroment-detected"
 		);

@@ -34,8 +34,8 @@
 			'eventbrite_client_id'=>"MI3YNPLR3R73AD36YS",
 
 			//Meetup Credentials [PRODUCTION]
-			'meetup_client_secret'=>"2vmtjsr3rh1tg70jmqut5g46rr",
-			'meetup_client_id'=>"scqnorvk4o3utc3k19qfj45vng"
+			'meetup_client_secret'=>"t9lpatu023l44gjbtkno2a9ku9",
+			'meetup_client_id'=>"lc876qakj5itnsnebm3dijus12"
 		);
 	}
 	else if(getenv('APP_ENV')=='local'){

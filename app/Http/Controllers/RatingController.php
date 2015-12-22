@@ -25,6 +25,24 @@ class RatingController extends Controller {
 			], 200
 		);
 	}
+	public function getRatingBySponzorship($sponzorshipId, $type){
+		$Rating = Rating::where('sponzorship_id', $sponzorshipId)->where('type',$type)->get();
+		if(!$Rating){
+			return response()->json(
+				["message"=>"Resource not found",
+				], 404
+			);
+		}
+		else {
+			return response()->json(
+				["data"=>
+					[
+						"Rating"=>$Rating->toArray()
+					]
+				], 200
+			);
+		}
+	}
 	/**
 	 * Display the specified resource.
 	 *

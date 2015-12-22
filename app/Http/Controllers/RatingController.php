@@ -45,9 +45,9 @@ class RatingController extends Controller {
 				["data"=>
 					[
 						"Rating"=>$Rating->toArray(),
-						"Event"=>$Rating->event,
-						"Tasks"=>$Rating->tasks,
-						"SponzorTasks"=>$Rating->sponzor_tasks
+						"Organizer"=>$Rating->organizer,
+						"Sponzor"=>$Rating->sponzor,
+						"Sponzorship"=>$Rating->sponzorship
 					]
 				], 200
 			);
@@ -61,11 +61,10 @@ class RatingController extends Controller {
 	public function store(Request $request)
 	{
 		$validation = Validator::make($request->all(), [
-			'kind'=>'required|max:255',
-			'usd'=>'required|max:11',
-			'id_event'=>'required|max:11|exists:events,id',
-			'total_quantity'=>'required|max:11',
-			'reserved_quantity'=>'required|max:11',
+  			'organizer_id'=>'required|max:11|exists:users,id',
+        'sponzor_id'=>'required|max:11|exists:users,id',
+        'sponzorship_id'=>'required|max:11|exists:sponzorships,id',
+  			'type'=>'required|max:2'
     	 ]);
 		if($validation->fails())
 		{
@@ -85,117 +84,7 @@ class RatingController extends Controller {
 	 */
 	public function update(Request $request,$id)
 	{
-		$Rating=Rating::find($id);
-		if(!$Rating){
-			return response()->json(['message'=>"Not found"],404);
-		}
-		else{
-			$inputs = $request->all(); //Get the set of inputs
-			extract($inputs); //Creamos las variables desde el array de inputs
-		}
-		if($request->method()==="PATCH"){//PATCH At least one field is required
-			$warnings=array();
-			$flag=0;//If 0 persist nothing was updated.
-			if(!empty($usd)){
-				$validator = Validator::make(
-				    ['usd' => $usd],
-				    ['usd' => ['required', 'max:11']]
-				);
-				if(!$validator->fails()){
-					$flag=1;
-					$Rating->usd=$usd;
-				}
-				else{
-					$warnings[]=$validator->messages();
-				}
-			}
-			if(!empty($kind)){
-				$validator = Validator::make(
-				    ['kind' => $kind],
-				    ['kind' => ['required', 'max:255']]
-				);
-				if(!$validator->fails()){
-					$flag=1;
-					$Rating->kind=$kind;
-				}
-				else{
-					$warnings[]=$validator->messages();
-				}
-			}
-			if(!empty($id_event)){
-				$validator = Validator::make(
-				    ['id_event' => $id_event],
-				    ['id_event' => ['required', 'max:11','exists:events,id']]
-				);
-				if(!$validator->fails()){
-					$flag=1;
-					$Rating->id_event=$id_event;
-				}
-				else{
-					$warnings[]=$validator->messages();
-				}
-			}
-			if(!empty($reserved_quantity)){
-				$validator = Validator::make(
-				    ['reserved_quantity' => $reserved_quantity],
-				    ['reserved_quantity' => ['required', 'max:255']]
-				);
-				if(!$validator->fails()){
-					$flag=1;
-					$Rating->reserved_quantity=$reserved_quantity;
-				}
-				else{
-					$warnings[]=$validator->messages();
-				}
-			}
-			if(!empty($total_quantity)){
-				$validator = Validator::make(
-				    ['total_quantity' => $total_quantity],
-				    ['total_quantity' => ['required', 'max:11']]
-				);
-				if(!$validator->fails()){
-					$flag=1;
-					$Rating->total_quantity=$total_quantity;
-				}
-				else{
-					$warnings[]=$validator->messages();
-				}
-			}
-
-			if($flag){
-				$Rating->save();
-				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'Rating'=>$Rating],200);
-			}
-			else{
-				return response()->json(['message'=>"Nothing updated",'warnings'=>$warnings,'Rating'=>$Rating],200);
-			}
-		}
-		elseif($request->method()==="PUT"){//PUT all fields are required
-			$validation = Validator::make($request->all(), [
-	        	'kind'=>'required|max:255',
-				'usd'=>'required|max:11',
-				'id_event'=>'required|max:11|exists:events,id',
-				'total_quantity'=>'required|max:11',
-				'reserved_quantity'=>'required|max:11',
-	    	 ]);
-			if($validation->fails())
-			{
-				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
-			}
-			else
-			{
-				$Rating->kind=$kind;
-				$Rating->usd=$usd;
-				$Rating->id_event=$id_event;
-				$Rating->total_quantity=$total_quantity;
-				$Rating->reserved_quantity=$reserved_quantity;
-				$Rating->save();
-				return response()->json(['message'=>"Updated",'Rating'=>$Rating],200);
-			}
-		}
-		else{
-			return response()->json(['message'=>"Method Not Allowed"],405);
-		}
+		return response()->json(['message'=>"No Implemented"],200);
 	}
 	/**
 	 * Remove the specified resource from storage.
@@ -210,18 +99,8 @@ class RatingController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
-			$tasks=$Rating->tasks;
-			$sponzor_tasks=$Rating->sponzor_tasks;
-			if(sizeof($tasks)>0){
-				return response()->json(['message'=>"This Rating has tasks, first remove the tasks and try again"],409);
-			}
-			elseif(sizeof($sponzor_tasks)>0){
-				return response()->json(['message'=>"This Rating has Sponzor tasks, first remove the Sponzor tasks and try again"],409);
-			}
-			else{
 				$Rating->delete();
 				return response()->json(['message'=>"Deleted"],200);
-			}
 		}
 	}
 }

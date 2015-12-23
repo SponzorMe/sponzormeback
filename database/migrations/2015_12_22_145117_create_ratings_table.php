@@ -21,6 +21,7 @@ class CreateRatingsTable extends Migration
         $table->integer('sponzorship_id')->unsigned();
   			$table->foreign('sponzorship_id')->references('id')->on('sponzorships')->onDelete('cascade');
         $table->boolean('type');
+        $table->string('question0');
         $table->string('question1');
         $table->string('question2');
         $table->string('question3');

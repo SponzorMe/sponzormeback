@@ -52,21 +52,24 @@ class UserController extends Controller {
 			$user->categories;
 			$user->interests;
 			$user->perk_tasks;
-			$user->sponzorships;
-			$user->sponzorships_like_organizer;
-			$user->tasks_sponzor_like_organizer;
-			$user->tasks_sponzor_like_sponzor;
 			if($user->type==0){
+				$rating = $user->rating_like_organizer->avg('question0');
+				$user->sponzorships_like_organizer;
+				$user->tasks_sponzor_like_organizer;
 				$user->rating_like_organizer;
 			}
 			else if ($user->type==1){
+				$rating = $user->rating_like_sponzor->avg('question0');
 				$user->rating_like_sponzor;
+				$user->tasks_sponzor_like_sponzor;
+				$user->sponzorships;
 			}
 			return response()->json(
 				["data"=>
 					[
 						"user"=>$user->toArray(),
-						"interests"=>$interests->toArray()
+						"interests"=>$interests->toArray(),
+						"rating"=>$rating
 					]
 				], 200
 			);

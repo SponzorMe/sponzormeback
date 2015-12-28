@@ -53,16 +53,22 @@ class UserController extends Controller {
 			$user->interests;
 			$user->perk_tasks;
 			if($user->type==0){
-				$rating = $user->rating_like_organizer->avg('question0');
 				$user->sponzorships_like_organizer;
 				$user->tasks_sponzor_like_organizer;
 				$user->rating_like_organizer;
+				$filtered = $user->rating_like_organizer->filter(function ($item) {
+				    return $item->type == 1;
+				});
+				$rating = $filtered->avg('question0');
 			}
 			else if ($user->type==1){
-				$rating = $user->rating_like_sponzor->avg('question0');
 				$user->rating_like_sponzor;
 				$user->tasks_sponzor_like_sponzor;
 				$user->sponzorships;
+				$filtered = $user->rating_like_sponzor->filter(function ($item) {
+				    return $item->type == 0;
+				});
+				$rating = $filtered->avg('question0');
 			}
 			return response()->json(
 				["data"=>

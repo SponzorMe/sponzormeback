@@ -38,16 +38,7 @@ class UserController extends Controller {
 	 */
 	public function show($id)
 	{
-		$user = User::find($id)
-		->with('events')
-		->with('categories')
-		->with('interests')
-		->with('perk_tasks')
-		->with('sponzorships_like_organizer')
-		->with('tasks_sponzor_like_organizer')
-		->with('tasks_sponzor_like_sponzor')
-		->with('rating_like_organizer')
-		->with('rating_like_sponzor');
+		$user = User::find($id);
 		if(!$user){
 			return response()->json(
 				["message"=>"Resource not found",
@@ -57,6 +48,16 @@ class UserController extends Controller {
 		else
 		{
 			$interests = InterestCategory::join('users_interests', 'users_interests.interest_id', '=','interests_categories.id_interest')->where('users_interests.user_id', '=', $id)->get();
+			$user->events;
+			$user->categories;
+			$user->interests;
+			$user->perk_tasks;
+			$user->sponzorships;
+			$user->sponzorships_like_organizer;
+			$user->tasks_sponzor_like_organizer;
+			$user->tasks_sponzor_like_sponzor;
+			$user->rating_like_sponzor;
+			$user->rating_like_organizer;
 			return response()->json(
 				["data"=>
 					[

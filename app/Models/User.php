@@ -69,10 +69,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 		public function rating_like_organizer()
     {
-        return $this->hasMany('App\Models\Rating','organizer_id')->sum('question0');
+        return $this->hasMany('App\Models\Rating','organizer_id');
     }
 		public function rating_like_sponzor()
     {
-        return $this->hasMany('App\Models\Rating','sponzor_id')->sum('question0');
+        return $this->hasMany('App\Models\Rating','sponzor_id');
     }
 }

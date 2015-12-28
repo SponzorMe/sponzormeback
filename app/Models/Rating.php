@@ -16,7 +16,7 @@ class Rating extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['organizer_id', 'sponzor_id', 'question1', 'question2', 'question3', 'question4', 'question5', 'question6', 'question7', 'question8', 'question9', 'question10', 'sponzorship_id', 'type'];
+	protected $fillable = ['organizer_id', 'sponzor_id', 'question0', 'question1', 'question2', 'question3', 'question4', 'question5', 'question6', 'question7', 'question8', 'question9', 'question10', 'sponzorship_id', 'type'];
 
 	protected $hidden = ['created_at', 'updated_at'];
 

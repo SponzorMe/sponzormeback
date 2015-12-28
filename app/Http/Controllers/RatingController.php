@@ -91,7 +91,7 @@ class RatingController extends Controller {
 		else
 		{
 			$Rating=Rating::create($request->all());
-			return response()->json(['message'=>"Inserted",'Rating'=>$Rating],201);
+			return response()->json(['message'=>"Inserted",'Rating'=>$Rating, 'inputs'=>$request->all()],201);
 		}
 	}
 	/**

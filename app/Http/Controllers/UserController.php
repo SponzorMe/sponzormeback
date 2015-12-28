@@ -56,8 +56,12 @@ class UserController extends Controller {
 			$user->sponzorships_like_organizer;
 			$user->tasks_sponzor_like_organizer;
 			$user->tasks_sponzor_like_sponzor;
-			$user->rating_like_sponzor;
-			$user->rating_like_organizer;
+			if($user->type==0){
+				$user->rating_like_organizer;
+			}
+			else if ($user->type==1){
+				$user->rating_like_sponzor;
+			}
 			return response()->json(
 				["data"=>
 					[

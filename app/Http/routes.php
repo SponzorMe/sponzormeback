@@ -36,6 +36,11 @@ Route::get('token/meetup/{code}','UserController@getMeetupToken');
 Route::get('events/meetup/{code}','UserController@getMeetupEvents');
 Route::get('verify_activation/{activationCode}','UserController@verifyActivationLink');
 Route::get('ratings/sponzorship/{sponzorshipId}/{type}','RatingController@getRatingBySponzorship');
+
+Route::get('ratings/sponzor/{sponzorId}','RatingController@getRatingBySponzor');
+
+Route::get('ratings/organizer/{organizerId}','RatingController@getRatingByOrganizer');
+
 Route::post('send_reset_password','Auth\PasswordController@sendResetPasswordToken');
 Route::post('update_password/{token}','Auth\PasswordController@updatePassword');
 Route::post('change_password','Auth\PasswordController@changePassword');

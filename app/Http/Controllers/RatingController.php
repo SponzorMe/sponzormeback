@@ -43,6 +43,54 @@ class RatingController extends Controller {
 			);
 		}
 	}
+	public function getRatingByOrganizer($organizerId){
+		$Rating = Rating::where('ratings.organizer_id', $organizerId)->where('ratings.type','1')
+		->join('sponzorships', 'sponzorships.id', '=','ratings.sponzorship_id')
+		->join('events', 'sponzorships.event_id', '=','events.id')
+		->join('perks', 'sponzorships.perk_id', '=','perks.id')
+		->join('users', 'ratings.sponzor_id', '=','users.id')
+		->select('ratings.question0','ratings.question10','users.name AS sponzorName', 'events.title AS eventTitle', 'perks.kind AS perkKind')
+		->get();
+		if(!$Rating){
+			return response()->json(
+				["message"=>"Resource not found",
+				], 404
+			);
+		}
+		else {
+			return response()->json(
+				["data"=>
+					[
+						"Rating"=>$Rating->toArray()
+					]
+				], 200
+			);
+		}
+	}
+	public function getRatingBySponzor($sponzorId){
+		$Rating = Rating::where('ratings.sponzor_id', $sponzorId)->where('ratings.type','0')
+		->join('sponzorships', 'sponzorships.id', '=','ratings.sponzorship_id')
+		->join('events', 'sponzorships.event_id', '=','events.id')
+		->join('perks', 'sponzorships.perk_id', '=','perks.id')
+		->join('users', 'ratings.organizer_id', '=','users.id')
+		->select('ratings.question0','ratings.question6','users.name AS organizerName', 'events.title AS eventTitle', 'perks.kind AS perkKind')
+		->get();
+		if(!$Rating){
+			return response()->json(
+				["message"=>"Resource not found",
+				], 404
+			);
+		}
+		else {
+			return response()->json(
+				["data"=>
+					[
+						"Rating"=>$Rating->toArray()
+					]
+				], 200
+			);
+		}
+	}
 	/**
 	 * Display the specified resource.
 	 *

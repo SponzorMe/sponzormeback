@@ -49,7 +49,7 @@ class RatingController extends Controller {
 		->join('events', 'sponzorships.event_id', '=','events.id')
 		->join('perks', 'sponzorships.perk_id', '=','perks.id')
 		->join('users', 'ratings.sponzor_id', '=','users.id')
-		->select('ratings.question0','ratings.question10','users.name AS sponzorName', 'events.title AS eventTitle', 'perks.kind AS perkKind')
+		->select('ratings.question0','ratings.question10','users.name AS sponzorName', 'events.title AS eventTitle', 'perks.kind AS perkKind', 'ratings.created_at', 'ratings.sponzor_id')
 		->get();
 		if(!$Rating){
 			return response()->json(
@@ -73,7 +73,7 @@ class RatingController extends Controller {
 		->join('events', 'sponzorships.event_id', '=','events.id')
 		->join('perks', 'sponzorships.perk_id', '=','perks.id')
 		->join('users', 'ratings.organizer_id', '=','users.id')
-		->select('ratings.question0','ratings.question6','users.name AS organizerName', 'events.title AS eventTitle', 'perks.kind AS perkKind')
+		->select('ratings.question0','ratings.question6','users.name AS organizerName', 'events.title AS eventTitle', 'perks.kind AS perkKind', 'ratings.created_at', 'ratings.organizer_id')
 		->get();
 		if(!$Rating){
 			return response()->json(

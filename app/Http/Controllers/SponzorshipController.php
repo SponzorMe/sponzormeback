@@ -184,10 +184,10 @@ class SponzorshipController extends Controller {
 	* Display a list of sponzorships based in organizer id
 	*/
 	public function showByOrganizer($organizerId){
-			$sponzorships = Sponzorship::where('organizer_id', $organizerId)
-			->join('events', 'event_id', '=', 'events.id')
-			->join('users', 'sponzor_id', '=', 'users.id')
-			->join('perks', 'perk_id', '=', 'perks.id')
+			$sponzorships = Sponzorship::where('sponzorships.organizer_id', $organizerId)
+			->join('events', 'sponzorships.event_id', '=', 'events.id')
+			->join('users', 'sponzorships.sponzor_id', '=', 'users.id')
+			->join('perks', 'sponzorships.perk_id', '=', 'perks.id')
 			->leftjoin('ratings', 'ratings.sponzorship_id','=','sponzorships.id')
 			->select('users.name','users.email','events.title', 'events.starts', 'events.location', 'events.ends', 'perks.*', 'sponzorships.*','ratings.type AS ratingType')
 			->get();
@@ -201,7 +201,7 @@ class SponzorshipController extends Controller {
 	* Display a list of sponzorships based in sponzor id
 	*/
 	public function showBySponzor($sponzorId){
-			$sponzorships = Sponzorship::where('sponzor_id', $sponzorId)
+			$sponzorships = Sponzorship::where('sponzorships.sponzor_id', $sponzorId)
 			->join('events', 'sponzorships.event_id', '=', 'events.id')
 			->join('users', 'sponzorships.organizer_id', '=', 'users.id')
 			->join('perks', 'sponzorships.perk_id', '=', 'perks.id')

@@ -188,7 +188,8 @@ class SponzorshipController extends Controller {
 			->join('events', 'event_id', '=', 'events.id')
 			->join('users', 'sponzor_id', '=', 'users.id')
 			->join('perks', 'perk_id', '=', 'perks.id')
-			->select('users.name','users.email','events.title', 'events.starts', 'events.location', 'events.ends', 'perks.*', 'sponzorships.*')
+			->leftjoin('ratings', 'ratings.sponzorship_id','=','sponzorships.id')
+			->select('users.name','users.email','events.title', 'events.starts', 'events.location', 'events.ends', 'perks.*', 'sponzorships.*','ratings.type AS ratingType')
 			->get();
 			return response()->json([
 				"success" => true,
@@ -201,10 +202,11 @@ class SponzorshipController extends Controller {
 	*/
 	public function showBySponzor($sponzorId){
 			$sponzorships = Sponzorship::where('sponzor_id', $sponzorId)
-			->join('events', 'event_id', '=', 'events.id')
-			->join('users', 'organizer_id', '=', 'users.id')
-			->join('perks', 'perk_id', '=', 'perks.id')
-			->select('users.name','users.email','events.title', 'events.starts', 'events.location', 'events.ends', 'perks.*', 'sponzorships.*')
+			->join('events', 'sponzorships.event_id', '=', 'events.id')
+			->join('users', 'sponzorships.organizer_id', '=', 'users.id')
+			->join('perks', 'sponzorships.perk_id', '=', 'perks.id')
+			->leftjoin('ratings', 'ratings.sponzorship_id','=','sponzorships.id')
+			->select('users.name','users.email','events.title', 'events.starts', 'events.location', 'events.ends', 'perks.*', 'sponzorships.*','ratings.type AS ratingType')
 			->get();
 			return response()->json([
 				"success" => true,

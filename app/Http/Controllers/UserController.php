@@ -314,6 +314,7 @@ class UserController extends Controller {
 				'type' => $request->input('type'),
 				'lang' => $request->input('lang'),
 				'password' => bcrypt($request->input('password')),
+				'image' => 'https://s3-us-west-2.amazonaws.com/sponzormewebappimages/user_default.jpg'
 			]);
 			$emailSender=$this->sendActivationLink($request);
 			$this->subscribeToMailchimp($request->input('email'),$request->input('name'),$request->input('type'),$request->input('lang'));

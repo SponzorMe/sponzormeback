@@ -229,7 +229,7 @@ class SponzorshipController extends Controller {
 		}
 		else {
 			$tasks = Sponzorship::where('sponzorships.id', $id)
-			->join('task_sponzors', 'task_sponzors.sponzorship_id', '=', $id)
+			->join('task_sponzors', 'task_sponzors.sponzorship_id', '=', 'sponzorships.id')
 			->join('perk_tasks', 'perk_tasks.id', '=', 'task_sponzors.task_id')
 			->select('perk_tasks.*')
 			->get();

@@ -17,7 +17,7 @@ class SponzorshipController extends Controller {
 	public function paypalIpn()
 	{
 	    $ipn = new PaypalIPNListener();
-	    $ipn->use_sandbox = true;
+	    $ipn->use_sandbox = false;
 
 	    $verified = $ipn->processIpn();
 

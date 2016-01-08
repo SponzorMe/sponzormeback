@@ -229,7 +229,7 @@ class SponzorshipController extends Controller {
 		}
 		else {
 			$SponzorEvent->task_sponzor;
-			$SponzorEvent->task_sponzor()->task;			
+			$SponzorEvent->task_sponzor->task();			
 			return response()->json(
 				["data"=>
 					[

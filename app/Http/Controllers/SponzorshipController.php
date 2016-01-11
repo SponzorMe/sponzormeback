@@ -3,9 +3,6 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Log;
-use Illuminate\Log\LogServiceProvider;
-use Illuminate\Log\Writer;
 use App\Models\Sponzorship;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
@@ -25,8 +22,6 @@ class SponzorshipController extends Controller {
 	    $verified = $ipn->processIpn();
 
 	    $report = $ipn->getTextReport();
-
-			Log::info("report: ".$report);
 
 	    if ($verified) {
 	        if($_POST['payment_status'] == 'Completed'){

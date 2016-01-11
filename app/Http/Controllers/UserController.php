@@ -89,7 +89,10 @@ class UserController extends Controller {
 		$user = User::with(
 		'events.perks.tasks',
 		'events.perks.sponzor_tasks',
-		'sponzorships_like_organizer', 'sponzorships_like_organizer.event', 'sponzorships_like_organizer.perk', 'sponzorships_like_organizer.task_sponzor')
+		'sponzorships_like_organizer.sponzor',
+		'sponzorships_like_organizer.event',
+		'sponzorships_like_organizer.perk',
+		'sponzorships_like_organizer.task_sponzor.task')
 		->where('users.id','=',$id)->get();
 		return response()->json(
 			["data"=>

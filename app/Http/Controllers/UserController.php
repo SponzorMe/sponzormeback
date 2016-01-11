@@ -92,7 +92,8 @@ class UserController extends Controller {
 		'sponzorships_like_organizer.sponzor',
 		'sponzorships_like_organizer.event',
 		'sponzorships_like_organizer.perk',
-		'sponzorships_like_organizer.task_sponzor.task')
+		'sponzorships_like_organizer.task_sponzor.task',
+		'interests.interest')
 		->where('users.id','=',$id)->get();
 		return response()->json(
 			["data"=>

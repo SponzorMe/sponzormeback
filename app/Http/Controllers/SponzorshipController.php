@@ -23,14 +23,8 @@ class SponzorshipController extends Controller {
 
 	    $report = $ipn->getTextReport();
 
-			echo "verified:".$verified."<br/>";
-
-			echo "item_number:".$_POST['item_number']."<br/>";
-
-			echo "payment_status:".$_POST['payment_status']."<br/>";
-
-			echo "report".$report."<br/>";
-
+			Log::info("report: ".$report);
+			
 	    if ($verified) {
 	        if($_POST['payment_status'] == 'Completed'){
 							$item_id = $_POST['item_number'];

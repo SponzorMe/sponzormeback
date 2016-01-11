@@ -17,12 +17,9 @@ class SponzorshipController extends Controller {
 	public function paypalIpn()
 	{
 	    $ipn = new PaypalIPNListener();
-	    $ipn->use_sandbox = true;
-
+	    $ipn->use_sandbox = false;
 	    $verified = $ipn->processIpn();
-
 	    $report = $ipn->getTextReport();
-
 	    if ($verified) {
 	        if($_POST['payment_status'] == 'Completed'){
 							$item_id = $_POST['item_number'];
@@ -33,6 +30,14 @@ class SponzorshipController extends Controller {
 							}
 	        }
 	    }
+			else{
+				$item_id = $_POST['item_number'];
+				$Sponzorship=Sponzorship::find($item_id);
+				if($Sponzorship){
+					$Sponzorship->status = 4;
+					$Sponzorship->save();
+				}
+			}
 	}
 	public function sendSponzorshipEmail(Request $request){
 		$validation = Validator::make($request->all(), [

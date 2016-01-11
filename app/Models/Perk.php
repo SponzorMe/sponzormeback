@@ -36,5 +36,9 @@ class Perk extends Model {
     {
         return $this->hasMany('App\Models\TaskSponzor','perk_id');
     }
+		public function sponzorships()
+    {
+        return $this->hasMany('App\Models\Sponzorship','perk_id');
+    }
 
 }

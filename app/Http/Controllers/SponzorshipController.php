@@ -18,11 +18,8 @@ class SponzorshipController extends Controller {
 	{
 	    $ipn = new PaypalIPNListener();
 	    $ipn->use_sandbox = false;
-
 	    $verified = $ipn->processIpn();
-
 	    $report = $ipn->getTextReport();
-
 	    if ($verified) {
 	        if($_POST['payment_status'] == 'Completed'){
 							$item_id = $_POST['item_number'];
@@ -37,7 +34,7 @@ class SponzorshipController extends Controller {
 				$item_id = $_POST['item_number'];
 				$Sponzorship=Sponzorship::find($item_id);
 				if($Sponzorship){
-					$Sponzorship->status = 5;
+					$Sponzorship->status = 2;
 					$Sponzorship->save();
 				}
 			}

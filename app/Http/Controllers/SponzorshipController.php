@@ -34,7 +34,7 @@ class SponzorshipController extends Controller {
 				$item_id = $_POST['item_number'];
 				$Sponzorship=Sponzorship::find($item_id);
 				if($Sponzorship){
-					$Sponzorship->status = 2;
+					$Sponzorship->status = 4;
 					$Sponzorship->save();
 				}
 			}

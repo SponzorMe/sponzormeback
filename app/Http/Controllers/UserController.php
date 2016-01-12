@@ -85,23 +85,34 @@ class UserController extends Controller {
 	public function homeRequest($id){
 		$user = User::find($id);
 		$user->events;
+		if($user->type == 0){
+			$user = User::with(
+			'events.perks.tasks',
+			'events.perks.sponzor_tasks',
+			'sponzorships_like_organizer.sponzor',
+			'sponzorships_like_organizer.event',
+			'sponzorships_like_organizer.perk',
+			'sponzorships_like_organizer.task_sponzor.task',
+			'interests.interest')
+			->where('users.id','=',$id)->get();
+			return response()->json(
+				["data"=>
+					[
+						"user"=>$user->toArray()
+					]
+				], 200
+			);
+		}
+		else if($user->type == 1){
 
-		$user = User::with(
-		'events.perks.tasks',
-		'events.perks.sponzor_tasks',
-		'sponzorships_like_organizer.sponzor',
-		'sponzorships_like_organizer.event',
-		'sponzorships_like_organizer.perk',
-		'sponzorships_like_organizer.task_sponzor.task',
-		'interests.interest')
-		->where('users.id','=',$id)->get();
-		return response()->json(
-			["data"=>
-				[
-					"user"=>$user->toArray()
-				]
-			], 200
-		);
+		}
+		else{
+			return response()->json(
+				["message"=>"Resource not found",
+				], 404
+			);
+		}
+
 	}
 
 

@@ -32,6 +32,12 @@ return array(
             'allowedMethods' => array('*'),
             'maxAge' => 3600,
         ),
+        'local/*' => array(
+            'allowedOrigins' => array('*'),
+            'allowedHeaders' => array('*'),
+            'allowedMethods' => array('*'),
+            'maxAge' => 3600,
+        ),
         'apistaging/*' => array(
             'allowedOrigins' => array('*'),
             'allowedHeaders' => array('*'),
@@ -51,7 +57,7 @@ return array(
             'allowedMethods' => array('POST', 'PUT', 'GET', 'PATCH', 'DELETE'),
             'exposedHeaders' => array('*'),
             'maxAge' => 3600,
-            'hosts' => array('api.*','apistaging.*','apilocal.*'),
+            'hosts' => array('api.*','apistaging.*','apilocal.*','local.*'),
         ),
     ),
 

@@ -15,17 +15,28 @@ class EventController extends Controller {
 		$this->middleware('auth.basic.once',['only'=>['store','update','destroy']]);
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+	/*
 	public function index()
 	{
 		$events = Event::get();
 		return response()->json([
 			"success" => true,
 			"events"=>$events->toArray()
+			], 200
+		);
+	}
+	*/
+	public function index(){
+		$events = Event::with(
+		'category',
+		'type',
+		'user_organizer',
+		'perks.tasks')->get();
+		return response()->json(
+			["data"=>
+				[
+					"events"=>$events->toArray()
+				]
 			], 200
 		);
 	}

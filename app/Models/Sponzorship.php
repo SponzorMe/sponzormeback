@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Rating;
 
 class Sponzorship extends Model {
 
@@ -32,6 +33,10 @@ class Sponzorship extends Model {
 	 *  One category belongs to an event.
 	 *
 	 */
+	 	public function ratings()
+	 	{
+	 			return $this->hasMany('App\Models\Rating');
+	 	}
 		public function sponzor()
     {
         return $this->belongsTo('App\Models\User','sponzor_id');

@@ -44,6 +44,7 @@ Route::post('change_password','Auth\PasswordController@changePassword');
 Route::post('invite_friend','UserController@inviteFriend');
 Route::post('sponzorship_email','SponzorshipController@sendSponzorshipEmail');
 Route::post('sponzorship_email_organizer','SponzorshipController@sendSponzorshipEmailOrganizer');
+
 Route::post('ipn','SponzorshipController@paypalIpn');
 
 

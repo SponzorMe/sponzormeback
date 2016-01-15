@@ -274,8 +274,20 @@ class SponzorshipController extends Controller {
 		}
 		else
 		{
-			$Sponzorship=Sponzorship::create($request->all());
-			return response()->json(['message'=>"Inserted",'Sponzorship'=>$Sponzorship],201);
+			$aux = Sponzorship::where('sponzor_id','=',$request->input('sponzor_id'))->where('perk_id','=',$request->input('perk_id'))->count();
+			if($aux){
+				return response()->json(['message'=>"Already Inserted"],409);
+			}
+			else{
+				$Sponzorship=Sponzorship::create($request->all());
+				$sponzorship = Sponzorship::with(
+				'organizer',
+				'event',
+				'perk.tasks',
+				'task_sponzor.task')
+				->where('sponzorships.id','=',$Sponzorship->id)->first();
+				return response()->json(['message'=>"Inserted",'Sponzorship'=>$sponzorship],201);
+			}
 		}
 	}
 	/**

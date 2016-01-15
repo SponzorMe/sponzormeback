@@ -41,12 +41,12 @@ class UserInterestController extends Controller {
 			);
 		}
 		else {
+			$UserInterest = UserInterest::with(
+			'users_interests.interest')->where('users_interests.id','=',$id)->first();
 			return response()->json(
 				["data"=>
 					[
-						"UserInterest"=>$UserInterest->toArray(),
-						"User"=>$UserInterest->user,
-						"Interest"=>$UserInterest->interest,
+						"UserInterest"=>$UserInterest,
 					]
 				], 200
 			);
@@ -70,6 +70,7 @@ class UserInterestController extends Controller {
 		else
 		{
 			$UserInterest=UserInterest::create($request->all());
+			$UserInterest->interest;
 			return response()->json(['message'=>"Inserted",'UserInterest'=>$UserInterest],201);
 		}
 	}

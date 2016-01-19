@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sponzorship;
 use App\Models\User;
+use App\Models\TaskSponzor;
+use App\Models\PerkTask;
 use Illuminate\Support\Facades\Validator;
 use Weblee\Mandrill\Mail;
 use Fahim\PaypalIPN\PaypalIPNListener;
@@ -308,15 +310,23 @@ class SponzorshipController extends Controller {
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
+      $createSponzorTask = false;
+      $deleteSponzorTask = false;
 			$flag=0;//If 0 persist nothing was updated.
-			if($status>=0){
+			if(isset($status) && $status>=0){
 				$validator = Validator::make(
 				    ['status' => $status],
-				    ['status' => ['required', 'max:4']]
+				    ['status' => ['required', 'max:4']]            
 				);
 				if(!$validator->fails()){
 					$flag=1;
-					$Sponzorship->status=$status;
+          if($status == 1 && $Sponzorship->status == 0){
+            $createSponzorTask = true;
+          }
+          else if($status == 0 && $Sponzorship->status == 1){
+            $deleteSponzorTask = true;
+          }
+					$Sponzorship->status=$status;          
 				}
 				else{
 					$warnings[]=$validator->messages();
@@ -388,8 +398,34 @@ class SponzorshipController extends Controller {
 				}
 			}
 			if($flag){
+        if($createSponzorTask){
+          $tasks = PerkTask::where('perk_id', '=', $Sponzorship->perk_id)->get();
+          foreach($tasks as $t){
+            $iterator = [
+              'status'=>0,
+              'task_id'=>$t->id,
+              'perk_id'=>$Sponzorship->perk_id,
+              'sponzor_id'=>$Sponzorship->sponzor_id,
+              'organizer_id'=>$Sponzorship->organizer_id,
+              'event_id'=>$Sponzorship->event_id,
+              'sponzorship_id'=>$Sponzorship->id
+            ];
+            TaskSponzor::create($iterator);
+          }
+        }
+        elseif($deleteSponzorTask){
+          $Sponzorship->task_sponzor()->delete();
+          $perkTasks = PerkTask::where('type', '=', '1')->where('perk_id', '=', $Sponzorship->perk_id)
+          ->where('user_id', '=', $Sponzorship->sponzor_id)->delete();
+        }
 				$Sponzorship->save();
-				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'Sponzorship'=>$Sponzorship],200);
+        $sponzorship = Sponzorship::with(
+				'organizer',
+				'event',
+				'perk.tasks',
+				'task_sponzor.task')
+				->where('sponzorships.id','=',$Sponzorship->id)->first();
+				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'Sponzorship'=>$sponzorship],200);
 			}
 			else{
 				return response()->json(['message'=>"Nothing updated",'warnings'=>$warnings,'Sponzorship'=>$Sponzorship],200);
@@ -436,6 +472,8 @@ class SponzorshipController extends Controller {
 		}
 		else{
 			$Sponzorship->task_sponzor()->delete();
+      $perkTasks = PerkTask::where('type', '=', '1')->where('perk_id', '=', $Sponzorship->perk_id)
+          ->where('user_id', '=', $Sponzorship->sponzor_id)->delete();
 			$Sponzorship->delete();
 			return response()->json(['message'=>"Deleted"],200);
 		}

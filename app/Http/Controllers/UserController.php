@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Event;
 use App\Models\UserInterest;
 use App\Models\InterestCategory;
 use Illuminate\Support\Facades\Validator;
@@ -81,6 +82,60 @@ class UserController extends Controller {
 			);
 		}
 	}
+
+	public function homeRequest($id){
+		$user = User::find($id);
+		if($user->type == 0){
+			$user = User::with(
+			'events.perks.tasks',
+			'events.perks.sponzor_tasks',
+			'sponzorships_like_organizer.sponzor',
+			'sponzorships_like_organizer.event',
+			'sponzorships_like_organizer.perk',
+			'sponzorships_like_organizer.task_sponzor.task',
+			'sponzorships_like_organizer.ratings',
+			'interests.interest')
+			->where('users.id','=',$id)->first();
+			return response()->json(
+				["data"=>
+					[
+						"user"=>$user->toArray()
+					]
+				], 200
+			);
+		}
+		else if($user->type == 1){
+			$user = User::with(
+			'sponzorships.organizer',
+			'sponzorships.event',
+			'sponzorships.perk.tasks',
+			'sponzorships.task_sponzor.task',
+			'interests.interest')
+			->where('users.id','=',$id)->first();
+			$events = Event::with(
+			'category',
+			'type',
+			'user_organizer',
+			'perks.tasks')->get();
+			return response()->json(
+				["data"=>
+					[
+						"user"=>$user->toArray(),
+						"events"=>$events->toArray()
+					]
+				], 200
+			);
+		}
+		else{
+			return response()->json(
+				["message"=>"Resource not found",
+				], 404
+			);
+		}
+	}
+
+
+
 	/**
 	 * Send Welcome Email throught mandriall APP
 	 * https://mandrillapp.com/api/docs/messages.php.html

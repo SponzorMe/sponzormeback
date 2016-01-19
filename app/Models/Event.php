@@ -28,6 +28,10 @@ class Event extends Model {
     {
         return $this->belongsTo('App\Models\User','organizer','id');
     }
+		public function user_organizer()
+	    {
+	        return $this->belongsTo('App\Models\User','organizer','id');
+	    }
     public function category()
     {
         return $this->belongsTo('App\Models\Category','category');

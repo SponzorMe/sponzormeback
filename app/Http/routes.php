@@ -36,18 +36,22 @@ Route::get('token/meetup/{code}','UserController@getMeetupToken');
 Route::get('events/meetup/{code}','UserController@getMeetupEvents');
 Route::get('verify_activation/{activationCode}','UserController@verifyActivationLink');
 Route::get('ratings/sponzorship/{sponzorshipId}/{type}','RatingController@getRatingBySponzorship');
-
 Route::get('ratings/sponzor/{sponzorId}','RatingController@getRatingBySponzor');
-
 Route::get('ratings/organizer/{organizerId}','RatingController@getRatingByOrganizer');
-
 Route::post('send_reset_password','Auth\PasswordController@sendResetPasswordToken');
 Route::post('update_password/{token}','Auth\PasswordController@updatePassword');
 Route::post('change_password','Auth\PasswordController@changePassword');
 Route::post('invite_friend','UserController@inviteFriend');
 Route::post('sponzorship_email','SponzorshipController@sendSponzorshipEmail');
 Route::post('sponzorship_email_organizer','SponzorshipController@sendSponzorshipEmailOrganizer');
+
 Route::post('ipn','SponzorshipController@paypalIpn');
+
+
+Route::get('home/{userId}','UserController@homeRequest');
+
+
+
 Route::pattern('route_not_found','.*');
 Route::any('/{route_not_found}', function(){
 	return response()->json(

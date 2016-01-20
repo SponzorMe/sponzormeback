@@ -16,10 +16,10 @@ class CreateTrasactionsTable extends Migration
           $table->increments('id');
           $table->string('txn_id');
           $table->integer('sponzorship_id')->unsigned();
-          $table->float('amout');
+          $table->float('amount');
           $table->integer('user_id');
           $table->string('item_name');
-          $table->date('payment_date');
+          $table->string('payment_date');
           $table->string('payment_status');
           $table->boolean('type');
           $table->timestamps();

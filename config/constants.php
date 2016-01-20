@@ -35,7 +35,10 @@
 
 			//Meetup Credentials [PRODUCTION]
 			'meetup_client_secret'=>"t9lpatu023l44gjbtkno2a9ku9",
-			'meetup_client_id'=>"lc876qakj5itnsnebm3dijus12"
+			'meetup_client_id'=>"lc876qakj5itnsnebm3dijus12",
+      
+      //Paypal
+      'sandbox'=>false
 		);
 	}
 	else if(getenv('APP_ENV')=='local'){
@@ -64,7 +67,10 @@
 
 			//Meetup Credentials [DEVELOPMENT]
 			'meetup_client_secret'=>"dpnfk15r2fniligjvvvokv3df3",
-			'meetup_client_id'=>"9pfi8r66lr4da194pc1lvhclq7"
+			'meetup_client_id'=>"9pfi8r66lr4da194pc1lvhclq7",
+      
+      //Paypal
+      'sandbox'=>true
 		);
 	}
 	else if(getenv('APP_ENV')=='staging'){
@@ -93,7 +99,10 @@
 
 			//Meetup Credentials [STAGING]
 			'meetup_client_secret'=>"2vmtjsr3rh1tg70jmqut5g46rr",
-			'meetup_client_id'=>"scqnorvk4o3utc3k19qfj45vng"
+			'meetup_client_id'=>"scqnorvk4o3utc3k19qfj45vng",
+      
+      //Paypal
+      'sandbox'=>true
 		);
 	}
 	else{
@@ -122,6 +131,9 @@
 
 			//Meetup Credentials [STAGING]
 			'meetup_client_secret'=>"no-enviroment-detected",
-			'meetup_client_id'=>"no-enviroment-detected"
+			'meetup_client_id'=>"no-enviroment-detected",
+      
+      //Paypal
+      'sandbox'=>"no-enviroment-detected"
 		);
 	}

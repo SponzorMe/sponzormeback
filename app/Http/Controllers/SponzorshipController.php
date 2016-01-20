@@ -7,6 +7,7 @@ use App\Models\Sponzorship;
 use App\Models\User;
 use App\Models\TaskSponzor;
 use App\Models\PerkTask;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Validator;
 use Weblee\Mandrill\Mail;
 use Fahim\PaypalIPN\PaypalIPNListener;
@@ -19,9 +20,24 @@ class SponzorshipController extends Controller {
 	public function paypalIpn()
 	{
 	    $ipn = new PaypalIPNListener();
-	    $ipn->use_sandbox = false;
-	    $verified = $ipn->processIpn();
+      $ipn->use_sandbox = false;
+      $item = [];
+      $item['type'] = 1; //true
+      $sandbox = \Config::get('constants.sandbox');
+      if($sandbox){
+        $ipn->use_sandbox = true;
+        $item['type'] = 0; //test
+      }	    
+	    $verified = $ipn->processIpn();      
 	    $report = $ipn->getTextReport();
+      $item['payment_status'] = $_POST['payment_status'];
+      $item['txn_id'] = $_POST['txn_id'];
+      $item['sponzorship_id'] = $_POST['item_number'];
+      $item['amout'] = $_POST['amout'];
+      $item['item_name'] = $_POST['item_name'];
+      $item['payment_date'] = $_POST['payment_date'];
+      $item['payment_status'] = $_POST['payment_status'];
+      $item['user_id'] = $_POST['custom'];
 	    if ($verified) {
 	        if($_POST['payment_status'] == 'Completed'){
 							$item_id = $_POST['item_number'];
@@ -40,6 +56,7 @@ class SponzorshipController extends Controller {
 					$Sponzorship->save();
 				}
 			}
+      $Transaction=Transaction::create($item);
 	}
 	public function sendSponzorshipEmail(Request $request){
 		$validation = Validator::make($request->all(), [

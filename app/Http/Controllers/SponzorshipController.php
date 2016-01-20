@@ -33,10 +33,9 @@ class SponzorshipController extends Controller {
       $item['payment_status'] = $_POST['payment_status'];
       $item['txn_id'] = $_POST['txn_id'];
       $item['sponzorship_id'] = $_POST['item_number'];
-      $item['amout'] = $_POST['amout'];
+      $item['amout'] = $_POST['amount'];
       $item['item_name'] = $_POST['item_name'];
       $item['payment_date'] = $_POST['payment_date'];
-      $item['payment_status'] = $_POST['payment_status'];
       $item['user_id'] = $_POST['custom'];
 	    if ($verified) {
 	        if($_POST['payment_status'] == 'Completed'){

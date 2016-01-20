@@ -11,6 +11,7 @@ use App\Models\Transaction;
 use Illuminate\Support\Facades\Validator;
 use Weblee\Mandrill\Mail;
 use Fahim\PaypalIPN\PaypalIPNListener;
+use Log;
 
 class SponzorshipController extends Controller {
 	public function __construct()
@@ -55,6 +56,7 @@ class SponzorshipController extends Controller {
 					$Sponzorship->save();
 				}
 			}
+      \Log::info($_POST);
       $Transaction=Transaction::create($item);
 	}
 	public function sendSponzorshipEmail(Request $request){

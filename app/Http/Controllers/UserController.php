@@ -110,6 +110,7 @@ class UserController extends Controller {
 			'sponzorships.event',
 			'sponzorships.perk.tasks',
 			'sponzorships.task_sponzor.task',
+			'sponzorships.ratings',
 			'interests.interest')
 			->where('users.id','=',$id)->first();
 			$events = Event::with(

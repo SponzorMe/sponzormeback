@@ -28,8 +28,8 @@ class SponzorshipController extends Controller {
       if($sandbox){
         $ipn->use_sandbox = true;
         $item['type'] = 0; //test
-      }	    
-	    $verified = $ipn->processIpn();      
+      }
+	    $verified = $ipn->processIpn();
 	    $report = $ipn->getTextReport();
       $item['payment_status'] = $_POST['payment_status'];
       $item['txn_id'] = $_POST['txn_id'];
@@ -304,7 +304,8 @@ class SponzorshipController extends Controller {
 				'organizer',
 				'event',
 				'perk.tasks',
-				'task_sponzor.task')
+				'task_sponzor.task',
+				'ratings')
 				->where('sponzorships.id','=',$Sponzorship->id)->first();
 				return response()->json(['message'=>"Inserted",'Sponzorship'=>$sponzorship],201);
 			}
@@ -334,7 +335,7 @@ class SponzorshipController extends Controller {
 			if(isset($status) && $status>=0){
 				$validator = Validator::make(
 				    ['status' => $status],
-				    ['status' => ['required', 'max:4']]            
+				    ['status' => ['required', 'max:4']]
 				);
 				if(!$validator->fails()){
 					$flag=1;
@@ -344,7 +345,7 @@ class SponzorshipController extends Controller {
           else if($status == 0 && $Sponzorship->status == 1){
             $deleteSponzorTask = true;
           }
-					$Sponzorship->status=$status;          
+					$Sponzorship->status=$status;
 				}
 				else{
 					$warnings[]=$validator->messages();
@@ -441,7 +442,8 @@ class SponzorshipController extends Controller {
 				'organizer',
 				'event',
 				'perk.tasks',
-				'task_sponzor.task')
+				'task_sponzor.task',
+				'ratings')
 				->where('sponzorships.id','=',$Sponzorship->id)->first();
 				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'Sponzorship'=>$sponzorship],200);
 			}

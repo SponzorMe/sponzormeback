@@ -11,7 +11,7 @@ class Transaction extends Model {
 	 */
 	protected $table = 'transactions';
 
-	protected $fillable = ['txn_id', 'sponzorship_id', 'amout', 'user_id', 'item_name', 'payment_date', 'payment_status', 'type'];
+	protected $fillable = ['txn_id', 'sponzorship_id', 'amount', 'user_id', 'item_name', 'payment_date', 'payment_status', 'type'];
 
 	protected $hidden = ['created_at', 'updated_at'];
 

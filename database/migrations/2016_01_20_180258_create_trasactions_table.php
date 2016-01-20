@@ -16,7 +16,7 @@ class CreateTrasactionsTable extends Migration
           $table->increments('id');
           $table->string('txn_id');
           $table->integer('sponzorship_id')->unsigned();
-          $table->float('amount');
+          $table->string('amount');
           $table->integer('user_id');
           $table->string('item_name');
           $table->string('payment_date');

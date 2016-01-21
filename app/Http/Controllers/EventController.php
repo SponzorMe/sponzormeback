@@ -15,17 +15,6 @@ class EventController extends Controller {
 		$this->middleware('auth.basic.once',['only'=>['store','update','destroy']]);
 	}
 
-	/*
-	public function index()
-	{
-		$events = Event::get();
-		return response()->json([
-			"success" => true,
-			"events"=>$events->toArray()
-			], 200
-		);
-	}
-	*/
 	public function index(){
 		$events = Event::with(
 		'category',
@@ -48,7 +37,13 @@ class EventController extends Controller {
 	 */
 	public function show($id)
 	{
-		$event = Event::find($id);
+		$event = Event::with(
+		'category',
+		'type',
+		'user_organizer',
+		'perks.tasks',
+		'sponzorship.sponzor',
+		'sponzor_tasks')->where('events.id', '=', $id)->first();
 		if(!$event){
 			return response()->json(
 				["message"=>"Resource not found",
@@ -57,27 +52,9 @@ class EventController extends Controller {
 		}
 		else
 		{
-			$sponzorships = Event::where('events.id', $id)
-			->join('sponzorships', 'event_id', '=', 'events.id')
-			->join('users', 'sponzor_id', '=', 'users.id')
-			->select('users.name','sponzorships.*')
-			->get();
-			$category=$event->category()->get();
-			$type=$event->type()->get();
-			$organizer=$event->organizer()->get();
-			$event->perks;
-			$event->sponzorship;
-			$event->perk_tasks;
-			$event->sponzor_tasks;
 			return response()->json(
-				["data"=>
-					[
-						"event"=>$event->toArray(),
-						"category"=>$category->toArray(),
-						"type"=>$type->toArray(),
-						"organizer"=>$organizer->toArray(),
-						"sponzorships"=>$sponzorships->toArray()
-					]
+				[
+					"event"=>$event
 				], 200
 			);
 		}

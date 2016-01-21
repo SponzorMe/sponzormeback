@@ -21,8 +21,9 @@ class SponzorshipController extends Controller {
 	}
 	public function paypalIpn()
 	{
+
 	    $ipn = new PaypalIPNListener();
-      $ipn->use_sandbox = false;
+			$ipn->use_sandbox = false;
       $item = [];
       $item['type'] = 1; //true
       $sandbox = \Config::get('constants.sandbox');
@@ -30,35 +31,40 @@ class SponzorshipController extends Controller {
         $ipn->use_sandbox = true;
         $item['type'] = 0; //test
       }
-	    $verified = $ipn->processIpn();
-	    $report = $ipn->getTextReport();
-      $item['payment_status'] = $_POST['payment_status'];
-      $item['txn_id'] = $_POST['txn_id'];
-      $item['sponzorship_id'] = $_POST['item_number'];
-      $item['amount'] = $_POST['mc_gross'];
-      $item['item_name'] = $_POST['item_name'];
-      $item['payment_date'] = $_POST['payment_date'];
-      $item['user_id'] = $_POST['custom'];
-	    if ($verified) {
-	        if($_POST['payment_status'] == 'Completed'){
-							$item_id = $_POST['item_number'];
-							$Sponzorship=Sponzorship::find($item_id);
-							if($Sponzorship){
-								$Sponzorship->status = 3;
-								$Sponzorship->save();
-							}
-	        }
-	    }
-			else{
-				$item_id = $_POST['item_number'];
-				$Sponzorship=Sponzorship::find($item_id);
-				if($Sponzorship){
-					$Sponzorship->status = 4;
-					$Sponzorship->save();
+			try{
+				$verified = $ipn->processIpn();
+		    $report = $ipn->getTextReport();
+	      $item['payment_status'] = $_POST['payment_status'];
+	      $item['txn_id'] = $_POST['txn_id'];
+	      $item['sponzorship_id'] = $_POST['item_number'];
+	      $item['amount'] = $_POST['mc_gross'];
+	      $item['item_name'] = $_POST['item_name'];
+	      $item['payment_date'] = $_POST['payment_date'];
+	      $item['user_id'] = $_POST['custom'];
+	      $Transaction=Transaction::create($item);
+				if ($verified) {
+		        if($_POST['payment_status'] == 'Completed'){
+								$item_id = $_POST['item_number'];
+								$Sponzorship=Sponzorship::find($item_id);
+								if($Sponzorship){
+									$Sponzorship->status = 3;
+									$Sponzorship->save();
+
+								}
+		        }
+		    }
+				else{
+					$item_id = $_POST['item_number'];
+					$Sponzorship=Sponzorship::find($item_id);
+					if($Sponzorship){
+						$Sponzorship->status = 4;
+						$Sponzorship->save();
+					}
 				}
 			}
-      \Log::info($_POST);
-      $Transaction=Transaction::create($item);
+			catch(Exception $e){
+				\Log::info($e->getMessage());
+			}
 	}
 	public function sendSponzorshipEmail(Request $request){
 		$validation = Validator::make($request->all(), [

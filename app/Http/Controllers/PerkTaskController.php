@@ -91,7 +91,7 @@ class PerkTaskController extends Controller {
 		{
 			$PerkTask=PerkTask::create($request->all());
       if($PerkTask->type == 0){
-        $Perk = Perk::find($PerkTask->perk_id)->first();
+        $Perk = Perk::find($PerkTask->perk_id);
         $Sponzorships = $Perk->sponzorships()->get();
         foreach($Sponzorships as $s){
           $aux = [
@@ -115,7 +115,7 @@ class PerkTaskController extends Controller {
       }
       else{
         return response()->json(['message'=>"Inserted",'PerkTask'=>$PerkTask],201);
-      }			
+      }
 		}
 	}
 	/**

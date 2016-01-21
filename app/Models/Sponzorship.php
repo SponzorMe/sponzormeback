@@ -57,5 +57,4 @@ class Sponzorship extends Model {
     {
         return $this->hasMany('App\Models\TaskSponzor');
     }
-
 }

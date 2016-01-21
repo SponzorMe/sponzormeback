@@ -7,6 +7,7 @@ use App\Models\Sponzorship;
 use App\Models\User;
 use App\Models\TaskSponzor;
 use App\Models\PerkTask;
+use App\Models\Perk;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Validator;
 use Weblee\Mandrill\Mail;
@@ -417,23 +418,62 @@ class SponzorshipController extends Controller {
 				}
 			}
 			if($flag){
+				$perk = Perk::find($Sponzorship->perk_id);
         if($createSponzorTask){
-          $tasks = PerkTask::where('perk_id', '=', $Sponzorship->perk_id)->get();
-          foreach($tasks as $t){
-            $iterator = [
-              'status'=>0,
-              'task_id'=>$t->id,
-              'perk_id'=>$Sponzorship->perk_id,
-              'sponzor_id'=>$Sponzorship->sponzor_id,
-              'organizer_id'=>$Sponzorship->organizer_id,
-              'event_id'=>$Sponzorship->event_id,
-              'sponzorship_id'=>$Sponzorship->id
-            ];
-            TaskSponzor::create($iterator);
-          }
+					$Sponzorship->save();
+					if($perk->reserved_quantity +1 < $perk->total_quantity){
+						$perk->reserved_quantity += 1;
+						$perk->save();
+	          $tasks = PerkTask::where('perk_id', '=', $Sponzorship->perk_id)->get();
+	          foreach($tasks as $t){
+	            $iterator = [
+	              'status'=>0,
+	              'task_id'=>$t->id,
+	              'perk_id'=>$Sponzorship->perk_id,
+	              'sponzor_id'=>$Sponzorship->sponzor_id,
+	              'organizer_id'=>$Sponzorship->organizer_id,
+	              'event_id'=>$Sponzorship->event_id,
+	              'sponzorship_id'=>$Sponzorship->id
+	            ];
+	            TaskSponzor::create($iterator);
+	          }
+					}
+					else if($perk->reserved_quantity +1 == $perk->total_quantity){
+						$perk->reserved_quantity += 1;
+						$perk->save();
+	          $tasks = PerkTask::where('perk_id', '=', $Sponzorship->perk_id)->get();
+	          foreach($tasks as $t){
+	            $iterator = [
+	              'status'=>0,
+	              'task_id'=>$t->id,
+	              'perk_id'=>$Sponzorship->perk_id,
+	              'sponzor_id'=>$Sponzorship->sponzor_id,
+	              'organizer_id'=>$Sponzorship->organizer_id,
+	              'event_id'=>$Sponzorship->event_id,
+	              'sponzorship_id'=>$Sponzorship->id
+	            ];
+	            TaskSponzor::create($iterator);
+	          }
+						$aux = Sponzorship::where('organizer_id', '=', $Sponzorship->organizer_id)
+						->where('perk_id', '=', $Sponzorship->perk_id)
+						->where('status', '=', 0)->get();
+						foreach ($aux as $a) {
+							$a->task_sponzor()->delete();
+				      $perkTasks = PerkTask::where('type', '=', '1')->where('perk_id', '=', $a->perk_id)
+				          ->where('user_id', '=', $Sponzorship->sponzor_id)->delete();
+							$a->delete();
+						}
+					}
+					else{
+						$Sponzorship->status = 0;
+						$Sponzorship->save();
+						return response()->json(['message'=>"Limite Reach"],409);
+					}
         }
         elseif($deleteSponzorTask){
           $Sponzorship->task_sponzor()->delete();
+					$perk->reserved_quantity -= 1;
+					$perk->save();
           $perkTasks = PerkTask::where('type', '=', '1')->where('perk_id', '=', $Sponzorship->perk_id)
           ->where('user_id', '=', $Sponzorship->sponzor_id)->delete();
         }

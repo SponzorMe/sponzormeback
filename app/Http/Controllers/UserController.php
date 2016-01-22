@@ -11,6 +11,7 @@ use App\Models\InterestCategory;
 use Illuminate\Support\Facades\Validator;
 use Weblee\Mandrill\Mail;
 use Illuminate\Support\Facades\Redirect;
+use DrewM\MailChimp\MailChimp;
 
 class UserController extends Controller {
 	public function __construct()
@@ -239,8 +240,8 @@ class UserController extends Controller {
 			return false;
 		}
 	}
-	private function subscribeToMailchimp($email,$name,$type,$lang="en"){
-		$MailChimp = new \Drewm\MailChimp('2cc5e8c25894c43a2a4f022e6e47c352-us7');
+	private function subscribeToMailchimp($email, $name, $type, $lang="en"){
+		$MailChimp = new MailChimp('2cc5e8c25894c43a2a4f022e6e47c352-us7');
 		$name=explode(" ", trim($name));
 		if(empty($name[1])){//
 			$name[1]=" ";//If nothing was explode assign empty string by default.
@@ -260,26 +261,20 @@ class UserController extends Controller {
 		        break;
 		}
 		if($type==1){//If new user is sponzor
-			$result = $MailChimp->call('lists/subscribe', array(
-                'id'                => $sponzorList,
-                'email'             => array('email'=>$email),
-                'merge_vars'        => array('FNAME'=>$name[0], 'LNAME'=>$name[1]),
-                'double_optin'      => false,
-                'update_existing'   => true,
-                'replace_interests' => false,
-                'send_welcome'      => false,
-            ));
+			$result = $MailChimp->post("lists/$sponzorList/members", [
+			    'email_address' => $email,
+			    'status'        => 'subscribed',
+					'send_welcome'  => false,
+					'merge_vars'    => array('FNAME'=>$name[0], 'LNAME'=>$name[1])
+			]);
 		}
 		else{//If the new user is organizer
-			$result = $MailChimp->call('lists/subscribe', array(
-                'id'                => $organizerList,
-                'email'             => array('email'=>$email),
-                'merge_vars'        => array('FNAME'=>$name[0], 'LNAME'=>$name[1]),
-                'double_optin'      => false,
-                'update_existing'   => true,
-                'replace_interests' => false,
-                'send_welcome'      => false,
-            ));
+			$result = $MailChimp->post("lists/$organizerList/members", [
+			    'email_address' => $email,
+			    'status'        => 'subscribed',
+					'send_welcome'  => false,
+					'merge_vars'    => array('FNAME'=>$name[0], 'LNAME'=>$name[1])
+			]);
 		}
 	}
 	/**

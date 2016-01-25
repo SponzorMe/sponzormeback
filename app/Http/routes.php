@@ -42,6 +42,7 @@ Route::post('send_reset_password','Auth\PasswordController@sendResetPasswordToke
 Route::post('update_password/{token}','Auth\PasswordController@updatePassword');
 Route::post('change_password','Auth\PasswordController@changePassword');
 Route::post('invite_friend','UserController@inviteFriend');
+Route::get('test','UserController@test');
 Route::post('sponzorship_email','SponzorshipController@sendSponzorshipEmail');
 Route::post('sponzorship_email_organizer','SponzorshipController@sendSponzorshipEmailOrganizer');
 

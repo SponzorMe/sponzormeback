@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\PerkTask;
 use App\Models\TaskSponzor;
 use Illuminate\Support\Facades\Validator;
+use App\Services\Notification;
+use App\Models\Sponzorship;
 
 class TaskSponzorController extends Controller {
 	public function __construct()
@@ -74,7 +76,7 @@ class TaskSponzorController extends Controller {
 	 * @return Response
 	 */
 	public function store(Request $request)
-	{    
+	{
     //First we Create the PerkTask (Task)
     $validation = Validator::make($request->all(), [
 			'title'=>'required|max:255',
@@ -90,7 +92,7 @@ class TaskSponzorController extends Controller {
         return response()->json(['message'=>"PerkTask Not inserted",'error'=>$validation->messages()],422);
       }
       else
-      {        
+      {
         $PerkTask=PerkTask::create($request->all());//If ok, we Create the PerkTask
         $posInput = $request->all();
         $posInput['task_id'] = $PerkTask->id;// Assign new value for the task
@@ -141,6 +143,32 @@ class TaskSponzorController extends Controller {
 				);
 				if(!$validator->fails()){
 					$flag=1;
+					if($TaskSponzor->status != $status && $TaskSponzor->type == 0){
+						$Sponzorship= Sponzorship::find($TaskSponzor->sponzorship_id);
+						$notification = new Notification();
+						//----------------- --- NOTIFICATION EMAIL------------------------------//
+						$vars = array(
+							array(
+								'name' => 'eventName',
+								'content' => $Sponzorship->event->title
+							),
+							array(
+								'name' => 'sponsorName',
+								'content' => $Sponzorship->sponzor->name
+							),
+							array(
+								'name' => 'organizerName',
+								'content' => $Sponzorship->organizer->name
+							),
+							array(
+								'name' => 'taskname',
+								'content' => $TaskSponzor->task->title
+							)
+						);
+						$to = ['name'=>$Sponzorship->sponzor->name, 'email'=>$Sponzorship->sponzor->email];
+						$notification->sendEmail('taskstatuschanged', $Sponzorship->sponzor->lang, $to, $vars);
+						//----------------------------------------------------------------------//
+					}
 					$TaskSponzor->status=$status;
 				}
 				else{
@@ -278,6 +306,32 @@ class TaskSponzorController extends Controller {
 		}
 		else{
       $PerkTask = PerkTask::find($TaskSponzor->task_id);
+			if($TaskSponzor->type == 0){
+				$Sponzorship= Sponzorship::find($TaskSponzor->sponzorship_id);
+				$notification = new Notification();
+				//----------------- --- NOTIFICATION EMAIL------------------------------//
+				$vars = array(
+					array(
+						'name' => 'eventName',
+						'content' => $Sponzorship->event->title
+					),
+					array(
+						'name' => 'sponsorName',
+						'content' => $Sponzorship->sponzor->name
+					),
+					array(
+						'name' => 'organizerName',
+						'content' => $Sponzorship->organizer->name
+					),
+					array(
+						'name' => 'taskname',
+						'content' => $TaskSponzor->task->title
+					)
+				);
+				$to = ['name'=>$Sponzorship->sponzor->name, 'email'=>$Sponzorship->sponzor->email];
+				$notification->sendEmail('taskdeleted', $Sponzorship->sponzor->lang, $to, $vars);
+				//----------------------------------------------------------------------//
+			}
       $PerkTask->task_sponzor()->delete();
 			$PerkTask->delete();
 			return response()->json(['message'=>"Deleted"],200);

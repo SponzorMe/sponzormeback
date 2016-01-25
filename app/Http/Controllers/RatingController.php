@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Rating;
 use Illuminate\Support\Facades\Validator;
+use App\Services\Notification;
+use App\Models\Sponzorship;
 
 class RatingController extends Controller {
 	public function __construct()
@@ -139,6 +141,48 @@ class RatingController extends Controller {
 		else
 		{
 			$Rating=Rating::create($request->all());
+			$Sponzorship::Sponzorshipfind($Rating->sponzorship_id);
+			$notification = new Notification();
+			if($Rating->type){
+				//----------------- --- NOTIFICATION EMAIL------------------------------//
+				$vars = array(
+					array(
+						'name' => 'eventName',
+						'content' => $Sponzorship->event->title
+					),
+					array(
+						'name' => 'sponsorName',
+						'content' => $Sponzorship->sponzor->name
+					),
+					array(
+						'name' => 'organizerName',
+						'content' => $Sponzorship->organizer->name
+					)
+				);
+				$to = ['name'=>$Sponzorship->organizer->name, 'email'=>$Sponzorship->organizer->email];
+				$notification->sendEmail('ratedbysponzor', $Sponzorship->organizer->lang, $to, $vars);
+				//----------------------------------------------------------------------//
+			}
+			else{
+				//----------------- --- NOTIFICATION EMAIL------------------------------//
+				$vars = array(
+					array(
+						'name' => 'eventName',
+						'content' => $Sponzorship->event->title
+					),
+					array(
+						'name' => 'sponsorName',
+						'content' => $Sponzorship->sponzor->name
+					),
+					array(
+						'name' => 'organizerName',
+						'content' => $Sponzorship->organizer->name
+					)
+				);
+				$to = ['name'=>$Sponzorship->sponzor->name, 'email'=>$Sponzorship->sponzor->email];
+				$notification->sendEmail('ratedbyorganizer', $Sponzorship->sponzor->lang, $to, $vars);
+				//----------------------------------------------------------------------//
+			}
 			return response()->json(['message'=>"Inserted",'Rating'=>$Rating],201);
 		}
 	}

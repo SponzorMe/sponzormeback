@@ -8,6 +8,7 @@ use App\Models\Perk;
 use App\Models\User;
 use App\Models\Sponzorship;
 use Illuminate\Support\Facades\Validator;
+use App\Services\Notification;
 
 class PerkTaskController extends Controller {
 	public function __construct()
@@ -271,6 +272,33 @@ class PerkTaskController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
     else if($PerkTask->type == 0){
+        $SponzorTasks = $PerkTask->task_sponzor;
+        $notification = new Notification();
+        foreach($SponzorTasks as $st){
+          $currentSponzorship = Sponzorship::find($st->sponzorship_id);
+          //----------------- --- NOTIFICATION EMAIL------------------------------//
+          $vars = array(
+            array(
+              'name' => 'eventName',
+              'content' => $currentSponzorship->event->title
+            ),
+            array(
+              'name' => 'sponsorName',
+              'content' => $currentSponzorship->sponzor->name
+            ),
+            array(
+              'name' => 'organizerName',
+              'content' => $currentSponzorship->organizer->name
+            ),
+            array(
+              'name' => 'taskname',
+              'content' => $PerkTask->title
+            )
+          );
+          $to = ['name'=>$currentSponzorship->sponzor->name, 'email'=>$currentSponzorship->sponzor->email];
+          $notification->sendEmail('taskdeleted', $currentSponzorship->sponzor->lang, $to, $vars);
+				  //----------------------------------------------------------------------//
+        }
         $PerkTask->task_sponzor()->delete();
         $Sponzorship = Sponzorship::with(
         'sponzor',

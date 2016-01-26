@@ -141,9 +141,9 @@ class RatingController extends Controller {
 		else
 		{
 			$Rating=Rating::create($request->all());
-			$Sponzorship::Sponzorshipfind($Rating->sponzorship_id);
+			$Sponzorship=Sponzorship::find($Rating->sponzorship_id);
 			$notification = new Notification();
-			if($Rating->type){
+			if($Rating->type == 1){
 				//----------------- --- NOTIFICATION EMAIL------------------------------//
 				$vars = array(
 					array(

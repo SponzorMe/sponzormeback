@@ -40,6 +40,7 @@ class PasswordController extends Controller {
 		{
 			$user=User::where("email","=",$request->input("email"))->first();//If the user exist, we get the user
 			$token = md5($request->input("email").str_random(30));
+      PasswordResets::where("email","=",$request->input("email"))->delete();
 			PasswordResets::create([
 				'email' => $request->input('email'),
 				'token' => $token,
@@ -55,7 +56,7 @@ class PasswordController extends Controller {
 				),
 				array(
 						'name' => 'name',
-					'content' => $userName
+					'content' => $user->name
 				)
 			);
 			$to = ['name'=>$user->name, 'email'=>$user->email];
@@ -91,7 +92,6 @@ class PasswordController extends Controller {
 					else{
 						$user->password=bcrypt($request->input("password"));
 						$user->save();
-						PasswordResets::where("email","=",$request->input("email"))->delete();
 						//----------------- --- NOTIFICATION EMAIL------------------------------//
 						$notification = new Notification();
 						$vars = array(

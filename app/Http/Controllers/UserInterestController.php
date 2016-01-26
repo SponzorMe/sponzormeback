@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 class UserInterestController extends Controller {
 	public function __construct()
 	{
-		$this->middleware('auth.basic.once',['only'=>['store','update','destroy']]);
+		$this->middleware('auth.basic.once',['only'=>['store','destroy']]);
 	}
 	/**
 	 * Display a listing of the resource.

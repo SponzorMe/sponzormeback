@@ -305,33 +305,7 @@ class TaskSponzorController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
-      $PerkTask = PerkTask::find($TaskSponzor->task_id);
-			if($TaskSponzor->type == 0){
-				$Sponzorship= Sponzorship::find($TaskSponzor->sponzorship_id);
-				$notification = new Notification();
-				//----------------- --- NOTIFICATION EMAIL------------------------------//
-				$vars = array(
-					array(
-						'name' => 'eventName',
-						'content' => $Sponzorship->event->title
-					),
-					array(
-						'name' => 'sponsorName',
-						'content' => $Sponzorship->sponzor->name
-					),
-					array(
-						'name' => 'organizerName',
-						'content' => $Sponzorship->organizer->name
-					),
-					array(
-						'name' => 'taskname',
-						'content' => $TaskSponzor->task->title
-					)
-				);
-				$to = ['name'=>$Sponzorship->sponzor->name, 'email'=>$Sponzorship->sponzor->email];
-				$notification->sendEmail('taskdeleted', $Sponzorship->sponzor->lang, $to, $vars);
-				//----------------------------------------------------------------------//
-			}
+      $PerkTask = PerkTask::find($TaskSponzor->task_id);			
       $PerkTask->task_sponzor()->delete();
 			$PerkTask->delete();
 			return response()->json(['message'=>"Deleted"],200);

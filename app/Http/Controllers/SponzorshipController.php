@@ -195,7 +195,7 @@ class SponzorshipController extends Controller {
 					)
 				);
 				$to = ['name'=>$Sponzorship->organizer->name, 'email'=>$Sponzorship->organizer->email];
-				$notification->sendEmail('sponsored_event', $Sponzorship->organizer->lang, $to, $vars);
+				$notification->sendEmail('sponsored-event', $Sponzorship->organizer->lang, $to, $vars);
 				//----------------------------------------------------------------------//
 				$sponzorship = Sponzorship::with(
 				'organizer',
@@ -372,6 +372,10 @@ class SponzorshipController extends Controller {
 							array(
 								'name' => 'eventName',
 								'content' => $Sponzorship->event->title
+							),
+              array(
+								'name' => 'sponzorName',
+								'content' => $Sponzorship->sponzor->name
 							)
 						);
 						$to = ['name'=>$Sponzorship->sponzor->name, 'email'=>$Sponzorship->sponzor->email];
@@ -387,9 +391,13 @@ class SponzorshipController extends Controller {
 					$notification = new Notification();
 					$vars = array(
 						array(
-							'name' => 'eventName',
-							'content' => $Sponzorship->event->title
-						)
+								'name' => 'eventName',
+								'content' => $Sponzorship->event->title
+							),
+              array(
+								'name' => 'sponzorName',
+								'content' => $Sponzorship->sponzor->name
+							)
 					);
 					$to = ['name'=>$Sponzorship->sponzor->name, 'email'=>$Sponzorship->sponzor->email];
 					$notification->sendEmail('disapproved', $Sponzorship->sponzor->lang, $to, $vars);
@@ -457,9 +465,13 @@ class SponzorshipController extends Controller {
 			$notification = new Notification();
 			$vars = array(
 				array(
-					'name' => 'eventName',
-					'content' => $Sponzorship->event->title
-				)
+								'name' => 'eventName',
+								'content' => $Sponzorship->event->title
+							),
+              array(
+								'name' => 'sponzorName',
+								'content' => $Sponzorship->sponzor->name
+							)
 			);
 			$to = ['name'=>$Sponzorship->organizer->name, 'email'=>$Sponzorship->organizer->email];
 			$notification->sendEmail('sponsorshipcanceled', $Sponzorship->organizer->lang, $to, $vars);

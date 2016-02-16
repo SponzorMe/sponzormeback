@@ -105,7 +105,7 @@ class UserController extends Controller {
 		}
 		else if($user->type == 1){
 			$user = User::with(
-			'saved_events.event.perks.tasks'
+			'saved_events.event.perks.tasks',
 			'sponzorships.organizer',
 			'sponzorships.event',
 			'sponzorships.perk.tasks',

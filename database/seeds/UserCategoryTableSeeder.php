@@ -16,16 +16,6 @@ class UserCategoryTableSeeder extends Seeder {
 		\DB::table('users_categories')->insert(array (
 			0 =>
 			array (
-				'user_id' => '1001',
-				'category_id' => '1',
-			),
-			1 =>
-			array (
-				'user_id' => '1001',
-				'category_id' => '2',
-			),
-			2 =>
-			array (
 				'user_id' => '1002',
 				'category_id' => '3',
 			),

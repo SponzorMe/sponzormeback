@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Rating;
 
 class Sponzorship extends Model {
 
@@ -16,7 +17,7 @@ class Sponzorship extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['status','sponzor_id','organizer_id','perk_id','event_id','cause'];
+	protected $fillable = ['status','sponzor_id','organizer_id','perk_id','event_id','cause', 'rated_organizer', 'rated_sponzor'];
 
 	protected $hidden = ['created_at', 'updated_at'];
 
@@ -32,6 +33,10 @@ class Sponzorship extends Model {
 	 *  One category belongs to an event.
 	 *
 	 */
+	 	public function ratings()
+	 	{
+	 			return $this->hasMany('App\Models\Rating');
+	 	}
 		public function sponzor()
     {
         return $this->belongsTo('App\Models\User','sponzor_id');
@@ -52,5 +57,4 @@ class Sponzorship extends Model {
     {
         return $this->hasMany('App\Models\TaskSponzor');
     }
-
 }

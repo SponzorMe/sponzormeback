@@ -4,7 +4,11 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PerkTask;
+use App\Models\Perk;
+use App\Models\User;
+use App\Models\Sponzorship;
 use Illuminate\Support\Facades\Validator;
+use App\Services\Notification;
 
 class PerkTaskController extends Controller {
 	public function __construct()
@@ -87,7 +91,32 @@ class PerkTaskController extends Controller {
 		else
 		{
 			$PerkTask=PerkTask::create($request->all());
-			return response()->json(['message'=>"Inserted",'PerkTask'=>$PerkTask],201);
+      if($PerkTask->type == 0){
+        $Perk = Perk::find($PerkTask->perk_id);
+        $Sponzorships = $Perk->sponzorships()->get();
+        foreach($Sponzorships as $s){
+          $aux = [
+          'status'=>0,
+          'task_id'=>$PerkTask->id,
+          'perk_id'=>$PerkTask->perk_id,
+          'sponzor_id'=>$s->sponzor_id,
+          'organizer_id'=>$PerkTask->user_id,
+          'event_id'=>$PerkTask->event_id,
+          'sponzorship_id'=>$s->id
+          ];
+          $s->task_sponzor()->create($aux);
+        }
+        $Sponzorship = Sponzorship::with(
+        'sponzor',
+        'event',
+        'perk',
+        'task_sponzor.task',
+        'ratings')->where('sponzorships.organizer_id','=',$PerkTask->user_id)->get();
+        return response()->json(['message'=>"Inserted",'PerkTask'=>$PerkTask,"sponzorships_like_organizer"=>$Sponzorship],201);
+      }
+      else{
+        return response()->json(['message'=>"Inserted",'PerkTask'=>$PerkTask],201);
+      }
 		}
 	}
 	/**
@@ -242,14 +271,48 @@ class PerkTaskController extends Controller {
 		if(!$PerkTask){
 			return response()->json(['message'=>"Not found"],404);
 		}
-		$tasksSponzor=$PerkTask->task_sponzor;
-		if(sizeof($tasksSponzor)>0){
-			return response()->json(['message'=>"This task has tasks_sponzor, first remove the tasks_sponzor and try again"],409);
-		}
-		else{
-			$PerkTask->delete();
-			return response()->json(['message'=>"Deleted"],200);
-		}
+    else if($PerkTask->type == 0){
+        $SponzorTasks = $PerkTask->task_sponzor;
+        $notification = new Notification();
+        foreach($SponzorTasks as $st){
+          $currentSponzorship = Sponzorship::find($st->sponzorship_id);
+          //----------------- --- NOTIFICATION EMAIL------------------------------//
+          $vars = array(
+            array(
+              'name' => 'eventName',
+              'content' => $currentSponzorship->event->title
+            ),
+            array(
+              'name' => 'sponsorName',
+              'content' => $currentSponzorship->sponzor->name
+            ),
+            array(
+              'name' => 'organizerName',
+              'content' => $currentSponzorship->organizer->name
+            ),
+            array(
+              'name' => 'taskname',
+              'content' => $PerkTask->title
+            )
+          );
+          $to = ['name'=>$currentSponzorship->sponzor->name, 'email'=>$currentSponzorship->sponzor->email];
+          $notification->sendEmail('taskdeleted', $currentSponzorship->sponzor->lang, $to, $vars);
+				  //----------------------------------------------------------------------//
+        }
+        $PerkTask->task_sponzor()->delete();
+        $Sponzorship = Sponzorship::with(
+        'sponzor',
+        'event',
+        'perk',
+        'task_sponzor.task',
+        'ratings')->where('sponzorships.organizer_id','=',$PerkTask->user_id)->get();
+        $PerkTask->delete();
+        return response()->json(['message'=>"Delete", "sponzorships_like_organizer"=>$Sponzorship],200);
+    }
+    else{
+      $PerkTask->task_sponzor()->delete();
+      $PerkTask->delete();
+      return response()->json(['message'=>"Deleted"],200);
+    }
 	}
-
 }

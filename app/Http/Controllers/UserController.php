@@ -939,4 +939,43 @@ class UserController extends Controller {
 			return response()->json(['Code'=>$code, 'response'=>$response],200);
 		}
 	}
+  
+  public function chatNotification(Request $request){    
+    $userTo = $request->input("userTo");
+    $userFrom = $request->input("userFrom");
+		$user=User::where("email","=",$userTo['email'])->first();
+		if(!$user){//If the user does not exist.
+			return response()->json(['message'=>"User does not exist",'code'=>'404'],404);
+		}
+		else{
+			$link=\Config::get('constants.chat_url').$request->input("sponzorshipId");
+			$notification = new Notification();
+			$vars = array(
+				array(
+					'name'=>'chatLink',
+					'content'=>$link
+				),
+				array(
+						'name' => 'nameTo',
+						'content' => $userTo['name']
+				),
+				array(
+						'name' => 'nameFrom',
+						'content' => $userFrom['name']
+				),
+				array(
+						'name' => 'message',
+						'content' => $request->input("message")
+				)
+			);
+			$to = ['name'=>$userTo['name'], 'email'=>$userTo['email']];
+      if($request->input("userType") == 1){
+        $notification->sendEmail('chatsendbysponsor',$user->lang, $to, $vars);
+      }
+      else if($request->input("userType") == 0){
+        $notification->sendEmail('chatsendbyorganizer',$user->lang, $to, $vars);
+      }			
+			return response()->json(['message'=>"Email Notification Sent",'code'=>$link],200);
+		}
+  }
 }

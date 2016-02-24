@@ -38,7 +38,10 @@
 			'meetup_client_id'=>"lc876qakj5itnsnebm3dijus12",
       
       //Paypal
-      'sandbox'=>false
+      'sandbox'=>false,
+      
+      //To send Chat notifications
+      'chat_url'=>"https://app.sponzor.me/#/sponzors/chat/sponzorship/"
 		);
 	}
 	else if(getenv('APP_ENV')=='local'){
@@ -70,7 +73,10 @@
 			'meetup_client_id'=>"9pfi8r66lr4da194pc1lvhclq7",
       
       //Paypal
-      'sandbox'=>true
+      'sandbox'=>true,
+      
+      //To send Chat notifications
+      'chat_url'=>"https://localhost:9000/#/sponzors/chat/sponzorship/"
 		);
 	}
 	else if(getenv('APP_ENV')=='staging'){
@@ -102,7 +108,10 @@
 			'meetup_client_id'=>"scqnorvk4o3utc3k19qfj45vng",
       
       //Paypal
-      'sandbox'=>true
+      'sandbox'=>true,
+      
+      //To send Chat notifications
+      'chat_url'=>"https://staging.sponzor.me/#/sponzors/chat/sponzorship/"
 		);
 	}
 	else{
@@ -134,6 +143,9 @@
 			'meetup_client_id'=>"no-enviroment-detected",
       
       //Paypal
-      'sandbox'=>"no-enviroment-detected"
+      'sandbox'=>"no-enviroment-detected",
+      
+      //To send Chat notifications
+      'chat_url'=>"no-enviroment-detected"
 		);
 	}

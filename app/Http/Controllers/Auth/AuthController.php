@@ -16,6 +16,7 @@ class AuthController extends Controller {
   	$password=$request->input("password");
     $a=Auth::attempt(['email' => $email, 'password' => $password]);
     if ($a){
+      $today = date('Y-m-d H:i:s');
       if(Auth::user()->type==0){
 				Auth::user()->rating_like_organizer;
 				$filtered = Auth::user()->rating_like_organizer->filter(function ($item) {
@@ -32,6 +33,8 @@ class AuthController extends Controller {
         'sponzorships_like_organizer.ratings',
         'interests.interest')
         ->where('users.id','=', Auth::user()->id)->first();
+        $user->last_login = $today;
+        $user->save();
         return response()->json([
   				"user"=>$user->toArray(),
           "token"=>Auth::user()->token,
@@ -54,14 +57,15 @@ class AuthController extends Controller {
         'sponzorships.ratings',
         'interests.interest',
         'transactions')
-        ->where('users.id','=', Auth::user()->id)->first();
-        $today = date("Y-m-d HH:ii:ss");
+        ->where('users.id','=', Auth::user()->id)->first();        
         $events = Event::with(
         'category',
         'type',
         'user_organizer',
         'perks.tasks')
         ->where('events.starts', '>', $today)->get();
+        $user->last_login = $today;
+        $user->save();
         return response()->json([
   				"user"=>$user->toArray(),
           "token"=>Auth::user()->token,

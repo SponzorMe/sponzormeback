@@ -48,6 +48,8 @@ Route::post('sponzorship_email_organizer','SponzorshipController@sendSponzorship
 
 Route::post('ipn','SponzorshipController@paypalIpn');
 
+Route::post('chat/notification','UserController@chatNotification');
+
 
 Route::get('home/{userId}','UserController@homeRequest');
 

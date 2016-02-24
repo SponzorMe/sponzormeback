@@ -60,8 +60,8 @@ class AuthController extends Controller {
         'category',
         'type',
         'user_organizer',
-        'perks.tasks')->get();
-        //->where('events.starts', '>', $today)->get();
+        'perks.tasks')
+        ->where('events.starts', '>', $today)->get();
         return response()->json([
   				"user"=>$user->toArray(),
           "token"=>Auth::user()->token,

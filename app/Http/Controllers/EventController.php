@@ -16,11 +16,15 @@ class EventController extends Controller {
 	}
 
 	public function index(){
-		$events = Event::with(
-		'category',
-		'type',
-		'user_organizer',
-		'perks.tasks')->get();
+    
+    $today = date("Y-m-d HH:ii:ss");
+    $events = Event::with(
+    'category',
+    'type',
+    'user_organizer',
+    'perks.tasks')
+    ->where('events.starts', '>', $today)->get();
+    
 		return response()->json(
 			["data"=>
 				[

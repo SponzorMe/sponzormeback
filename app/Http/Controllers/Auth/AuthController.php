@@ -25,6 +25,8 @@ class AuthController extends Controller {
 				$rating = $filtered->avg('question0');
         $user = User::with(
         'events.perks.tasks',
+        'events.category',
+        'events.type',
         'events.perks.sponzor_tasks',
         'sponzorships_like_organizer.sponzor',
         'sponzorships_like_organizer.event',
@@ -50,6 +52,8 @@ class AuthController extends Controller {
 				$rating = $filtered->avg('question0');
         $user = User::with(
         'saved_events.event.perks.tasks',
+        'saved_events.event.category',
+        'saved_events.event.type',
         'sponzorships.organizer',
         'sponzorships.event',
         'sponzorships.perk.tasks',

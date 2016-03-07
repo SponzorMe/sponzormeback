@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Perk;
+use App\Models\SavedEvents;
 use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller {
@@ -15,8 +16,32 @@ class EventController extends Controller {
 		$this->middleware('auth.basic.once',['only'=>['store','update','destroy']]);
 	}
 
+
+	//It should be moved to another controller
+	public function saveEvent($eventId, $userId){
+		$savedEvent=SavedEvents::create(['event_id'=>$eventId, 'user_id'=>$userId]);
+		$Event = SavedEvents::with(
+		'event.perks.tasks',
+		'event.category',
+		'event.type')
+		->where('saved_events.id','=',$savedEvent->id)->first();
+		return response()->json(['message'=>"Inserted",'event'=>$Event],201);
+	}
+	public function saveRemoveEvent($savedEventId){
+		$savedEvent=SavedEvents::find($savedEventId)->first();
+		if(!$savedEvent){
+			return response()->json(['message'=>"Not found"],404);
+		}
+		else{
+			$savedEvent->delete();
+			return response()->json(['message'=>"Delete"],200);
+		}
+	}
+	///////////////////////////////////////////
+
+
 	public function index(){
-    
+
     $today = date("Y-m-d HH:ii:ss");
     $events = Event::with(
     'category',
@@ -24,7 +49,7 @@ class EventController extends Controller {
     'user_organizer',
     'perks.tasks')
     ->where('events.starts', '>', $today)->get();
-    
+
 		return response()->json(
 			["data"=>
 				[

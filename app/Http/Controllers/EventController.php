@@ -391,7 +391,12 @@ class EventController extends Controller {
 
 			if($flag){
 				$event->save();
-				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'event'=>$event],200);
+				$eventToReturn = Event::with(
+					'perks.tasks',
+					'type',
+					'category'
+				)->where('id','=',$event->id);
+				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'event'=>$eventToReturn],200);
 			}
 			else{
 				return response()->json(['message'=>"Nothing to update",'warnings'=>$warnings,'event'=>$event],200);
@@ -431,7 +436,12 @@ class EventController extends Controller {
 				$event->category =$category;
 				$event->type =$type;
 				$event->save();
-				return response()->json(['message'=>"Updated",'event'=>$event],200);
+				$eventToReturn = Event::with(
+					'perks.tasks',
+					'type',
+					'category'
+				)->where('id','=',$event->id);
+				return response()->json(['message'=>"Updated", 'event'=>$eventToReturn],200);
 			}
 		}
 		else{

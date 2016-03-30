@@ -131,7 +131,14 @@ class EventController extends Controller {
 				}
 				else
 				{
-					$event->perks()->create($p);
+					$perk = $event->perks()->create($p);
+					if(isset($p['perkTasks'])){
+						foreach ($p['perkTasks'] as $t) {
+							$t['user_id']=$request->input('organizer');
+							$t['event_id']=$event->id;
+							$perk->tasks()->create($t);
+						}
+					}
 				}
 			}
 			$Event = Event::with(

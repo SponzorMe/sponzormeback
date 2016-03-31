@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Perk;
+use App\Models\PerkTask;
 use App\Models\SavedEvents;
 use Illuminate\Support\Facades\Validator;
 
@@ -186,6 +187,31 @@ class EventController extends Controller {
 				$event->save();
 
 				$perks = $request->input('perks');
+
+
+				$tasksToDelete = $request->input('tasksToDelete');
+				if(isset($tasksToDelete)){
+					foreach ($tasksToDelete as $index) {
+						$tt=PerkTask::find($index);
+						if($tt){
+							$tt->task_sponzor()->delete();
+							$tt->delete();
+						}
+					}
+				}
+				
+				$sponzorshipTypesToDelete = $request->input('sponzorshipTypesToDelete');
+				if(isset($sponzorshipTypesToDelete)){
+					foreach ($sponzorshipTypesToDelete as $index) {
+						$pt=Perk::find($index);
+						if($pt){
+							$pt->tasks()->delete();
+							$pt->delete();
+						}
+					}
+				}
+
+
 				$aux = [];
 				foreach ($perks as $p) {
 					$validation = Validator::make($p, [
@@ -199,7 +225,14 @@ class EventController extends Controller {
 					}
 					else{
 						if($p["id"]==-1){
-								$event->perks()->create($p);
+							$perk = $event->perks()->create($p);
+							if(isset($p['tasks'])){
+								foreach ($p['tasks'] as $t) {
+									$t['user_id']=$request->input('organizer');
+									$t['event_id']=$event->id;
+									$perk->tasks()->create($t);
+								}
+							}
 						}
 						else{
 							$newPerk = Perk::find($p["id"]);
@@ -208,6 +241,21 @@ class EventController extends Controller {
 							$newPerk->total_quantity=$p["total_quantity"];
 							$newPerk->reserved_quantity=$p["reserved_quantity"];
 							$newPerk->save();
+							if(isset($p['tasks'])){
+								foreach ($p['tasks'] as $t) {
+									if($t["id"]==-1){
+										$t['user_id']=$request->input('organizer');
+										$t['event_id']=$event->id;
+										$perk->tasks()->create($t);
+									}
+									else{
+										$task = PerkTask::find($t["id"]);
+										$task->title = $t["title"];
+										$task->title = $t["description"];
+										$task->save();
+									}
+								}
+							}
 						}
 					}
 				}

@@ -62,9 +62,20 @@ class UserController extends Controller {
 				$rating = $filtered->avg('question0');
 			}
 			else if ($user->type==1){
-				$user->rating_like_sponzor;
-				$user->tasks_sponzor_like_sponzor;
-				$user->sponzorships;
+				$user = User::with(
+				'tasks_sponzor_like_sponzor',
+				'rating_like_sponzor',
+				'saved_events.event.perks.tasks',
+	      'saved_events.event.type',
+	      'saved_events.event.category',
+				'sponzorships.organizer',
+				'sponzorships.event',
+				'sponzorships.perk.tasks',
+				'sponzorships.task_sponzor.task',
+				'sponzorships.ratings',
+				'interests.interest',
+				'transactions')
+				->where('users.id','=',$id)->first();
 				$filtered = $user->rating_like_sponzor->filter(function ($item) {
 				    return $item->type == 0;
 				});
@@ -74,7 +85,6 @@ class UserController extends Controller {
 				["data"=>
 					[
 						"user"=>$user->toArray(),
-						"interests"=>$interests->toArray(),
 						"rating"=>$rating
 					]
 				], 200
@@ -943,8 +953,8 @@ class UserController extends Controller {
 			return response()->json(['Code'=>$code, 'response'=>$response],200);
 		}
 	}
-  
-  public function chatNotification(Request $request){    
+
+  public function chatNotification(Request $request){
     $userTo = $request->input("userTo");
     $userFrom = $request->input("userFrom");
 		$user=User::where("email","=",$userTo['email'])->first();
@@ -978,7 +988,7 @@ class UserController extends Controller {
       }
       else if($request->input("userType") == 0){
         $notification->sendEmail('chatsendbyorganizer',$user->lang, $to, $vars);
-      }			
+      }
 			return response()->json(['message'=>"Email Notification Sent",'code'=>$link],200);
 		}
   }

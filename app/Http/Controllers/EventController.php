@@ -199,7 +199,7 @@ class EventController extends Controller {
 						}
 					}
 				}
-				
+
 				$sponzorshipTypesToDelete = $request->input('sponzorshipTypesToDelete');
 				if(isset($sponzorshipTypesToDelete)){
 					foreach ($sponzorshipTypesToDelete as $index) {
@@ -246,13 +246,16 @@ class EventController extends Controller {
 									if($t["id"]==-1){
 										$t['user_id']=$request->input('organizer');
 										$t['event_id']=$event->id;
-										$perk->tasks()->create($t);
+										$newPerk->tasks()->create($t);
 									}
 									else{
 										$task = PerkTask::find($t["id"]);
-										$task->title = $t["title"];
-										$task->title = $t["description"];
-										$task->save();
+										if($task){
+											$task->title = $t["title"];
+											$task->title = $t["description"];
+											$task->save();
+										}
+
 									}
 								}
 							}
@@ -261,6 +264,8 @@ class EventController extends Controller {
 				}
 				$Event = Event::with(
 				'perks.tasks',
+	      'type',
+	      'category',
 				'perks.sponzor_tasks')
 				->where('events.id','=',$event->id)->first();
 	 			return response()->json(['message'=>"Updated",'event'=>$Event, 'error'=>$aux],200);

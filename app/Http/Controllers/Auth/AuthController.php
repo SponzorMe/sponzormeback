@@ -35,13 +35,11 @@ class AuthController extends Controller {
         'sponzorships_like_organizer.ratings',
         'interests.interest')
         ->where('users.id','=', Auth::user()->id)->first();
-        $eventTasks = User::with(
-        'events.perks.tasks',
-        'events.perks.sponzor_tasks.Sponzorship',
-        'events.perks.sponzor_tasks.sponzor',
-        'events.perks.sponzor_tasks.task',
-        'events.perks.sponzorships')
-        ->where('users.id','=', Auth::user()->id)->get();
+        $eventTasks = Event::with(
+        'sponzorship',
+        'perks.sponzor_tasks.task',
+        'perks.sponzor_tasks.sponzor')
+        ->where('events.organizer','=', Auth::user()->id)->get();
         $user->last_login = $today;
         $user->save();
         return response()->json([

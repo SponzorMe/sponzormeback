@@ -26,7 +26,7 @@ class Notification {
         ]);
         \Log::info("Email Info: Template ".$template_name." SENT id_tx: ".$results[0]["id"]." total_accepted_recipients: ".$results[0]["total_accepted_recipients"]." To: ".$to['email']);
     } catch (\Exception $exception) {
-        Log::info("Email ".$template_name." NO SENT to: ".$to['email']." error:".$e->getMessage());
+        Log::info("Email ".$template_name." NO SENT to: ".$to['email']." error:".$exception->getMessage());
     }
 }
 }

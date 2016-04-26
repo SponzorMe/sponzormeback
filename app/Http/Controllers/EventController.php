@@ -181,6 +181,7 @@ class EventController extends Controller {
 				$event->description =$request->input('description');
 				$event->privacy =$request->input('privacy');
 				$event->lang =$request->input('lang');
+				$event->sumary =$request->input('sumary');
 				$event->organizer =$request->input('organizer');
 				$event->category =$request->input('category');
 				$event->type =$request->input('type');
@@ -404,6 +405,19 @@ class EventController extends Controller {
 				if(!$validator->fails()){
 					$flag=1;
 					$event->lang=$lang;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}
+			}
+			if(!empty($sumary)){
+				$validator = Validator::make(
+				    ['lang' => $lang],
+				    ['lang' => ['required', 'max:100']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$event->sumary=$sumary;
 				}
 				else{
 					$warnings[]=$validator->messages();

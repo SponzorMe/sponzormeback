@@ -13,11 +13,21 @@ use Illuminate\Support\Facades\Redirect;
 use DrewM\MailChimp\MailChimp;
 use App\Services\Notification;
 
+
+
 class UserController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth.basic.once',['only'=>['update','destroy','index','show']]);
 	}
+	
+	/*public function test(){
+		echo "Hola";
+		$notification = new Notification();
+		
+		$vars = ['userName'=>"123",'message' => "adsdasdas"];
+		$notification->sendEmail('invite',"en",["name"=>"seagomezar@gmail.com", "email"=>"seagomezar@gmail.com"], $vars);
+	}*/
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -207,16 +217,7 @@ class UserController extends Controller {
 			$user->save();
 			$link=\Config::get('constants.activation_url').$activationCode;
 			$notification = new Notification();
-			$vars = array(
-				array(
-					'name'=>'activationLink',
-					'content'=>$link
-				),
-				array(
-						'name' => 'name',
-						'content' => $user->name
-				)
-			);
+			$vars = array('activationLink'=>$link,'name' => $user->name);
 			$to = ['name'=>$user->name, 'email'=>$user->email];
 			$notification->sendEmail('welcome',$user->lang,$to, $vars);
 			response()->json(['message'=>"Activation Link sent",'code'=>'200'],200);
@@ -254,16 +255,7 @@ class UserController extends Controller {
 			}
 			else{
 				$notification = new Notification();
-				$vars = array(
-					array(
-						'name'=>'message',
-						'content'=>$request->input("message")
-					),
-					array(
-							'name' => 'userName',
-							'content' => $user->name
-					)
-				);
+				$vars = array('message'=>$request->input("message"),'userName' => $user->name);
 				$to = ['name'=>$request->input("email"), 'email'=>$request->input("email")];
 				$notification->sendEmail('invite', $user->lang, $to, $vars);
 				return response()->json(['message'=>"Email Sent",'code'=>'200'],200);
@@ -964,24 +956,7 @@ class UserController extends Controller {
 		else{
 			$link=\Config::get('constants.chat_url').$request->input("sponzorshipId");
 			$notification = new Notification();
-			$vars = array(
-				array(
-					'name'=>'chatLink',
-					'content'=>$link
-				),
-				array(
-						'name' => 'nameTo',
-						'content' => $userTo['name']
-				),
-				array(
-						'name' => 'nameFrom',
-						'content' => $userFrom['name']
-				),
-				array(
-						'name' => 'message',
-						'content' => $request->input("message")
-				)
-			);
+			$vars = ['chatLink'=>$link, 'nameTo' => $userTo['name'], 'nameFrom' => $userFrom['name'],'message' => $request->input("message")];
 			$to = ['name'=>$userTo['name'], 'email'=>$userTo['email']];
       if($request->input("userType") == 1){
         $notification->sendEmail('chatsendbysponsor',$user->lang, $to, $vars);

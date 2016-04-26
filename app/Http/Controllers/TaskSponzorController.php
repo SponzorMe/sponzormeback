@@ -148,22 +148,10 @@ class TaskSponzorController extends Controller {
 						$notification = new Notification();
 						//----------------- --- NOTIFICATION EMAIL------------------------------//
 						$vars = array(
-							array(
-								'name' => 'eventName',
-								'content' => $Sponzorship->event->title
-							),
-							array(
-								'name' => 'sponsorName',
-								'content' => $Sponzorship->sponzor->name
-							),
-							array(
-								'name' => 'organizerName',
-								'content' => $Sponzorship->organizer->name
-							),
-							array(
-								'name' => 'taskname',
-								'content' => $TaskSponzor->task->title
-							)
+								'eventName' => $Sponzorship->event->title,
+								'sponsorName' => $Sponzorship->sponzor->name,
+								'organizerName' => $Sponzorship->organizer->name,
+								'taskname' => $TaskSponzor->task->title
 						);
 						$to = ['name'=>$Sponzorship->sponzor->name, 'email'=>$Sponzorship->sponzor->email];
 						$notification->sendEmail('taskstatuschanged', $Sponzorship->sponzor->lang, $to, $vars);

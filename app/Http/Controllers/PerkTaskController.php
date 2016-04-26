@@ -277,27 +277,15 @@ class PerkTaskController extends Controller {
         foreach($SponzorTasks as $st){
           $currentSponzorship = Sponzorship::find($st->sponzorship_id);
           //----------------- --- NOTIFICATION EMAIL------------------------------//
-          $vars = array(
-            array(
-              'name' => 'eventName',
-              'content' => $currentSponzorship->event->title
-            ),
-            array(
-              'name' => 'sponsorName',
-              'content' => $currentSponzorship->sponzor->name
-            ),
-            array(
-              'name' => 'organizerName',
-              'content' => $currentSponzorship->organizer->name
-            ),
-            array(
-              'name' => 'taskname',
-              'content' => $PerkTask->title
-            )
-          );
+          $vars = [
+              'eventName' => $currentSponzorship->event->title,
+			  'sponsorName' => $currentSponzorship->sponzor->name,
+			  'organizerName' => $currentSponzorship->organizer->name,
+              'taskname' => $PerkTask->title
+		  ];
           $to = ['name'=>$currentSponzorship->sponzor->name, 'email'=>$currentSponzorship->sponzor->email];
           $notification->sendEmail('taskdeleted', $currentSponzorship->sponzor->lang, $to, $vars);
-				  //----------------------------------------------------------------------//
+		  //----------------------------------------------------------------------//
         }
         $PerkTask->task_sponzor()->delete();
         $Sponzorship = Sponzorship::with(

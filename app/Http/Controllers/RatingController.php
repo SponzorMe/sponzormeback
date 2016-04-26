@@ -146,19 +146,10 @@ class RatingController extends Controller {
 			if($Rating->type == 1){
 				//----------------- --- NOTIFICATION EMAIL------------------------------//
 				$vars = array(
-					array(
-						'name' => 'eventName',
-						'content' => $Sponzorship->event->title
-					),
-					array(
-						'name' => 'sponsorName',
-						'content' => $Sponzorship->sponzor->name
-					),
-					array(
-						'name' => 'organizerName',
-						'content' => $Sponzorship->organizer->name
-					)
-				);
+						'eventName' => $Sponzorship->event->title,
+						'sponsorName' => $Sponzorship->sponzor->name,
+						'organizerName' => $Sponzorship->organizer->name
+					);
 				$to = ['name'=>$Sponzorship->organizer->name, 'email'=>$Sponzorship->organizer->email];
 				$notification->sendEmail('ratedbysponzor', $Sponzorship->organizer->lang, $to, $vars);
 				//----------------------------------------------------------------------//
@@ -166,18 +157,9 @@ class RatingController extends Controller {
 			else{
 				//----------------- --- NOTIFICATION EMAIL------------------------------//
 				$vars = array(
-					array(
-						'name' => 'eventName',
-						'content' => $Sponzorship->event->title
-					),
-					array(
-						'name' => 'sponsorName',
-						'content' => $Sponzorship->sponzor->name
-					),
-					array(
-						'name' => 'organizerName',
-						'content' => $Sponzorship->organizer->name
-					)
+						'eventName' => $Sponzorship->event->title,
+						'sponsorName' => $Sponzorship->sponzor->name,
+						'organizerName' => $Sponzorship->organizer->name
 				);
 				$to = ['name'=>$Sponzorship->sponzor->name, 'email'=>$Sponzorship->sponzor->email];
 				$notification->sendEmail('ratedbyorganizer', $Sponzorship->sponzor->lang, $to, $vars);

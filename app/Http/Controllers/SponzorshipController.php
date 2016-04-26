@@ -64,10 +64,7 @@ class SponzorshipController extends Controller {
 			//----------------- --- NOTIFICATION EMAIL------------------------------//
 			$notification = new Notification();
 			$vars = array(
-				array(
-					'name' => 'eventName',
-					'content' => $Sponzorship->event->title
-				)
+					'eventName' => $Sponzorship->event->title
 			);
 			$to = ['name'=>$Sponzorship->organizer->name, 'email'=>$Sponzorship->organizer->email];
 			$notification->sendEmail('sponsorpayment', $Sponzorship->organizer->lang, $to, $vars);
@@ -189,10 +186,7 @@ class SponzorshipController extends Controller {
 				//----------------- --- NOTIFICATION EMAIL------------------------------//
 				$notification = new Notification();
 				$vars = array(
-					array(
-						'name' => 'eventName',
-						'content' => $Sponzorship->event->title
-					)
+						'eventName' => $Sponzorship->event->title
 				);
 				$to = ['name'=>$Sponzorship->organizer->name, 'email'=>$Sponzorship->organizer->email];
 				$notification->sendEmail('sponsored-event', $Sponzorship->organizer->lang, $to, $vars);
@@ -369,14 +363,8 @@ class SponzorshipController extends Controller {
 						//----------------- --- NOTIFICATION EMAIL------------------------------//
 						$notification = new Notification();
 						$vars = array(
-							array(
-								'name' => 'eventName',
-								'content' => $Sponzorship->event->title
-							),
-              array(
-								'name' => 'sponzorName',
-								'content' => $Sponzorship->sponzor->name
-							)
+								'eventName' => $Sponzorship->event->title,
+								'sponzorName' => $Sponzorship->sponzor->name
 						);
 						$to = ['name'=>$Sponzorship->sponzor->name, 'email'=>$Sponzorship->sponzor->email];
 						$notification->sendEmail('approved', $Sponzorship->sponzor->lang, $to, $vars);
@@ -390,14 +378,8 @@ class SponzorshipController extends Controller {
 					//----------------- --- NOTIFICATION EMAIL------------------------------//
 					$notification = new Notification();
 					$vars = array(
-						array(
-								'name' => 'eventName',
-								'content' => $Sponzorship->event->title
-							),
-              array(
-								'name' => 'sponzorName',
-								'content' => $Sponzorship->sponzor->name
-							)
+								'eventName' => $Sponzorship->event->title,
+								'sponzorName' => $Sponzorship->sponzor->name
 					);
 					$to = ['name'=>$Sponzorship->sponzor->name, 'email'=>$Sponzorship->sponzor->email];
 					$notification->sendEmail('disapproved', $Sponzorship->sponzor->lang, $to, $vars);
@@ -464,15 +446,8 @@ class SponzorshipController extends Controller {
 			//----------------- --- NOTIFICATION EMAIL------------------------------//
 			$notification = new Notification();
 			$vars = array(
-				array(
-								'name' => 'eventName',
-								'content' => $Sponzorship->event->title
-							),
-              array(
-								'name' => 'sponzorName',
-								'content' => $Sponzorship->sponzor->name
-							)
-			);
+								'eventName' => $Sponzorship->event->title,
+								'sponzorName' => $Sponzorship->sponzor->name);
 			$to = ['name'=>$Sponzorship->organizer->name, 'email'=>$Sponzorship->organizer->email];
 			$notification->sendEmail('sponsorshipcanceled', $Sponzorship->organizer->lang, $to, $vars);
 			$to = ['name'=>$Sponzorship->sponzor->name, 'email'=>$Sponzorship->sponzor->email];

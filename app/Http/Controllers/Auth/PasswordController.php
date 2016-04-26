@@ -50,14 +50,8 @@ class PasswordController extends Controller {
 			//----------------- --- NOTIFICATION EMAIL------------------------------//
 			$notification = new Notification();
 			$vars = array(
-				array(
-						'name' => 'resetLink',
-					'content' => $resetLink
-				),
-				array(
-						'name' => 'name',
-					'content' => $user->name
-				)
+					'resetLink' => $resetLink,
+					'name' => $user->name
 			);
 			$to = ['name'=>$user->name, 'email'=>$user->email];
 			$notification->sendEmail('reset', $user->lang, $to, $vars);
@@ -95,10 +89,7 @@ class PasswordController extends Controller {
 						//----------------- --- NOTIFICATION EMAIL------------------------------//
 						$notification = new Notification();
 						$vars = array(
-							array(
-									'name' => 'name',
-									'content' => $user->name
-							)
+									'name' => $user->name
 						);
 						$to = ['name'=>$user->name, 'email'=>$user->email];
 						$notification->sendEmail('changedpassw', $user->lang, $to, $vars);
@@ -138,10 +129,7 @@ class PasswordController extends Controller {
 					//----------------- --- NOTIFICATION EMAIL------------------------------//
 					$notification = new Notification();
 					$vars = array(
-						array(
-								'name' => 'name',
-								'content' => $user->name
-						)
+								'name' => $user->name
 					);
 					$to = ['name'=>$user->name, 'email'=>$user->email];
 					$notification->sendEmail('changedpassw', $user->lang, $to, $vars);

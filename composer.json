@@ -14,7 +14,9 @@
       	"weblee/mandrill": "dev-master",
       	"mandrill/mandrill": "1.0.*",
       	"drewm/mailchimp-api": "dev-master",
-		"fzaninotto/faker": "^1.6@dev"
+		"fzaninotto/faker": "^1.6@dev",
+		"sparkpost/php-sparkpost": "^1.0",
+		"egeloen/http-adapter": "*"
 	},
 	"require-dev": {
 		    "mockery/mockery": "0.9.*",

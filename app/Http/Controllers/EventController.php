@@ -97,18 +97,19 @@ class EventController extends Controller {
 	public function store(Request $request)
  	{
  		$validation = Validator::make($request->all(), [
- 			'title'=>'required|max:255',
- 			'location'=>'required|max:255',
- 			'ends'=>'required|max:255',
- 			'starts'=>'required|max:255',
+ 			'title'			=>'required|max:255',
+ 			'location'		=>'required|max:500',
+ 			'ends'			=>'required|max:255',
+ 			'starts'		=>'required|max:255',
  			'location_reference'=>'required|max:255',
- 			'image'=>'required|max:255',
- 			'description'=>'required',
- 			'privacy'=>'required|max:255',
- 			'lang'=>'required|max:5',
- 			'organizer'=>'required|exists:users,id',
- 			'category'=>'required|exists:categories,id',
- 			'type'=>'required|exists:event_types,id',
+ 			'image'			=>'required|max:500',
+			'sumary'		=>'required|max:1000',
+ 			'description'	=>'required',
+ 			'privacy'		=>'required|max:255',
+ 			'lang'			=>'required|max:5',
+ 			'organizer'		=>'required|exists:users,id',
+ 			'category'		=>'required|exists:categories,id',
+ 			'type'			=>'required|exists:event_types,id',
      	 ]);
  		if($validation->fails())
  		{
@@ -157,8 +158,9 @@ class EventController extends Controller {
 			'ends'=>'required|max:255',
 			'starts'=>'required|max:255',
 			'location_reference'=>'required|max:255',
-			'image'=>'required|max:255',
+			'image'=>'required|max:555',
 			'description'=>'required',
+			'sumary'=>'required',
 			'privacy'=>'required|max:255',
 			'lang'=>'required|max:5',
 			'organizer'=>'required|exists:users,id',
@@ -179,6 +181,7 @@ class EventController extends Controller {
 				$event->location_reference =$request->input('location_reference');
 				$event->image =$request->input('image');
 				$event->description =$request->input('description');
+				$event->sumary =$request->input('sumary');
 				$event->privacy =$request->input('privacy');
 				$event->lang =$request->input('lang');
 				$event->sumary =$request->input('sumary');
@@ -483,8 +486,9 @@ class EventController extends Controller {
 			'ends'=>'required|max:255',
 			'starts'=>'required|max:255',
 			'location_reference'=>'required|max:255',
-			'image'=>'required|max:255',
+			'image'=>'required|max:555',
 			'description'=>'required',
+			'sumary'=>'required',
 			'privacy'=>'required|max:255',
 			'lang'=>'required|max:5',
 			'organizer'=>'required|exists:users,id',

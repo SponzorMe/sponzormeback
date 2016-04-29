@@ -15,7 +15,7 @@ class User extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['name', 'email', 'password'];
+	protected $fillable = ['name', 'email', 'password', 'ionic_id'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.

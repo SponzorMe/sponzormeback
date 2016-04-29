@@ -684,6 +684,19 @@ class UserController extends Controller {
 					$warnings[]=$validator->messages();
 				}
 			}
+			if(!empty($ionic_id)){
+				$validator = Validator::make(
+				    ['newsletter' => $ionic_id],
+				    ['newsletter' => ['required']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$User->ionic_id=$ionic_id;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}
+			}
 			if(!empty($phone)){
 				$validator = Validator::make(
 				    ['phone' => $phone],
@@ -769,6 +782,7 @@ class UserController extends Controller {
 				$User->login_code=$login_code;
 				$User->login_valid_until=$login_valid_until;
 				$User->lang=$lang;
+				$User->ionic_id=$ionic_id;
 				$User->image=$image;
 				$User->description=$description;
 				$User->eventbriteKey=$eventbriteKey;

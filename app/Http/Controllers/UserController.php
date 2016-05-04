@@ -281,6 +281,7 @@ class UserController extends Controller {
 				'email' => $request->input('email'),
 				'type' => $request->input('type'),
 				'lang' => $request->input('lang'),
+				'ionic_id' => $request->input('ionic_id'),
 				'password' => bcrypt($request->input('password')),
 				'image' => 'https://s3-us-west-2.amazonaws.com/sponzormewebappimages/user_default.jpg'
 			]);

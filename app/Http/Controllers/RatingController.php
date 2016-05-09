@@ -144,6 +144,8 @@ class RatingController extends Controller {
 			$Sponzorship=Sponzorship::find($Rating->sponzorship_id);
 			$notification = new Notification();
 			if($Rating->type == 1){
+				$Sponzorship->rated_sponzor = 1;
+				$Sponzorship->save();
 				//----------------- --- NOTIFICATION EMAIL------------------------------//
 				$vars = [
 						'eventName' => $Sponzorship->event->title,
@@ -155,6 +157,8 @@ class RatingController extends Controller {
 				//----------------------------------------------------------------------//
 			}
 			else{
+				$Sponzorship->rated_organizer = 1;
+				$Sponzorship->save();
 				//----------------- --- NOTIFICATION EMAIL------------------------------//
 				$vars = [
 						'eventName' => $Sponzorship->event->title,

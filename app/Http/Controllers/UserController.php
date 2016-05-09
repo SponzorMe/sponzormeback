@@ -107,8 +107,8 @@ class UserController extends Controller {
 		if($user->type == 0){
 			$user = User::with(
 			'events.perks.tasks',
-      'events.type',
-      'events.category',
+			'events.type',
+			'events.category',
 			'events.perks.sponzor_tasks',
 			'sponzorships_like_organizer.sponzor',
 			'sponzorships_like_organizer.event',
@@ -117,11 +117,15 @@ class UserController extends Controller {
 			'sponzorships_like_organizer.ratings',
 			'interests.interest')
 			->where('users.id','=',$id)->first();
+			$eventTasks = Event::with(
+        'sponzorship',
+        'perks.sponzor_tasks.task',
+        'perks.sponzor_tasks.sponzor')
+        ->where('events.organizer','=', $id)->get();
 			return response()->json(
-				["data"=>
-					[
-						"user"=>$user->toArray()
-					]
+				[
+					"user"=>$user->toArray(),
+					"eventTasks"=>$eventTasks->toArray()
 				], 200
 			);
 		}

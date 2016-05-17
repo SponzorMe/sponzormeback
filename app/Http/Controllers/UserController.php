@@ -104,6 +104,7 @@ class UserController extends Controller {
 
 	public function homeRequest($id){
 		$user = User::find($id);
+		$today = date('Y-m-d H:i:s');
 		if($user->type == 0){
 			$user = User::with(
 			'events.perks.tasks',
@@ -132,8 +133,8 @@ class UserController extends Controller {
 		else if($user->type == 1){
 			$user = User::with(
 			'saved_events.event.perks.tasks',
-      'saved_events.event.type',
-      'saved_events.event.category',
+      		'saved_events.event.type',
+      		'saved_events.event.category',
 			'sponzorships.organizer',
 			'sponzorships.event',
 			'sponzorships.perk.tasks',
@@ -146,13 +147,11 @@ class UserController extends Controller {
 			'category',
 			'type',
 			'user_organizer',
-			'perks.tasks')->get();
+			'perks.tasks')->where('events.starts', '>', $today)->get();
 			return response()->json(
-				["data"=>
-					[
+				[
 						"user"=>$user->toArray(),
 						"events"=>$events->toArray()
-					]
 				], 200
 			);
 		}

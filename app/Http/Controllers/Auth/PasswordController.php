@@ -49,10 +49,8 @@ class PasswordController extends Controller {
 			$resetLink=\Config::get('constants.reset_password_url').$token;
 			//----------------- --- NOTIFICATION EMAIL------------------------------//
 			$notification = new Notification();
-			$vars = array(
-					'resetLink' => $resetLink,
-					'name' => $user->name
-			);
+
+			$vars = array('resetLink' => $resetLink, 'name' => $user->name);
 			$to = ['name'=>$user->name, 'email'=>$user->email];
 			$notification->sendEmail('reset', $user->lang, $to, $vars);
 			//----------------------------------------------------------------------//
@@ -88,9 +86,13 @@ class PasswordController extends Controller {
 						$user->save();
 						//----------------- --- NOTIFICATION EMAIL------------------------------//
 						$notification = new Notification();
+<<<<<<< HEAD
 						$vars = array(
 									'name' => $user->name
 						);
+=======
+						$vars = array('name' => $user->name);
+>>>>>>> staging
 						$to = ['name'=>$user->name, 'email'=>$user->email];
 						$notification->sendEmail('changedpassw', $user->lang, $to, $vars);
 						//----------------------------------------------------------------------//

@@ -25,6 +25,8 @@ class AuthController extends Controller {
 				$rating = $filtered->avg('question0');
         $user = User::with(
         'events.perks.tasks',
+        'events.category',
+        'events.type',
         'events.perks.sponzor_tasks',
         'sponzorships_like_organizer.sponzor',
         'sponzorships_like_organizer.event',
@@ -33,11 +35,17 @@ class AuthController extends Controller {
         'sponzorships_like_organizer.ratings',
         'interests.interest')
         ->where('users.id','=', Auth::user()->id)->first();
+        $eventTasks = Event::with(
+        'sponzorship',
+        'perks.sponzor_tasks.task',
+        'perks.sponzor_tasks.sponzor')
+        ->where('events.organizer','=', Auth::user()->id)->get();
         $user->last_login = $today;
         $user->save();
         return response()->json([
   				"user"=>$user->toArray(),
           "token"=>Auth::user()->token,
+          "eventTasks"=>$eventTasks->toArray(),
           "rating"=>$rating
   				], 200
   			);
@@ -50,6 +58,8 @@ class AuthController extends Controller {
 				$rating = $filtered->avg('question0');
         $user = User::with(
         'saved_events.event.perks.tasks',
+        'saved_events.event.category',
+        'saved_events.event.type',
         'sponzorships.organizer',
         'sponzorships.event',
         'sponzorships.perk.tasks',
@@ -57,7 +67,7 @@ class AuthController extends Controller {
         'sponzorships.ratings',
         'interests.interest',
         'transactions')
-        ->where('users.id','=', Auth::user()->id)->first();        
+        ->where('users.id','=', Auth::user()->id)->first();
         $events = Event::with(
         'category',
         'type',

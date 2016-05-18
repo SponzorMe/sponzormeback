@@ -34,6 +34,10 @@ Route::get('accept/meetup','UserController@acceptMeetup');
 Route::get('token/eventbrite/{code}','UserController@getEventbriteToken');
 Route::get('token/meetup/{code}','UserController@getMeetupToken');
 Route::get('events/meetup/{code}','UserController@getMeetupEvents');
+
+Route::get('events/save/{eventId}/{userId}','EventController@saveEvent');
+Route::get('events/remove_saved/{savedEventId}','EventController@saveRemoveEvent');
+
 Route::get('verify_activation/{activationCode}','UserController@verifyActivationLink');
 Route::get('ratings/sponzorship/{sponzorshipId}/{type}','RatingController@getRatingBySponzorship');
 Route::get('ratings/sponzor/{sponzorId}','RatingController@getRatingBySponzor');

@@ -16,7 +16,8 @@
       	"drewm/mailchimp-api": "dev-master",
 		"fzaninotto/faker": "^1.6@dev",
 		"sparkpost/php-sparkpost": "^1.0",
-		"egeloen/http-adapter": "*"
+		"egeloen/http-adapter": "*",
+		"guzzlehttp/guzzle": "^6.2"
 	},
 	"require-dev": {
 		    "mockery/mockery": "0.9.*",

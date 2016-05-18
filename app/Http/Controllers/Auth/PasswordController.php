@@ -86,13 +86,7 @@ class PasswordController extends Controller {
 						$user->save();
 						//----------------- --- NOTIFICATION EMAIL------------------------------//
 						$notification = new Notification();
-<<<<<<< HEAD
-						$vars = array(
-									'name' => $user->name
-						);
-=======
 						$vars = array('name' => $user->name);
->>>>>>> staging
 						$to = ['name'=>$user->name, 'email'=>$user->email];
 						$notification->sendEmail('changedpassw', $user->lang, $to, $vars);
 						//----------------------------------------------------------------------//

@@ -63,13 +63,7 @@ class SponzorshipController extends Controller {
 			}
 			//----------------- --- NOTIFICATION EMAIL------------------------------//
 			$notification = new Notification();
-<<<<<<< HEAD
-			$vars = array(
-					'eventName' => $Sponzorship->event->title
-			);
-=======
 			$vars = array('eventName' => $Sponzorship->event->title);
->>>>>>> staging
 			$to = ['name'=>$Sponzorship->organizer->name, 'email'=>$Sponzorship->organizer->email];
 			$notification->sendEmail('sponsorpayment', $Sponzorship->organizer->lang, $to, $vars);
 			//----------------------------------------------------------------------//
@@ -189,13 +183,7 @@ class SponzorshipController extends Controller {
 				$Sponzorship=Sponzorship::create($request->all());
 				//----------------- --- NOTIFICATION EMAIL------------------------------//
 				$notification = new Notification();
-<<<<<<< HEAD
-				$vars = array(
-						'eventName' => $Sponzorship->event->title
-				);
-=======
 				$vars = array('eventName' => $Sponzorship->event->title);
->>>>>>> staging
 				$to = ['name'=>$Sponzorship->organizer->name, 'email'=>$Sponzorship->organizer->email];
 				$notification->sendEmail('sponsored-event', $Sponzorship->organizer->lang, $to, $vars);
 				//----------------------------------------------------------------------//
@@ -453,13 +441,7 @@ class SponzorshipController extends Controller {
       $perkTasks = PerkTask::where('type', '=', '1')->where('perk_id', '=', $Sponzorship->perk_id)->where('user_id', '=', $Sponzorship->sponzor_id)->delete();
 			//----------------- --- NOTIFICATION EMAIL------------------------------//
 			$notification = new Notification();
-<<<<<<< HEAD
-			$vars = array(
-								'eventName' => $Sponzorship->event->title,
-								'sponzorName' => $Sponzorship->sponzor->name);
-=======
 			$vars = array('eventName' => $Sponzorship->event->title, 'sponzorName' => $Sponzorship->sponzor->name);
->>>>>>> staging
 			$to = ['name'=>$Sponzorship->organizer->name, 'email'=>$Sponzorship->organizer->email];
 			$notification->sendEmail('sponsorshipcanceled', $Sponzorship->organizer->lang, $to, $vars);
 			$to = ['name'=>$Sponzorship->sponzor->name, 'email'=>$Sponzorship->sponzor->email];

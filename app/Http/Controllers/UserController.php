@@ -259,14 +259,7 @@ class UserController extends Controller {
 			}
 			else{
 				$notification = new Notification();
-<<<<<<< HEAD
-				$vars = array(
-						'message'=>$request->input("message"),
-							'userName' => $user->name
-				);
-=======
 				$vars = array('message'=>$request->input("message"),'userName' => $user->name);
->>>>>>> staging
 				$to = ['name'=>$request->input("email"), 'email'=>$request->input("email")];
 				$notification->sendEmail('invite', $user->lang, $to, $vars);
 				return response()->json(['message'=>"Email Sent",'code'=>'200'],200);
@@ -982,16 +975,7 @@ class UserController extends Controller {
 		else{
 			$link=\Config::get('constants.chat_url').$request->input("sponzorshipId");
 			$notification = new Notification();
-<<<<<<< HEAD
-			$vars = array(
-					'chatLink'=>$link,
-						'nameTo' => $userTo['name'],
-						'nameFrom' => $userFrom['name'],
-						'message' => $request->input("message")
-			);
-=======
 			$vars = ['chatLink'=>$link, 'nameTo' => $userTo['name'], 'nameFrom' => $userFrom['name'],'message' => $request->input("message")];
->>>>>>> staging
 			$to = ['name'=>$userTo['name'], 'email'=>$userTo['email']];
       if($request->input("userType") == 1){
         $notification->sendEmail('chatsendbysponsor',$user->lang, $to, $vars);

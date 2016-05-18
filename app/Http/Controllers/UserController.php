@@ -13,11 +13,21 @@ use Illuminate\Support\Facades\Redirect;
 use DrewM\MailChimp\MailChimp;
 use App\Services\Notification;
 
+
+
 class UserController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth.basic.once',['only'=>['update','destroy','index','show']]);
 	}
+	
+	/*public function test(){
+		echo "Hola";
+		$notification = new Notification();
+		
+		$vars = ['userName'=>"123",'message' => "adsdasdas"];
+		$notification->sendEmail('invite',"en",["name"=>"seagomezar@gmail.com", "email"=>"seagomezar@gmail.com"], $vars);
+	}*/
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -62,9 +72,20 @@ class UserController extends Controller {
 				$rating = $filtered->avg('question0');
 			}
 			else if ($user->type==1){
-				$user->rating_like_sponzor;
-				$user->tasks_sponzor_like_sponzor;
-				$user->sponzorships;
+				$user = User::with(
+				'tasks_sponzor_like_sponzor',
+				'rating_like_sponzor',
+				'saved_events.event.perks.tasks',
+	      'saved_events.event.type',
+	      'saved_events.event.category',
+				'sponzorships.organizer',
+				'sponzorships.event',
+				'sponzorships.perk.tasks',
+				'sponzorships.task_sponzor.task',
+				'sponzorships.ratings',
+				'interests.interest',
+				'transactions')
+				->where('users.id','=',$id)->first();
 				$filtered = $user->rating_like_sponzor->filter(function ($item) {
 				    return $item->type == 0;
 				});
@@ -74,7 +95,6 @@ class UserController extends Controller {
 				["data"=>
 					[
 						"user"=>$user->toArray(),
-						"interests"=>$interests->toArray(),
 						"rating"=>$rating
 					]
 				], 200
@@ -84,9 +104,12 @@ class UserController extends Controller {
 
 	public function homeRequest($id){
 		$user = User::find($id);
+		$today = date('Y-m-d H:i:s');
 		if($user->type == 0){
 			$user = User::with(
 			'events.perks.tasks',
+			'events.type',
+			'events.category',
 			'events.perks.sponzor_tasks',
 			'sponzorships_like_organizer.sponzor',
 			'sponzorships_like_organizer.event',
@@ -95,17 +118,23 @@ class UserController extends Controller {
 			'sponzorships_like_organizer.ratings',
 			'interests.interest')
 			->where('users.id','=',$id)->first();
+			$eventTasks = Event::with(
+        'sponzorship',
+        'perks.sponzor_tasks.task',
+        'perks.sponzor_tasks.sponzor')
+        ->where('events.organizer','=', $id)->get();
 			return response()->json(
-				["data"=>
-					[
-						"user"=>$user->toArray()
-					]
+				[
+					"user"=>$user->toArray(),
+					"eventTasks"=>$eventTasks->toArray()
 				], 200
 			);
 		}
 		else if($user->type == 1){
 			$user = User::with(
 			'saved_events.event.perks.tasks',
+      		'saved_events.event.type',
+      		'saved_events.event.category',
 			'sponzorships.organizer',
 			'sponzorships.event',
 			'sponzorships.perk.tasks',
@@ -118,13 +147,11 @@ class UserController extends Controller {
 			'category',
 			'type',
 			'user_organizer',
-			'perks.tasks')->get();
+			'perks.tasks')->where('events.starts', '>', $today)->get();
 			return response()->json(
-				["data"=>
-					[
+				[
 						"user"=>$user->toArray(),
 						"events"=>$events->toArray()
-					]
 				], 200
 			);
 		}
@@ -193,10 +220,8 @@ class UserController extends Controller {
 			$user->save();
 			$link=\Config::get('constants.activation_url').$activationCode;
 			$notification = new Notification();
-			$vars = array(
-					'activationLink'=>$link,
-						'name' => $user->name
-			);
+
+			$vars = array('activationLink'=>$link,'name' => $user->name);
 			$to = ['name'=>$user->name, 'email'=>$user->email];
 			$notification->sendEmail('welcome',$user->lang,$to, $vars);
 			response()->json(['message'=>"Activation Link sent",'code'=>'200'],200);
@@ -234,10 +259,14 @@ class UserController extends Controller {
 			}
 			else{
 				$notification = new Notification();
+<<<<<<< HEAD
 				$vars = array(
 						'message'=>$request->input("message"),
 							'userName' => $user->name
 				);
+=======
+				$vars = array('message'=>$request->input("message"),'userName' => $user->name);
+>>>>>>> staging
 				$to = ['name'=>$request->input("email"), 'email'=>$request->input("email")];
 				$notification->sendEmail('invite', $user->lang, $to, $vars);
 				return response()->json(['message'=>"Email Sent",'code'=>'200'],200);
@@ -263,6 +292,7 @@ class UserController extends Controller {
 				'email' => $request->input('email'),
 				'type' => $request->input('type'),
 				'lang' => $request->input('lang'),
+				'ionic_id' => $request->input('ionic_id'),
 				'password' => bcrypt($request->input('password')),
 				'image' => 'https://s3-us-west-2.amazonaws.com/sponzormewebappimages/user_default.jpg'
 			]);
@@ -666,6 +696,19 @@ class UserController extends Controller {
 					$warnings[]=$validator->messages();
 				}
 			}
+			if(!empty($ionic_id)){
+				$validator = Validator::make(
+				    ['newsletter' => $ionic_id],
+				    ['newsletter' => ['required']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$User->ionic_id=$ionic_id;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}
+			}
 			if(!empty($phone)){
 				$validator = Validator::make(
 				    ['phone' => $phone],
@@ -751,6 +794,7 @@ class UserController extends Controller {
 				$User->login_code=$login_code;
 				$User->login_valid_until=$login_valid_until;
 				$User->lang=$lang;
+				$User->ionic_id=$ionic_id;
 				$User->image=$image;
 				$User->description=$description;
 				$User->eventbriteKey=$eventbriteKey;
@@ -927,8 +971,8 @@ class UserController extends Controller {
 			return response()->json(['Code'=>$code, 'response'=>$response],200);
 		}
 	}
-  
-  public function chatNotification(Request $request){    
+
+  public function chatNotification(Request $request){
     $userTo = $request->input("userTo");
     $userFrom = $request->input("userFrom");
 		$user=User::where("email","=",$userTo['email'])->first();
@@ -938,19 +982,23 @@ class UserController extends Controller {
 		else{
 			$link=\Config::get('constants.chat_url').$request->input("sponzorshipId");
 			$notification = new Notification();
+<<<<<<< HEAD
 			$vars = array(
 					'chatLink'=>$link,
 						'nameTo' => $userTo['name'],
 						'nameFrom' => $userFrom['name'],
 						'message' => $request->input("message")
 			);
+=======
+			$vars = ['chatLink'=>$link, 'nameTo' => $userTo['name'], 'nameFrom' => $userFrom['name'],'message' => $request->input("message")];
+>>>>>>> staging
 			$to = ['name'=>$userTo['name'], 'email'=>$userTo['email']];
       if($request->input("userType") == 1){
         $notification->sendEmail('chatsendbysponsor',$user->lang, $to, $vars);
       }
       else if($request->input("userType") == 0){
         $notification->sendEmail('chatsendbyorganizer',$user->lang, $to, $vars);
-      }			
+      }
 			return response()->json(['message'=>"Email Notification Sent",'code'=>$link],200);
 		}
   }

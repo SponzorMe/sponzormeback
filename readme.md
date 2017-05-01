@@ -7,7 +7,7 @@
 > 2. Vagrant [vagrantLink]
 > 3. Git. [gitLink]
 > 4. Composer [composerLink]
-> 5. Clone Scotch Box LAMP Environment. (Download)[https://github.com/scotch-io/scotch-box]
+> 5. Clone Scotch Box LAMP Environment. [Download](https://github.com/scotch-io/scotch-box)
 > 6. Enter in your Vagrant VM.
 ```sh
 vagrant ssh
@@ -49,6 +49,11 @@ Mac/Linux
 	# composer global update
   # phpunit
 ```
+
+### Deploy
+
+> 1. Install and Setup Vagrant Plugin with Digital Ocean. [Instructions Here](https://github.com/devopsgroup-io/vagrant-digitalocean)
+
 That's it!!
 
 

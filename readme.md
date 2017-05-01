@@ -7,6 +7,11 @@
 > 2. Vagrant [vagrantLink]
 > 3. Git. [gitLink]
 > 4. Composer [composerLink]
+> 5. Clone Scotch Box LAMP Environment. (Download)[https://github.com/scotch-io/scotch-box]
+> 6. Enter in your Vagrant VM.
+```sh
+vagrant ssh
+```
 
 ### Set up
 

@@ -1,5 +1,5 @@
 ## Sponzorme Api
-
+[![Gitter](https://img.shields.io/gitter/room/freecad/freecad.svg)](https://gitter.im/sponzorme/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 
 ### Requirements
 

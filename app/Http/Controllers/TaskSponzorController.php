@@ -3,8 +3,11 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\PerkTask;
 use App\Models\TaskSponzor;
 use Illuminate\Support\Facades\Validator;
+use App\Services\Notification;
+use App\Models\Sponzorship;
 
 class TaskSponzorController extends Controller {
 	public function __construct()
@@ -74,24 +77,45 @@ class TaskSponzorController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		$validation = Validator::make($request->all(), [
-			'status'=>'max:4',
-			'task_id'=>'required|max:11|exists:perk_tasks,id',
+    //First we Create the PerkTask (Task)
+    $validation = Validator::make($request->all(), [
+			'title'=>'required|max:255',
+			'description'=>'required',
+			'type'=>'required|max:5',
+			'status'=>'required|max:5',
+			'user_id'=>'required|max:11|exists:users,id',
 			'perk_id'=>'required|max:11|exists:perks,id',
-			'sponzor_id'=>'required|max:11|exists:users,id',
-			'organizer_id'=>'required|max:11|exists:users,id',
 			'event_id'=>'required|max:11|exists:events,id',
-			'sponzorship_id'=>'required|max:11|exists:sponzorships,id',
     	 ]);
-		if($validation->fails())
-		{
-			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
-		}
-		else
-		{
-			$TaskSponzor=TaskSponzor::create($request->all());
-			return response()->json(['message'=>"Inserted",'TaskSponzor'=>$TaskSponzor],201);
-		}
+      if($validation->fails())
+      {
+        return response()->json(['message'=>"PerkTask Not inserted",'error'=>$validation->messages()],422);
+      }
+      else
+      {
+        $PerkTask=PerkTask::create($request->all());//If ok, we Create the PerkTask
+        $posInput = $request->all();
+        $posInput['task_id'] = $PerkTask->id;// Assign new value for the task
+        $validation = Validator::make($posInput, [
+          'status'=>'max:4',
+          'task_id'=>'required|max:11|exists:perk_tasks,id',
+          'perk_id'=>'required|max:11|exists:perks,id',
+          'sponzor_id'=>'required|max:11|exists:users,id',
+          'organizer_id'=>'required|max:11|exists:users,id',
+          'event_id'=>'required|max:11|exists:events,id',
+          'sponzorship_id'=>'required|max:11|exists:sponzorships,id',
+        ]);
+        if($validation->fails())
+        {
+          return response()->json(['message'=>"PerkTask Inserted But Task Sponzor Not inserted", 'PerkTask'=>$PerkTask, 'error'=>$validation->messages()],422);
+        }
+        else
+        {
+          $TaskSponzor=TaskSponzor::create($posInput);
+          $TaskSponzor = TaskSponzor::with('task')->where('id',$TaskSponzor->id)->first();
+          return response()->json(['message'=>"Inserted",'TaskSponzor'=>$TaskSponzor,'PerkTask'=>$PerkTask],201);
+        }
+      }
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -119,6 +143,20 @@ class TaskSponzorController extends Controller {
 				);
 				if(!$validator->fails()){
 					$flag=1;
+					if($TaskSponzor->status != $status && $TaskSponzor->type == 0){
+						$Sponzorship= Sponzorship::find($TaskSponzor->sponzorship_id);
+						$notification = new Notification();
+						//----------------- --- NOTIFICATION EMAIL------------------------------//
+						$vars = array(
+								'eventName' => $Sponzorship->event->title,
+								'sponsorName' => $Sponzorship->sponzor->name,
+								'organizerName' => $Sponzorship->organizer->name,
+								'taskname' => $TaskSponzor->task->title
+						);
+						$to = ['name'=>$Sponzorship->sponzor->name, 'email'=>$Sponzorship->sponzor->email];
+						$notification->sendEmail('taskstatuschanged', $Sponzorship->sponzor->lang, $to, $vars);
+						//----------------------------------------------------------------------//
+					}
 					$TaskSponzor->status=$status;
 				}
 				else{
@@ -255,7 +293,9 @@ class TaskSponzorController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
-			$TaskSponzor->delete();
+      $PerkTask = PerkTask::find($TaskSponzor->task_id);			
+      $PerkTask->task_sponzor()->delete();
+			$PerkTask->delete();
 			return response()->json(['message'=>"Deleted"],200);
 		}
 	}

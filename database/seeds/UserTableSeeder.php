@@ -8,19 +8,6 @@ class UserTableSeeder extends Seeder {
     public function run()
     {
         DB::table('users')->delete();
-        //Main admin
-       DB::table('users')->insert(
-        	[
-        	'name' => 'Admin Sponzorme',
-        	'email' => 'admin@sponzor.me',
-        	'password' => Hash::make('sponzorme'),
-        	'activated' => true,
-        	'company' => 'Sponzorme',
-        	'lang' => 'en',
-        	'image' => 'admin_sponzorme.png',
-        	'type' => '2',
-        	'demo' => '0',
-        	]);
         //Main sponzor
         DB::table('users')->insert(
         	[
@@ -30,9 +17,10 @@ class UserTableSeeder extends Seeder {
         	'activated' => true,
         	'company' => 'Sponzorme',
         	'lang' => 'en',
-        	'image' => 'sponzor_sponzorme.png',
+        	'image' => 'https://s3-us-west-2.amazonaws.com/sponzormewebappimages/user_default.jpg',
         	'type' => '1',
         	'demo' => '0',
+          'id' => '1002',
         	]);
         //Main organizer
         DB::table('users')->insert(
@@ -43,11 +31,12 @@ class UserTableSeeder extends Seeder {
         	'activated' => true,
         	'company' => 'Sponzorme',
         	'lang' => 'en',
-        	'image' => 'organizer_sponzorme.png',
+        	'image' => 'https://s3-us-west-2.amazonaws.com/sponzormewebappimages/user_default.jpg',
         	'type' => '0',
         	'demo' => '0',
+          'id' => '1003',
         	]);
-        
+
     }
 
 }

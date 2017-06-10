@@ -5,21 +5,35 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Event;
+use App\Models\UserInterest;
+use App\Models\InterestCategory;
 use Illuminate\Support\Facades\Validator;
-use Weblee\Mandrill\Mail;
+use Illuminate\Support\Facades\Redirect;
+use DrewM\MailChimp\MailChimp;
+use App\Services\Notification;
+
+
 
 class UserController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth.basic.once',['only'=>['update','destroy','index','show']]);
 	}
+	
+	/*public function test(){
+		echo "Hola";
+		$notification = new Notification();
+		
+		$vars = ['userName'=>"123",'message' => "adsdasdas"];
+		$notification->sendEmail('invite',"en",["name"=>"seagomezar@gmail.com", "email"=>"seagomezar@gmail.com"], $vars);
+	}*/
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
+	public function index(){
 		$users = User::get();
 		return response()->json([
 			"success" => true,
@@ -33,8 +47,7 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
-	{
+	public function show($id){
 		$user = User::find($id);
 		if(!$user){
 			return response()->json(
@@ -44,126 +57,114 @@ class UserController extends Controller {
 		}
 		else
 		{
+			$interests = InterestCategory::join('users_interests', 'users_interests.interest_id', '=','interests_categories.id_interest')->where('users_interests.user_id', '=', $id)->get();
 			$user->events;
 			$user->categories;
 			$user->interests;
 			$user->perk_tasks;
-			$user->sponzorships;
-			$user->sponzorships_like_organizer;
-			$user->tasks_sponzor_like_organizer;
-			$user->tasks_sponzor_like_sponzor;
+			if($user->type==0){
+				$user->sponzorships_like_organizer;
+				$user->tasks_sponzor_like_organizer;
+				$user->rating_like_organizer;
+				$filtered = $user->rating_like_organizer->filter(function ($item) {
+				    return $item->type == 1;
+				});
+				$rating = $filtered->avg('question0');
+			}
+			else if ($user->type==1){
+				$user = User::with(
+				'tasks_sponzor_like_sponzor',
+				'rating_like_sponzor',
+				'saved_events.event.perks.tasks',
+	      'saved_events.event.type',
+	      'saved_events.event.category',
+				'sponzorships.organizer',
+				'sponzorships.event',
+				'sponzorships.perk.tasks',
+				'sponzorships.task_sponzor.task',
+				'sponzorships.ratings',
+				'interests.interest',
+				'transactions')
+				->where('users.id','=',$id)->first();
+				$filtered = $user->rating_like_sponzor->filter(function ($item) {
+				    return $item->type == 0;
+				});
+				$rating = $filtered->avg('question0');
+			}
 			return response()->json(
 				["data"=>
 					[
 						"user"=>$user->toArray(),
+						"rating"=>$rating
 					]
 				], 200
 			);
 		}
 	}
-	/**
-	 * Send Welcome Email throught mandriall APP
-	 * https://mandrillapp.com/api/docs/messages.php.html
-	 * @param  int  $activationLink
-	 * @param  int  $userEmail
-	 * @param  int  $userName
-	 * @return Response
-	 */
-	private function welcomeEmail($activationLink,$userEmail,$userName,$lang="en"){
-		try{
-			if($lang=="en")
-		    	$template_name = 'welcome-english';
-		    if($lang=="es")
-		    	$template_name = 'welcome';
-		    if($lang=="pt")
-		    	$template_name = 'welcome-portuguese';
-		    $template_content = array(
-		        array(
-		            'name' => 'activationLink',
-		            'content' => 'sebas.com'
-		        )
-		    );
-		    $message = array(
-		        'to' => array(
-		            array(
-		                'email' =>	$userEmail,
-		                'name' 	=> 	$userName,
-		                'type' 	=> 'to'
-		            )
-		        ),
-		        'global_merge_vars' => array(
-		            array(
-		                'name' => 'activationLink',
-		            	'content' => $activationLink
-		            ),
-		            array(
-		                'name' => 'name',
-		            	'content' => $userName
-		            )
-		        ),
-		    );
-	    	$result = \MandrillMail::messages()->sendTemplate($template_name, $template_content, $message);
-			if($result[0]["status"]=="sent" AND !$result[0]["reject_reason"]){
-				return true;
-			}
-			else{
-				return false;
-			}
+
+	public function homeRequest($id){
+		$user = User::find($id);
+		$today = date('Y-m-d H:i:s');
+		if($user->type == 0){
+			$user = User::with(
+			'events.perks.tasks',
+			'events.type',
+			'events.category',
+			'events.perks.sponzor_tasks',
+			'sponzorships_like_organizer.sponzor',
+			'sponzorships_like_organizer.event',
+			'sponzorships_like_organizer.perk',
+			'sponzorships_like_organizer.task_sponzor.task',
+			'sponzorships_like_organizer.ratings',
+			'interests.interest')
+			->where('users.id','=',$id)->first();
+			$eventTasks = Event::with(
+        'sponzorship',
+        'perks.sponzor_tasks.task',
+        'perks.sponzor_tasks.sponzor')
+        ->where('events.organizer','=', $id)->get();
+			return response()->json(
+				[
+					"user"=>$user->toArray(),
+					"eventTasks"=>$eventTasks->toArray()
+				], 200
+			);
 		}
-		catch(Exeption $e){
-			return false;
+		else if($user->type == 1){
+			$user = User::with(
+			'saved_events.event.perks.tasks',
+      		'saved_events.event.type',
+      		'saved_events.event.category',
+			'sponzorships.organizer',
+			'sponzorships.event',
+			'sponzorships.perk.tasks',
+			'sponzorships.task_sponzor.task',
+			'sponzorships.ratings',
+			'interests.interest',
+			'transactions')
+			->where('users.id','=',$id)->first();
+			$events = Event::with(
+			'category',
+			'type',
+			'user_organizer',
+			'perks.tasks')->where('events.starts', '>', $today)->get();
+			return response()->json(
+				[
+						"user"=>$user->toArray(),
+						"events"=>$events->toArray()
+				], 200
+			);
 		}
-	}
-	private function inviteFriendMail($friendEmail,$userMessage,$userName,$lang="en"){
-		try{
-			if($lang=="en")
-		    	$template_name = 'invite-english';
-		    if($lang=="es")
-		    	$template_name = 'invite-spanish';
-		    if($lang=="pt")
-		    	$template_name = 'invite-portuguese';
-		    $template_content = array(
-		        array(
-		            'name' => 'Invite-Friend',
-		            'content' => 'SponzorMe'
-		        )
-		    );
-		    $message = array(
-		        'to' => array(
-		            array(
-		                'email' =>	$friendEmail,
-		                'name' 	=> 	$friendEmail,
-		                'type' 	=> 'to'
-		            )
-		        ),
-		        'global_merge_vars' => array(
-		            array(
-		                'name' => 'userName',
-		            	'content' => $userName
-		            ),
-		            array(
-		                'name' => 'message',
-		            	'content' => $userMessage
-		            )
-		        ),
-		    );
-	    	$result = \MandrillMail::messages()->sendTemplate($template_name, $template_content, $message);
-			if($result[0]["status"]=="sent" AND !$result[0]["reject_reason"]){
-				return true;
-			}
-			elseif ($result[0]["status"]=="queued") {
-				return false;
-			}
-			else{
-				return false;
-			}
-		}
-		catch(Exeption $e){
-			return false;
+		else{
+			return response()->json(
+				["message"=>"Resource not found",
+				], 404
+			);
 		}
 	}
-	private function subscribeToMailchimp($email,$name,$type,$lang="en"){
-		$MailChimp = new \Drewm\MailChimp('2cc5e8c25894c43a2a4f022e6e47c352-us7');
+
+	private function subscribeToMailchimp($email, $name, $type, $lang="en"){
+		$MailChimp = new MailChimp('2cc5e8c25894c43a2a4f022e6e47c352-us7');
 		$name=explode(" ", trim($name));
 		if(empty($name[1])){//
 			$name[1]=" ";//If nothing was explode assign empty string by default.
@@ -183,26 +184,20 @@ class UserController extends Controller {
 		        break;
 		}
 		if($type==1){//If new user is sponzor
-			$result = $MailChimp->call('lists/subscribe', array(
-                'id'                => $sponzorList,
-                'email'             => array('email'=>$email),
-                'merge_vars'        => array('FNAME'=>$name[0], 'LNAME'=>$name[1]),
-                'double_optin'      => false,
-                'update_existing'   => true,
-                'replace_interests' => false,
-                'send_welcome'      => false,
-            ));
+			$result = $MailChimp->post("lists/$sponzorList/members", [
+			    'email_address' => $email,
+			    'status'        => 'subscribed',
+					'send_welcome'  => false,
+					'merge_vars'    => array('FNAME'=>$name[0], 'LNAME'=>$name[1])
+			]);
 		}
 		else{//If the new user is organizer
-			$result = $MailChimp->call('lists/subscribe', array(
-                'id'                => $organizerList,
-                'email'             => array('email'=>$email),
-                'merge_vars'        => array('FNAME'=>$name[0], 'LNAME'=>$name[1]),
-                'double_optin'      => false,
-                'update_existing'   => true,
-                'replace_interests' => false,
-                'send_welcome'      => false,
-            ));
+			$result = $MailChimp->post("lists/$organizerList/members", [
+			    'email_address' => $email,
+			    'status'        => 'subscribed',
+					'send_welcome'  => false,
+					'merge_vars'    => array('FNAME'=>$name[0], 'LNAME'=>$name[1])
+			]);
 		}
 	}
 	/**
@@ -224,13 +219,12 @@ class UserController extends Controller {
 			$user->activation_code=$activationCode;
 			$user->save();
 			$link=\Config::get('constants.activation_url').$activationCode;
-			$flag = $this->welcomeEmail($link,$user->email,$user->name,$user->lang);
-			if($flag){
-				return response()->json(['message'=>"Activation Link sent",'code'=>'200'],200);
-			}
-			else{
-				return response()->json(['message'=>"Email Cannot be sent",'code'=>'201'],201);
-			}
+			$notification = new Notification();
+
+			$vars = array('activationLink'=>$link,'name' => $user->name);
+			$to = ['name'=>$user->name, 'email'=>$user->email];
+			$notification->sendEmail('welcome',$user->lang,$to, $vars);
+			response()->json(['message'=>"Activation Link sent",'code'=>'200'],200);
 		}
 	}
 	public function verifyActivationLink($activationCode){
@@ -262,22 +256,20 @@ class UserController extends Controller {
 			$user=User::find($request->input("user_id"));//Get the user info
 			if(!$user){
 				return response()->json(['message'=>"User does not exist",'code'=>'404'],404);
-			}else{
-					$flag = $this->inviteFriendMail($request->input("email"),$request->input("message"),$user->name,$user->lang);
-					if($flag){
-						return response()->json(['message'=>"Email Sent",'code'=>'200'],200);
-					}
-					else{
-						return response()->json(['message'=>"No Sent",'code'=>'422'],422);
-					}
+			}
+			else{
+				$notification = new Notification();
+				$vars = array('message'=>$request->input("message"),'userName' => $user->name);
+				$to = ['name'=>$request->input("email"), 'email'=>$request->input("email")];
+				$notification->sendEmail('invite', $user->lang, $to, $vars);
+				return response()->json(['message'=>"Email Sent",'code'=>'200'],200);
 			}
 		}
 	}
-	public function store(Request $request)
-	{
+	public function store(Request $request){
 		$validation = Validator::make($request->all(), [
 			'email' 	=> 'required|email|max:255|unique:users',
-			'password' 	=> 'required|confirmed|min:6',
+			'password'=> 'required|confirmed|min:6',
 			'name'		=>'required|max:255',
 			'type'		=>'required|max:1',
 			'lang'		=>'required|max:5|in:en,es,pt'
@@ -293,7 +285,9 @@ class UserController extends Controller {
 				'email' => $request->input('email'),
 				'type' => $request->input('type'),
 				'lang' => $request->input('lang'),
+				'ionic_id' => $request->input('ionic_id'),
 				'password' => bcrypt($request->input('password')),
+				'image' => 'https://s3-us-west-2.amazonaws.com/sponzormewebappimages/user_default.jpg'
 			]);
 			$emailSender=$this->sendActivationLink($request);
 			$this->subscribeToMailchimp($request->input('email'),$request->input('name'),$request->input('type'),$request->input('lang'));
@@ -306,8 +300,7 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Request $request,$id)
-	{
+	public function update(Request $request,$id){
 		$User=User::find($id);
 		if(!$User){
 			return response()->json(['message'=>"Not found"],404);
@@ -657,6 +650,84 @@ class UserController extends Controller {
 					$warnings[]=$validator->messages();
 				}
 			}
+			if(!empty($logo)){
+				$validator = Validator::make(
+				    ['logo' => $logo],
+				    ['logo' => ['required']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$User->logo=$logo;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}
+			}
+			if(!empty($pitch)){
+				$validator = Validator::make(
+				    ['pitch' => $pitch],
+				    ['pitch' => ['required']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$User->pitch=$pitch;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}
+			}
+			if(!empty($newsletter)){
+				$validator = Validator::make(
+				    ['newsletter' => $newsletter],
+				    ['newsletter' => ['required']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$User->newsletter=$newsletter;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}
+			}
+			if(!empty($ionic_id)){
+				$validator = Validator::make(
+				    ['newsletter' => $ionic_id],
+				    ['newsletter' => ['required']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$User->ionic_id=$ionic_id;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}
+			}
+			if(!empty($phone)){
+				$validator = Validator::make(
+				    ['phone' => $phone],
+				    ['phone' => ['max:255']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$User->phone=$phone;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}
+			}
+			if(!empty($website)){
+				$validator = Validator::make(
+				    ['website' => $website],
+				    ['website' => ['max:255']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$User->website=$website;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}
+			}
 			if($flag){
 				$User->save();
 				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'User'=>$User],200);
@@ -716,6 +787,7 @@ class UserController extends Controller {
 				$User->login_code=$login_code;
 				$User->login_valid_until=$login_valid_until;
 				$User->lang=$lang;
+				$User->ionic_id=$ionic_id;
 				$User->image=$image;
 				$User->description=$description;
 				$User->eventbriteKey=$eventbriteKey;
@@ -739,8 +811,7 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
-	{
+	public function destroy($id){
 		$User=User::find($id);
 		if(!$User){
 			return response()->json(['message'=>"Not found"],404);
@@ -780,5 +851,139 @@ class UserController extends Controller {
 			}
 		}
 	}
+	/**
+	 * Get Eventbrite Token and redirect to the front
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function acceptEventbrite(Request $r){
+		if($_GET['code']){
+			$link=\Config::get('constants.redirect_evenbrite_front').$_GET['code'];
+			return Redirect::to($link);
+		}
+		else{
+			$link=\Config::get('constants.redirect_evenbrite_front').'0';
+			return Redirect::to($link);
+		}
+	}
+	/**
+	 * Get Meetup Token and redirect to the front
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function acceptMeetup(Request $r){
+		if($_GET['code']){
+			$link=\Config::get('constants.redirect_meetup_front').$_GET['code'];
+			return Redirect::to($link);
+		}
+		else{
+			$link=\Config::get('constants.redirect_meetup_front').'0';
+			return Redirect::to($link);
+		}
+	}
+	/*Generate bearer token*/
+	public function getMeetupToken($code){
+		$client_secret = \Config::get('constants.meetup_client_secret');
+		$client_id = \Config::get('constants.meetup_client_id');
+		$redirect_meetup_url = \Config::get('constants.redirect_meetup_url');
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		  CURLOPT_URL => "https://secure.meetup.com/oauth2/access",
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_ENCODING => "",
+		  CURLOPT_MAXREDIRS => 10,
+		  CURLOPT_TIMEOUT => 30,
+		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		  CURLOPT_CUSTOMREQUEST => "POST",
+		  CURLOPT_POSTFIELDS => "code=$code&client_secret=$client_secret&grant_type=authorization_code&client_id=$client_id&redirect_uri=$redirect_meetup_url",
+		  CURLOPT_HTTPHEADER => array(
+		    "cache-control: no-cache",
+		    "content-type: application/x-www-form-urlencoded"
+		  ),
+		));
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+		curl_close($curl);
+		if ($err) {
+		  return response()->json(['Code'=>$code, 'response'=>$response],400);
+		} else {
+			return response()->json(['Code'=>$code, 'response'=>$response],200);
+		}
+	}
+	public function getMeetupEvents($token){
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		  CURLOPT_URL => "https://api.meetup.com/self/events/?access_token=".$token,
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_ENCODING => "",
+		  CURLOPT_MAXREDIRS => 10,
+		  CURLOPT_TIMEOUT => 30,
+		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		  CURLOPT_CUSTOMREQUEST => "GET",
+		  CURLOPT_HTTPHEADER => array(
+		    "cache-control: no-cache",
+		    "content-type: application/x-www-form-urlencoded"
+		  ),
+		));
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+		curl_close($curl);
+		if ($err) {
+		  return response()->json(['Code'=>$token, 'response'=>$response],400);
+		} else {
+			return response()->json(['Code'=>$token, 'response'=>$response],200);
+		}
+	}
+	/*Generate bearer token*/
+	public function getEventbriteToken($code){
+		$client_secret = \Config::get('constants.eventbrite_client_secret');
+		$client_id = \Config::get('constants.eventbrite_client_id');
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		  CURLOPT_URL => "https://www.eventbrite.com/oauth/token",
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_ENCODING => "",
+		  CURLOPT_MAXREDIRS => 10,
+		  CURLOPT_TIMEOUT => 30,
+		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		  CURLOPT_CUSTOMREQUEST => "POST",
+		  CURLOPT_POSTFIELDS => "code=$code&client_secret=$client_secret&grant_type=authorization_code&client_id=$client_id",
+		  CURLOPT_HTTPHEADER => array(
+		    "cache-control: no-cache",
+		    "content-type: application/x-www-form-urlencoded"
+		  ),
+		));
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+		curl_close($curl);
+		if ($err) {
+		  return response()->json(['Code'=>$code, 'response'=>$response],400);
+		} else {
+			return response()->json(['Code'=>$code, 'response'=>$response],200);
+		}
+	}
 
+  public function chatNotification(Request $request){
+    $userTo = $request->input("userTo");
+    $userFrom = $request->input("userFrom");
+		$user=User::where("email","=",$userTo['email'])->first();
+		if(!$user){//If the user does not exist.
+			return response()->json(['message'=>"User does not exist",'code'=>'404'],404);
+		}
+		else{
+			$link=\Config::get('constants.chat_url').$request->input("sponzorshipId");
+			$notification = new Notification();
+			$vars = ['chatLink'=>$link, 'nameTo' => $userTo['name'], 'nameFrom' => $userFrom['name'],'message' => $request->input("message")];
+			$to = ['name'=>$userTo['name'], 'email'=>$userTo['email']];
+      if($request->input("userType") == 1){
+        $notification->sendEmail('chatsendbysponsor',$user->lang, $to, $vars);
+      }
+      else if($request->input("userType") == 0){
+        $notification->sendEmail('chatsendbyorganizer',$user->lang, $to, $vars);
+      }
+			return response()->json(['message'=>"Email Notification Sent",'code'=>$link],200);
+		}
+  }
 }

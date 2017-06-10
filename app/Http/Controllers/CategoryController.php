@@ -19,7 +19,7 @@ class CategoryController extends Controller {
 	 */
 	public function index()
 	{
-		$categories = Category::get();
+		$categories = Category::with('interests')->get();
 		return response()->json([
 			"success" => true,
 			"categories"=>$categories->toArray()

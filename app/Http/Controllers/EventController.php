@@ -4,6 +4,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Perk;
+use App\Models\PerkTask;
+use App\Models\SavedEvents;
 use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller {
@@ -14,17 +17,45 @@ class EventController extends Controller {
 		$this->middleware('auth.basic.once',['only'=>['store','update','destroy']]);
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$events = Event::get();
-		return response()->json([
-			"success" => true,
-			"events"=>$events->toArray()
+
+	//It should be moved to another controller
+	public function saveEvent($eventId, $userId){
+		$savedEvent=SavedEvents::create(['event_id'=>$eventId, 'user_id'=>$userId]);
+		$Event = SavedEvents::with(
+		'event.perks.tasks',
+		'event.category',
+		'event.type')
+		->where('saved_events.id','=',$savedEvent->id)->first();
+		return response()->json(['message'=>"Inserted",'event'=>$Event],201);
+	}
+	public function saveRemoveEvent($savedEventId){
+		$savedEvent=SavedEvents::find($savedEventId)->first();
+		if(!$savedEvent){
+			return response()->json(['message'=>"Not found"],404);
+		}
+		else{
+			$savedEvent->delete();
+			return response()->json(['message'=>"Delete"],200);
+		}
+	}
+	///////////////////////////////////////////
+
+
+	public function index(){
+
+    $today = date("Y-m-d HH:ii:ss");
+    $events = Event::with(
+    'category',
+    'type',
+    'user_organizer',
+    'perks.tasks')
+    ->where('events.starts', '>', $today)->get();
+
+		return response()->json(
+			["data"=>
+				[
+					"events"=>$events->toArray()
+				]
 			], 200
 		);
 	}
@@ -36,7 +67,13 @@ class EventController extends Controller {
 	 */
 	public function show($id)
 	{
-		$event = Event::find($id);
+		$event = Event::with(
+		'category',
+		'type',
+		'user_organizer',
+		'perks.tasks',
+		'sponzorship.sponzor',
+		'sponzor_tasks')->where('events.id', '=', $id)->first();
 		if(!$event){
 			return response()->json(
 				["message"=>"Resource not found",
@@ -45,21 +82,9 @@ class EventController extends Controller {
 		}
 		else
 		{
-			$category=$event->category()->get();
-			$type=$event->type()->get();
-			$organizer=$event->organizer()->get();
-			$event->perks;
-			$event->sponzorship;
-			$event->perk_tasks;
-			$event->sponzor_tasks;
 			return response()->json(
-				["data"=>
-					[
-						"event"=>$event->toArray(),
-						"category"=>$category->toArray(),
-						"type"=>$type->toArray(),
-						"organizer"=>$organizer->toArray(),
-					]
+				[
+					"event"=>$event
 				], 200
 			);
 		}
@@ -70,29 +95,185 @@ class EventController extends Controller {
 	 * @return Response
 	 */
 	public function store(Request $request)
-	{
-		$validation = Validator::make($request->all(), [
-			'title'=>'required|max:255',
+ 	{
+ 		$validation = Validator::make($request->all(), [
+ 			'title'			=>'required|max:255',
+ 			'location'		=>'required|max:500',
+ 			'ends'			=>'required|max:255',
+ 			'starts'		=>'required|max:255',
+ 			'location_reference'=>'required|max:255',
+ 			'image'			=>'required|max:500',
+			'sumary'		=>'required|max:1000',
+ 			'description'	=>'required',
+ 			'privacy'		=>'required|max:255',
+ 			'lang'			=>'required|max:5',
+ 			'organizer'		=>'required|exists:users,id',
+ 			'category'		=>'required|exists:categories,id',
+ 			'type'			=>'required|exists:event_types,id',
+     	 ]);
+ 		if($validation->fails())
+ 		{
+ 			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
+ 		}
+ 		else
+ 		{
+			$perks = $request->input('perks');
+ 			$event=Event::create($request->all());
+			$aux = [];
+			foreach ($perks as $p) {
+				$validation = Validator::make($p, [
+					'kind'=>'required|max:255',
+					'usd'=>'required|max:11',
+					'total_quantity'=>'required|max:11',
+					'reserved_quantity'=>'required|max:11',
+		    	 ]);
+				if($validation->fails())
+				{
+					$aux[] = ['error'=>"Not inserted perk ".$p["kind"],'error'=>$validation->messages()];
+				}
+				else
+				{
+					$perk = $event->perks()->create($p);
+					if(isset($p['perkTasks'])){
+						foreach ($p['perkTasks'] as $t) {
+							$t['user_id']=$request->input('organizer');
+							$t['event_id']=$event->id;
+							$perk->tasks()->create($t);
+						}
+					}
+				}
+			}
+			$Event = Event::with(
+			'perks.tasks',
+			'perks.sponzor_tasks')
+			->where('events.id','=',$event->id)->first();
+ 			return response()->json(['message'=>"Inserted",'event'=>$Event, 'error'=>$aux],201);
+ 		}
+ 	}
+	public function update(Request $request, $id){
+		if($request->method()==="PUT"){//PUT all fields are required
+			$validation = Validator::make($request->all(), [
+      'title'=>'required|max:255',
 			'location'=>'required|max:255',
 			'ends'=>'required|max:255',
 			'starts'=>'required|max:255',
 			'location_reference'=>'required|max:255',
-			'image'=>'required|max:255',
+			'image'=>'required|max:555',
 			'description'=>'required',
+			'sumary'=>'required',
 			'privacy'=>'required|max:255',
 			'lang'=>'required|max:5',
 			'organizer'=>'required|exists:users,id',
 			'category'=>'required|exists:categories,id',
 			'type'=>'required|exists:event_types,id',
-    	 ]);
-		if($validation->fails())
-		{
-			return response()->json(['message'=>"Not inserted",'error'=>$validation->messages()],422);
-		}
-		else
-		{
-			$event=Event::create($request->all());
-			return response()->json(['message'=>"Inserted",'event'=>$event],201);
+	    	 ]);
+			if($validation->fails())
+			{
+				return response()->json(['message'=>"Not updated",'error'=>$validation->messages()],422);
+			}
+			else
+			{
+				$event = Event::find($id);
+				$event->title =$request->input('title');
+				$event->location =$request->input('location');
+				$event->ends =$request->input('ends');
+				$event->starts =$request->input('starts');
+				$event->location_reference =$request->input('location_reference');
+				$event->image =$request->input('image');
+				$event->description =$request->input('description');
+				$event->sumary =$request->input('sumary');
+				$event->privacy =$request->input('privacy');
+				$event->lang =$request->input('lang');
+				$event->sumary =$request->input('sumary');
+				$event->organizer =$request->input('organizer');
+				$event->category =$request->input('category');
+				$event->type =$request->input('type');
+				$event->save();
+
+				$perks = $request->input('perks');
+
+
+				$tasksToDelete = $request->input('tasksToDelete');
+				if(isset($tasksToDelete)){
+					foreach ($tasksToDelete as $index) {
+						$tt=PerkTask::find($index);
+						if($tt){
+							$tt->task_sponzor()->delete();
+							$tt->delete();
+						}
+					}
+				}
+
+				$sponzorshipTypesToDelete = $request->input('sponzorshipTypesToDelete');
+				if(isset($sponzorshipTypesToDelete)){
+					foreach ($sponzorshipTypesToDelete as $index) {
+						$pt=Perk::find($index);
+						if($pt){
+							$pt->tasks()->delete();
+							$pt->delete();
+						}
+					}
+				}
+
+
+				$aux = [];
+				foreach ($perks as $p) {
+					$validation = Validator::make($p, [
+						'kind'=>'required|max:255',
+						'usd'=>'required|max:11',
+						'total_quantity'=>'required|max:11',
+						'reserved_quantity'=>'required|max:11',
+						 ]);
+					if($validation->fails()){
+						$aux[] = ['error'=>"Not inserted/editing perk ".$p["kind"],'error'=>$validation->messages()];
+					}
+					else{
+						if($p["id"]==-1){
+							$perk = $event->perks()->create($p);
+							if(isset($p['tasks'])){
+								foreach ($p['tasks'] as $t) {
+									$t['user_id']=$request->input('organizer');
+									$t['event_id']=$event->id;
+									$perk->tasks()->create($t);
+								}
+							}
+						}
+						else{
+							$newPerk = Perk::find($p["id"]);
+							$newPerk->kind=$p["kind"];
+							$newPerk->usd=$p["usd"];
+							$newPerk->total_quantity=$p["total_quantity"];
+							$newPerk->reserved_quantity=$p["reserved_quantity"];
+							$newPerk->save();
+							if(isset($p['tasks'])){
+								foreach ($p['tasks'] as $t) {
+									if($t["id"]==-1){
+										$t['user_id']=$request->input('organizer');
+										$t['event_id']=$event->id;
+										$newPerk->tasks()->create($t);
+									}
+									else{
+										$task = PerkTask::find($t["id"]);
+										if($task){
+											$task->title = $t["title"];
+											$task->title = $t["description"];
+											$task->save();
+										}
+
+									}
+								}
+							}
+						}
+					}
+				}
+				$Event = Event::with(
+				'perks.tasks',
+	      'type',
+	      'category',
+				'perks.sponzor_tasks')
+				->where('events.id','=',$event->id)->first();
+	 			return response()->json(['message'=>"Updated",'event'=>$Event, 'error'=>$aux],200);
+			}
 		}
 	}
 	/**
@@ -101,7 +282,7 @@ class EventController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Request $request,$id)
+	public function update2(Request $request,$id)
 	{
 		$event=Event::find($id);
 		if(!$event){
@@ -232,6 +413,19 @@ class EventController extends Controller {
 					$warnings[]=$validator->messages();
 				}
 			}
+			if(!empty($sumary)){
+				$validator = Validator::make(
+				    ['lang' => $lang],
+				    ['lang' => ['required', 'max:100']]
+				);
+				if(!$validator->fails()){
+					$flag=1;
+					$event->sumary=$sumary;
+				}
+				else{
+					$warnings[]=$validator->messages();
+				}
+			}
 			if(!empty($organizer)){
 				$validator = Validator::make(
 				    ['organizer' => $organizer],
@@ -274,7 +468,12 @@ class EventController extends Controller {
 
 			if($flag){
 				$event->save();
-				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'event'=>$event],200);
+				$eventToReturn = Event::with(
+					'perks.tasks',
+					'type',
+					'category'
+				)->where('id','=',$event->id);
+				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'event'=>$eventToReturn],200);
 			}
 			else{
 				return response()->json(['message'=>"Nothing to update",'warnings'=>$warnings,'event'=>$event],200);
@@ -287,8 +486,9 @@ class EventController extends Controller {
 			'ends'=>'required|max:255',
 			'starts'=>'required|max:255',
 			'location_reference'=>'required|max:255',
-			'image'=>'required|max:255',
+			'image'=>'required|max:555',
 			'description'=>'required',
+			'sumary'=>'required',
 			'privacy'=>'required|max:255',
 			'lang'=>'required|max:5',
 			'organizer'=>'required|exists:users,id',
@@ -314,7 +514,12 @@ class EventController extends Controller {
 				$event->category =$category;
 				$event->type =$type;
 				$event->save();
-				return response()->json(['message'=>"Updated",'event'=>$event],200);
+				$eventToReturn = Event::with(
+					'perks.tasks',
+					'type',
+					'category'
+				)->where('id','=',$event->id);
+				return response()->json(['message'=>"Updated", 'event'=>$eventToReturn],200);
 			}
 		}
 		else{
@@ -334,19 +539,13 @@ class EventController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
-			$perks=$event->perks;
 			$sponzorship=$event->sponzorship;
-			$perkTasks=$event->perk_tasks;
-			if(sizeof($perks)>0){
-				return response()->json(['message'=>"This event has perks, first remove the perks and try again"],409);
-			}
-			elseif(sizeof($sponzorship)>0){
+			if(sizeof($sponzorship)>0){
 				return response()->json(['message'=>"This event has sponzorship, first remove the sponzorship and try again"],409);
 			}
-			elseif(sizeof($perkTasks)>0){
-				return response()->json(['message'=>"This event has perkTasks, first remove the perk tasks and try again"],409);
-			}
 			else{
+				$event->perk_tasks()->delete();
+				$event->perks()->delete();
 				$event->delete();
 				return response()->json(['message'=>"Deleted"],200);
 			}

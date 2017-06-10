@@ -4,84 +4,72 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sponzorship;
+use App\Models\User;
+use App\Models\TaskSponzor;
+use App\Models\PerkTask;
+use App\Models\Perk;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Validator;
 use Weblee\Mandrill\Mail;
+use Fahim\PaypalIPN\PaypalIPNListener;
+use Log;
+use App\Services\Notification;
 
 class SponzorshipController extends Controller {
 	public function __construct()
 	{
-		$this->middleware('auth.basic.once',['only'=>['store','update','destroy','sendSponzorshipEmail']]);
+		$this->middleware('auth.basic.once',['only'=>['store','update','destroy']]);
 	}
-	public function sendSponzorshipEmail(){
-		$validation = Validator::make($request->all(), [
-				'sponzorEmail'=>'required|max:255',
-				'sponzorName'=>'required|max:255',
-				'eventName'=>'required|max:255',
-				'organizerEmail'=>'required|max:255',
-				'lang'=>'required|max:3'
-			 ]);
-		if($validation->fails())
-		{
-			return response()->json(['message'=>"No sent, incomplete fields",'error'=>$validation->messages()],422);
-		}
-		else
-		{
-			try{
+	public function paypalIpn()
+	{
+    $ipn = new PaypalIPNListener();
+		$ipn->use_sandbox = false;
+    $item = [];
+    $item['type'] = 1; //true
+    $sandbox = \Config::get('constants.sandbox');
+    if($sandbox){
+      $ipn->use_sandbox = true;
+      $item['type'] = 0; //test
+    }
+		try{
+			$verified = $ipn->processIpn();
+	    $report = $ipn->getTextReport();
+      $item['payment_status'] = $_POST['payment_status'];
+      $item['txn_id'] = $_POST['txn_id'];
+      $item['sponzorship_id'] = $_POST['item_number'];
+      $item['amount'] = $_POST['mc_gross'];
+      $item['item_name'] = $_POST['item_name'];
+      $item['payment_date'] = $_POST['payment_date'];
+      $item['user_id'] = $_POST['custom'];
+      $Transaction=Transaction::create($item);
+			if ($verified) {
+	        if($_POST['payment_status'] == 'Completed'){
+							$item_id = $_POST['item_number'];
+							$Sponzorship=Sponzorship::find($item_id);
+							if($Sponzorship){
+								$Sponzorship->status = 3;
+								$Sponzorship->save();
 
-					$sponzorEmail=$request->input('sponzorEmail');
-					$sponzorName=$request->input('sponzorName');
-					$eventName=$request->input('eventName');
-					$organizerEmail=$request->input('organizerEmail');
-					$lang=$request->input('lang');
-					if($lang=="en")
-				    	$template_name = 'approved-english';
-				    if($lang=="es")
-				    	$template_name = 'approved-spanish';
-				    if($lang=="pt")
-				    	$template_name = 'approved-portuguese';
-				    $template_content = array(
-				        array(
-				            'name' => 'Sponzorship-approved',
-				            'content' => 'SponzorMe'
-				        )
-				    );
-				    $message = array(
-				        'to' => array(
-				            array(
-				                'email' =>	$sponzorEmail,
-				                'name' 	=> 	$sponzorName,
-				                'type' 	=> 'to'
-				            )
-				        ),
-				        'global_merge_vars' => array(
-				            array(
-				                'name' => 'sponzorName',
-				            	'content' => $sponzorName
-				            ),
-				            array(
-				                'name' => 'eventName',
-				            	'content' => $eventName
-				            ),
-										array(
-				                'name' => 'organizerEmail',
-				            	'content' => $organizerEmail
-				            ),
-				        ),
-				    );
-			    	$result = \MandrillMail::messages()->sendTemplate($template_name, $template_content, $message);
-					if($result[0]["status"]=="sent" AND !$result[0]["reject_reason"]){
-						return true;
-					}
-					elseif ($result[0]["status"]=="queued") {
-						return false;
-					}
-					else{
-						return false;
-					}
+							}
+	        }
+	    }
+			else{
+				$item_id = $_POST['item_number'];
+				$Sponzorship=Sponzorship::find($item_id);
+				if($Sponzorship){
+					$Sponzorship->status = 4;
+					$Sponzorship->save();
 				}
-				catch(Exeption $e){
-					return false;
-				}
+			}
+			//----------------- --- NOTIFICATION EMAIL------------------------------//
+			$notification = new Notification();
+			$vars = array('eventName' => $Sponzorship->event->title);
+			$to = ['name'=>$Sponzorship->organizer->name, 'email'=>$Sponzorship->organizer->email];
+			$notification->sendEmail('sponsorpayment', $Sponzorship->organizer->lang, $to, $vars);
+			//----------------------------------------------------------------------//
+		}
+		catch(Exception $e){
+			\Log::info($e->getMessage());
 		}
 	}
 	/**
@@ -106,7 +94,7 @@ class SponzorshipController extends Controller {
 			->join('events', 'event_id', '=', 'events.id')
 			->join('users', 'sponzor_id', '=', 'users.id')
 			->join('perks', 'perk_id', '=', 'perks.id')
-			->select('users.name','users.email','events.title', 'perks.*', 'sponzorships.*')
+			->select('users.name','users.email','events.title', 'events.starts', 'events.location', 'events.ends', 'perks.*', 'sponzorships.*')
 			->get();
 			return response()->json([
 				"success" => true,
@@ -122,7 +110,7 @@ class SponzorshipController extends Controller {
 			->join('events', 'event_id', '=', 'events.id')
 			->join('users', 'organizer_id', '=', 'users.id')
 			->join('perks', 'perk_id', '=', 'perks.id')
-			->select('users.name','users.email','events.title', 'perks.*', 'sponzorships.*')
+			->select('users.name','users.email','events.title', 'events.starts', 'events.location', 'events.ends', 'perks.*', 'sponzorships.*')
 			->get();
 			return response()->json([
 				"success" => true,
@@ -146,6 +134,11 @@ class SponzorshipController extends Controller {
 			);
 		}
 		else {
+			$tasks = Sponzorship::where('sponzorships.id', $id)
+			->join('task_sponzors', 'task_sponzors.sponzorship_id', '=', 'sponzorships.id')
+			->join('perk_tasks', 'perk_tasks.id', '=', 'task_sponzors.task_id')
+			->select('perk_tasks.*')
+			->get();
 			$SponzorEvent->task_sponzor;
 			return response()->json(
 				["data"=>
@@ -155,6 +148,7 @@ class SponzorshipController extends Controller {
 						"Sponzor"=>$SponzorEvent->sponzor,
 						"Organizer"=>$SponzorEvent->organizer,
 						"Perk"=>$SponzorEvent->perk,
+						"Tasks"=>$tasks->toArray()
 					]
 				], 200
 			);
@@ -181,8 +175,27 @@ class SponzorshipController extends Controller {
 		}
 		else
 		{
-			$Sponzorship=Sponzorship::create($request->all());
-			return response()->json(['message'=>"Inserted",'Sponzorship'=>$Sponzorship],201);
+			$aux = Sponzorship::where('sponzor_id','=',$request->input('sponzor_id'))->where('perk_id','=',$request->input('perk_id'))->count();
+			if($aux){
+				return response()->json(['message'=>"Already Inserted"],409);
+			}
+			else{
+				$Sponzorship=Sponzorship::create($request->all());
+				//----------------- --- NOTIFICATION EMAIL------------------------------//
+				$notification = new Notification();
+				$vars = array('eventName' => $Sponzorship->event->title);
+				$to = ['name'=>$Sponzorship->organizer->name, 'email'=>$Sponzorship->organizer->email];
+				$notification->sendEmail('sponsored-event', $Sponzorship->organizer->lang, $to, $vars);
+				//----------------------------------------------------------------------//
+				$sponzorship = Sponzorship::with(
+				'organizer',
+				'event',
+				'perk.tasks',
+				'task_sponzor.task',
+				'ratings')
+				->where('sponzorships.id','=',$Sponzorship->id)->first();
+				return response()->json(['message'=>"Inserted",'Sponzorship'=>$sponzorship],201);
+			}
 		}
 	}
 	/**
@@ -203,14 +216,22 @@ class SponzorshipController extends Controller {
 		}
 		if($request->method()==="PATCH"){//PATCH At least one field is required
 			$warnings=array();
+      $createSponzorTask = false;
+      $deleteSponzorTask = false;
 			$flag=0;//If 0 persist nothing was updated.
-			if($status>=0){
+			if(isset($status) && $status>=0){
 				$validator = Validator::make(
 				    ['status' => $status],
 				    ['status' => ['required', 'max:4']]
 				);
 				if(!$validator->fails()){
 					$flag=1;
+          if($status == 1 && $Sponzorship->status == 0){
+            $createSponzorTask = true;
+          }
+          else if($status == 0 && $Sponzorship->status == 1){
+            $deleteSponzorTask = true;
+          }
 					$Sponzorship->status=$status;
 				}
 				else{
@@ -283,8 +304,94 @@ class SponzorshipController extends Controller {
 				}
 			}
 			if($flag){
+				$perk = Perk::find($Sponzorship->perk_id);
+        if($createSponzorTask){
+					$Sponzorship->save();
+					if($perk->reserved_quantity +1 < $perk->total_quantity){
+						$perk->reserved_quantity += 1;
+						$perk->save();
+	          $tasks = PerkTask::where('perk_id', '=', $Sponzorship->perk_id)->get();
+	          foreach($tasks as $t){
+	            $iterator = [
+	              'status'=>0,
+	              'task_id'=>$t->id,
+	              'perk_id'=>$Sponzorship->perk_id,
+	              'sponzor_id'=>$Sponzorship->sponzor_id,
+	              'organizer_id'=>$Sponzorship->organizer_id,
+	              'event_id'=>$Sponzorship->event_id,
+	              'sponzorship_id'=>$Sponzorship->id
+	            ];
+	            TaskSponzor::create($iterator);
+	          }
+					}
+					else if($perk->reserved_quantity +1 == $perk->total_quantity){
+						$perk->reserved_quantity += 1;
+						$perk->save();
+	          $tasks = PerkTask::where('perk_id', '=', $Sponzorship->perk_id)->get();
+	          foreach($tasks as $t){
+	            $iterator = [
+	              'status'=>0,
+	              'task_id'=>$t->id,
+	              'perk_id'=>$Sponzorship->perk_id,
+	              'sponzor_id'=>$Sponzorship->sponzor_id,
+	              'organizer_id'=>$Sponzorship->organizer_id,
+	              'event_id'=>$Sponzorship->event_id,
+	              'sponzorship_id'=>$Sponzorship->id
+	            ];
+	            TaskSponzor::create($iterator);
+	          }
+						$aux = Sponzorship::where('organizer_id', '=', $Sponzorship->organizer_id)
+						->where('perk_id', '=', $Sponzorship->perk_id)
+						->where('status', '=', 0)->get();
+						foreach ($aux as $a) {
+							$a->task_sponzor()->delete();
+				      $perkTasks = PerkTask::where('type', '=', '1')->where('perk_id', '=', $a->perk_id)
+				          ->where('user_id', '=', $Sponzorship->sponzor_id)->delete();
+							$a->delete();
+						}
+					}
+					else{
+						$Sponzorship->status = 0;
+						$Sponzorship->save();
+						return response()->json(['message'=>"Limite Reach"],409);
+					}
+					if($Sponzorship->status){
+						//----------------- --- NOTIFICATION EMAIL------------------------------//
+						$notification = new Notification();
+
+						$vars = ['eventName' => $Sponzorship->event->title,
+								'sponzorName' => $Sponzorship->sponzor->name];
+						$to = ['name'=>$Sponzorship->sponzor->name, 'email'=>$Sponzorship->sponzor->email];
+						$notification->sendEmail('approved', $Sponzorship->sponzor->lang, $to, $vars);
+						//----------------------------------------------------------------------//
+					}
+        }
+        elseif($deleteSponzorTask){
+          $Sponzorship->task_sponzor()->delete();
+					$perk->reserved_quantity -= 1;
+					$perk->save();
+					//----------------- --- NOTIFICATION EMAIL------------------------------//
+					$notification = new Notification();
+					$vars = array(
+
+								'eventName' => $Sponzorship->event->title,'sponzorName' => $Sponzorship->sponzor->name
+
+					);
+					$to = ['name'=>$Sponzorship->sponzor->name, 'email'=>$Sponzorship->sponzor->email];
+					$notification->sendEmail('disapproved', $Sponzorship->sponzor->lang, $to, $vars);
+					//----------------------------------------------------------------------//
+          $perkTasks = PerkTask::where('type', '=', '1')->where('perk_id', '=', $Sponzorship->perk_id)
+          ->where('user_id', '=', $Sponzorship->sponzor_id)->delete();
+        }
 				$Sponzorship->save();
-				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'Sponzorship'=>$Sponzorship],200);
+        $sponzorship = Sponzorship::with(
+				'organizer',
+				'event',
+				'perk.tasks',
+				'task_sponzor.task',
+				'ratings')
+				->where('sponzorships.id','=',$Sponzorship->id)->first();
+				return response()->json(['message'=>"Updated",'warnings'=>$warnings,'Sponzorship'=>$sponzorship],200);
 			}
 			else{
 				return response()->json(['message'=>"Nothing updated",'warnings'=>$warnings,'Sponzorship'=>$Sponzorship],200);
@@ -330,14 +437,18 @@ class SponzorshipController extends Controller {
 			return response()->json(['message'=>"Not found"],404);
 		}
 		else{
-			$tasksSponzor=$Sponzorship->task_sponzor;
-			if(sizeof($tasksSponzor)>0){
-				return response()->json(['message'=>"This Sponzorship has tasks_sponzor, first remove the tasks_sponzor and try again"],409);
-			}
-			else{
-				$Sponzorship->delete();
-				return response()->json(['message'=>"Deleted"],200);
-			}
+			$Sponzorship->task_sponzor()->delete();
+      $perkTasks = PerkTask::where('type', '=', '1')->where('perk_id', '=', $Sponzorship->perk_id)->where('user_id', '=', $Sponzorship->sponzor_id)->delete();
+			//----------------- --- NOTIFICATION EMAIL------------------------------//
+			$notification = new Notification();
+			$vars = array('eventName' => $Sponzorship->event->title, 'sponzorName' => $Sponzorship->sponzor->name);
+			$to = ['name'=>$Sponzorship->organizer->name, 'email'=>$Sponzorship->organizer->email];
+			$notification->sendEmail('sponsorshipcanceled', $Sponzorship->organizer->lang, $to, $vars);
+			$to = ['name'=>$Sponzorship->sponzor->name, 'email'=>$Sponzorship->sponzor->email];
+			$notification->sendEmail('sponsorshipcanceled', $Sponzorship->sponzor->lang, $to, $vars);
+			//----------------------------------------------------------------------//
+			$Sponzorship->delete();
+			return response()->json(['message'=>"Deleted"],200);
 		}
 	}
 }

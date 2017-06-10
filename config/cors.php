@@ -11,7 +11,7 @@ return array(
      | unless overridden in a specific URL configuration.
      | If you want them to apply to everything, you must define a path with *.
      |
-     | allowedOrigins, allowedHeaders and allowedMethods can be set to array('*') 
+     | allowedOrigins, allowedHeaders and allowedMethods can be set to array('*')
      | to accept any value, the allowed methods however have to be explicitly listed.
      |
      */
@@ -32,6 +32,24 @@ return array(
             'allowedMethods' => array('*'),
             'maxAge' => 3600,
         ),
+        'apistaging/*' => array(
+            'allowedOrigins' => array('*'),
+            'allowedHeaders' => array('*'),
+            'allowedMethods' => array('*'),
+            'maxAge' => 3600,
+        ),
+        'apilocal/*' => array(
+            'allowedOrigins' => array('*'),
+            'allowedHeaders' => array('*'),
+            'allowedMethods' => array('*'),
+            'maxAge' => 3600,
+        ),
+        'apidev/*' => array(
+            'allowedOrigins' => array('*'),
+            'allowedHeaders' => array('*'),
+            'allowedMethods' => array('*'),
+            'maxAge' => 3600,
+        ),
         '*' => array(
             'supportsCredentials' => true,
             'allowedOrigins' => array('*'),
@@ -39,7 +57,7 @@ return array(
             'allowedMethods' => array('POST', 'PUT', 'GET', 'PATCH', 'DELETE'),
             'exposedHeaders' => array('*'),
             'maxAge' => 3600,
-            'hosts' => array('api.*'),
+            'hosts' => array('api.*','apistaging.*','apilocal.*','local.*','apidev.*'),
         ),
     ),
 

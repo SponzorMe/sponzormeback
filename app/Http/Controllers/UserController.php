@@ -290,7 +290,7 @@ class UserController extends Controller {
 				'image' => 'https://s3-us-west-2.amazonaws.com/sponzormewebappimages/user_default.jpg'
 			]);
 			$emailSender=$this->sendActivationLink($request);
-			$this->subscribeToMailchimp($request->input('email'),$request->input('name'),$request->input('type'),$request->input('lang'));
+//			$this->subscribeToMailchimp($request->input('email'),$request->input('name'),$request->input('type'),$request->input('lang'));
 			return response()->json(['message'=>"Inserted",'User'=>$user],201);
 		}
 	}

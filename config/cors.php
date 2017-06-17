@@ -57,7 +57,7 @@ return array(
             'allowedMethods' => array('POST', 'PUT', 'GET', 'PATCH', 'DELETE'),
             'exposedHeaders' => array('*'),
             'maxAge' => 3600,
-            'hosts' => array('api.*','apistaging.*','apilocal.*','local.*','apidev.*'),
+            'hosts' => array('server1.*','api.*','apistaging.*','apilocal.*','local.*','apidev.*'),
         ),
     ),
 

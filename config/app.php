@@ -147,10 +147,8 @@ return [
 		/*
 		 * Custom service providers...
 		 */
-		'Orangehill\Iseed\IseedServiceProvider',
-		'Barryvdh\Cors\CorsServiceProvider',
+Barryvdh\Cors\ServiceProvider::class,
 		'Weblee\Mandrill\MandrillServiceProvider',
-		'Barryvdh\Cors\CorsServiceProvider'
 	],
 
 	/*
